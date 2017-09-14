@@ -1,0 +1,30 @@
+{
+  "name": "sqip",
+  "version": "0.0.1",
+  "description": "A SVG-based LQIP image placeholder generator",
+  "main": "index.js",
+  "bin": {
+    "sqip": "index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "lqip",
+    "svg",
+    "images",
+    "placeholder",
+    "webperf",
+    "performance",
+    "ux",
+    "perceived"
+  ],
+  "author": "Tobias Baldauf",
+  "license": "Unlicense",
+  "dependencies": {
+    "argv": "0.0.2",
+    "image-size": "^0.6.1",
+    "svgo": "^0.7.2",
+    "xmldom": "^0.1.27"
+  }
+}
