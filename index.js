@@ -29,7 +29,12 @@
 //# CLI usage:
 //# sqip input.jpg // generates a SVG placeholder and prints an example <img> tag to stdout
 //# sqip -o output.svg input.svg // Save the placeholder SVG to a file instead of printing the <img> to stdout
-//# sqip -n 6 input.jpg // reduce the number of primitive SVG shapes (default=9) to further reduce placeholder bytesize
+//# sqip -n 4 input.jpg // reduce the number of primitive SVG shapes (default=8) to further reduce placeholder bytesize
+//#
+//# ToDo:
+//# * Implement a check for <g></g> so that our RegEx to place the filter can work - currently <g></g> is not always present
+//# * Implement the copy-to-clipboard functionality from lqip-cli to copy output to clipboard
+//# * Add reasoning that SVG filters render fast: https://www.smashingmagazine.com/2016/05/web-image-effects-performance-showdown/
 //#
 //#############################################################################
 
@@ -56,7 +61,7 @@ const argvOptions = [{
         short: 'n',
         type: 'int',
         description: 'The number of primitive shapes to use to build the SQIP SVG',
-        example: "'sqip --numberOfPrimitives=9' or 'sqip -n 9'"
+        example: "'sqip --numberOfPrimitives=4' or 'sqip -n 4'"
     },
     {
         name: 'output',
@@ -105,8 +110,8 @@ const getDimensions = (filename) => sizeOf(filename);
 const findLargerImageDimension = ({ width, height }) => width > height ? width : height;
 
 // Run Primitive with reasonable defaults (rectangles as shapes, 9 shaper per default) to generate the placeholder SVG
-const runPrimitive = (filename, { numberOfPrimitives = 9 }, primitive_output, dimensions) => {
-    child_process.execSync(`primitive -i ${filename} -o ${primitive_output} -n ${numberOfPrimitives} -m 2 -s ${findLargerImageDimension(dimensions)}`);
+const runPrimitive = (filename, { numberOfPrimitives = 8 }, primitive_output, dimensions) => {
+    child_process.execSync(`primitive -i ${filename} -o ${primitive_output} -n ${numberOfPrimitives} -m 0 -s ${findLargerImageDimension(dimensions)}`);
 }
 
 // Read the Primitive-generated SVG so that we can continue working on it
@@ -122,8 +127,8 @@ const runSVGO = (primitive_svg) => {
 
 // Add viewbox and preserveAspectRatio attributes as well as a Gaussian Blur filter to the SVG
 // We initially worked with a proper DOM parser to manipulate the SVG's XML, but it was very opinionated about SVG syntax and kept introducing unwanted tags. So we had to resort to RegEx replacements
-const replaceSVGAttrs = (svg, { width, height }) => svg.replace(/(<svg)(.*?)(>)/, `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" preserveAspectRatio="xMinYMin meet"><filter id="blur"><feGaussianBlur stdDeviation="42" /></filter>`)
-    .replace(/(<g)/, '<g filter="url(#blur)"');
+const replaceSVGAttrs = (svg, { width, height }) => svg.replace(/(<svg)(.*?)(>)/, `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}"><filter id="b"><feGaussianBlur stdDeviation="12" /></filter>`)
+    .replace(/(<g)/, '<g filter="url(#b)"');
 
 // If the user chooses to save the SVG to a file using the --output parameter, write the file
 const writeSVGOutput = (filename, content) => {
