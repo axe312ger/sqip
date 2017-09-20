@@ -2,21 +2,8 @@
 
 //#############################################################################
 //#
-//# Introduction:
-//# Low quality image placeholders (LQIP, https://www.guypo.com/introducing-lqip-low-quality-image-placeholders/)
-//# are a good way to improve the user experience during webpage loading. Companies
-//# like Facebook (https://code.facebook.com/posts/991252547593574/the-technology-behind-preview-photos)
-//# and Medium (https://jmperezperez.com/medium-image-progressive-loading-placeholder/)
-//# use this technique to quickly show previews of high-res images.
-//# LQIP work by creating a small, low-quality thumbnail raster image and base64-encoding
-//# it so that it can be inlined. The resulting payload is >=~600 characters in size.
-//# And since the LQIP image is still a raster image, it may not create a decent
-//# initial impression on HiDPI screens, especially during viewport changes. 
-//# SQIP addresses these issues by building the low quality image placeholder
-//# as an SVG, using primitive forms approximating the main features visible
-//# in the hires input image. The amount of primitive SVG forms can be modified
-//# to further increase the amount of detail visible in the SVG or decrease the
-//# overall bytesize of the preview.
+//# "SQIP" (pronounced \skwɪb\ like the non-magical folk of magical descent) 
+//# is a SVG-based LQIP technique - https://github.com/technopagan/sqip
 //#
 //# Installation:
 //# npm install -g file:/path/to/sqip/
@@ -25,15 +12,6 @@
 //# * Node.js >= v.6 (https://nodejs.org/en/)
 //# * Golang (https://golang.org/doc/install)
 //# * Primitive (https://github.com/fogleman/primitive)
-//#
-//# CLI usage:
-//# sqip input.jpg // generates a SVG placeholder and prints an example <img> tag to stdout
-//# sqip -o output.svg input.jpg // Save the placeholder SVG to a file instead of printing the <img> to stdout
-//# sqip -n 4 input.jpg // reduce the number of primitive SVG shapes (default=8) to further reduce placeholder bytesize
-//#
-//# ToDo:
-//# * Implement a check for <g></g> so that our RegEx to place the filter can work - currently <g></g> is not always present
-//# * Implement the copy-to-clipboard functionality from lqip-cli to copy output to clipboard
 //#
 //#############################################################################
 

@@ -8,6 +8,11 @@ SVG-based LQIP technique.
 **LQIP vs. SQIP Comparison**
 [![LQIP vs. SQIP](demo/lqip-vs-sqip.jpg)](https://raw.githubusercontent.com/technopagan/sqip/master/demo/lqip-vs-sqip.jpg)
 
+## Requirements
+* Node.js >= v.6 (https://nodejs.org/en/)
+* Golang (https://golang.org/doc/install)
+* Primitive (https://github.com/fogleman/primitive)
+
 ## Background
 
 Image placeholders are a thing: from grey boxes in skeleton screens over boxes
@@ -66,7 +71,7 @@ sqip input.jpg
 // Save the placeholder SVG to a file instead of printing the <img> to stdout
 sqip -o output.svg input.jpg
 
-// Reduce the number of primitive SVG shapes (default=8) to further reduce placeholder bytesize
+// Limit the number of primitive SVG shapes (default=8) to further reduce bytesize
 sqip -n 4 input.jpg
 
 ```
