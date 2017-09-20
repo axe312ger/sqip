@@ -28,13 +28,12 @@
 //#
 //# CLI usage:
 //# sqip input.jpg // generates a SVG placeholder and prints an example <img> tag to stdout
-//# sqip -o output.svg input.svg // Save the placeholder SVG to a file instead of printing the <img> to stdout
+//# sqip -o output.svg input.jpg // Save the placeholder SVG to a file instead of printing the <img> to stdout
 //# sqip -n 4 input.jpg // reduce the number of primitive SVG shapes (default=8) to further reduce placeholder bytesize
 //#
 //# ToDo:
 //# * Implement a check for <g></g> so that our RegEx to place the filter can work - currently <g></g> is not always present
 //# * Implement the copy-to-clipboard functionality from lqip-cli to copy output to clipboard
-//# * Add reasoning that SVG filters render fast: https://www.smashingmagazine.com/2016/05/web-image-effects-performance-showdown/
 //#
 //#############################################################################
 
