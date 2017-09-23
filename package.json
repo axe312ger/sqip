@@ -1,30 +1,42 @@
 {
-  "name": "sqip",
-  "version": "0.0.1",
-  "description": "A SVG-based LQIP image placeholder generator",
-  "main": "index.js",
-  "bin": {
-    "sqip": "index.js"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "lqip",
-    "svg",
-    "images",
-    "placeholder",
-    "webperf",
-    "performance",
-    "ux",
-    "perceived"
-  ],
-  "author": "Tobias Baldauf",
-  "license": "Unlicense",
-  "dependencies": {
-    "argv": "0.0.2",
-    "image-size": "^0.6.1",
-    "svgo": "^0.7.2",
-    "xmldom": "^0.1.27"
-  }
+    "name": "sqip",
+    "version": "0.1.0",
+    "description": "A SVG-based LQIP image placeholder generator",
+    "main": "index.js",
+    "bin": {
+        "sqip": "index.js"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "lqip",
+        "svg",
+        "images",
+        "placeholder",
+        "webperf",
+        "performance",
+        "ux",
+        "perceived"
+    ],
+    "author": "Tobias Baldauf",
+    "license": "Unlicense",
+    "engines": {
+        "node": ">=6.0.0"
+    },
+    "dependencies": {
+        "argv": "0.0.2",
+        "image-size": "^0.6.1",
+        "svgo": "^0.7.2",
+        "xmldom": "^0.1.27"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/technopagan/sqip"
+    },
+    "person": {
+        "name": "Tobias Baldauf",
+        "email": "npm@tobias-baldauf.de",
+        "url": "https://who.tobias.is/"
+    }
 }

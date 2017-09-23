@@ -6,7 +6,7 @@
 //# is a SVG-based LQIP technique - https://github.com/technopagan/sqip
 //#
 //# Installation:
-//# npm install -g file:/path/to/sqip/
+//# npm install -g sqip
 //# 
 //# Requirements:
 //# * Node.js >= v.6 (https://nodejs.org/en/)
