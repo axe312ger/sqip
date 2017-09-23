@@ -1,13 +1,11 @@
-#! /usr/bin/env node
-
 //#############################################################################
 //#
-//# "SQIP" (pronounced \skwɪb\ like the non-magical folk of magical descent) 
+//# "SQIP" (pronounced \skwɪb\ like the non-magical folk of magical descent)
 //# is a SVG-based LQIP technique - https://github.com/technopagan/sqip
 //#
 //# Installation:
 //# npm install -g sqip
-//# 
+//#
 //# Requirements:
 //# * Node.js >= v.6 (https://nodejs.org/en/)
 //# * Golang (https://golang.org/doc/install)
@@ -56,20 +54,29 @@ const getArguments = () => argv.option(argvOptions).run();
 //#############################################################################
 
 // Sanity check: use the exit state of 'type' to check for Primitive availability
-const checkForPrimitive = () => {
+const checkForPrimitive = (shouldThrow = false) => {
+    const errorMessage = "Please ensure that Primitive (https://github.com/fogleman/primitive, written in Golang) is installed and globally available";
     try {
         child_process.execSync('type primitive')
     } catch (e) {
-        console.log("Please ensure that Primitive (https://github.com/fogleman/primitive, written in Golang) is installed and globally available");
+        if (shouldThrow) {
+            throw new Error(errorMessage);
+        }
+        console.log(errorMessage);
         process.exit(1);
     };
 }
 
 // Sanity check: make sure that the user has provided a file for sqip to work on
-const getInputfilePath = (targets) => {
-    if (!targets[0]) {
-        console.log("Please provide an input image, e.g. 'sqip input.jpg'");
-        process.exit(1);
+const getInputfilePath = (targets, shouldThrow = false) => {
+    const errorMessage = `Please provide an input image, e.g. ${shouldThrow ? 'sqip({ filename: "input.jpg" })' : 'sqip input.jpg'}`;
+    if (!targets || !targets[0]) {
+        if(shouldThrow) {
+            throw new Error(errorMessage);
+        } else {
+            console.log(errorMessage);
+            process.exit(1);
+        }
     }
     return path.resolve(process.env.PWD, targets[0]);
 }
@@ -126,17 +133,38 @@ const printFinalResult = ({ width, height }, filename, svg_base64encoded) => {
 //# MAIN FUNCTION CALL
 //#############################################################################
 
-const main = () => {
-    checkForPrimitive();
-    const { targets, options } = getArguments();
-    const filename = getInputfilePath(targets);
+const main = (filename, options) => {
     const img_dimensions = getDimensions(filename);
     runPrimitive(filename, options, primitive_output_file, img_dimensions);
     const primitive_output = readPrimitiveTempFile(primitive_output_file);
     const svgo_output = runSVGO(primitive_output);
     const final_svg = replaceSVGAttrs(svgo_output, img_dimensions);
     const svg_base64encoded = encodeBase64(final_svg);
-    options.output ? writeSVGOutput(options.output, final_svg) : printFinalResult(img_dimensions, filename, svg_base64encoded);
-}
 
-main();
+    return { final_svg, svg_base64encoded, img_dimensions };
+};
+
+
+/*
+ * CLI API
+ */
+module.exports.run = () => {
+    checkForPrimitive();
+    const { targets, options } = getArguments();
+    const filename = getInputfilePath(targets);
+    const { final_svg, svg_base64encoded, img_dimensions } = main(filename, options);
+    options.output
+        ? writeSVGOutput(options.output, final_svg)
+        : printFinalResult(img_dimensions, filename, svg_base64encoded);
+};
+
+
+/**
+ * NODE API
+ */
+module.exports.node = apiOptions => {
+    checkForPrimitive(true);
+    const filename = getInputfilePath([apiOptions.filename], true);
+
+    return main(filename, apiOptions);
+}
