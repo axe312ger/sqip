@@ -3,9 +3,9 @@ SQIP - SVG-Based Image Placeholder
 ## Overview
 
 "SQIP" (pronounced \skwɪb\ like the non-magical folk of magical descent) is a 
-SVG-based LQIP technique.
+SVG-based [LQIP](https://www.guypo.com/introducing-lqip-low-quality-image-placeholders/) technique.
 
-**LQIP vs. SQIP Comparison**
+**LQIP | SQIP | Original in comparison**
 [![LQIP vs. SQIP](demo/lqip-vs-sqip.jpg)](https://raw.githubusercontent.com/technopagan/sqip/master/demo/lqip-vs-sqip.jpg)
 
 ## Requirements
@@ -21,7 +21,7 @@ and CSS color gradients made from two dominant colors up to actual low quality
 raster images downscaled to a few pixels, saved in low quality and then blurred
 to provide a preview of image contents.
 
-Many major players have adopted one these image placeholder techniques:
+Many major players have adopted one of these image placeholder techniques:
 [Guypo](https://twitter.com/guypod) [incepted
 LQIP](https://www.guypo.com/introducing-lqip-low-quality-image-placeholders/) in
 2012 and Akamai adopted it as part of their image optimization tools, Google
@@ -35,7 +35,7 @@ made a significant impact with their LQIP implementations and the most popular
 images](https://github.com/aFarkas/lazysizes#lqipblurry-image-placeholderblur-up-image-technique)
 include LQIP implementations.
 
-**Overview of Image Placeholders**
+**Overview of Image Placeholder Techniques**
 [![Overview of Image Placeholders](demo/placeholder-overview.jpg)](https://raw.githubusercontent.com/technopagan/sqip/master/demo/placeholder-overview.jpg)
 
 On the low end of the bytesize spectrum of image placeholder implementations, we 
@@ -65,13 +65,13 @@ visual cue of image contents to come.
 
 ```bash
 
-// Generate a SVG placeholder and prints an example <img> tag to stdout
+// Generate a SVG placeholder and print an example <img> tag to stdout
 sqip input.jpg
 
 // Save the placeholder SVG to a file instead of printing the <img> to stdout
 sqip -o output.svg input.jpg
 
-// Limit the number of primitive SVG shapes (default=8) to further reduce bytesize
+// Customize the number of primitive SVG shapes (default=8) to influence bytesize or level of detail
 sqip -n 4 input.jpg
 
 ```
