@@ -2,7 +2,7 @@ SQIP - SVG-Based Image Placeholder
 ====================
 ## Overview
 
-"SQIP" (pronounced \skwɪb\ like the non-magical folk of magical descent) is a 
+"SQIP" (pronounced \skwɪb\ like the non-magical folk of magical descent) is a
 SVG-based [LQIP](https://www.guypo.com/introducing-lqip-low-quality-image-placeholders/) technique.
 
 **LQIP | SQIP | Original in comparison**
@@ -38,7 +38,7 @@ include LQIP implementations.
 **Overview of Image Placeholder Techniques**
 [![Overview of Image Placeholders](demo/placeholder-overview.jpg)](https://raw.githubusercontent.com/technopagan/sqip/master/demo/placeholder-overview.jpg)
 
-On the low end of the bytesize spectrum of image placeholder implementations, we 
+On the low end of the bytesize spectrum of image placeholder implementations, we
 have skeleton screens and colored boxes, weighing only a few extra bytes each,
 but providing no preview of image contents. On the high end of the bytesize
 spectrum, the LQIP technique ships an actual raster image, which gives a good
@@ -53,27 +53,50 @@ Many other LQIP implementations go for preview images of ~2kb in size, which
 provides a much better initial visual impression but comes at the cost of
 significantly increased bytesize for the LQIP implementation.
 
-SQIP is an attempt to find a balance between these two extremes: it makes use 
-of [Primitive](https://github.com/fogleman/primitive) to generate a SVG 
-consisting of several simple shapes that approximate the main features visible 
-inside the image, optimizes the SVG using [SVGO](https://github.com/svg/svgo) 
-and adds a Gaussian Blur filter to it. This produces a SVG placeholder which 
-weighs in at only ~800-1000 bytes, looks smooth on all screens and provides an 
+SQIP is an attempt to find a balance between these two extremes: it makes use
+of [Primitive](https://github.com/fogleman/primitive) to generate a SVG
+consisting of several simple shapes that approximate the main features visible
+inside the image, optimizes the SVG using [SVGO](https://github.com/svg/svgo)
+and adds a Gaussian Blur filter to it. This produces a SVG placeholder which
+weighs in at only ~800-1000 bytes, looks smooth on all screens and provides an
 visual cue of image contents to come.
 
 ## CLI Examples
 
 ```bash
 
-// Generate a SVG placeholder and print an example <img> tag to stdout
+# Generate a SVG placeholder and print an example <img> tag to stdout
 sqip input.jpg
 
-// Save the placeholder SVG to a file instead of printing the <img> to stdout
+# Save the placeholder SVG to a file instead of printing the <img> to stdout
 sqip -o output.svg input.jpg
 
-// Customize the number of primitive SVG shapes (default=8) to influence bytesize or level of detail
+# Customize the number of primitive SVG shapes (default=8) to influence bytesize or level of detail
 sqip -n 4 input.jpg
 
+```
+
+### NODE API
+Node API takes filename and number of primitives in an object, returns an object
+with SVG, base64 encoded SVG and image dimensions.
+
+Input options:
+- filename (required)
+- numberOfPrimitives (default=8)
+
+Returns:
+- final_svg - string
+- svg_base64encoded - string
+- img_dimensions - object
+
+**Examples**
+```javascript
+const squip = require('squip');
+
+const result =  squip({
+    filename: './input.jpg',
+    numberOfPrimitives: 10
+});
 ```
 
 ## Licence

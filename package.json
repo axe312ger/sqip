@@ -2,9 +2,9 @@
     "name": "sqip",
     "version": "0.1.0",
     "description": "A SVG-based LQIP image placeholder generator",
-    "main": "index.js",
+    "main": "./src/node.js",
     "bin": {
-        "sqip": "index.js"
+        "sqip": "./src/cli.js"
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
