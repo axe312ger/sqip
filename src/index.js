@@ -21,7 +21,7 @@
 // Require the necessary modules to make sqip work
 const sizeOf = require('image-size');
 const argv = require('argv');
-const os = require('os')
+const os = require('os');
 const child_process = require('child_process');
 const fs = require('fs');
 const path = require('path');
@@ -71,7 +71,7 @@ const checkForPrimitive = (shouldThrow = false) => {
 const getInputfilePath = (targets, shouldThrow = false) => {
     const errorMessage = `Please provide an input image, e.g. ${shouldThrow ? 'sqip({ filename: "input.jpg" })' : 'sqip input.jpg'}`;
     if (!targets || !targets[0]) {
-        if(shouldThrow) {
+        if (shouldThrow) {
             throw new Error(errorMessage);
         } else {
             console.log(errorMessage);
@@ -153,9 +153,9 @@ module.exports.run = () => {
     const { targets, options } = getArguments();
     const filename = getInputfilePath(targets);
     const { final_svg, svg_base64encoded, img_dimensions } = main(filename, options);
-    options.output
-        ? writeSVGOutput(options.output, final_svg)
-        : printFinalResult(img_dimensions, filename, svg_base64encoded);
+    options.output ?
+        writeSVGOutput(options.output, final_svg) :
+        printFinalResult(img_dimensions, filename, svg_base64encoded);
 };
 
 

@@ -98,9 +98,9 @@ Returns:
 
 **Examples**
 ```javascript
-const squip = require('squip');
+const sqip = require('sqip');
 
-const result =  squip({
+const result =  sqip({
     filename: './input.jpg',
     numberOfPrimitives: 10
 });
