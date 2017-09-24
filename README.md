@@ -13,6 +13,13 @@ SVG-based [LQIP](https://www.guypo.com/introducing-lqip-low-quality-image-placeh
 * Golang (https://golang.org/doc/install)
 * Primitive (https://github.com/fogleman/primitive)
 
+## Installation
+```bash
+
+npm install -g sqip
+
+```
+
 ## Background
 
 Image placeholders are a thing: from grey boxes in skeleton screens over boxes
@@ -98,6 +105,11 @@ const result =  squip({
     numberOfPrimitives: 10
 });
 ```
+
+## Credits
+* trivago N.V. (https://github.com/trivago)
+* Efe Gürkan Yalaman (https://github.com/efegurkan)
+* Michael Fogleman (https://github.com/fogleman)
 
 ## Licence
 
