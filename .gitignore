@@ -33,3 +33,5 @@ typings/
 .yarn-integrity
 # dotenv environment variables file
 .env
+# JetBrains Editors Config
+.idea

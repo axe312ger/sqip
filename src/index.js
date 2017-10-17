@@ -57,19 +57,25 @@ const getArguments = () => argv.option(argvOptions).run();
 const checkForPrimitive = (shouldThrow = false) => {
     const errorMessage = "Please ensure that Primitive (https://github.com/fogleman/primitive, written in Golang) is installed and globally available";
     try {
-        child_process.execSync('type primitive')
+        if (process.platform === 'win32') {
+            child_process.execSync('where primitive');
+        } else {
+            child_process.execSync('type primitive')
+        }
     } catch (e) {
         if (shouldThrow) {
             throw new Error(errorMessage);
         }
         console.log(errorMessage);
-        process.exit(1);
-    };
-}
+    }
+};
 
 // Sanity check: make sure that the user has provided a file for sqip to work on
 const getInputfilePath = (targets, shouldThrow = false) => {
     const errorMessage = `Please provide an input image, e.g. ${shouldThrow ? 'sqip({ filename: "input.jpg" })' : 'sqip input.jpg'}`;
+    if (!process.env.PWD) {
+        process.env.PWD = process.cwd();
+    }
     if (!targets || !targets[0]) {
         if (shouldThrow) {
             throw new Error(errorMessage);
