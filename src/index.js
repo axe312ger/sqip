@@ -67,6 +67,7 @@ const checkForPrimitive = (shouldThrow = false) => {
             throw new Error(errorMessage);
         }
         console.log(errorMessage);
+        process.exit(1);
     }
 };
 
