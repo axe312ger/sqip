@@ -84,7 +84,7 @@ const getInputfilePath = (targets, shouldThrow = false) => {
 // Sanity check: make sure that the value was passed to the `output` option
 // Fixes https://github.com/technopagan/sqip/issues/11
 const getOutputFilePath = () => {
-  const index = process.argv.findIndex(arg => arg == '-o' || arg == '--output');
+  const index = process.argv.findIndex(arg => arg === '-o' || arg === '--output');
   return index > 0 ? process.argv[index + 1] : null;
 }
 
