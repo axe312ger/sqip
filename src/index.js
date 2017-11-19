@@ -74,9 +74,6 @@ const checkForPrimitive = (shouldThrow = false) => {
 // Sanity check: make sure that the user has provided a file for sqip to work on
 const getInputfilePath = (targets, shouldThrow = false) => {
     const errorMessage = `Please provide an input image, e.g. ${shouldThrow ? 'sqip({ filename: "input.jpg" })' : 'sqip input.jpg'}`;
-    if (!process.env.PWD) {
-        process.env.PWD = process.cwd();
-    }
     if (!targets || !targets[0]) {
         if (shouldThrow) {
             throw new Error(errorMessage);
@@ -85,7 +82,7 @@ const getInputfilePath = (targets, shouldThrow = false) => {
             process.exit(1);
         }
     }
-    return path.resolve(process.env.PWD, targets[0]);
+    return path.resolve(process.cwd(), targets[0]);
 }
 
 
