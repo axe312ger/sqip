@@ -85,6 +85,12 @@ const getInputfilePath = (targets, shouldThrow = false) => {
     return path.resolve(process.cwd(), targets[0]);
 }
 
+// Sanity check: make sure that the value was passed to the `output` option
+// Fixes https://github.com/technopagan/sqip/issues/11
+const getOutputFilePath = () => {
+  const index = process.argv.findIndex(arg => arg === '-o' || arg === '--output');
+  return index > 0 ? process.argv[index + 1] : null;
+}
 
 //#############################################################################
 //# FUNCTIONS TOOLBELT
@@ -157,8 +163,10 @@ module.exports.run = () => {
     const { targets, options } = getArguments();
     const filename = getInputfilePath(targets);
     const { final_svg, svg_base64encoded, img_dimensions } = main(filename, options);
-    options.output ?
-        writeSVGOutput(options.output, final_svg) :
+    const output = getOutputFilePath();
+
+    output ?
+        writeSVGOutput(output, final_svg) :
         printFinalResult(img_dimensions, filename, svg_base64encoded);
 };
 
