@@ -13,6 +13,19 @@ SVG-based [LQIP](https://www.guypo.com/introducing-lqip-low-quality-image-placeh
 * Golang (https://golang.org/doc/install)
 * Primitive (https://github.com/fogleman/primitive)
 
+After installing Primitive, you may also need to add the path to the ```Primitive``` binary file.
+
+#### For macOS
+It would generally look something like 
+```bash
+/Users/myMacbook/go/bin
+```
+To do this on a Mac, type: ```sudo vim /etc/paths``` into your terminal, and add the path to your ```Primitive``` binary file, but be sure to add the full path, ```/Users/<username>/go/bin``` and not ```~/go/bin```.
+
+#### For PC
+Using the command line (https://www.windows-commandline.com/set-path-command-line) <br>
+Using a GUI (https://www.computerhope.com/issues/ch000549.htm)
+
 ## Installation
 ```bash
 
