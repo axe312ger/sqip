@@ -16,7 +16,7 @@ SVG-based [LQIP](https://www.guypo.com/introducing-lqip-low-quality-image-placeh
 After installing Primitive, you may also need to add the path to the ```Primitive``` binary file.
 
 #### For macOS
-It would generally look something like 
+It would generally look something like
 ```bash
 /Users/myMacbook/go/bin
 ```
@@ -94,6 +94,9 @@ sqip -o output.svg input.jpg
 # Customize the number of primitive SVG shapes (default=8) to influence bytesize or level of detail
 sqip -n 4 input.jpg
 
+# Specify the type of primitive shapes that will be used to generate the image (default=0)
+# 0=combo, 1=triangle, 2=rect, 3=ellipse, 4=circle, 5=rotatedrect, 6=beziers, 7=rotatedellipse, 8=polygon
+sqip -m 4 input.jpg
 ```
 
 ### NODE API
@@ -103,6 +106,7 @@ with SVG, base64 encoded SVG and image dimensions.
 Input options:
 - filename (required)
 - numberOfPrimitives (default=8)
+- mode (default=0)
 
 Returns:
 - final_svg - string
