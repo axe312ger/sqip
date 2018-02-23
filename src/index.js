@@ -53,6 +53,13 @@ const argvOptions = [{
                 0=combo, 1=triangle, 2=rect, 3=ellipse, 4=circle, 5=rotatedrect,
                 6=beziers, 7=rotatedellipse, 8=polygon`,
         example: "'sqip --mode=3' or 'sqip -m 3'"
+    },
+    {
+        name: 'blur',
+        short: 'b',
+        type: 'int',
+        description: `GaussianBlur SVG filter value. Disable via 0, defaults to 12`,
+        example: "'sqip --blur=3' or 'sqip -b 3'"
     }
 ];
 const getArguments = () => argv.option(argvOptions).run();
@@ -140,18 +147,22 @@ const patchSVGGroup = (svg) => {
 // Add viewbox and preserveAspectRatio attributes as well as a Gaussian Blur filter to the SVG
 // When missing, add group (element with blur applied) using patchSVGGroup()
 // We initially worked with a proper DOM parser to manipulate the SVG's XML, but it was very opinionated about SVG syntax and kept introducing unwanted tags. So we had to resort to RegEx replacements
-const replaceSVGAttrs = (svg, { width, height }) => {
-  let blurStdDev = 12;
+const replaceSVGAttrs = (svg, { width, height, blur }) => {
+  let filter = '';
+  let blurStdDev = blur;
   let blurFilterId = 'b';
   let newSVG = svg;
-  if (svg.match(/<svg.*?><path.*?><g/) === null) {
-    blurStdDev = 55;
-    newSVG = patchSVGGroup(newSVG);
-    blurFilterId = 'c';
-  } else {
-    newSVG = newSVG.replace(/(<g)/, '<g filter="url(#b)"');
+  if (blur) {
+    if (svg.match(/<svg.*?><path.*?><g/) === null) {
+        blurStdDev = 55;
+        newSVG = patchSVGGroup(newSVG);
+        blurFilterId = 'c';
+    } else {
+        newSVG = newSVG.replace(/(<g)/, `<g filter="url(#${blurFilterId})"`);
+    }
+    filter = `<filter id="${blurFilterId}"><feGaussianBlur stdDeviation="${blurStdDev}" /></filter>`
   }
-  return newSVG.replace(/(<svg)(.*?)(>)/,`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}"><filter id="${blurFilterId}"><feGaussianBlur stdDeviation="${blurStdDev}" /></filter>`);
+  return newSVG.replace(/(<svg)(.*?)(>)/,`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}">${filter}`);
 }
 
 // If the user chooses to save the SVG to a file using the --output parameter, write the file
@@ -174,11 +185,18 @@ const printFinalResult = ({ width, height }, filename, svg_base64encoded) => {
 //#############################################################################
 
 const main = (filename, options) => {
-    const img_dimensions = getDimensions(filename);
+    const img_dimensions = getDimensions(filename)
+    const svgOptions = Object.assign({
+        blur: options.blur
+    }, img_dimensions);
+
+    // Do not pass blur to primitive
+    delete options.blur
+
     runPrimitive(filename, options, primitive_output_file, img_dimensions);
     const primitive_output = readPrimitiveTempFile(primitive_output_file);
     const svgo_output = runSVGO(primitive_output);
-    const final_svg = replaceSVGAttrs(svgo_output, img_dimensions);
+    const final_svg = replaceSVGAttrs(svgo_output, svgOptions);
     const svg_base64encoded = encodeBase64(final_svg);
 
     return { final_svg, svg_base64encoded, img_dimensions };

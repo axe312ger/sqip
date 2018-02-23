@@ -5,8 +5,16 @@ SQIP - SVG-Based Image Placeholder
 "SQIP" (pronounced \skwɪb\ like the non-magical folk of magical descent) is a
 SVG-based [LQIP](https://www.guypo.com/introducing-lqip-low-quality-image-placeholders/) technique.
 
-**LQIP | SQIP | Original in comparison**
-[![LQIP vs. SQIP](demo/lqip-vs-sqip.jpg)](https://raw.githubusercontent.com/technopagan/sqip/master/demo/lqip-vs-sqip.jpg)
+## Examples
+
+| Original | LQIP | SQIP default | SQIP complex         |
+|----------|------|--------------|----------------------|
+| <img width="180" src="demo/beach.jpg"> | <img width="180" src="demo/beach-lqip.jpg"> | <img width="180" src="demo/beach-sqip.svg"> | <img width="180" src="./demo/beach-sqip-no-blur-50-all-shapes.svg"> |
+| Size: | 354B  (gz: 282B) | 895B (gz: 479B)| 3104B (gz: 1241B)- 50 shapes |
+| <img width="180" src="./demo/monkey-selfie.jpg"> | <img width="180" src="./demo/monkey-selfie-lqip.jpg"> | <img width="180" src="./demo/monkey-selfie-sqip.svg"> | <img width="180" src="./demo/monkey-selfie-sqip-no-blur-25-all-shapes.svg"> |
+| Size: | 435B (gz: 369B) | 980B (gz: 513B)| 2258B (gz: 924B) - 25 shapes |
+| <img width="180" src="./demo/mona-lisa.jpg"> | <img width="180" src="./demo/mona-lisa-lqip.jpg"> | <img width="180" src="./demo/mona-lisa-sqip.svg"> | <img width="180" src="./demo/mona-lisa-sqip-3-blur-50-triangles.svg"> |
+| Size: | 442B (gz: 372B) | 937B (gz: 487B) | 3273B (gz: 1394B)- 50 triangles |
 
 ## Requirements
 * Node.js >= v.6 (https://nodejs.org/en/)
@@ -97,6 +105,9 @@ sqip -n 4 input.jpg
 # Specify the type of primitive shapes that will be used to generate the image (default=0)
 # 0=combo, 1=triangle, 2=rect, 3=ellipse, 4=circle, 5=rotatedrect, 6=beziers, 7=rotatedellipse, 8=polygon
 sqip -m 4 input.jpg
+
+# Set the gaussian blur (default=12)
+sqip -b 3 input.jpg
 ```
 
 ### NODE API
@@ -107,6 +118,7 @@ Input options:
 - filename (required)
 - numberOfPrimitives (default=8)
 - mode (default=0)
+- blur (default=12)
 
 Returns:
 - final_svg - string
