@@ -30,6 +30,9 @@ const svgo = require('svgo');
 // Define a a temp file, ideally on a RAMdisk that Primitive can write to
 const primitive_output_file = os.tmpdir() + '/primitive_tempfile.svg';
 
+const VENDOR_DIR = path.resolve(__dirname, '..', 'vendor')
+let primitiveExecutable = 'primitive'
+
 // Use 'argv' to set up all available commandline parameters that shall be available when running sqip
 const argvOptions = [{
         name: 'numberOfPrimitives',
@@ -71,6 +74,13 @@ const getArguments = () => argv.option(argvOptions).run();
 
 // Sanity check: use the exit state of 'type' to check for Primitive availability
 const checkForPrimitive = (shouldThrow = false) => {
+    const primitivePath = path.join(VENDOR_DIR, `primitive-${os.platform()}-${os.arch()}`)
+
+    if (fs.existsSync(primitivePath)) {
+        primitiveExecutable = primitivePath
+        return
+    }
+
     const errorMessage = "Please ensure that Primitive (https://github.com/fogleman/primitive, written in Golang) is installed and globally available";
     try {
         if (process.platform === 'win32') {
@@ -121,7 +131,7 @@ const findLargerImageDimension = ({ width, height }) => width > height ? width :
 
 // Run Primitive with reasonable defaults (rectangles as shapes, 9 shaper per default) to generate the placeholder SVG
 const runPrimitive = (filename, { numberOfPrimitives = 8, mode = 0 }, primitive_output, dimensions) => {
-    child_process.execSync(`primitive -i ${filename} -o ${primitive_output} -n ${numberOfPrimitives} -m ${mode} -s ${findLargerImageDimension(dimensions)}`);
+    child_process.execSync(`${primitiveExecutable} -i ${filename} -o ${primitive_output} -n ${numberOfPrimitives} -m ${mode} -s ${findLargerImageDimension(dimensions)}`);
 }
 
 // Read the Primitive-generated SVG so that we can continue working on it
