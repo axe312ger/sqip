@@ -17,9 +17,11 @@ SVG-based [LQIP](https://www.guypo.com/introducing-lqip-low-quality-image-placeh
 | Size: | 442B (gz: 372B) | 937B (gz: 487B) | 3273B (gz: 1394B)- 50 triangles |
 
 ## Requirements
-* Node.js >= v.6 (https://nodejs.org/en/)
+* Node.js >= v6 (https://nodejs.org/en/)
+
+### Non-64bit operating systems need:
 * Golang (https://golang.org/doc/install)
-* Primitive (https://github.com/fogleman/primitive)
+* Primitive (https://github.com/fogleman/primitive) (`go get -u github.com/fogleman/primitive`)
 
 After installing Primitive, you may also need to add the path to the ```Primitive``` binary file.
 
