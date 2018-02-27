@@ -1,6 +1,6 @@
 {
     "name": "sqip",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "description": "A SVG-based LQIP image placeholder generator",
     "main": "./src/node.js",
     "bin": {
