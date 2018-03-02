@@ -7,14 +7,14 @@ SVG-based [LQIP](https://www.guypo.com/introducing-lqip-low-quality-image-placeh
 
 ## Examples
 
-| Original | LQIP | SQIP default | SQIP complex         |
-|----------|------|--------------|----------------------|
-| <img width="180" src="demo/beach.jpg"> | <img width="180" src="demo/beach-lqip.jpg"> | <img width="180" src="demo/beach-sqip.svg"> | <img width="180" src="./demo/beach-sqip-no-blur-50-all-shapes.svg"> |
-| Size: | 354B  (gz: 282B) | 895B (gz: 479B)| 3104B (gz: 1241B)- 50 shapes |
-| <img width="180" src="./demo/monkey-selfie.jpg"> | <img width="180" src="./demo/monkey-selfie-lqip.jpg"> | <img width="180" src="./demo/monkey-selfie-sqip.svg"> | <img width="180" src="./demo/monkey-selfie-sqip-no-blur-25-all-shapes.svg"> |
-| Size: | 435B (gz: 369B) | 980B (gz: 513B)| 2258B (gz: 924B) - 25 shapes |
-| <img width="180" src="./demo/mona-lisa.jpg"> | <img width="180" src="./demo/mona-lisa-lqip.jpg"> | <img width="180" src="./demo/mona-lisa-sqip.svg"> | <img width="180" src="./demo/mona-lisa-sqip-3-blur-50-triangles.svg"> |
-| Size: | 442B (gz: 372B) | 937B (gz: 487B) | 3273B (gz: 1394B)- 50 triangles |
+| Original | LQIP | SQIP default |
+|----------|------|--------------|
+| <img width="180" src="demo/beach.jpg"> | <img width="180" src="demo/beach-lqip.jpg"> | <img width="180" src="demo/beach-sqip.svg"> |
+| Size: | 354B | 895B (gz: 479B) |
+| <img width="180" src="./demo/monkey-selfie.jpg"> | <img width="180" src="./demo/monkey-selfie-lqip.jpg"> | <img width="180" src="./demo/monkey-selfie-sqip.svg"> |
+| Size: | 435B | 980B (gz: 513B) |
+| <img width="180" src="./demo/mona-lisa.jpg"> | <img width="180" src="./demo/mona-lisa-lqip.jpg"> | <img width="180" src="./demo/mona-lisa-sqip.svg"> |
+| Size: | 442B | 937B (gz: 487B) |
 
 ## Requirements
 * Node.js >= v6 (https://nodejs.org/en/)
