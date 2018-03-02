@@ -159,10 +159,11 @@ const patchSVGGroup = (svg) => {
 // We initially worked with a proper DOM parser to manipulate the SVG's XML, but it was very opinionated about SVG syntax and kept introducing unwanted tags. So we had to resort to RegEx replacements
 const replaceSVGAttrs = (svg, { width, height, blur }) => {
   let filter = '';
-  let blurStdDev = blur;
+  let blurStdDev = blur || 12;
   let blurFilterId = 'b';
   let newSVG = svg;
-  if (blur) {
+
+  if (blur !== 0) {
     if (svg.match(/<svg.*?><path.*?><g/) === null) {
         blurStdDev = 55;
         newSVG = patchSVGGroup(newSVG);
