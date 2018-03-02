@@ -9,11 +9,11 @@ SVG-based [LQIP](https://www.guypo.com/introducing-lqip-low-quality-image-placeh
 
 | Original | LQIP | SQIP default |
 |----------|------|--------------|
-| <img width="180" src="demo/beach.jpg"> | <img width="180" src="demo/beach-lqip.jpg"> | <img width="180" src="demo/beach-sqip.svg"> |
+| <img width="180" src="demo/beach.jpg"> | <img width="180" src="demo/beach-lqip.jpg"> | <img width="180" src="demo/beach-sqip.png"> |
 | Size: | 354B | 895B (gz: 479B) |
-| <img width="180" src="./demo/monkey-selfie.jpg"> | <img width="180" src="./demo/monkey-selfie-lqip.jpg"> | <img width="180" src="./demo/monkey-selfie-sqip.svg"> |
+| <img width="180" src="./demo/monkey-selfie.jpg"> | <img width="180" src="./demo/monkey-selfie-lqip.jpg"> | <img width="180" src="./demo/monkey-selfie-sqip.png"> |
 | Size: | 435B | 980B (gz: 513B) |
-| <img width="180" src="./demo/mona-lisa.jpg"> | <img width="180" src="./demo/mona-lisa-lqip.jpg"> | <img width="180" src="./demo/mona-lisa-sqip.svg"> |
+| <img width="180" src="./demo/mona-lisa.jpg"> | <img width="180" src="./demo/mona-lisa-lqip.jpg"> | <img width="180" src="./demo/mona-lisa-sqip.png"> |
 | Size: | 442B | 937B (gz: 487B) |
 
 ## Requirements
