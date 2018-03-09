@@ -14,7 +14,7 @@ const builds = [
   {
     os: "windows",
     arch: "amd64",
-    filename: "primitive-win32-x64"
+    filename: "primitive-win32-x64.exe"
   }
 ];
 builds.forEach(build => {
