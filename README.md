@@ -123,9 +123,9 @@ Input options:
 - blur (default=12)
 
 Returns:
-- final_svg - string
-- svg_base64encoded - string
-- img_dimensions - object
+- finalSvg - string
+- svgBase64Encoded - string
+- imgDimensions - object
 
 **Examples**
 ```javascript
