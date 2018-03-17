@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`replaceSVGAttrs svg with group, config with dimensions and zero blur 1`] = `"<svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 1024 640\\"><path fill=\\"#bada55\\" d=\\"M0 0h1024v640H0z\\"/><g><path fill=\\"#C0FFEE\\" d=\\"M51.5 17.5l4 18 15 1z\\"/></g></svg>"`;
+
+exports[`replaceSVGAttrs svg with group, config with dimensions only 1`] = `"<svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 1024 640\\"><filter id=\\"b\\"><feGaussianBlur stdDeviation=\\"12\\" /></filter><path fill=\\"#bada55\\" d=\\"M0 0h1024v640H0z\\"/><g filter=\\"url(#b)\\"><path fill=\\"#C0FFEE\\" d=\\"M51.5 17.5l4 18 15 1z\\"/></g></svg>"`;
+
+exports[`replaceSVGAttrs svg with group, config with dimensions only and blur 1`] = `"<svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 1024 640\\"><filter id=\\"b\\"><feGaussianBlur stdDeviation=\\"5\\" /></filter><path fill=\\"#bada55\\" d=\\"M0 0h1024v640H0z\\"/><g filter=\\"url(#b)\\"><path fill=\\"#C0FFEE\\" d=\\"M51.5 17.5l4 18 15 1z\\"/></g></svg>"`;
+
+exports[`replaceSVGAttrs svg with group, no config 1`] = `"<svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 undefined undefined\\"><filter id=\\"b\\"><feGaussianBlur stdDeviation=\\"12\\" /></filter><path fill=\\"#bada55\\" d=\\"M0 0h1024v640H0z\\"/><g filter=\\"url(#b)\\"><path fill=\\"#C0FFEE\\" d=\\"M51.5 17.5l4 18 15 1z\\"/></g></svg>"`;
+
+exports[`replaceSVGAttrs svg without group, config with dimensions only 1`] = `"<svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 1024 640\\"><filter id=\\"c\\"><feGaussianBlur stdDeviation=\\"55\\" /></filter><path fill=\\"#bada55\\" d=\\"M0 0h1024v640H0z\\"/><g filter='url(#c)' fill-opacity='.5'><path fill=\\"#C0FFEE\\" d=\\"M51.5 17.5l4 18 15 1z\\"/></g></svg>"`;
