@@ -3,13 +3,14 @@
 // # "SQIP" (pronounced \skwɪb\ like the non-magical folk of magical descent)
 // # is a SVG-based LQIP technique - https://github.com/technopagan/sqip
 // #
-// # Installation:
+// # Installation as CLI:
 // # npm install -g sqip
 // #
+// # Installation as lib:
+// # npm install sqip
+// #
 // # Requirements:
-// # * Node.js >= v.6 (https://nodejs.org/en/)
-// # * Golang (https://golang.org/doc/install)
-// # * Primitive (https://github.com/fogleman/primitive)
+// # * Node.js >= v6 (https://nodejs.org/en/)
 // #
 // #############################################################################
 
@@ -18,19 +19,21 @@
 // #############################################################################
 
 // Require the necessary modules to make sqip work
-const sizeOf = require('image-size')
 const argv = require('argv')
-const os = require('os')
-const childProcess = require('child_process')
 const fs = require('fs')
+const os = require('os')
 const path = require('path')
-const SVGO = require('svgo')
+
+const {
+  encodeBase64,
+  getDimensions,
+  printFinalResult
+} = require('./utils/helpers')
+const { checkForPrimitive, runPrimitive } = require('./utils/primitive')
+const { runSVGO, replaceSVGAttrs } = require('./utils/svg')
 
 // Define a a temp file, ideally on a RAMdisk that Primitive can write to
 const primitiveOutputFile = os.tmpdir() + '/primitive_tempfile.svg'
-
-const VENDOR_DIR = path.resolve(__dirname, '..', 'vendor')
-let primitiveExecutable = 'primitive'
 
 // Use 'argv' to set up all available commandline parameters that shall be available when running sqip
 const argvOptions = [
@@ -72,40 +75,12 @@ const getArguments = () => argv.option(argvOptions).run()
 // # SANITY CHECKS
 // #############################################################################
 
-// Sanity check: use the exit state of 'type' to check for Primitive availability
-const checkForPrimitive = (shouldThrow = false) => {
-  const primitivePath = path.join(
-    VENDOR_DIR,
-    `primitive-${os.platform()}-${os.arch()}`
-  )
-
-  if (fs.existsSync(primitivePath)) {
-    primitiveExecutable = primitivePath
-    return
-  }
-
-  const errorMessage =
-    'Please ensure that Primitive (https://github.com/fogleman/primitive, written in Golang) is installed and globally available'
-  try {
-    if (process.platform === 'win32') {
-      childProcess.execSync('where primitive')
-    } else {
-      childProcess.execSync('type primitive')
-    }
-  } catch (e) {
-    if (shouldThrow) {
-      throw new Error(errorMessage)
-    }
-    console.log(errorMessage)
-    process.exit(1)
-  }
-}
-
 // Sanity check: make sure that the user has provided a file for sqip to work on
 const getInputfilePath = (targets, shouldThrow = false) => {
-  const errorMessage = `Please provide an input image, e.g. ${
-    shouldThrow ? 'sqip({ filename: "input.jpg" })' : 'sqip input.jpg'
-  }`
+  const helpText = shouldThrow
+    ? 'sqip({ filename: "input.jpg" })'
+    : 'sqip input.jpg'
+  const errorMessage = `Please provide an input image, e.g. ${helpText}`
   if (!targets || !targets[0]) {
     if (shouldThrow) {
       throw new Error(errorMessage)
@@ -127,96 +102,6 @@ const getOutputFilePath = () => {
 }
 
 // #############################################################################
-// # FUNCTIONS TOOLBELT
-// #############################################################################
-
-// Use image-size to retrieve the width and height dimensions of the input image
-// We need these sizes to pass to Primitive and to write the SVG viewbox
-const getDimensions = filename => sizeOf(filename)
-
-// Since Primitive is only interested in the larger dimension of the input image, let's find it
-const findLargerImageDimension = ({ width, height }) =>
-  width > height ? width : height
-
-// Run Primitive with reasonable defaults (rectangles as shapes, 9 shaper per default) to generate the placeholder SVG
-const runPrimitive = (
-  filename,
-  { numberOfPrimitives = 8, mode = 0 },
-  primitiveOutput,
-  dimensions
-) => {
-  childProcess.execSync(
-    `${primitiveExecutable} -i "${filename}" -o ${primitiveOutput} -n ${numberOfPrimitives} -m ${mode} -s ${findLargerImageDimension(
-      dimensions
-    )}`
-  )
-}
-
-// Read the Primitive-generated SVG so that we can continue working on it
-const readPrimitiveTempFile = primitiveOutputFile =>
-  fs.readFileSync(primitiveOutputFile, { encoding: 'utf-8' })
-
-// USe SVGO with settings for maximum compression to optimize the Primitive-generated SVG
-const runSVGO = primitiveSvg => {
-  const svgo = new SVGO({ multipass: true, floatPrecision: 1 })
-  let retVal = ''
-  svgo.optimize(primitiveSvg, ({ data }) => (retVal = data))
-  return retVal
-}
-
-// (Naively) Add Group to SVG
-// For schema, see: https://github.com/fogleman/primitive/blob/master/primitive/model.go#L86
-const patchSVGGroup = svg => {
-  const gStartIndex =
-    svg.match(/<path.*?>/).index + svg.match(/<path.*?>/)[0].length
-  const gEndIndex = svg.match(/<\/svg>/).index
-  const svgG = `<g filter='url(#c)' fill-opacity='.5'>`
-  return `${svg.slice(0, gStartIndex)}${svgG}${svg.slice(
-    gStartIndex,
-    gEndIndex
-  )}</g></svg>`
-}
-
-// Add viewbox and preserveAspectRatio attributes as well as a Gaussian Blur filter to the SVG
-// When missing, add group (element with blur applied) using patchSVGGroup()
-// We initially worked with a proper DOM parser to manipulate the SVG's XML, but it was very opinionated about SVG syntax and kept introducing unwanted tags. So we had to resort to RegEx replacements
-const replaceSVGAttrs = (svg, { width, height, blur }) => {
-  let filter = ''
-  let blurStdDev = blur || 12
-  let blurFilterId = 'b'
-  let newSVG = svg
-
-  if (blur !== 0) {
-    if (svg.match(/<svg.*?><path.*?><g/) === null) {
-      blurStdDev = 55
-      newSVG = patchSVGGroup(newSVG)
-      blurFilterId = 'c'
-    } else {
-      newSVG = newSVG.replace(/(<g)/, `<g filter="url(#${blurFilterId})"`)
-    }
-    filter = `<filter id="${blurFilterId}"><feGaussianBlur stdDeviation="${blurStdDev}" /></filter>`
-  }
-  return newSVG.replace(
-    /(<svg)(.*?)(>)/,
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}">${filter}`
-  )
-}
-
-// If the user chooses to save the SVG to a file using the --output parameter, write the file
-const writeSVGOutput = (filename, content) => {
-  fs.writeFileSync(filename, content)
-}
-
-// In case the user the did not provide the --output switch and is thus opting for the default stdout output inside an <img>, prepare the base64 encoded version of the SVG
-const encodeBase64 = rawSVG => Buffer.from(rawSVG).toString('base64')
-
-// Place the base64 encoded version as a background image inside an <img> tag, set width + height etc. and print it out as the final result
-const printFinalResult = ({ width, height }, filename, svgBase64Encoded) => {
-  const result = `<img width="${width}" height="${height}" src="${filename}" alt="Add descriptive alt text" style="background-size: cover; background-image: url(data:image/svg+xml;base64,${svgBase64Encoded});">`
-  console.log(result)
-}
-
-// #############################################################################
 // # MAIN FUNCTION CALL
 // #############################################################################
 
@@ -233,7 +118,9 @@ const main = (filename, options) => {
   delete options.blur
 
   runPrimitive(filename, options, primitiveOutputFile, imgDimensions)
-  const primitiveOutput = readPrimitiveTempFile(primitiveOutputFile)
+  const primitiveOutput = fs.readFileSync(primitiveOutputFile, {
+    encoding: 'utf-8'
+  })
   const svgoOutput = runSVGO(primitiveOutput)
   const finalSvg = replaceSVGAttrs(svgoOutput, svgOptions)
   const svgBase64Encoded = encodeBase64(finalSvg)
@@ -251,9 +138,11 @@ module.exports.run = () => {
   const { finalSvg, svgBase64Encoded, imgDimensions } = main(filename, options)
   const output = getOutputFilePath()
 
-  output
-    ? writeSVGOutput(output, finalSvg)
-    : printFinalResult(imgDimensions, filename, svgBase64Encoded)
+  if (output) {
+    fs.writeFileSync(output, finalSvg)
+  } else {
+    printFinalResult(imgDimensions, filename, svgBase64Encoded)
+  }
 }
 
 /**

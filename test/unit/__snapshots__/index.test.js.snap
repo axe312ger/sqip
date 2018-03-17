@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`node api empty config passed 1`] = `"Please provide an input image, e.g. sqip({ filename: \\"input.jpg\\" })"`;
+
+exports[`node api filename only 1`] = `
+Object {
+  "finalSvg": "fixedSVGResult",
+  "imgDimensions": Object {
+    "height": 768,
+    "width": 1024,
+  },
+  "svgBase64Encoded": "base64EncodedSVG",
+}
+`;
+
+exports[`node api no config passed 1`] = `"Cannot read property 'filename' of undefined"`;

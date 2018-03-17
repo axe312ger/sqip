@@ -1,63 +1,76 @@
 {
-    "name": "sqip",
-    "version": "0.3.1",
-    "description": "A SVG-based LQIP image placeholder generator",
-    "main": "./src/node.js",
-    "bin": {
-        "sqip": "./src/cli.js"
-    },
-    "scripts": {
-        "test": "npm run lint",
-        "prepare": "npm run build-vendor",
-        "build-vendor": "node scripts/bundle-vendor.js",
-        "lint": "eslint src",
-        "precommit": "npm run test"
-    },
-    "files": [
-        "src",
-        "vendor"
-    ],
-    "keywords": [
-        "lqip",
-        "svg",
-        "images",
-        "placeholder",
-        "webperf",
-        "performance",
-        "ux",
-        "perceived"
-    ],
-    "author": "Tobias Baldauf",
-    "license": "Unlicense",
-    "engines": {
-        "node": ">=6.0.0"
-    },
-    "dependencies": {
-        "argv": "0.0.2",
-        "image-size": "^0.6.1",
-        "svgo": "^0.7.2",
-        "xmldom": "^0.1.27"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/technopagan/sqip"
-    },
-    "person": {
-        "name": "Tobias Baldauf",
-        "email": "npm@tobias-baldauf.de",
-        "url": "https://who.tobias.is/"
-    },
-    "devDependencies": {
-        "eslint": "^4.18.2",
-        "eslint-config-prettier": "^2.9.0",
-        "eslint-config-prettier-standard": "^1.0.1",
-        "eslint-config-standard": "^11.0.0",
-        "eslint-plugin-import": "^2.9.0",
-        "eslint-plugin-node": "^6.0.1",
-        "eslint-plugin-prettier": "^2.6.0",
-        "eslint-plugin-promise": "^3.7.0",
-        "eslint-plugin-standard": "^3.0.1",
-        "husky": "^0.14.3",
-        "prettier": "^1.11.1"
-    }
+  "name": "sqip",
+  "version": "0.3.1",
+  "description": "A SVG-based LQIP image placeholder generator",
+  "main": "./src/node.js",
+  "bin": {
+    "sqip": "./src/cli.js"
+  },
+  "scripts": {
+    "test": "npm run lint && npm run test:unit && npm run test:e2e",
+    "test:unit": "jest --testPathPattern=test/unit --coverage",
+    "test:unit:watch": "jest --testPathPattern=test/unit --coverage --watch",
+    "test:e2e": "jest --testPathPattern=test/e2e",
+    "test:e2e:watch": "jest --testPathPattern=test/e2e --watch",
+    "prepare": "npm run build-vendor",
+    "build-vendor": "node scripts/bundle-vendor.js",
+    "lint": "eslint src",
+    "precommit": "npm run test"
+  },
+  "files": [
+    "src",
+    "vendor"
+  ],
+  "keywords": [
+    "lqip",
+    "svg",
+    "images",
+    "placeholder",
+    "webperf",
+    "performance",
+    "ux",
+    "perceived"
+  ],
+  "author": "Tobias Baldauf",
+  "license": "Unlicense",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "dependencies": {
+    "argv": "0.0.2",
+    "image-size": "^0.6.1",
+    "svgo": "^0.7.2",
+    "xmldom": "^0.1.27"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/technopagan/sqip"
+  },
+  "person": {
+    "name": "Tobias Baldauf",
+    "email": "npm@tobias-baldauf.de",
+    "url": "https://who.tobias.is/"
+  },
+  "devDependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "eslint": "^4.19.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-config-prettier-standard": "^1.0.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jest": "^21.15.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "husky": "^0.14.3",
+    "jest": "^22.4.2",
+    "nixt": "^0.5.0",
+    "prettier": "^1.11.1"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ]
+  }
 }

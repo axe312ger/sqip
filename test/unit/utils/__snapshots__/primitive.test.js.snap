@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`checkForPrimitive bundled executable does not exist, primitive not installed globally, given shouldThrow true 1`] = `"Please ensure that Primitive (https://github.com/fogleman/primitive, written in Golang) is installed and globally available"`;
+
+exports[`runPrimitive executes primitive with custom config, applying default number of primitives 1`] = `"/VENDOR/DIR/primitive-linux-x64 -i \\"/path/to/input/file.jpg\\" -o /path/to/output/file.svg -n 8 -m 5 -s 200"`;
+
+exports[`runPrimitive executes primitive with default config 1`] = `"/VENDOR/DIR/primitive-linux-x64 -i \\"/path/to/input/file.jpg\\" -o /path/to/output/file.svg -n 8 -m 0 -s 200"`;
+
+exports[`runPrimitive executes primitive with landscape dimensions 1`] = `"/VENDOR/DIR/primitive-linux-x64 -i \\"/path/to/input/file.jpg\\" -o /path/to/output/file.svg -n 8 -m 0 -s 600"`;
