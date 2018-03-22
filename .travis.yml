@@ -4,7 +4,7 @@ node_js:
   - "8"
 cache:
   directories:
-    - $HOME/build/technopagan/sqip/vendor
+    - /home/travis/build/technopagan/sqip/vendor
 before_install:
   - npm install -g npm
 after_success:
