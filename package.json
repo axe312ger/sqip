@@ -14,7 +14,7 @@
     "test:e2e:watch": "jest --testPathPattern=test/e2e --watch",
     "prepare": "npm run build-vendor",
     "build-vendor": "node scripts/bundle-vendor.js",
-    "lint": "eslint src",
+    "lint": "eslint src scripts",
     "precommit": "npm run lint",
     "prepush": "npm run test"
   },
