@@ -53,6 +53,7 @@
   },
   "devDependencies": {
     "cheerio": "^1.0.0-rc.2",
+    "codecov": "^3.0.0",
     "eslint": "^4.19.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-prettier-standard": "^1.0.1",
