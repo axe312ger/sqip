@@ -15,7 +15,8 @@
     "prepare": "npm run build-vendor",
     "build-vendor": "node scripts/bundle-vendor.js",
     "lint": "eslint src",
-    "precommit": "npm run test"
+    "precommit": "npm run lint",
+    "prepush": "npm run test"
   },
   "files": [
     "src",
