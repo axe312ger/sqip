@@ -131,7 +131,13 @@ const findLargerImageDimension = ({ width, height }) => width > height ? width :
 
 // Run Primitive with reasonable defaults (rectangles as shapes, 9 shaper per default) to generate the placeholder SVG
 const runPrimitive = (filename, { numberOfPrimitives = 8, mode = 0 }, primitive_output, dimensions) => {
-    child_process.execSync(`${primitiveExecutable} -i "${filename}" -o ${primitive_output} -n ${numberOfPrimitives} -m ${mode} -s ${findLargerImageDimension(dimensions)}`);
+    child_process.execFileSync(primitiveExecutable, [
+        "-i", filename,
+        "-o", primitive_output,
+        "-n", numberOfPrimitives,
+        "-m", mode,
+        "-s", findLargerImageDimension(dimensions)
+    ]);
 }
 
 // Read the Primitive-generated SVG so that we can continue working on it
