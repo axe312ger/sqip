@@ -15,12 +15,14 @@ jest.mock('child_process', () => ({
 }))
 
 jest.mock('fs', () => ({
-  existsSync: jest.fn(() => false)
+  existsSync: jest.fn(() => false),
+  readFileSync: jest.fn(() => 'primitiveResult')
 }))
 
 jest.mock('os', () => ({
   platform: jest.fn(() => 'unknownOS'),
-  arch: jest.fn(() => 'nonExistingArch')
+  arch: jest.fn(() => 'nonExistingArch'),
+  tmpdir: jest.fn(() => '/path/to/output')
 }))
 
 const logSpy = jest.spyOn(global.console, 'log')
@@ -94,7 +96,6 @@ describe('checkForPrimitive', () => {
 describe('runPrimitive', () => {
   let config, dimensions
   const inputFile = '/path/to/input/file.jpg'
-  const outputFile = '/path/to/output/file.svg'
 
   beforeEach(() => {
     config = {}
@@ -109,7 +110,7 @@ describe('runPrimitive', () => {
   })
 
   test('executes primitive with default config', () => {
-    runPrimitive(inputFile, config, outputFile, dimensions)
+    runPrimitive(inputFile, config, dimensions)
     expect(childProcessMock.execFileSync.mock.calls).toHaveLength(1)
     expect(childProcessMock.execFileSync.mock.calls[0]).toHaveLength(2)
     childProcessMock.execFileSync.mock.calls[0][0] = childProcessMock.execFileSync.mock.calls[0][0].replace(
@@ -123,7 +124,7 @@ describe('runPrimitive', () => {
     config = {
       mode: 5
     }
-    runPrimitive(inputFile, config, outputFile, dimensions)
+    runPrimitive(inputFile, config, dimensions)
     expect(childProcessMock.execFileSync.mock.calls).toHaveLength(1)
     expect(childProcessMock.execFileSync.mock.calls[0]).toHaveLength(2)
     childProcessMock.execFileSync.mock.calls[0][0] = childProcessMock.execFileSync.mock.calls[0][0].replace(
@@ -138,7 +139,7 @@ describe('runPrimitive', () => {
       width: 600,
       height: 300
     }
-    runPrimitive(inputFile, config, outputFile, dimensions)
+    runPrimitive(inputFile, config, dimensions)
     expect(childProcessMock.execFileSync.mock.calls).toHaveLength(1)
     expect(childProcessMock.execFileSync.mock.calls[0]).toHaveLength(2)
     childProcessMock.execFileSync.mock.calls[0][0] = childProcessMock.execFileSync.mock.calls[0][0].replace(

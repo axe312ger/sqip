@@ -38,10 +38,9 @@
     "node": ">=6.0.0"
   },
   "dependencies": {
-    "argv": "0.0.2",
     "image-size": "^0.6.1",
     "svgo": "^0.7.2",
-    "xmldom": "^0.1.27"
+    "yargs": "^11.0.0"
   },
   "repository": {
     "type": "git",

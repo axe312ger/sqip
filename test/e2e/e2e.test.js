@@ -13,7 +13,7 @@ jest.setTimeout(20000)
 describe('cli api', () => {
   test('no output file will print the result to stdout', cb => {
     nixt()
-      .run(`${cliCmd} ${inputFile}`)
+      .run(`${cliCmd} --input ${inputFile}`)
       .code(0)
       // RegEx based on https://stackoverflow.com/a/475217/2315062
       .stdout(
@@ -28,7 +28,7 @@ describe('cli api', () => {
       `sqip-e2e-test-${new Date().getTime()}.svg`
     )
     nixt()
-      .run(`${cliCmd} -o ${outputFile} ${inputFile}`)
+      .run(`${cliCmd} -i ${inputFile} -o ${outputFile}`)
       .code(0)
       .exist(outputFile)
       .expect(result => {
@@ -56,7 +56,7 @@ describe('cli api', () => {
       `sqip-e2e-test-${new Date().getTime()}.svg`
     )
     nixt()
-      .run(`${cliCmd} -o ${outputFile} -n 15 ${inputFile}`)
+      .run(`${cliCmd} -i ${inputFile} -o ${outputFile} -n 15`)
       .code(0)
       .exist(outputFile)
       .expect(result => {
@@ -77,7 +77,7 @@ describe('cli api', () => {
       `sqip-e2e-test-${new Date().getTime()}.svg`
     )
     nixt()
-      .run(`${cliCmd} -o ${outputFile} -m 4 ${inputFile}`)
+      .run(`${cliCmd} -i ${inputFile} -o ${outputFile} -m 4`)
       .code(0)
       .exist(outputFile)
       .expect(result => {
@@ -101,7 +101,7 @@ describe('cli api', () => {
       `sqip-e2e-test-${new Date().getTime()}.svg`
     )
     nixt()
-      .run(`${cliCmd} -o ${outputFile} -b 5 ${inputFile}`)
+      .run(`${cliCmd} -i ${inputFile} -o ${outputFile} -b 5`)
       .code(0)
       .exist(outputFile)
       .expect(result => {
@@ -123,7 +123,7 @@ describe('cli api', () => {
       `sqip-e2e-test-${new Date().getTime()}.svg`
     )
     nixt()
-      .run(`${cliCmd} -o ${outputFile} -b 0 ${inputFile}`)
+      .run(`${cliCmd} -i ${inputFile} -o ${outputFile} -b 0`)
       .code(0)
       .exist(outputFile)
       .expect(result => {
