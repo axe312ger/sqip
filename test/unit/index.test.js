@@ -1,14 +1,9 @@
-const { node: sqip } = require('../../src/index')
-
-const { runPrimitive } = require('../../src/utils/primitive.js')
-
-jest.mock('fs', () => ({
-  readFileSync: jest.fn(() => 'primitiveResult')
-}))
+const sqip = require('../../src/index')
 
 jest.mock('../../src/utils/helpers.js', () => ({
   encodeBase64: jest.fn(() => 'base64EncodedSVG'),
-  getDimensions: jest.fn(() => ({ width: 1024, height: 768 }))
+  getDimensions: jest.fn(() => ({ width: 1024, height: 768 })),
+  printFinalResult: jest.fn()
 }))
 
 jest.mock('../../src/utils/primitive.js', () => ({
@@ -22,8 +17,6 @@ jest.mock('../../src/utils/svg.js', () => ({
 }))
 
 describe('node api', () => {
-  const filename = '/path/to/input/image.jpg'
-
   test('no config passed', () => {
     expect(sqip).toThrowErrorMatchingSnapshot()
   })
@@ -32,8 +25,13 @@ describe('node api', () => {
     expect(() => sqip({})).toThrowErrorMatchingSnapshot()
   })
 
-  test('filename only', () => {
-    const result = sqip({ filename })
+  test('invalid input path', () => {
+    const input = '/this/file/does/not/exist.jpg'
+    expect(() => sqip({ input })).toThrowErrorMatchingSnapshot()
+  })
+  test('resolves valid input path', () => {
+    const input = `${__dirname}/../../demo/beach.jpg`
+    const result = sqip({ input })
     expect(result).toMatchSnapshot()
   })
 })

@@ -4,6 +4,7 @@ const path = require('path')
 const os = require('os')
 
 const VENDOR_DIR = path.resolve(__dirname, '..', '..', 'vendor')
+const PRIMITIVE_TEMP_FILE = os.tmpdir() + '/primitive_tempfile.svg'
 let primitiveExecutable = 'primitive'
 
 // Since Primitive is only interested in the larger dimension of the input image, let's find it
@@ -43,14 +44,13 @@ const checkForPrimitive = (shouldThrow = false) => {
 const runPrimitive = (
   filename,
   { numberOfPrimitives = 8, mode = 0 },
-  primitiveOutput,
   dimensions
 ) => {
   childProcess.execFileSync(primitiveExecutable, [
     '-i',
     filename,
     '-o',
-    primitiveOutput,
+    PRIMITIVE_TEMP_FILE,
     '-n',
     numberOfPrimitives,
     '-m',
@@ -58,6 +58,9 @@ const runPrimitive = (
     '-s',
     findLargerImageDimension(dimensions)
   ])
+  return fs.readFileSync(PRIMITIVE_TEMP_FILE, {
+    encoding: 'utf-8'
+  })
 }
 
 module.exports = {
