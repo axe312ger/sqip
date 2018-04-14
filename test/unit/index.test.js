@@ -13,7 +13,8 @@ jest.mock('../../src/utils/primitive.js', () => ({
 
 jest.mock('../../src/utils/svg.js', () => ({
   runSVGO: jest.fn(() => 'svgoResult'),
-  replaceSVGAttrs: jest.fn(() => 'fixedSVGResult')
+  prepareSVG: jest.fn(() => 'preparedSVGResult'),
+  applyBlurFilter: jest.fn(() => 'blurredSVGResult')
 }))
 
 describe('node api', () => {

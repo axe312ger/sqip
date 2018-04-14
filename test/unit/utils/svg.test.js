@@ -1,6 +1,10 @@
 const SVGO = require('svgo')
 
-const { runSVGO, replaceSVGAttrs } = require('../../../src/utils/svg')
+const {
+  runSVGO,
+  prepareSVG,
+  applyBlurFilter
+} = require('../../../src/utils/svg')
 
 jest.mock('svgo')
 
@@ -14,40 +18,61 @@ test('runSVGO', () => {
   // @todo switch to async svgo, this will allow proper testing
 })
 
-describe('replaceSVGAttrs', () => {
-  test('svg with group, no config', () => {
-    const result = replaceSVGAttrs(
-      '<svg><path fill="#bada55" d="M0 0h1024v640H0z"/><g><path fill="#C0FFEE" d="M51.5 17.5l4 18 15 1z"/></g></svg>',
-      {}
-    )
+const sampleNoViewBox =
+  '<svg><rect fill="#bada55"/><g><path fill="#C0FFEE" d="M51.5 17.5l4 18 15 1z"/></g></svg>'
+const sampleNoBg =
+  '<svg viewBox="0 0 1024 768"><path fill="#bada55" d="M0 0h1024v640H0z"/><g><path fill="#C0FFEE" d="M51.5 17.5l4 18 15 1z"/></g></svg>'
+const sampleWithGroup =
+  '<svg viewBox="0 0 1024 768"><rect fill="#bada55"/><g><path fill="#C0FFEE" d="M51.5 17.5l4 18 15 1z"/></g></svg>'
+const sampleWithoutGroup =
+  '<svg viewBox="0 0 1024 768"><rect fill="#bada55"/><polygon points="0,100 50,25 50,75 100,0" /></svg>'
+
+describe('does prepare svg properly', () => {
+  test('svg without viewport, not given width & height', () => {
+    expect(() => prepareSVG(sampleNoViewBox, {})).toThrowErrorMatchingSnapshot()
+  })
+  test('svg without viewport, given width & height', () => {
+    const result = prepareSVG(sampleNoViewBox, { width: 1024, height: 640 })
     expect(result).toMatchSnapshot()
   })
-  test('svg with group, config with dimensions only', () => {
-    const result = replaceSVGAttrs(
-      '<svg><path fill="#bada55" d="M0 0h1024v640H0z"/><g><path fill="#C0FFEE" d="M51.5 17.5l4 18 15 1z"/></g></svg>',
-      { width: 1024, height: 640 }
-    )
-    expect(result).toMatchSnapshot()
-  })
-  test('svg with group, config with dimensions only and blur', () => {
-    const result = replaceSVGAttrs(
-      '<svg><path fill="#bada55" d="M0 0h1024v640H0z"/><g><path fill="#C0FFEE" d="M51.5 17.5l4 18 15 1z"/></g></svg>',
-      { width: 1024, height: 640, blur: 5 }
-    )
-    expect(result).toMatchSnapshot()
-  })
-  test('svg with group, config with dimensions and zero blur', () => {
-    const result = replaceSVGAttrs(
-      '<svg><path fill="#bada55" d="M0 0h1024v640H0z"/><g><path fill="#C0FFEE" d="M51.5 17.5l4 18 15 1z"/></g></svg>',
-      { width: 1024, height: 640, blur: 0 }
-    )
+  test('svg with group, with config', () => {
+    const result = prepareSVG(sampleWithGroup, { width: 1024, height: 640 })
     expect(result).toMatchSnapshot()
   })
   test('svg without group, config with dimensions only', () => {
-    const result = replaceSVGAttrs(
-      '<svg><path fill="#bada55" d="M0 0h1024v640H0z"/><path fill="#C0FFEE" d="M51.5 17.5l4 18 15 1z"/></svg>',
-      { width: 1024, height: 640 }
-    )
+    const result = prepareSVG(sampleWithoutGroup, {
+      width: 1024,
+      height: 640
+    })
+    expect(result).toMatchSnapshot()
+  })
+  test('svg with missing background', () => {
+    expect(() =>
+      prepareSVG(sampleNoBg, {
+        width: 1024,
+        height: 640
+      })
+    ).toThrowErrorMatchingSnapshot()
+  })
+})
+
+describe('applies blur filter', () => {
+  test('do nothing when no blur is given', () => {
+    const result = applyBlurFilter(sampleWithGroup, {
+      blur: 0
+    })
+    expect(result).toMatchSnapshot()
+  })
+  test('svg with group and blur', () => {
+    const result = applyBlurFilter(sampleWithGroup, {
+      blur: 5
+    })
+    expect(result).toMatchSnapshot()
+  })
+  test('svg without group and blur', () => {
+    const result = applyBlurFilter(sampleWithoutGroup, {
+      blur: 5
+    })
     expect(result).toMatchSnapshot()
   })
 })

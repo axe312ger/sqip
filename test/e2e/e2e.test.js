@@ -39,7 +39,7 @@ describe('cli api', () => {
         expect($('svg')).toHaveLength(1)
 
         // Check default blur value
-        const $filter = $('svg filter#b feGaussianBlur')
+        const $filter = $('svg > filter > feGaussianBlur')
         expect($filter).toHaveLength(1)
         expect($filter.attr('stdDeviation')).toBe('12')
 
@@ -110,7 +110,7 @@ describe('cli api', () => {
         const $ = cheerio.load(content, { xml: true })
 
         // Check blur to be given value (5)
-        const $filter = $('svg filter#b feGaussianBlur')
+        const $filter = $('svg > filter > feGaussianBlur')
         expect($filter).toHaveLength(1)
         expect($filter.attr('stdDeviation')).toBe('5')
       })

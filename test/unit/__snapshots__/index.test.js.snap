@@ -8,7 +8,7 @@ exports[`node api no config passed 1`] = `"Please provide an input image, e.g. s
 
 exports[`node api resolves valid input path 1`] = `
 Object {
-  "finalSvg": "fixedSVGResult",
+  "finalSvg": "svgoResult",
   "imgDimensions": Object {
     "height": 768,
     "width": 1024,
