@@ -18,10 +18,7 @@
     "precommit": "npm run lint",
     "prepush": "npm run test"
   },
-  "files": [
-    "src",
-    "vendor"
-  ],
+  "files": ["src", "vendor"],
   "keywords": [
     "lqip",
     "svg",
@@ -38,6 +35,7 @@
     "node": ">=6.0.0"
   },
   "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
     "image-size": "^0.6.1",
     "svgo": "^0.7.2",
     "yargs": "^11.0.0"
@@ -52,7 +50,6 @@
     "url": "https://who.tobias.is/"
   },
   "devDependencies": {
-    "cheerio": "^1.0.0-rc.2",
     "codecov": "^3.0.0",
     "eslint": "^4.19.0",
     "eslint-config-prettier": "^2.9.0",
@@ -70,8 +67,6 @@
     "prettier": "^1.11.1"
   },
   "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.js"
-    ]
+    "collectCoverageFrom": ["src/**/*.js"]
   }
 }
