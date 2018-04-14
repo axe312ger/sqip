@@ -1,4 +1,7 @@
 const SVGO = require('svgo')
+const cheerio = require('cheerio')
+
+const PRIMITIVE_SVG_ELEMENTS = 'circle, ellipse, line, polygon, path, rect, g'
 
 // USe SVGO with settings for maximum compression to optimize the Primitive-generated SVG
 const runSVGO = primitiveSvg => {
@@ -8,45 +11,88 @@ const runSVGO = primitiveSvg => {
   return retVal
 }
 
-// (Naively) Add Group to SVG
-// For schema, see: https://github.com/fogleman/primitive/blob/master/primitive/model.go#L86
-const patchSVGGroup = svg => {
-  const gStartIndex =
-    svg.match(/<path.*?>/).index + svg.match(/<path.*?>/)[0].length
-  const gEndIndex = svg.match(/<\/svg>/).index
-  const svgG = `<g filter='url(#c)' fill-opacity='.5'>`
-  return `${svg.slice(0, gStartIndex)}${svgG}${svg.slice(
-    gStartIndex,
-    gEndIndex
-  )}</g></svg>`
+const loadSVG = svg => {
+  return cheerio.load(svg, {
+    normalizeWhitespace: true,
+    xmlMode: true
+  })
 }
 
-// Add viewbox and preserveAspectRatio attributes as well as a Gaussian Blur filter to the SVG
-// When missing, add group (element with blur applied) using patchSVGGroup()
-// We initially worked with a proper DOM parser to manipulate the SVG's XML, but it was very opinionated about SVG syntax and kept introducing unwanted tags. So we had to resort to RegEx replacements
-const replaceSVGAttrs = (svg, { width, height, blur }) => {
-  let filter = ''
-  let blurStdDev = blur || 12
-  let blurFilterId = 'b'
-  let newSVG = svg
+// Prepare SVG. For now, this will just ensure that the viewbox attribute is set
+const prepareSVG = (svg, { width, height }) => {
+  const $ = loadSVG(svg)
 
-  if (blur !== 0) {
-    if (svg.match(/<svg.*?><path.*?><g/) === null) {
-      blurStdDev = 55
-      newSVG = patchSVGGroup(newSVG)
-      blurFilterId = 'c'
-    } else {
-      newSVG = newSVG.replace(/(<g)/, `<g filter="url(#${blurFilterId})"`)
+  const $svg = $('svg')
+
+  // Ensure viewbox
+  if (!$svg.is('[viewBox]')) {
+    if (!(width && height)) {
+      throw new Error(
+        `SVG is missing viewBox attribute while Width and height were not passed:\n\n${svg}`
+      )
     }
-    filter = `<filter id="${blurFilterId}"><feGaussianBlur stdDeviation="${blurStdDev}" /></filter>`
+    $svg.attr('viewBox', `0 0 ${width} ${height}`)
   }
-  return newSVG.replace(
-    /(<svg)(.*?)(>)/,
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}">${filter}`
+
+  const $bgRect = $svg
+    .children(PRIMITIVE_SVG_ELEMENTS)
+    .filter('rect:first-child[fill]')
+
+  // Check if filling background rectangle exists
+  // This must exist for proper blur and other transformations
+  if (!$bgRect.length) {
+    throw new Error(
+      `The SVG must have a rect as first shape element which represents the svg background color:\n\n${svg}`
+    )
+  }
+
+  // Remove x and y attributes since they default to 0
+  // @todo test in rare browsers
+  $bgRect.attr('x', null)
+  $bgRect.attr('y', null)
+
+  // Improve compression via simplifying fill
+  $bgRect.attr('width', '100%')
+  $bgRect.attr('height', '100%')
+
+  return $.html()
+}
+
+const patchSVGGroup = svg => {
+  const $ = loadSVG(svg)
+
+  const $svg = $('svg')
+  const $primitiveShapes = $svg.children(PRIMITIVE_SVG_ELEMENTS)
+
+  // Check if actual shapes are grouped
+  if (!$primitiveShapes.filter('g').length !== 1) {
+    const $group = $('<g/>')
+    const $realShapes = $primitiveShapes.not('rect:first-child')
+
+    $group.append($realShapes)
+    $svg.append($group)
+  }
+
+  return $.html()
+}
+
+const applyBlurFilter = (svg, { blur }) => {
+  if (!blur) {
+    return svg
+  }
+  const patchedSVG = patchSVGGroup(svg)
+  const $ = loadSVG(patchedSVG)
+  const blurFilterId = 'b'
+  $('svg > g').attr('filter', `url(#${blurFilterId})`)
+  $('svg').prepend(
+    `<filter id="${blurFilterId}"><feGaussianBlur stdDeviation="${blur}" />`
   )
+
+  return $.html()
 }
 
 module.exports = {
   runSVGO,
-  replaceSVGAttrs
+  prepareSVG,
+  applyBlurFilter
 }

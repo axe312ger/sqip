@@ -24,7 +24,7 @@ const {
   printFinalResult
 } = require('./utils/helpers')
 const { checkForPrimitive, runPrimitive } = require('./utils/primitive')
-const { runSVGO, replaceSVGAttrs } = require('./utils/svg')
+const { runSVGO, prepareSVG, applyBlurFilter } = require('./utils/svg')
 
 module.exports = options => {
   // Build configuration based on passed options and default options
@@ -61,12 +61,6 @@ module.exports = options => {
     numberOfPrimitives,
     mode
   }
-  const svgOptions = Object.assign(
-    {
-      blur: config.blur
-    },
-    imgDimensions
-  )
 
   // Run primitive
   const primitiveOutput = runPrimitive(
@@ -74,11 +68,15 @@ module.exports = options => {
     primitiveOptions,
     imgDimensions
   )
-  // Optimize SVG
-  const svgoOutput = runSVGO(primitiveOutput)
 
-  // Patch SVG group and apply blur filter if needed
-  const finalSvg = replaceSVGAttrs(svgoOutput, svgOptions)
+  // Prepare SVG
+  const preparedSVG = prepareSVG(primitiveOutput, imgDimensions)
+
+  // Apply blur filter
+  const blurredSVG = applyBlurFilter(preparedSVG, { blur: config.blur })
+
+  // Optimize SVG
+  const finalSvg = runSVGO(blurredSVG)
 
   // Encode SVG
   const svgBase64Encoded = encodeBase64(finalSvg)
