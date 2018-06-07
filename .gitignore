@@ -37,3 +37,5 @@ typings/
 .env
 # JetBrains Editors Config
 .idea
+# VSCode Editors Config
+.vscode

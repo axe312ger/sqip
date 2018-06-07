@@ -110,6 +110,11 @@ sqip -m 4 input.jpg
 
 # Set the gaussian blur (default=12)
 sqip -b 3 input.jpg
+
+# Set the bg color (defaults to the average color of image)
+# This value must be a valid hex-code (without the leading #)
+# Invalid values will be ignored
+sqip -c c0ffee input.jpg
 ```
 
 ### NODE API
@@ -121,6 +126,7 @@ Input options:
 - numberOfPrimitives (default=8)
 - mode (default=0)
 - blur (default=12)
+- bgColor (default is average color of image)
 
 Returns:
 - final_svg - string
