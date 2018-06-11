@@ -2,10 +2,5 @@ language: node_js
 node_js:
   - "6"
   - "8"
-cache:
-  directories:
-    - /home/travis/build/technopagan/sqip/vendor
-before_install:
-  - npm install -g npm
 after_success:
   - codecov
