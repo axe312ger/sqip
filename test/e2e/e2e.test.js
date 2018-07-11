@@ -6,7 +6,7 @@ const cheerio = require('cheerio')
 const nixt = require('nixt')
 
 const inputFile = resolve(__dirname, '..', '..', 'demo', 'beach.jpg')
-const cliCmd = `node ${resolve(__dirname, '..', '..', 'src', 'cli.js')}`
+const cliCmd = `node ${resolve(__dirname, '..', '..', 'dist', 'cli.js')}`
 
 jest.setTimeout(20000)
 

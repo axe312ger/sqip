@@ -14,6 +14,8 @@
 // #
 // #############################################################################
 
+require('babel-polyfill')
+
 // Require the necessary modules to make sqip work
 const fs = require('fs')
 const path = require('path')
