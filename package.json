@@ -2,9 +2,9 @@
   "name": "sqip",
   "version": "0.3.1",
   "description": "A SVG-based LQIP image placeholder generator",
-  "main": "./src/node.js",
+  "main": "./dist/node.js",
   "bin": {
-    "sqip": "./src/cli.js"
+    "sqip": "./dist/cli.js"
   },
   "scripts": {
     "test": "npm run lint && npm run test:unit && npm run test:e2e",
@@ -13,12 +13,17 @@
     "test:e2e": "jest --testPathPattern=test/e2e",
     "test:e2e:watch": "jest --testPathPattern=test/e2e --watch",
     "prepare": "npm run build-vendor",
+    "build": "babel -d dist src",
     "build-vendor": "node scripts/bundle-vendor.js",
+    "dev": "npm run build -- --watch",
     "lint": "eslint src scripts",
     "precommit": "npm run lint",
     "prepush": "npm run test"
   },
-  "files": ["src", "vendor"],
+  "files": [
+    "dist",
+    "vendor"
+  ],
   "keywords": [
     "lqip",
     "svg",
@@ -35,6 +40,9 @@
     "node": ">=6.0.0"
   },
   "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
     "cheerio": "^1.0.0-rc.2",
     "image-size": "^0.6.1",
     "svgo": "^0.7.2",
@@ -67,6 +75,8 @@
     "prettier": "^1.11.1"
   },
   "jest": {
-    "collectCoverageFrom": ["src/**/*.js"]
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ]
   }
 }
