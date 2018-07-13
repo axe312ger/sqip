@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`checkForPrimitive bundled executable does not exist, primitive not installed globally, given shouldThrow true 1`] = `"Please ensure that Primitive (https://github.com/fogleman/primitive, written in Golang) is installed and globally available"`;
+exports[`checkForPrimitive bundled executable does not exist, primitive not installed globally 1`] = `"Please ensure that Primitive (https://github.com/fogleman/primitive, written in Golang) is installed and globally available"`;
 
 exports[`runPrimitive executes primitive with custom config, applying default number of primitives 1`] = `
 Array [

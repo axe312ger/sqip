@@ -33,13 +33,12 @@ export default async function sqip(options) {
   const defaultOptions = {
     numberOfPrimitives: 8,
     mode: 0,
-    blur: 12,
-    shouldThrow: true
+    blur: 12
   }
   const config = Object.assign({}, defaultOptions, options)
 
   // Validate configuration and primitive executable status
-  checkForPrimitive(config.shouldThrow)
+  checkForPrimitive()
 
   if (!config.input) {
     throw new Error(
