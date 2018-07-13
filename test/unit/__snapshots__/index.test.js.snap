@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`node api empty config passed 1`] = `"Please provide an input image, e.g. sqip({ filename: \\"input.jpg\\" })"`;
+exports[`node api empty config passed 1`] = `"Please provide an input image, e.g. sqip({ input: \\"input.jpg\\" })"`;
 
 exports[`node api invalid input path 1`] = `"Unable to read input file: /this/file/does/not/exist.jpg"`;
 
-exports[`node api no config passed 1`] = `"Please provide an input image, e.g. sqip({ filename: \\"input.jpg\\" })"`;
+exports[`node api no config passed 1`] = `"Please provide an input image, e.g. sqip({ input: \\"input.jpg\\" })"`;
 
 exports[`node api resolves valid input path 1`] = `
 Object {
