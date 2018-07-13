@@ -6,9 +6,7 @@ const PRIMITIVE_SVG_ELEMENTS = 'circle, ellipse, line, polygon, path, rect, g'
 // USe SVGO with settings for maximum compression to optimize the Primitive-generated SVG
 const runSVGO = primitiveSvg => {
   const svgo = new SVGO({ multipass: true, floatPrecision: 1 })
-  let retVal = ''
-  svgo.optimize(primitiveSvg, ({ data }) => (retVal = data))
-  return retVal
+  return svgo.optimize(primitiveSvg)
 }
 
 const loadSVG = svg => {

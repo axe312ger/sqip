@@ -65,4 +65,7 @@ Object.keys(options).forEach(key => {
   }
 })
 
-sqip(options)
+sqip(options).catch(err => {
+  console.log(err)
+  process.exit(1)
+})

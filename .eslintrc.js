@@ -6,6 +6,8 @@ module.exports = {
     // As CLI tool, we want to take care of exit codes and error output on our own
     'no-process-exit': 0,
     // For babel-polyfill
-    'node/no-extraneous-require': 0
+    'node/no-extraneous-require': 0,
+    // We have babel now
+    'node/no-unsupported-features': 0,
   }
 }

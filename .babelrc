@@ -1,10 +1,14 @@
 {
   "presets": [
-    ["env", {
-      "targets": {
-        "node": "6"
-      },
-      "useBuiltIns": true
-    }]
-  ]
+    [
+      "env",
+      {
+        "targets": {
+          "node": "6"
+        },
+        "useBuiltIns": true
+      }
+    ]
+  ],
+  "plugins": ["add-module-exports"]
 }

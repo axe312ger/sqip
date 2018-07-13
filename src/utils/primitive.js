@@ -1,10 +1,14 @@
-const childProcess = require('child_process')
-const fs = require('fs')
-const path = require('path')
-const os = require('os')
+import path from 'path'
+import os from 'os'
+
+import execa from 'execa'
+import fs from 'fs-extra'
 
 const VENDOR_DIR = path.resolve(__dirname, '..', '..', 'vendor')
-const PRIMITIVE_TEMP_FILE = os.tmpdir() + '/primitive_tempfile.svg'
+const PRIMITIVE_TEMP_FILE = path.resolve(
+  os.tmpdir(),
+  `primitive-tempfile-${new Date().getTime()}.svg`
+)
 let primitiveExecutable = 'primitive'
 
 // Since Primitive is only interested in the larger dimension of the input image, let's find it
@@ -12,13 +16,13 @@ const findLargerImageDimension = ({ width, height }) =>
   width > height ? width : height
 
 // Sanity check: use the exit state of 'type' to check for Primitive availability
-const checkForPrimitive = (shouldThrow = false) => {
+const checkForPrimitive = async (shouldThrow = false) => {
   const primitivePath = path.join(
     VENDOR_DIR,
     `primitive-${os.platform()}-${os.arch()}`
   )
 
-  if (fs.existsSync(primitivePath)) {
+  if (await fs.exists(primitivePath)) {
     primitiveExecutable = primitivePath
     return
   }
@@ -27,9 +31,9 @@ const checkForPrimitive = (shouldThrow = false) => {
     'Please ensure that Primitive (https://github.com/fogleman/primitive, written in Golang) is installed and globally available'
   try {
     if (os.platform() === 'win32') {
-      childProcess.execSync('where primitive')
+      await execa('where', ['primitive'])
     } else {
-      childProcess.execSync('type primitive')
+      await execa('type', ['primitive'])
     }
   } catch (e) {
     if (shouldThrow) {
@@ -41,12 +45,12 @@ const checkForPrimitive = (shouldThrow = false) => {
 }
 
 // Run Primitive with reasonable defaults (rectangles as shapes, 9 shaper per default) to generate the placeholder SVG
-const runPrimitive = (
+const runPrimitive = async (
   filename,
   { numberOfPrimitives = 8, mode = 0 },
   dimensions
 ) => {
-  childProcess.execFileSync(primitiveExecutable, [
+  await execa(primitiveExecutable, [
     '-i',
     filename,
     '-o',
@@ -58,9 +62,14 @@ const runPrimitive = (
     '-s',
     findLargerImageDimension(dimensions)
   ])
-  return fs.readFileSync(PRIMITIVE_TEMP_FILE, {
+
+  const result = await fs.readFile(PRIMITIVE_TEMP_FILE, {
     encoding: 'utf-8'
   })
+
+  await fs.unlink(PRIMITIVE_TEMP_FILE)
+
+  return result
 }
 
 module.exports = {
