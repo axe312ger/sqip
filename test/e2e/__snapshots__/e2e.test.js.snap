@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`cli api --help shows help screen to user 1`] = `
+"
+Usage: sqip --input [path]
+
+Options:
+  --version                 Show version number                        [boolean]
+  --input, -i                                                [string] [required]
+  --output, -o              Save the resulting SVG to a file. The svg result
+                            will be returned by default.                [string]
+  --numberOfPrimitives, -n  The number of primitive shapes to use to build the
+                            SQIP SVG                       [number] [default: 8]
+  --mode, -m                The style of primitives to use:
+                            0=combo, 1=triangle, 2=rect, 3=ellipse, 4=circle,
+                            5=rotatedrect, 6=beziers, 7=rotatedellipse,
+                            8=polygon                      [number] [default: 0]
+  --blur, -b                Set the GaussianBlur SVG filter value. Disable it
+                            via 0.                        [number] [default: 12]
+
+Examples:
+  sqip --input /path/to/input.jpg           Output input.jpg image as SQIP
+  sqip -i input.jpg -n 25 -b 0 -o           Save input.jpg as result.svg with 25
+  result.svg                                shapes and no blur
+
+\\"SQIP\\" (pronounced \\\\skwɪb\\\\ like the non-magical folk of magical descent) is a
+SVG-based LQIP technique - https://github.com/technopagan/sqip
+"
+`;
+
+exports[`cli api no config exists programm and shows help 1`] = `
+"
+Usage: sqip --input [path]
+
+Options:
+  --help                    Show help                                  [boolean]
+  --version                 Show version number                        [boolean]
+  --input, -i                                                [string] [required]
+  --output, -o              Save the resulting SVG to a file. The svg result
+                            will be returned by default.                [string]
+  --numberOfPrimitives, -n  The number of primitive shapes to use to build the
+                            SQIP SVG                       [number] [default: 8]
+  --mode, -m                The style of primitives to use:
+                            0=combo, 1=triangle, 2=rect, 3=ellipse, 4=circle,
+                            5=rotatedrect, 6=beziers, 7=rotatedellipse,
+                            8=polygon                      [number] [default: 0]
+  --blur, -b                Set the GaussianBlur SVG filter value. Disable it
+                            via 0.                        [number] [default: 12]
+
+Examples:
+  sqip --input /path/to/input.jpg           Output input.jpg image as SQIP
+  sqip -i input.jpg -n 25 -b 0 -o           Save input.jpg as result.svg with 25
+  result.svg                                shapes and no blur
+
+\\"SQIP\\" (pronounced \\\\skwɪb\\\\ like the non-magical folk of magical descent) is a
+SVG-based LQIP technique - https://github.com/technopagan/sqip
+
+Missing required argument: input"
+`;

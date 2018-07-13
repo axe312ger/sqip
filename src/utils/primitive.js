@@ -16,7 +16,7 @@ const findLargerImageDimension = ({ width, height }) =>
   width > height ? width : height
 
 // Sanity check: use the exit state of 'type' to check for Primitive availability
-const checkForPrimitive = async (shouldThrow = false) => {
+const checkForPrimitive = async () => {
   const primitivePath = path.join(
     VENDOR_DIR,
     `primitive-${os.platform()}-${os.arch()}`
@@ -36,11 +36,7 @@ const checkForPrimitive = async (shouldThrow = false) => {
       await execa('type', ['primitive'])
     }
   } catch (e) {
-    if (shouldThrow) {
-      throw new Error(errorMessage)
-    }
-    console.log(errorMessage)
-    process.exit(1)
+    throw new Error(errorMessage)
   }
 }
 

@@ -11,6 +11,24 @@ const cliCmd = `node ${resolve(__dirname, '..', '..', 'dist', 'cli.js')}`
 jest.setTimeout(20000)
 
 describe('cli api', () => {
+  test('no config exists programm and shows help', cb => {
+    nixt()
+      .run(`${cliCmd}`)
+      .code(1)
+      .expect(result => {
+        expect(result.stderr).toMatchSnapshot()
+      })
+      .end(cb)
+  })
+  test('--help shows help screen to user', cb => {
+    nixt()
+      .run(`${cliCmd} ---help`)
+      .code(0)
+      .expect(result => {
+        expect(result.stdout).toMatchSnapshot()
+      })
+      .end(cb)
+  })
   test('no output file will print the result to stdout', cb => {
     nixt()
       .run(`${cliCmd} --input ${inputFile}`)
