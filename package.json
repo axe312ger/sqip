@@ -20,10 +20,7 @@
     "precommit": "npm run lint",
     "prepush": "npm run test"
   },
-  "files": [
-    "dist",
-    "vendor"
-  ],
+  "files": ["dist", "vendor"],
   "keywords": [
     "lqip",
     "svg",
@@ -40,12 +37,11 @@
     "node": ">=6.0.0"
   },
   "dependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-preset-env": "^1.7.0",
     "cheerio": "^1.0.0-rc.2",
+    "execa": "^0.10.0",
+    "fs-extra": "^6.0.1",
     "image-size": "^0.6.1",
-    "svgo": "^0.7.2",
+    "svgo": "^1.0.5",
     "yargs": "^11.0.0"
   },
   "repository": {
@@ -58,6 +54,10 @@
     "url": "https://who.tobias.is/"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-env": "^1.7.0",
     "codecov": "^3.0.0",
     "eslint": "^4.19.0",
     "eslint-config-prettier": "^2.9.0",
@@ -75,8 +75,6 @@
     "prettier": "^1.11.1"
   },
   "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.js"
-    ]
+    "collectCoverageFrom": ["src/**/*.js"]
   }
 }
