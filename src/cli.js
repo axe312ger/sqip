@@ -54,8 +54,7 @@ const options = {
   output,
   numberOfPrimitives,
   mode,
-  blur,
-  shouldThrow: false
+  blur
 }
 
 // Remove undefined arguments coming from yargs to enable proper default options for lib & cli.

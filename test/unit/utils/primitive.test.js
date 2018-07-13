@@ -19,8 +19,6 @@ jest.mock('os', () => ({
   tmpdir: jest.fn(() => '/path/to/output')
 }))
 
-const logSpy = jest.spyOn(global.console, 'log')
-
 const VENDOR_DIR = path.resolve(__dirname, '../../../vendor')
 let originalExit = null
 
@@ -38,7 +36,6 @@ describe('checkForPrimitive', () => {
     osMock.arch.mockClear()
     osMock.platform.mockClear()
     global.process.exit.mockClear()
-    logSpy.mockClear()
   })
   afterAll(() => {
     global.process.exit = originalExit
@@ -52,7 +49,6 @@ describe('checkForPrimitive', () => {
 
     expect(global.process.exit).not.toBeCalled()
     expect(execaMock).not.toBeCalled()
-    expect(logSpy).not.toBeCalled()
   })
   test('uses where for windows, type for POSIX', async () => {
     osMock.platform.mockImplementation(() => 'win32')
@@ -64,32 +60,14 @@ describe('checkForPrimitive', () => {
     expect(execaMock).toBeCalledWith('type', ['primitive'])
   })
   test('bundled executable does not exist but primitive is globally installed', async () => {
-    await checkForPrimitive()
-
-    expect(global.process.exit).not.toBeCalled()
-    expect(logSpy).not.toBeCalled()
+    await expect(checkForPrimitive()).resolves.toBeUndefined()
   })
   test('bundled executable does not exist, primitive not installed globally', async () => {
     execaMock.mockImplementationOnce(() => {
       throw new Error('not installed')
     })
 
-    await checkForPrimitive()
-
-    expect(global.process.exit).toBeCalled()
-    expect(logSpy).toBeCalledWith(
-      'Please ensure that Primitive (https://github.com/fogleman/primitive, written in Golang) is installed and globally available'
-    )
-  })
-  test('bundled executable does not exist, primitive not installed globally, given shouldThrow true', async () => {
-    execaMock.mockImplementationOnce(() => {
-      throw new Error('not installed')
-    })
-
-    await expect(checkForPrimitive(true)).rejects.toThrowErrorMatchingSnapshot()
-
-    expect(global.process.exit).not.toBeCalled()
-    expect(logSpy).not.toBeCalled()
+    await expect(checkForPrimitive()).rejects.toThrowErrorMatchingSnapshot()
   })
 })
 
