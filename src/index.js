@@ -14,11 +14,11 @@
 // #
 // #############################################################################
 
-require('babel-polyfill')
+import 'babel-polyfill'
 
-// Require the necessary modules to make sqip work
-const fs = require('fs')
-const path = require('path')
+import path from 'path'
+
+import fs from 'fs-extra'
 
 const {
   encodeBase64,
@@ -28,7 +28,7 @@ const {
 const { checkForPrimitive, runPrimitive } = require('./utils/primitive')
 const { runSVGO, prepareSVG, applyBlurFilter } = require('./utils/svg')
 
-module.exports = options => {
+export default async function sqip(options) {
   // Build configuration based on passed options and default options
   const defaultOptions = {
     numberOfPrimitives: 8,
@@ -43,14 +43,14 @@ module.exports = options => {
 
   if (!config.input) {
     throw new Error(
-      'Please provide an input image, e.g. sqip({ filename: "input.jpg" })'
+      'Please provide an input image, e.g. sqip({ input: "input.jpg" })'
     )
   }
 
   const inputPath = path.resolve(config.input)
 
   try {
-    fs.accessSync(inputPath, fs.constants.R_OK)
+    await fs.access(inputPath, fs.constants.R_OK)
   } catch (err) {
     throw new Error(`Unable to read input file: ${inputPath}`)
   }
@@ -65,7 +65,7 @@ module.exports = options => {
   }
 
   // Run primitive
-  const primitiveOutput = runPrimitive(
+  const primitiveOutput = await runPrimitive(
     inputPath,
     primitiveOptions,
     imgDimensions
@@ -78,15 +78,15 @@ module.exports = options => {
   const blurredSVG = applyBlurFilter(preparedSVG, { blur: config.blur })
 
   // Optimize SVG
-  const finalSvg = runSVGO(blurredSVG)
+  const finalSvg = await runSVGO(blurredSVG)
 
   // Encode SVG
-  const svgBase64Encoded = encodeBase64(finalSvg)
+  const svgBase64Encoded = encodeBase64(finalSvg.data)
 
   // Write to disk or output result
   if (config.output) {
     const outputPath = path.resolve(config.output)
-    fs.writeFileSync(outputPath, finalSvg)
+    await fs.writeFile(outputPath, finalSvg.data)
   } else {
     printFinalResult(imgDimensions, inputPath, svgBase64Encoded)
   }

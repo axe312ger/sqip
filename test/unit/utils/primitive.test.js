@@ -1,7 +1,7 @@
 const path = require('path')
 
-const childProcessMock = require('child_process')
-const fsMock = require('fs')
+const execaMock = require('execa')
+const fsMock = require('fs-extra')
 const osMock = require('os')
 
 const {
@@ -9,15 +9,9 @@ const {
   runPrimitive
 } = require('../../../src/utils/primitive')
 
-jest.mock('child_process', () => ({
-  execSync: jest.fn(),
-  execFileSync: jest.fn()
-}))
+jest.mock('execa')
 
-jest.mock('fs', () => ({
-  existsSync: jest.fn(() => false),
-  readFileSync: jest.fn(() => 'primitiveResult')
-}))
+jest.mock('fs-extra')
 
 jest.mock('os', () => ({
   platform: jest.fn(() => 'unknownOS'),
@@ -40,8 +34,7 @@ describe('checkForPrimitive', () => {
     osMock.platform.mockImplementation(() => 'nonExistingArch')
   })
   afterEach(() => {
-    childProcessMock.execSync.mockClear()
-    childProcessMock.execFileSync.mockClear()
+    execaMock.mockClear()
     osMock.arch.mockClear()
     osMock.platform.mockClear()
     global.process.exit.mockClear()
@@ -50,44 +43,51 @@ describe('checkForPrimitive', () => {
   afterAll(() => {
     global.process.exit = originalExit
   })
-  test('bundled executable exists', () => {
+  test('bundled executable exists', async () => {
     osMock.platform.mockImplementation(() => 'linux')
     osMock.arch.mockImplementation(() => 'x64')
-    fsMock.existsSync.mockImplementationOnce(() => true)
-    expect(checkForPrimitive).not.toThrow()
+    fsMock.exists.mockImplementationOnce(() => true)
+
+    await checkForPrimitive()
+
     expect(global.process.exit).not.toBeCalled()
-    expect(childProcessMock.execSync).not.toBeCalled()
+    expect(execaMock).not.toBeCalled()
     expect(logSpy).not.toBeCalled()
   })
-  test('uses where for windows, type for POSIX', () => {
+  test('uses where for windows, type for POSIX', async () => {
     osMock.platform.mockImplementation(() => 'win32')
-    expect(checkForPrimitive).not.toThrow()
-    expect(childProcessMock.execSync).toBeCalledWith('where primitive')
+    await checkForPrimitive()
+    expect(execaMock).toBeCalledWith('where', ['primitive'])
 
     osMock.platform.mockImplementation(() => 'linux')
-    expect(checkForPrimitive).not.toThrow()
-    expect(childProcessMock.execSync).toBeCalledWith('type primitive')
+    await checkForPrimitive()
+    expect(execaMock).toBeCalledWith('type', ['primitive'])
   })
-  test('bundled executable does not exist but primitive is globally installed', () => {
-    expect(checkForPrimitive).not.toThrow()
+  test('bundled executable does not exist but primitive is globally installed', async () => {
+    await checkForPrimitive()
+
     expect(global.process.exit).not.toBeCalled()
     expect(logSpy).not.toBeCalled()
   })
-  test('bundled executable does not exist, primitive not installed globally', () => {
-    childProcessMock.execSync.mockImplementationOnce(() => {
+  test('bundled executable does not exist, primitive not installed globally', async () => {
+    execaMock.mockImplementationOnce(() => {
       throw new Error('not installed')
     })
-    expect(checkForPrimitive).not.toThrow()
+
+    await checkForPrimitive()
+
     expect(global.process.exit).toBeCalled()
     expect(logSpy).toBeCalledWith(
       'Please ensure that Primitive (https://github.com/fogleman/primitive, written in Golang) is installed and globally available'
     )
   })
-  test('bundled executable does not exist, primitive not installed globally, given shouldThrow true', () => {
-    childProcessMock.execSync.mockImplementationOnce(() => {
+  test('bundled executable does not exist, primitive not installed globally, given shouldThrow true', async () => {
+    execaMock.mockImplementationOnce(() => {
       throw new Error('not installed')
     })
-    expect(() => checkForPrimitive(true)).toThrowErrorMatchingSnapshot()
+
+    await expect(checkForPrimitive(true)).rejects.toThrowErrorMatchingSnapshot()
+
     expect(global.process.exit).not.toBeCalled()
     expect(logSpy).not.toBeCalled()
   })
@@ -106,18 +106,15 @@ describe('runPrimitive', () => {
   })
 
   afterEach(() => {
-    childProcessMock.execFileSync.mockClear()
+    execaMock.mockClear()
   })
 
   test('executes primitive with default config', () => {
     runPrimitive(inputFile, config, dimensions)
-    expect(childProcessMock.execFileSync.mock.calls).toHaveLength(1)
-    expect(childProcessMock.execFileSync.mock.calls[0]).toHaveLength(2)
-    childProcessMock.execFileSync.mock.calls[0][0] = childProcessMock.execFileSync.mock.calls[0][0].replace(
-      VENDOR_DIR,
-      '/VENDOR/DIR'
-    )
-    expect(childProcessMock.execFileSync.mock.calls[0]).toMatchSnapshot()
+    expect(execaMock.mock.calls).toHaveLength(1)
+    expect(execaMock.mock.calls[0]).toHaveLength(2)
+    fixProcessArgumentsForSnapshot(execaMock)
+    expect(execaMock.mock.calls[0]).toMatchSnapshot()
   })
 
   test('executes primitive with custom config, applying default number of primitives', () => {
@@ -125,13 +122,10 @@ describe('runPrimitive', () => {
       mode: 5
     }
     runPrimitive(inputFile, config, dimensions)
-    expect(childProcessMock.execFileSync.mock.calls).toHaveLength(1)
-    expect(childProcessMock.execFileSync.mock.calls[0]).toHaveLength(2)
-    childProcessMock.execFileSync.mock.calls[0][0] = childProcessMock.execFileSync.mock.calls[0][0].replace(
-      VENDOR_DIR,
-      '/VENDOR/DIR'
-    )
-    expect(childProcessMock.execFileSync.mock.calls[0]).toMatchSnapshot()
+    expect(execaMock.mock.calls).toHaveLength(1)
+    expect(execaMock.mock.calls[0]).toHaveLength(2)
+    fixProcessArgumentsForSnapshot(execaMock)
+    expect(execaMock.mock.calls[0]).toMatchSnapshot()
   })
 
   test('executes primitive with landscape dimensions', () => {
@@ -140,12 +134,25 @@ describe('runPrimitive', () => {
       height: 300
     }
     runPrimitive(inputFile, config, dimensions)
-    expect(childProcessMock.execFileSync.mock.calls).toHaveLength(1)
-    expect(childProcessMock.execFileSync.mock.calls[0]).toHaveLength(2)
-    childProcessMock.execFileSync.mock.calls[0][0] = childProcessMock.execFileSync.mock.calls[0][0].replace(
-      VENDOR_DIR,
-      '/VENDOR/DIR'
-    )
-    expect(childProcessMock.execFileSync.mock.calls[0]).toMatchSnapshot()
+    expect(execaMock.mock.calls).toHaveLength(1)
+    expect(execaMock.mock.calls[0]).toHaveLength(2)
+    fixProcessArgumentsForSnapshot(execaMock)
+    expect(execaMock.mock.calls[0]).toMatchSnapshot()
   })
 })
+
+function fixProcessArgumentsForSnapshot(execaMock) {
+  execaMock.mock.calls[0][0] = execaMock.mock.calls[0][0].replace(
+    VENDOR_DIR,
+    '/VENDOR/DIR'
+  )
+  execaMock.mock.calls[0][1] = execaMock.mock.calls[0][1].map(arg => {
+    if (typeof arg !== 'string') {
+      return arg
+    }
+    return arg.replace(
+      /primitive-tempfile-[0-9]+.svg/g,
+      'primitive-tempfile-TIMESTAMP.svg'
+    )
+  })
+}

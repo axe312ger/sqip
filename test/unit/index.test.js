@@ -1,4 +1,4 @@
-const sqip = require('../../src/index')
+import sqip from '../../src'
 
 jest.mock('../../src/utils/helpers.js', () => ({
   encodeBase64: jest.fn(() => 'base64EncodedSVG'),
@@ -18,21 +18,20 @@ jest.mock('../../src/utils/svg.js', () => ({
 }))
 
 describe('node api', () => {
-  test('no config passed', () => {
-    expect(sqip).toThrowErrorMatchingSnapshot()
+  test('no config passed', async () => {
+    await expect(sqip()).rejects.toThrowErrorMatchingSnapshot()
   })
 
-  test('empty config passed', () => {
-    expect(() => sqip({})).toThrowErrorMatchingSnapshot()
+  test('empty config passed', async () => {
+    await expect(sqip({})).rejects.toThrowErrorMatchingSnapshot()
   })
 
-  test('invalid input path', () => {
+  test('invalid input path', async () => {
     const input = '/this/file/does/not/exist.jpg'
-    expect(() => sqip({ input })).toThrowErrorMatchingSnapshot()
+    await expect(sqip({ input })).rejects.toThrowErrorMatchingSnapshot()
   })
-  test('resolves valid input path', () => {
+  test('resolves valid input path', async () => {
     const input = `${__dirname}/../../demo/beach.jpg`
-    const result = sqip({ input })
-    expect(result).toMatchSnapshot()
+    await expect(sqip({ input })).resolves.toMatchSnapshot()
   })
 })
