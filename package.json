@@ -11,6 +11,7 @@
     "test:unit": "jest --testPathPattern=test/unit --coverage",
     "test:unit:watch": "jest --testPathPattern=test/unit --coverage --watch",
     "test:e2e": "jest --testPathPattern=test/e2e",
+    "pretest:e2e": "npm run build",
     "test:e2e:watch": "jest --testPathPattern=test/e2e --watch",
     "prepare": "npm run build-vendor",
     "build": "babel -d dist src",
