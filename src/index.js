@@ -18,22 +18,24 @@ import path from 'path'
 
 import fs from 'fs-extra'
 
-import { encodeBase64, getDimensions, printFinalResult } from './utils/helpers'
-import { checkForPrimitive, runPrimitive } from './utils/primitive'
-import { runSVGO, prepareSVG, applyBlurFilter } from './utils/svg'
+import { getDimensions, printFinalResult } from './utils/helpers'
+
+import SVGPlugin from './plugins/svg'
+import SVGOPlugin from './plugins/svgo'
+import PrimitivePlugin from './plugins/primitive'
+import Base64EncodePlugin from './plugins/base64'
 
 export default async function sqip(options) {
   // Build configuration based on passed options and default options
   const defaultOptions = {
     numberOfPrimitives: 8,
     mode: 0,
-    blur: 12
+    blur: 12,
+    shouldThrow: true
   }
   const config = Object.assign({}, defaultOptions, options)
 
-  // Validate configuration and primitive executable status
-  checkForPrimitive()
-
+  // Validate configuration
   if (!config.input) {
     throw new Error(
       'Please provide an input image, e.g. sqip({ input: "input.jpg" })'
@@ -48,41 +50,51 @@ export default async function sqip(options) {
     throw new Error(`Unable to read input file: ${inputPath}`)
   }
 
-  // Prepare options for later steps
-  const { numberOfPrimitives, mode } = config
-
   const imgDimensions = getDimensions(inputPath)
-  const primitiveOptions = {
-    numberOfPrimitives,
-    mode
+
+  let plugins = []
+  if (!config.plugins) {
+    plugins = [
+      new PrimitivePlugin({
+        numberOfPrimitives: options.numberOfPrimitives || 8,
+        mode: options.mode || 0,
+        input: config.input,
+        dimensions: imgDimensions
+      }),
+      options.blur !== 0 &&
+        new SVGPlugin({
+          blur: options.blur > 0 ? options.blur : 12,
+          dimensions: imgDimensions
+        }),
+      new SVGOPlugin({
+        multipass: true,
+        floatPrecision: 1
+      }),
+      !config.output && new Base64EncodePlugin()
+    ].filter(Boolean)
+  } else {
+    plugins = config.plugins
   }
 
-  // Run primitive
-  const primitiveOutput = await runPrimitive(
-    inputPath,
-    primitiveOptions,
-    imgDimensions
-  )
-
-  // Prepare SVG
-  const preparedSVG = prepareSVG(primitiveOutput, imgDimensions)
-
-  // Apply blur filter
-  const blurredSVG = applyBlurFilter(preparedSVG, { blur: config.blur })
-
-  // Optimize SVG
-  const finalSvg = await runSVGO(blurredSVG)
-
-  // Encode SVG
-  const svgBase64Encoded = encodeBase64(finalSvg.data)
+  let finalSvg = config.filename
+  for (let plugin of plugins) {
+    try {
+      finalSvg = await plugin.apply(finalSvg)
+    } catch (err) {
+      if (config.shouldThrow) {
+        throw err
+      }
+      console.error(err)
+      process.exit(1)
+    }
+  }
 
   // Write to disk or output result
   if (config.output) {
     const outputPath = path.resolve(config.output)
-    await fs.writeFile(outputPath, finalSvg.data)
+    fs.writeFileSync(outputPath, finalSvg)
   } else {
-    printFinalResult(imgDimensions, inputPath, svgBase64Encoded)
+    printFinalResult(imgDimensions, inputPath, finalSvg)
   }
-
-  return { finalSvg, svgBase64Encoded, imgDimensions }
+  return { finalSvg, imgDimensions }
 }

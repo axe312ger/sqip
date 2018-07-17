@@ -3,7 +3,7 @@ import execaMock from 'execa'
 import fsMock from 'fs-extra'
 import osMock from 'os'
 
-import { checkForPrimitive, runPrimitive } from '../../../src/utils/primitive'
+import PrimitivePlugin from '../../../src/plugins/primitive'
 
 jest.mock('execa')
 
@@ -18,6 +18,8 @@ const VENDOR_DIR = path.resolve(__dirname, '../../../vendor')
 let originalExit = null
 
 describe('checkForPrimitive', () => {
+  const primitivePlugin = new PrimitivePlugin()
+
   beforeAll(() => {
     originalExit = global.process.exit
     global.process.exit = jest.fn()
@@ -44,24 +46,24 @@ describe('checkForPrimitive', () => {
     osMock.arch.mockImplementation(() => 'x64')
     fsMock.exists.mockImplementationOnce(() => true)
 
-    await checkForPrimitive()
+    await primitivePlugin.checkForPrimitive()
 
-    expect(global.process.exit).not.toBeCalled()
-    expect(execaMock).not.toBeCalled()
+    expect(global.process.exit).not.toHaveBeenCalled()
+    expect(execaMock).not.toHaveBeenCalled()
   })
 
   test('uses where for windows, type for POSIX', async () => {
     osMock.platform.mockImplementation(() => 'win32')
-    await checkForPrimitive()
-    expect(execaMock).toBeCalledWith('where', ['primitive'])
+    await primitivePlugin.checkForPrimitive()
+    expect(execaMock).toHaveBeenCalledWith('where', ['primitive'])
 
     osMock.platform.mockImplementation(() => 'linux')
-    await checkForPrimitive()
-    expect(execaMock).toBeCalledWith('type', ['primitive'])
+    await primitivePlugin.checkForPrimitive()
+    expect(execaMock).toHaveBeenCalledWith('type', ['primitive'])
   })
 
   test('bundled executable does not exist but primitive is globally installed', async () => {
-    await expect(checkForPrimitive()).resolves.toBeUndefined()
+    await expect(primitivePlugin.checkForPrimitive()).resolves.toBeUndefined()
   })
 
   test('bundled executable does not exist, primitive not installed globally', async () => {
@@ -69,13 +71,15 @@ describe('checkForPrimitive', () => {
       throw new Error('not installed')
     })
 
-    await expect(checkForPrimitive()).rejects.toThrowErrorMatchingSnapshot()
+    await expect(
+      primitivePlugin.checkForPrimitive()
+    ).rejects.toThrowErrorMatchingSnapshot()
   })
 })
 
 describe('runPrimitive', () => {
   let config, dimensions
-  const inputFile = '/path/to/input/file.jpg'
+  const input = '/path/to/input/file.jpg'
 
   beforeEach(() => {
     execaMock.mockResolvedValue({ stdout: {} })
@@ -91,22 +95,32 @@ describe('runPrimitive', () => {
   })
 
   test('executes primitive with default config', async () => {
-    await runPrimitive(inputFile, config, dimensions)
-    expect(execaMock.mock.calls).toHaveLength(1)
-    expect(execaMock.mock.calls[0]).toHaveLength(2)
+    const primitivePlugin = new PrimitivePlugin({
+      input,
+      ...config,
+      dimensions
+    })
+    await primitivePlugin.apply()
+    expect(execaMock.mock.calls).toHaveLength(2)
+    expect(execaMock.mock.calls[1]).toHaveLength(2)
     fixProcessArgumentsForSnapshot(execaMock)
-    expect(execaMock.mock.calls[0]).toMatchSnapshot()
+    expect(execaMock.mock.calls[1]).toMatchSnapshot()
   })
 
   test('executes primitive with custom config, applying default number of primitives', async () => {
     config = {
       mode: 5
     }
-    await runPrimitive(inputFile, config, dimensions)
-    expect(execaMock.mock.calls).toHaveLength(1)
-    expect(execaMock.mock.calls[0]).toHaveLength(2)
+    const primitivePlugin = new PrimitivePlugin({
+      input,
+      ...config,
+      dimensions
+    })
+    await primitivePlugin.apply()
+    expect(execaMock.mock.calls).toHaveLength(2)
+    expect(execaMock.mock.calls[1]).toHaveLength(2)
     fixProcessArgumentsForSnapshot(execaMock)
-    expect(execaMock.mock.calls[0]).toMatchSnapshot()
+    expect(execaMock.mock.calls[1]).toMatchSnapshot()
   })
 
   test('executes primitive with landscape dimensions', async () => {
@@ -114,20 +128,25 @@ describe('runPrimitive', () => {
       width: 600,
       height: 300
     }
-    await runPrimitive(inputFile, config, dimensions)
-    expect(execaMock.mock.calls).toHaveLength(1)
-    expect(execaMock.mock.calls[0]).toHaveLength(2)
+    const primitivePlugin = new PrimitivePlugin({
+      input,
+      ...config,
+      dimensions
+    })
+    await primitivePlugin.apply()
+    expect(execaMock.mock.calls).toHaveLength(2)
+    expect(execaMock.mock.calls[1]).toHaveLength(2)
     fixProcessArgumentsForSnapshot(execaMock)
-    expect(execaMock.mock.calls[0]).toMatchSnapshot()
+    expect(execaMock.mock.calls[1]).toMatchSnapshot()
   })
 })
 
 function fixProcessArgumentsForSnapshot(execaMock) {
-  execaMock.mock.calls[0][0] = execaMock.mock.calls[0][0].replace(
+  execaMock.mock.calls[1][0] = execaMock.mock.calls[1][0].replace(
     VENDOR_DIR,
     '/VENDOR/DIR'
   )
-  execaMock.mock.calls[0][1] = execaMock.mock.calls[0][1].map(arg => {
+  execaMock.mock.calls[1][1] = execaMock.mock.calls[1][1].map(arg => {
     if (typeof arg !== 'string') {
       return arg
     }
