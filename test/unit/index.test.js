@@ -3,23 +3,41 @@ import { resolve } from 'path'
 import { tmpdir } from 'os'
 
 import sqip from '../../src'
+import primitive from '../../src/plugins/primitive.js'
+import svg from '../../src/plugins/svg.js'
+import svgo from '../../src/plugins/svgo.js'
 
 jest.mock('../../src/utils/helpers.js', () => ({
   encodeBase64: jest.fn(() => 'base64EncodedSVG'),
   getDimensions: jest.fn(() => ({ width: 1024, height: 768 })),
   printFinalResult: jest.fn()
 }))
+jest.mock('../../src/plugins/primitive.js')
+jest.mock('../../src/plugins/svg.js')
+jest.mock('../../src/plugins/svgo.js')
 
-jest.mock('../../src/utils/primitive.js', () => ({
-  runPrimitive: jest.fn(() => 'primitiveResult'),
-  checkForPrimitive: jest.fn()
-}))
+primitive.mockImplementation(function primitiveMock() {
+  return {
+    apply: jest.fn(() => 'primitiveResult'),
+    checkForPrimitive: jest.fn()
+  }
+})
 
-jest.mock('../../src/utils/svg.js', () => ({
-  runSVGO: jest.fn(() => 'svgoResult'),
-  prepareSVG: jest.fn(() => 'preparedSVGResult'),
-  applyBlurFilter: jest.fn(() => 'blurredSVGResult')
-}))
+svg.mockImplementation(function svgMock() {
+  return {
+    apply: jest.fn(() => 'svgResult'),
+    prepareSVG: jest.fn(() => 'preparedSVGResult'),
+    applyBlurFilter: jest.fn(() => 'blurredSVGResult')
+  }
+})
+
+svgo.mockImplementation(function svgoMock() {
+  return {
+    apply: jest.fn(() => 'svgoResult'),
+    prepareSVG: jest.fn(() => 'preparedSVGResult'),
+    applyBlurFilter: jest.fn(() => 'blurredSVGResult')
+  }
+})
 
 describe('node api', () => {
   test('no config passed', async () => {

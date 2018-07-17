@@ -13,17 +13,15 @@ Object {
     "height": 768,
     "width": 1024,
   },
-  "svgBase64Encoded": "base64EncodedSVG",
 }
 `;
 
 exports[`node api resolves valid input path 1`] = `
 Object {
-  "finalSvg": "svgoResult",
+  "finalSvg": "data:image/svg+xml;base64,c3Znb1Jlc3VsdA==",
   "imgDimensions": Object {
     "height": 768,
     "width": 1024,
   },
-  "svgBase64Encoded": "base64EncodedSVG",
 }
 `;

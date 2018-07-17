@@ -83,7 +83,7 @@ describe('cli api', () => {
         const $ = cheerio.load(content, { xml: true })
 
         // Check number of primitives
-        const $primitives = $('svg g > *')
+        const $primitives = $('svg > g > *')
         expect($primitives).toHaveLength(15)
       })
       .unlink(outputFile)
@@ -104,7 +104,7 @@ describe('cli api', () => {
         const $ = cheerio.load(content, { xml: true })
 
         // Check type of primitives to be all ellipses
-        const $primitives = $('svg g > g > *')
+        const $primitives = $('svg > g > g > *')
         const types = $primitives
           .map((i, $primitive) => $primitive.tagName)
           .get()
