@@ -140,6 +140,7 @@ const result =  sqip({
 ## Credits
 * trivago N.V. (https://github.com/trivago)
 * Efe Gürkan Yalaman (https://github.com/efegurkan)
+* Benedikt Rötsch (https://github.com/axe312ger)
 * Michael Fogleman (https://github.com/fogleman)
 
 ## Licence
