@@ -15,8 +15,11 @@ jest.mock('fs-extra')
 
 jest.mock('os', () => ({
   platform: jest.fn(() => 'unknownOS'),
-  arch: jest.fn(() => 'nonExistingArch'),
-  tmpdir: jest.fn(() => '/path/to/output')
+  arch: jest.fn(() => 'nonExistingArch')
+}))
+
+jest.mock('tempy', () => ({
+  file: jest.fn(() => '/path/to/output/primitive-tempfile.svg')
 }))
 
 const VENDOR_DIR = path.resolve(__dirname, '../../../vendor')
@@ -130,7 +133,7 @@ function fixProcessArgumentsForSnapshot(execaMock) {
     }
     return arg.replace(
       /primitive-tempfile-[0-9]+.svg/g,
-      'primitive-tempfile-TIMESTAMP.svg'
+      'primitive-tempfile.svg'
     )
   })
 }
