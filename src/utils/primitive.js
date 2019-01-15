@@ -3,12 +3,9 @@ import os from 'os'
 
 import execa from 'execa'
 import fs from 'fs-extra'
+import tempy from 'tempy'
 
 const VENDOR_DIR = path.resolve(__dirname, '..', '..', 'vendor')
-const PRIMITIVE_TEMP_FILE = path.resolve(
-  os.tmpdir(),
-  `primitive-tempfile-${new Date().getTime()}.svg`
-)
 let primitiveExecutable = 'primitive'
 
 // Since Primitive is only interested in the larger dimension of the input image, let's find it
@@ -46,11 +43,13 @@ const runPrimitive = async (
   { numberOfPrimitives = 8, mode = 0 },
   dimensions
 ) => {
+  const primitiveTempFile = tempy.file({ extension: 'svg' })
+
   await execa(primitiveExecutable, [
     '-i',
     filename,
     '-o',
-    PRIMITIVE_TEMP_FILE,
+    primitiveTempFile,
     '-n',
     numberOfPrimitives,
     '-m',
@@ -59,11 +58,11 @@ const runPrimitive = async (
     findLargerImageDimension(dimensions)
   ])
 
-  const result = await fs.readFile(PRIMITIVE_TEMP_FILE, {
+  const result = await fs.readFile(primitiveTempFile, {
     encoding: 'utf-8'
   })
 
-  await fs.unlink(PRIMITIVE_TEMP_FILE)
+  await fs.unlink(primitiveTempFile)
 
   return result
 }
