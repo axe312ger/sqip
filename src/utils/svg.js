@@ -29,7 +29,7 @@ const prepareSVG = (svg, { width, height }) => {
         `SVG is missing viewBox attribute while Width and height were not passed:\n\n${svg}`
       )
     }
-    $svg.attr('viewBox', `0 0 ${width} ${height}`)
+    $svg.attr('viewBox', `0 0 ${width} ${height}`)
   }
 
   const $bgRect = $svg
@@ -81,7 +81,7 @@ const applyBlurFilter = (svg, { blur }) => {
   const patchedSVG = patchSVGGroup(svg)
   const $ = loadSVG(patchedSVG)
   const blurFilterId = 'b'
-  $('svg > g').attr('filter', `url(#${blurFilterId})`)
+  $('svg > g').attr('filter', `url(#${blurFilterId})`)
   $('svg').prepend(
     `<filter id="${blurFilterId}"><feGaussianBlur stdDeviation="${blur}" />`
   )
