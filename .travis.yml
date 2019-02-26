@@ -5,7 +5,15 @@ node_js:
 cache:
   directories:
     - /home/travis/build/technopagan/sqip/vendor
+env:
+  global:
+    - TRAVIS_GO_VERSION=1.10
 before_install:
+  - go version
+  - curl -sL -o ~/bin/gimme https://raw.githubusercontent.com/travis-ci/gimme/master/gimme
+  - chmod +x ~/bin/gimme
+  - gimme stable
+  - go version
   - npm install -g npm
 after_success:
   - codecov
