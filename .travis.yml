@@ -10,9 +10,7 @@ env:
     - TRAVIS_GO_VERSION=1.10
 before_install:
   - go version
-  - curl -sL -o ~/bin/gimme https://raw.githubusercontent.com/travis-ci/gimme/master/gimme
-  - chmod +x ~/bin/gimme
-  - gimme stable
+  - sudo apt-get install golang-1.10-go
   - go version
   - npm install -g npm
 after_success:
