@@ -62,7 +62,7 @@ describe('cli api', () => {
         expect($filter.attr('stdDeviation')).toBe('12')
 
         // Check default number of primitives
-        const $primitives = $('svg g > *')
+        const $primitives = $('svg g > g > *')
         expect($primitives).toHaveLength(8)
       })
       .unlink(outputFile)
@@ -74,7 +74,7 @@ describe('cli api', () => {
       `sqip-e2e-test-${new Date().getTime()}.svg`
     )
     nixt()
-      .run(`${cliCmd} -i ${inputFile} -o ${outputFile} -n 15`)
+      .run(`${cliCmd} -i ${inputFile} -o ${outputFile} -n 15 -b 0`)
       .code(0)
       .exist(outputFile)
       .expect(result => {
@@ -104,7 +104,7 @@ describe('cli api', () => {
         const $ = cheerio.load(content, { xml: true })
 
         // Check type of primitives to be all ellipses
-        const $primitives = $('svg g > *')
+        const $primitives = $('svg g > g > *')
         const types = $primitives
           .map((i, $primitive) => $primitive.tagName)
           .get()
