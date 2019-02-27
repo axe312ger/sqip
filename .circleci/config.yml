@@ -2,9 +2,8 @@ version: 2.0
 jobs:
   test:
     docker:
-      - image: circleci/node:8
+      - image: hafizalfaza/node-go-sqip
     steps:
-      - run: apk add go
       - run: node --version
       - run: npm --version
       - checkout

@@ -7,7 +7,7 @@ cache:
     - /home/travis/build/technopagan/sqip/vendor
 env:
   global:
-    - TRAVIS_GO_VERSION=1.10
+    - TRAVIS_GO_VERSION=1.10"
 before_install:
   - go version
   - sudo apt-get install golang-1.10-go
