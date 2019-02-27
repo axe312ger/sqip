@@ -4,6 +4,7 @@ jobs:
     docker:
       - image: circleci/node:8
     steps:
+      - run: apk add go
       - run: node --version
       - run: npm --version
       - checkout
