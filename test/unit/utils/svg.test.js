@@ -1,10 +1,5 @@
-const SVGO = require('svgo')
-
-const {
-  runSVGO,
-  prepareSVG,
-  applyBlurFilter
-} = require('../../../src/utils/svg')
+import SVGO from 'svgo'
+import { runSVGO, prepareSVG, applyBlurFilter } from '../../../src/utils/svg'
 
 jest.mock('svgo')
 
