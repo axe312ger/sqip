@@ -1,6 +1,6 @@
-import { execSync } from 'child-process'
-import { existsSync } from 'fs'
-import { resolve } from 'path'
+const { execSync } = require('child_process')
+const { existsSync } = require('fs')
+const { resolve } = require('path')
 
 const builds = [
   {
