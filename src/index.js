@@ -18,13 +18,9 @@ import path from 'path'
 
 import fs from 'fs-extra'
 
-const {
-  encodeBase64,
-  getDimensions,
-  printFinalResult
-} = require('./utils/helpers')
-const { checkForPrimitive, runPrimitive } = require('./utils/primitive')
-const { runSVGO, prepareSVG, applyBlurFilter } = require('./utils/svg')
+import { encodeBase64, getDimensions, printFinalResult } from './utils/helpers'
+import { checkForPrimitive, runPrimitive } from './utils/primitive'
+import { runSVGO, prepareSVG, applyBlurFilter } from './utils/svg'
 
 export default async function sqip(options) {
   // Build configuration based on passed options and default options

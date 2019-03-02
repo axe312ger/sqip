@@ -1,5 +1,5 @@
-const SVGO = require('svgo')
-const cheerio = require('cheerio')
+import SVGO from 'svgo'
+import cheerio from 'cheerio'
 
 const PRIMITIVE_SVG_ELEMENTS = 'circle, ellipse, line, polygon, path, rect, g'
 

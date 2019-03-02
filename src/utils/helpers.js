@@ -1,4 +1,4 @@
-const sizeOf = require('image-size')
+import sizeOf from 'image-size'
 
 // In case the user the did not provide the --output switch and is thus opting for the default stdout output inside an <img>, prepare the base64 encoded version of the SVG
 const encodeBase64 = rawSVG => Buffer.from(rawSVG).toString('base64')
