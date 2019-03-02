@@ -3,7 +3,6 @@ import os from 'os'
 
 import execa from 'execa'
 import fs from 'fs-extra'
-import tempy from 'tempy'
 
 const VENDOR_DIR = path.resolve(__dirname, '..', '..', 'vendor')
 let primitiveExecutable = 'primitive'
@@ -37,19 +36,18 @@ const checkForPrimitive = async () => {
   }
 }
 
-// Run Primitive with reasonable defaults (rectangles as shapes, 9 shaper per default) to generate the placeholder SVG
+// Run Primitive with reasonable defaults (rectangles as shapes, 9 shaper per
+// default) to generate the placeholder SVG
 const runPrimitive = async (
   filename,
   { numberOfPrimitives = 8, mode = 0 },
   dimensions
 ) => {
-  const primitiveTempFile = tempy.file({ extension: 'svg' })
-
-  await execa(primitiveExecutable, [
+  const { stdout } = await execa(primitiveExecutable, [
     '-i',
     filename,
     '-o',
-    primitiveTempFile,
+    '-',
     '-n',
     numberOfPrimitives,
     '-m',
@@ -58,13 +56,7 @@ const runPrimitive = async (
     findLargerImageDimension(dimensions)
   ])
 
-  const result = await fs.readFile(primitiveTempFile, {
-    encoding: 'utf-8'
-  })
-
-  await fs.unlink(primitiveTempFile)
-
-  return result
+  return stdout
 }
 
 module.exports = {
