@@ -47,7 +47,6 @@
     "fs-extra": "^7.0.1",
     "image-size": "^0.7.1",
     "svgo": "^1.0.5",
-    "tempy": "^0.2.1",
     "yargs": "^11.0.0"
   },
   "repository": {

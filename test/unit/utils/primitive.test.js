@@ -14,10 +14,6 @@ jest.mock('os', () => ({
   arch: jest.fn(() => 'nonExistingArch')
 }))
 
-jest.mock('tempy', () => ({
-  file: jest.fn(() => '/path/to/output/primitive-tempfile.svg')
-}))
-
 const VENDOR_DIR = path.resolve(__dirname, '../../../vendor')
 let originalExit = null
 
@@ -26,19 +22,23 @@ describe('checkForPrimitive', () => {
     originalExit = global.process.exit
     global.process.exit = jest.fn()
   })
+
   beforeEach(() => {
     osMock.arch.mockImplementation(() => 'unknownOS')
     osMock.platform.mockImplementation(() => 'nonExistingArch')
   })
+
   afterEach(() => {
-    execaMock.mockClear()
+    execaMock.mockReset()
     osMock.arch.mockClear()
     osMock.platform.mockClear()
     global.process.exit.mockClear()
   })
+
   afterAll(() => {
     global.process.exit = originalExit
   })
+
   test('bundled executable exists', async () => {
     osMock.platform.mockImplementation(() => 'linux')
     osMock.arch.mockImplementation(() => 'x64')
@@ -49,6 +49,7 @@ describe('checkForPrimitive', () => {
     expect(global.process.exit).not.toBeCalled()
     expect(execaMock).not.toBeCalled()
   })
+
   test('uses where for windows, type for POSIX', async () => {
     osMock.platform.mockImplementation(() => 'win32')
     await checkForPrimitive()
@@ -58,9 +59,11 @@ describe('checkForPrimitive', () => {
     await checkForPrimitive()
     expect(execaMock).toBeCalledWith('type', ['primitive'])
   })
+
   test('bundled executable does not exist but primitive is globally installed', async () => {
     await expect(checkForPrimitive()).resolves.toBeUndefined()
   })
+
   test('bundled executable does not exist, primitive not installed globally', async () => {
     execaMock.mockImplementationOnce(() => {
       throw new Error('not installed')
@@ -75,6 +78,7 @@ describe('runPrimitive', () => {
   const inputFile = '/path/to/input/file.jpg'
 
   beforeEach(() => {
+    execaMock.mockResolvedValue({ stdout: {} })
     config = {}
     dimensions = {
       width: 100,
@@ -83,34 +87,34 @@ describe('runPrimitive', () => {
   })
 
   afterEach(() => {
-    execaMock.mockClear()
+    execaMock.mockReset()
   })
 
-  test('executes primitive with default config', () => {
-    runPrimitive(inputFile, config, dimensions)
+  test('executes primitive with default config', async () => {
+    await runPrimitive(inputFile, config, dimensions)
     expect(execaMock.mock.calls).toHaveLength(1)
     expect(execaMock.mock.calls[0]).toHaveLength(2)
     fixProcessArgumentsForSnapshot(execaMock)
     expect(execaMock.mock.calls[0]).toMatchSnapshot()
   })
 
-  test('executes primitive with custom config, applying default number of primitives', () => {
+  test('executes primitive with custom config, applying default number of primitives', async () => {
     config = {
       mode: 5
     }
-    runPrimitive(inputFile, config, dimensions)
+    await runPrimitive(inputFile, config, dimensions)
     expect(execaMock.mock.calls).toHaveLength(1)
     expect(execaMock.mock.calls[0]).toHaveLength(2)
     fixProcessArgumentsForSnapshot(execaMock)
     expect(execaMock.mock.calls[0]).toMatchSnapshot()
   })
 
-  test('executes primitive with landscape dimensions', () => {
+  test('executes primitive with landscape dimensions', async () => {
     dimensions = {
       width: 600,
       height: 300
     }
-    runPrimitive(inputFile, config, dimensions)
+    await runPrimitive(inputFile, config, dimensions)
     expect(execaMock.mock.calls).toHaveLength(1)
     expect(execaMock.mock.calls[0]).toHaveLength(2)
     fixProcessArgumentsForSnapshot(execaMock)
