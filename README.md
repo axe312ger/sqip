@@ -2,10 +2,9 @@ SQIP - SVG-Based Image Placeholder
 ====================
 
 [![npm](https://img.shields.io/npm/v/sqip.svg)](https://www.npmjs.com/package/sqip)
-[![bitHound Overall Score](https://www.bithound.io/github/technopagan/sqip/badges/score.svg)](https://www.bithound.io/github/technopagan/sqip)
-[![bitHound Dependencies](https://www.bithound.io/github/technopagan/sqip/badges/dependencies.svg)](https://www.bithound.io/github/technopagan/sqip/master/dependencies/npm)
-[![Build Status](https://travis-ci.org/technopagan/sqip.svg?branch=master)](https://travis-ci.org/technopagan/sqip)
-[![codecov](https://codecov.io/gh/technopagan/sqip/branch/master/graph/badge.svg)](https://codecov.io/gh/technopagan/sqip)
+[![npm](https://img.shields.io/npm/dm/sqip.svg)](https://www.npmjs.com/package/sqip)
+[![CircleCI](https://circleci.com/gh/axe312ger/sqip.svg?style=svg)](https://circleci.com/gh/axe312ger/sqip)
+[![codecov](https://codecov.io/gh/axe312ger/sqip/branch/master/graph/badge.svg)](https://codecov.io/gh/axe312ger/sqip)
 
 ## Overview
 
