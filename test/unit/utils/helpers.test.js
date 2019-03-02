@@ -1,11 +1,11 @@
-const { readFileSync } = require('fs')
-const { resolve } = require('path')
+import { readFileSync } from 'fs'
+import { resolve } from 'path'
 
-const {
+import {
   encodeBase64,
   getDimensions,
   printFinalResult
-} = require('../../../src/utils/helpers')
+} from '../../../src/utils/helpers'
 
 const rawSVG = readFileSync(resolve(__dirname, '../../../demo/beach-sqip.svg'))
 

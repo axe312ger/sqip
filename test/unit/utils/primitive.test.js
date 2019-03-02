@@ -1,13 +1,9 @@
-const path = require('path')
+import path from 'path'
+import execaMock from 'execa'
+import fsMock from 'fs-extra'
+import osMock from 'os'
 
-const execaMock = require('execa')
-const fsMock = require('fs-extra')
-const osMock = require('os')
-
-const {
-  checkForPrimitive,
-  runPrimitive
-} = require('../../../src/utils/primitive')
+import { checkForPrimitive, runPrimitive } from '../../../src/utils/primitive'
 
 jest.mock('execa')
 

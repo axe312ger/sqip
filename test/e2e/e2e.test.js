@@ -1,9 +1,9 @@
-const { readFileSync } = require('fs')
-const { resolve } = require('path')
-const { tmpdir } = require('os')
+import { readFileSync } from 'fs'
+import { resolve } from 'path'
+import { tmpdir } from 'os'
 
-const cheerio = require('cheerio')
-const nixt = require('nixt')
+import cheerio from 'cheerio'
+import nixt from 'nixt'
 
 const inputFile = resolve(__dirname, '..', '..', 'demo', 'beach.jpg')
 const cliCmd = `node ${resolve(__dirname, '..', '..', 'dist', 'cli.js')}`

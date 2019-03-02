@@ -1,6 +1,6 @@
-const yargs = require('yargs')
+import yargs from 'yargs'
 
-const sqip = require('./index.js')
+import sqip from './index.js'
 
 const { argv } = yargs
   .usage('\nUsage: sqip --input [path]')
