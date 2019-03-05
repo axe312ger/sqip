@@ -1,3 +1,7 @@
+import fs from 'fs-extra'
+import { resolve } from 'path'
+import { tmpdir } from 'os'
+
 import sqip from '../../src'
 
 jest.mock('../../src/utils/helpers.js', () => ({
@@ -30,8 +34,26 @@ describe('node api', () => {
     const input = '/this/file/does/not/exist.jpg'
     await expect(sqip({ input })).rejects.toThrowErrorMatchingSnapshot()
   })
+
   test('resolves valid input path', async () => {
     const input = `${__dirname}/../../demo/beach.jpg`
     await expect(sqip({ input })).resolves.toMatchSnapshot()
+  })
+
+  describe('output', () => {
+    let output
+    beforeAll(() => {
+      output = resolve(tmpdir(), `sqip-index-test-${new Date().getTime()}.svg`)
+    })
+
+    afterAll(async () => {
+      await fs.unlink(output)
+    })
+
+    test('outputs to file path', async () => {
+      const input = `${__dirname}/../../demo/beach.jpg`
+
+      await expect(sqip({ input, output })).resolves.toMatchSnapshot()
+    })
   })
 })
