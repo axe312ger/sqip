@@ -13,13 +13,18 @@ const findLargerImageDimension = ({ width, height }) =>
 
 class PrimitivePlugin {
   constructor(options) {
-    this.options = options
+    this.options = {
+      numberOfPrimitives: 8,
+      mode: 0,
+      dimensions: {},
+      ...options
+    }
   }
 
   async apply() {
     await this.checkForPrimitive()
 
-    const { numberOfPrimitives = 8, mode = 0, dimensions, input } = this.options
+    const { numberOfPrimitives, mode, dimensions, input } = this.options
 
     const { stdout } = await execa(primitiveExecutable, [
       '-i',

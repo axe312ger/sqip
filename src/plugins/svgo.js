@@ -2,14 +2,14 @@ const SVGO = require('svgo')
 
 // SVGO with settings for maximum compression to optimize the Primitive-generated SVG
 class SVGOPlugin {
-  constructor(options) {
-    this.options = options || {}
+  constructor(options = {}) {
+    this.options = { multipass: true, floatPrecision: 1, ...options }
   }
   apply(svg) {
     return this.optimize(svg)
   }
   async optimize(svg) {
-    const { multipass = true, floatPrecision = 1 } = this.options
+    const { multipass, floatPrecision } = this.options
 
     const svgo = new SVGO({ multipass, floatPrecision })
     const { data } = await svgo.optimize(svg)
