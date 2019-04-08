@@ -21,7 +21,7 @@ const builds = [
 ]
 
 // Get primitive
-execSync(`go get github.com/fogleman/primitive`)
+execSync(`go get -u github.com/fogleman/primitive`)
 
 // Build executables
 builds.forEach(build => {
