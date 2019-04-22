@@ -1,89 +1,56 @@
 {
-  "name": "sqip",
-  "version": "0.3.1",
-  "description": "A SVG-based LQIP image placeholder generator",
-  "main": "./dist/index.js",
-  "bin": {
-    "sqip": "./dist/cli.js"
-  },
+  "name": "sqip-monorepo",
+  "private": true,
   "scripts": {
+    "build": "lerna exec --parallel 'babel --root-mode upward src --out-dir dist --delete-dir-on-start'",
+    "build:watch": "lerna exec --parallel 'babel --root-mode upward src --out-dir dist --delete-dir-on-start --watch'",
     "test": "npm run lint && npm run test:unit && npm run test:e2e",
-    "test:unit": "jest --testPathPattern=test/unit --coverage",
-    "test:unit:watch": "jest --testPathPattern=test/unit --coverage --watch",
-    "test:e2e": "jest --testPathPattern=test/e2e",
+    "test:unit": "jest --testPathPattern='unit/*' --coverage",
+    "test:unit:watch": "jest --testPathPattern='unit/*' --coverage --watch",
     "pretest:e2e": "npm run build",
-    "test:e2e:watch": "jest --testPathPattern=test/e2e --watch",
-    "prepare": "npm run build-vendor",
-    "build": "babel -d dist src",
-    "build-vendor": "node scripts/bundle-vendor.js",
+    "test:e2e": "jest --testPathPattern='e2e/*'",
+    "test:e2e:watch": "jest --testPathPattern='e2e/*' --watch",
     "dev": "npm run build -- --watch",
-    "lint": "eslint src scripts",
+    "lint": "eslint packages/*/src",
     "precommit": "npm run lint",
     "prepush": "npm run test"
   },
-  "files": [
-    "dist",
-    "vendor"
-  ],
-  "keywords": [
-    "lqip",
-    "svg",
-    "images",
-    "placeholder",
-    "webperf",
-    "performance",
-    "ux",
-    "perceived"
-  ],
-  "author": "Tobias Baldauf",
-  "license": "Unlicense",
-  "engines": {
-    "node": ">=8.0.0"
-  },
-  "dependencies": {
-    "cheerio": "^1.0.0-rc.2",
-    "core-js": "^2.6.3",
-    "execa": "^1.0.0",
-    "fs-extra": "^7.0.1",
-    "image-size": "^0.7.1",
-    "svgo": "^1.0.5",
-    "yargs": "^11.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/technopagan/sqip"
-  },
-  "person": {
-    "name": "Tobias Baldauf",
-    "email": "npm@tobias-baldauf.de",
-    "url": "https://who.tobias.is/"
-  },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.2.2",
-    "@babel/preset-env": "^7.3.1",
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^24.7.1",
     "babel-plugin-add-module-exports": "^1.0.0",
     "codecov": "^3.1.0",
+    "core-js": "^3.0.1",
     "eslint": "^5.12.1",
     "eslint-config-prettier": "^4.0.0",
     "eslint-config-prettier-standard": "^2.0.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.16.0",
-    "eslint-plugin-jest": "^22.2.1",
+    "eslint-plugin-jest": "^22.4.1",
     "eslint-plugin-node": "^8.0.1",
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
     "husky": "^1.3.1",
-    "jest": "^24.0.0",
+    "jest": "^24.7.1",
+    "lerna": "^3.13.3",
     "nixt": "^0.5.1",
     "prettier": "^1.16.2"
   },
   "jest": {
     "verbose": true,
     "collectCoverageFrom": [
-      "src/**/*.js"
+      "packages/*/src/**/*.js"
     ],
-    "coverageDirectory": "./coverage/"
-  }
+    "coverageDirectory": "./coverage/",
+    "transformIgnorePatterns": [
+      "/dist/"
+    ]
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }
