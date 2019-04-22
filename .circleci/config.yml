@@ -6,11 +6,13 @@ jobs:
     steps:
       - run: node --version
       - run: npm --version
+      - run: yarn --version
       - checkout
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
-      - run: npm install
-      - run: npm test
+      - run: yarn
+      - run: lerna bootstrap
+      - run: yarn test
       - run: npx codecov
 workflows:
   version: 2
