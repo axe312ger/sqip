@@ -14,7 +14,16 @@ jobs:
             - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
             - yarn-packages-v1-{{ .Branch }}-
             - yarn-packages-v1-
+            - v1-pkg-cache
       - run: yarn
+      - save_cache:
+          key: v1-pkg-cache
+          paths:
+            - /go/pkg
+      - save_cache:
+          paths:
+            - ~/.cache/yarn
+          key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run: yarn build
       - run: yarn run lint
       - run: yarn run test:unit
@@ -23,10 +32,6 @@ jobs:
           environment:
             DEBUG: sqip*
       - run: yarn codecov
-      - save_cache:
-          paths:
-            - ~/.cache/yarn
-          key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
 workflows:
   version: 2
   build_and_test:
