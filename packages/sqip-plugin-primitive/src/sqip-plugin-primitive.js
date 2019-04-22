@@ -7,7 +7,7 @@ import Debug from 'debug'
 
 const debug = Debug('sqip-plugin-primitive')
 
-const VENDOR_DIR = path.resolve(__dirname, '..', '..', 'vendor')
+const VENDOR_DIR = path.resolve(__dirname, '..', 'vendor')
 let primitiveExecutable = 'primitive'
 
 // Since Primitive is only interested in the larger dimension of the input image, let's find it
