@@ -16,7 +16,9 @@ jobs:
             - yarn-packages-v1-
       - run: yarn
       - run: yarn build
-      - run: yarn run test
+      - run: yarn run lint
+      - run: yarn run test:unit
+      - run: yarn run test:e2e
       - run: yarn codecov
       - save_cache:
           paths:
