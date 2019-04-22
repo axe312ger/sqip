@@ -11,7 +11,7 @@ jobs:
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run: yarn
-      - run: lerna bootstrap
+      - run: npx lerna bootstrap
       - run: yarn test
       - run: npx codecov
 workflows:
