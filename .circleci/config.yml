@@ -14,9 +14,9 @@ jobs:
             - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
             - yarn-packages-v1-{{ .Branch }}-
             - yarn-packages-v1-
-      - run: yarn --scripts-prepend-node-path
-      - run: yarn --scripts-prepend-node-path test
-      - run: npx codecov
+      - run: yarn
+      - run: yarn run --scripts-prepend-node-path test
+      - run: yarn codecov
       - save_cache:
           paths:
             - ~/.cache/yarn
