@@ -26,5 +26,8 @@
   "dependencies": {
     "sqip": "^0.3.3",
     "svgo": "^1.2.2"
+  },
+  "devDependencies": {
+    "debug": "^4.1.1"
   }
 }

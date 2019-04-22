@@ -3,6 +3,9 @@ import path from 'path'
 import os from 'os'
 
 import execa from 'execa'
+import Debug from 'debug'
+
+const debug = Debug('sqip-plugin-primitive')
 
 const VENDOR_DIR = path.resolve(__dirname, '..', '..', 'vendor')
 let primitiveExecutable = 'primitive'
@@ -48,6 +51,8 @@ export default class PrimitivePlugin {
       VENDOR_DIR,
       `primitive-${os.platform()}-${os.arch()}`
     )
+
+    debug(`Trying to locate primitive binary at ${primitivePath}`)
 
     if (await fs.exists(primitivePath)) {
       primitiveExecutable = primitivePath

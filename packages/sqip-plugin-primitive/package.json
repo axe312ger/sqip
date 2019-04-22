@@ -29,5 +29,8 @@
     "execa": "^1.0.0",
     "fs-extra": "^7.0.1",
     "sqip": "^0.3.3"
+  },
+  "devDependencies": {
+    "debug": "^4.1.1"
   }
 }
