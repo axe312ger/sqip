@@ -18,7 +18,10 @@ jobs:
       - run: yarn build
       - run: yarn run lint
       - run: yarn run test:unit
-      - run: yarn run test:e2e
+      - run:
+          command: yarn run test:e2e
+          environment:
+            DEBUG: sqip*
       - run: yarn codecov
       - save_cache:
           paths:

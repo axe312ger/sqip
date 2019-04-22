@@ -46,5 +46,8 @@
     "sqip-plugin-data-uri": "^0.3.3",
     "sqip-plugin-primitive": "^0.3.3",
     "sqip-plugin-svgo": "^0.3.3"
+  },
+  "devDependencies": {
+    "debug": "^4.1.1"
   }
 }
