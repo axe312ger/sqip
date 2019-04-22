@@ -5,6 +5,7 @@ exports[`cli api --help shows help screen to user 1`] = `
 Usage: sqip --input [path]
 
 Options:
+  --help                    Show help                                  [boolean]
   --version                 Show version number                        [boolean]
   --input, -i                                                [string] [required]
   --output, -o              Save the resulting SVG to a file. The svg result
@@ -27,6 +28,16 @@ Examples:
 SVG-based LQIP technique - https://github.com/technopagan/sqip
 "
 `;
+
+exports[`cli api -b 0 removes the blur 1`] = `""`;
+
+exports[`cli api -b sets the blur value 1`] = `""`;
+
+exports[`cli api -m sets the primitive mode 1`] = `""`;
+
+exports[`cli api -n sets the number of primitives 1`] = `""`;
+
+exports[`cli api -o save result to file and basic svg structure is applied 1`] = `""`;
 
 exports[`cli api no config exists programm and shows help 1`] = `
 "
@@ -55,5 +66,6 @@ Examples:
 \\"SQIP\\" (pronounced \\\\skwɪb\\\\ like the non-magical folk of magical descent) is a
 SVG-based LQIP technique - https://github.com/technopagan/sqip
 
-Missing required argument: input"
+Missing required argument: input
+"
 `;

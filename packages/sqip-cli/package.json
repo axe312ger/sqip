@@ -26,5 +26,8 @@
   "dependencies": {
     "sqip": "^0.3.3",
     "yargs": "^11"
+  },
+  "devDependencies": {
+    "fs-extra": "^7.0.1"
   }
 }
