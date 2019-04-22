@@ -14,7 +14,7 @@ jest.mock('os', () => ({
   arch: jest.fn(() => 'nonExistingArch')
 }))
 
-const VENDOR_DIR = path.resolve(__dirname, '../../../vendor')
+const VENDOR_DIR = path.resolve(__dirname, '../../vendor')
 let originalExit = null
 
 describe('checkForPrimitive', () => {
