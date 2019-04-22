@@ -9,11 +9,18 @@ jobs:
       - run: yarn --version
       - checkout
       - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - run: yarn
-      - run: npx lerna bootstrap
-      - run: yarn test
+          keys:
+            # when lock file changes, use increasingly general patterns to restore cache
+            - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - yarn-packages-v1-{{ .Branch }}-
+            - yarn-packages-v1-
+      - run: yarn --scripts-prepend-node-path
+      - run: yarn --scripts-prepend-node-path test
       - run: npx codecov
+      - save_cache:
+          paths:
+            - ~/.cache/yarn
+          key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
 workflows:
   version: 2
   build_and_test:
