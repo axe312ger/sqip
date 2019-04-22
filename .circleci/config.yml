@@ -10,10 +10,11 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            # when lock file changes, use increasingly general patterns to restore cache
             - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
             - yarn-packages-v1-{{ .Branch }}-
             - yarn-packages-v1-
+      - restore_cache:
+          keys:
             - v1-pkg-cache
       - run: yarn
       - save_cache:
