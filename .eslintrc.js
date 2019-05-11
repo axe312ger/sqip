@@ -1,7 +1,12 @@
 module.exports = {
+  parser: 'babel-eslint',
   parserOptions: { ecmaVersion: 2018 },
   plugins: ['node', 'jest'],
-  extends: ['prettier-standard', 'plugin:node/recommended', 'plugin:jest/recommended'],
+  extends: [
+    'prettier-standard',
+    'plugin:node/recommended',
+    'plugin:jest/recommended'
+  ],
   env: {
     'jest/globals': true
   },

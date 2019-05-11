@@ -16,6 +16,9 @@ jest.mock('sqip-plugin-primitive')
 jest.mock('sqip-plugin-blur')
 jest.mock('sqip-plugin-svgo')
 
+const FILE_NOT_EXIST = '/this/file/does/not/exist.jpg'
+const FILE_DEMO_BEACH = resolve(__dirname, '../../../..', 'demo', 'beach.jpg')
+
 primitive.mockImplementation(function primitiveMock() {
   return {
     apply: jest.fn(() => 'primitiveResult'),
@@ -49,13 +52,13 @@ describe('node api', () => {
   })
 
   test('invalid input path', async () => {
-    const input = '/this/file/does/not/exist.jpg'
-    await expect(sqip({ input })).rejects.toThrowErrorMatchingSnapshot()
+    await expect(
+      sqip({ input: FILE_NOT_EXIST })
+    ).rejects.toThrowErrorMatchingSnapshot()
   })
 
   test('resolves valid input path', async () => {
-    const input = `${__dirname}/../../../../demo/beach.jpg`
-    await expect(sqip({ input })).resolves.toMatchSnapshot()
+    await expect(sqip({ input: FILE_DEMO_BEACH })).resolves.toMatchSnapshot()
   })
 
   describe('output', () => {
@@ -69,9 +72,15 @@ describe('node api', () => {
     })
 
     test('outputs to file path', async () => {
-      const input = `${__dirname}/../../../../demo/beach.jpg`
-
-      await expect(sqip({ input, output })).resolves.toMatchSnapshot()
+      await expect(
+        sqip({ input: FILE_DEMO_BEACH, output })
+      ).resolves.toMatchSnapshot()
     })
+  })
+
+  test('throws nicely when plugin not found', async () => {
+    await expect(
+      sqip({ input: FILE_DEMO_BEACH, plugins: ['i-dont-exist'] })
+    ).rejects.toThrowErrorMatchingSnapshot()
   })
 })

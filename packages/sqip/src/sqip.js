@@ -16,22 +16,23 @@
 
 import path from 'path'
 
+import Debug from 'debug'
 import fs from 'fs-extra'
 
 import { getDimensions, printFinalResult } from './helpers'
 
-import BlurPlugin from 'sqip-plugin-blur'
-import SVGOPlugin from 'sqip-plugin-svgo'
-import PrimitivePlugin from 'sqip-plugin-primitive'
-import DataUriPlugin from 'sqip-plugin-data-uri'
+const debug = Debug('sqip')
 
 export default async function sqip(options) {
   // Build configuration based on passed options and default options
   const defaultOptions = {
-    numberOfPrimitives: 8,
-    mode: 0,
-    blur: 12,
-    shouldThrow: true
+    plugins: [
+      { name: 'primitive', options: { numberOfPrimitives: 8, mode: 0 } },
+      'blur',
+      'svgo',
+      'data-uri'
+    ],
+    shouldThrow: true // @todo do we really need this?
   }
   const config = Object.assign({}, defaultOptions, options)
 
@@ -42,7 +43,7 @@ export default async function sqip(options) {
     )
   }
 
-  const inputPath = path.resolve(config.input)
+  const inputPath = path.resolve(process.cwd(), config.input)
 
   try {
     await fs.access(inputPath, fs.constants.R_OK)
@@ -50,36 +51,46 @@ export default async function sqip(options) {
     throw new Error(`Unable to read input file: ${inputPath}`)
   }
 
-  const imgDimensions = getDimensions(inputPath)
+  const dimensions = getDimensions(inputPath)
 
-  let plugins = []
-  if (!config.plugins) {
-    plugins = [
-      new PrimitivePlugin({
-        numberOfPrimitives: options.numberOfPrimitives || 8,
-        mode: options.mode || 0,
-        input: config.input,
-        dimensions: imgDimensions
-      }),
-      options.blur !== 0 &&
-        new BlurPlugin({
-          blur: options.blur > 0 ? options.blur : 12,
-          dimensions: imgDimensions
-        }),
-      new SVGOPlugin({
-        multipass: true,
-        floatPrecision: 1
-      }),
-      !config.output && new DataUriPlugin()
-    ].filter(Boolean)
-  } else {
-    plugins = config.plugins
-  }
+  // Resolver
+  const plugins = await Promise.all(
+    config.plugins.map(async plugin => {
+      if (typeof plugin === 'string') {
+        plugin = { name: plugin }
+      }
+      const { name } = plugin
 
-  let finalSvg = config.filename
-  for (let plugin of plugins) {
+      if (!name) {
+        throw new Error(
+          `Unable to read plugin name from:\n${JSON.stringify(plugin, null, 2)}`
+        )
+      }
+      const moduleName =
+        name.indexOf('sqip-plugin-') !== -1 ? name : `sqip-plugin-${name}`
+      try {
+        debug(`Loading ${moduleName}`)
+        const Plugin = await import(moduleName)
+
+        return { ...plugin, Plugin }
+      } catch (err) {
+        if (err.code === 'MODULE_NOT_FOUND') {
+          throw new Error(
+            `Unable to load plugin "${moduleName}". Try installing it via:\n\n npm install ${moduleName}`
+          )
+        }
+        throw err
+      }
+    })
+  )
+
+  let svg = config.filename
+  for (const { name, options: pluginOptions, Plugin } of plugins) {
     try {
-      finalSvg = await plugin.apply(finalSvg)
+      debug(`Construct ${name}`)
+      const plugin = new Plugin({ dimensions, ...options, ...pluginOptions })
+      debug(`Apply ${name}`)
+      svg = await plugin.apply(svg, { dimensions })
     } catch (err) {
       if (config.shouldThrow) {
         throw err
@@ -89,12 +100,15 @@ export default async function sqip(options) {
     }
   }
 
+  debug(`Finished`)
+
   // Write to disk or output result
   if (config.output) {
     const outputPath = path.resolve(config.output)
-    fs.writeFileSync(outputPath, finalSvg)
+    // @todo remove all sync calls
+    fs.writeFileSync(outputPath, svg)
   } else {
-    printFinalResult(imgDimensions, inputPath, finalSvg)
+    printFinalResult(dimensions, inputPath, svg)
   }
-  return { finalSvg, imgDimensions }
+  return { svg, dimensions }
 }
