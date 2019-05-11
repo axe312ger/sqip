@@ -8,20 +8,26 @@ exports[`node api no config passed 1`] = `"Please provide an input image, e.g. s
 
 exports[`node api output outputs to file path 1`] = `
 Object {
-  "finalSvg": "svgoResult",
-  "imgDimensions": Object {
+  "dimensions": Object {
     "height": 768,
     "width": 1024,
   },
+  "svg": "data:image/svg+xml;base64,c3Znb1Jlc3VsdA==",
 }
 `;
 
 exports[`node api resolves valid input path 1`] = `
 Object {
-  "finalSvg": "data:image/svg+xml;base64,c3Znb1Jlc3VsdA==",
-  "imgDimensions": Object {
+  "dimensions": Object {
     "height": 768,
     "width": 1024,
   },
+  "svg": "data:image/svg+xml;base64,c3Znb1Jlc3VsdA==",
 }
+`;
+
+exports[`node api throws nicely when plugin not found 1`] = `
+"Unable to load plugin \\"sqip-plugin-i-dont-exist\\". Try installing it via:
+
+ npm install sqip-plugin-i-dont-exist"
 `;
