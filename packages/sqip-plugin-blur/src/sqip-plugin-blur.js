@@ -21,6 +21,17 @@ const patchSVGGroup = svg => {
 }
 
 export default class SVGPlugin {
+  static get cliOptions() {
+    return [
+      {
+        name: 'blur',
+        alias: 'b',
+        type: Number,
+        description: 'Set the GaussianBlur SVG filter value. Disable it via 0.',
+        defaultValue: 12
+      }
+    ]
+  }
   constructor(options) {
     this.options = { dimensions: {}, ...options }
   }
