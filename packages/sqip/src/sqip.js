@@ -85,9 +85,10 @@ export default async function sqip(options) {
 
   const dimensions = getDimensions(inputPath)
 
-  // Resolver
+  // Load plugins
   const plugins = await resolvePlugins(config.plugins)
 
+  // Interate through plugins and apply them to last returned image
   let svg = config.filename
   for (const { name, options: pluginOptions, Plugin } of plugins) {
     try {
@@ -109,8 +110,7 @@ export default async function sqip(options) {
   // Write to disk or output result
   if (config.output) {
     const outputPath = path.resolve(config.output)
-    // @todo remove all sync calls
-    fs.writeFileSync(outputPath, svg)
+    await fs.writeFile(outputPath, svg)
   } else {
     printFinalResult(dimensions, inputPath, svg)
   }
