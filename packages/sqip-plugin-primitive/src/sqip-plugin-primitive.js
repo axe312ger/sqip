@@ -15,6 +15,27 @@ const findLargerImageDimension = ({ width, height }) =>
   width > height ? width : height
 
 export default class PrimitivePlugin {
+  static get cliOptions() {
+    return [
+      {
+        name: 'numberOfPrimitives',
+        alias: 'n',
+        type: Number,
+        description:
+          'The number of primitive shapes to use to build the SQIP SVG',
+        defaultValue: 8
+      },
+      {
+        name: 'mode',
+        alias: 'm',
+        type: Number,
+        description:
+          'The style of primitives to use: \n0=combo, 1=triangle, 2=rect, 3=ellipse, 4=circle, 5=rotatedrect, 6=beziers, 7=rotatedellipse, 8=polygon',
+        defaultValue: 0
+      }
+    ]
+  }
+
   constructor(options) {
     this.options = {
       numberOfPrimitives: 8,

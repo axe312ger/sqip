@@ -2,30 +2,41 @@
 
 exports[`cli api --help shows help screen to user 1`] = `
 "
-Usage: sqip --input [path]
+sqip CLI
 
-Options:
-  --help                    Show help                                  [boolean]
-  --version                 Show version number                        [boolean]
-  --input, -i                                                [string] [required]
-  --output, -o              Save the resulting SVG to a file. The svg result
-                            will be returned by default.                [string]
-  --numberOfPrimitives, -n  The number of primitive shapes to use to build the
-                            SQIP SVG                       [number] [default: 8]
-  --mode, -m                The style of primitives to use:
-                            0=combo, 1=triangle, 2=rect, 3=ellipse, 4=circle,
-                            5=rotatedrect, 6=beziers, 7=rotatedellipse,
-                            8=polygon                      [number] [default: 0]
-  --blur, -b                Set the GaussianBlur SVG filter value. Disable it
-                            via 0.                        [number] [default: 12]
+  Usage: sqip --input [path]                                                    
+                                                                                
+  \\"SQIP\\" (pronounced skwɪb like the non-magical folk of magical descent) is a   
+  SVG-based LQIP technique - https://github.com/technopagan/sqip                
 
-Examples:
-  sqip --input /path/to/input.jpg           Output input.jpg image as SQIP
-  sqip -i input.jpg -n 25 -b 0 -o           Save input.jpg as result.svg with 25
-  result.svg                                shapes and no blur
+Options
 
-\\"SQIP\\" (pronounced \\\\skwɪb\\\\ like the non-magical folk of magical descent) is a
-SVG-based LQIP technique - https://github.com/technopagan/sqip"
+  -h, --help                                  Show help                         
+  --version                                   Show version number               
+  -p, --plugins string[]                      One or more plugins. E.g. \\"-p     
+                                              primitive blur\\"                   
+  -i, --input string                                                            
+  -o, --output string                         Save the resulting SVG to a file. 
+                                              The svg result will be returned   
+                                              by default.                       
+  -n, --primitive-numberOfPrimitives number   The number of primitive shapes to 
+                                              use to build the SQIP SVG         
+  -m, --primitive-mode number                 The style of primitives to use:   
+                                              0=combo, 1=triangle, 2=rect,      
+                                              3=ellipse, 4=circle,              
+                                              5=rotatedrect, 6=beziers,         
+                                              7=rotatedellipse, 8=polygon       
+  -b, --blur-blur number                      Set the GaussianBlur SVG filter   
+                                              value. Disable it via 0.          
+
+Examples
+
+  Output input.jpg image as SQIP                                                
+  $ sqip --input /path/to/input.jpg                                             
+                                                                                
+  Save input.jpg as result.svg with 25 shapes and no blur                       
+  $ sqip -i input.jpg -n 25 -b 0 -o result.svg                                  
+"
 `;
 
 exports[`cli api -b 0 removes the blur 1`] = `""`;
@@ -40,31 +51,42 @@ exports[`cli api -o save result to file and basic svg structure is applied 1`] =
 
 exports[`cli api no config exists programm and shows help 1`] = `
 "
-Usage: sqip --input [path]
+sqip CLI
 
-Options:
-  --help                    Show help                                  [boolean]
-  --version                 Show version number                        [boolean]
-  --input, -i                                                [string] [required]
-  --output, -o              Save the resulting SVG to a file. The svg result
-                            will be returned by default.                [string]
-  --numberOfPrimitives, -n  The number of primitive shapes to use to build the
-                            SQIP SVG                       [number] [default: 8]
-  --mode, -m                The style of primitives to use:
-                            0=combo, 1=triangle, 2=rect, 3=ellipse, 4=circle,
-                            5=rotatedrect, 6=beziers, 7=rotatedellipse,
-                            8=polygon                      [number] [default: 0]
-  --blur, -b                Set the GaussianBlur SVG filter value. Disable it
-                            via 0.                        [number] [default: 12]
+  Usage: sqip --input [path]                                                    
+                                                                                
+  \\"SQIP\\" (pronounced skwɪb like the non-magical folk of magical descent) is a   
+  SVG-based LQIP technique - https://github.com/technopagan/sqip                
 
-Examples:
-  sqip --input /path/to/input.jpg           Output input.jpg image as SQIP
-  sqip -i input.jpg -n 25 -b 0 -o           Save input.jpg as result.svg with 25
-  result.svg                                shapes and no blur
+Options
 
-\\"SQIP\\" (pronounced \\\\skwɪb\\\\ like the non-magical folk of magical descent) is a
-SVG-based LQIP technique - https://github.com/technopagan/sqip
+  -h, --help                                  Show help                         
+  --version                                   Show version number               
+  -p, --plugins string[]                      One or more plugins. E.g. \\"-p     
+                                              primitive blur\\"                   
+  -i, --input string                                                            
+  -o, --output string                         Save the resulting SVG to a file. 
+                                              The svg result will be returned   
+                                              by default.                       
+  -n, --primitive-numberOfPrimitives number   The number of primitive shapes to 
+                                              use to build the SQIP SVG         
+  -m, --primitive-mode number                 The style of primitives to use:   
+                                              0=combo, 1=triangle, 2=rect,      
+                                              3=ellipse, 4=circle,              
+                                              5=rotatedrect, 6=beziers,         
+                                              7=rotatedellipse, 8=polygon       
+  -b, --blur-blur number                      Set the GaussianBlur SVG filter   
+                                              value. Disable it via 0.          
 
-Missing required argument: input
+Examples
+
+  Output input.jpg image as SQIP                                                
+  $ sqip --input /path/to/input.jpg                                             
+                                                                                
+  Save input.jpg as result.svg with 25 shapes and no blur                       
+  $ sqip -i input.jpg -n 25 -b 0 -o result.svg                                  
+
+
+Please provide the following arguments: input
 "
 `;

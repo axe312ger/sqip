@@ -24,8 +24,9 @@
     "url": "https://github.com/axe312ger/sqip/issues"
   },
   "dependencies": {
-    "sqip": "^0.3.3",
-    "yargs": "^13.2.2"
+    "command-line-args": "^5.1.1",
+    "command-line-usage": "^5.0.5",
+    "sqip": "^0.3.3"
   },
   "devDependencies": {
     "debug": "^4.1.1",

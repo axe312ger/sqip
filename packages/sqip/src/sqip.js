@@ -23,6 +23,38 @@ import { getDimensions, printFinalResult } from './helpers'
 
 const debug = Debug('sqip')
 
+export async function resolvePlugins(plugins) {
+  return Promise.all(
+    plugins.map(async plugin => {
+      if (typeof plugin === 'string') {
+        plugin = { name: plugin }
+      }
+      const { name } = plugin
+
+      if (!name) {
+        throw new Error(
+          `Unable to read plugin name from:\n${JSON.stringify(plugin, null, 2)}`
+        )
+      }
+      const moduleName =
+        name.indexOf('sqip-plugin-') !== -1 ? name : `sqip-plugin-${name}`
+      try {
+        debug(`Loading ${moduleName}`)
+        const Plugin = await import(moduleName)
+
+        return { ...plugin, Plugin }
+      } catch (err) {
+        if (err.code === 'MODULE_NOT_FOUND') {
+          throw new Error(
+            `Unable to load plugin "${moduleName}". Try installing it via:\n\n npm install ${moduleName}`
+          )
+        }
+        throw err
+      }
+    })
+  )
+}
+
 export default async function sqip(options) {
   // Build configuration based on passed options and default options
   const defaultOptions = {
@@ -54,35 +86,7 @@ export default async function sqip(options) {
   const dimensions = getDimensions(inputPath)
 
   // Resolver
-  const plugins = await Promise.all(
-    config.plugins.map(async plugin => {
-      if (typeof plugin === 'string') {
-        plugin = { name: plugin }
-      }
-      const { name } = plugin
-
-      if (!name) {
-        throw new Error(
-          `Unable to read plugin name from:\n${JSON.stringify(plugin, null, 2)}`
-        )
-      }
-      const moduleName =
-        name.indexOf('sqip-plugin-') !== -1 ? name : `sqip-plugin-${name}`
-      try {
-        debug(`Loading ${moduleName}`)
-        const Plugin = await import(moduleName)
-
-        return { ...plugin, Plugin }
-      } catch (err) {
-        if (err.code === 'MODULE_NOT_FOUND') {
-          throw new Error(
-            `Unable to load plugin "${moduleName}". Try installing it via:\n\n npm install ${moduleName}`
-          )
-        }
-        throw err
-      }
-    })
-  )
+  const plugins = await resolvePlugins(config.plugins)
 
   let svg = config.filename
   for (const { name, options: pluginOptions, Plugin } of plugins) {

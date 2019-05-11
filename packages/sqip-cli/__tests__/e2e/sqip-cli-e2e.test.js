@@ -25,7 +25,7 @@ describe('cli api', () => {
       await execa(cliCmd, [cliPath], { stripFinalNewline: true })
       throw new Error('cli should exit with help message')
     } catch (err) {
-      expect(err.stderr).toMatchSnapshot()
+      expect(err.stdout).toMatchSnapshot()
       expect(err.code).toBe(1)
     }
   })
