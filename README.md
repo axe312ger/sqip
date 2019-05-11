@@ -50,6 +50,110 @@ npm install -g sqip
 
 ```
 
+## Usage
+
+```js
+const result = await sqip({input: 'foo.jpg'})
+/*
+{
+    svg: '<svg.../>,
+    dimensions: {
+        width: 1024,
+        height: 768
+    }
+}
+*/
+```
+
+### input: `./path/to/image.jpg` (required)
+
+### output: `` (Default: `null`)
+
+If set, the image will be written to the given path.
+
+### plugins[]: `['primitive', 'svgo']`
+
+One or more plugins. Either as string (default config will be applied) or as config object.
+
+See [Plugins](#plugins) for the available config options.
+
+**Examples**
+```javascript
+const sqip = require('sqip');
+
+const result =  sqip({
+    input: './input.jpg',
+    plugins: [
+      { name: 'primitive', options: { numberOfPrimitives: 8, mode: 0 } },
+      'blur',
+      'svgo',
+      'data-uri'
+    ]
+});
+```
+
+### CLI
+
+```bash
+sqip -p primitive svgo
+```
+
+#### `-p/--plugins`:
+
+comma seperated list of plugins, will be transformed to:
+
+`sqip-plugin-[name]`
+
+Default: `primitive,svgo`
+
+#### `-s/--silent`
+
+No output.
+
+Default: `false` (CLI), `true` (Node API)
+
+#### `-i/--input`
+
+Input file or directory. Supports globbing.
+
+#### `-o/--output`
+
+Input file or directory. Supports globbing.
+
+### Plugin specific config
+
+See the [Plugins](#plugins) section. Follows the pattern `--[plugin name]-[option]=[value]`
+
+#### Examples
+
+```bash
+# Get help
+sqip --help
+
+# Generate a SVG placeholder and print an example <img> tag to stdout
+sqip input.jpg
+
+# Save the placeholder SVG to a file instead of printing the <img> to stdout
+sqip -o output.svg input.jpg
+
+# Customize the number of primitive SVG shapes (default=8) to influence bytesize or level of detail
+sqip -n 4 input.jpg
+
+# Specify the type of primitive shapes that will be used to generate the image (default=0)
+# 0=combo, 1=triangle, 2=rect, 3=ellipse, 4=circle, 5=rotatedrect, 6=beziers, 7=rotatedellipse, 8=polygon
+sqip -m 4 input.jpg
+
+# Set the gaussian blur (default=12)
+sqip -b 3 input.jpg
+```
+
+## Plugins
+
+* sqip-plugin-primitive
+* sqip-plugin-blur
+* sqip-plugin-svgo
+* sqip-plugin-datauri
+
 ## Background
 
 Image placeholders are a thing: from grey boxes in skeleton screens over boxes
@@ -97,52 +201,6 @@ inside the image, optimizes the SVG using [SVGO](https://github.com/svg/svgo)
 and adds a Gaussian Blur filter to it. This produces a SVG placeholder which
 weighs in at only ~800-1000 bytes, looks smooth on all screens and provides an
 visual cue of image contents to come.
-
-## CLI Examples
-
-```bash
-
-# Generate a SVG placeholder and print an example <img> tag to stdout
-sqip input.jpg
-
-# Save the placeholder SVG to a file instead of printing the <img> to stdout
-sqip -o output.svg input.jpg
-
-# Customize the number of primitive SVG shapes (default=8) to influence bytesize or level of detail
-sqip -n 4 input.jpg
-
-# Specify the type of primitive shapes that will be used to generate the image (default=0)
-# 0=combo, 1=triangle, 2=rect, 3=ellipse, 4=circle, 5=rotatedrect, 6=beziers, 7=rotatedellipse, 8=polygon
-sqip -m 4 input.jpg
-
-# Set the gaussian blur (default=12)
-sqip -b 3 input.jpg
-```
-
-### NODE API
-Node API takes filename and number of primitives in an object, returns an object
-with SVG, base64 encoded SVG and image dimensions.
-
-Input options:
-- filename (required)
-- numberOfPrimitives (default=8)
-- mode (default=0)
-- blur (default=12)
-
-Returns:
-- finalSvg - string
-- svgBase64Encoded - string
-- imgDimensions - object
-
-**Examples**
-```javascript
-const sqip = require('sqip');
-
-const result =  sqip({
-    filename: './input.jpg',
-    numberOfPrimitives: 10
-});
-```
 
 ## Credits
 * trivago N.V. (https://github.com/trivago)
