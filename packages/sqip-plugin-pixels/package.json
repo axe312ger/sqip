@@ -1,0 +1,32 @@
+{
+  "name": "sqip-plugin-pixels",
+  "version": "0.0.1",
+  "description": "Experimental plugin to create a pixelation effect",
+  "author": "Benedikt Rötsch <info@benedikt-roetsch.de>",
+  "homepage": "https://github.com/axe312ger/sqip#readme",
+  "license": "ISC",
+  "main": "dist/sqip-plugin-pixels.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/axe312ger/sqip.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/axe312ger/sqip/issues"
+  },
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "sharp": "^0.22.1",
+    "svg.js": "^2.7.1",
+    "svgdom": "^0.0.20"
+  }
+}

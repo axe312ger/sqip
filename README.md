@@ -14,14 +14,14 @@ SVG-based [LQIP](https://www.guypo.com/introducing-lqip-low-quality-image-placeh
 
 ## Examples
 
-| Original | LQIP | SQIP default |
-|----------|------|--------------|
-| <img width="180" src="demo/beach.jpg"> | <img width="180" src="demo/beach-lqip.jpg"> | <img width="180" src="demo/beach-sqip.png"> |
-| Size: | 354B | 895B (gz: 479B) |
-| <img width="180" src="./demo/monkey-selfie.jpg"> | <img width="180" src="./demo/monkey-selfie-lqip.jpg"> | <img width="180" src="./demo/monkey-selfie-sqip.png"> |
-| Size: | 435B | 980B (gz: 513B) |
-| <img width="180" src="./demo/mona-lisa.jpg"> | <img width="180" src="./demo/mona-lisa-lqip.jpg"> | <img width="180" src="./demo/mona-lisa-sqip.png"> |
-| Size: | 442B | 937B (gz: 487B) |
+| Original | LQIP | SQIP default | SQIP pixels plugin 8px width |
+|----------|------|--------------|------------------------------|
+| <img width="180" src="demo/beach.jpg"> | <img width="180" src="demo/beach-lqip.jpg"> | <img width="180" src="demo/beach-sqip.png"> | <img width="180" src="demo/beach-pixels.svg"> |
+| Size: | 354B (gz: 282 B) | 895B (gz: 479B) | 1.9K (gz: 470 B)|
+| <img width="180" src="./demo/monkey-selfie.jpg"> | <img width="180" src="./demo/monkey-selfie-lqip.jpg"> | <img width="180" src="./demo/monkey-selfie-sqip.png"> | <img width="180" src="./demo/monkey-selfie-pixels.svg"> |
+| Size: | 435B (gz: 369 B) | 980B (gz: 513B) | 4.1K (gz: 845 B)|
+| <img width="180" src="./demo/mona-lisa.jpg"> | <img width="180" src="./demo/mona-lisa-lqip.jpg"> | <img width="180" src="./demo/mona-lisa-sqip.png"> | <img width="180" src="./demo/mona-lisa-pixels.svg"> |
+| Size: | 442B (gz: 372 B) | 937B (gz: 487B) | 4.5K (gz: 915 B)|
 
 ## Requirements
 * Node.js >= v6 (https://nodejs.org/en/)
