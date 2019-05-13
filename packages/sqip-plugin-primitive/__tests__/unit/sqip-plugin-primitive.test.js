@@ -79,7 +79,7 @@ describe('checkForPrimitive', () => {
 
 describe('runPrimitive', () => {
   let config, dimensions
-  const input = '/path/to/input/file.jpg'
+  const file = '/path/to/input/file.jpg'
 
   beforeEach(() => {
     execaMock.mockResolvedValue({ stdout: {} })
@@ -96,7 +96,7 @@ describe('runPrimitive', () => {
 
   test('executes primitive with default config', async () => {
     const primitivePlugin = new PrimitivePlugin({
-      input,
+      file,
       ...config,
       dimensions
     })
@@ -112,7 +112,7 @@ describe('runPrimitive', () => {
       mode: 5
     }
     const primitivePlugin = new PrimitivePlugin({
-      input,
+      file,
       ...config,
       dimensions
     })
@@ -129,7 +129,7 @@ describe('runPrimitive', () => {
       height: 300
     }
     const primitivePlugin = new PrimitivePlugin({
-      input,
+      file,
       ...config,
       dimensions
     })

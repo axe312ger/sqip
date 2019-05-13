@@ -38,6 +38,7 @@
   ],
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
+    "fast-glob": "^2.2.6",
     "fs-extra": "^7.0.1",
     "image-size": "^0.7.3"
   },

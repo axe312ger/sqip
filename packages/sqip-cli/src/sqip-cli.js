@@ -80,7 +80,14 @@ if (!plugins) {
 
 ;(async () => {
   debug(`Found plugins:\n`, plugins)
-  const resolvedPlugins = await resolvePlugins(plugins)
+  let resolvedPlugins
+
+  try {
+    resolvedPlugins = await resolvePlugins(plugins)
+  } catch (err) {
+    console.error(err)
+    process.exit(1)
+  }
 
   // Add new cli options based on enabled plugins
   const pluginOptions = resolvedPlugins.reduce((definitions, plugin) => {
@@ -142,7 +149,8 @@ if (!plugins) {
   const options = {
     input,
     output,
-    plugins: pluginsOptions
+    plugins: pluginsOptions,
+    print: !output
   }
 
   try {
