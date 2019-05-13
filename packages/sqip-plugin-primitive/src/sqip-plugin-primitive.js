@@ -48,11 +48,11 @@ export default class PrimitivePlugin {
   async apply() {
     await this.checkForPrimitive()
 
-    const { numberOfPrimitives, mode, dimensions, input } = this.options
+    const { numberOfPrimitives, mode, dimensions, file } = this.options
 
     const { stdout } = await execa(primitiveExecutable, [
       '-i',
-      input,
+      file,
       '-o',
       '-',
       '-n',

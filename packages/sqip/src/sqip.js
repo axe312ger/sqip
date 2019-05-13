@@ -18,6 +18,7 @@ import path from 'path'
 
 import Debug from 'debug'
 import fs from 'fs-extra'
+import glob from 'fast-glob'
 
 import { getDimensions } from './helpers'
 
@@ -55,45 +56,23 @@ export async function resolvePlugins(plugins) {
   )
 }
 
-export default async function sqip(options) {
-  // Build configuration based on passed options and default options
-  const defaultOptions = {
-    plugins: [
-      { name: 'primitive', options: { numberOfPrimitives: 8, mode: 0 } },
-      'blur',
-      'svgo',
-      'data-uri'
-    ],
-    shouldThrow: true // @todo do we really need this?
-  }
-  const config = Object.assign({}, defaultOptions, options)
-
-  // Validate configuration
-  if (!config.input) {
-    throw new Error(
-      'Please provide an input image, e.g. sqip({ input: "input.jpg" })'
-    )
-  }
-
-  const inputPath = path.resolve(process.cwd(), config.input)
-
-  try {
-    await fs.access(inputPath, fs.constants.R_OK)
-  } catch (err) {
-    throw new Error(`Unable to read input file: ${inputPath}`)
-  }
-
-  const dimensions = getDimensions(inputPath)
+async function processImage({ file, config }) {
+  const dimensions = getDimensions(file)
 
   // Load plugins
   const plugins = await resolvePlugins(config.plugins)
 
   // Interate through plugins and apply them to last returned image
-  let svg = config.filename
+  let svg
   for (const { name, options: pluginOptions, Plugin } of plugins) {
     try {
       debug(`Construct ${name}`)
-      const plugin = new Plugin({ dimensions, ...options, ...pluginOptions })
+      const plugin = new Plugin({
+        dimensions,
+        ...config,
+        ...pluginOptions,
+        file
+      })
       debug(`Apply ${name}`)
       svg = await plugin.apply(svg, { dimensions })
     } catch (err) {
@@ -105,14 +84,104 @@ export default async function sqip(options) {
     }
   }
 
+  return { svg, dimensions }
+}
+
+export default async function sqip(options) {
+  // Build configuration based on passed options and default options
+  const defaultOptions = {
+    plugins: [
+      { name: 'primitive', options: { numberOfPrimitives: 8, mode: 0 } },
+      'blur',
+      'svgo',
+      'data-uri'
+    ],
+    print: false,
+    shouldThrow: true // @todo do we really need this?
+  }
+  const config = Object.assign({}, defaultOptions, options)
+
+  const { input, output } = config
+
+  // Validate configuration
+  if (!input) {
+    throw new Error(
+      'Please provide an input image, e.g. sqip({ input: "input.jpg" })'
+    )
+  }
+
+  // Find all files matching the input glob
+  const files = await glob(input, {
+    absolute: true
+  })
+
+  debug('Found files:')
+  debug(files)
+
+  // Test if files are found
+  if (!files.length) {
+    throw new Error(
+      `Unable to find any files via ${input}. Make sure the file exists.
+
+If you are using globbing patterns, the following features are supported:
+
+https://github.com/micromatch/micromatch#matching-features`
+    )
+  }
+
+  // Test if all files are accessable
+  for (const file of files) {
+    try {
+      debug('check file ' + file)
+      await fs.access(file, fs.constants.R_OK)
+    } catch (err) {
+      throw new Error(`Unable to read file ${file}`)
+    }
+  }
+  // Iterate over all files
+  const results = []
+  for (const file of files) {
+    debug(`Processing ${file}`)
+    const result = await processImage({ file, config })
+    debug(`Processed ${file}`)
+
+    // Write result svg if desired
+    if (output) {
+      const name = path.parse(file).name
+      let outputPath
+
+      try {
+        // Test if output path already exists
+        const stats = fs.stat(output)
+
+        // Throw if it is a file and already exists
+        if (!stats.isDirectory()) {
+          throw new Error(
+            `File ${output} already exists. Overwriting is not yet supported.`
+          )
+        }
+        outputPath = path.resolve(output, `${name}.svg`)
+      } catch (err) {
+        // Output directory or file does not exist. We will create it later on.
+        outputPath = output
+      }
+
+      debug(`Writing ${outputPath}`)
+      await fs.writeFile(outputPath, result.svg)
+    }
+
+    if (config.print) {
+      console.log(result.svg)
+    }
+
+    results.push(result)
+  }
+
   debug(`Finished`)
 
-  // Write to disk or output result
-  if (config.output) {
-    const outputPath = path.resolve(config.output)
-    await fs.writeFile(outputPath, svg)
-  } else {
-    console.log(svg)
+  // Return as array when input was array or results is only one file
+  if (Array.isArray(input) || results.length === 0) {
+    return results
   }
-  return { svg, dimensions }
+  return results[0]
 }
