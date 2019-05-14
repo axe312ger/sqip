@@ -19,7 +19,7 @@ import path from 'path'
 import Debug from 'debug'
 import fs from 'fs-extra'
 
-import { getDimensions, printFinalResult } from './helpers'
+import { getDimensions } from './helpers'
 
 const debug = Debug('sqip')
 
@@ -112,7 +112,7 @@ export default async function sqip(options) {
     const outputPath = path.resolve(config.output)
     await fs.writeFile(outputPath, svg)
   } else {
-    printFinalResult(dimensions, inputPath, svg)
+    console.log(svg)
   }
   return { svg, dimensions }
 }
