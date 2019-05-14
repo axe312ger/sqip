@@ -4,6 +4,7 @@ import { stat, remove, readFile } from 'fs-extra'
 
 import cheerio from 'cheerio'
 import execa from 'execa'
+import xmlParser from 'fast-xml-parser'
 
 const inputFile = resolve(
   __dirname,
@@ -22,7 +23,9 @@ jest.setTimeout(20000)
 describe('cli api', () => {
   test('no config exists programm and shows help', async () => {
     try {
-      await execa(cliCmd, [cliPath], { stripFinalNewline: true })
+      await execa(cliCmd, [cliPath], {
+        stripFinalNewline: true
+      })
       throw new Error('cli should exit with help message')
     } catch (err) {
       expect(err.stdout).toMatchSnapshot()
@@ -40,9 +43,8 @@ describe('cli api', () => {
       stripFinalNewline: true
     })
 
-    expect(stdout).toMatch(
-      /<img width="1024" height="640" src="[^"]+beach.jpg" alt="Add descriptive alt text" style="background-size: cover; background-image: url\(data:image\/svg\+xml;base64,(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?\);">/
-    )
+    // Output should be a valid SVG file
+    expect(xmlParser.validate(stdout)).toBe(true)
   })
 
   test('-o save result to file and basic svg structure is applied', async () => {

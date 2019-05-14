@@ -73,10 +73,9 @@ if ('version' in args) {
 
 let { plugins } = args
 
+// Default cli plugins
 if (!plugins) {
-  plugins = ['primitive', 'blur', 'svgo', !args.output && 'data-uri'].filter(
-    Boolean
-  )
+  plugins = ['primitive', 'blur', 'svgo'].filter(Boolean)
 }
 
 ;(async () => {

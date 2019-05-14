@@ -8,9 +8,7 @@ import blur from 'sqip-plugin-blur'
 import svgo from 'sqip-plugin-svgo'
 
 jest.mock('../../src/helpers', () => ({
-  encodeBase64: jest.fn(() => 'base64EncodedSVG'),
-  getDimensions: jest.fn(() => ({ width: 1024, height: 768 })),
-  printFinalResult: jest.fn()
+  getDimensions: jest.fn(() => ({ width: 1024, height: 768 }))
 }))
 jest.mock('sqip-plugin-primitive')
 jest.mock('sqip-plugin-blur')
