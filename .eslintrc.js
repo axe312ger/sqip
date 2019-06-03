@@ -1,6 +1,9 @@
 module.exports = {
   parser: 'babel-eslint',
-  parserOptions: { ecmaVersion: 2018 },
+  parserOptions: {
+    ecmaVersion: 2018,
+    sourceType: 'module'
+  },
   plugins: ['node', 'jest'],
   extends: [
     'prettier-standard',
