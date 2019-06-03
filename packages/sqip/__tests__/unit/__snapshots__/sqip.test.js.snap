@@ -37,9 +37,3 @@ exports[`node api throws nicely when plugin not found 1`] = `
 
  npm install sqip-plugin-i-dont-exist"
 `;
-
-exports[`node api throws nicely when plugin not found 2`] = `
-"Unable to load plugin \\"sqip-plugin-i-dont-exist\\". Try installing it via:
-
- npm install sqip-plugin-i-dont-exist"
-`;
