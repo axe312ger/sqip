@@ -26,9 +26,13 @@ SVG-based [LQIP](https://www.guypo.com/introducing-lqip-low-quality-image-placeh
 | Size: | 442B (gz: 372 B) | 937B (gz: 487B) | 4.5K (gz: 915 B)|
 
 ## Requirements
-* Node.js >= v6 (https://nodejs.org/en/)
+* Node.js >= v8 (https://nodejs.org/en/)
 
-### Non-64bit operating systems need:
+<details>
+<summary>
+<strong>Non-64bit operating systems requirements</strong>
+</summary>
+
 * Golang (https://golang.org/doc/install)
 * Primitive (https://github.com/fogleman/primitive) (`go get -u github.com/fogleman/primitive`)
 
@@ -45,60 +49,122 @@ To do this on a Mac, type: ```sudo vim /etc/paths``` into your terminal, and add
 Using the command line (https://www.windows-commandline.com/set-path-command-line) <br>
 Using a GUI (https://www.computerhope.com/issues/ch000549.htm)
 
-## Installation
+</details>
+
+## Node
+
+[CLI see here](#cli)
+
+### Installation
+
 ```bash
-
-npm install -g sqip
-
+npm install sqip sqip-plugin-primitive sqip-plugin-svgo sqip-plugin-data-uri
 ```
 
-## Usage
+### Examples
+
+#### Process folder with default settings
 
 ```js
-const result = await sqip({input: 'foo.jpg'})
-/*
-{
-    svg: '<svg.../>,
-    dimensions: {
-        width: 1024,
-        height: 768
-    }
-}
-*/
+import sqip from 'sqip'
+import { resolve } from 'path'
+
+;(async () => {
+  try {
+    // Process whole folder with default settings
+    const folderResults = await sqip({
+      input: resolve(__dirname, 'images/originals'),
+      output: resolve(__dirname, 'images/previews')
+    })
+    console.log(folderResults)
+  } catch (err) {
+    console.log('Something went wrong generating the SQIP previews')
+    console.error(err)
+  }
+})()
 ```
 
-### input: `./path/to/image.jpg` (required)
+#### Use custom plugin config
 
-### output: `` (Default: `null`)
+This will run:
 
-If set, the image will be written to the given path.
+* Primitive with custom settings
+* SVGO with default settings
+
+```js
+;(async () => {
+  const pluginResults = await sqip({
+    input: resolve(__dirname, 'images/originals'),
+    output: resolve(__dirname, 'images/previews')
+    plugins: [
+      {
+        name: 'sqip-plugin-primitive',
+        options: {
+          numberOfPrimitives: 8,
+          mode: 0,
+        },
+      },
+      `sqip-plugin-svgo`,
+    ],
+  })
+  console.log(pluginResults)
+})()
+```
+
+[For further configuration options see here](#config)
+
+
+## CLI
+
+### Installation
+
+```sh
+npm install -g sqip-cli
+```
+
+### Examples
+
+#### Process single file
+
+```sh
+sqip -input "demo/beach.jpg"
+# <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="640" viewBox="0 0 1024 640"><filter id="a"><feGaussianBlur stdDeviation="12"/></filter><rect width="100%" height="100%" fill="#718d95"/><g filter="url(#a)">...</g></svg>
+```
+
+##### Process multiple files via glob and use custom plugin config
+
+```sh
+sqip -p primitive -p blur -p svgo \
+-i "demo/*.jpg" \
+-b 6
+# <svg>...</svg>
+# <svg>...</svg>
+# <svg>...</svg>
+# <svg>...</svg>
+```
+
+[For further configuration options see here](#config)
+
+## Config
+
+### `-i/--input`
+
+Input file or directory. Supports globbing.
+
+### `-o/--output`
+
+If set, output will be written to given file or directory.
+
+### `-s/--silent`
+
+No output.
+
+Default: `false` (CLI), `true` (Node API)
 
 ### plugins[]: `['primitive', 'svgo']`
 
 One or more plugins. Either as string (default config will be applied) or as config object.
 
-See [Plugins](#plugins) for the available config options.
-
-**Examples**
-```javascript
-const sqip = require('sqip');
-
-const result =  sqip({
-    input: './input.jpg',
-    plugins: [
-      { name: 'primitive', options: { numberOfPrimitives: 8, mode: 0 } },
-      'blur',
-      'svgo',
-      'data-uri'
-    ]
-});
-```
-
-### CLI
-
-```bash
-sqip -p primitive svgo
-```
 
 #### `-p/--plugins`:
 
@@ -108,55 +174,23 @@ comma seperated list of plugins, will be transformed to:
 
 Default: `primitive,svgo`
 
-#### `-s/--silent`
-
-No output.
-
-Default: `false` (CLI), `true` (Node API)
-
-#### `-i/--input`
-
-Input file or directory. Supports globbing.
-
-#### `-o/--output`
-
-Input file or directory. Supports globbing.
-
 ### Plugin specific config
 
 See the [Plugins](#plugins) section. Follows the pattern `--[plugin name]-[option]=[value]`
 
-#### Examples
-
-```bash
-# Get help
-sqip --help
-
-# Generate a SVG placeholder and print an example <img> tag to stdout
-sqip input.jpg
-
-# Save the placeholder SVG to a file instead of printing the <img> to stdout
-sqip -o output.svg input.jpg
-
-# Customize the number of primitive SVG shapes (default=8) to influence bytesize or level of detail
-sqip -n 4 input.jpg
-
-# Specify the type of primitive shapes that will be used to generate the image (default=0)
-# 0=combo, 1=triangle, 2=rect, 3=ellipse, 4=circle, 5=rotatedrect, 6=beziers, 7=rotatedellipse, 8=polygon
-sqip -m 4 input.jpg
-
-# Set the gaussian blur (default=12)
-sqip -b 3 input.jpg
-```
-
 ## Plugins
 
-* sqip-plugin-primitive
-* sqip-plugin-blur
-* sqip-plugin-svgo
-* sqip-plugin-datauri
+SQIP comes with some core plugins, the community is very welcome to [contribute their own plugins](#contribution) to SQIP.
 
-## Background
+### Core plugins
+
+* [sqip-plugin-primitive](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-primitive#readme)
+* [sqip-plugin-blur](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-blur#readme)
+* [sqip-plugin-svgo](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-svgo#readme)
+* [sqip-plugin-datauri](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-datauri#readme)
+* [sqip-plugin-pixels](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-pixels#readme)
+
+## Background & reseach
 
 Image placeholders are a thing: from grey boxes in skeleton screens over boxes
 that show the predominant color of the image that will later occupy the space
