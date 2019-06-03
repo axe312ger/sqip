@@ -1,3 +1,5 @@
+**This is the `v1 alpha` readme. [You can find the current docs here.](https://github.com/axe312ger/sqip/tree/legacy#readme)**
+
 SQIP - SVG-Based Image Placeholder
 ====================
 
