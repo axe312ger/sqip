@@ -4,6 +4,7 @@ SQIP - SVG-Based Image Placeholder
 ====================
 
 [![npm](https://img.shields.io/npm/v/sqip.svg)](https://www.npmjs.com/package/sqip)
+[![npm](https://img.shields.io/npm/v/sqip/next.svg?label=upcoming)](https://www.npmjs.com/package/sqip)
 [![npm](https://img.shields.io/npm/dm/sqip.svg)](https://www.npmjs.com/package/sqip)
 [![CircleCI](https://circleci.com/gh/axe312ger/sqip.svg?style=svg)](https://circleci.com/gh/axe312ger/sqip)
 [![codecov](https://codecov.io/gh/axe312ger/sqip/branch/master/graph/badge.svg)](https://codecov.io/gh/axe312ger/sqip)
