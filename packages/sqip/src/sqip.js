@@ -152,7 +152,7 @@ https://github.com/micromatch/micromatch#matching-features`
 
       try {
         // Test if output path already exists
-        const stats = fs.stat(output)
+        const stats = await fs.stat(output)
 
         // Throw if it is a file and already exists
         if (!stats.isDirectory()) {
