@@ -64,21 +64,21 @@ $ sqip -i input.jpg -n 25 -b 0 -o result.svg`
   console.log(usage)
 }
 
-const args = commandLineArgs(optionList, { partial: true })
+export default async function sqipCLI() {
+  const pluginDetectionArgs = commandLineArgs(optionList, { partial: true })
 
-if ('version' in args) {
-  console.log(version)
-  process.exit(0)
-}
+  if ('version' in pluginDetectionArgs) {
+    console.log(version)
+    return process.exit(0)
+  }
 
-let { plugins } = args
+  let { plugins } = pluginDetectionArgs
 
-// Default cli plugins
-if (!plugins) {
-  plugins = ['primitive', 'blur', 'svgo'].filter(Boolean)
-}
+  // Default cli plugins
+  if (!plugins) {
+    plugins = ['primitive', 'blur', 'svgo'].filter(Boolean)
+  }
 
-;(async () => {
   debug(`Found plugins:\n`, plugins)
   let resolvedPlugins
 
@@ -117,7 +117,7 @@ if (!plugins) {
 
   if ('help' in args) {
     showHelp({ optionList })
-    process.exit(0)
+    return process.exit(0)
   }
 
   const missing = optionList
@@ -127,10 +127,10 @@ if (!plugins) {
 
   if (missing.length) {
     showHelp({ optionList })
-    console.info(
+    console.error(
       `\nPlease provide the following arguments: ${missing.join(', ')}`
     )
-    process.exit(1)
+    return process.exit(1)
   }
 
   const { input, output } = args
@@ -156,7 +156,7 @@ if (!plugins) {
   try {
     await sqip(options)
   } catch (err) {
-    console.log(err)
+    console.error(err)
     process.exit(1)
   }
-})()
+}

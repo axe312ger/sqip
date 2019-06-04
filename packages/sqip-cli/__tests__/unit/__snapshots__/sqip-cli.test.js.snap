@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`sqip-plugin-cli --help: show help: error 1`] = `Array []`;
+
+exports[`sqip-plugin-cli --help: show help: log 1`] = `
+Array [
+  Array [
+    "
+[4m[1msqip CLI[22m[24m
+
+  Usage: sqip --input [path]                                                    
+                                                                                
+  \\"SQIP\\" (pronounced skwɪb like the non-magical folk of magical descent) is a   
+  SVG-based LQIP technique - https://github.com/technopagan/sqip                
+
+[4m[1mOptions[22m[24m
+
+  [1m-h[22m, [1m--help[22m               Show help                                            
+  [1m--version[22m                Show version number                                  
+  [1m-p[22m, [1m--plugins[22m [4mstring[][24m   One or more plugins. E.g. \\"-p primitive blur\\"        
+  [1m-i[22m, [1m--input[22m [4mstring[24m                                                            
+  [1m-o[22m, [1m--output[22m [4mstring[24m      Save the resulting SVG to a file. The svg result     
+                           will be returned by default.                         
+
+[4m[1mExamples[22m[24m
+
+  Output input.jpg image as SQIP                                                
+  $ sqip --input /path/to/input.jpg                                             
+                                                                                
+  Save input.jpg as result.svg with 25 shapes and no blur                       
+  $ sqip -i input.jpg -n 25 -b 0 -o result.svg                                  
+",
+  ],
+]
+`;
+
+exports[`sqip-plugin-cli --help: show help: resolve 1`] = `
+Array [
+  Array [
+    Array [
+      "primitive",
+      "blur",
+      "svgo",
+    ],
+  ],
+  Array [
+    Array [
+      "primitive",
+      "blur",
+      "svgo",
+    ],
+  ],
+]
+`;
+
+exports[`sqip-plugin-cli --version: show version: error 1`] = `Array []`;
+
+exports[`sqip-plugin-cli --version: show version: log 1`] = `
+Array [
+  Array [
+    "1.0.0-alpha.0",
+  ],
+]
+`;
+
+exports[`sqip-plugin-cli --version: show version: resolve 1`] = `
+Array [
+  Array [
+    Array [
+      "primitive",
+      "blur",
+      "svgo",
+    ],
+  ],
+]
+`;
+
+exports[`sqip-plugin-cli no args: show help and require input option: error 1`] = `
+Array [
+  Array [
+    "
+Please provide the following arguments: input",
+  ],
+]
+`;
+
+exports[`sqip-plugin-cli no args: show help and require input option: log 1`] = `
+Array [
+  Array [
+    "
+[4m[1msqip CLI[22m[24m
+
+  Usage: sqip --input [path]                                                    
+                                                                                
+  \\"SQIP\\" (pronounced skwɪb like the non-magical folk of magical descent) is a   
+  SVG-based LQIP technique - https://github.com/technopagan/sqip                
+
+[4m[1mOptions[22m[24m
+
+  [1m-h[22m, [1m--help[22m               Show help                                            
+  [1m--version[22m                Show version number                                  
+  [1m-p[22m, [1m--plugins[22m [4mstring[][24m   One or more plugins. E.g. \\"-p primitive blur\\"        
+  [1m-i[22m, [1m--input[22m [4mstring[24m                                                            
+  [1m-o[22m, [1m--output[22m [4mstring[24m      Save the resulting SVG to a file. The svg result     
+                           will be returned by default.                         
+
+[4m[1mExamples[22m[24m
+
+  Output input.jpg image as SQIP                                                
+  $ sqip --input /path/to/input.jpg                                             
+                                                                                
+  Save input.jpg as result.svg with 25 shapes and no blur                       
+  $ sqip -i input.jpg -n 25 -b 0 -o result.svg                                  
+",
+  ],
+]
+`;
+
+exports[`sqip-plugin-cli no args: show help and require input option: resolve 1`] = `
+Array [
+  Array [
+    Array [
+      "primitive",
+      "blur",
+      "svgo",
+    ],
+  ],
+]
+`;

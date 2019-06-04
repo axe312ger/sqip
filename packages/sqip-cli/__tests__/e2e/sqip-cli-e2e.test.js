@@ -15,7 +15,7 @@ const inputFile = resolve(
   'demo',
   'beach.jpg'
 )
-const cliPath = resolve(__dirname, '..', '..', 'dist', 'sqip-cli.js')
+const cliPath = resolve(__dirname, '..', '..', 'dist', 'wrapper.js')
 const cliCmd = `node`
 
 jest.setTimeout(20000)
@@ -29,6 +29,7 @@ describe('cli api', () => {
       throw new Error('cli should exit with help message')
     } catch (err) {
       expect(err.stdout).toMatchSnapshot()
+      expect(err.stderr).toMatchSnapshot()
       expect(err.code).toBe(1)
     }
   })
