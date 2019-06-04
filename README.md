@@ -3,9 +3,10 @@
 SQIP - SVG-Based Image Placeholder
 ====================
 
-[![npm](https://img.shields.io/npm/v/sqip.svg)](https://www.npmjs.com/package/sqip)
-[![npm](https://img.shields.io/npm/v/sqip/next.svg?label=upcoming)](https://www.npmjs.com/package/sqip)
+[![npm](https://img.shields.io/npm/v/sqip.svg?label=npm@latest)](https://www.npmjs.com/package/sqip)
+[![npm](https://img.shields.io/npm/v/sqip/next.svg?label=npm@next)](https://www.npmjs.com/package/sqip)
 [![npm](https://img.shields.io/npm/dm/sqip.svg)](https://www.npmjs.com/package/sqip)
+
 [![CircleCI](https://circleci.com/gh/axe312ger/sqip.svg?style=svg)](https://circleci.com/gh/axe312ger/sqip)
 [![codecov](https://codecov.io/gh/axe312ger/sqip/branch/master/graph/badge.svg)](https://codecov.io/gh/axe312ger/sqip)
 [![Maintainability](https://api.codeclimate.com/v1/badges/fc81fa5e535561c0a6ff/maintainability)](https://codeclimate.com/github/axe312ger/sqip/maintainability)
@@ -25,10 +26,10 @@ SQIP is available as node API and CLI. It offers several plugins to allow creati
 * [Node](#Node)
 * [CLI](#CLI)
 * [Config](#Config)
-* [Plugins](#Plugins)
-* [Background & reseach](#Backgroundreseach)
+* [Plugins](#plugins-1)
+* [Background & reseach](#background--reseach)
 * [Credits](#Credits)
-* [Contribution](#Contribution)
+* [Contributing](#Contributing)
 * [License](#License)
 
 ## Examples
@@ -376,7 +377,7 @@ Pull requests, forks and stars are always welcome. For bugs and feature requests
 * Benedikt Rötsch (https://github.com/axe312ger)
 * Michael Fogleman (https://github.com/fogleman)
 
-## Licence
+## License
 
 This is free and unencumbered software released into the public domain.
 
