@@ -1,5 +1,5 @@
 const IS_TEST = process.env.NODE_ENV === `test`
-const ignore = ['**/dist']
+const ignore = ['**/dist', '**/node_modules']
 
 if (!IS_TEST) {
   ignore.push('**/__tests__')
