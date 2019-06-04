@@ -46,7 +46,8 @@
     ],
     "coverageDirectory": "./coverage/",
     "transformIgnorePatterns": [
-      "/dist/"
+      "/dist/",
+      "/node_modules/"
     ]
   },
   "workspaces": [
