@@ -16,7 +16,7 @@ SVG-based [LQIP](https://www.guypo.com/introducing-lqip-low-quality-image-placeh
 
 SQIP will generate SVG based previews of images. They can be used as a lazy-loading image preview, a video thumbnail or an artistic element for your project.
 
-SQIP is available as node API and CLI. It offeres several plugins to allow creative image transformation options.
+SQIP is available as node API and CLI. It offers several plugins to allow creative image transformation options.
 
 ## Table of contents
 
@@ -240,7 +240,7 @@ sqip -p primitive -p blur -p svgo \
 
 ## Config
 
-The configuration consists of three parts. An required input, an optional output path and a configuration of plugins to be applied on the images.
+The configuration consists of three parts. A required input, an optional output path and a configuration of plugins to be applied on the images.
 
 ### `input` - required
 
@@ -250,7 +250,7 @@ Input file or directory. Supports feature rich globbing via [micromatch](https:/
 
 ### `output`
 
-If set, output will be written to given file or directory.
+If set, the output will be written to the given file or directory.
 
 Otherwise, results will be output to CLI
 
@@ -260,7 +260,7 @@ Otherwise, results will be output to CLI
 
 **Default:** `['primitive', 'svgo']`
 
-Array of plugins. Either as string (default config will be applied) or as config object.
+Array of plugins. Either as a string (default config will be applied) or as a config object.
 
 **Example:**
 
@@ -317,7 +317,7 @@ SQIP comes with some core plugins, the community is very welcome to [contribute 
 
 Image placeholders are a thing: from grey boxes in skeleton screens over boxes
 that show the predominant color of the image that will later occupy the space
-and CSS color gradients made from two dominant colors up to actual low quality
+and CSS color gradients made from two dominant colors up to an actual low quality
 raster images downscaled to a few pixels, saved in low quality and then blurred
 to provide a preview of image contents.
 
@@ -330,7 +330,7 @@ started using colored placeholders a long time ago,
 [Pinterest](https://blog.embed.ly/pinterests-colored-background-placeholders-4b4c9fb8bb77)
 and
 [Medium](https://jmperezperez.com/medium-image-progressive-loading-placeholder/)
-made a significant impact with their LQIP implementations and the most popular
+made a significant impact on their LQIP implementations and the most popular
 [JS libraries for responsive
 images](https://github.com/aFarkas/lazysizes#lqipblurry-image-placeholderblur-up-image-technique)
 include LQIP implementations.

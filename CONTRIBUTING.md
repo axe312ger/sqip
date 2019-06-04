@@ -1,4 +1,4 @@
-# Contributing to sqip
+# Contributing to SQIP
 
 [![CircleCI](https://circleci.com/gh/axe312ger/sqip.svg?style=svg)](https://circleci.com/gh/axe312ger/sqip) [![codecov](https://codecov.io/gh/axe312ger/sqip/branch/master/graph/badge.svg)](https://codecov.io/gh/axe312ger/sqip) [![Maintainability](https://api.codeclimate.com/v1/badges/fc81fa5e535561c0a6ff/maintainability)](https://codeclimate.com/github/axe312ger/sqip/maintainability)
 
@@ -37,7 +37,7 @@ npx lerna --help
 
 ### Directory structure
 
-Sqip is organzied in packages. They are located in the `packages` directory. Each package is released as a seperate NPM package.
+SQIP is organized in packages. They are located in the `packages` directory. Each package is released as a separate NPM package.
 
 All packages should follow the same directory structure to allow proper babel transpilation.
 
@@ -62,7 +62,7 @@ All packages should follow the same directory structure to allow proper babel tr
 
 ## Developing
 
-If not specified different, all commands are executed from the project root directory.
+If not specified differently, all commands are executed from the project root directory.
 
 A `npm run` will give you a first overview of all available scripts.
 
@@ -84,7 +84,7 @@ npm run build:watch
 
 To build a new SQIP plugin is pretty simple:
 
-1. Create rough file structure via `lerna create sqip-plugin-my-amazing-plugin`
+1. Create a rough file structure via `lerna create sqip-plugin-my-amazing-plugin`
 2. Rename `lib` directory to `src`
 3. Change `package.json`: Replace main script path `lib` with `src`
 4. Use the following template to rocket-start your new plugin:
@@ -154,7 +154,7 @@ This project uses [eslint](https://eslint.org/) for linting and [jest](https://g
 
 ### Watching and executing specific tests
 
-Run specific test file and watch for changes:
+Run a specific test file and watch for changes:
 
 ```sh
 npx jest packages/sqip/__tests__/unit/sqip.test.js --watch
@@ -176,7 +176,7 @@ npx jest packages/sqip/__tests__/unit/sqip.test.js --watch
 
 [![Code Style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat)](https://prettier.io/)
 
-This project uses [prettier](https://prettier.io/) to format its source code. Your comitted code will be automatically linted and transformed via [husky](https://www.npmjs.com/package/husky).
+This project uses [prettier](https://prettier.io/) to format its source code. Your committed code will be automatically linted and transformed via [husky](https://www.npmjs.com/package/husky).
 
 See [.prettierrc](.prettierrc) for the configuration details.
 
