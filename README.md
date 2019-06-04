@@ -240,36 +240,66 @@ sqip -p primitive -p blur -p svgo \
 
 ## Config
 
-### `-i/--input`
+The configuration consists of three parts. An required input, an optional output path and a configuration of plugins to be applied on the images.
 
-Input file or directory. Supports globbing.
+### `input` - required
 
-### `-o/--output`
+Input file or directory. Supports feature rich globbing via [micromatch](https://github.com/micromatch/micromatch#why-use-micromatch).
+
+**CLI usage:** `-i/--input`
+
+### `output`
 
 If set, output will be written to given file or directory.
 
-### `-s/--silent`
+Otherwise, results will be output to CLI
 
-No output.
+**CLI usage:** `-o/--output`
 
-Default: `false` (CLI), `true` (Node API)
+### `plugins`
 
-### plugins[]: `['primitive', 'svgo']`
+**Default:** `['primitive', 'svgo']`
 
-One or more plugins. Either as string (default config will be applied) or as config object.
+Array of plugins. Either as string (default config will be applied) or as config object.
 
+**Example:**
 
-#### `-p/--plugins`:
+```js
+await sqip({
+  ...
+  plugins: [
+    {
+      name: 'sqip-plugin-primitive',
+      options: {
+        numberOfPrimitives: 8,
+        mode: 0,
+      },
+    },
+    `sqip-plugin-svgo`,
+  ],
+})
+```
 
-comma seperated list of plugins, will be transformed to:
+**CLI usage:**
 
-`sqip-plugin-[name]`
+`-p/--plugins`
 
-Default: `primitive,svgo`
+* Can be specified multiple times: `-p svgo -p blur`
+* If prefix was skipped, plugin names will be transformed to: `sqip-plugin-[name]`
+* To set plugin options, see [plugin specifc config](#plugin-specific-confic)
 
 ### Plugin specific config
 
-See the [Plugins](#plugins) section. Follows the pattern `--[plugin name]-[option]=[value]`
+* See the [Plugins](#plugins) section for a list of available plugins.
+* Follows the pattern `--[plugin-name]-[option]=[value]`
+
+**Example:**
+
+Set `blur` option of `blur` plugin to 3. You could use the `-b` shortcut as well.
+
+```sh
+sqip -i foo.jpg -p primitive -p blur -blur-blur 3
+```
 
 ## Plugins
 
