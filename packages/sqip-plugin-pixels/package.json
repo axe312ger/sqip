@@ -28,5 +28,6 @@
     "sharp": "^0.22.1",
     "svg.js": "^2.7.1",
     "svgdom": "^0.0.20"
-  }
+  },
+  "gitHead": "3bed73cc4f8557baad9e23a87dbee24b019c14ff"
 }
