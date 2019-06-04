@@ -1,16 +1,16 @@
 import sharp from 'sharp'
-import chalk from 'chalk'
-import SVG from 'svg.js'
 import window from 'svgdom'
+import { SVG, registerWindow } from '@svgdotjs/svg.js'
 
 export default class PixelsPlugin {
   constructor(options) {
     this.options = options
+
+    registerWindow(window, window.document)
   }
 
-  async apply(svg) {
+  async apply() {
     const { input } = this.options
-    console.log(this.options)
 
     const { data, info } = await sharp(input)
       .resize({ width: 8 })
@@ -19,17 +19,10 @@ export default class PixelsPlugin {
 
     const sizeFactor = 100
 
-    // console.log({ data, info }, data.toJSON())
     let column = 0
     let row = 0
-    let output = ''
 
-    const document = window.document
-
-    const canvas = SVG(window)(document.documentElement).size(
-      info.width * sizeFactor,
-      info.height * sizeFactor
-    )
+    const canvas = SVG().size(info.width * sizeFactor, info.height * sizeFactor)
     for (var i = 0; i < data.length; i += 3) {
       var red = data[i]
       var green = data[i + 1]
@@ -39,14 +32,11 @@ export default class PixelsPlugin {
         .attr({ fill: `rgb(${red},${green},${blue})` })
         .move(column * sizeFactor, row * sizeFactor)
       column++
-      output += chalk.rgb(red, green, blue)('◼')
       if (column >= info.width) {
-        output += '\n'
         column = 0
         row++
       }
     }
-    console.log(output)
 
     return canvas.svg()
   }
