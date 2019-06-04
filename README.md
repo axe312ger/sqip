@@ -14,7 +14,9 @@ SQIP - SVG-Based Image Placeholder
 "SQIP" (pronounced `\skwɪb\` like the non-magical folk of magical descent) is a
 SVG-based [LQIP](https://www.guypo.com/introducing-lqip-low-quality-image-placeholders/) technique.
 
-> SQIP will generate SVG based previews of images. They can be used as a lazy-loading image preview, a video thumbnail or an artistic element for your project.
+SQIP will generate SVG based previews of images. They can be used as a lazy-loading image preview, a video thumbnail or an artistic element for your project.
+
+SQIP is available as node API and CLI. It offeres several plugins to allow creative image transformation options.
 
 ## Table of contents
 
@@ -31,8 +33,9 @@ SVG-based [LQIP](https://www.guypo.com/introducing-lqip-low-quality-image-placeh
 
 ## Examples
 
-| Original | LQIP | SQIP default | SQIP pixels plugin 8px width |
+| Original | [LQIP](https://github.com/zouhir/lqip-cli) | SQIP default | SQIP pixels plugin 8px width |
 |----------|------|--------------|------------------------------|
+||`lqip foo.jpg`|`sqip -i foo.jpg`|`sqip -i foo.jpg -p pixels`|
 | <img width="180" src="demo/beach.jpg"> | <img width="180" src="demo/beach-lqip.jpg"> | <img width="180" src="demo/beach-sqip.png"> | <img width="180" src="demo/beach-pixels.svg"> |
 | Size: | 354B (gz: 282 B) | 895B (gz: 479B) | 1.9K (gz: 470 B)|
 | <img width="180" src="./demo/monkey-selfie.jpg"> | <img width="180" src="./demo/monkey-selfie-lqip.jpg"> | <img width="180" src="./demo/monkey-selfie-sqip.png"> | <img width="180" src="./demo/monkey-selfie-pixels.svg"> |
@@ -76,7 +79,40 @@ Using a GUI (https://www.computerhope.com/issues/ch000549.htm)
 npm install sqip sqip-plugin-primitive sqip-plugin-svgo sqip-plugin-data-uri
 ```
 
-### Usage examples
+### Usage
+
+SQIP is async.
+
+```js
+try {
+  const result = await sqip({...options})
+  console.log(result)
+} catch (err) {
+  console.error(err)
+}
+
+// or
+
+sqip({...options})
+  .then(result => console.log(result))
+  .catch(error => console.error(error))
+```
+
+If you passed a single image to process, SQIP will return the following result object:
+
+```js
+{
+  svg: 'data:image/svg+xml;base64,...==',
+  dimensions: {
+    height: 640,
+    width: 1024,
+    type: 'jpg'
+  }
+}
+```
+
+Multiple input images will result in an array of result objects.
+
 
 #### Process folder with default settings
 
@@ -138,6 +174,48 @@ npm install -g sqip-cli
 ```
 
 ### Usage examples
+
+#### Using the help efficently
+
+Make sure to specify plugins when using `--help` to see the available plugin options.
+
+```sh
+sqip -h -p primitive -p blur -p svgo
+```
+
+<details>
+<summary>Result:</summary>
+
+```sh
+sqip CLI
+
+  Usage: sqip --input [path]
+
+  "SQIP" (pronounced skwɪb like the non-magical folk of magical descent) is a
+  SVG-based LQIP technique - https://github.com/technopagan/sqip
+
+Options
+
+  -h, --help                                  Show help
+  --version                                   Show version number
+  -p, --plugins string[]                      One or more plugins. E.g. "-p primitive blur"
+  -i, --input string
+  -o, --output string                         Save the resulting SVG to a file. The svg result will be returned by default.
+  -n, --primitive-numberOfPrimitives number   The number of primitive shapes to use to build the SQIP SVG
+  -m, --primitive-mode number                 The style of primitives to use:
+                                              0=combo, 1=triangle, 2=rect, 3=ellipse, 4=circle, 5=rotatedrect, 6=beziers,
+                                              7=rotatedellipse, 8=polygon
+  -b, --blur-blur number                      Set the GaussianBlur SVG filter value. Disable it via 0.
+
+Examples
+
+  Output input.jpg image as SQIP
+  $ sqip --input /path/to/input.jpg
+
+  Save input.jpg as result.svg with 25 shapes and no blur
+  $ sqip -i input.jpg -n 25 -b 0 -o result.svg
+```
+</details>
 
 #### Process single file
 
