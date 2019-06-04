@@ -6,7 +6,6 @@ module.exports = {
   },
   plugins: ['node', 'jest'],
   extends: [
-    'prettier-standard',
     'plugin:node/recommended',
     'plugin:jest/recommended'
   ],
