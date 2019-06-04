@@ -9,11 +9,25 @@ SQIP - SVG-Based Image Placeholder
 [![CircleCI](https://circleci.com/gh/axe312ger/sqip.svg?style=svg)](https://circleci.com/gh/axe312ger/sqip)
 [![codecov](https://codecov.io/gh/axe312ger/sqip/branch/master/graph/badge.svg)](https://codecov.io/gh/axe312ger/sqip)
 [![Maintainability](https://api.codeclimate.com/v1/badges/fc81fa5e535561c0a6ff/maintainability)](https://codeclimate.com/github/axe312ger/sqip/maintainability)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
 
-## Overview
-
-"SQIP" (pronounced \skwɪb\ like the non-magical folk of magical descent) is a
+"SQIP" (pronounced `\skwɪb\` like the non-magical folk of magical descent) is a
 SVG-based [LQIP](https://www.guypo.com/introducing-lqip-low-quality-image-placeholders/) technique.
+
+> SQIP will generate SVG based previews of images. They can be used as a lazy-loading image preview, a video thumbnail or an artistic element for your project.
+
+## Table of contents
+
+* [Examples](#Examples)
+* [Requirements](#Requirements)
+* [Node](#Node)
+* [CLI](#CLI)
+* [Config](#Config)
+* [Plugins](#Plugins)
+* [Background & reseach](#Backgroundreseach)
+* [Credits](#Credits)
+* [Contribution](#Contribution)
+* [License](#License)
 
 ## Examples
 
@@ -62,7 +76,7 @@ Using a GUI (https://www.computerhope.com/issues/ch000549.htm)
 npm install sqip sqip-plugin-primitive sqip-plugin-svgo sqip-plugin-data-uri
 ```
 
-### Examples
+### Usage examples
 
 #### Process folder with default settings
 
@@ -123,7 +137,7 @@ This will run:
 npm install -g sqip-cli
 ```
 
-### Examples
+### Usage examples
 
 #### Process single file
 
@@ -239,7 +253,16 @@ and adds a Gaussian Blur filter to it. This produces a SVG placeholder which
 weighs in at only ~800-1000 bytes, looks smooth on all screens and provides an
 visual cue of image contents to come.
 
+## Contributing
+
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
+
+Before contribution, please make sure to read the [contribution guidelines](./CONTRIBUTING.md) guidelines and the [code of conduct](./CODE_OF_CONDUCT.md).
+
+Pull requests, forks and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/axe312ger/sqip/issues/new).
+
 ## Credits
+
 * trivago N.V. (https://github.com/trivago)
 * Efe Gürkan Yalaman (https://github.com/efegurkan)
 * Benedikt Rötsch (https://github.com/axe312ger)
