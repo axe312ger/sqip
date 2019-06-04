@@ -86,7 +86,11 @@ Examples
   Save input.jpg as result.svg with 25 shapes and no blur                       
   $ sqip -i input.jpg -n 25 -b 0 -o result.svg                                  
 
+"
+`;
 
+exports[`cli api no config exists programm and shows help 2`] = `
+"
 Please provide the following arguments: input
 "
 `;
