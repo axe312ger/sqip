@@ -25,7 +25,6 @@ jobs:
           paths:
             - ~/.cache/yarn
           key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
-      - run: yarn build
       - run: yarn run lint
   test-unit:
     docker:
@@ -52,6 +51,7 @@ jobs:
           paths:
             - ~/.cache/yarn
           key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      - run: yarn run build
       - run: yarn run test:unit
       - run: yarn codecov
   test-e2e:
