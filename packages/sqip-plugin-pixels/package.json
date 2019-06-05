@@ -28,5 +28,8 @@
     "sharp": "^0.22.1",
     "svgdom": "^0.0.20"
   },
+  "devDependencies": {
+    "cheerio": "^1.0.0-rc.3"
+  },
   "gitHead": "3bed73cc4f8557baad9e23a87dbee24b019c14ff"
 }
