@@ -18,7 +18,7 @@ const VENDOR_DIR = path.resolve(__dirname, '../../vendor')
 let originalExit = null
 
 describe('checkForPrimitive', () => {
-  const primitivePlugin = new PrimitivePlugin()
+  const primitivePlugin = new PrimitivePlugin({})
 
   beforeAll(() => {
     originalExit = global.process.exit
@@ -78,15 +78,17 @@ describe('checkForPrimitive', () => {
 })
 
 describe('runPrimitive', () => {
-  let config, dimensions
-  const file = '/path/to/input/file.jpg'
+  let config, metadata
+  const filePath = '/path/to/input/file.jpg'
+  const fileContent = Buffer.from('mocked')
 
   beforeEach(() => {
     execaMock.mockResolvedValue({ stdout: {} })
     config = {}
-    dimensions = {
+    metadata = {
       width: 100,
-      height: 200
+      height: 200,
+      type: 'jpg'
     }
   })
 
@@ -96,13 +98,13 @@ describe('runPrimitive', () => {
 
   test('executes primitive with default config', async () => {
     const primitivePlugin = new PrimitivePlugin({
-      file,
-      ...config,
-      dimensions
+      pluginOptions: config,
+      metadata,
+      filePath
     })
-    await primitivePlugin.apply()
+    await primitivePlugin.apply(fileContent)
     expect(execaMock.mock.calls).toHaveLength(2)
-    expect(execaMock.mock.calls[1]).toHaveLength(2)
+    expect(execaMock.mock.calls[1]).toHaveLength(3)
     fixProcessArgumentsForSnapshot(execaMock)
     expect(execaMock.mock.calls[1]).toMatchSnapshot()
   })
@@ -112,30 +114,26 @@ describe('runPrimitive', () => {
       mode: 5
     }
     const primitivePlugin = new PrimitivePlugin({
-      file,
-      ...config,
-      dimensions
+      pluginOptions: config,
+      metadata,
+      filePath
     })
-    await primitivePlugin.apply()
+    await primitivePlugin.apply(fileContent)
     expect(execaMock.mock.calls).toHaveLength(2)
-    expect(execaMock.mock.calls[1]).toHaveLength(2)
+    expect(execaMock.mock.calls[1]).toHaveLength(3)
     fixProcessArgumentsForSnapshot(execaMock)
     expect(execaMock.mock.calls[1]).toMatchSnapshot()
   })
 
   test('executes primitive with landscape dimensions', async () => {
-    dimensions = {
-      width: 600,
-      height: 300
-    }
     const primitivePlugin = new PrimitivePlugin({
-      file,
-      ...config,
-      dimensions
+      pluginOptions: config,
+      metadata: { ...metadata, width: 600, height: 300 },
+      filePath
     })
-    await primitivePlugin.apply()
+    await primitivePlugin.apply(fileContent)
     expect(execaMock.mock.calls).toHaveLength(2)
-    expect(execaMock.mock.calls[1]).toHaveLength(2)
+    expect(execaMock.mock.calls[1]).toHaveLength(3)
     fixProcessArgumentsForSnapshot(execaMock)
     expect(execaMock.mock.calls[1]).toMatchSnapshot()
   })

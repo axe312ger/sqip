@@ -1,13 +1,17 @@
-import sqipPluginPixels from '../../src/sqip-plugin-pixels'
 import { resolve } from 'path'
+import { readFileSync } from 'fs'
+
+import sqipPluginPixels from '../../src/sqip-plugin-pixels'
+
 import cheerio from 'cheerio'
 
 const FILE_DEMO_BEACH = resolve(__dirname, '../../../..', 'demo', 'beach.jpg')
+const fileContent = readFileSync(FILE_DEMO_BEACH)
 
 describe('sqip-plugin-pixels', () => {
   it('turns raster image into pixelated svg', async () => {
-    const plugin = new sqipPluginPixels({ input: FILE_DEMO_BEACH })
-    const result = await plugin.apply()
+    const plugin = new sqipPluginPixels({})
+    const result = await plugin.apply(fileContent)
 
     const $ = cheerio.load(result, { xml: true })
 

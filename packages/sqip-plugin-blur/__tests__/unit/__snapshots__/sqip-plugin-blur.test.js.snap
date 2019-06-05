@@ -16,7 +16,7 @@ exports[`does prepare svg properly svg with missing background 1`] = `
 
 exports[`does prepare svg properly svg without group, config with dimensions only 1`] = `"<svg viewBox=\\"0 0 1024 768\\"><rect fill=\\"#bada55\\" width=\\"100%\\" height=\\"100%\\"/><polygon points=\\"0,100 50,25 50,75 100,0\\"/></svg>"`;
 
-exports[`does prepare svg properly svg without viewport, given width & height 1`] = `"<svg viewBox=\\"0 0 1024 640\\"><rect fill=\\"#bada55\\" width=\\"100%\\" height=\\"100%\\"/><g><path fill=\\"#C0FFEE\\" d=\\"M51.5 17.5l4 18 15 1z\\"/></g></svg>"`;
+exports[`does prepare svg properly svg without viewport, given width & height 1`] = `"<svg viewBox=\\"0 0 1024 640\\"><rect fill=\\"#bada55\\" width=\\"100%\\" height=\\"100%\\"/><g><path fill=\\"#C0FFEE\\" d=\\"M51.5 17.5l4 18 15 1z\\"/></g></svg>"`;
 
 exports[`does prepare svg properly svg without viewport, not given width & height 1`] = `
 "SVG is missing viewBox attribute while Width and height were not passed:

@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`getDimensions 1`] = `
-Object {
-  "height": 640,
-  "type": "jpg",
-  "width": 1024,
-}
-`;

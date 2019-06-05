@@ -3,15 +3,15 @@ import SVGO from 'svgo'
 // SVGO with settings for maximum compression to optimize the Primitive-generated SVG
 export default class SVGOPlugin {
   constructor(options = {}) {
-    this.options = { multipass: true, floatPrecision: 1, ...options }
+    this.options = {
+      multipass: true,
+      floatPrecision: 1,
+      plugins: [{ removeViewBox: false }],
+      ...options
+    }
   }
-  apply(svg) {
-    return this.optimize(svg)
-  }
-  async optimize(svg) {
-    const { multipass, floatPrecision } = this.options
-
-    const svgo = new SVGO({ multipass, floatPrecision })
+  async apply(svg) {
+    const svgo = new SVGO(this.options)
     const { data } = await svgo.optimize(svg)
     return data
   }

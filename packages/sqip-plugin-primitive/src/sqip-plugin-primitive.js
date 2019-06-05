@@ -5,6 +5,8 @@ import os from 'os'
 import execa from 'execa'
 import Debug from 'debug'
 
+import { SqipPlugin } from 'sqip'
+
 const debug = Debug('sqip-plugin-primitive')
 
 const VENDOR_DIR = path.resolve(__dirname, '..', 'vendor')
@@ -14,7 +16,7 @@ let primitiveExecutable = 'primitive'
 const findLargerImageDimension = ({ width, height }) =>
   width > height ? width : height
 
-export default class PrimitivePlugin {
+export default class PrimitivePlugin extends SqipPlugin {
   static get cliOptions() {
     return [
       {
@@ -36,32 +38,44 @@ export default class PrimitivePlugin {
     ]
   }
 
-  constructor(options) {
+  constructor({ pluginOptions }) {
+    super(...arguments)
     this.options = {
       numberOfPrimitives: 8,
       mode: 0,
-      dimensions: {},
-      ...options
+      ...pluginOptions
     }
   }
 
-  async apply() {
+  async apply(imageBuffer) {
+    if (this.metadata.type === 'svg' || !Buffer.isBuffer(imageBuffer)) {
+      throw new Error(
+        'Primitive needs a raster image buffer as input. Check if you run this plugin in the first place.'
+      )
+    }
     await this.checkForPrimitive()
 
-    const { numberOfPrimitives, mode, dimensions, file } = this.options
+    const { numberOfPrimitives, mode } = this.options
+    const { width, height } = this.metadata
 
-    const { stdout } = await execa(primitiveExecutable, [
-      '-i',
-      file,
-      '-o',
-      '-',
-      '-n',
-      numberOfPrimitives,
-      '-m',
-      mode,
-      '-s',
-      findLargerImageDimension(dimensions)
-    ])
+    const { stdout } = await execa(
+      primitiveExecutable,
+      [
+        '-i',
+        '-',
+        '-o',
+        '-',
+        '-n',
+        numberOfPrimitives,
+        '-m',
+        mode,
+        '-s',
+        findLargerImageDimension({ width, height })
+      ],
+      { input: imageBuffer }
+    )
+
+    this.metadata.type = 'svg'
 
     return stdout
   }

@@ -9,6 +9,12 @@ const sampleWithGroup =
 const sampleWithoutGroup =
   '<svg viewBox="0 0 1024 768"><rect fill="#bada55"/><polygon points="0,100 50,25 50,75 100,0" /></svg>'
 
+const metadata = {
+  width: 1024,
+  height: 640,
+  type: 'svg'
+}
+
 describe('does prepare svg properly', () => {
   const svgPlugin = new SvgPlugin({})
   test('svg without viewport, not given width & height', () => {
@@ -17,42 +23,22 @@ describe('does prepare svg properly', () => {
     ).toThrowErrorMatchingSnapshot()
   })
   test('svg without viewport, given width & height', () => {
-    const svgPlugin = new SvgPlugin({
-      dimensions: {
-        width: 1024,
-        height: 640
-      }
-    })
+    const svgPlugin = new SvgPlugin({ metadata })
     const result = svgPlugin.prepareSVG(sampleNoViewBox)
     expect(result).toMatchSnapshot()
   })
   test('svg with group, with config', () => {
-    const svgPlugin = new SvgPlugin({
-      dimensions: {
-        width: 1024,
-        height: 640
-      }
-    })
+    const svgPlugin = new SvgPlugin({ metadata })
     const result = svgPlugin.prepareSVG(sampleWithGroup)
     expect(result).toMatchSnapshot()
   })
   test('svg without group, config with dimensions only', () => {
-    const svgPlugin = new SvgPlugin({
-      dimensions: {
-        width: 1024,
-        height: 640
-      }
-    })
+    const svgPlugin = new SvgPlugin({ metadata })
     const result = svgPlugin.prepareSVG(sampleWithoutGroup)
     expect(result).toMatchSnapshot()
   })
   test('svg with missing background', () => {
-    const svgPlugin = new SvgPlugin({
-      dimensions: {
-        width: 1024,
-        height: 640
-      }
-    })
+    const svgPlugin = new SvgPlugin({ metadata })
     expect(() =>
       svgPlugin.prepareSVG(sampleNoBg)
     ).toThrowErrorMatchingSnapshot()
@@ -62,21 +48,30 @@ describe('does prepare svg properly', () => {
 describe('applies blur filter', () => {
   test('do nothing when no blur is given', () => {
     const svgPlugin = new SvgPlugin({
-      blur: 0
+      metadata,
+      pluginOptions: {
+        blur: 0
+      }
     })
     const result = svgPlugin.applyBlurFilter(sampleWithGroup)
     expect(result).toMatchSnapshot()
   })
   test('svg with group and blur', () => {
     const svgPlugin = new SvgPlugin({
-      blur: 5
+      metadata,
+      pluginOptions: {
+        blur: 5
+      }
     })
     const result = svgPlugin.applyBlurFilter(sampleWithGroup)
     expect(result).toMatchSnapshot()
   })
   test('svg without group and blur', () => {
     const svgPlugin = new SvgPlugin({
-      blur: 5
+      metadata,
+      pluginOptions: {
+        blur: 5
+      }
     })
     const result = svgPlugin.applyBlurFilter(sampleWithoutGroup)
     expect(result).toMatchSnapshot()

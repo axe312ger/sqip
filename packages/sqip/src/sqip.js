@@ -19,8 +19,7 @@ import path from 'path'
 import Debug from 'debug'
 import fs from 'fs-extra'
 import glob from 'fast-glob'
-
-import { getDimensions } from './helpers'
+import sizeOf from 'image-size'
 
 const debug = Debug('sqip')
 
@@ -56,25 +55,25 @@ export async function resolvePlugins(plugins) {
   )
 }
 
-async function processImage({ file, config }) {
-  const dimensions = getDimensions(file)
+async function processImage({ filePath, config }) {
+  const metadata = sizeOf(filePath)
 
   // Load plugins
   const plugins = await resolvePlugins(config.plugins)
 
   // Interate through plugins and apply them to last returned image
-  let svg
+  let imageContent = await fs.readFile(filePath)
   for (const { name, options: pluginOptions, Plugin } of plugins) {
     try {
       debug(`Construct ${name}`)
       const plugin = new Plugin({
-        dimensions,
-        ...config,
-        ...pluginOptions,
-        file
+        sqipConfig: config,
+        pluginOptions,
+        metadata,
+        filePath
       })
       debug(`Apply ${name}`)
-      svg = await plugin.apply(svg, { dimensions })
+      imageContent = await plugin.apply(imageContent)
     } catch (err) {
       if (config.shouldThrow) {
         throw err
@@ -84,7 +83,7 @@ async function processImage({ file, config }) {
     }
   }
 
-  return { svg, dimensions }
+  return { svg: imageContent, metadata }
 }
 
 export default async function sqip(options) {
@@ -140,14 +139,14 @@ https://github.com/micromatch/micromatch#matching-features`
   }
   // Iterate over all files
   const results = []
-  for (const file of files) {
-    debug(`Processing ${file}`)
-    const result = await processImage({ file, config })
-    debug(`Processed ${file}`)
+  for (const filePath of files) {
+    debug(`Processing ${filePath}`)
+    const result = await processImage({ filePath, config })
+    debug(`Processed ${filePath}`)
 
     // Write result svg if desired
     if (output) {
-      const name = path.parse(file).name
+      const name = path.parse(filePath).name
       let outputPath
 
       try {
@@ -185,3 +184,13 @@ https://github.com/micromatch/micromatch#matching-features`
   }
   return results[0]
 }
+
+export class SqipPlugin {
+  constructor({ sqipConfig, metadata, filePath }) {
+    this.sqipConfig = sqipConfig || {}
+    this.metadata = metadata || {}
+    this.filePath = filePath || null
+  }
+}
+
+export * from './helpers'
