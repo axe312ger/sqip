@@ -90,7 +90,9 @@ To build a new SQIP plugin is pretty simple:
 4. Use the following template to rocket-start your new plugin:
 
 ```js
-export default class MyAmazingPlugin {
+import { SqipPlugin } from 'sqip'
+
+export default class MyAmazingPlugin extends SqipPlugin {
   static get cliOptions() {
     // Make options available to the CLI.
     return [
@@ -104,11 +106,21 @@ export default class MyAmazingPlugin {
     ]
   }
 
-  constructor(options) {
+  constructor({ pluginOptions }) {
+    /**
+     * Will enhance your plugin instance with the following:
+     * this.filePath: Path to input file
+     * this.metadata: Object with width, height and type
+     * this.sqipConfig: The configuration passed to SQIP by the user
+    */
+    super(...arguments)
+
+
+    // Set your options
     this.options = {
       // Inject default options
       bar: 'bar',
-      ...options
+      ...pluginOptions
     }
   }
 

@@ -304,7 +304,7 @@ sqip -i foo.jpg -p primitive -p blur -blur-blur 3
 
 ## Plugins
 
-SQIP comes with some core plugins, the community is very welcome to [contribute their own plugins](#contribution) to SQIP.
+SQIP comes with some core plugins, the community is very welcome to [contribute their own plugins](#contributing) to SQIP.
 
 ### Core plugins
 
