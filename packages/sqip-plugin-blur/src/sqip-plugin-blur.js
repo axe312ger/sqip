@@ -1,4 +1,4 @@
-import { loadSVG } from 'sqip/dist/helpers'
+import { loadSVG, SqipPlugin } from 'sqip'
 
 const PRIMITIVE_SVG_ELEMENTS = 'circle, ellipse, line, polygon, path, rect, g'
 
@@ -20,7 +20,7 @@ const patchSVGGroup = svg => {
   return $.html()
 }
 
-export default class SVGPlugin {
+export default class SVGPlugin extends SqipPlugin {
   static get cliOptions() {
     return [
       {
@@ -32,23 +32,24 @@ export default class SVGPlugin {
       }
     ]
   }
-  constructor(options) {
-    this.options = { dimensions: {}, ...options }
+  constructor({ pluginOptions }) {
+    super(...arguments)
+    this.options = { blur: 12, ...pluginOptions }
   }
 
   apply(svg) {
-    let retval = this.prepareSVG(svg)
+    svg = this.prepareSVG(svg)
     if (this.options.blur) {
-      retval = this.applyBlurFilter(retval)
+      svg = this.applyBlurFilter(svg)
     }
-    return retval
+    return svg
   }
 
   // Prepare SVG. For now, this will just ensure that the viewbox attribute is set
   prepareSVG(svg) {
     const $ = loadSVG(svg)
     const $svg = $('svg')
-    const { width, height } = this.options.dimensions
+    const { width, height } = this.metadata
 
     // Ensure viewbox
     if (!$svg.is('[viewBox]')) {
@@ -57,7 +58,7 @@ export default class SVGPlugin {
           `SVG is missing viewBox attribute while Width and height were not passed:\n\n${svg}`
         )
       }
-      $svg.attr('viewBox', `0 0 ${width} ${height}`)
+      $svg.attr('viewBox', `0 0 ${width} ${height}`)
     }
 
     const $bgRect = $svg

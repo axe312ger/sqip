@@ -14,7 +14,7 @@ test('runSVGO', async () => {
   const inputSVG = '<svg />'
   await svgoPlugin.apply(inputSVG)
   expect(SVGO).toHaveBeenCalledTimes(1)
-  expect(SVGO).toHaveBeenLastCalledWith({ multipass: true, floatPrecision: 1 })
+  expect(SVGO.mock.calls[0]).toMatchSnapshot()
   expect(optimizeMock).toHaveBeenCalledTimes(1)
   expect(optimizeMock.mock.calls[0][0]).toBe(inputSVG)
 })

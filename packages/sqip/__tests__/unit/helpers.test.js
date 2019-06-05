@@ -1,10 +1,12 @@
 import { resolve } from 'path'
+import { readFile } from 'fs-extra'
 
-import { getDimensions } from '../../src/helpers'
+import { loadSVG } from '../../src/helpers'
 
-const logSpy = jest.spyOn(global.console, 'log')
+const BEACH_SVG = resolve(__dirname, '../../../..', 'demo', 'beach-sqip.svg')
 
-test('getDimensions', () => {
-  const result = getDimensions(resolve(__dirname, '../../../../demo/beach.jpg'))
-  expect(result).toMatchSnapshot()
+test('loadSVG', async () => {
+  const svgContent = await readFile(BEACH_SVG)
+  const $svg = loadSVG(svgContent)
+  expect($svg('svg')).toHaveLength(1)
 })
