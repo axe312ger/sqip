@@ -1,6 +1,6 @@
 version: 2.0
 jobs:
-  test:
+  lint:
     docker:
       - image: hafizalfaza/node-go-sqip
     steps:
@@ -27,12 +27,64 @@ jobs:
           key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run: yarn build
       - run: yarn run lint
+  test-unit:
+    docker:
+      - image: hafizalfaza/node-go-sqip
+    steps:
+      - run: node --version
+      - run: npm --version
+      - run: yarn --version
+      - checkout
+      - restore_cache:
+          keys:
+            - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - yarn-packages-v1-{{ .Branch }}-
+            - yarn-packages-v1-
+      - restore_cache:
+          keys:
+            - v1-pkg-cache
+      - run: yarn
+      - save_cache:
+          key: v1-pkg-cache
+          paths:
+            - /go/pkg
+      - save_cache:
+          paths:
+            - ~/.cache/yarn
+          key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run: yarn run test:unit
-      - run:
-          command: yarn run test:e2e
       - run: yarn codecov
+  test-e2e:
+    docker:
+      - image: hafizalfaza/node-go-sqip
+    steps:
+      - run: node --version
+      - run: npm --version
+      - run: yarn --version
+      - checkout
+      - restore_cache:
+          keys:
+            - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - yarn-packages-v1-{{ .Branch }}-
+            - yarn-packages-v1-
+      - restore_cache:
+          keys:
+            - v1-pkg-cache
+      - run: yarn
+      - save_cache:
+          key: v1-pkg-cache
+          paths:
+            - /go/pkg
+      - save_cache:
+          paths:
+            - ~/.cache/yarn
+          key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      - run: yarn run test:e2e
 workflows:
   version: 2
   build_and_test:
     jobs:
-      - test
+      - lint
+      - test-unit
+      - test-e2e
+
