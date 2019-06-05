@@ -11,9 +11,8 @@
     "pretest:e2e": "npm run build",
     "test:e2e": "TERM=xterm jest --testPathPattern='e2e/*'",
     "test:e2e:watch": "TERM=xterm jest --testPathPattern='e2e/*' --watch",
-    "dev": "npm run build -- --watch",
-    "format": "lerna exec 'prettier --write src/**/*.js __tests__/**/*.js'",
-    "lint": "eslint packages/*/src"
+    "lint": "eslint packages/*/src",
+    "format": "lerna exec 'prettier --write src/**/*.js __tests__/**/*.js'"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
