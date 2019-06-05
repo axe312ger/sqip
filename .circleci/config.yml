@@ -30,8 +30,6 @@ jobs:
       - run: yarn run test:unit
       - run:
           command: yarn run test:e2e
-          environment:
-            DEBUG: sqip*
       - run: yarn codecov
 workflows:
   version: 2
