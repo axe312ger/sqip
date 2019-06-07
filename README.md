@@ -34,15 +34,7 @@ SQIP is available as node API and CLI. It offers several plugins to allow creati
 
 ## Examples
 
-| Original | [LQIP](https://github.com/zouhir/lqip-cli) | SQIP default | SQIP pixels plugin 8px width |
-|----------|------|--------------|------------------------------|
-||`lqip foo.jpg`|`sqip -i foo.jpg`|`sqip -i foo.jpg -p pixels`|
-| <img width="180" src="demo/beach.jpg"> | <img width="180" src="demo/beach-lqip.jpg"> | <img width="180" src="demo/beach-sqip.png"> | <img width="180" src="demo/beach-pixels.svg"> |
-| Size: | 354B (gz: 282 B) | 895B (gz: 479B) | 1.9K (gz: 470 B)|
-| <img width="180" src="./demo/monkey-selfie.jpg"> | <img width="180" src="./demo/monkey-selfie-lqip.jpg"> | <img width="180" src="./demo/monkey-selfie-sqip.png"> | <img width="180" src="./demo/monkey-selfie-pixels.svg"> |
-| Size: | 435B (gz: 369 B) | 980B (gz: 513B) | 4.1K (gz: 845 B)|
-| <img width="180" src="./demo/mona-lisa.jpg"> | <img width="180" src="./demo/mona-lisa-lqip.jpg"> | <img width="180" src="./demo/mona-lisa-sqip.png"> | <img width="180" src="./demo/mona-lisa-pixels.svg"> |
-| Size: | 442B (gz: 372 B) | 937B (gz: 487B) | 4.5K (gz: 915 B)|
+[![](demo/example.jpg)](https://axe312ger.github.io/sqip/)
 
 ## Requirements
 * Node.js >= v8 (https://nodejs.org/en/)
