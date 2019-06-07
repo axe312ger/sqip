@@ -76,7 +76,7 @@ describe('cli api', () => {
     // Check default blur value
     const $filter = $('svg > filter > feGaussianBlur')
     expect($filter).toHaveLength(1)
-    expect($filter.attr('stdDeviation')).toBe('12')
+    expect($filter.attr('stdDeviation')).toBe('55')
 
     // Check default number of primitives
     const $primitives = $('svg g > g > *')
