@@ -2,9 +2,9 @@
 
 exports[`applies blur filter do nothing when no blur is given 1`] = `"<svg viewBox=\\"0 0 1024 768\\"><rect fill=\\"#bada55\\"/><g><path fill=\\"#C0FFEE\\" d=\\"M51.5 17.5l4 18 15 1z\\"/></g></svg>"`;
 
-exports[`applies blur filter svg with group and blur 1`] = `"<svg viewBox=\\"0 0 1024 768\\"><filter id=\\"b\\"><feGaussianBlur stdDeviation=\\"5\\"/></filter><rect fill=\\"#bada55\\"/><g filter=\\"url(#b)\\"><g><path fill=\\"#C0FFEE\\" d=\\"M51.5 17.5l4 18 15 1z\\"/></g></g></svg>"`;
+exports[`applies blur filter svg with group and blur 1`] = `"<svg viewBox=\\"0 0 1024 768\\"><filter id=\\"b\\"><feGaussianBlur stdDeviation=\\"5\\"/></filter><rect fill=\\"#bada55\\"/><g filter=\\"url(#b)\\"><g><path fill=\\"#C0FFEE\\" d=\\"M51.5 17.5l4 18 15 1z\\"/></g></g></svg>"`;
 
-exports[`applies blur filter svg without group and blur 1`] = `"<svg viewBox=\\"0 0 1024 768\\"><filter id=\\"b\\"><feGaussianBlur stdDeviation=\\"5\\"/></filter><rect fill=\\"#bada55\\"/><g filter=\\"url(#b)\\"><polygon points=\\"0,100 50,25 50,75 100,0\\"/></g></svg>"`;
+exports[`applies blur filter svg without group and blur 1`] = `"<svg viewBox=\\"0 0 1024 768\\"><filter id=\\"b\\"><feGaussianBlur stdDeviation=\\"5\\"/></filter><rect fill=\\"#bada55\\"/><g filter=\\"url(#b)\\"><polygon points=\\"0,100 50,25 50,75 100,0\\"/></g></svg>"`;
 
 exports[`does prepare svg properly svg with group, with config 1`] = `"<svg viewBox=\\"0 0 1024 768\\"><rect fill=\\"#bada55\\" width=\\"100%\\" height=\\"100%\\"/><g><path fill=\\"#C0FFEE\\" d=\\"M51.5 17.5l4 18 15 1z\\"/></g></svg>"`;
 

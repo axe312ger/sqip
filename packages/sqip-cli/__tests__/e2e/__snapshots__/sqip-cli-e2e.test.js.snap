@@ -26,8 +26,10 @@ Options
                                               3=ellipse, 4=circle,              
                                               5=rotatedrect, 6=beziers,         
                                               7=rotatedellipse, 8=polygon       
-  -b, --blur-blur number                      Set the GaussianBlur SVG filter   
-                                              value. Disable it via 0.          
+  -b, --blur-blur number                      Set the stdDeviation value for    
+                                              the GaussianBlur SVG filter. See: 
+                                              https://developer.mozilla.org/en- 
+                                              US/docs/Web/SVG/Element/feGaussianBlur 
 
 Examples
 
@@ -75,8 +77,10 @@ Options
                                               3=ellipse, 4=circle,              
                                               5=rotatedrect, 6=beziers,         
                                               7=rotatedellipse, 8=polygon       
-  -b, --blur-blur number                      Set the GaussianBlur SVG filter   
-                                              value. Disable it via 0.          
+  -b, --blur-blur number                      Set the stdDeviation value for    
+                                              the GaussianBlur SVG filter. See: 
+                                              https://developer.mozilla.org/en- 
+                                              US/docs/Web/SVG/Element/feGaussianBlur 
 
 Examples
 
