@@ -3,7 +3,14 @@ import { readFile } from 'fs-extra'
 
 import { loadSVG } from '../../src/helpers'
 
-const BEACH_SVG = resolve(__dirname, '../../../..', 'demo', 'beach-sqip.svg')
+const BEACH_SVG = resolve(
+  __dirname,
+  '../../../..',
+  'demo',
+  'public',
+  'processed',
+  'beach-sqip.svg'
+)
 
 test('loadSVG', async () => {
   const svgContent = await readFile(BEACH_SVG)

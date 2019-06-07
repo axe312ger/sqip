@@ -5,7 +5,14 @@ import sqipPluginPixels from '../../src/sqip-plugin-pixels'
 
 import cheerio from 'cheerio'
 
-const FILE_DEMO_BEACH = resolve(__dirname, '../../../..', 'demo', 'beach.jpg')
+const FILE_DEMO_BEACH = resolve(
+  __dirname,
+  '../../../..',
+  'demo',
+  'public',
+  'original',
+  'beach.jpg'
+)
 const fileContent = readFileSync(FILE_DEMO_BEACH)
 
 describe('sqip-plugin-pixels', () => {

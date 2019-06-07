@@ -13,6 +13,8 @@ const inputFile = resolve(
   '..',
   '..',
   'demo',
+  'public',
+  'original',
   'beach.jpg'
 )
 const cliPath = resolve(__dirname, '..', '..', 'dist', 'wrapper.js')

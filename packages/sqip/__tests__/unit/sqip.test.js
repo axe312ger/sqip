@@ -15,7 +15,14 @@ jest.mock('sqip-plugin-blur')
 jest.mock('sqip-plugin-svgo')
 
 const FILE_NOT_EXIST = '/this/file/does/not/exist.jpg'
-const FILE_DEMO_BEACH = resolve(__dirname, '../../../..', 'demo', 'beach.jpg')
+const FILE_DEMO_BEACH = resolve(
+  __dirname,
+  '../../../..',
+  'demo',
+  'public',
+  'original',
+  'beach.jpg'
+)
 
 primitive.mockImplementation(function primitiveMock() {
   return {
