@@ -1,0 +1,40 @@
+{
+  "name": "sqip-demo",
+  "version": "1.0.0-alpha.0",
+  "main": "index.html",
+  "repository": "http://axe312ger.github.io/sqip",
+  "author": "Benedikt Rötsch <info@benedikt-roetsch.de>",
+  "license": "UNLICENSE",
+  "scripts": {
+    "build:dataset": "node scripts/generate-dataset.js",
+    "build:html": "node scripts/generate-html.js",
+    "deploy": "npm run build:html && gh-pages -d public"
+  },
+  "dependencies": {
+    "aspect-ratio": "^2.0.3",
+    "brotli-size": "^0.1.0",
+    "cli-progress": "^2.1.1",
+    "convert-hrtime": "^3.0.0",
+    "data-uri-to-buffer": "^2.0.1",
+    "execa": "^1.0.0",
+    "fs-extra": "^8.0.1",
+    "gzip-size": "^5.1.1",
+    "htm": "^2.1.1",
+    "image-size": "^0.7.4",
+    "lodash": "^4.17.11",
+    "lqip": "^2.1.0",
+    "mozjpeg": "^6.0.1",
+    "pretty-bytes": "^5.2.0",
+    "sqip": "1.0.0-alpha.0",
+    "sqip-plugin-blur": "1.0.0-alpha.0",
+    "sqip-plugin-data-uri": "1.0.0-alpha.0",
+    "sqip-plugin-pixels": "1.0.0-alpha.0",
+    "sqip-plugin-primitive": "1.0.0-alpha.0",
+    "sqip-plugin-svgo": "1.0.0-alpha.0",
+    "vhtml": "^2.1.0"
+  },
+  "devDependencies": {
+    "gh-pages": "^2.0.1",
+    "nodemon": "^1.19.1"
+  }
+}

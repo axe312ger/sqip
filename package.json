@@ -3,8 +3,8 @@
   "private": true,
   "scripts": {
     "prepare": "lerna run prepare",
-    "build": "lerna exec --parallel 'babel --root-mode upward src --out-dir dist --delete-dir-on-start'",
-    "build:watch": "lerna exec --parallel 'babel --root-mode upward src --out-dir dist --delete-dir-on-start --watch --verbose'",
+    "build": "lerna exec --parallel --ignore sqip-demo 'babel --root-mode upward src --out-dir dist --delete-dir-on-start'",
+    "build:watch": "lerna exec --parallel --ignore sqip-demo 'babel --root-mode upward src --out-dir dist --delete-dir-on-start --watch --verbose'",
     "test": "npm run lint && npm run test:unit && npm run test:e2e",
     "test:unit": "TERM=xterm jest --testPathPattern='unit/*' --coverage",
     "test:unit:watch": "TERM=xterm jest --testPathPattern='unit/*' --coverage --watch",
@@ -50,7 +50,8 @@
     ]
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "demo"
   ],
   "husky": {
     "hooks": {
