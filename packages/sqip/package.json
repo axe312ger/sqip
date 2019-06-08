@@ -40,7 +40,8 @@
     "cheerio": "^1.0.0-rc.3",
     "fast-glob": "^2.2.6",
     "fs-extra": "^8.0.1",
-    "image-size": "^0.7.3"
+    "image-size": "^0.7.3",
+    "node-vibrant": "^3.2.0-alpha"
   },
   "peerDependencies": {
     "sqip-plugin-blur": "^0.3.3",

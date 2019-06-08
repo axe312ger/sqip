@@ -20,6 +20,7 @@ import Debug from 'debug'
 import fs from 'fs-extra'
 import glob from 'fast-glob'
 import sizeOf from 'image-size'
+import Vibrant from 'node-vibrant'
 
 const debug = Debug('sqip')
 
@@ -56,7 +57,13 @@ export async function resolvePlugins(plugins) {
 }
 
 async function processImage({ filePath, config }) {
-  const metadata = sizeOf(filePath)
+  const sizes = sizeOf(filePath)
+  const vibrant = new Vibrant(filePath, { quality: 0 })
+  const palette = await vibrant.getPalette()
+  let metadata = {
+    ...sizes,
+    palette
+  }
 
   // Load plugins
   const plugins = await resolvePlugins(config.plugins)

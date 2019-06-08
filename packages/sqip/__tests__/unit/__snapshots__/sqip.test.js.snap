@@ -16,6 +16,56 @@ exports[`node api output outputs to file path 1`] = `
 Object {
   "metadata": Object {
     "height": 640,
+    "palette": Object {
+      "DarkMuted": Object {
+        "population": 709,
+        "rgb": Array [
+          102,
+          78,
+          57,
+        ],
+      },
+      "DarkVibrant": Object {
+        "population": 1433,
+        "rgb": Array [
+          83,
+          40,
+          33,
+        ],
+      },
+      "LightMuted": Object {
+        "population": 2137,
+        "rgb": Array [
+          205,
+          198,
+          181,
+        ],
+      },
+      "LightVibrant": Object {
+        "population": 1435,
+        "rgb": Array [
+          241,
+          170,
+          99,
+        ],
+      },
+      "Muted": Object {
+        "population": 1154,
+        "rgb": Array [
+          84,
+          133,
+          153,
+        ],
+      },
+      "Vibrant": Object {
+        "population": 309,
+        "rgb": Array [
+          228,
+          138,
+          55,
+        ],
+      },
+    },
     "type": "jpg",
     "width": 1024,
   },
@@ -27,6 +77,56 @@ exports[`node api resolves valid input path 1`] = `
 Object {
   "metadata": Object {
     "height": 640,
+    "palette": Object {
+      "DarkMuted": Object {
+        "population": 709,
+        "rgb": Array [
+          102,
+          78,
+          57,
+        ],
+      },
+      "DarkVibrant": Object {
+        "population": 1433,
+        "rgb": Array [
+          83,
+          40,
+          33,
+        ],
+      },
+      "LightMuted": Object {
+        "population": 2137,
+        "rgb": Array [
+          205,
+          198,
+          181,
+        ],
+      },
+      "LightVibrant": Object {
+        "population": 1435,
+        "rgb": Array [
+          241,
+          170,
+          99,
+        ],
+      },
+      "Muted": Object {
+        "population": 1154,
+        "rgb": Array [
+          84,
+          133,
+          153,
+        ],
+      },
+      "Vibrant": Object {
+        "population": 309,
+        "rgb": Array [
+          228,
+          138,
+          55,
+        ],
+      },
+    },
     "type": "jpg",
     "width": 1024,
   },
