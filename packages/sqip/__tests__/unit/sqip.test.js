@@ -18,9 +18,8 @@ const FILE_NOT_EXIST = '/this/file/does/not/exist.jpg'
 const FILE_DEMO_BEACH = resolve(
   __dirname,
   '../../../..',
-  'demo',
-  'public',
-  'original',
+  '__tests__',
+  'fixtures',
   'beach.jpg'
 )
 
