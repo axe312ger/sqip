@@ -4,7 +4,7 @@ SQIP - SVG-Based Image Placeholder
 ====================
 
 [![npm](https://img.shields.io/npm/v/sqip.svg?label=npm@latest)](https://www.npmjs.com/package/sqip)
-[![npm](https://img.shields.io/npm/v/sqip/next.svg?label=npm@next)](https://www.npmjs.com/package/sqip)
+[![npm](https://img.shields.io/npm/v/sqip/next.svg?label=npm@canary)](https://www.npmjs.com/package/sqip)
 [![npm](https://img.shields.io/npm/dm/sqip.svg)](https://www.npmjs.com/package/sqip)
 
 [![CircleCI](https://circleci.com/gh/axe312ger/sqip.svg?style=svg)](https://circleci.com/gh/axe312ger/sqip)
@@ -69,7 +69,7 @@ Using a GUI (https://www.computerhope.com/issues/ch000549.htm)
 ### Installation
 
 ```bash
-npm install sqip@next sqip-plugin-primitive@next sqip-plugin-svgo@next sqip-plugin-data-uri@next
+npm install sqip@canary sqip-plugin-primitive@canary sqip-plugin-svgo@canary sqip-plugin-data-uri@canary
 ```
 
 **This is the `v1 alpha` readme. [Click here for v0 "stable" instructions.](https://github.com/axe312ger/sqip/tree/legacy#readme)**
@@ -167,7 +167,7 @@ This will run:
 ### Installation
 
 ```sh
-npm install -g sqip-cli@next
+npm install -g sqip-cli@canary
 ```
 
 **This is the `v1 alpha` readme. [You can find the current docs here.](https://github.com/axe312ger/sqip/tree/legacy#readme)**
