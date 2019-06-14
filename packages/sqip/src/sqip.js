@@ -21,6 +21,7 @@ import fs from 'fs-extra'
 import glob from 'fast-glob'
 import sizeOf from 'image-size'
 import Vibrant from 'node-vibrant'
+import sharp from 'sharp'
 
 const debug = Debug('sqip')
 
@@ -57,11 +58,12 @@ export async function resolvePlugins(plugins) {
 }
 
 async function processImage({ filePath, config }) {
-  const sizes = sizeOf(filePath)
+  const originalSizes = sizeOf(filePath)
   const vibrant = new Vibrant(filePath, { quality: 0 })
   const palette = await vibrant.getPalette()
   let metadata = {
-    ...sizes,
+    originalWidth: originalSizes.width,
+    originalHeight: originalSizes.height,
     palette
   }
 
@@ -70,6 +72,22 @@ async function processImage({ filePath, config }) {
 
   // Interate through plugins and apply them to last returned image
   let imageContent = await fs.readFile(filePath)
+
+  if (config.width > 0) {
+    // Resize to desired output width
+    imageContent = await sharp(imageContent)
+      .resize(config.width)
+      .toBuffer()
+
+    const resizedMetadata = await sharp(imageContent).metadata()
+    metadata.width = resizedMetadata.width
+    metadata.height = resizedMetadata.height
+  } else {
+    // Fall back to original size, keep image as is
+    metadata.width = originalSizes.width
+    metadata.height = originalSizes.height
+  }
+
   for (const { name, options: pluginOptions, Plugin } of plugins) {
     try {
       debug(`Construct ${name}`)
@@ -103,7 +121,8 @@ export default async function sqip(options) {
       'data-uri'
     ],
     print: false,
-    shouldThrow: true // @todo do we really need this?
+    shouldThrow: true, // @todo do we really need this?,
+    width: 300
   }
   const config = Object.assign({}, defaultOptions, options)
 

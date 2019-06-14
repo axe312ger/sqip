@@ -19,6 +19,9 @@ Options
   -o, --output string                         Save the resulting SVG to a file. 
                                               The svg result will be returned   
                                               by default.                       
+  -w, --width number                          Width of the resulting file.      
+                                              Negative values and 0 will fall   
+                                              back to original image width.     
   -n, --primitive-numberOfPrimitives number   The number of primitive shapes to 
                                               use to build the SQIP SVG         
   -m, --primitive-mode number                 The style of primitives to use:   
@@ -70,6 +73,9 @@ Options
   -o, --output string                         Save the resulting SVG to a file. 
                                               The svg result will be returned   
                                               by default.                       
+  -w, --width number                          Width of the resulting file.      
+                                              Negative values and 0 will fall   
+                                              back to original image width.     
   -n, --primitive-numberOfPrimitives number   The number of primitive shapes to 
                                               use to build the SQIP SVG         
   -m, --primitive-mode number                 The style of primitives to use:   

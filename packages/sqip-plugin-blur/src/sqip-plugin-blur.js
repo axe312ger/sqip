@@ -29,13 +29,13 @@ export default class SVGPlugin extends SqipPlugin {
         type: Number,
         description:
           'Set the stdDeviation value for the GaussianBlur SVG filter. See: https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feGaussianBlur',
-        defaultValue: 55
+        defaultValue: 12
       }
     ]
   }
   constructor({ pluginOptions }) {
     super(...arguments)
-    this.options = { blur: 55, ...pluginOptions }
+    this.options = { blur: 12, ...pluginOptions }
   }
 
   apply(svg) {

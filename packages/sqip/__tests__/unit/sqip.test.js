@@ -107,4 +107,30 @@ describe('node api', () => {
       sqip({ input: FILE_DEMO_BEACH, plugins: ['i-dont-exist'] })
     ).rejects.toThrowErrorMatchingSnapshot()
   })
+
+  describe('width', () => {
+    test('default resizes as expected', async () => {
+      const result = await sqip({ input: FILE_DEMO_BEACH })
+      expect(result.metadata.width).toBe(300)
+      expect(result.metadata.height).toBe(188)
+    })
+
+    test('custom resizes as expected', async () => {
+      const result = await sqip({ input: FILE_DEMO_BEACH, width: 600 })
+      expect(result.metadata.width).toBe(600)
+      expect(result.metadata.height).toBe(375)
+    })
+
+    test('value 0 falls back to original', async () => {
+      const result = await sqip({ input: FILE_DEMO_BEACH, width: 0 })
+      expect(result.metadata.width).toBe(1024)
+      expect(result.metadata.height).toBe(640)
+    })
+
+    test('negative value falls back to original', async () => {
+      const result = await sqip({ input: FILE_DEMO_BEACH, width: -1 })
+      expect(result.metadata.width).toBe(1024)
+      expect(result.metadata.height).toBe(640)
+    })
+  })
 })

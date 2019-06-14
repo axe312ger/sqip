@@ -21,6 +21,8 @@ Array [
   [1m-i[22m, [1m--input[22m [4mstring[24m                                                            
   [1m-o[22m, [1m--output[22m [4mstring[24m      Save the resulting SVG to a file. The svg result     
                            will be returned by default.                         
+  [1m-w[22m, [1m--width[22m [4mnumber[24m       Width of the resulting file. Negative values and 0   
+                           will fall back to original image width.              
 
 [4m[1mExamples[22m[24m
 
@@ -103,6 +105,8 @@ Array [
   [1m-i[22m, [1m--input[22m [4mstring[24m                                                            
   [1m-o[22m, [1m--output[22m [4mstring[24m      Save the resulting SVG to a file. The svg result     
                            will be returned by default.                         
+  [1m-w[22m, [1m--width[22m [4mnumber[24m       Width of the resulting file. Negative values and 0   
+                           will fall back to original image width.              
 
 [4m[1mExamples[22m[24m
 
