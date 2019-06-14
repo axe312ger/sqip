@@ -6,9 +6,8 @@ import { loadSVG } from '../../src/helpers'
 const BEACH_SVG = resolve(
   __dirname,
   '../../../..',
-  'demo',
-  'public',
-  'processed',
+  '__tests__',
+  'fixtures',
   'beach-sqip.svg'
 )
 
