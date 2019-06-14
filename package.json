@@ -12,7 +12,9 @@
     "test:e2e": "TERM=xterm jest --testPathPattern='e2e/*'",
     "test:e2e:watch": "TERM=xterm jest --testPathPattern='e2e/*' --watch",
     "lint": "eslint packages/*/src",
-    "format": "lerna exec 'prettier --write src/**/*.js __tests__/**/*.js'"
+    "format": "lerna exec 'prettier --write src/**/*.js __tests__/**/*.js'",
+    "publish:latest": "echo '@todo'",
+    "publish:canary": "lerna publish --canary --github-release"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
