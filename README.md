@@ -77,8 +77,10 @@ Using a GUI (https://www.computerhope.com/issues/ch000549.htm)
 ### Installation
 
 ```bash
-npm install sqip sqip-plugin-primitive sqip-plugin-svgo sqip-plugin-data-uri
+npm install sqip@next sqip-plugin-primitive@next sqip-plugin-svgo@next sqip-plugin-data-uri@next
 ```
+
+**This is the `v1 alpha` readme. [Click here for v0 "stable" instructions.](https://github.com/axe312ger/sqip/tree/legacy#readme)**
 
 ### Usage
 
@@ -171,8 +173,10 @@ This will run:
 ### Installation
 
 ```sh
-npm install -g sqip-cli
+npm install -g sqip-cli@next
 ```
+
+**This is the `v1 alpha` readme. [You can find the current docs here.](https://github.com/axe312ger/sqip/tree/legacy#readme)**
 
 ### Usage examples
 
