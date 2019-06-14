@@ -86,7 +86,7 @@ To build a new SQIP plugin is pretty simple:
 
 1. Create a rough file structure via `lerna create sqip-plugin-my-amazing-plugin`
 2. Rename `lib` directory to `src`
-3. Change `package.json`: Replace main script path `lib` with `src`
+3. Change `package.json`: Replace main script path `lib` with `dist`
 4. Use the following template to rocket-start your new plugin:
 
 ```js
