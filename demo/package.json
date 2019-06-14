@@ -26,6 +26,7 @@
     "mozjpeg": "^6.0.1",
     "pretty-bytes": "^5.2.0",
     "sqip": "1.0.0-alpha.0",
+    "sqip-legacy": "npm:sqip@legacy",
     "sqip-plugin-blur": "1.0.0-alpha.0",
     "sqip-plugin-data-uri": "1.0.0-alpha.0",
     "sqip-plugin-pixels": "1.0.0-alpha.0",
