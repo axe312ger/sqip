@@ -46,6 +46,26 @@ svgo.mockImplementation(function svgoMock() {
   }
 })
 
+function expectValidResult(result) {
+  // Metadata has valid palette
+  expect(Object.keys(result.metadata.palette).sort()).toStrictEqual(
+    [
+      'Vibrant',
+      'LightVibrant',
+      'DarkVibrant',
+      'Muted',
+      'LightMuted',
+      'DarkMuted'
+    ].sort()
+  )
+  expect(result.metadata.palette.Vibrant.constructor.name).toBe('Swatch')
+
+  // Clean result from values that depend on OS and snapshot test it
+  const stableResult = { ...result, metadata: { ...result.metadata } }
+  stableResult.metadata.palette = 'mocked'
+  expect(stableResult).toMatchSnapshot()
+}
+
 describe('node api', () => {
   test('no config passed', async () => {
     await expect(sqip()).rejects.toThrowErrorMatchingSnapshot()
@@ -62,7 +82,8 @@ describe('node api', () => {
   })
 
   test('resolves valid input path', async () => {
-    await expect(sqip({ input: FILE_DEMO_BEACH })).resolves.toMatchSnapshot()
+    const result = await sqip({ input: FILE_DEMO_BEACH })
+    expectValidResult(result)
   })
 
   describe('output', () => {
@@ -76,9 +97,8 @@ describe('node api', () => {
     })
 
     test('outputs to file path', async () => {
-      await expect(
-        sqip({ input: FILE_DEMO_BEACH, output })
-      ).resolves.toMatchSnapshot()
+      const result = await sqip({ input: FILE_DEMO_BEACH, output })
+      expectValidResult(result)
     })
   })
 
