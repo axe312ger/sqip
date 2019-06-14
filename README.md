@@ -255,6 +255,12 @@ Otherwise, results will be output to CLI
 
 **CLI usage:** `-o/--output`
 
+### `width`
+
+Set the width of the resulting image. Negative values and 0 will fall back to the original image width.
+
+**CLI usage:** `-w/--width`
+
 ### `plugins`
 
 **Default:** `['primitive', 'svgo']`

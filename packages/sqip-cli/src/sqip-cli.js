@@ -37,6 +37,14 @@ let optionList = [
     type: String,
     description:
       'Save the resulting SVG to a file. The svg result will be returned by default.'
+  },
+  {
+    name: 'width',
+    alias: 'w',
+    type: Number,
+    default: 300,
+    description:
+      'Width of the resulting file. Negative values and 0 will fall back to original image width.'
   }
 ]
 
