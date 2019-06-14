@@ -15,30 +15,30 @@ exports[`node api no config passed 1`] = `"Please provide an input image, e.g. s
 exports[`node api output outputs to file path 1`] = `
 Object {
   "metadata": Object {
-    "dataURI": "data:image/svg+xml,svgoResult",
-    "dataURIBase64": "data:image/svg+xml;base64,c3Znb1Jlc3VsdA==",
+    "dataURI": "data:image/svg+xml,dataURI",
+    "dataURIBase64": "data:image/svg+xml;base64,dataURIBase64==",
     "height": 188,
     "originalHeight": 640,
     "originalWidth": 1024,
     "palette": "mocked",
     "width": 300,
   },
-  "svg": "svgoResult",
+  "svg": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 100 100\\"><circle cx=\\"50\\" cy=\\"50\\" r=\\"40\\" fill=\\"red\\" stroke=\\"#000\\" stroke-width=\\"3\\"/></svg>",
 }
 `;
 
 exports[`node api resolves valid input path 1`] = `
 Object {
   "metadata": Object {
-    "dataURI": "data:image/svg+xml,svgoResult",
-    "dataURIBase64": "data:image/svg+xml;base64,c3Znb1Jlc3VsdA==",
+    "dataURI": "data:image/svg+xml,dataURI",
+    "dataURIBase64": "data:image/svg+xml;base64,dataURIBase64==",
     "height": 188,
     "originalHeight": 640,
     "originalWidth": 1024,
     "palette": "mocked",
     "width": 300,
   },
-  "svg": "svgoResult",
+  "svg": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 100 100\\"><circle cx=\\"50\\" cy=\\"50\\" r=\\"40\\" fill=\\"red\\" stroke=\\"#000\\" stroke-width=\\"3\\"/></svg>",
 }
 `;
 

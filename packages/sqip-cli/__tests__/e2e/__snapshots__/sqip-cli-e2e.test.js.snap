@@ -22,6 +22,10 @@ Options
   -w, --width number                          Width of the resulting file.      
                                               Negative values and 0 will fall   
                                               back to original image width.     
+  --silent                                    Supress all output                
+  --parseable-output                          Ensure the output is parseable.   
+                                              Will suppress the preview images  
+                                              and the table borders.            
   -n, --primitive-numberOfPrimitives number   The number of primitive shapes to 
                                               use to build the SQIP SVG         
   -m, --primitive-mode number                 The style of primitives to use:   
@@ -43,16 +47,6 @@ Examples
   $ sqip -i input.jpg -n 25 -b 0 -o result.svg                                  
 "
 `;
-
-exports[`cli api -b 0 removes the blur 1`] = `""`;
-
-exports[`cli api -b sets the blur value 1`] = `""`;
-
-exports[`cli api -m sets the primitive mode 1`] = `""`;
-
-exports[`cli api -n sets the number of primitives 1`] = `""`;
-
-exports[`cli api -o save result to file and basic svg structure is applied 1`] = `""`;
 
 exports[`cli api no config exists programm and shows help 1`] = `
 "
@@ -76,6 +70,10 @@ Options
   -w, --width number                          Width of the resulting file.      
                                               Negative values and 0 will fall   
                                               back to original image width.     
+  --silent                                    Supress all output                
+  --parseable-output                          Ensure the output is parseable.   
+                                              Will suppress the preview images  
+                                              and the table borders.            
   -n, --primitive-numberOfPrimitives number   The number of primitive shapes to 
                                               use to build the SQIP SVG         
   -m, --primitive-mode number                 The style of primitives to use:   

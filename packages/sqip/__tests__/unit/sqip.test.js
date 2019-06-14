@@ -6,6 +6,7 @@ import sqip from '../../src/sqip'
 import primitive from 'sqip-plugin-primitive'
 import blur from 'sqip-plugin-blur'
 import svgo from 'sqip-plugin-svgo'
+import datauri from 'sqip-plugin-data-uri'
 
 jest.mock('../../src/helpers', () => ({
   getDimensions: jest.fn(() => ({ width: 1024, height: 768 }))
@@ -13,6 +14,7 @@ jest.mock('../../src/helpers', () => ({
 jest.mock('sqip-plugin-primitive')
 jest.mock('sqip-plugin-blur')
 jest.mock('sqip-plugin-svgo')
+jest.mock('sqip-plugin-data-uri')
 
 const FILE_NOT_EXIST = '/this/file/does/not/exist.jpg'
 const FILE_DEMO_BEACH = resolve(
@@ -22,27 +24,35 @@ const FILE_DEMO_BEACH = resolve(
   'fixtures',
   'beach.jpg'
 )
+const EXAMPLE_SVG =
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="red" stroke="#000" stroke-width="3"/></svg>'
 
 primitive.mockImplementation(function primitiveMock() {
   return {
-    apply: jest.fn(() => 'primitiveResult'),
+    apply: jest.fn(() => EXAMPLE_SVG),
     checkForPrimitive: jest.fn()
   }
 })
 
-blur.mockImplementation(function svgMock() {
+blur.mockImplementation(function blurMock() {
   return {
-    apply: jest.fn(() => 'svgResult'),
-    prepareSVG: jest.fn(() => 'preparedSVGResult'),
-    applyBlurFilter: jest.fn(() => 'blurredSVGResult')
+    apply: jest.fn(() => EXAMPLE_SVG)
   }
 })
 
 svgo.mockImplementation(function svgoMock() {
   return {
-    apply: jest.fn(() => 'svgoResult'),
-    prepareSVG: jest.fn(() => 'preparedSVGResult'),
-    applyBlurFilter: jest.fn(() => 'blurredSVGResult')
+    apply: jest.fn(() => EXAMPLE_SVG)
+  }
+})
+
+datauri.mockImplementation(function datauriMock({ metadata }) {
+  return {
+    apply: jest.fn(() => {
+      metadata.dataURI = 'data:image/svg+xml,dataURI'
+      metadata.dataURIBase64 = 'data:image/svg+xml;base64,dataURIBase64=='
+      return EXAMPLE_SVG
+    })
   }
 })
 
