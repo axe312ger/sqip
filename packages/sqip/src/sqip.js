@@ -22,8 +22,22 @@ import glob from 'fast-glob'
 import sizeOf from 'image-size'
 import Vibrant from 'node-vibrant'
 import sharp from 'sharp'
+import termimg from 'term-img'
+import Table from 'cli-table3'
+import chalk from 'chalk'
 
 const debug = Debug('sqip')
+
+const mainKeys = ['originalWidth', 'originalHeight', 'width', 'height', 'type']
+
+const paletteKeys = [
+  'Vibrant',
+  'DarkVibrant',
+  'LightVibrant',
+  'Muted',
+  'DarkMuted',
+  'LightMuted'
+]
 
 export async function resolvePlugins(plugins) {
   return Promise.all(
@@ -120,13 +134,18 @@ export default async function sqip(options) {
       'svgo',
       'data-uri'
     ],
-    print: false,
     shouldThrow: true, // @todo do we really need this?,
-    width: 300
+    width: 300,
+    parseableOutput: false, // @todo set to true only when fancy stuff is supported. xterm?,
+    silent: false
   }
   const config = Object.assign({}, defaultOptions, options)
 
-  const { input, output } = config
+  const { input, output, parseableOutput, silent } = config
+
+  if (parseableOutput) {
+    chalk.enabled = false
+  }
 
   // Validate configuration
   if (!input) {
@@ -166,14 +185,20 @@ https://github.com/micromatch/micromatch#matching-features`
   // Iterate over all files
   const results = []
   for (const filePath of files) {
-    debug(`Processing ${filePath}`)
+    let outputPath
+
+    if (!silent) {
+      console.log(`Processing: ${filePath}`)
+    } else {
+      debug(`Processing ${filePath}`)
+    }
+
     const result = await processImage({ filePath, config })
     debug(`Processed ${filePath}`)
 
     // Write result svg if desired
     if (output) {
       const name = path.parse(filePath).name
-      let outputPath
 
       try {
         // Test if output path already exists
@@ -195,8 +220,66 @@ https://github.com/micromatch/micromatch#matching-features`
       await fs.writeFile(outputPath, result.svg)
     }
 
-    if (config.print) {
-      console.log(result.svg)
+    if (!silent) {
+      if (outputPath) {
+        console.log(`Stored at: ${outputPath}`)
+      }
+
+      // Generate preview
+      if (!parseableOutput) {
+        const preview = await sharp(Buffer.from(result.svg))
+          .png()
+          .toBuffer()
+        const previewPath = path.resolve(__dirname, 'tmp.svg')
+        await fs.writeFile(previewPath, preview)
+
+        termimg(previewPath)
+      }
+
+      // Metadata
+      const tableConfig = parseableOutput && {
+        chars: {
+          top: '',
+          'top-mid': '',
+          'top-left': '',
+          'top-right': '',
+          bottom: '',
+          'bottom-mid': '',
+          'bottom-left': '',
+          'bottom-right': '',
+          left: '',
+          'left-mid': '',
+          mid: '',
+          'mid-mid': '',
+          right: '',
+          'right-mid': '',
+          middle: ' '
+        },
+        style: { 'padding-left': 0, 'padding-right': 0 }
+      }
+
+      const allKeys = [...mainKeys, 'palette']
+      const restMetadata = { ...result.metadata }
+      allKeys.forEach(k => delete restMetadata[k])
+
+      const mainTable = new Table(tableConfig)
+      mainTable.push(mainKeys)
+      mainTable.push(mainKeys.map(key => result.metadata[key]))
+      console.log(mainTable.toString())
+
+      const paletteTable = new Table(tableConfig)
+      paletteTable.push(paletteKeys)
+      paletteTable.push(
+        paletteKeys
+          .map(key => result.metadata.palette[key].getHex())
+          .map(hex => chalk.hex(hex)(hex))
+      )
+      console.log(paletteTable.toString())
+
+      Object.keys(restMetadata).forEach(key => {
+        console.log(chalk.bold(`${key}:`))
+        console.log(restMetadata[key])
+      })
     }
 
     results.push(result)

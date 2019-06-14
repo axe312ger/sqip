@@ -45,6 +45,19 @@ let optionList = [
     default: 300,
     description:
       'Width of the resulting file. Negative values and 0 will fall back to original image width.'
+  },
+  {
+    name: 'silent',
+    type: Boolean,
+    default: false,
+    description: 'Supress all output'
+  },
+  {
+    name: 'parseable-output',
+    type: Boolean,
+    default: false,
+    description:
+      'Ensure the output is parseable. Will suppress the preview images and the table borders.'
   }
 ]
 
@@ -158,7 +171,8 @@ export default async function sqipCLI() {
     input,
     output,
     plugins: pluginsOptions,
-    print: !output
+    silent: args.silent,
+    parseableOutput: args['parseable-output']
   }
 
   try {

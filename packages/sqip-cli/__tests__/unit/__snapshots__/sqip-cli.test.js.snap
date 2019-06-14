@@ -23,6 +23,9 @@ Array [
                            will be returned by default.                         
   [1m-w[22m, [1m--width[22m [4mnumber[24m       Width of the resulting file. Negative values and 0   
                            will fall back to original image width.              
+  [1m--silent[22m                 Supress all output                                   
+  [1m--parseable-output[22m       Ensure the output is parseable. Will suppress the    
+                           preview images and the table borders.                
 
 [4m[1mExamples[22m[24m
 
@@ -99,6 +102,9 @@ Array [
                            will be returned by default.                         
   [1m-w[22m, [1m--width[22m [4mnumber[24m       Width of the resulting file. Negative values and 0   
                            will fall back to original image width.              
+  [1m--silent[22m                 Supress all output                                   
+  [1m--parseable-output[22m       Ensure the output is parseable. Will suppress the    
+                           preview images and the table borders.                
 
 [4m[1mExamples[22m[24m
 

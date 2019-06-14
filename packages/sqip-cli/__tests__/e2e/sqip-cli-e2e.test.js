@@ -21,6 +21,15 @@ const cliCmd = `node`
 
 jest.setTimeout(20000)
 
+function isValidStdout(stdout) {
+  expect(stdout).toMatch(/Processing: \/([A-z0-9-_+]+\/)*[A-z0-9-_]+\.jpg/)
+  expect(stdout).toMatch(/Stored at: \/([A-z0-9-_+]+\/)*[A-z0-9-_]+\.svg/)
+  expect(stdout).toMatch(/originalWidth.+originalHeight.+width.+height.+type/)
+  expect(stdout).toMatch(
+    /Vibrant.+DarkVibrant.+LightVibrant.+Muted.+DarkMuted.+LightMuted/
+  )
+}
+
 describe('cli api', () => {
   test('no config exists programm and shows help', async () => {
     try {
@@ -40,13 +49,12 @@ describe('cli api', () => {
     })
     expect(stdout).toMatchSnapshot()
   })
-  test('no output file will print the result to stdout', async () => {
+  test('no output will not show stored at hint', async () => {
     const { stdout } = await execa(cliCmd, [cliPath, '--input', inputFile], {
       stripFinalNewline: true
     })
 
-    // Output should be a valid SVG file
-    expect(xmlParser.validate(stdout)).toBe(true)
+    expect(stdout).not.toMatch(/Stored at:/)
   })
 
   test('-o save result to file and basic svg structure is applied', async () => {
@@ -62,8 +70,7 @@ describe('cli api', () => {
         stripFinalNewline: true
       }
     )
-    // Empty for now. Should output file & debug info later on.
-    expect(stdout).toMatchSnapshot()
+    isValidStdout(stdout)
 
     // Does the new file exist
     expect(await stat(outputFile)).toBeTruthy()
@@ -98,8 +105,7 @@ describe('cli api', () => {
       }
     )
 
-    // Empty for now. Should output file & debug info later on.
-    expect(stdout).toMatchSnapshot()
+    isValidStdout(stdout)
 
     // Does the new file exist
     expect(await stat(outputFile)).toBeTruthy()
@@ -126,8 +132,7 @@ describe('cli api', () => {
       }
     )
 
-    // Empty for now. Should output file & debug info later on.
-    expect(stdout).toMatchSnapshot()
+    isValidStdout(stdout)
 
     // Does the new file exist
     expect(await stat(outputFile)).toBeTruthy()
@@ -155,8 +160,7 @@ describe('cli api', () => {
       }
     )
 
-    // Empty for now. Should output file & debug info later on.
-    expect(stdout).toMatchSnapshot()
+    isValidStdout(stdout)
 
     // Does the new file exist
     expect(await stat(outputFile)).toBeTruthy()
@@ -184,8 +188,7 @@ describe('cli api', () => {
       }
     )
 
-    // Empty for now. Should output file & debug info later on.
-    expect(stdout).toMatchSnapshot()
+    isValidStdout(stdout)
 
     // Does the new file exist
     expect(await stat(outputFile)).toBeTruthy()
