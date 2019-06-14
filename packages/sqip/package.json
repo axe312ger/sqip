@@ -44,10 +44,10 @@
     "node-vibrant": "^3.2.0-alpha"
   },
   "peerDependencies": {
-    "sqip-plugin-blur": "^0.3.3",
-    "sqip-plugin-data-uri": "^0.3.3",
-    "sqip-plugin-primitive": "^0.3.3",
-    "sqip-plugin-svgo": "^0.3.3"
+    "sqip-plugin-blur": "^1.0.0-alpha.0",
+    "sqip-plugin-data-uri": "^1.0.0-alpha.0",
+    "sqip-plugin-primitive": "^1.0.0-alpha.0",
+    "sqip-plugin-svgo": "^1.0.0-alpha.0"
   },
   "devDependencies": {
     "debug": "^4.1.1"
