@@ -30,6 +30,7 @@
     "sqip-plugin-blur": "^1.0.0-alpha.29",
     "sqip-plugin-data-uri": "^1.0.0-alpha.29",
     "sqip-plugin-pixels": "^1.0.0-alpha.28",
+    "sqip-plugin-potrace": "^1.0.0-alpha.0",
     "sqip-plugin-primitive": "^1.0.0-alpha.30",
     "sqip-plugin-svgo": "^1.0.0-alpha.29",
     "vhtml": "^2.1.0"

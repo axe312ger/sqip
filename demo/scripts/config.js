@@ -186,6 +186,66 @@ const variants = [
       await writeImage({ dataURI, dist })
       return dataURI
     }
+  },
+  {
+    name: 'sqip-potrace',
+    title: 'SQIP potrace',
+    description: html`
+      <p>
+        Default settings of
+        <a
+          href="https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-potrace#readme"
+          >sqip-plugin-potrace</a
+        >
+      </p>
+    `,
+    config: {
+      input: 'path/to/file.jpg',
+      plugins: ['potrace', 'svgo', 'data-uri']
+    },
+    resultFileType: 'svg',
+    task: async ({ path, dist }) => {
+      const { svg } = await sqip({
+        input: path,
+        plugins: ['potrace', 'svgo', 'data-uri']
+      })
+      await writeImage({ dataURI: svg, dist })
+      return svg
+    }
+  },
+  {
+    name: 'sqip-potrace-posterize',
+    title: 'SQIP potrace posterize',
+    description: html`
+      <p>
+        Use of potrace's posterize feature
+        <a
+          href="https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-potrace#readme"
+          >sqip-plugin-potrace</a
+        >
+      </p>
+    `,
+    config: {
+      input: 'path/to/file.jpg',
+      plugins: [
+        { name: 'potrace', options: { posterize: true } },
+        'svgo',
+        'data-uri'
+      ]
+    },
+    resultFileType: 'svg',
+    task: async ({ path, dist }) => {
+      const { svg } = await sqip({
+        input: path,
+        plugins: [
+          { name: 'potrace', options: { posterize: true } },
+          'svgo',
+          'data-uri'
+        ]
+      })
+      await writeImage({ dataURI: svg, dist })
+      return svg
+    }
   }
 ]
 
