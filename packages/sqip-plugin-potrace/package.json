@@ -1,0 +1,29 @@
+{
+  "name": "sqip-plugin-potrace",
+  "version": "1.0.0-alpha.0",
+  "description": "> TODO: description",
+  "author": "Benedikt Rötsch <info@benedikt-roetsch.de>",
+  "homepage": "https://github.com/axe312ger/sqip#readme",
+  "license": "MIT",
+  "main": "dist/sqip-plugin-potrace.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/axe312ger/sqip.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/axe312ger/sqip/issues"
+  },
+  "dependencies": {
+    "potrace": "^2.1.1"
+  }
+}
