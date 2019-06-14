@@ -6,6 +6,7 @@ const mozjpeg = require('mozjpeg')
 const execa = require('execa')
 const lqip = require('lqip')
 const sqip = require('sqip').default
+const sqipLegacy = require('sqip-legacy')
 const htm = require('htm')
 const vhtml = require('vhtml')
 
@@ -50,6 +51,21 @@ const variants = [
       const result = await lqip.base64(path)
       await writeImage({ dataURI: result, dist })
       return result
+    }
+  },
+  {
+    name: 'sqip-legacy',
+    title: 'SQIP v0.3.3',
+    description: html`
+      <p>The old version of SQIP. For comparision to v1.0.0</p>
+    `,
+    config: { filename: 'path/to/file.jpg' },
+    resultFileType: 'svg',
+    task: async ({ path, dist }) => {
+      const { svg_base64encoded } = sqipLegacy({ filename: path })
+      const dataURI = `data:image/svg;base64,${svg_base64encoded}`
+      await writeImage({ dataURI, dist })
+      return dataURI
     }
   },
   {
