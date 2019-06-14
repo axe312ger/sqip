@@ -11,20 +11,6 @@ const cliProgress = require('cli-progress')
 
 const { ORIGINAL, PROCESSED, DATASET, variants } = require('./config')
 
-/**
- *
- * data:
- * name
- * original size
- * gzip size (reduction to original in %)
- * brotli size (reduction to original in %)
- * generation time
- * cli config? lib config?
- * resolution
- * aspect ratio
- * theoretical emerging(?) 3g loading time
- **/
-
 function getSizes(input) {
   const originalBytes = Buffer.byteLength(input)
   const gzipBytes = gzipSize.sync(input)
@@ -41,21 +27,21 @@ function getSizes(input) {
 
 ;(async () => {
   // read the images
-  const files = await readdir(ORIGINAL)
+  const allFiles = await readdir(ORIGINAL)
+  const imageFiles = allFiles.filter(file => {
+    const { ext } = parse(file)
+    return ['.jpg', '.png'].includes(ext)
+  })
 
   const progressBar = new cliProgress.Bar(
     {},
     cliProgress.Presets.shades_classic
   )
-  progressBar.start(files.length * variants.length, 0)
+  progressBar.start(imageFiles.length * variants.length, 0)
 
   const images = []
-  for (const file of files) {
-    const { name: filename, ext } = parse(file)
-
-    if (!['.jpg', '.png'].includes(ext)) {
-      continue
-    }
+  for (const file of imageFiles) {
+    const { name: filename } = parse(file)
 
     const path = resolve(ORIGINAL, file)
     const { width, height } = imageSize(path)

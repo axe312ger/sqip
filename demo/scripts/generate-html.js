@@ -6,20 +6,6 @@ const _ = require('lodash')
 
 const { DATASET, variants, html } = require('./config')
 
-/**
- *
- * data:
- * name
- * original size
- * gzip size (reduction to original in %)
- * brotli size (reduction to original in %)
- * generation time
- * cli config? lib config?
- * resolution
- * aspect ratio
- * theoretical emerging(?) 3g loading time
- **/
-
 function VariantResult({
   variantName,
   name,
@@ -37,7 +23,7 @@ function VariantResult({
   const downloadRate = 400 * 1000
   const downloadRtt = 400
   const calcDownloadTime = bytes => {
-    const seconds = ((bytes / downloadRate + downloadRtt) / 1000).toFixed(3)
+    return ((bytes / downloadRate + downloadRtt) / 1000).toFixed(3)
   }
 
   const padding = Math.floor(
