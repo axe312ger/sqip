@@ -74,6 +74,8 @@ npm install sqip@next sqip-plugin-primitive@next sqip-plugin-svgo@next sqip-plug
 
 **This is the `v1 alpha` readme. [Click here for v0 "stable" instructions.](https://github.com/axe312ger/sqip/tree/legacy#readme)**
 
+**Hint:** SQIP is plugin based, you might want to install more plugins later on. See [Plugins](#plugins-1) section.
+
 ### Usage
 
 SQIP is async.
