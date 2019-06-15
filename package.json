@@ -14,7 +14,7 @@
     "lint": "eslint packages/*/src",
     "format": "lerna exec 'prettier --write src/**/*.js __tests__/**/*.js'",
     "publish:latest": "echo '@todo'",
-    "publish:canary": "lerna publish --canary --github-release"
+    "publish:canary": "lerna publish --canary --create-release=github"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
