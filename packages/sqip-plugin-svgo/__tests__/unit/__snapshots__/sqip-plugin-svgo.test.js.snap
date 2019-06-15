@@ -19,7 +19,7 @@ Array [
         "removeMetadata": true,
       },
       Object {
-        "removeXMLNS": true,
+        "removeXMLNS": false,
       },
       Object {
         "removeEditorsNSData": true,
