@@ -2,7 +2,7 @@ const { resolve } = require('path')
 const { tmpdir } = require('os')
 
 const { readFile, writeFile, unlink } = require('fs-extra')
-const dataUriToBuffer = require('data-uri-to-buffer')
+const dataURIToBuffer = require('data-uri-to-buffer')
 const mozjpeg = require('mozjpeg')
 const execa = require('execa')
 const lqip = require('lqip')
@@ -20,7 +20,7 @@ const PROCESSED = resolve(__dirname, ROOT, 'public', 'processed')
 const DATASET = resolve(__dirname, ROOT, 'public', 'dataset.json')
 
 async function writeImage({ dataURI, dist }) {
-  const content = dataUriToBuffer(dataURI)
+  const content = dataURIToBuffer(dataURI)
   await writeFile(dist, content)
 }
 
@@ -86,11 +86,13 @@ const variants = [
     config: { input: 'path/to/file.jpg' },
     resultFileType: 'svg',
     task: async ({ path, dist }) => {
-      const { svg } = await sqip({
+      const {
+        metadata: { dataURI }
+      } = await sqip({
         input: path
       })
-      await writeImage({ dataURI: svg, dist })
-      return svg
+      await writeImage({ dataURI, dist })
+      return dataURI
     }
   },
   {
@@ -111,12 +113,14 @@ const variants = [
     },
     resultFileType: 'svg',
     task: async ({ path, dist }) => {
-      const { svg } = await sqip({
+      const {
+        metadata: { dataURI }
+      } = await sqip({
         input: path,
         plugins: ['pixels', 'svgo', 'data-uri']
       })
-      await writeImage({ dataURI: svg, dist })
-      return svg
+      await writeImage({ dataURI, dist })
+      return dataURI
     }
   },
   {
@@ -141,7 +145,9 @@ const variants = [
     },
     resultFileType: 'svg',
     task: async ({ path, dist }) => {
-      const { svg } = await sqip({
+      const {
+        metadata: { dataURI }
+      } = await sqip({
         input: path,
         plugins: [
           { name: 'primitive', options: { numberOfPrimitives: 50, mode: 1 } },
@@ -149,8 +155,8 @@ const variants = [
           'data-uri'
         ]
       })
-      await writeImage({ dataURI: svg, dist })
-      return svg
+      await writeImage({ dataURI, dist })
+      return dataURI
     }
   }
 ]
