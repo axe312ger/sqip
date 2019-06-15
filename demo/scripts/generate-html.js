@@ -63,14 +63,14 @@ function VariantResult({
               <td>gzip</td>
               <td>
                 <span title="${gzipBytes}b">${gzipHuman}</span>
-                ${' ↓'}${Math.floor(gzipBytes / (originalBytes / 100))}%
+                ${' ↓'}${100 - Math.floor(gzipBytes / (originalBytes / 100))}%
               </td>
             </tr>
             <tr>
               <td>brotli</td>
               <td>
                 <span title="${brotliBytes}b">${brotliHuman}</span>
-                ${' ↓'}${Math.floor(brotliBytes / (originalBytes / 100))}%
+                ${' ↓'}${100 - Math.floor(brotliBytes / (originalBytes / 100))}%
               </td>
             </tr>
           </tbody>
