@@ -1,6 +1,6 @@
 {
   "name": "sqip-plugin-blur",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.25",
   "description": "> TODO: description",
   "author": "Benedikt Rötsch <info@benedikt-roetsch.de>",
   "homepage": "https://github.com/axe312ger/sqip#readme",
@@ -24,7 +24,7 @@
     "url": "https://github.com/axe312ger/sqip/issues"
   },
   "dependencies": {
-    "sqip": "^1.0.0-alpha.0"
+    "sqip": "^1.0.0-alpha.25"
   },
   "devDependencies": {
     "debug": "^4.1.1"
