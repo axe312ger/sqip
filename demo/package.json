@@ -21,7 +21,6 @@
     "gzip-size": "^5.1.1",
     "htm": "^2.1.1",
     "image-size": "^0.7.4",
-    "lodash": "^4.17.11",
     "lqip": "^2.1.0",
     "mozjpeg": "^6.0.1",
     "pretty-bytes": "^5.2.0",

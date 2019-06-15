@@ -2,7 +2,6 @@ const { join, resolve } = require('path')
 
 const { readJSON, writeFile } = require('fs-extra')
 const convertHrtime = require('convert-hrtime')
-const _ = require('lodash')
 
 const { DATASET, variants, html } = require('./config')
 
@@ -21,12 +20,6 @@ function VariantResult({
   image: { dimensions: originalDimensions },
   originalSize
 }) {
-  const downloadRate = 400 * 1000
-  const downloadRtt = 400
-  const calcDownloadTime = bytes => {
-    return ((bytes / downloadRate + downloadRtt) / 1000).toFixed(3)
-  }
-
   const padding = Math.floor(
     (originalDimensions.height / originalDimensions.width) * 100
   )
@@ -57,7 +50,6 @@ function VariantResult({
             <tr>
               <th></th>
               <th><img src="./assets/file-size.svg" width="24" /></th>
-              <th><img src="./assets/download-time.svg" width="24" /></th>
             </tr>
           </thead>
           <tbody>
@@ -66,9 +58,6 @@ function VariantResult({
               <td>
                 <span title="${originalBytes}b">${originalHuman}</span>
               </td>
-              <td>
-                ${calcDownloadTime(originalBytes)}s
-              </td>
             </tr>
             <tr>
               <td>gzip</td>
@@ -76,18 +65,12 @@ function VariantResult({
                 <span title="${gzipBytes}b">${gzipHuman}</span>
                 ${' ↓'}${Math.floor(gzipBytes / (originalBytes / 100))}%
               </td>
-              <td>
-                ${calcDownloadTime(gzipBytes)}s
-              </td>
             </tr>
             <tr>
               <td>brotli</td>
               <td>
                 <span title="${brotliBytes}b">${brotliHuman}</span>
                 ${' ↓'}${Math.floor(brotliBytes / (originalBytes / 100))}%
-              </td>
-              <td>
-                ${calcDownloadTime(brotliBytes)}s
               </td>
             </tr>
           </tbody>
