@@ -10,7 +10,7 @@ SVGO.mockImplementation(function SVGOmock() {
 })
 
 test('runSVGO', async () => {
-  const svgoPlugin = new SvgoPlugin()
+  const svgoPlugin = new SvgoPlugin({})
   const inputSVG = '<svg />'
   await svgoPlugin.apply(inputSVG)
   expect(SVGO).toHaveBeenCalledTimes(1)
