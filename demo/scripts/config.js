@@ -1,6 +1,7 @@
 const { resolve } = require('path')
+const { tmpdir } = require('os')
 
-const { readFile, writeFile } = require('fs-extra')
+const { readFile, writeFile, unlink } = require('fs-extra')
 const dataUriToBuffer = require('data-uri-to-buffer')
 const mozjpeg = require('mozjpeg')
 const execa = require('execa')
@@ -9,6 +10,7 @@ const sqip = require('sqip').default
 const sqipLegacy = require('sqip-legacy')
 const htm = require('htm')
 const vhtml = require('vhtml')
+const sharp = require('sharp')
 
 const html = htm.bind(vhtml)
 
@@ -24,18 +26,25 @@ async function writeImage({ dataURI, dist }) {
 
 const variants = [
   {
-    name: 'original-minified',
-    title: 'Original',
+    name: 'thumbnail',
+    title: 'Thumbnail',
     description: html`
       <p>
-        Minified with <a href="https://github.com/mozilla/mozjpeg">mozjpeg</a>
+        300px thumbnail of the original image, minified with
+        <a href="https://github.com/mozilla/mozjpeg">mozjpeg</a>
       </p>
     `,
     resultFileType: 'jpg',
     task: async ({ path, dist }) => {
-      await execa(mozjpeg, ['-outfile', dist, path])
-      const content = await readFile(dist)
-      return content.toString()
+      const rawThumbnail = await sharp(path)
+        .resize(300)
+        .toBuffer()
+      const tmpPath = resolve(tmpdir(), `sqip-demo-tmp-${Date.now()}.jpg`)
+      await writeFile(tmpPath, rawThumbnail)
+      await execa(mozjpeg, ['-outfile', dist, tmpPath])
+      await unlink(tmpPath)
+      const optimizedThumbnail = await readFile(dist)
+      return optimizedThumbnail.toString()
     }
   },
   {
