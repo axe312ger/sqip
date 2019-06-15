@@ -11,7 +11,7 @@ export default class SVGOPlugin {
         { removeXMLProcInst: true },
         { removeComments: true },
         { removeMetadata: true },
-        { removeXMLNS: true },
+        { removeXMLNS: false },
         { removeEditorsNSData: true },
         { cleanupAttrs: true },
         { inlineStyles: true },
