@@ -216,7 +216,19 @@ const Row = ({ image }) => {
               <img src="./assets/github.svg" width="32" />
             </a>
           </h1>
-
+          <p>
+            SQIP will generate SVG based previews of images. They can be used as
+            a lazy-loading image preview, a video thumbnail or an artistic
+            element for your project.
+          </p>
+          <p>
+            Compare the new SQIP version with the old SQIP version, LQIP and a 300px thumbnail
+          </p>
+          <p>
+            <a href="https://github.com/axe312ger/sqip">
+              Learn more about SQIP
+            </a>
+          </p>
           <table>
             <thead>
               <tr>
