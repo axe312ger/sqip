@@ -9391,48 +9391,6 @@ sprintf-js@~1.0.2:
     svgo "^0.7.2"
     xmldom "^0.1.27"
 
-sqip-plugin-blur@^1.0.0-alpha.22:
-  version "1.0.0-alpha.22"
-  resolved "https://registry.yarnpkg.com/sqip-plugin-blur/-/sqip-plugin-blur-1.0.0-alpha.22.tgz#e0cf7a51764dacedab086d911feaf70fdfaeae27"
-  integrity sha512-hYgCDkPSqVYrTKCyuuvahQPJF2OYZ6CexpAAck3mjmHeYRVdWWvG1B02ZC6XbmzNKSTSEIrGKd+Nu+FVRvgLoA==
-  dependencies:
-    sqip "^1.0.0-alpha.22+b17d88e"
-
-sqip-plugin-data-uri@^1.0.0-alpha.22:
-  version "1.0.0-alpha.22"
-  resolved "https://registry.yarnpkg.com/sqip-plugin-data-uri/-/sqip-plugin-data-uri-1.0.0-alpha.22.tgz#55a80a8c49b1f6655cfda7322dc50b7e8c71d7fe"
-  integrity sha512-e425yhhRZIw2PqJoJ3ju9d1/irGPUe46l3zV8+vkIlAldcfSabCeEYOr5El1of0pY16dD872QZgwzWz3LQ1TUg==
-  dependencies:
-    sqip "^1.0.0-alpha.22+b17d88e"
-
-sqip-plugin-primitive@^1.0.0-alpha.22:
-  version "1.0.0-alpha.22"
-  resolved "https://registry.yarnpkg.com/sqip-plugin-primitive/-/sqip-plugin-primitive-1.0.0-alpha.22.tgz#0073e49ac6f67bdcf748192e766c3307083324ac"
-  integrity sha512-iwQyEREt1NkMOWXtX6fcOxYlWUUT1Kgq+WSDgI58Q1tPtwXWbwbtTdChdD6fNBOvY2EzH9DV8VTNW5eDhTeF7Q==
-  dependencies:
-    execa "^1.0.0"
-    fs-extra "^8.0.1"
-    sqip "^1.0.0-alpha.22+b17d88e"
-
-sqip-plugin-svgo@^1.0.0-alpha.22:
-  version "1.0.0-alpha.22"
-  resolved "https://registry.yarnpkg.com/sqip-plugin-svgo/-/sqip-plugin-svgo-1.0.0-alpha.22.tgz#a3cace29e411709092f8d19471de5a69d782ebbb"
-  integrity sha512-SFIXFpk9xfszVzFIIlQa6R6kXSqEreN4v8OaAejVBDW/xuc6bjsgbn9cYGx5fzD1744JgO0f5usTz2ZWWp0AEg==
-  dependencies:
-    sqip "^1.0.0-alpha.22+b17d88e"
-    svgo "^1.2.2"
-
-sqip@^1.0.0-alpha.22, sqip@^1.0.0-alpha.22+b17d88e:
-  version "1.0.0-alpha.22"
-  resolved "https://registry.yarnpkg.com/sqip/-/sqip-1.0.0-alpha.22.tgz#5a3a95827a9c4247327296c49d5b224ed9103718"
-  integrity sha512-NpSN25Rh3q1NiL78E7CUWk/TaAa6jyPhZF9HHaikaq6BPHd0HBN3+1/PuxSE0XFNgUyKb/Lgn5oEO+hHP8zLXQ==
-  dependencies:
-    cheerio "^1.0.0-rc.3"
-    fast-glob "^2.2.6"
-    fs-extra "^8.0.1"
-    image-size "^0.7.3"
-    node-vibrant "^3.2.0-alpha"
-
 squeak@^1.0.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/squeak/-/squeak-1.3.0.tgz#33045037b64388b567674b84322a6521073916c3"
