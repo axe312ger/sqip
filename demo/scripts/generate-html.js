@@ -18,7 +18,8 @@ function VariantResult({
     brotliHuman
   },
   dimensions: { width, height, ratio },
-  image: { dimensions: originalDimensions }
+  image: { dimensions: originalDimensions },
+  originalSize
 }) {
   const downloadRate = 400 * 1000
   const downloadRtt = 400
@@ -31,6 +32,7 @@ function VariantResult({
   )
   const url = join('.', 'processed', name)
   const wrapperStyle = `padding-bottom: ${padding}%;`
+  const originalPercent = ((gzipBytes / originalSize) * 100).toFixed(2)
   return html`
     <td>
       ${variantName === 'original-minified'
@@ -42,6 +44,9 @@ function VariantResult({
               <img class="preview" alt="${name}" src="${url}" height="auto" />
             </div>
           `}
+      <div class="sizes">
+        ${originalPercent}%
+      </div>
       <div class="overlay">
         <p>
           <strong><a href="${url}">${name}</a></strong>
@@ -94,11 +99,18 @@ function VariantResult({
 
 const Row = ({ image }) => {
   const { results } = image
+
+  const originalSize = results[0].sizes.gzipBytes
+
   return html`
     <tr>
       ${results.map(result => {
         return html`
-          <${VariantResult} ...${result} image="${image}" />
+          <${VariantResult}
+            ...${result}
+            image="${image}"
+            originalSize="${originalSize}"
+          />
         `
       })}
     </tr>
@@ -168,6 +180,11 @@ const Row = ({ image }) => {
             }
             details {
               margin-top: 1rem;
+            }
+            .sizes {
+              position: absolute;
+              right: 0.5rem;
+              bottom: 0.5rem;
             }
             .overlay {
               display: none;
