@@ -1,6 +1,8 @@
 import sqip from 'sqip'
 import sqipCLI from '../../src/sqip-cli'
 
+import semver from 'semver'
+
 jest.mock('sqip', () => ({
   default: jest.fn(),
   resolvePlugins: jest.fn(plugins =>
@@ -48,7 +50,7 @@ describe('sqip-plugin-cli', () => {
 
     expect(sqip.default).not.toHaveBeenCalled()
     expect(sqip.resolvePlugins.mock.calls).toMatchSnapshot('resolve')
-    expect(logSpy.mock.calls).toMatchSnapshot('log')
+    expect(semver.valid(logSpy.mock.calls[0][0])).toBe(logSpy.mock.calls[0][0])
     expect(errorSpy.mock.calls).toMatchSnapshot('error')
     expect(global.process.exit).toHaveBeenCalledWith(0)
   })

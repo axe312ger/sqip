@@ -57,14 +57,6 @@ Array [
 
 exports[`sqip-plugin-cli --version: show version: error 1`] = `Array []`;
 
-exports[`sqip-plugin-cli --version: show version: log 1`] = `
-Array [
-  Array [
-    "1.0.0-alpha.0",
-  ],
-]
-`;
-
 exports[`sqip-plugin-cli --version: show version: resolve 1`] = `
 Array [
   Array [
