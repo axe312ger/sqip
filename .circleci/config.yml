@@ -2,7 +2,7 @@ version: 2.0
 jobs:
   lint:
     docker:
-      - image: hafizalfaza/node-go-sqip
+      - image: circleci/golang:1.12-node
     steps:
       - run: node --version
       - run: npm --version
@@ -28,7 +28,7 @@ jobs:
       - run: yarn run lint
   test-unit:
     docker:
-      - image: hafizalfaza/node-go-sqip
+      - image: circleci/golang:1.12-node
     steps:
       - run: node --version
       - run: npm --version
@@ -56,7 +56,7 @@ jobs:
       - run: yarn codecov
   test-e2e:
     docker:
-      - image: hafizalfaza/node-go-sqip
+      - image: circleci/golang:1.12-node
     steps:
       - run: node --version
       - run: npm --version
