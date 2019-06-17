@@ -35,7 +35,14 @@ function VariantResult({
           `
         : html`
             <div class="preview-wrapper" style="${wrapperStyle}">
-              <img class="preview" alt="${name}" src="${url}" height="auto" />
+              <img
+                class="${['preview', variantName.indexOf('lqip') !== -1 && 'lqip']
+                  .filter(Boolean)
+                  .join(' ')}"
+                alt="${name}"
+                src="${url}"
+                height="auto"
+              />
             </div>
           `}
       <div class="sizes">
@@ -149,6 +156,10 @@ const Row = ({ image }) => {
             img.preview {
               display: block;
               width: 100%;
+            }
+            img.preview.lqip {
+              filter: blur(12px);
+              transform: scale(1.15);
             }
             table {
               border-collapse: collapse;
