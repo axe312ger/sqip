@@ -103,23 +103,15 @@ async function processImage({ filePath, config }) {
   }
 
   for (const { name, options: pluginOptions, Plugin } of plugins) {
-    try {
-      debug(`Construct ${name}`)
-      const plugin = new Plugin({
-        sqipConfig: config,
-        pluginOptions,
-        metadata,
-        filePath
-      })
-      debug(`Apply ${name}`)
-      imageContent = await plugin.apply(imageContent)
-    } catch (err) {
-      if (config.shouldThrow) {
-        throw err
-      }
-      console.error(err)
-      process.exit(1)
-    }
+    debug(`Construct ${name}`)
+    const plugin = new Plugin({
+      sqipConfig: config,
+      pluginOptions,
+      metadata,
+      filePath
+    })
+    debug(`Apply ${name}`)
+    imageContent = await plugin.apply(imageContent)
   }
 
   return { svg: imageContent, metadata }
@@ -134,7 +126,6 @@ export default async function sqip(options) {
       'svgo',
       'data-uri'
     ],
-    shouldThrow: true, // @todo do we really need this?,
     width: 300,
     parseableOutput: false,
     silent: true
