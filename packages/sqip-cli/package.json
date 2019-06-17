@@ -6,6 +6,9 @@
   "homepage": "https://github.com/axe312ger/sqip#readme",
   "license": "MIT",
   "main": "dist/wrapper.js",
+  "bin": {
+    "sqip": "dist/wrapper.js"
+  },
   "directories": {
     "lib": "dist",
     "test": "__tests__"
