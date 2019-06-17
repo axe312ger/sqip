@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`locateFiles expandes tilde in glob "~+/__tests__/fixtures" 1`] = `
+Array [
+  "/__tests__/fixtures/beach-sqip.svg",
+  "/__tests__/fixtures/beach.jpg",
+]
+`;
+
+exports[`locateFiles invalid directory or files yields empty array 1`] = `
+"Unable to find any files via /foo/bar/baz. Make sure the file exists.
+
+If you are using globbing patterns, the following features are supported:
+
+https://github.com/micromatch/micromatch#matching-features"
+`;
+
+exports[`locateFiles invalid glob 1`] = `"ENOENT: no such file or directory, scandir '/foo/bar/baz'"`;
+
+exports[`locateFiles single file 1`] = `
+Array [
+  "/__tests__/fixtures/beach.jpg",
+]
+`;
+
+exports[`locateFiles subdirectory glob "**/*" 1`] = `
+Array [
+  "/__tests__/fixtures/beach-sqip.svg",
+  "/__tests__/fixtures/beach.jpg",
+]
+`;
+
+exports[`locateFiles whole directory with glob "*" 1`] = `
+Array [
+  "/__tests__/fixtures/beach-sqip.svg",
+  "/__tests__/fixtures/beach.jpg",
+]
+`;
+
+exports[`locateFiles whole directory with glob "*.{jpg,jpeg}" 1`] = `
+Array [
+  "/__tests__/fixtures/beach.jpg",
+]
+`;
+
+exports[`locateFiles whole directory without glob 1`] = `
+Array [
+  "/__tests__/fixtures/beach-sqip.svg",
+  "/__tests__/fixtures/beach.jpg",
+]
+`;

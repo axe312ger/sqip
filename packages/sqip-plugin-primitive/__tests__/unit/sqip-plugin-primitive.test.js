@@ -11,7 +11,8 @@ jest.mock('fs-extra')
 
 jest.mock('os', () => ({
   platform: jest.fn(() => 'unknownOS'),
-  arch: jest.fn(() => 'nonExistingArch')
+  arch: jest.fn(() => 'nonExistingArch'),
+  cpus: () => 1
 }))
 
 const VENDOR_DIR = path.resolve(__dirname, '../../vendor')

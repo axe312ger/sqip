@@ -1,18 +1,62 @@
 import { resolve } from 'path'
 import { readFile } from 'fs-extra'
 
-import { loadSVG } from '../../src/helpers'
+import { loadSVG, locateFiles } from '../../src/helpers'
 
-const BEACH_SVG = resolve(
-  __dirname,
-  '../../../..',
-  '__tests__',
-  'fixtures',
-  'beach-sqip.svg'
-)
+const DIR_ROOT = resolve(__dirname, '../../../..')
+const DIR_FIXTURES = resolve(DIR_ROOT, '__tests__', 'fixtures')
+
+const FILE_JPG = resolve(DIR_FIXTURES, 'beach.jpg')
+const FILE_SVG = resolve(DIR_FIXTURES, 'beach-sqip.svg')
 
 test('loadSVG', async () => {
-  const svgContent = await readFile(BEACH_SVG)
+  const svgContent = await readFile(FILE_SVG)
   const $svg = loadSVG(svgContent)
   expect($svg('svg')).toHaveLength(1)
+})
+
+const cleanResultArray = results =>
+  results.map(result => result.replace(DIR_ROOT, ''))
+
+describe('locateFiles', () => {
+  test('invalid directory or files yields empty array', async () => {
+    await expect(
+      locateFiles('/foo/bar/baz')
+    ).rejects.toThrowErrorMatchingSnapshot()
+  })
+  test('invalid glob', async () => {
+    await expect(
+      locateFiles('/foo/bar/baz/*')
+    ).rejects.toThrowErrorMatchingSnapshot()
+  })
+  test('single file', async () => {
+    const result = await locateFiles(FILE_JPG)
+    expect(result).toHaveLength(1)
+    expect(cleanResultArray(result)).toMatchSnapshot()
+  })
+  test('whole directory without glob', async () => {
+    const result = await locateFiles(DIR_FIXTURES)
+    expect(result).toHaveLength(2)
+    expect(cleanResultArray(result)).toMatchSnapshot()
+  })
+  test('whole directory with glob "*"', async () => {
+    const result = await locateFiles(`${DIR_FIXTURES}/*`)
+    expect(result).toHaveLength(2)
+    expect(cleanResultArray(result)).toMatchSnapshot()
+  })
+  test('whole directory with glob "*.{jpg,jpeg}"', async () => {
+    const result = await locateFiles(`${DIR_FIXTURES}/*.{jpg,jpeg}`)
+    expect(result).toHaveLength(1)
+    expect(cleanResultArray(result)).toMatchSnapshot()
+  })
+  test('subdirectory glob "**/*"', async () => {
+    const result = await locateFiles(`${resolve(DIR_FIXTURES, '..')}/**/*`)
+    expect(result).toHaveLength(2)
+    expect(cleanResultArray(result)).toMatchSnapshot()
+  })
+  test('expandes tilde in glob "~+/__tests__/fixtures"', async () => {
+    const result = await locateFiles(`~+/__tests__/fixtures`)
+    expect(result).toHaveLength(2)
+    expect(cleanResultArray(result)).toMatchSnapshot()
+  })
 })
