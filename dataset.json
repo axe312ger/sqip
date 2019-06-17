@@ -8,12 +8,12 @@
         "name": "aaron-burden-151465-unsplash-thumbnail.jpg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/aaron-burden-151465-unsplash-thumbnail.jpg",
         "sizes": {
-          "originalBytes": 38496,
-          "originalHuman": "38.5 kB",
-          "gzipBytes": 17323,
+          "originalBytes": 38413,
+          "originalHuman": "38.4 kB",
+          "gzipBytes": 17295,
           "gzipHuman": "17.3 kB",
-          "brotliBytes": 17058,
-          "brotliHuman": "17.1 kB"
+          "brotliBytes": 17186,
+          "brotliHuman": "17.2 kB"
         },
         "dimensions": {
           "width": 300,
@@ -22,7 +22,7 @@
         },
         "processTime": [
           0,
-          118711340
+          100286108
         ]
       },
       {
@@ -32,10 +32,10 @@
         "sizes": {
           "originalBytes": 1247,
           "originalHuman": "1.25 kB",
-          "gzipBytes": 796,
-          "gzipHuman": "796 B",
-          "brotliBytes": 773,
-          "brotliHuman": "773 B"
+          "gzipBytes": 795,
+          "gzipHuman": "795 B",
+          "brotliBytes": 772,
+          "brotliHuman": "772 B"
         },
         "dimensions": {
           "width": 10,
@@ -44,7 +44,7 @@
         },
         "processTime": [
           0,
-          909687398
+          856261218
         ]
       },
       {
@@ -52,12 +52,12 @@
         "name": "aaron-burden-151465-unsplash-sqip-legacy.svg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/aaron-burden-151465-unsplash-sqip-legacy.svg",
         "sizes": {
-          "originalBytes": 1282,
-          "originalHuman": "1.28 kB",
-          "gzipBytes": 760,
-          "gzipHuman": "760 B",
-          "brotliBytes": 757,
-          "brotliHuman": "757 B"
+          "originalBytes": 1214,
+          "originalHuman": "1.21 kB",
+          "gzipBytes": 789,
+          "gzipHuman": "789 B",
+          "brotliBytes": 776,
+          "brotliHuman": "776 B"
         },
         "dimensions": {
           "width": 2000,
@@ -66,7 +66,7 @@
         },
         "processTime": [
           2,
-          293228559
+          708173221
         ]
       },
       {
@@ -74,12 +74,12 @@
         "name": "aaron-burden-151465-unsplash-sqip.svg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/aaron-burden-151465-unsplash-sqip.svg",
         "sizes": {
-          "originalBytes": 1048,
-          "originalHuman": "1.05 kB",
-          "gzipBytes": 538,
-          "gzipHuman": "538 B",
-          "brotliBytes": 480,
-          "brotliHuman": "480 B"
+          "originalBytes": 1007,
+          "originalHuman": "1.01 kB",
+          "gzipBytes": 530,
+          "gzipHuman": "530 B",
+          "brotliBytes": 479,
+          "brotliHuman": "479 B"
         },
         "dimensions": {
           "width": 300,
@@ -88,7 +88,7 @@
         },
         "processTime": [
           3,
-          487209476
+          386216387
         ]
       },
       {
@@ -98,10 +98,10 @@
         "sizes": {
           "originalBytes": 2661,
           "originalHuman": "2.66 kB",
-          "gzipBytes": 569,
-          "gzipHuman": "569 B",
-          "brotliBytes": 410,
-          "brotliHuman": "410 B"
+          "gzipBytes": 566,
+          "gzipHuman": "566 B",
+          "brotliBytes": 411,
+          "brotliHuman": "411 B"
         },
         "dimensions": {
           "width": 800,
@@ -109,8 +109,8 @@
           "ratio": "4:3"
         },
         "processTime": [
-          1,
-          643315321
+          0,
+          981209232
         ]
       },
       {
@@ -118,12 +118,12 @@
         "name": "aaron-burden-151465-unsplash-sqip-art.svg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/aaron-burden-151465-unsplash-sqip-art.svg",
         "sizes": {
-          "originalBytes": 3305,
-          "originalHuman": "3.31 kB",
-          "gzipBytes": 1219,
+          "originalBytes": 3300,
+          "originalHuman": "3.3 kB",
+          "gzipBytes": 1224,
           "gzipHuman": "1.22 kB",
-          "brotliBytes": 1092,
-          "brotliHuman": "1.09 kB"
+          "brotliBytes": 1099,
+          "brotliHuman": "1.1 kB"
         },
         "dimensions": {
           "width": 300,
@@ -132,7 +132,7 @@
         },
         "processTime": [
           6,
-          760873902
+          630765846
         ]
       }
     ],
@@ -151,12 +151,12 @@
         "name": "anthony-esau-173126-unsplash-thumbnail.jpg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/anthony-esau-173126-unsplash-thumbnail.jpg",
         "sizes": {
-          "originalBytes": 23902,
-          "originalHuman": "23.9 kB",
-          "gzipBytes": 10984,
-          "gzipHuman": "11 kB",
-          "brotliBytes": 10863,
-          "brotliHuman": "10.9 kB"
+          "originalBytes": 23976,
+          "originalHuman": "24 kB",
+          "gzipBytes": 10898,
+          "gzipHuman": "10.9 kB",
+          "brotliBytes": 10784,
+          "brotliHuman": "10.8 kB"
         },
         "dimensions": {
           "width": 300,
@@ -165,7 +165,7 @@
         },
         "processTime": [
           0,
-          83713816
+          75256008
         ]
       },
       {
@@ -173,12 +173,12 @@
         "name": "anthony-esau-173126-unsplash-lqip.jpg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/anthony-esau-173126-unsplash-lqip.jpg",
         "sizes": {
-          "originalBytes": 1247,
+          "originalBytes": 1251,
           "originalHuman": "1.25 kB",
-          "gzipBytes": 795,
-          "gzipHuman": "795 B",
-          "brotliBytes": 772,
-          "brotliHuman": "772 B"
+          "gzipBytes": 801,
+          "gzipHuman": "801 B",
+          "brotliBytes": 783,
+          "brotliHuman": "783 B"
         },
         "dimensions": {
           "width": 10,
@@ -187,7 +187,7 @@
         },
         "processTime": [
           0,
-          580641473
+          547087292
         ]
       },
       {
@@ -195,12 +195,12 @@
         "name": "anthony-esau-173126-unsplash-sqip-legacy.svg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/anthony-esau-173126-unsplash-sqip-legacy.svg",
         "sizes": {
-          "originalBytes": 1402,
-          "originalHuman": "1.4 kB",
-          "gzipBytes": 783,
-          "gzipHuman": "783 B",
-          "brotliBytes": 786,
-          "brotliHuman": "786 B"
+          "originalBytes": 1354,
+          "originalHuman": "1.35 kB",
+          "gzipBytes": 777,
+          "gzipHuman": "777 B",
+          "brotliBytes": 763,
+          "brotliHuman": "763 B"
         },
         "dimensions": {
           "width": 2000,
@@ -208,8 +208,8 @@
           "ratio": "4:3"
         },
         "processTime": [
-          2,
-          816058645
+          3,
+          740117728
         ]
       },
       {
@@ -217,12 +217,12 @@
         "name": "anthony-esau-173126-unsplash-sqip.svg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/anthony-esau-173126-unsplash-sqip.svg",
         "sizes": {
-          "originalBytes": 1137,
-          "originalHuman": "1.14 kB",
-          "gzipBytes": 548,
-          "gzipHuman": "548 B",
-          "brotliBytes": 491,
-          "brotliHuman": "491 B"
+          "originalBytes": 1078,
+          "originalHuman": "1.08 kB",
+          "gzipBytes": 537,
+          "gzipHuman": "537 B",
+          "brotliBytes": 477,
+          "brotliHuman": "477 B"
         },
         "dimensions": {
           "width": 300,
@@ -231,7 +231,7 @@
         },
         "processTime": [
           3,
-          257144095
+          555154218
         ]
       },
       {
@@ -241,10 +241,10 @@
         "sizes": {
           "originalBytes": 2661,
           "originalHuman": "2.66 kB",
-          "gzipBytes": 565,
-          "gzipHuman": "565 B",
-          "brotliBytes": 407,
-          "brotliHuman": "407 B"
+          "gzipBytes": 561,
+          "gzipHuman": "561 B",
+          "brotliBytes": 408,
+          "brotliHuman": "408 B"
         },
         "dimensions": {
           "width": 800,
@@ -253,7 +253,7 @@
         },
         "processTime": [
           0,
-          974652501
+          599691823
         ]
       },
       {
@@ -261,12 +261,12 @@
         "name": "anthony-esau-173126-unsplash-sqip-art.svg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/anthony-esau-173126-unsplash-sqip-art.svg",
         "sizes": {
-          "originalBytes": 3305,
-          "originalHuman": "3.31 kB",
-          "gzipBytes": 1245,
-          "gzipHuman": "1.25 kB",
-          "brotliBytes": 1104,
-          "brotliHuman": "1.1 kB"
+          "originalBytes": 3286,
+          "originalHuman": "3.29 kB",
+          "gzipBytes": 1240,
+          "gzipHuman": "1.24 kB",
+          "brotliBytes": 1107,
+          "brotliHuman": "1.11 kB"
         },
         "dimensions": {
           "width": 300,
@@ -274,8 +274,8 @@
           "ratio": "4:3"
         },
         "processTime": [
-          8,
-          511901368
+          9,
+          145676377
         ]
       }
     ],
@@ -294,12 +294,12 @@
         "name": "aron-visuals-974734-unsplash-thumbnail.jpg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/aron-visuals-974734-unsplash-thumbnail.jpg",
         "sizes": {
-          "originalBytes": 22225,
-          "originalHuman": "22.2 kB",
-          "gzipBytes": 10090,
+          "originalBytes": 22012,
+          "originalHuman": "22 kB",
+          "gzipBytes": 10141,
           "gzipHuman": "10.1 kB",
-          "brotliBytes": 9952,
-          "brotliHuman": "9.95 kB"
+          "brotliBytes": 10043,
+          "brotliHuman": "10 kB"
         },
         "dimensions": {
           "width": 300,
@@ -308,7 +308,7 @@
         },
         "processTime": [
           0,
-          119576338
+          165377232
         ]
       },
       {
@@ -316,10 +316,10 @@
         "name": "aron-visuals-974734-unsplash-lqip.jpg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/aron-visuals-974734-unsplash-lqip.jpg",
         "sizes": {
-          "originalBytes": 1407,
-          "originalHuman": "1.41 kB",
-          "gzipBytes": 917,
-          "gzipHuman": "917 B",
+          "originalBytes": 1399,
+          "originalHuman": "1.4 kB",
+          "gzipBytes": 910,
+          "gzipHuman": "910 B",
           "brotliBytes": 895,
           "brotliHuman": "895 B"
         },
@@ -329,8 +329,8 @@
           "ratio": "13:10"
         },
         "processTime": [
-          1,
-          266571031
+          0,
+          842193643
         ]
       },
       {
@@ -338,12 +338,12 @@
         "name": "aron-visuals-974734-unsplash-sqip-legacy.svg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/aron-visuals-974734-unsplash-sqip-legacy.svg",
         "sizes": {
-          "originalBytes": 1262,
-          "originalHuman": "1.26 kB",
-          "gzipBytes": 761,
-          "gzipHuman": "761 B",
-          "brotliBytes": 754,
-          "brotliHuman": "754 B"
+          "originalBytes": 1210,
+          "originalHuman": "1.21 kB",
+          "gzipBytes": 773,
+          "gzipHuman": "773 B",
+          "brotliBytes": 770,
+          "brotliHuman": "770 B"
         },
         "dimensions": {
           "width": 2000,
@@ -351,8 +351,8 @@
           "ratio": "5:4"
         },
         "processTime": [
-          6,
-          892031901
+          4,
+          995605475
         ]
       },
       {
@@ -360,12 +360,12 @@
         "name": "aron-visuals-974734-unsplash-sqip.svg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/aron-visuals-974734-unsplash-sqip.svg",
         "sizes": {
-          "originalBytes": 1084,
-          "originalHuman": "1.08 kB",
-          "gzipBytes": 533,
-          "gzipHuman": "533 B",
-          "brotliBytes": 473,
-          "brotliHuman": "473 B"
+          "originalBytes": 1036,
+          "originalHuman": "1.04 kB",
+          "gzipBytes": 523,
+          "gzipHuman": "523 B",
+          "brotliBytes": 469,
+          "brotliHuman": "469 B"
         },
         "dimensions": {
           "width": 300,
@@ -373,8 +373,8 @@
           "ratio": "5:4"
         },
         "processTime": [
-          6,
-          696357394
+          5,
+          237717074
         ]
       },
       {
@@ -384,10 +384,10 @@
         "sizes": {
           "originalBytes": 4374,
           "originalHuman": "4.37 kB",
-          "gzipBytes": 796,
-          "gzipHuman": "796 B",
-          "brotliBytes": 546,
-          "brotliHuman": "546 B"
+          "gzipBytes": 801,
+          "gzipHuman": "801 B",
+          "brotliBytes": 544,
+          "brotliHuman": "544 B"
         },
         "dimensions": {
           "width": 800,
@@ -395,8 +395,8 @@
           "ratio": "5:4"
         },
         "processTime": [
-          1,
-          624809618
+          0,
+          892719719
         ]
       },
       {
@@ -404,12 +404,12 @@
         "name": "aron-visuals-974734-unsplash-sqip-art.svg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/aron-visuals-974734-unsplash-sqip-art.svg",
         "sizes": {
-          "originalBytes": 3381,
+          "originalBytes": 3385,
           "originalHuman": "3.38 kB",
-          "gzipBytes": 1252,
-          "gzipHuman": "1.25 kB",
-          "brotliBytes": 1118,
-          "brotliHuman": "1.12 kB"
+          "gzipBytes": 1270,
+          "gzipHuman": "1.27 kB",
+          "brotliBytes": 1108,
+          "brotliHuman": "1.11 kB"
         },
         "dimensions": {
           "width": 298,
@@ -418,7 +418,7 @@
         },
         "processTime": [
           11,
-          842652557
+          542505603
         ]
       }
     ],
@@ -437,12 +437,12 @@
         "name": "beach-thumbnail.jpg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/beach-thumbnail.jpg",
         "sizes": {
-          "originalBytes": 13749,
-          "originalHuman": "13.7 kB",
-          "gzipBytes": 6197,
-          "gzipHuman": "6.2 kB",
-          "brotliBytes": 6134,
-          "brotliHuman": "6.13 kB"
+          "originalBytes": 13497,
+          "originalHuman": "13.5 kB",
+          "gzipBytes": 6253,
+          "gzipHuman": "6.25 kB",
+          "brotliBytes": 6161,
+          "brotliHuman": "6.16 kB"
         },
         "dimensions": {
           "width": 300,
@@ -451,7 +451,7 @@
         },
         "processTime": [
           0,
-          53694718
+          48861850
         ]
       },
       {
@@ -459,12 +459,12 @@
         "name": "beach-lqip.jpg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/beach-lqip.jpg",
         "sizes": {
-          "originalBytes": 1263,
-          "originalHuman": "1.26 kB",
-          "gzipBytes": 805,
-          "gzipHuman": "805 B",
-          "brotliBytes": 784,
-          "brotliHuman": "784 B"
+          "originalBytes": 1267,
+          "originalHuman": "1.27 kB",
+          "gzipBytes": 811,
+          "gzipHuman": "811 B",
+          "brotliBytes": 787,
+          "brotliHuman": "787 B"
         },
         "dimensions": {
           "width": 10,
@@ -473,7 +473,7 @@
         },
         "processTime": [
           0,
-          249361164
+          231499992
         ]
       },
       {
@@ -481,12 +481,12 @@
         "name": "beach-sqip-legacy.svg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/beach-sqip-legacy.svg",
         "sizes": {
-          "originalBytes": 1266,
-          "originalHuman": "1.27 kB",
-          "gzipBytes": 742,
-          "gzipHuman": "742 B",
-          "brotliBytes": 726,
-          "brotliHuman": "726 B"
+          "originalBytes": 1202,
+          "originalHuman": "1.2 kB",
+          "gzipBytes": 703,
+          "gzipHuman": "703 B",
+          "brotliBytes": 691,
+          "brotliHuman": "691 B"
         },
         "dimensions": {
           "width": 1024,
@@ -495,7 +495,7 @@
         },
         "processTime": [
           2,
-          989908315
+          838661278
         ]
       },
       {
@@ -503,12 +503,12 @@
         "name": "beach-sqip.svg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/beach-sqip.svg",
         "sizes": {
-          "originalBytes": 1069,
-          "originalHuman": "1.07 kB",
-          "gzipBytes": 541,
-          "gzipHuman": "541 B",
-          "brotliBytes": 476,
-          "brotliHuman": "476 B"
+          "originalBytes": 1100,
+          "originalHuman": "1.1 kB",
+          "gzipBytes": 545,
+          "gzipHuman": "545 B",
+          "brotliBytes": 488,
+          "brotliHuman": "488 B"
         },
         "dimensions": {
           "width": 300,
@@ -517,7 +517,7 @@
         },
         "processTime": [
           2,
-          970717501
+          450141272
         ]
       },
       {
@@ -529,8 +529,8 @@
           "originalHuman": "2.23 kB",
           "gzipBytes": 505,
           "gzipHuman": "505 B",
-          "brotliBytes": 364,
-          "brotliHuman": "364 B"
+          "brotliBytes": 369,
+          "brotliHuman": "369 B"
         },
         "dimensions": {
           "width": 800,
@@ -539,7 +539,7 @@
         },
         "processTime": [
           0,
-          202068819
+          130891502
         ]
       },
       {
@@ -547,12 +547,12 @@
         "name": "beach-sqip-art.svg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/beach-sqip-art.svg",
         "sizes": {
-          "originalBytes": 3308,
-          "originalHuman": "3.31 kB",
-          "gzipBytes": 1231,
-          "gzipHuman": "1.23 kB",
-          "brotliBytes": 1094,
-          "brotliHuman": "1.09 kB"
+          "originalBytes": 3323,
+          "originalHuman": "3.32 kB",
+          "gzipBytes": 1216,
+          "gzipHuman": "1.22 kB",
+          "brotliBytes": 1098,
+          "brotliHuman": "1.1 kB"
         },
         "dimensions": {
           "width": 300,
@@ -560,8 +560,8 @@
           "ratio": "300:187"
         },
         "processTime": [
-          11,
-          39262761
+          6,
+          581620722
         ]
       }
     ],
@@ -580,12 +580,12 @@
         "name": "charles-550068-unsplash-thumbnail.jpg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/charles-550068-unsplash-thumbnail.jpg",
         "sizes": {
-          "originalBytes": 27813,
-          "originalHuman": "27.8 kB",
-          "gzipBytes": 12720,
-          "gzipHuman": "12.7 kB",
-          "brotliBytes": 12520,
-          "brotliHuman": "12.5 kB"
+          "originalBytes": 28122,
+          "originalHuman": "28.1 kB",
+          "gzipBytes": 12547,
+          "gzipHuman": "12.5 kB",
+          "brotliBytes": 12408,
+          "brotliHuman": "12.4 kB"
         },
         "dimensions": {
           "width": 300,
@@ -594,7 +594,7 @@
         },
         "processTime": [
           0,
-          141439214
+          94869572
         ]
       },
       {
@@ -604,10 +604,10 @@
         "sizes": {
           "originalBytes": 1431,
           "originalHuman": "1.43 kB",
-          "gzipBytes": 934,
-          "gzipHuman": "934 B",
-          "brotliBytes": 919,
-          "brotliHuman": "919 B"
+          "gzipBytes": 932,
+          "gzipHuman": "932 B",
+          "brotliBytes": 912,
+          "brotliHuman": "912 B"
         },
         "dimensions": {
           "width": 10,
@@ -615,8 +615,8 @@
           "ratio": "7:5"
         },
         "processTime": [
-          1,
-          441698545
+          0,
+          827265593
         ]
       },
       {
@@ -624,12 +624,12 @@
         "name": "charles-550068-unsplash-sqip-legacy.svg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/charles-550068-unsplash-sqip-legacy.svg",
         "sizes": {
-          "originalBytes": 1110,
-          "originalHuman": "1.11 kB",
-          "gzipBytes": 712,
-          "gzipHuman": "712 B",
-          "brotliBytes": 704,
-          "brotliHuman": "704 B"
+          "originalBytes": 1126,
+          "originalHuman": "1.13 kB",
+          "gzipBytes": 732,
+          "gzipHuman": "732 B",
+          "brotliBytes": 730,
+          "brotliHuman": "730 B"
         },
         "dimensions": {
           "width": 2000,
@@ -637,8 +637,8 @@
           "ratio": "557:400"
         },
         "processTime": [
-          6,
-          331423938
+          3,
+          343104065
         ]
       },
       {
@@ -646,12 +646,12 @@
         "name": "charles-550068-unsplash-sqip.svg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/charles-550068-unsplash-sqip.svg",
         "sizes": {
-          "originalBytes": 875,
-          "originalHuman": "875 B",
-          "gzipBytes": 492,
-          "gzipHuman": "492 B",
-          "brotliBytes": 441,
-          "brotliHuman": "441 B"
+          "originalBytes": 966,
+          "originalHuman": "966 B",
+          "gzipBytes": 524,
+          "gzipHuman": "524 B",
+          "brotliBytes": 470,
+          "brotliHuman": "470 B"
         },
         "dimensions": {
           "width": 300,
@@ -659,8 +659,8 @@
           "ratio": "209:150"
         },
         "processTime": [
-          5,
-          922586110
+          3,
+          784689829
         ]
       },
       {
@@ -670,10 +670,10 @@
         "sizes": {
           "originalBytes": 4810,
           "originalHuman": "4.81 kB",
-          "gzipBytes": 863,
-          "gzipHuman": "863 B",
-          "brotliBytes": 604,
-          "brotliHuman": "604 B"
+          "gzipBytes": 860,
+          "gzipHuman": "860 B",
+          "brotliBytes": 605,
+          "brotliHuman": "605 B"
         },
         "dimensions": {
           "width": 800,
@@ -682,7 +682,7 @@
         },
         "processTime": [
           1,
-          233219918
+          126243458
         ]
       },
       {
@@ -690,12 +690,12 @@
         "name": "charles-550068-unsplash-sqip-art.svg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/charles-550068-unsplash-sqip-art.svg",
         "sizes": {
-          "originalBytes": 3229,
-          "originalHuman": "3.23 kB",
-          "gzipBytes": 1218,
-          "gzipHuman": "1.22 kB",
-          "brotliBytes": 1094,
-          "brotliHuman": "1.09 kB"
+          "originalBytes": 3248,
+          "originalHuman": "3.25 kB",
+          "gzipBytes": 1236,
+          "gzipHuman": "1.24 kB",
+          "brotliBytes": 1111,
+          "brotliHuman": "1.11 kB"
         },
         "dimensions": {
           "width": 300,
@@ -703,8 +703,8 @@
           "ratio": "209:150"
         },
         "processTime": [
-          15,
-          306887983
+          10,
+          754395431
         ]
       }
     ],
@@ -723,12 +723,12 @@
         "name": "eric-marty-780304-unsplash-thumbnail.jpg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/eric-marty-780304-unsplash-thumbnail.jpg",
         "sizes": {
-          "originalBytes": 28852,
-          "originalHuman": "28.9 kB",
-          "gzipBytes": 13191,
-          "gzipHuman": "13.2 kB",
-          "brotliBytes": 13057,
-          "brotliHuman": "13.1 kB"
+          "originalBytes": 28753,
+          "originalHuman": "28.8 kB",
+          "gzipBytes": 13073,
+          "gzipHuman": "13.1 kB",
+          "brotliBytes": 12876,
+          "brotliHuman": "12.9 kB"
         },
         "dimensions": {
           "width": 300,
@@ -737,7 +737,7 @@
         },
         "processTime": [
           0,
-          150305237
+          98257661
         ]
       },
       {
@@ -745,12 +745,12 @@
         "name": "eric-marty-780304-unsplash-lqip.jpg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/eric-marty-780304-unsplash-lqip.jpg",
         "sizes": {
-          "originalBytes": 1443,
+          "originalBytes": 1439,
           "originalHuman": "1.44 kB",
-          "gzipBytes": 946,
-          "gzipHuman": "946 B",
-          "brotliBytes": 929,
-          "brotliHuman": "929 B"
+          "gzipBytes": 944,
+          "gzipHuman": "944 B",
+          "brotliBytes": 923,
+          "brotliHuman": "923 B"
         },
         "dimensions": {
           "width": 10,
@@ -758,8 +758,8 @@
           "ratio": "1:1"
         },
         "processTime": [
-          3,
-          79509772
+          0,
+          713616784
         ]
       },
       {
@@ -767,12 +767,12 @@
         "name": "eric-marty-780304-unsplash-sqip-legacy.svg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/eric-marty-780304-unsplash-sqip-legacy.svg",
         "sizes": {
-          "originalBytes": 1190,
-          "originalHuman": "1.19 kB",
-          "gzipBytes": 739,
-          "gzipHuman": "739 B",
-          "brotliBytes": 730,
-          "brotliHuman": "730 B"
+          "originalBytes": 1250,
+          "originalHuman": "1.25 kB",
+          "gzipBytes": 712,
+          "gzipHuman": "712 B",
+          "brotliBytes": 697,
+          "brotliHuman": "697 B"
         },
         "dimensions": {
           "width": 2000,
@@ -780,8 +780,8 @@
           "ratio": "1:1"
         },
         "processTime": [
-          10,
-          788324397
+          5,
+          517923756
         ]
       },
       {
@@ -789,12 +789,12 @@
         "name": "eric-marty-780304-unsplash-sqip.svg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/eric-marty-780304-unsplash-sqip.svg",
         "sizes": {
-          "originalBytes": 1099,
-          "originalHuman": "1.1 kB",
-          "gzipBytes": 545,
-          "gzipHuman": "545 B",
-          "brotliBytes": 485,
-          "brotliHuman": "485 B"
+          "originalBytes": 1198,
+          "originalHuman": "1.2 kB",
+          "gzipBytes": 556,
+          "gzipHuman": "556 B",
+          "brotliBytes": 495,
+          "brotliHuman": "495 B"
         },
         "dimensions": {
           "width": 300,
@@ -802,8 +802,8 @@
           "ratio": "1:1"
         },
         "processTime": [
-          8,
-          52564372
+          5,
+          610747449
         ]
       },
       {
@@ -815,8 +815,8 @@
           "originalHuman": "3.52 kB",
           "gzipBytes": 682,
           "gzipHuman": "682 B",
-          "brotliBytes": 485,
-          "brotliHuman": "485 B"
+          "brotliBytes": 488,
+          "brotliHuman": "488 B"
         },
         "dimensions": {
           "width": 800,
@@ -824,8 +824,8 @@
           "ratio": "1:1"
         },
         "processTime": [
-          1,
-          170039279
+          0,
+          900152620
         ]
       },
       {
@@ -833,12 +833,12 @@
         "name": "eric-marty-780304-unsplash-sqip-art.svg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/eric-marty-780304-unsplash-sqip-art.svg",
         "sizes": {
-          "originalBytes": 3329,
-          "originalHuman": "3.33 kB",
-          "gzipBytes": 1236,
-          "gzipHuman": "1.24 kB",
-          "brotliBytes": 1117,
-          "brotliHuman": "1.12 kB"
+          "originalBytes": 3338,
+          "originalHuman": "3.34 kB",
+          "gzipBytes": 1231,
+          "gzipHuman": "1.23 kB",
+          "brotliBytes": 1103,
+          "brotliHuman": "1.1 kB"
         },
         "dimensions": {
           "width": 300,
@@ -846,8 +846,8 @@
           "ratio": "1:1"
         },
         "processTime": [
-          15,
-          460411888
+          10,
+          196538442
         ]
       }
     ],
@@ -866,12 +866,12 @@
         "name": "ian-dooley-298769-unsplash-thumbnail.jpg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/ian-dooley-298769-unsplash-thumbnail.jpg",
         "sizes": {
-          "originalBytes": 8648,
-          "originalHuman": "8.65 kB",
-          "gzipBytes": 4210,
-          "gzipHuman": "4.21 kB",
-          "brotliBytes": 4120,
-          "brotliHuman": "4.12 kB"
+          "originalBytes": 8681,
+          "originalHuman": "8.68 kB",
+          "gzipBytes": 4098,
+          "gzipHuman": "4.1 kB",
+          "brotliBytes": 4019,
+          "brotliHuman": "4.02 kB"
         },
         "dimensions": {
           "width": 300,
@@ -880,7 +880,7 @@
         },
         "processTime": [
           0,
-          98490567
+          97378859
         ]
       },
       {
@@ -890,8 +890,8 @@
         "sizes": {
           "originalBytes": 1247,
           "originalHuman": "1.25 kB",
-          "gzipBytes": 797,
-          "gzipHuman": "797 B",
+          "gzipBytes": 796,
+          "gzipHuman": "796 B",
           "brotliBytes": 777,
           "brotliHuman": "777 B"
         },
@@ -902,7 +902,7 @@
         },
         "processTime": [
           0,
-          981146102
+          885114976
         ]
       },
       {
@@ -910,12 +910,12 @@
         "name": "ian-dooley-298769-unsplash-sqip-legacy.svg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/ian-dooley-298769-unsplash-sqip-legacy.svg",
         "sizes": {
-          "originalBytes": 1086,
-          "originalHuman": "1.09 kB",
-          "gzipBytes": 718,
-          "gzipHuman": "718 B",
-          "brotliBytes": 708,
-          "brotliHuman": "708 B"
+          "originalBytes": 1342,
+          "originalHuman": "1.34 kB",
+          "gzipBytes": 793,
+          "gzipHuman": "793 B",
+          "brotliBytes": 787,
+          "brotliHuman": "787 B"
         },
         "dimensions": {
           "width": 2000,
@@ -924,7 +924,7 @@
         },
         "processTime": [
           2,
-          855648825
+          343379153
         ]
       },
       {
@@ -932,12 +932,12 @@
         "name": "ian-dooley-298769-unsplash-sqip.svg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/ian-dooley-298769-unsplash-sqip.svg",
         "sizes": {
-          "originalBytes": 909,
-          "originalHuman": "909 B",
-          "gzipBytes": 505,
-          "gzipHuman": "505 B",
-          "brotliBytes": 456,
-          "brotliHuman": "456 B"
+          "originalBytes": 975,
+          "originalHuman": "975 B",
+          "gzipBytes": 524,
+          "gzipHuman": "524 B",
+          "brotliBytes": 473,
+          "brotliHuman": "473 B"
         },
         "dimensions": {
           "width": 300,
@@ -945,8 +945,8 @@
           "ratio": "3:2"
         },
         "processTime": [
-          3,
-          794703261
+          2,
+          950835303
         ]
       },
       {
@@ -954,12 +954,12 @@
         "name": "ian-dooley-298769-unsplash-sqip-pixels.svg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/ian-dooley-298769-unsplash-sqip-pixels.svg",
         "sizes": {
-          "originalBytes": 5068,
-          "originalHuman": "5.07 kB",
+          "originalBytes": 5040,
+          "originalHuman": "5.04 kB",
           "gzipBytes": 825,
           "gzipHuman": "825 B",
-          "brotliBytes": 589,
-          "brotliHuman": "589 B"
+          "brotliBytes": 591,
+          "brotliHuman": "591 B"
         },
         "dimensions": {
           "width": 800,
@@ -967,8 +967,8 @@
           "ratio": "3:2"
         },
         "processTime": [
-          1,
-          255339157
+          0,
+          925330949
         ]
       },
       {
@@ -978,8 +978,8 @@
         "sizes": {
           "originalBytes": 3352,
           "originalHuman": "3.35 kB",
-          "gzipBytes": 1216,
-          "gzipHuman": "1.22 kB",
+          "gzipBytes": 1239,
+          "gzipHuman": "1.24 kB",
           "brotliBytes": 1115,
           "brotliHuman": "1.11 kB"
         },
@@ -989,8 +989,8 @@
           "ratio": "225:149"
         },
         "processTime": [
-          10,
-          133544166
+          8,
+          759470894
         ]
       }
     ],
@@ -1009,11 +1009,11 @@
         "name": "meric-dagli-487815-unsplash-thumbnail.jpg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/meric-dagli-487815-unsplash-thumbnail.jpg",
         "sizes": {
-          "originalBytes": 42916,
-          "originalHuman": "42.9 kB",
-          "gzipBytes": 19298,
+          "originalBytes": 43226,
+          "originalHuman": "43.2 kB",
+          "gzipBytes": 19296,
           "gzipHuman": "19.3 kB",
-          "brotliBytes": 18980,
+          "brotliBytes": 18969,
           "brotliHuman": "19 kB"
         },
         "dimensions": {
@@ -1023,7 +1023,7 @@
         },
         "processTime": [
           0,
-          166013368
+          127563169
         ]
       },
       {
@@ -1033,10 +1033,10 @@
         "sizes": {
           "originalBytes": 1763,
           "originalHuman": "1.76 kB",
-          "gzipBytes": 1187,
-          "gzipHuman": "1.19 kB",
-          "brotliBytes": 1167,
-          "brotliHuman": "1.17 kB"
+          "gzipBytes": 1182,
+          "gzipHuman": "1.18 kB",
+          "brotliBytes": 1161,
+          "brotliHuman": "1.16 kB"
         },
         "dimensions": {
           "width": 10,
@@ -1044,8 +1044,8 @@
           "ratio": "3:2"
         },
         "processTime": [
-          1,
-          270791977
+          0,
+          940615910
         ]
       },
       {
@@ -1055,10 +1055,10 @@
         "sizes": {
           "originalBytes": 1270,
           "originalHuman": "1.27 kB",
-          "gzipBytes": 722,
-          "gzipHuman": "722 B",
-          "brotliBytes": 702,
-          "brotliHuman": "702 B"
+          "gzipBytes": 735,
+          "gzipHuman": "735 B",
+          "brotliBytes": 725,
+          "brotliHuman": "725 B"
         },
         "dimensions": {
           "width": 2000,
@@ -1067,7 +1067,7 @@
         },
         "processTime": [
           3,
-          831080045
+          198978842
         ]
       },
       {
@@ -1075,12 +1075,12 @@
         "name": "meric-dagli-487815-unsplash-sqip.svg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/meric-dagli-487815-unsplash-sqip.svg",
         "sizes": {
-          "originalBytes": 1132,
-          "originalHuman": "1.13 kB",
-          "gzipBytes": 549,
-          "gzipHuman": "549 B",
-          "brotliBytes": 485,
-          "brotliHuman": "485 B"
+          "originalBytes": 1058,
+          "originalHuman": "1.06 kB",
+          "gzipBytes": 527,
+          "gzipHuman": "527 B",
+          "brotliBytes": 470,
+          "brotliHuman": "470 B"
         },
         "dimensions": {
           "width": 300,
@@ -1088,8 +1088,8 @@
           "ratio": "3:2"
         },
         "processTime": [
-          4,
-          939416783
+          3,
+          790019675
         ]
       },
       {
@@ -1097,12 +1097,12 @@
         "name": "meric-dagli-487815-unsplash-sqip-pixels.svg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/meric-dagli-487815-unsplash-sqip-pixels.svg",
         "sizes": {
-          "originalBytes": 5243,
-          "originalHuman": "5.24 kB",
-          "gzipBytes": 944,
-          "gzipHuman": "944 B",
-          "brotliBytes": 634,
-          "brotliHuman": "634 B"
+          "originalBytes": 5246,
+          "originalHuman": "5.25 kB",
+          "gzipBytes": 949,
+          "gzipHuman": "949 B",
+          "brotliBytes": 633,
+          "brotliHuman": "633 B"
         },
         "dimensions": {
           "width": 800,
@@ -1111,7 +1111,7 @@
         },
         "processTime": [
           1,
-          394982727
+          25104538
         ]
       },
       {
@@ -1119,12 +1119,12 @@
         "name": "meric-dagli-487815-unsplash-sqip-art.svg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/meric-dagli-487815-unsplash-sqip-art.svg",
         "sizes": {
-          "originalBytes": 3396,
-          "originalHuman": "3.4 kB",
-          "gzipBytes": 1280,
-          "gzipHuman": "1.28 kB",
-          "brotliBytes": 1144,
-          "brotliHuman": "1.14 kB"
+          "originalBytes": 3364,
+          "originalHuman": "3.36 kB",
+          "gzipBytes": 1260,
+          "gzipHuman": "1.26 kB",
+          "brotliBytes": 1134,
+          "brotliHuman": "1.13 kB"
         },
         "dimensions": {
           "width": 298,
@@ -1132,8 +1132,8 @@
           "ratio": "225:149"
         },
         "processTime": [
-          9,
-          765905086
+          7,
+          463672167
         ]
       }
     ],
@@ -1152,12 +1152,12 @@
         "name": "mona-lisa-thumbnail.jpg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/mona-lisa-thumbnail.jpg",
         "sizes": {
-          "originalBytes": 36279,
+          "originalBytes": 36273,
           "originalHuman": "36.3 kB",
-          "gzipBytes": 16449,
-          "gzipHuman": "16.4 kB",
-          "brotliBytes": 16239,
-          "brotliHuman": "16.2 kB"
+          "gzipBytes": 16470,
+          "gzipHuman": "16.5 kB",
+          "brotliBytes": 16284,
+          "brotliHuman": "16.3 kB"
         },
         "dimensions": {
           "width": 300,
@@ -1166,7 +1166,7 @@
         },
         "processTime": [
           0,
-          103189970
+          98110077
         ]
       },
       {
@@ -1176,8 +1176,8 @@
         "sizes": {
           "originalBytes": 1587,
           "originalHuman": "1.59 kB",
-          "gzipBytes": 1056,
-          "gzipHuman": "1.06 kB",
+          "gzipBytes": 1052,
+          "gzipHuman": "1.05 kB",
           "brotliBytes": 1029,
           "brotliHuman": "1.03 kB"
         },
@@ -1188,7 +1188,7 @@
         },
         "processTime": [
           0,
-          535476347
+          441859715
         ]
       },
       {
@@ -1196,12 +1196,12 @@
         "name": "mona-lisa-sqip-legacy.svg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/mona-lisa-sqip-legacy.svg",
         "sizes": {
-          "originalBytes": 1202,
-          "originalHuman": "1.2 kB",
-          "gzipBytes": 761,
-          "gzipHuman": "761 B",
-          "brotliBytes": 749,
-          "brotliHuman": "749 B"
+          "originalBytes": 1186,
+          "originalHuman": "1.19 kB",
+          "gzipBytes": 733,
+          "gzipHuman": "733 B",
+          "brotliBytes": 716,
+          "brotliHuman": "716 B"
         },
         "dimensions": {
           "width": 1200,
@@ -1209,8 +1209,8 @@
           "ratio": "149:100"
         },
         "processTime": [
-          3,
-          226241244
+          2,
+          207860916
         ]
       },
       {
@@ -1218,10 +1218,10 @@
         "name": "mona-lisa-sqip.svg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/mona-lisa-sqip.svg",
         "sizes": {
-          "originalBytes": 1111,
-          "originalHuman": "1.11 kB",
-          "gzipBytes": 540,
-          "gzipHuman": "540 B",
+          "originalBytes": 1190,
+          "originalHuman": "1.19 kB",
+          "gzipBytes": 548,
+          "gzipHuman": "548 B",
           "brotliBytes": 482,
           "brotliHuman": "482 B"
         },
@@ -1231,8 +1231,8 @@
           "ratio": "149:100"
         },
         "processTime": [
-          3,
-          17129593
+          2,
+          579948362
         ]
       },
       {
@@ -1242,10 +1242,10 @@
         "sizes": {
           "originalBytes": 5246,
           "originalHuman": "5.25 kB",
-          "gzipBytes": 955,
-          "gzipHuman": "955 B",
-          "brotliBytes": 623,
-          "brotliHuman": "623 B"
+          "gzipBytes": 965,
+          "gzipHuman": "965 B",
+          "brotliBytes": 625,
+          "brotliHuman": "625 B"
         },
         "dimensions": {
           "width": 800,
@@ -1254,7 +1254,7 @@
         },
         "processTime": [
           0,
-          617748349
+          496680100
         ]
       },
       {
@@ -1262,12 +1262,12 @@
         "name": "mona-lisa-sqip-art.svg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/mona-lisa-sqip-art.svg",
         "sizes": {
-          "originalBytes": 3356,
+          "originalBytes": 3360,
           "originalHuman": "3.36 kB",
-          "gzipBytes": 1268,
+          "gzipBytes": 1269,
           "gzipHuman": "1.27 kB",
-          "brotliBytes": 1128,
-          "brotliHuman": "1.13 kB"
+          "brotliBytes": 1136,
+          "brotliHuman": "1.14 kB"
         },
         "dimensions": {
           "width": 300,
@@ -1275,8 +1275,8 @@
           "ratio": "149:100"
         },
         "processTime": [
-          8,
-          349545655
+          6,
+          710409352
         ]
       }
     ],
@@ -1295,12 +1295,12 @@
         "name": "quino-al-101314-unsplash-thumbnail.jpg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/quino-al-101314-unsplash-thumbnail.jpg",
         "sizes": {
-          "originalBytes": 16748,
-          "originalHuman": "16.7 kB",
-          "gzipBytes": 7647,
-          "gzipHuman": "7.65 kB",
-          "brotliBytes": 7566,
-          "brotliHuman": "7.57 kB"
+          "originalBytes": 16629,
+          "originalHuman": "16.6 kB",
+          "gzipBytes": 7606,
+          "gzipHuman": "7.61 kB",
+          "brotliBytes": 7504,
+          "brotliHuman": "7.5 kB"
         },
         "dimensions": {
           "width": 300,
@@ -1309,7 +1309,7 @@
         },
         "processTime": [
           0,
-          55087235
+          68576810
         ]
       },
       {
@@ -1319,10 +1319,10 @@
         "sizes": {
           "originalBytes": 1035,
           "originalHuman": "1.03 kB",
-          "gzipBytes": 631,
-          "gzipHuman": "631 B",
-          "brotliBytes": 608,
-          "brotliHuman": "608 B"
+          "gzipBytes": 634,
+          "gzipHuman": "634 B",
+          "brotliBytes": 612,
+          "brotliHuman": "612 B"
         },
         "dimensions": {
           "width": 10,
@@ -1331,7 +1331,7 @@
         },
         "processTime": [
           0,
-          426141778
+          408073189
         ]
       },
       {
@@ -1339,12 +1339,12 @@
         "name": "quino-al-101314-unsplash-sqip-legacy.svg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/quino-al-101314-unsplash-sqip-legacy.svg",
         "sizes": {
-          "originalBytes": 1182,
-          "originalHuman": "1.18 kB",
-          "gzipBytes": 746,
-          "gzipHuman": "746 B",
-          "brotliBytes": 737,
-          "brotliHuman": "737 B"
+          "originalBytes": 1438,
+          "originalHuman": "1.44 kB",
+          "gzipBytes": 774,
+          "gzipHuman": "774 B",
+          "brotliBytes": 765,
+          "brotliHuman": "765 B"
         },
         "dimensions": {
           "width": 2000,
@@ -1353,7 +1353,7 @@
         },
         "processTime": [
           2,
-          911424495
+          375726094
         ]
       },
       {
@@ -1361,12 +1361,12 @@
         "name": "quino-al-101314-unsplash-sqip.svg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/quino-al-101314-unsplash-sqip.svg",
         "sizes": {
-          "originalBytes": 1067,
-          "originalHuman": "1.07 kB",
-          "gzipBytes": 523,
-          "gzipHuman": "523 B",
-          "brotliBytes": 460,
-          "brotliHuman": "460 B"
+          "originalBytes": 918,
+          "originalHuman": "918 B",
+          "gzipBytes": 506,
+          "gzipHuman": "506 B",
+          "brotliBytes": 442,
+          "brotliHuman": "442 B"
         },
         "dimensions": {
           "width": 300,
@@ -1374,8 +1374,8 @@
           "ratio": "3:2"
         },
         "processTime": [
-          3,
-          103654280
+          2,
+          552250498
         ]
       },
       {
@@ -1397,7 +1397,7 @@
         },
         "processTime": [
           0,
-          414290621
+          377847028
         ]
       },
       {
@@ -1405,12 +1405,12 @@
         "name": "quino-al-101314-unsplash-sqip-art.svg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/quino-al-101314-unsplash-sqip-art.svg",
         "sizes": {
-          "originalBytes": 2860,
-          "originalHuman": "2.86 kB",
-          "gzipBytes": 1123,
-          "gzipHuman": "1.12 kB",
-          "brotliBytes": 1004,
-          "brotliHuman": "1 kB"
+          "originalBytes": 2888,
+          "originalHuman": "2.89 kB",
+          "gzipBytes": 1133,
+          "gzipHuman": "1.13 kB",
+          "brotliBytes": 1027,
+          "brotliHuman": "1.03 kB"
         },
         "dimensions": {
           "width": 300,
@@ -1418,8 +1418,8 @@
           "ratio": "300:199"
         },
         "processTime": [
-          8,
-          136954385
+          6,
+          640303207
         ]
       }
     ],
@@ -1438,12 +1438,12 @@
         "name": "shane-young-769905-unsplash-thumbnail.jpg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/shane-young-769905-unsplash-thumbnail.jpg",
         "sizes": {
-          "originalBytes": 22257,
-          "originalHuman": "22.3 kB",
-          "gzipBytes": 10093,
+          "originalBytes": 22060,
+          "originalHuman": "22.1 kB",
+          "gzipBytes": 10147,
           "gzipHuman": "10.1 kB",
-          "brotliBytes": 9980,
-          "brotliHuman": "9.98 kB"
+          "brotliBytes": 10073,
+          "brotliHuman": "10.1 kB"
         },
         "dimensions": {
           "width": 300,
@@ -1452,7 +1452,7 @@
         },
         "processTime": [
           0,
-          64844285
+          65707002
         ]
       },
       {
@@ -1460,12 +1460,12 @@
         "name": "shane-young-769905-unsplash-lqip.jpg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/shane-young-769905-unsplash-lqip.jpg",
         "sizes": {
-          "originalBytes": 1379,
+          "originalBytes": 1383,
           "originalHuman": "1.38 kB",
-          "gzipBytes": 897,
-          "gzipHuman": "897 B",
-          "brotliBytes": 881,
-          "brotliHuman": "881 B"
+          "gzipBytes": 898,
+          "gzipHuman": "898 B",
+          "brotliBytes": 877,
+          "brotliHuman": "877 B"
         },
         "dimensions": {
           "width": 10,
@@ -1474,7 +1474,7 @@
         },
         "processTime": [
           0,
-          332175116
+          226401999
         ]
       },
       {
@@ -1482,12 +1482,12 @@
         "name": "shane-young-769905-unsplash-sqip-legacy.svg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/shane-young-769905-unsplash-sqip-legacy.svg",
         "sizes": {
-          "originalBytes": 1118,
-          "originalHuman": "1.12 kB",
-          "gzipBytes": 698,
-          "gzipHuman": "698 B",
-          "brotliBytes": 681,
-          "brotliHuman": "681 B"
+          "originalBytes": 1190,
+          "originalHuman": "1.19 kB",
+          "gzipBytes": 740,
+          "gzipHuman": "740 B",
+          "brotliBytes": 716,
+          "brotliHuman": "716 B"
         },
         "dimensions": {
           "width": 1024,
@@ -1495,8 +1495,8 @@
           "ratio": "1:1"
         },
         "processTime": [
-          3,
-          18385584
+          2,
+          924241874
         ]
       },
       {
@@ -1504,12 +1504,12 @@
         "name": "shane-young-769905-unsplash-sqip.svg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/shane-young-769905-unsplash-sqip.svg",
         "sizes": {
-          "originalBytes": 1054,
+          "originalBytes": 1051,
           "originalHuman": "1.05 kB",
-          "gzipBytes": 535,
-          "gzipHuman": "535 B",
-          "brotliBytes": 473,
-          "brotliHuman": "473 B"
+          "gzipBytes": 540,
+          "gzipHuman": "540 B",
+          "brotliBytes": 478,
+          "brotliHuman": "478 B"
         },
         "dimensions": {
           "width": 300,
@@ -1518,7 +1518,7 @@
         },
         "processTime": [
           3,
-          438531764
+          263296412
         ]
       },
       {
@@ -1526,12 +1526,12 @@
         "name": "shane-young-769905-unsplash-sqip-pixels.svg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/shane-young-769905-unsplash-sqip-pixels.svg",
         "sizes": {
-          "originalBytes": 3514,
-          "originalHuman": "3.51 kB",
-          "gzipBytes": 681,
-          "gzipHuman": "681 B",
-          "brotliBytes": 477,
-          "brotliHuman": "477 B"
+          "originalBytes": 3517,
+          "originalHuman": "3.52 kB",
+          "gzipBytes": 679,
+          "gzipHuman": "679 B",
+          "brotliBytes": 470,
+          "brotliHuman": "470 B"
         },
         "dimensions": {
           "width": 800,
@@ -1540,7 +1540,7 @@
         },
         "processTime": [
           0,
-          332647694
+          242172700
         ]
       },
       {
@@ -1548,12 +1548,12 @@
         "name": "shane-young-769905-unsplash-sqip-art.svg",
         "dist": "/Users/bene/dev/sqip/demo/public/processed/shane-young-769905-unsplash-sqip-art.svg",
         "sizes": {
-          "originalBytes": 3338,
-          "originalHuman": "3.34 kB",
-          "gzipBytes": 1250,
+          "originalBytes": 3346,
+          "originalHuman": "3.35 kB",
+          "gzipBytes": 1251,
           "gzipHuman": "1.25 kB",
-          "brotliBytes": 1128,
-          "brotliHuman": "1.13 kB"
+          "brotliBytes": 1118,
+          "brotliHuman": "1.12 kB"
         },
         "dimensions": {
           "width": 300,
@@ -1561,8 +1561,8 @@
           "ratio": "1:1"
         },
         "processTime": [
-          9,
-          940247032
+          8,
+          428676304
         ]
       }
     ],
