@@ -19,10 +19,6 @@ const FILE_DEMO_BEACH = resolve(
 const EXAMPLE_SVG =
   '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="red" stroke="#000" stroke-width="3"/></svg>'
 
-jest.mock('../../src/helpers', () => ({
-  getDimensions: jest.fn(() => ({ width: 1024, height: 768 }))
-}))
-
 const logSpy = jest.spyOn(global.console, 'log').mockImplementation(() => {})
 const errorSpy = jest.spyOn(global.console, 'error')
 

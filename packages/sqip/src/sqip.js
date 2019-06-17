@@ -18,13 +18,14 @@ import path from 'path'
 
 import Debug from 'debug'
 import fs from 'fs-extra'
-import glob from 'fast-glob'
 import sizeOf from 'image-size'
 import Vibrant from 'node-vibrant'
 import sharp from 'sharp'
 import termimg from 'term-img'
 import Table from 'cli-table3'
 import chalk from 'chalk'
+
+import { locateFiles } from './helpers'
 
 const debug = Debug('sqip')
 
@@ -146,24 +147,9 @@ export default async function sqip(options) {
     )
   }
 
-  // Find all files matching the input glob
-  const files = await glob(input, {
-    absolute: true
-  })
-
+  const files = await locateFiles(input)
   debug('Found files:')
   debug(files)
-
-  // Test if files are found
-  if (!files.length) {
-    throw new Error(
-      `Unable to find any files via ${input}. Make sure the file exists.
-
-If you are using globbing patterns, the following features are supported:
-
-https://github.com/micromatch/micromatch#matching-features`
-    )
-  }
 
   // Test if all files are accessable
   for (const file of files) {
