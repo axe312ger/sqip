@@ -8,14 +8,6 @@ import blur from 'sqip-plugin-blur'
 import svgo from 'sqip-plugin-svgo'
 import datauri from 'sqip-plugin-data-uri'
 
-jest.mock('../../src/helpers', () => ({
-  getDimensions: jest.fn(() => ({ width: 1024, height: 768 }))
-}))
-jest.mock('sqip-plugin-primitive')
-jest.mock('sqip-plugin-blur')
-jest.mock('sqip-plugin-svgo')
-jest.mock('sqip-plugin-data-uri')
-
 const FILE_NOT_EXIST = '/this/file/does/not/exist.jpg'
 const FILE_DEMO_BEACH = resolve(
   __dirname,
@@ -26,6 +18,18 @@ const FILE_DEMO_BEACH = resolve(
 )
 const EXAMPLE_SVG =
   '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="red" stroke="#000" stroke-width="3"/></svg>'
+
+jest.mock('../../src/helpers', () => ({
+  getDimensions: jest.fn(() => ({ width: 1024, height: 768 }))
+}))
+
+const logSpy = jest.spyOn(global.console, 'log').mockImplementation(() => {})
+const errorSpy = jest.spyOn(global.console, 'error')
+
+jest.mock('sqip-plugin-primitive')
+jest.mock('sqip-plugin-blur')
+jest.mock('sqip-plugin-svgo')
+jest.mock('sqip-plugin-data-uri')
 
 primitive.mockImplementation(function primitiveMock() {
   return {
@@ -77,6 +81,11 @@ function expectValidResult(result) {
 }
 
 describe('node api', () => {
+  afterEach(() => {
+    logSpy.mockClear()
+    errorSpy.mockClear()
+  })
+
   test('no config passed', async () => {
     await expect(sqip()).rejects.toThrowErrorMatchingSnapshot()
   })
@@ -141,6 +150,21 @@ describe('node api', () => {
       const result = await sqip({ input: FILE_DEMO_BEACH, width: -1 })
       expect(result.metadata.width).toBe(1024)
       expect(result.metadata.height).toBe(640)
+    })
+  })
+
+  describe('silent', () => {
+    test('does not log by default on node', async () => {
+      await sqip({ input: FILE_DEMO_BEACH })
+      expect(logSpy).not.toHaveBeenCalled()
+    })
+    test('does not log when enabled', async () => {
+      await sqip({ input: FILE_DEMO_BEACH, silent: true })
+      expect(logSpy).not.toHaveBeenCalled()
+    })
+    test('logs when disabled', async () => {
+      await sqip({ input: FILE_DEMO_BEACH, silent: false })
+      expect(logSpy).toHaveBeenCalled()
     })
   })
 })

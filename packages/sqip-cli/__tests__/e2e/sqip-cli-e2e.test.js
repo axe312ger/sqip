@@ -4,7 +4,6 @@ import { stat, remove, readFile } from 'fs-extra'
 
 import cheerio from 'cheerio'
 import execa from 'execa'
-import xmlParser from 'fast-xml-parser'
 
 const inputFile = resolve(
   __dirname,
@@ -56,7 +55,17 @@ describe('cli api', () => {
 
     expect(stdout).not.toMatch(/Stored at:/)
   })
+  test('--silent disables logging to stdout', async () => {
+    const { stdout } = await execa(
+      cliCmd,
+      [cliPath, '--input', inputFile, '--silent'],
+      {
+        stripFinalNewline: true
+      }
+    )
 
+    expect(stdout).toMatch("")
+  })
   test('-o save result to file and basic svg structure is applied', async () => {
     const outputFile = resolve(
       tmpdir(),

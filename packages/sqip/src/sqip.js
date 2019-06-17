@@ -136,9 +136,10 @@ export default async function sqip(options) {
     ],
     shouldThrow: true, // @todo do we really need this?,
     width: 300,
-    parseableOutput: false, // @todo set to true only when fancy stuff is supported. xterm?,
-    silent: false
+    parseableOutput: false,
+    silent: true
   }
+
   const config = Object.assign({}, defaultOptions, options)
 
   const { input, output, parseableOutput, silent } = config
@@ -233,7 +234,13 @@ https://github.com/micromatch/micromatch#matching-features`
         const previewPath = path.resolve(__dirname, 'tmp.svg')
         await fs.writeFile(previewPath, preview)
 
-        termimg(previewPath)
+        try {
+          termimg(previewPath)
+        } catch (err) {
+          if (err.name !== 'UnsupportedTerminalError') {
+            throw new err()
+          }
+        }
       }
 
       // Metadata
