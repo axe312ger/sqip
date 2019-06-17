@@ -2,6 +2,7 @@ const { join, resolve } = require('path')
 
 const { readJSON, writeFile } = require('fs-extra')
 const convertHrtime = require('convert-hrtime')
+const prettyBytes = require('pretty-bytes')
 
 const { DATASET, variants, html } = require('./config')
 
@@ -49,27 +50,30 @@ function VariantResult({
           <thead>
             <tr>
               <th></th>
-              <th><img src="./assets/file-size.svg" width="24" /></th>
+              <th colspan="2">
+                <img src="./assets/file-size.svg" width="24" />
+              </th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>original</td>
-              <td>
-                <span title="${originalBytes}b">${originalHuman}</span>
+              <td title="${`Real size: ${originalBytes}b`}" colspan="2">
+                ${originalHuman}
               </td>
+              <td></td>
             </tr>
             <tr>
               <td>gzip</td>
-              <td>
-                <span title="${gzipBytes}b">${gzipHuman}</span>
+              <td title="${`Real size: ${gzipBytes}b`}">${gzipHuman}</td>
+              <td title="Size compared to thumbnail">
                 ${' ↓'}${100 - Math.floor(gzipBytes / (originalBytes / 100))}%
               </td>
             </tr>
             <tr>
               <td>brotli</td>
-              <td>
-                <span title="${brotliBytes}b">${brotliHuman}</span>
+              <td title="${`Real size: ${brotliBytes}b`}">${brotliHuman}</td>
+              <td title="Size compared to thumbnail">
                 ${' ↓'}${100 - Math.floor(brotliBytes / (originalBytes / 100))}%
               </td>
             </tr>
@@ -108,6 +112,15 @@ const Row = ({ image }) => {
       const time = results.find(({ variantName }) => variantName === name)
         .processTime
       return total + convertHrtime(time).seconds
+    }, 0)
+  })
+
+  const compressedSizes = variants.map(({ name }) => {
+    return images.reduce((total, { results }) => {
+      const {
+        sizes: { gzipBytes }
+      } = results.find(({ variantName }) => variantName === name)
+      return total + gzipBytes
     }, 0)
   })
 
@@ -222,7 +235,8 @@ const Row = ({ image }) => {
             element for your project.
           </p>
           <p>
-            Compare the new SQIP version with the old SQIP version, LQIP and a 300px thumbnail
+            Compare the new SQIP version with the old SQIP version, LQIP and a
+            300px thumbnail
           </p>
           <p>
             <a href="https://github.com/axe312ger/sqip">
@@ -240,6 +254,15 @@ const Row = ({ image }) => {
               </tr>
               <tr>
                 ${variants.map(({ description, config }, i) => {
+                  const compressedSize = compressedSizes[i]
+                  const originalSize = compressedSizes[0]
+                  const averageBytes = Math.round(
+                    compressedSize / images.length
+                  )
+                  const originalPercent = (
+                    (compressedSize / originalSize) *
+                    100
+                  ).toFixed(2)
                   return html`
                     <td>
                       <div class="description">
@@ -250,7 +273,17 @@ const Row = ({ image }) => {
                             src="./assets/processing-time.svg"
                             width="20"
                           />
-                          ${(processingTimes[i] / images.length).toFixed(3)}s
+                          <span title="Average processing time"
+                            >${(processingTimes[i] / images.length).toFixed(
+                              3
+                            )}s</span
+                          >
+                          <span title="Average size"
+                            >${' | ø '}${prettyBytes(averageBytes)}</span
+                          >
+                          <span title="Average size compared to thumbnail"
+                            >${' | ↓ '}${originalPercent}%</span
+                          >
                         </p>
                         ${config &&
                           html`
