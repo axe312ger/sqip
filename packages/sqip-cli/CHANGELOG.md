@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.29](https://github.com/axe312ger/sqip/compare/sqip-cli@1.0.0-alpha.28...sqip-cli@1.0.0-alpha.29) (2019-06-17)
+
+
+### Bug Fixes
+
+* **sqip-cli:** depend on plugins used in default config ([3705e0e](https://github.com/axe312ger/sqip/commit/3705e0e))
+
+
+
+
+
 # [1.0.0-alpha.28](https://github.com/axe312ger/sqip/compare/sqip-cli@1.0.0-alpha.27...sqip-cli@1.0.0-alpha.28) (2019-06-17)
 
 
