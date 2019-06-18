@@ -20,6 +20,10 @@ module.exports = content => `
         display: block;
         width: 100%;
       }
+      img.preview.lqip {
+        filter: blur(12px);
+        transform: scale(1.15);
+      }
       table {
         border-collapse: collapse;
         border-spacing: 0;
