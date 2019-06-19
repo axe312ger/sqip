@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.28](http://axe312ger.github.io/sqip/compare/sqip-demo@1.0.0-alpha.27...sqip-demo@1.0.0-alpha.28) (2019-06-19)
+
+
+### Features
+
+* **demo:** add custom LQIP implementation which may beat current SQIP ([3e57b77](http://axe312ger.github.io/sqip/commit/3e57b77))
+
+
+
+
+
 # [1.0.0-alpha.27](http://axe312ger.github.io/sqip/compare/sqip-demo@1.0.0-alpha.26...sqip-demo@1.0.0-alpha.27) (2019-06-17)
 
 **Note:** Version bump only for package sqip-demo
