@@ -175,6 +175,8 @@ export default async function sqipCLI() {
     parseableOutput: args['parseable-output']
   }
 
+  debug(`Final sqip options:`, options)
+
   try {
     await sqip(options)
   } catch (err) {
