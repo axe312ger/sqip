@@ -218,6 +218,8 @@ export default async function sqip(options) {
             throw new err()
           }
         }
+
+        await fs.unlink(previewPath)
       }
 
       // Metadata
