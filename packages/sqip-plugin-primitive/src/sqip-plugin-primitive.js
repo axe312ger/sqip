@@ -82,9 +82,10 @@ export default class PrimitivePlugin extends SqipPlugin {
 
   // Sanity check: use the exit state of 'type' to check for Primitive availability
   async checkForPrimitive() {
+    const platform = os.platform()
     const primitivePath = path.join(
       VENDOR_DIR,
-      `primitive-${os.platform()}-${os.arch()}`
+      `primitive-${platform}-${os.arch()}${platform === 'win32' ? '.exe' : ''}`
     )
 
     debug(`Trying to locate primitive binary at ${primitivePath}`)

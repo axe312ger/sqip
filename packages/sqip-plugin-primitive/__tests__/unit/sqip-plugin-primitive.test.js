@@ -27,12 +27,13 @@ describe('checkForPrimitive', () => {
   })
 
   beforeEach(() => {
-    osMock.arch.mockImplementation(() => 'unknownOS')
-    osMock.platform.mockImplementation(() => 'nonExistingArch')
+    osMock.platform.mockImplementation(() => 'unknownOS')
+    osMock.arch.mockImplementation(() => 'x64')
   })
 
   afterEach(() => {
     execaMock.mockReset()
+    fsMock.exists.mockClear()
     osMock.arch.mockClear()
     osMock.platform.mockClear()
     global.process.exit.mockClear()
@@ -44,7 +45,6 @@ describe('checkForPrimitive', () => {
 
   test('bundled executable exists', async () => {
     osMock.platform.mockImplementation(() => 'linux')
-    osMock.arch.mockImplementation(() => 'x64')
     fsMock.exists.mockImplementationOnce(() => true)
 
     await primitivePlugin.checkForPrimitive()
@@ -57,6 +57,7 @@ describe('checkForPrimitive', () => {
     osMock.platform.mockImplementation(() => 'win32')
     await primitivePlugin.checkForPrimitive()
     expect(execaMock).toHaveBeenCalledWith('where', ['primitive'])
+    expect(fsMock.exists.mock.calls[0][0]).toMatch(/\.exe$/)
 
     osMock.platform.mockImplementation(() => 'linux')
     await primitivePlugin.checkForPrimitive()
