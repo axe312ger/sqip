@@ -15,8 +15,8 @@ Array [
 
 [4m[1mOptions[22m[24m
 
-  [1m-h[22m, [1m--help[22m               Show help                                            
-  [1m--version[22m                Show version number                                  
+  [1m-h[22m, [1m--help[22m [4mstring[24m        Show help                                            
+  [1m--version[22m [4mstring[24m         Show version number                                  
   [1m-p[22m, [1m--plugins[22m [4mstring[][24m   One or more plugins. E.g. \\"-p primitive blur\\"        
   [1m-i[22m, [1m--input[22m [4mstring[24m                                                            
   [1m-o[22m, [1m--output[22m [4mstring[24m      Save the resulting SVG to a file. The svg result     
@@ -94,8 +94,8 @@ Array [
 
 [4m[1mOptions[22m[24m
 
-  [1m-h[22m, [1m--help[22m               Show help                                            
-  [1m--version[22m                Show version number                                  
+  [1m-h[22m, [1m--help[22m [4mstring[24m        Show help                                            
+  [1m--version[22m [4mstring[24m         Show version number                                  
   [1m-p[22m, [1m--plugins[22m [4mstring[][24m   One or more plugins. E.g. \\"-p primitive blur\\"        
   [1m-i[22m, [1m--input[22m [4mstring[24m                                                            
   [1m-o[22m, [1m--output[22m [4mstring[24m      Save the resulting SVG to a file. The svg result     

@@ -11,8 +11,8 @@ sqip CLI
 
 Options
 
-  -h, --help                                  Show help                         
-  --version                                   Show version number               
+  -h, --help string                           Show help                         
+  --version string                            Show version number               
   -p, --plugins string[]                      One or more plugins. E.g. \\"-p     
                                               primitive blur\\"                   
   -i, --input string                                                            
@@ -59,8 +59,8 @@ sqip CLI
 
 Options
 
-  -h, --help                                  Show help                         
-  --version                                   Show version number               
+  -h, --help string                           Show help                         
+  --version string                            Show version number               
   -p, --plugins string[]                      One or more plugins. E.g. \\"-p     
                                               primitive blur\\"                   
   -i, --input string                                                            
