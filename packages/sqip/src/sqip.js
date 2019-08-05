@@ -61,7 +61,7 @@ export async function resolvePlugins(plugins) {
         debug(`Loading ${moduleName}`)
         const Plugin = await import(moduleName)
 
-        return { ...plugin, Plugin }
+        return { ...plugin, Plugin: Plugin.default }
       } catch (err) {
         if (err.code === 'MODULE_NOT_FOUND') {
           throw new Error(
