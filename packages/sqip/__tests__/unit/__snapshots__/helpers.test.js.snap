@@ -15,7 +15,13 @@ If you are using globbing patterns, the following features are supported:
 https://github.com/micromatch/micromatch#matching-features"
 `;
 
-exports[`locateFiles invalid glob 1`] = `"ENOENT: no such file or directory, scandir '/foo/bar/baz'"`;
+exports[`locateFiles invalid glob 1`] = `
+"Unable to find any files via /foo/bar/baz/*. Make sure the file exists.
+
+If you are using globbing patterns, the following features are supported:
+
+https://github.com/micromatch/micromatch#matching-features"
+`;
 
 exports[`locateFiles single file 1`] = `
 Array [
