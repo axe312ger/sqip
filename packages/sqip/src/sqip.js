@@ -40,6 +40,8 @@ const paletteKeys = [
   'LightMuted'
 ]
 
+// Resolves plugins based on a given config
+// Array of plugin names or config objects, even mixed.
 export async function resolvePlugins(plugins) {
   return Promise.all(
     plugins.map(async plugin => {
@@ -165,12 +167,12 @@ export default async function sqip(options) {
   for (const filePath of files) {
     let outputPath
 
+    // Apply plugins to files
     if (!silent) {
       console.log(`Processing: ${filePath}`)
     } else {
       debug(`Processing ${filePath}`)
     }
-
     const result = await processImage({ filePath, config })
     debug(`Processed ${filePath}`)
 
@@ -198,6 +200,7 @@ export default async function sqip(options) {
       await fs.writeFile(outputPath, result.svg)
     }
 
+    // Gather CLI output information
     if (!silent) {
       if (outputPath) {
         console.log(`Stored at: ${outputPath}`)
