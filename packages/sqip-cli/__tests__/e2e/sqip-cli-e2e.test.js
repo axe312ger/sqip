@@ -135,7 +135,7 @@ describe('cli api', () => {
     )
     const { stdout } = await execa(
       cliCmd,
-      [cliPath, '-i', inputFile, '-o', outputFile, '-m', 4],
+      [cliPath, '-i', inputFile, '-o', outputFile, '-m', 3],
       {
         stripFinalNewline: true
       }
