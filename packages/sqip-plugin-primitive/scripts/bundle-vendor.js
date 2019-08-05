@@ -20,8 +20,13 @@ const builds = [
   }
 ]
 
-// Get primitive
-execSync(`go get -u github.com/fogleman/primitive`)
+try {
+  // Get primitive
+  execSync(`go get -u github.com/fogleman/primitive`)
+} catch (err) {
+  console.log('\n---\n\nUnable to download primitive from https://github.com/fogleman/primitive.\n\nIs go installed? Some users might just want to download it from here:\nhttps://golang.org/dl/\n\n---\n\n')
+  process.exit(1)
+}
 
 // Build executables
 builds.forEach(build => {
