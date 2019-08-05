@@ -2,7 +2,7 @@ const { resolve, parse } = require('path')
 const { hrtime } = require('process')
 
 const { readdir, writeJSON } = require('fs-extra')
-const brotliSize = require('brotli-size')
+const brotliSize = require('brotli-size').default
 const gzipSize = require('gzip-size')
 const prettyBytes = require('pretty-bytes')
 const imageSize = require('image-size')
