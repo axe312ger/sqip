@@ -219,7 +219,7 @@ Examples
 #### Process single file
 
 ```sh
-sqip -input "demo/beach.jpg"
+sqip --input "demo/beach.jpg"
 # <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="640" viewBox="0 0 1024 640"><filter id="a"><feGaussianBlur stdDeviation="12"/></filter><rect width="100%" height="100%" fill="#718d95"/><g filter="url(#a)">...</g></svg>
 ```
 
