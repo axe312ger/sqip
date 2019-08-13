@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.28](https://github.com/axe312ger/sqip/compare/sqip-plugin-primitive@1.0.0-alpha.27...sqip-plugin-primitive@1.0.0-alpha.28) (2019-08-13)
+
+
+### Bug Fixes
+
+* **sqip-plugin-primitive:** use .exe file extension for windows. fixes [#94](https://github.com/axe312ger/sqip/issues/94) ([206f683](https://github.com/axe312ger/sqip/commit/206f683))
+
+
+### Features
+
+* **sqip-plugin-primitive:** help user when go is not installed ([acef377](https://github.com/axe312ger/sqip/commit/acef377))
+
+
+
+
+
 # [1.0.0-alpha.27](https://github.com/axe312ger/sqip/compare/sqip-plugin-primitive@1.0.0-alpha.26...sqip-plugin-primitive@1.0.0-alpha.27) (2019-06-17)
 
 
