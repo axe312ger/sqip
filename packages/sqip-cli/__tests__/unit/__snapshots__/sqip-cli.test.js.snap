@@ -129,3 +129,31 @@ Array [
   ],
 ]
 `;
+
+exports[`sqip-plugin-cli passes all given args to library 1`] = `
+Array [
+  Array [
+    Object {
+      "input": "foo",
+      "output": "bar",
+      "parseableOutput": undefined,
+      "plugins": Array [
+        Object {
+          "name": "primitive",
+          "options": Object {},
+        },
+        Object {
+          "name": "blur",
+          "options": Object {},
+        },
+        Object {
+          "name": "svgo",
+          "options": Object {},
+        },
+      ],
+      "silent": undefined,
+      "width": 1337,
+    },
+  ],
+]
+`;
