@@ -154,7 +154,7 @@ export default async function sqipCLI() {
     return process.exit(1)
   }
 
-  const { input, output } = args
+  const { input, output, width } = args
 
   // Build list of plugins with options based on passed arguments
   const pluginsOptions = resolvedPlugins.map(({ name }) => {
@@ -170,6 +170,7 @@ export default async function sqipCLI() {
   const options = {
     input,
     output,
+    width,
     plugins: pluginsOptions,
     silent: args.silent,
     parseableOutput: args['parseable-output']
