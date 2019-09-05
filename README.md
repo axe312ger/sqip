@@ -114,7 +114,7 @@ Multiple input images will result in an array of result objects.
 #### Process folder with default settings
 
 ```js
-import sqip from 'sqip' // in node will be => const { default: sqip } = require('sqip');
+import sqip from 'sqip' // in node will be => const sqip = require('sqip').default
 import { resolve } from 'path'
 
 ;(async () => {
