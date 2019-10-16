@@ -1,11 +1,11 @@
 const { resolve, parse } = require('path')
 const { hrtime } = require('process')
 
-const { readdir, writeJSON } = require('fs-extra')
+const { readdir, writeJSON, createReadStream } = require('fs-extra')
 const brotliSize = require('brotli-size').default
 const gzipSize = require('gzip-size')
 const prettyBytes = require('pretty-bytes')
-const imageSize = require('image-size')
+const imageSize = require('probe-image-size')
 const aspectRatio = require('aspect-ratio')
 const cliProgress = require('cli-progress')
 
@@ -44,7 +44,7 @@ function getSizes(input) {
     const { name: filename } = parse(file)
 
     const path = resolve(ORIGINAL, file)
-    const { width, height } = imageSize(path)
+    const { width, height } = imageSize(createReadStream(path))
     const ratio = aspectRatio(width, height)
     const dimensions = { width, height, ratio }
 

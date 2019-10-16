@@ -18,7 +18,7 @@ import path from 'path'
 
 import Debug from 'debug'
 import fs from 'fs-extra'
-import sizeOf from 'image-size'
+import imageSize from 'probe-image-size'
 import Vibrant from 'node-vibrant'
 import sharp from 'sharp'
 import termimg from 'term-img'
@@ -75,7 +75,8 @@ export async function resolvePlugins(plugins) {
 }
 
 async function processImage({ filePath, config }) {
-  const originalSizes = sizeOf(filePath)
+  let imageContent = await fs.readFile(filePath)
+  const originalSizes = imageSize.sync(imageContent)
   const vibrant = new Vibrant(filePath, { quality: 0 })
   const palette = await vibrant.getPalette()
   let metadata = {
@@ -88,8 +89,6 @@ async function processImage({ filePath, config }) {
   const plugins = await resolvePlugins(config.plugins)
 
   // Interate through plugins and apply them to last returned image
-  let imageContent = await fs.readFile(filePath)
-
   if (config.width > 0) {
     // Resize to desired output width
     imageContent = await sharp(imageContent)
