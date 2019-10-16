@@ -2,6 +2,7 @@
 
 exports[`locateFiles expandes tilde in glob "~+/__tests__/fixtures" 1`] = `
 Array [
+  "/__tests__/fixtures/CMYK-example.jpg",
   "/__tests__/fixtures/beach-sqip.svg",
   "/__tests__/fixtures/beach.jpg",
 ]
@@ -31,6 +32,7 @@ Array [
 
 exports[`locateFiles subdirectory glob "**/*" 1`] = `
 Array [
+  "/__tests__/fixtures/CMYK-example.jpg",
   "/__tests__/fixtures/beach-sqip.svg",
   "/__tests__/fixtures/beach.jpg",
 ]
@@ -38,6 +40,7 @@ Array [
 
 exports[`locateFiles whole directory with glob "*" 1`] = `
 Array [
+  "/__tests__/fixtures/CMYK-example.jpg",
   "/__tests__/fixtures/beach-sqip.svg",
   "/__tests__/fixtures/beach.jpg",
 ]
@@ -45,12 +48,14 @@ Array [
 
 exports[`locateFiles whole directory with glob "*.{jpg,jpeg}" 1`] = `
 Array [
+  "/__tests__/fixtures/CMYK-example.jpg",
   "/__tests__/fixtures/beach.jpg",
 ]
 `;
 
 exports[`locateFiles whole directory without glob 1`] = `
 Array [
+  "/__tests__/fixtures/CMYK-example.jpg",
   "/__tests__/fixtures/beach-sqip.svg",
   "/__tests__/fixtures/beach.jpg",
 ]

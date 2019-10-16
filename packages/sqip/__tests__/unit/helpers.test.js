@@ -36,27 +36,27 @@ describe('locateFiles', () => {
   })
   test('whole directory without glob', async () => {
     const result = await locateFiles(DIR_FIXTURES)
-    expect(result).toHaveLength(2)
+    expect(result).toHaveLength(3)
     expect(cleanResultArray(result)).toMatchSnapshot()
   })
   test('whole directory with glob "*"', async () => {
     const result = await locateFiles(`${DIR_FIXTURES}/*`)
-    expect(result).toHaveLength(2)
+    expect(result).toHaveLength(3)
     expect(cleanResultArray(result)).toMatchSnapshot()
   })
   test('whole directory with glob "*.{jpg,jpeg}"', async () => {
     const result = await locateFiles(`${DIR_FIXTURES}/*.{jpg,jpeg}`)
-    expect(result).toHaveLength(1)
+    expect(result).toHaveLength(2)
     expect(cleanResultArray(result)).toMatchSnapshot()
   })
   test('subdirectory glob "**/*"', async () => {
     const result = await locateFiles(`${resolve(DIR_FIXTURES, '..')}/**/*`)
-    expect(result).toHaveLength(2)
+    expect(result).toHaveLength(3)
     expect(cleanResultArray(result)).toMatchSnapshot()
   })
   test('expandes tilde in glob "~+/__tests__/fixtures"', async () => {
     const result = await locateFiles(`~+/__tests__/fixtures`)
-    expect(result).toHaveLength(2)
+    expect(result).toHaveLength(3)
     expect(cleanResultArray(result)).toMatchSnapshot()
   })
 })
