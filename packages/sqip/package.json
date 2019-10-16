@@ -43,7 +43,7 @@
     "expand-tilde": "^2.0.2",
     "fast-glob": "^3.1.0",
     "fs-extra": "^8.0.1",
-    "image-size": "^0.7.3",
+    "image-size": "^0.8.3",
     "node-vibrant": "^3.2.0-alpha",
     "sharp": "^0.23.1",
     "term-img": "^4.1.0"

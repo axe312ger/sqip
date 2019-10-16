@@ -8,7 +8,7 @@ const { version } = require('../package.json')
 
 const debug = Debug('sqip-cli')
 
-let optionList = [
+const defaultOptionList = [
   {
     name: 'help',
     alias: 'h',
@@ -86,7 +86,7 @@ $ sqip -i input.jpg -n 25 -b 0 -o result.svg`
 }
 
 export default async function sqipCLI() {
-  const pluginDetectionArgs = commandLineArgs(optionList, { partial: true })
+  const pluginDetectionArgs = commandLineArgs(defaultOptionList, { partial: true })
 
   if ('version' in pluginDetectionArgs) {
     console.log(version)
@@ -128,7 +128,7 @@ export default async function sqipCLI() {
     return definitions
   }, [])
 
-  optionList = [...optionList, ...pluginOptions]
+  const optionList = [...defaultOptionList, ...pluginOptions]
 
   debug(`Generated CLI options:\n`, optionList)
 
