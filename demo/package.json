@@ -16,7 +16,7 @@
     "cli-progress": "^3.3.1",
     "convert-hrtime": "^3.0.0",
     "data-uri-to-buffer": "^3.0.0",
-    "execa": "^3.1.0",
+    "execa": "3.1.0",
     "fs-extra": "^8.0.1",
     "gzip-size": "^5.1.1",
     "htm": "^2.1.1",
