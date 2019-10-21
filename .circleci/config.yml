@@ -25,6 +25,9 @@ jobs:
           paths:
             - ~/.cache/yarn
           key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      - run: ls -lisah node_modules
+      - run: npx lerna bootstrap
+      - run: ls -lisah node_modules
       - run: yarn run lint
   test-unit:
     docker:
