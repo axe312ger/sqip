@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.30](http://axe312ger.github.io/sqip/compare/sqip-demo@1.0.0-alpha.29...sqip-demo@1.0.0-alpha.30) (2019-11-16)
+
+
+### Bug Fixes
+
+* **input-file-parsing:** allow non-rgb images via probe-image-size ([4a8cc83](http://axe312ger.github.io/sqip/commit/4a8cc83c405c893f69bf151d237fb3dfd60d18ca))
+
+
+
+
+
 # [1.0.0-alpha.29](http://axe312ger.github.io/sqip/compare/sqip-demo@1.0.0-alpha.28...sqip-demo@1.0.0-alpha.29) (2019-08-13)
 
 **Note:** Version bump only for package sqip-demo
