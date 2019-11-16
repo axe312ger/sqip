@@ -26,6 +26,6 @@
   "dependencies": {
     "debug": "^4.1.1",
     "sqip": "^1.0.0-alpha.27",
-    "svgo": "^1.2.2"
+    "svgo": "^1.3.2"
   }
 }
