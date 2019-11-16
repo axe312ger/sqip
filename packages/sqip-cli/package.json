@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "command-line-args": "^5.1.1",
-    "command-line-usage": "^6.0.2",
+    "command-line-usage": "^6.1.0",
     "debug": "^4.1.1",
     "sqip": "^1.0.0-alpha.27",
     "sqip-plugin-blur": "^1.0.0-alpha.28",
