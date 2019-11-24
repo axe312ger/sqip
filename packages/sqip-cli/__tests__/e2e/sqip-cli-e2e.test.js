@@ -49,7 +49,7 @@ describe('cli api', () => {
     expect(stdout).toMatchSnapshot()
   })
   test('no output will not show stored at hint', async () => {
-    const { stdout } = await execa(cliCmd, [cliPath, '--input', inputFile], {
+    const { stdout } = await execa(cliCmd, [cliPath, '--input', inputFile, '-n', 3], {
       stripFinalNewline: true
     })
 
@@ -58,7 +58,7 @@ describe('cli api', () => {
   test('--silent disables logging to stdout', async () => {
     const { stdout } = await execa(
       cliCmd,
-      [cliPath, '--input', inputFile, '--silent'],
+      [cliPath, '--input', inputFile, '--silent', '-n', 3],
       {
         stripFinalNewline: true
       }
@@ -74,7 +74,7 @@ describe('cli api', () => {
 
     const { stdout } = await execa(
       cliCmd,
-      [cliPath, '-i', inputFile, '-o', outputFile],
+      [cliPath, '-i', inputFile, '-o', outputFile, '-n', 3],
       {
         stripFinalNewline: true
       }
