@@ -20,9 +20,13 @@ jest.setTimeout(20000)
 describe('broken input files', () => {
   // https://github.com/axe312ger/sqip/issues/93
   test('can read image with CMYK colorspace', async () => {
-    const { stdout } = await execa(cliCmd, [cliPath, '-i', inputFileCMYK], {
-      stripFinalNewline: true
-    })
+    const { stdout } = await execa(
+      cliCmd,
+      [cliPath, '-i', inputFileCMYK, '-n', 3],
+      {
+        stripFinalNewline: true
+      }
+    )
     expect(stdout).toMatch(/originalWidth.+originalHeight.+width.+height.+type/)
     expect(stdout).toMatch(
       /Vibrant.+DarkVibrant.+LightVibrant.+Muted.+DarkMuted.+LightMuted/
