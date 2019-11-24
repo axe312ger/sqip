@@ -95,10 +95,6 @@ describe('cli api', () => {
     expect($filter).toHaveLength(1)
     expect($filter.attr('stdDeviation')).toBe('12')
 
-    // Check default number of primitives
-    const $primitives = $('svg g > g > *')
-    expect($primitives).toHaveLength(8)
-
     await remove(outputFile)
   })
 })
