@@ -90,7 +90,10 @@ describe('runPrimitive', () => {
     metadata = {
       width: 100,
       height: 200,
-      type: 'jpg'
+      type: 'jpg',
+      palette: {
+        DarkMuted: { getHex: () => '#123456' }
+      }
     }
   })
 
@@ -131,6 +134,36 @@ describe('runPrimitive', () => {
     const primitivePlugin = new PrimitivePlugin({
       pluginOptions: config,
       metadata: { ...metadata, width: 600, height: 300 },
+      filePath
+    })
+    await primitivePlugin.apply(fileContent)
+    expect(execaMock.mock.calls).toHaveLength(2)
+    expect(execaMock.mock.calls[1]).toHaveLength(3)
+    fixProcessArgumentsForSnapshot(execaMock)
+    expect(execaMock.mock.calls[1]).toMatchSnapshot()
+  })
+
+  test('allows avg as value for background', async () => {
+    const primitivePlugin = new PrimitivePlugin({
+      pluginOptions: {
+        background: 'avg'
+      },
+      metadata,
+      filePath
+    })
+    await primitivePlugin.apply(fileContent)
+    expect(execaMock.mock.calls).toHaveLength(2)
+    expect(execaMock.mock.calls[1]).toHaveLength(3)
+    fixProcessArgumentsForSnapshot(execaMock)
+    expect(execaMock.mock.calls[1]).toMatchSnapshot()
+  })
+
+  test('allows hex as value for background', async () => {
+    const primitivePlugin = new PrimitivePlugin({
+      pluginOptions: {
+        background: '#654321'
+      },
+      metadata,
       filePath
     })
     await primitivePlugin.apply(fileContent)
