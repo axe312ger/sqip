@@ -34,6 +34,39 @@ export default class PrimitivePlugin extends SqipPlugin {
         description:
           'The style of primitives to use: \n0=combo, 1=triangle, 2=rect, 3=ellipse, 4=circle, 5=rotatedrect, 6=beziers, 7=rotatedellipse, 8=polygon',
         defaultValue: 0
+      },
+      {
+        name: 'rep',
+        type: Number,
+        description:
+          'add N extra shapes each iteration with reduced search (mostly good for beziers',
+        defaultValue: 0
+      },
+      // @todo we might support this by throwing every result into the image array sqip uses
+      // {
+      //   name: 'nth',
+      //   type: Number,
+      //   description: 'save every Nth frame (only when %d is in output path)',
+      //   defaultValue: 1
+      // },
+      {
+        name: 'alpha',
+        type: Number,
+        description:
+          'color alpha (use 0 to let the algorithm choose alpha for each shape)',
+        defaultValue: 128
+      },
+      {
+        name: 'background',
+        type: String,
+        description: 'starting background color (hex)',
+        defaultValue: 'DarkMuted'
+      },
+      {
+        name: 'cores',
+        type: Number,
+        description: 'number of parallel workers (default uses all cores)',
+        defaultValue: 0
       }
     ]
   }
@@ -43,6 +76,10 @@ export default class PrimitivePlugin extends SqipPlugin {
     this.options = {
       numberOfPrimitives: 8,
       mode: 0,
+      rep: 0,
+      alpha: 128,
+      background: 'DarkMuted',
+      cores: 0,
       ...pluginOptions
     }
   }
@@ -55,8 +92,18 @@ export default class PrimitivePlugin extends SqipPlugin {
     }
     await this.checkForPrimitive()
 
-    const { numberOfPrimitives, mode } = this.options
-    const { width, height } = this.metadata
+    const {
+      numberOfPrimitives,
+      mode,
+      rep,
+      alpha,
+      background: userBg,
+      cores
+    } = this.options
+
+    const { width, height, palette } = this.metadata
+
+    const background = userBg in palette ? palette[userBg].getHex() : userBg
 
     const { stdout } = await execa(
       primitiveExecutable,
@@ -70,7 +117,15 @@ export default class PrimitivePlugin extends SqipPlugin {
         '-m',
         mode,
         '-s',
-        findLargerImageDimension({ width, height })
+        findLargerImageDimension({ width, height }),
+        '-rep',
+        rep,
+        '-a',
+        alpha,
+        '-bg',
+        background,
+        '-j',
+        cores
       ],
       { input: imageBuffer }
     )

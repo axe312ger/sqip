@@ -30,24 +30,14 @@ const cliCmd = `node`
 jest.setTimeout(20000)
 
 describe('primitive e2e/integration tests', () => {
-  test('-n sets the number of primitives', async () => {
+  test('run with default settings', async () => {
     const outputFile = resolve(
       tmpdir(),
       `sqip-e2e-test-${new Date().getTime()}.svg`
     )
     const { stdout } = await execa(
       cliCmd,
-      [
-        cliPath,
-        '-i',
-        inputFile,
-        '-o',
-        outputFile,
-        '-p',
-        'primitive',
-        '-n',
-        5
-      ],
+      [cliPath, '-i', inputFile, '-o', outputFile, '-p', 'primitive'],
       {
         stripFinalNewline: true
       }
@@ -55,28 +45,38 @@ describe('primitive e2e/integration tests', () => {
 
     isValidStdout(stdout)
 
-    // Does the new file exist
     expect(await stat(outputFile)).toBeTruthy()
 
-    const content = await readFile(outputFile)
-    console.log(content.toString())
-    const $ = cheerio.load(content, { xml: true })
+    const darkMuted = stdout.match(/#[0-9a-f]{6}/g)[4]
 
-    // Check default number of primitives
-    const $primitives = $('svg > g > *')
-    expect($primitives).toHaveLength(5)
+    const content = await readFile(outputFile)
+
+    const $ = cheerio.load(content, { xml: true })
+    const $primitives = $('svg > g *:not(g)')
+    const types = [
+      ...new Set($primitives.map((i, $primitive) => $primitive.tagName).get())
+    ]
+    const firstPrimitive = $('svg > g *:not(g)').get(0)
+    const backgroundRect = $('svg > rect').get(0)
+
+    expect($primitives).toHaveLength(8)
+    expect(types.length).toBeGreaterThanOrEqual(1)
+    expect(
+      parseFloat(firstPrimitive.attribs['fill-opacity']).toFixed(1)
+    ).toEqual("0.5")
+    expect(backgroundRect.attribs['fill']).toEqual(darkMuted)
 
     await remove(outputFile)
   })
 
-  test('-m sets the primitive mode', async () => {
+  test('run with custom settings', async () => {
     const outputFile = resolve(
       tmpdir(),
       `sqip-e2e-test-${new Date().getTime()}.svg`
     )
     const { stdout } = await execa(
       cliCmd,
-      [cliPath, '-i', inputFile, '-o', outputFile, '-p', 'primitive', '-n', 3,'-m', 3],
+      [cliPath, '-i', inputFile, '-o', outputFile, '-p', 'primitive', '-n', 5, '--primitive-background', '#123456', '--primitive-alpha', '64' ],
       {
         stripFinalNewline: true
       }
@@ -84,16 +84,24 @@ describe('primitive e2e/integration tests', () => {
 
     isValidStdout(stdout)
 
-    // Does the new file exist
     expect(await stat(outputFile)).toBeTruthy()
 
     const content = await readFile(outputFile)
-    const $ = cheerio.load(content, { xml: true })
 
-    // Check type of primitives to be all ellipses
-    const $primitives = $('svg > g > *')
-    const types = $primitives.map((i, $primitive) => $primitive.tagName).get()
-    expect(new Set(types)).toEqual(new Set(['ellipse']))
+    const $ = cheerio.load(content, { xml: true })
+    const $primitives = $('svg > g *:not(g)')
+    const types = [
+      ...new Set($primitives.map((i, $primitive) => $primitive.tagName).get())
+    ]
+    const firstPrimitive = $('svg > g *:not(g)').get(0)
+    const backgroundRect = $('svg > rect').get(0)
+
+    expect($primitives).toHaveLength(5)
+    expect(types.length).toBeGreaterThanOrEqual(1)
+    expect(
+      parseFloat(firstPrimitive.attribs['fill-opacity']).toFixed(2)
+    ).toEqual('0.25')
+    expect(backgroundRect.attribs['fill']).toEqual('#123456')
 
     await remove(outputFile)
   })
