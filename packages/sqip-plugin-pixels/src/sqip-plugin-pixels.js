@@ -5,9 +5,25 @@ import { SVG, registerWindow } from '@svgdotjs/svg.js'
 import { SqipPlugin } from 'sqip'
 
 export default class PixelsPlugin extends SqipPlugin {
+  static get cliOptions() {
+    return [
+      {
+        name: 'width',
+        type: Number,
+        description: 'The number of horizontal pixels',
+        defaultValue: 8
+      },
+      {
+        name: 'pixelSize',
+        description: 'Size of every pixel in px',
+        defaultValue: 100
+      }
+    ]
+  }
+
   constructor({ pluginOptions }) {
     super(...arguments)
-    this.options = pluginOptions
+    this.options = { width: 8, pixelSize: 100, ...pluginOptions }
 
     registerWindow(window, window.document)
   }
@@ -19,25 +35,25 @@ export default class PixelsPlugin extends SqipPlugin {
       )
     }
 
+    const { width, pixelSize } = this.options
+
     const { data, info } = await sharp(imageBuffer)
-      .resize({ width: 8 })
+      .resize({ width })
       .raw()
       .toBuffer({ resolveWithObject: true })
-
-    const sizeFactor = 100
 
     let column = 0
     let row = 0
 
-    const canvas = SVG().size(info.width * sizeFactor, info.height * sizeFactor)
+    const canvas = SVG().size(info.width * pixelSize, info.height * pixelSize)
     for (var i = 0; i < data.length; i += 3) {
       var red = data[i]
       var green = data[i + 1]
       var blue = data[i + 2]
       canvas
-        .rect(1 * sizeFactor, 1 * sizeFactor)
+        .rect(1 * pixelSize, 1 * pixelSize)
         .attr({ fill: `rgb(${red},${green},${blue})` })
-        .move(column * sizeFactor, row * sizeFactor)
+        .move(column * pixelSize, row * pixelSize)
       column++
       if (column >= info.width) {
         column = 0

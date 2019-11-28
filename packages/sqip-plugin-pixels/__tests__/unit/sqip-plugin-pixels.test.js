@@ -15,7 +15,7 @@ const FILE_DEMO_BEACH = resolve(
 const fileContent = readFileSync(FILE_DEMO_BEACH)
 
 describe('sqip-plugin-pixels', () => {
-  it('turns raster image into pixelated svg', async () => {
+  it('default output', async () => {
     const plugin = new sqipPluginPixels({})
     const result = await plugin.apply(fileContent)
 
@@ -25,5 +25,23 @@ describe('sqip-plugin-pixels', () => {
     expect($('svg')).toHaveLength(1)
     const $rects = $('svg > rect')
     expect($rects).toHaveLength(8 * 5)
+    const firstRect = $('svg > rect').get(0)
+    expect(firstRect.attribs.width).toEqual('100')
+  })
+
+  it('custom config', async () => {
+    const plugin = new sqipPluginPixels({
+      pluginOptions: { width: 16, pixelSize: 50 }
+    })
+    const result = await plugin.apply(fileContent)
+
+    const $ = cheerio.load(result, { xml: true })
+
+    // Should be one svg with 16 * 10 pixel rects with 50px size
+    expect($('svg')).toHaveLength(1)
+    const $rects = $('svg > rect')
+    expect($rects).toHaveLength(16 * 10)
+    const firstRect = $('svg > rect').get(0)
+    expect(firstRect.attribs.width).toEqual('50')
   })
 })
