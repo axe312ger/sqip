@@ -24,7 +24,7 @@
     "mozjpeg": "^6.0.1",
     "pretty-bytes": "^5.2.0",
     "probe-image-size": "^5.0.0",
-    "sharp": "^0.23.2",
+    "sharp": "^0.23.3",
     "sqip": "^1.0.0-alpha.28",
     "sqip-legacy": "npm:sqip@legacy",
     "sqip-plugin-blur": "^1.0.0-alpha.29",
@@ -36,6 +36,6 @@
   },
   "devDependencies": {
     "gh-pages": "^2.1.1",
-    "nodemon": "^1.19.4"
+    "nodemon": "^2.0.1"
   }
 }
