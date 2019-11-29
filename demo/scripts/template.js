@@ -16,6 +16,9 @@ module.exports = content => `
       a:visited {
         color: firebrick;
       }
+      p:first-child {
+        margin-top: 0;
+      }
       img.preview {
         display: block;
         width: 100%;
@@ -35,7 +38,7 @@ module.exports = content => `
       }
       td,
       th {
-        width: 300px;
+        width: 240px;
       }
       th {
         text-align: left;
@@ -43,6 +46,7 @@ module.exports = content => `
       }
       .description {
         padding: 1rem;
+        font-size: 0.85em;
       }
       details {
         margin-top: 1rem;
