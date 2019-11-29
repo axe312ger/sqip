@@ -205,12 +205,14 @@ const variants = [
     },
     resultFileType: 'svg',
     task: async ({ path, dist }) => {
-      const { svg } = await sqip({
+      const {
+        metadata: { dataURI }
+      } = await sqip({
         input: path,
         plugins: ['potrace', 'svgo', 'data-uri']
       })
-      await writeImage({ dataURI: svg, dist })
-      return svg
+      await writeImage({ dataURI, dist })
+      return dataURI
     }
   },
   {
@@ -235,7 +237,9 @@ const variants = [
     },
     resultFileType: 'svg',
     task: async ({ path, dist }) => {
-      const { svg } = await sqip({
+      const {
+        metadata: { dataURI }
+      } = await sqip({
         input: path,
         plugins: [
           { name: 'potrace', options: { posterize: true } },
@@ -243,8 +247,8 @@ const variants = [
           'data-uri'
         ]
       })
-      await writeImage({ dataURI: svg, dist })
-      return svg
+      await writeImage({ dataURI, dist })
+      return dataURI
     }
   }
 ]
