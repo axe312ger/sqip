@@ -13,17 +13,11 @@ jobs:
             - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
             - yarn-packages-v1-{{ .Branch }}-
             - yarn-packages-v1-
-      - restore_cache:
-          keys:
-            - v1-pkg-cache
       - run: yarn
-      - save_cache:
-          key: v1-pkg-cache
-          paths:
-            - /go/pkg
       - save_cache:
           paths:
             - ~/.cache/yarn
+            - ./node_modules
           key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run: yarn run build
       - run: yarn run lint
@@ -40,17 +34,11 @@ jobs:
             - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
             - yarn-packages-v1-{{ .Branch }}-
             - yarn-packages-v1-
-      - restore_cache:
-          keys:
-            - v1-pkg-cache
       - run: yarn
-      - save_cache:
-          key: v1-pkg-cache
-          paths:
-            - /go/pkg
       - save_cache:
           paths:
             - ~/.cache/yarn
+            - ./node_modules
           key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run: yarn run build
       - run: yarn run test:unit
@@ -68,17 +56,11 @@ jobs:
             - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
             - yarn-packages-v1-{{ .Branch }}-
             - yarn-packages-v1-
-      - restore_cache:
-          keys:
-            - v1-pkg-cache
       - run: yarn
-      - save_cache:
-          key: v1-pkg-cache
-          paths:
-            - /go/pkg
       - save_cache:
           paths:
             - ~/.cache/yarn
+            - ./node_modules
           key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run: yarn run test:e2e
 workflows:
