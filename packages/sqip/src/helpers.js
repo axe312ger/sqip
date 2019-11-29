@@ -58,3 +58,7 @@ https://github.com/micromatch/micromatch#matching-features`
 
   return files
 }
+
+export function parseColor({ palette, color }) {
+  return color in palette ? palette[color].getHex() : color
+}
