@@ -26,5 +26,8 @@
   "dependencies": {
     "potrace": "^2.1.1",
     "sqip": "^1.0.0-alpha.28"
+  },
+  "devDependencies": {
+    "cheerio": "^1.0.0-rc.3"
   }
 }

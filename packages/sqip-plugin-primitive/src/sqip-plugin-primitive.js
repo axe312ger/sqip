@@ -5,7 +5,7 @@ import os from 'os'
 import execa from 'execa'
 import Debug from 'debug'
 
-import { SqipPlugin } from 'sqip'
+import { SqipPlugin, parseColor } from 'sqip'
 
 const debug = Debug('sqip-plugin-primitive')
 
@@ -103,7 +103,7 @@ export default class PrimitivePlugin extends SqipPlugin {
 
     const { width, height, palette } = this.metadata
 
-    const background = userBg in palette ? palette[userBg].getHex() : userBg
+    const background = parseColor({color: userBg, palette})
 
     const { stdout } = await execa(
       primitiveExecutable,
