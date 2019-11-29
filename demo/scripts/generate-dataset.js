@@ -2,7 +2,7 @@ const { resolve, parse } = require('path')
 const { hrtime } = require('process')
 
 const { readdir, writeJSON, createReadStream } = require('fs-extra')
-const brotliSize = require('brotli-size').default
+const brotliSize = require('brotli-size')
 const gzipSize = require('gzip-size')
 const prettyBytes = require('pretty-bytes')
 const imageSize = require('probe-image-size')
@@ -25,7 +25,7 @@ function getSizes(input) {
   }
 }
 
-;(async () => {
+(async () => {
   // read the images
   const allFiles = await readdir(ORIGINAL)
   const imageFiles = allFiles.filter(file => {
@@ -44,7 +44,7 @@ function getSizes(input) {
     const { name: filename } = parse(file)
 
     const path = resolve(ORIGINAL, file)
-    const { width, height } = imageSize(createReadStream(path))
+    const { width, height } = await imageSize(createReadStream(path))
     const ratio = aspectRatio(width, height)
     const dimensions = { width, height, ratio }
 
@@ -61,7 +61,7 @@ function getSizes(input) {
       if (name === 'original-minified') {
         result = 'trimmed'
       }
-      const { width, height } = imageSize(dist)
+      const { width, height } = await imageSize(createReadStream(dist))
       const ratio = aspectRatio(width, height)
       const dimensions = { width, height, ratio }
       results.push({ variantName, name, dist, sizes, dimensions, processTime })
