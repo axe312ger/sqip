@@ -49,7 +49,7 @@ describe('cli api', () => {
     expect(stdout).toMatchSnapshot()
   })
   test('no output will not show stored at hint', async () => {
-    const { stdout } = await execa(cliCmd, [cliPath, '--input', inputFile, '-n', 3], {
+    const { stdout } = await execa(cliCmd, [cliPath, '--input', inputFile, '-p', 'pixels'], {
       stripFinalNewline: true
     })
 
@@ -58,7 +58,7 @@ describe('cli api', () => {
   test('--silent disables logging to stdout', async () => {
     const { stdout } = await execa(
       cliCmd,
-      [cliPath, '--input', inputFile, '--silent', '-n', 3],
+      [cliPath, '--input', inputFile, '--silent', '-p', 'pixels'],
       {
         stripFinalNewline: true
       }
@@ -74,7 +74,7 @@ describe('cli api', () => {
 
     const { stdout } = await execa(
       cliCmd,
-      [cliPath, '-i', inputFile, '-o', outputFile, '-n', 3],
+      [cliPath, '-i', inputFile, '-o', outputFile, '-p', 'pixels'],
       {
         stripFinalNewline: true
       }
@@ -89,11 +89,6 @@ describe('cli api', () => {
 
     // File content is actually a parseable svg
     expect($('svg')).toHaveLength(1)
-
-    // Check default blur value
-    const $filter = $('svg > filter > feGaussianBlur')
-    expect($filter).toHaveLength(1)
-    expect($filter.attr('stdDeviation')).toBe('12')
 
     await remove(outputFile)
   })
