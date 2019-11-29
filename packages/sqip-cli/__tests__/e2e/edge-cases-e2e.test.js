@@ -22,7 +22,7 @@ describe('broken input files', () => {
   test('can read image with CMYK colorspace', async () => {
     const { stdout } = await execa(
       cliCmd,
-      [cliPath, '-i', inputFileCMYK, '-n', 3],
+      [cliPath, '-i', inputFileCMYK, '-p', 'pixels'],
       {
         stripFinalNewline: true
       }
