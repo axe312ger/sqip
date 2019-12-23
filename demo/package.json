@@ -11,7 +11,7 @@
     "deploy": "npm run build:html && gh-pages -d public"
   },
   "dependencies": {
-    "aspect-ratio": "^2.1.0",
+    "aspect-ratio": "^2.1.1",
     "brotli-size": "^4.0.0",
     "cli-progress": "^3.4.0",
     "convert-hrtime": "^3.0.0",
@@ -24,7 +24,7 @@
     "mozjpeg": "^6.0.1",
     "pretty-bytes": "^5.2.0",
     "probe-image-size": "^5.0.0",
-    "sharp": "^0.23.3",
+    "sharp": "^0.23.4",
     "sqip": "^1.0.0-alpha.28",
     "sqip-legacy": "npm:sqip@legacy",
     "sqip-plugin-blur": "^1.0.0-alpha.29",
@@ -33,10 +33,10 @@
     "sqip-plugin-potrace": "^1.0.0-alpha.0",
     "sqip-plugin-primitive": "^1.0.0-alpha.30",
     "sqip-plugin-svgo": "^1.0.0-alpha.29",
-    "vhtml": "^2.1.0"
+    "vhtml": "^2.2.0"
   },
   "devDependencies": {
     "gh-pages": "^2.1.1",
-    "nodemon": "^2.0.1"
+    "nodemon": "^2.0.2"
   }
 }
