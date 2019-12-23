@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@svgdotjs/svg.js": "^3.0.16",
-    "sharp": "^0.23.3",
+    "sharp": "^0.23.4",
     "sqip": "^1.0.0-alpha.28",
     "svgdom": "^0.0.21"
   },
