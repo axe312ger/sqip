@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.31](https://github.com/axe312ger/sqip/compare/sqip-plugin-primitive@1.0.0-alpha.30...sqip-plugin-primitive@1.0.0-alpha.31) (2019-12-23)
+
+
+### Features
+
+* **potrace:** implement potrace with intelligent color defaults and posterize function ([0fe2503](https://github.com/axe312ger/sqip/commit/0fe2503c92486b07a01382638ac92b475dead67d))
+
+
+
+
+
 # [1.0.0-alpha.30](https://github.com/axe312ger/sqip/compare/sqip-plugin-primitive@1.0.0-alpha.29...sqip-plugin-primitive@1.0.0-alpha.30) (2019-11-24)
 
 

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.32](http://axe312ger.github.io/sqip/compare/sqip-demo@1.0.0-alpha.31...sqip-demo@1.0.0-alpha.32) (2019-12-23)
+
+
+### Bug Fixes
+
+* **demo:** improve css ([63ff999](http://axe312ger.github.io/sqip/commit/63ff999fb7668c56f963471243ede16c74125f9e))
+
+
+### Features
+
+* **demo:** readd potrace to demo ([eadedba](http://axe312ger.github.io/sqip/commit/eadedba126ad750b2f02e5b3b37d008e605de505))
+* **sqip-plugin-potrace:** initial potrace implementation ([b77ae6e](http://axe312ger.github.io/sqip/commit/b77ae6e4df43ba8bdc4aaa64f854b850f4dd4ade))
+
+
+
+
+
 # [1.0.0-alpha.31](http://axe312ger.github.io/sqip/compare/sqip-demo@1.0.0-alpha.30...sqip-demo@1.0.0-alpha.31) (2019-11-24)
 
 **Note:** Version bump only for package sqip-demo
