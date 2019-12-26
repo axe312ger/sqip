@@ -177,6 +177,8 @@ export default async function sqip(options) {
       debug(`Processing ${filePath}`)
     }
     const result = await processImage({ filePath, config })
+    const { content, metadata } = result
+
     debug(`Processed ${filePath}`)
 
     // Write result svg if desired
@@ -200,7 +202,7 @@ export default async function sqip(options) {
       }
 
       debug(`Writing ${outputPath}`)
-      await fs.writeFile(outputPath, result.content)
+      await fs.writeFile(outputPath, content)
     }
 
     // Gather CLI output information
@@ -211,17 +213,26 @@ export default async function sqip(options) {
 
       // Generate preview
       if (!parseableOutput) {
-        const preview = await sharp(Buffer.from(result.content))
+        const preview = await sharp(content)
           .png()
           .toBuffer()
-        const previewPath = path.resolve(__dirname, 'tmp.svg')
+        const previewPath = path.resolve(__dirname, `sqip-tmp.${metadata.type}`)
         await fs.writeFile(previewPath, preview)
 
         try {
-          termimg(previewPath)
+          termimg(previewPath, () => {
+            // SVG results can still be outputted as string
+            if (metadata.type === 'svg') {
+              console.log(content.toString())
+              return
+            }
+
+            // No fallback preview solution yet for non-svg files.
+            console.log(`Unable to render a preview for ${metadata.type} files on this machine. Try using https://iterm2.com/`)
+          })
         } catch (err) {
           if (err.name !== 'UnsupportedTerminalError') {
-            throw new err()
+            throw err
           }
         }
 
@@ -250,20 +261,22 @@ export default async function sqip(options) {
         style: { 'padding-left': 0, 'padding-right': 0 }
       }
 
+      // Figure out which metadata keys to show
       const allKeys = [...mainKeys, 'palette']
-      const restMetadata = { ...result.metadata }
+      const restMetadata = { ...metadata }
       allKeys.forEach(k => delete restMetadata[k])
 
       const mainTable = new Table(tableConfig)
       mainTable.push(mainKeys)
-      mainTable.push(mainKeys.map(key => result.metadata[key]))
+      mainTable.push(mainKeys.map(key => metadata[key]))
       console.log(mainTable.toString())
 
+      // Show color palette
       const paletteTable = new Table(tableConfig)
       paletteTable.push(paletteKeys)
       paletteTable.push(
         paletteKeys
-          .map(key => result.metadata.palette[key].getHex())
+          .map(key => metadata.palette[key].getHex())
           .map(hex => chalk.hex(hex)(hex))
       )
       console.log(paletteTable.toString())
