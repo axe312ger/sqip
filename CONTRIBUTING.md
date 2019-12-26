@@ -9,8 +9,6 @@
 
 *Atom Dev Team* - [CONTRIBUTING.md](https://github.com/atom/atom/blob/master/CONTRIBUTING.md)
 
-
-
 ## Development Setup
 
 [![lerna](https://img.shields.io/badge/lerna-monorepo-4B32C3.svg?logo=lerna&style=flat)](https://lerna.js.org/) [![yarn](https://img.shields.io/badge/yarn-package%20management-C21325.svg?logo=yarn&style=flat)](https://yarnpkg.com)
@@ -84,6 +82,7 @@ npm run build:watch
 
 To build a new SQIP plugin is pretty simple:
 
+1. Make sure the SQIP repository is checked out at master with the latest status and you ran `yarn`.
 1. Create a rough file structure via `lerna create --es-module sqip-plugin-my-amazing-plugin`
 2. Use the following template to rocket-start your new plugin:
 
@@ -142,13 +141,13 @@ export default class MyAmazingPlugin extends SqipPlugin {
 To add a dependency to a package, you need to go into the package directory and execute Yarn as usual:
 
 ```sh
-yarn add my-amazing-package
+yarn add the-dependency-i-badly-need
 ```
 
 You might speed this up by using:
 
 ```sh
-npx lerna add my-amazing-package
+npx lerna add the-dependency-i-badly-need
 ```
 
 Make sure to read `npx lerna add --help`

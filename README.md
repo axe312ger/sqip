@@ -1,6 +1,6 @@
 **This is the `v1 alpha` readme. [You can find the current docs here.](https://github.com/axe312ger/sqip/tree/legacy#readme)**
 
-SQIP - SVG-Based Image Placeholder
+SQIP - a pluggable image converter with vector support
 ====================
 
 [![npm](https://img.shields.io/npm/v/sqip.svg?label=npm@latest)](https://www.npmjs.com/package/sqip)
@@ -12,12 +12,15 @@ SQIP - SVG-Based Image Placeholder
 [![Maintainability](https://api.codeclimate.com/v1/badges/fc81fa5e535561c0a6ff/maintainability)](https://codeclimate.com/github/axe312ger/sqip/maintainability)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
 
-"SQIP" (pronounced `\skwɪb\` like the non-magical folk of magical descent) is a
-SVG-based [LQIP](https://www.guypo.com/introducing-lqip-low-quality-image-placeholders/) technique.
+**SQIP** is a flexible, and a little bit different image processor. It is available as node API and CLI.
 
-SQIP will generate SVG based previews of images. They can be used as a lazy-loading image preview, a video thumbnail or an artistic element for your project.
+By combining plugins you can use it for several purposes:
 
-SQIP is available as node API and CLI. It offers several plugins to allow creative image transformation options.
+* Create super-tiny image previews to improve your websites lazy loading experience
+* Do art by converting images into abstract representations of themselfes
+* Quickly convert, resize or optimize a set of pixel or vector images
+* More? Ideas, contributions and community plugins are very welcome
+
 
 ## Table of contents
 
@@ -34,15 +37,21 @@ SQIP is available as node API and CLI. It offers several plugins to allow creati
 
 ## Examples
 
+Get a more detailed look on [our demo website](https://axe312ger.github.io/sqip/).
+
 [![](demo/example.jpg)](https://axe312ger.github.io/sqip/)
 
 ## Requirements
+
 * Node.js >= v8 (https://nodejs.org/en/)
+* 64bit OS (Not all plugins, see below)
 
 <details>
 <summary>
 <strong>Non-64bit operating systems requirements</strong>
 </summary>
+
+The most common plugin `sqip-plugin-primitive` is packed with a 64bit executable for all 3 major operating systems. Users with non 32-bit operating system or those who simply want to use the latest and greatest verison of primitive need:
 
 * Golang (https://golang.org/doc/install)
 * Primitive (https://github.com/fogleman/primitive) (`go get -u github.com/fogleman/primitive`)
@@ -50,14 +59,18 @@ SQIP is available as node API and CLI. It offers several plugins to allow creati
 After installing Primitive, you may also need to add the path to the ```Primitive``` binary file.
 
 #### For macOS
+
 It would generally look something like
+
 ```bash
 /Users/myMacbook/go/bin
 ```
+
 To do this on a Mac, type: ```sudo vim /etc/paths``` into your terminal, and add the path to your ```Primitive``` binary file, but be sure to add the full path, ```/Users/<username>/go/bin``` and not ```~/go/bin```.
 
 #### For PC
-Using the command line (https://www.windows-commandline.com/set-path-command-line) <br>
+
+Using the command line (https://www.windows-commandline.com/set-path-command-line)
 Using a GUI (https://www.computerhope.com/issues/ch000549.htm)
 
 </details>
@@ -67,6 +80,10 @@ Using a GUI (https://www.computerhope.com/issues/ch000549.htm)
 [CLI see here](#cli)
 
 ### Installation
+
+You need the core plugin `sqip` plus all the plugins you want to use like `sqip-plugin-primtive`, `sqip-plugin-svgo` and more.
+
+For example:
 
 ```bash
 npm install sqip@canary sqip-plugin-primitive@canary sqip-plugin-svgo@canary sqip-plugin-data-uri@canary
@@ -100,13 +117,27 @@ If you passed a single image to process, SQIP will return the following result o
 ```js
 {
   svg: 'data:image/svg+xml;base64,...==',
-  dimensions: {
+  metadata: {
+    originalWidth: 2048,
+    originalHeight: 1280,
     height: 640,
     width: 1024,
-    type: 'jpg'
+    type: 'jpg',
+    palette: {
+      Vibrant: Vibrant.Swatch,
+      DarkVibrant: Vibrant.Swatch,
+      LightVibrant: Vibrant.Swatch,
+      Muted: Vibrant.Swatch,
+      DarkMuted: Vibrant.Swatch,
+      LightMuted: Vibrant.Swatch
+    }
   }
 }
 ```
+
+Documentation for all 6 colors from the palette: [Vibrant.Swatch](https://www.npmjs.com/package/node-vibrant#vibrantswatch)
+
+Plugins might add their own meta data
 
 Multiple input images will result in an array of result objects.
 
@@ -296,6 +327,7 @@ await sqip({
 ### Plugin specific config
 
 * See the [Plugins](#plugins) section for a list of available plugins.
+* List all plugins subcommands by adding the plugin plus using the help parameter. For example: `-p blur -p svgo -h` will list you all options of the blur and the svgo plugins.
 * Follows the pattern `--[plugin-name]-[option]=[value]`
 
 **Example:**
@@ -308,17 +340,20 @@ sqip -i foo.jpg -p primitive -p blur -blur-blur 3
 
 ## Plugins
 
-SQIP comes with some core plugins, the community is very welcome to [contribute their own plugins](#contributing) to SQIP.
+SQIP comes with some core plugins, the community is very welcome to [contribute their own plugins](#contributing) to SQIP. The effort to implement a tool or script doing something with images into SQIP is very minimal.
 
 ### Core plugins
+
+Here is a list of all current core plugins:
 
 * [sqip-plugin-primitive](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-primitive#readme)
 * [sqip-plugin-blur](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-blur#readme)
 * [sqip-plugin-svgo](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-svgo#readme)
 * [sqip-plugin-datauri](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-datauri#readme)
 * [sqip-plugin-pixels](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-pixels#readme)
+* [sqip-plugin-potrace](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-potrace#readme)
 
-## Background & reseach
+## Background & reseach about image placeholder & previews
 
 Image placeholders are a thing: from grey boxes in skeleton screens over boxes
 that show the predominant color of the image that will later occupy the space
