@@ -116,7 +116,7 @@ If you passed a single image to process, SQIP will return the following result o
 
 ```js
 {
-  svg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 188">...</svg>',
+  content: Buffer.from('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 188">...</svg>'),
   metadata: {
     originalWidth: 1024,
     originalHeight: 640,

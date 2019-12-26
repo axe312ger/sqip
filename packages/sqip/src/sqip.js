@@ -116,7 +116,11 @@ async function processImage({ filePath, config }) {
     imageContent = await plugin.apply(imageContent)
   }
 
-  return { svg: imageContent, metadata }
+  if (!Buffer.isBuffer(imageContent)) {
+    imageContent = Buffer.from(imageContent)
+  }
+
+  return { content: imageContent, metadata }
 }
 
 export default async function sqip(options) {
@@ -196,7 +200,7 @@ export default async function sqip(options) {
       }
 
       debug(`Writing ${outputPath}`)
-      await fs.writeFile(outputPath, result.svg)
+      await fs.writeFile(outputPath, result.content)
     }
 
     // Gather CLI output information
@@ -207,7 +211,7 @@ export default async function sqip(options) {
 
       // Generate preview
       if (!parseableOutput) {
-        const preview = await sharp(Buffer.from(result.svg))
+        const preview = await sharp(Buffer.from(result.content))
           .png()
           .toBuffer()
         const previewPath = path.resolve(__dirname, 'tmp.svg')
