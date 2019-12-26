@@ -116,13 +116,10 @@ If you passed a single image to process, SQIP will return the following result o
 
 ```js
 {
-  svg: 'data:image/svg+xml;base64,...==',
+  svg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 188">...</svg>',
   metadata: {
-    originalWidth: 2048,
-    originalHeight: 1280,
-    height: 640,
-    width: 1024,
-    type: 'jpg',
+    originalWidth: 1024,
+    originalHeight: 640,
     palette: {
       Vibrant: Vibrant.Swatch,
       DarkVibrant: Vibrant.Swatch,
@@ -130,12 +127,18 @@ If you passed a single image to process, SQIP will return the following result o
       Muted: Vibrant.Swatch,
       DarkMuted: Vibrant.Swatch,
       LightMuted: Vibrant.Swatch
-    }
+    },
+    width: 300,
+    height: 188,
+    type: 'svg',
+    // These will be added by sqip-plugin-data-uri
+    dataURI: "data:image/svg+xml,...",
+    dataURIBase64: 'data:image/svg+xml;base64,...'
   }
 }
 ```
 
-Documentation for all 6 colors from the palette: [Vibrant.Swatch](https://www.npmjs.com/package/node-vibrant#vibrantswatch)
+Documentation for all 6 colors from the palette: [Vibrant.Swatch](https://github.com/akfish/node-vibrant#vibrantswatch)
 
 Plugins might add their own meta data
 
@@ -250,8 +253,19 @@ Examples
 #### Process single file
 
 ```sh
-sqip --input "demo/beach.jpg"
-# <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="640" viewBox="0 0 1024 640"><filter id="a"><feGaussianBlur stdDeviation="12"/></filter><rect width="100%" height="100%" fill="#718d95"/><g filter="url(#a)">...</g></svg>
+$ sqip -i __tests__/fixtures/beach.jpg
+Processing: __tests__/fixtures/beach.jpg
+[Preview image (iTerm2 users only)]
+┌───────────────┬────────────────┬───────┬────────┬──────┐
+│ originalWidth │ originalHeight │ width │ height │ type │
+├───────────────┼────────────────┼───────┼────────┼──────┤
+│ 1024          │ 640            │ 300   │ 188    │ svg  │
+└───────────────┴────────────────┴───────┴────────┴──────┘
+┌─────────┬─────────────┬──────────────┬─────────┬───────────┬────────────┐
+│ Vibrant │ DarkVibrant │ LightVibrant │ Muted   │ DarkMuted │ LightMuted │
+├─────────┼─────────────┼──────────────┼─────────┼───────────┼────────────┤
+│ #dd852f │ #be4e0c     │ #f2b17a      │ #5c8fa4 │ #694e35   │ #cfc8b7    │
+└─────────┴─────────────┴──────────────┴─────────┴───────────┴────────────┘
 ```
 
 ##### Process multiple files via glob and use custom plugin config
@@ -260,10 +274,6 @@ sqip --input "demo/beach.jpg"
 sqip -p primitive -p blur -p svgo \
 -i "demo/*.jpg" \
 -b 6
-# <svg>...</svg>
-# <svg>...</svg>
-# <svg>...</svg>
-# <svg>...</svg>
 ```
 
 [For further configuration options see here](#config)
@@ -338,6 +348,23 @@ Set `blur` option of `blur` plugin to 3. You could use the `-b` shortcut as well
 sqip -i foo.jpg -p primitive -p blur -blur-blur 3
 ```
 
+### `--parseable-output` (CLI only)
+
+non-TTY consoles and when the `--parseable-output` input flag is set, the output will be the following:
+
+```sh
+$ sqip -i __tests__/fixtures/beach.jpg --parseable-output
+Processing: __tests__/fixtures/beach.jpg
+originalWidth originalHeight width height type
+1024          640            300   188    svg
+Vibrant DarkVibrant LightVibrant Muted   DarkMuted LightMuted
+#dd852f #be4e0c     #f2b17a      #5c8fa4 #694e35   #cfc8b7
+```
+
+### `--silent` (CLI only)
+
+No output at all on STDOUT. The process will still return an error code & message when something failed.
+
 ## Plugins
 
 SQIP comes with some core plugins, the community is very welcome to [contribute their own plugins](#contributing) to SQIP. The effort to implement a tool or script doing something with images into SQIP is very minimal.
@@ -352,6 +379,20 @@ Here is a list of all current core plugins:
 * [sqip-plugin-datauri](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-datauri#readme)
 * [sqip-plugin-pixels](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-pixels#readme)
 * [sqip-plugin-potrace](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-potrace#readme)
+
+## Debugging
+
+If something is not going as expected, adding debug output might help a lot. You can achieve this by setting the `DEBUG` environment variable to `sqip*`.
+
+On a *NIX environment, you might do the following:
+
+```sh
+DEBUG=sqip* node myscript.js
+
+# or for CLI:
+
+DEBUG=sqip* sqip --input...
+```
 
 ## Background & reseach about image placeholder & previews
 
