@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.31](https://github.com/axe312ger/sqip/compare/sqip@1.0.0-alpha.30...sqip@1.0.0-alpha.31) (2019-12-26)
+
+
+### Features
+
+* **sqip:** Show svg content when visual preview is not possible ([d3ef44d](https://github.com/axe312ger/sqip/commit/d3ef44dd4bf30d0866efaaf32a2ad9e7f4b6051f))
+
+
+
+
+
 # [1.0.0-alpha.30](https://github.com/axe312ger/sqip/compare/sqip@1.0.0-alpha.29...sqip@1.0.0-alpha.30) (2019-12-23)
 
 **Note:** Version bump only for package sqip
