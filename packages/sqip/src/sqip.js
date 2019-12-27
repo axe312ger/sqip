@@ -74,11 +74,127 @@ export async function resolvePlugins(plugins) {
   )
 }
 
-async function processImage({ filePath, config }) {
-  let imageContent = await fs.readFile(filePath)
-  const originalSizes = imageSize.sync(imageContent)
-  const vibrant = new Vibrant(filePath, { quality: 0 })
-  const palette = await vibrant.getPalette()
+async function processFile({ buffer, outputFileName, config }) {
+  const { output, silent, parseableOutput } = config
+  const result = await processImage({ buffer, config })
+  const { content, metadata } = result
+  let outputPath
+
+  debug(`Processed ${outputFileName}`)
+
+  // Write result svg if desired
+  if (output) {
+    try {
+      // Test if output path already exists
+      const stats = await fs.stat(output)
+
+      // Throw if it is a file and already exists
+      if (!stats.isDirectory()) {
+        throw new Error(
+          `File ${output} already exists. Overwriting is not yet supported.`
+        )
+      }
+      outputPath = path.resolve(output, `${outputFileName}.svg`)
+    } catch (err) {
+      // Output directory or file does not exist. We will create it later on.
+      outputPath = output
+    }
+
+    debug(`Writing ${outputPath}`)
+    await fs.writeFile(outputPath, content)
+  }
+
+  // Gather CLI output information
+  if (!silent) {
+    if (outputPath) {
+      console.log(`Stored at: ${outputPath}`)
+    }
+
+    // Generate preview
+    if (!parseableOutput) {
+      const preview = await sharp(content)
+        .png()
+        .toBuffer()
+      const previewPath = path.resolve(__dirname, `sqip-tmp.${metadata.type}`)
+      await fs.writeFile(previewPath, preview)
+
+      try {
+        termimg(previewPath, () => {
+          // SVG results can still be outputted as string
+          if (metadata.type === 'svg') {
+            console.log(content.toString())
+            return
+          }
+
+          // No fallback preview solution yet for non-svg files.
+          console.log(
+            `Unable to render a preview for ${metadata.type} files on this machine. Try using https://iterm2.com/`
+          )
+        })
+      } catch (err) {
+        if (err.name !== 'UnsupportedTerminalError') {
+          throw err
+        }
+      }
+
+      await fs.unlink(previewPath)
+    }
+
+    // Metadata
+    const tableConfig = parseableOutput && {
+      chars: {
+        top: '',
+        'top-mid': '',
+        'top-left': '',
+        'top-right': '',
+        bottom: '',
+        'bottom-mid': '',
+        'bottom-left': '',
+        'bottom-right': '',
+        left: '',
+        'left-mid': '',
+        mid: '',
+        'mid-mid': '',
+        right: '',
+        'right-mid': '',
+        middle: ' '
+      },
+      style: { 'padding-left': 0, 'padding-right': 0 }
+    }
+
+    // Figure out which metadata keys to show
+    const allKeys = [...mainKeys, 'palette']
+    const restMetadata = { ...metadata }
+    allKeys.forEach(k => delete restMetadata[k])
+
+    const mainTable = new Table(tableConfig)
+    mainTable.push(mainKeys)
+    mainTable.push(mainKeys.map(key => metadata[key]))
+    console.log(mainTable.toString())
+
+    // Show color palette
+    const paletteTable = new Table(tableConfig)
+    paletteTable.push(paletteKeys)
+    paletteTable.push(
+      paletteKeys
+        .map(key => metadata.palette[key].getHex())
+        .map(hex => chalk.hex(hex)(hex))
+    )
+    console.log(paletteTable.toString())
+
+    Object.keys(restMetadata).forEach(key => {
+      console.log(chalk.bold(`${key}:`))
+      console.log(restMetadata[key])
+    })
+  }
+
+  return result
+}
+
+async function processImage({ buffer, config }) {
+  const originalSizes = imageSize.sync(buffer)
+  const vibrant = Vibrant.from(buffer)
+  const palette = await vibrant.quality(0).getPalette()
   let metadata = {
     originalWidth: originalSizes.width,
     originalHeight: originalSizes.height,
@@ -91,11 +207,11 @@ async function processImage({ filePath, config }) {
   // Interate through plugins and apply them to last returned image
   if (config.width > 0) {
     // Resize to desired output width
-    imageContent = await sharp(imageContent)
+    buffer = await sharp(buffer)
       .resize(config.width)
       .toBuffer()
 
-    const resizedMetadata = await sharp(imageContent).metadata()
+    const resizedMetadata = await sharp(buffer).metadata()
     metadata.width = resizedMetadata.width
     metadata.height = resizedMetadata.height
   } else {
@@ -110,17 +226,17 @@ async function processImage({ filePath, config }) {
       sqipConfig: config,
       pluginOptions,
       metadata,
-      filePath
+      // filePath
     })
     debug(`Apply ${name}`)
-    imageContent = await plugin.apply(imageContent)
+    buffer = await plugin.apply(buffer)
   }
 
-  if (!Buffer.isBuffer(imageContent)) {
-    imageContent = Buffer.from(imageContent)
+  if (!Buffer.isBuffer(buffer)) {
+    buffer = Buffer.from(buffer)
   }
 
-  return { content: imageContent, metadata }
+  return { content: buffer, metadata }
 }
 
 export default async function sqip(options) {
@@ -139,7 +255,7 @@ export default async function sqip(options) {
 
   const config = Object.assign({}, defaultOptions, options)
 
-  const { input, output, parseableOutput, silent } = config
+  const { input, outputFileName, parseableOutput, silent } = config
 
   if (parseableOutput) {
     chalk.enabled = false
@@ -150,6 +266,15 @@ export default async function sqip(options) {
     throw new Error(
       'Please provide an input image, e.g. sqip({ input: "input.jpg" })'
     )
+  }
+
+  // If input is a Buffer
+  if (Buffer.isBuffer(input)) {
+    return processFile({
+      buffer: input,
+      outputFileName,
+      config
+    })
   }
 
   const files = await locateFiles(input)
@@ -165,127 +290,22 @@ export default async function sqip(options) {
       throw new Error(`Unable to read file ${file}`)
     }
   }
+
   // Iterate over all files
   const results = []
   for (const filePath of files) {
-    let outputPath
-
     // Apply plugins to files
     if (!silent) {
       console.log(`Processing: ${filePath}`)
     } else {
       debug(`Processing ${filePath}`)
     }
-    const result = await processImage({ filePath, config })
-    const { content, metadata } = result
-
-    debug(`Processed ${filePath}`)
-
-    // Write result svg if desired
-    if (output) {
-      const name = path.parse(filePath).name
-
-      try {
-        // Test if output path already exists
-        const stats = await fs.stat(output)
-
-        // Throw if it is a file and already exists
-        if (!stats.isDirectory()) {
-          throw new Error(
-            `File ${output} already exists. Overwriting is not yet supported.`
-          )
-        }
-        outputPath = path.resolve(output, `${name}.svg`)
-      } catch (err) {
-        // Output directory or file does not exist. We will create it later on.
-        outputPath = output
-      }
-
-      debug(`Writing ${outputPath}`)
-      await fs.writeFile(outputPath, content)
-    }
-
-    // Gather CLI output information
-    if (!silent) {
-      if (outputPath) {
-        console.log(`Stored at: ${outputPath}`)
-      }
-
-      // Generate preview
-      if (!parseableOutput) {
-        const preview = await sharp(content)
-          .png()
-          .toBuffer()
-        const previewPath = path.resolve(__dirname, `sqip-tmp.${metadata.type}`)
-        await fs.writeFile(previewPath, preview)
-
-        try {
-          termimg(previewPath, () => {
-            // SVG results can still be outputted as string
-            if (metadata.type === 'svg') {
-              console.log(content.toString())
-              return
-            }
-
-            // No fallback preview solution yet for non-svg files.
-            console.log(`Unable to render a preview for ${metadata.type} files on this machine. Try using https://iterm2.com/`)
-          })
-        } catch (err) {
-          if (err.name !== 'UnsupportedTerminalError') {
-            throw err
-          }
-        }
-
-        await fs.unlink(previewPath)
-      }
-
-      // Metadata
-      const tableConfig = parseableOutput && {
-        chars: {
-          top: '',
-          'top-mid': '',
-          'top-left': '',
-          'top-right': '',
-          bottom: '',
-          'bottom-mid': '',
-          'bottom-left': '',
-          'bottom-right': '',
-          left: '',
-          'left-mid': '',
-          mid: '',
-          'mid-mid': '',
-          right: '',
-          'right-mid': '',
-          middle: ' '
-        },
-        style: { 'padding-left': 0, 'padding-right': 0 }
-      }
-
-      // Figure out which metadata keys to show
-      const allKeys = [...mainKeys, 'palette']
-      const restMetadata = { ...metadata }
-      allKeys.forEach(k => delete restMetadata[k])
-
-      const mainTable = new Table(tableConfig)
-      mainTable.push(mainKeys)
-      mainTable.push(mainKeys.map(key => metadata[key]))
-      console.log(mainTable.toString())
-
-      // Show color palette
-      const paletteTable = new Table(tableConfig)
-      paletteTable.push(paletteKeys)
-      paletteTable.push(
-        paletteKeys
-          .map(key => metadata.palette[key].getHex())
-          .map(hex => chalk.hex(hex)(hex))
-      )
-      console.log(paletteTable.toString())
-
-      Object.keys(restMetadata).forEach(key => {
-        console.log(chalk.bold(`${key}:`))
-        console.log(restMetadata[key])
-      })
-    }
+    const buffer = await fs.readFile(filePath)
+    const result = await processFile({
+      buffer,
+      outputFileName: outputFileName || path.parse(filePath).name,
+      config
+    })
 
     results.push(result)
   }
