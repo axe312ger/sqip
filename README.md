@@ -177,7 +177,7 @@ This will run:
 ;(async () => {
   const pluginResults = await sqip({
     input: resolve(__dirname, 'images/originals'),
-    output: resolve(__dirname, 'images/previews')
+    output: resolve(__dirname, 'images/previews'),
     plugins: [
       {
         name: 'sqip-plugin-primitive',
@@ -186,7 +186,7 @@ This will run:
           mode: 0,
         },
       },
-      `sqip-plugin-svgo`,
+      'sqip-plugin-svgo',
     ],
   })
   console.log(pluginResults)
