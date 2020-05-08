@@ -24,7 +24,7 @@ describe('sqip-plugin-pixels', () => {
     // Should be one svg with 8 * 5 pixel rects
     expect($('svg')).toHaveLength(1)
     const $rects = $('svg > rect')
-    expect($rects).toHaveLength(8 * 5)
+    expect($rects).toHaveLength(6 * 5)
     const firstRect = $('svg > rect').get(0)
     expect(firstRect.attribs.width).toEqual('100')
   })
@@ -40,7 +40,7 @@ describe('sqip-plugin-pixels', () => {
     // Should be one svg with 16 * 10 pixel rects with 50px size
     expect($('svg')).toHaveLength(1)
     const $rects = $('svg > rect')
-    expect($rects).toHaveLength(16 * 10)
+    expect($rects).toHaveLength(12 * 10)
     const firstRect = $('svg > rect').get(0)
     expect(firstRect.attribs.width).toEqual('50')
   })
