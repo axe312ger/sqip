@@ -46,7 +46,7 @@ export default class PixelsPlugin extends SqipPlugin {
     let row = 0
 
     const canvas = SVG().size(info.width * pixelSize, info.height * pixelSize)
-    for (var i = 0; i < data.length; i += 3) {
+    for (var i = 0; i < data.length; i += 4) {
       var red = data[i]
       var green = data[i + 1]
       var blue = data[i + 2]
