@@ -1,4 +1,7 @@
-- exclude_patterns:
-  - "demo/"
-  - "**/node_modules/"
-  - "**/dist/"
+version: '2'
+exclude_patterns:
+  - 'coverage/'
+  - 'demo/'
+  - '**/__tests__/'
+  - '**/node_modules/'
+  - '**/dist/'
