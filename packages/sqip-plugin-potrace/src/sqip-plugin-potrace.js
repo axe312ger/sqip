@@ -104,7 +104,7 @@ export default class sqipPluginPotrace extends SqipPlugin {
     }
   }
 
-  async apply() {
+  async apply(imageBuffer) {
     if (this.metadata.type === 'svg') {
       throw new Error(
         'The pixels plugin needs a raster image as input. Check if you run this plugin in the first place.'
@@ -136,7 +136,7 @@ export default class sqipPluginPotrace extends SqipPlugin {
           ? palette.LightVibrant.getHex()
           : parseColor({ color: userColor, palette })
 
-      const result = await posterize(this.filePath, {
+      const result = await posterize(imageBuffer, {
         steps,
         background,
         color,
@@ -149,7 +149,7 @@ export default class sqipPluginPotrace extends SqipPlugin {
         blackOnWhite
       })
 
-      return result
+      return Buffer.from(result)
     }
 
     const background =
@@ -161,7 +161,7 @@ export default class sqipPluginPotrace extends SqipPlugin {
         ? palette.Vibrant.getHex()
         : parseColor({ color: userColor, palette })
 
-    const result = await trace(this.filePath, {
+    const result = await trace(imageBuffer, {
       background,
       color,
       turnPolicy,
@@ -173,6 +173,6 @@ export default class sqipPluginPotrace extends SqipPlugin {
       blackOnWhite
     })
 
-    return result
+    return Buffer.from(result)
   }
 }

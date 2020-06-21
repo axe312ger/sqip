@@ -29,20 +29,20 @@ jest.mock('sqip-plugin-data-uri')
 
 primitive.mockImplementation(function primitiveMock() {
   return {
-    apply: jest.fn(() => EXAMPLE_SVG),
-    checkForPrimitive: jest.fn()
+    apply: jest.fn(() => Buffer.from(EXAMPLE_SVG)),
+    checkForPrimitive: jest.fn(),
   }
 })
 
 blur.mockImplementation(function blurMock() {
   return {
-    apply: jest.fn(() => EXAMPLE_SVG)
+    apply: jest.fn(() => Buffer.from(EXAMPLE_SVG)),
   }
 })
 
 svgo.mockImplementation(function svgoMock() {
   return {
-    apply: jest.fn(() => EXAMPLE_SVG)
+    apply: jest.fn(() => Buffer.from(EXAMPLE_SVG)),
   }
 })
 
@@ -51,8 +51,8 @@ datauri.mockImplementation(function datauriMock({ metadata }) {
     apply: jest.fn(() => {
       metadata.dataURI = 'data:image/svg+xml,dataURI'
       metadata.dataURIBase64 = 'data:image/svg+xml;base64,dataURIBase64=='
-      return EXAMPLE_SVG
-    })
+      return Buffer.from(EXAMPLE_SVG)
+    }),
   }
 })
 
@@ -71,9 +71,10 @@ function expectValidResult(result) {
   expect(result.metadata.palette.Vibrant.constructor.name).toBe('Swatch')
 
   // Clean result from values that depend on OS and snapshot test it
-  const stableResult = { ...result, metadata: { ...result.metadata } }
-  stableResult.metadata.palette = 'mocked'
-  expect(stableResult).toMatchSnapshot()
+  const jsonCompatibleResult = { ...result, metadata: { ...result.metadata } }
+  jsonCompatibleResult.metadata.palette = 'mocked'
+  jsonCompatibleResult.content = jsonCompatibleResult.content.toString()
+  expect(jsonCompatibleResult).toMatchSnapshot()
 }
 
 describe('node api', () => {
@@ -98,6 +99,12 @@ describe('node api', () => {
 
   test('resolves valid input path', async () => {
     const result = await sqip({ input: FILE_DEMO_BEACH })
+    expectValidResult(result)
+  })
+
+  test('accepts buffers as input', async () => {
+    const input = await fs.readFile(FILE_DEMO_BEACH)
+    const result = await sqip({ input })
     expectValidResult(result)
   })
 

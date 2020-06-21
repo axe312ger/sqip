@@ -38,12 +38,12 @@ export default class SVGPlugin extends SqipPlugin {
     this.options = { blur: 12, ...pluginOptions }
   }
 
-  apply(svg) {
-    svg = this.prepareSVG(svg)
+  apply(imageBuffer) {
+    let svg = this.prepareSVG(imageBuffer.toString())
     if (this.options.blur) {
       svg = this.applyBlurFilter(svg)
     }
-    return svg
+    return Buffer.from(svg)
   }
 
   // Prepare SVG. For now, this will just ensure that the viewbox attribute is set

@@ -112,14 +112,10 @@ async function processFile({ buffer, outputFileName, config }) {
 
     // Generate preview
     if (!parseableOutput) {
-      const preview = await sharp(content)
-        .png()
-        .toBuffer()
-      const previewPath = path.resolve(__dirname, `sqip-tmp.${metadata.type}`)
-      await fs.writeFile(previewPath, preview)
+      const preview = await sharp(Buffer.from(content)).png().toBuffer()
 
       try {
-        termimg(previewPath, () => {
+        termimg(preview, () => {
           // SVG results can still be outputted as string
           if (metadata.type === 'svg') {
             console.log(content.toString())
@@ -136,8 +132,6 @@ async function processFile({ buffer, outputFileName, config }) {
           throw err
         }
       }
-
-      await fs.unlink(previewPath)
     }
 
     // Metadata
@@ -225,15 +219,10 @@ async function processImage({ buffer, config }) {
     const plugin = new Plugin({
       sqipConfig: config,
       pluginOptions,
-      metadata,
-      // filePath
+      metadata
     })
     debug(`Apply ${name}`)
     buffer = await plugin.apply(buffer)
-  }
-
-  if (!Buffer.isBuffer(buffer)) {
-    buffer = Buffer.from(buffer)
   }
 
   return { content: buffer, metadata }
@@ -320,10 +309,9 @@ export default async function sqip(options) {
 }
 
 export class SqipPlugin {
-  constructor({ sqipConfig, metadata, filePath }) {
+  constructor({ sqipConfig, metadata }) {
     this.sqipConfig = sqipConfig || {}
     this.metadata = metadata || {}
-    this.filePath = filePath || null
   }
 }
 
