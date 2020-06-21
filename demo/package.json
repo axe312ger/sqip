@@ -5,6 +5,7 @@
   "repository": "http://axe312ger.github.io/sqip",
   "author": "Benedikt Rötsch <info@benedikt-roetsch.de>",
   "license": "UNLICENSE",
+  "private": true,
   "scripts": {
     "build:dataset": "node scripts/generate-dataset.js",
     "build:html": "node scripts/generate-html.js",
