@@ -8,7 +8,7 @@ import fs from 'fs-extra'
 
 const debug = Debug('sqip')
 
-export const loadSVG = svg => {
+export const loadSVG = (svg) => {
   return cheerio.load(svg, {
     normalizeWhitespace: true,
     xmlMode: true

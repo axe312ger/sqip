@@ -12,31 +12,30 @@
     "test:e2e": "TERM=xterm jest --testPathPattern='e2e/*'",
     "test:e2e:watch": "TERM=xterm jest --testPathPattern='e2e/*' --watch",
     "lint": "eslint packages/*/src",
-    "format": "lerna exec 'prettier --write src/**/*.js __tests__/**/*.js'"
+    "format": "lerna exec 'prettier --write src/**/*.js __tests__/**/*.js'",
+    "check-dependencies": "lerna exec --ignore sqip-demo \"pwd && npx depcheck --ignore-dirs 'dist' .\" --no-bail --concurrency 1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.7.7",
-    "@babel/core": "^7.7.7",
-    "@babel/preset-env": "^7.7.7",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-eslint": "^10.0.3",
-    "babel-jest": "^24.9.0",
+    "@babel/cli": "^7.10.3",
+    "@babel/core": "^7.10.3",
+    "@babel/preset-env": "^7.10.3",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.0.1",
     "babel-plugin-add-module-exports": "^1.0.0",
-    "babel-plugin-dynamic-import-node": "^2.2.0",
-    "codecov": "^3.6.1",
-    "core-js": "^3.6.0",
-    "cz-conventional-changelog": "^3.0.2",
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.7.0",
-    "eslint-plugin-import": "^2.19.1",
-    "eslint-plugin-jest": "^23.1.1",
-    "eslint-plugin-node": "^10.0.0",
-    "eslint-plugin-prettier": "^3.1.2",
+    "babel-plugin-dynamic-import-node": "^2.3.3",
+    "codecov": "^3.7.0",
+    "cz-conventional-changelog": "^3.2.0",
+    "eslint": "^7.3.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-jest": "^23.16.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-promise": "^4.0.1",
-    "husky": "^3.1.0",
-    "jest": "^24.9.0",
-    "lerna": "^3.19.0",
-    "prettier": "^1.19.1"
+    "husky": "^4.2.5",
+    "jest": "^26.0.1",
+    "lerna": "^3.22.1",
+    "prettier": "^2.0.5"
   },
   "jest": {
     "verbose": true,
@@ -56,7 +55,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint",
-      "pre-push": "npm run test"
+      "pre-push": "npm run test && npm run check-dependencies"
     }
   },
   "config": {

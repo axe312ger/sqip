@@ -25,10 +25,10 @@ function getSizes(input) {
   }
 }
 
-(async () => {
+;(async () => {
   // read the images
   const allFiles = await readdir(ORIGINAL)
-  const imageFiles = allFiles.filter(file => {
+  const imageFiles = allFiles.filter((file) => {
     const { ext } = parse(file)
     return ['.jpg', '.png'].includes(ext)
   })

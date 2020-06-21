@@ -5,8 +5,8 @@ import semver from 'semver'
 
 jest.mock('sqip', () => {
   const sqipMock = jest.fn()
-  sqipMock.resolvePlugins = jest.fn(plugins =>
-    plugins.map(plugin => ({
+  sqipMock.resolvePlugins = jest.fn((plugins) =>
+    plugins.map((plugin) => ({
       name: plugin,
       Plugin: { cliOptions: [] }
     }))

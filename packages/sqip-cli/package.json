@@ -37,7 +37,9 @@
     "sqip-plugin-svgo": "^1.0.0-alpha.32"
   },
   "devDependencies": {
-    "fs-extra": "^8.0.1",
-    "semver": "^7.1.1"
+    "cheerio": "^1.0.0-rc.3",
+    "execa": "^4.0.2",
+    "fs-extra": "^9.0.1",
+    "semver": "^7.3.2"
   }
 }

@@ -6,7 +6,7 @@ const EXAMPLE_SVG = Buffer.from(
 
 describe('sqip-plugin-data-uri', () => {
   it('does not touch svg', () => {
-    const plugin = new sqipPluginDataUri({ })
+    const plugin = new sqipPluginDataUri({})
     const result = plugin.apply(EXAMPLE_SVG)
     expect(result).toBe(EXAMPLE_SVG)
   })

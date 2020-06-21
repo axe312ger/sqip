@@ -102,7 +102,7 @@ const Row = ({ image }) => {
 
   return html`
     <tr>
-      ${results.map(result => {
+      ${results.map((result) => {
         return html`
           <${VariantResult}
             ...${result}
@@ -142,9 +142,7 @@ const Row = ({ image }) => {
       <thead>
         <tr>
           ${variants.map(({ title }) => {
-            return html`
-              <th>${title}</th>
-            `
+            return html` <th>${title}</th> `
           })}
         </tr>
         <tr>
@@ -177,16 +175,12 @@ const Row = ({ image }) => {
                     >
                   </p>
                   ${config &&
-                    html`
-                      <details>
-                        <summary>config:</summary>
-                        <pre><code>${JSON.stringify(
-                          config,
-                          null,
-                          2
-                        )}</code></pre>
-                      </details>
-                    `}
+                  html`
+                    <details>
+                      <summary>config:</summary>
+                      <pre><code>${JSON.stringify(config, null, 2)}</code></pre>
+                    </details>
+                  `}
                 </div>
               </td>
             `
@@ -194,12 +188,7 @@ const Row = ({ image }) => {
         </tr>
       </thead>
       <tbody>
-        ${images.map(
-          image =>
-            html`
-              <${Row} image="${image}" />
-            `
-        )}
+        ${images.map((image) => html` <${Row} image="${image}" /> `)}
       </tbody>
     </table>
   `)

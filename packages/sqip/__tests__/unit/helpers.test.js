@@ -15,8 +15,8 @@ test('loadSVG', async () => {
   expect($svg('svg')).toHaveLength(1)
 })
 
-const cleanResultArray = results =>
-  results.map(result => result.replace(DIR_ROOT, ''))
+const cleanResultArray = (results) =>
+  results.map((result) => result.replace(DIR_ROOT, ''))
 
 describe('locateFiles', () => {
   test('invalid directory or files yields empty array', async () => {

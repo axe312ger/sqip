@@ -44,7 +44,7 @@ const paletteKeys = [
 // Array of plugin names or config objects, even mixed.
 export async function resolvePlugins(plugins) {
   return Promise.all(
-    plugins.map(async plugin => {
+    plugins.map(async (plugin) => {
       if (typeof plugin === 'string') {
         plugin = { name: plugin }
       }
@@ -112,20 +112,23 @@ async function processFile({ buffer, outputFileName, config }) {
 
     // Generate preview
     if (!parseableOutput) {
+      // Convert to png for image preview
       const preview = await sharp(Buffer.from(content)).png().toBuffer()
 
       try {
-        termimg(preview, () => {
-          // SVG results can still be outputted as string
-          if (metadata.type === 'svg') {
-            console.log(content.toString())
-            return
-          }
+        termimg(preview, {
+          fallback: () => {
+            // SVG results can still be outputted as string
+            if (metadata.type === 'svg') {
+              console.log(content.toString())
+              return
+            }
 
-          // No fallback preview solution yet for non-svg files.
-          console.log(
-            `Unable to render a preview for ${metadata.type} files on this machine. Try using https://iterm2.com/`
-          )
+            // No fallback preview solution yet for non-svg files.
+            console.log(
+              `Unable to render a preview for ${metadata.type} files on this machine. Try using https://iterm2.com/`
+            )
+          }
         })
       } catch (err) {
         if (err.name !== 'UnsupportedTerminalError') {
@@ -159,11 +162,11 @@ async function processFile({ buffer, outputFileName, config }) {
     // Figure out which metadata keys to show
     const allKeys = [...mainKeys, 'palette']
     const restMetadata = { ...metadata }
-    allKeys.forEach(k => delete restMetadata[k])
+    allKeys.forEach((k) => delete restMetadata[k])
 
     const mainTable = new Table(tableConfig)
     mainTable.push(mainKeys)
-    mainTable.push(mainKeys.map(key => metadata[key]))
+    mainTable.push(mainKeys.map((key) => metadata[key]))
     console.log(mainTable.toString())
 
     // Show color palette
@@ -171,12 +174,12 @@ async function processFile({ buffer, outputFileName, config }) {
     paletteTable.push(paletteKeys)
     paletteTable.push(
       paletteKeys
-        .map(key => metadata.palette[key].getHex())
-        .map(hex => chalk.hex(hex)(hex))
+        .map((key) => metadata.palette[key].getHex())
+        .map((hex) => chalk.hex(hex)(hex))
     )
     console.log(paletteTable.toString())
 
-    Object.keys(restMetadata).forEach(key => {
+    Object.keys(restMetadata).forEach((key) => {
       console.log(chalk.bold(`${key}:`))
       console.log(restMetadata[key])
     })
@@ -201,9 +204,7 @@ async function processImage({ buffer, config }) {
   // Interate through plugins and apply them to last returned image
   if (config.width > 0) {
     // Resize to desired output width
-    buffer = await sharp(buffer)
-      .resize(config.width)
-      .toBuffer()
+    buffer = await sharp(buffer).resize(config.width).toBuffer()
 
     const resizedMetadata = await sharp(buffer).metadata()
     metadata.width = resizedMetadata.width

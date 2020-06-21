@@ -6,10 +6,10 @@ import osMock from 'os'
 import PrimitivePlugin from '../../src/sqip-plugin-primitive'
 
 jest.mock('execa')
-
 jest.mock('fs-extra')
 
 jest.mock('os', () => ({
+  ...jest.requireActual('os'),
   platform: jest.fn(() => 'unknownOS'),
   arch: jest.fn(() => 'nonExistingArch'),
   cpus: () => 1
@@ -179,7 +179,7 @@ function fixProcessArgumentsForSnapshot(execaMock) {
     VENDOR_DIR,
     '/VENDOR/DIR'
   )
-  execaMock.mock.calls[1][1] = execaMock.mock.calls[1][1].map(arg => {
+  execaMock.mock.calls[1][1] = execaMock.mock.calls[1][1].map((arg) => {
     if (typeof arg !== 'string') {
       return arg
     }

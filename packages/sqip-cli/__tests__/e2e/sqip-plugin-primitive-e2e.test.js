@@ -63,7 +63,7 @@ describe('primitive e2e/integration tests', () => {
     expect(types.length).toBeGreaterThanOrEqual(1)
     expect(
       parseFloat(firstPrimitive.attribs['fill-opacity']).toFixed(1)
-    ).toEqual("0.5")
+    ).toEqual('0.5')
     expect(backgroundRect.attribs['fill']).toEqual(darkMuted)
 
     await remove(outputFile)
@@ -76,7 +76,21 @@ describe('primitive e2e/integration tests', () => {
     )
     const { stdout } = await execa(
       cliCmd,
-      [cliPath, '-i', inputFile, '-o', outputFile, '-p', 'primitive', '-n', 5, '--primitive-background', '#123456', '--primitive-alpha', '64' ],
+      [
+        cliPath,
+        '-i',
+        inputFile,
+        '-o',
+        outputFile,
+        '-p',
+        'primitive',
+        '-n',
+        5,
+        '--primitive-background',
+        '#123456',
+        '--primitive-alpha',
+        '64'
+      ],
       {
         stripFinalNewline: true
       }

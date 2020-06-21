@@ -24,8 +24,6 @@
     "url": "https://github.com/axe312ger/sqip/issues"
   },
   "dependencies": {
-    "debug": "^4.1.1",
-    "sqip": "^1.0.0-alpha.31",
     "svgo": "^1.3.2"
   }
 }
