@@ -1,3 +1,5 @@
+import path from 'path'
+
 import Debug from 'debug'
 import commandLineArgs from 'command-line-args'
 import commandLineUsage from 'command-line-usage'
@@ -36,7 +38,7 @@ const defaultOptionList = [
     alias: 'o',
     type: String,
     description:
-      'Save the resulting SVG to a file. The svg result will be returned by default.'
+      'Define the path of the resulting file. By default SQIP will guess the output file name.'
   },
   {
     name: 'width',
@@ -86,7 +88,9 @@ $ sqip -i input.jpg -n 25 -b 0 -o result.svg`
 }
 
 export default async function sqipCLI() {
-  const pluginDetectionArgs = commandLineArgs(defaultOptionList, { partial: true })
+  const pluginDetectionArgs = commandLineArgs(defaultOptionList, {
+    partial: true
+  })
 
   if ('version' in pluginDetectionArgs) {
     console.log(version)
@@ -119,7 +123,7 @@ export default async function sqipCLI() {
     if (cliOptions) {
       return [
         ...definitions,
-        ...cliOptions.map(option => ({
+        ...cliOptions.map((option) => ({
           ...option,
           name: `${name}-${option.name}`
         }))
@@ -155,11 +159,13 @@ export default async function sqipCLI() {
   }
 
   const { input, output, width } = args
+  const { name } = path.parse(input)
+  const guessedOutput = path.resolve(process.cwd(), `${name}.svg`)
 
   // Build list of plugins with options based on passed arguments
   const pluginsOptions = resolvedPlugins.map(({ name }) => {
     const options = Object.keys(args)
-      .filter(args => args.indexOf(`${name}-`) === 0)
+      .filter((args) => args.indexOf(`${name}-`) === 0)
       .reduce((optionMap, argName) => {
         const optionName = argName.substr(`${name}-`.length)
         return { ...optionMap, [optionName]: args[argName] }
@@ -169,7 +175,7 @@ export default async function sqipCLI() {
 
   const options = {
     input,
-    output,
+    output: output || guessedOutput,
     width,
     plugins: pluginsOptions,
     silent: args.silent,
