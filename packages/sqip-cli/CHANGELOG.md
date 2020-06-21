@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.36](https://github.com/axe312ger/sqip/compare/sqip-cli@1.0.0-alpha.35...sqip-cli@1.0.0-alpha.36) (2020-06-21)
+
+
+### Features
+
+* **CLI:** always write svg file even when skipping output ([69321da](https://github.com/axe312ger/sqip/commit/69321da69d135079e85ffb158fc09e0d02f45564))
+
+
+
+
+
 # [1.0.0-alpha.35](https://github.com/axe312ger/sqip/compare/sqip-cli@1.0.0-alpha.34...sqip-cli@1.0.0-alpha.35) (2019-12-26)
 
 **Note:** Version bump only for package sqip-cli

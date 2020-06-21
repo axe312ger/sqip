@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.32](https://github.com/axe312ger/sqip/compare/sqip@1.0.0-alpha.31...sqip@1.0.0-alpha.32) (2020-06-21)
+
+
+### Features
+
+* **api:** Support buffers as input ([0a23c6a](https://github.com/axe312ger/sqip/commit/0a23c6a8d265418713d00be9d0c698b982a5acbe))
+
+
+
+
+
 # [1.0.0-alpha.31](https://github.com/axe312ger/sqip/compare/sqip@1.0.0-alpha.30...sqip@1.0.0-alpha.31) (2019-12-26)
 
 

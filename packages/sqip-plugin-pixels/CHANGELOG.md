@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.32](https://github.com/axe312ger/sqip/compare/sqip-plugin-pixels@1.0.0-alpha.31...sqip-plugin-pixels@1.0.0-alpha.32) (2020-06-21)
+
+
+### Bug Fixes
+
+* **squip-plugin-pixels:** fix colormaping since sharp converts to srgb ([e802c5d](https://github.com/axe312ger/sqip/commit/e802c5d5f233e4f2bdb1100c097a4b7d57f6edca))
+
+
+
+
+
 # [1.0.0-alpha.31](https://github.com/axe312ger/sqip/compare/sqip-plugin-pixels@1.0.0-alpha.30...sqip-plugin-pixels@1.0.0-alpha.31) (2019-12-26)
 
 **Note:** Version bump only for package sqip-plugin-pixels
