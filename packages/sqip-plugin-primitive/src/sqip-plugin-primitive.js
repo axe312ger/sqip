@@ -85,7 +85,7 @@ export default class PrimitivePlugin extends SqipPlugin {
   }
 
   async apply(imageBuffer) {
-    if (this.metadata.type === 'svg' || !Buffer.isBuffer(imageBuffer)) {
+    if (this.metadata.type === 'svg') {
       throw new Error(
         'Primitive needs a raster image buffer as input. Check if you run this plugin in the first place.'
       )

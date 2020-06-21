@@ -29,7 +29,7 @@ export default class PixelsPlugin extends SqipPlugin {
   }
 
   async apply(imageBuffer) {
-    if (this.metadata.type === 'svg' || !Buffer.isBuffer(imageBuffer)) {
+    if (this.metadata.type === 'svg') {
       throw new Error(
         'The pixels plugin needs a raster image buffer as input. Check if you run this plugin in the first place.'
       )
@@ -61,6 +61,6 @@ export default class PixelsPlugin extends SqipPlugin {
       }
     }
 
-    return canvas.svg()
+    return Buffer.from(canvas.svg())
   }
 }

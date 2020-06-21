@@ -106,7 +106,6 @@ export default class MyAmazingPlugin extends SqipPlugin {
   constructor({ pluginOptions }) {
     /**
      * Will enhance your plugin instance with the following:
-     * this.filePath: Path to input file
      * this.metadata: Object with width, height and type
      * this.sqipConfig: The configuration passed to SQIP by the user
     */
@@ -121,17 +120,27 @@ export default class MyAmazingPlugin extends SqipPlugin {
     }
   }
 
-  async apply(svg) {
-    console.log('Incoming svg:', svg)
+  async apply(imageBuffer) {
+    console.log('Incoming image:', imageBuffer)
+
+    // Check for correct format for your plugin
+    if (this.metadata.type !== 'svg') {
+      throw new Error(
+        'The plugin needs a svg image as input.'
+      )
+    }
 
     // Read plugin options
     const { bar } = this.options
 
     // Do some transformation
+    const svg = imageBuffer.toString()
     const newSvg = svg.replace('foo', bar)
 
-    // Return new svg
-    return newSvg
+    // Hint: Consider to use https://www.npmjs.com/package/buffer-replace for replacements instead of this hack
+
+    // Return new svg as buffer
+    return Buffer.from(newSvg)
   }
 }
 ```
