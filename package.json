@@ -13,7 +13,9 @@
     "test:e2e:watch": "TERM=xterm jest --testPathPattern='e2e/*' --watch",
     "lint": "eslint packages/*/src",
     "format": "lerna exec 'prettier --write src/**/*.js __tests__/**/*.js'",
-    "check-dependencies": "lerna exec --ignore sqip-demo \"pwd && npx depcheck --ignore-dirs 'dist' .\" --no-bail --concurrency 1"
+    "check-dependencies": "lerna exec --ignore sqip-demo \"pwd && npx depcheck --ignore-dirs 'dist' .\" --no-bail --concurrency 1",
+    "publish": "npm run build && lerna publish --conventional-commits",
+    "publish:canary": "npm run publish -- --dist-tag canary"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.3",
