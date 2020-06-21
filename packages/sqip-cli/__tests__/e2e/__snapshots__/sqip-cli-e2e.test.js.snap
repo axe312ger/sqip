@@ -58,7 +58,10 @@ exports[`cli api --help shows help screen to user 1`] = `
 `;
 
 exports[`cli api no config exists programm and shows help 1`] = `
-"
+"Command failed with exit code 1: node /Users/bene/dev/opensource/sqip/packages/sqip-cli/dist/wrapper.js
+
+Please provide the following arguments: input
+
 [4m[1msqip CLI[22m[24m
 
   Usage: sqip --input [path]                                                    
@@ -111,12 +114,5 @@ exports[`cli api no config exists programm and shows help 1`] = `
                                                                                 
   Save input.jpg as result.svg with 25 shapes and no blur                       
   $ sqip -i input.jpg -n 25 -b 0 -o result.svg                                  
-
-"
-`;
-
-exports[`cli api no config exists programm and shows help 2`] = `
-"
-Please provide the following arguments: input
 "
 `;

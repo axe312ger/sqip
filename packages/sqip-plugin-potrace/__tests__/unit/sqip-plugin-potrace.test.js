@@ -30,7 +30,7 @@ const mockedPalette = {
   DarkMuted: { getHex: darkMutedGetHexMock }
 }
 
-describe('sqip-plugin-pixels', () => {
+describe('sqip-plugin-potrace', () => {
   it('default output', async () => {
     const plugin = new sqipPluginPotrace({
       sqipConfig: {},
@@ -59,7 +59,7 @@ describe('sqip-plugin-pixels', () => {
   it('posterize', async () => {
     const plugin = new sqipPluginPotrace({
       sqipConfig: {},
-      pluginOptions: { posterize: true,steps: 2 },
+      pluginOptions: { posterize: true, steps: 2 },
       metadata: {
         palette: mockedPalette
       },

@@ -2,7 +2,7 @@ import { loadSVG, SqipPlugin } from 'sqip'
 
 const PRIMITIVE_SVG_ELEMENTS = 'circle, ellipse, line, polygon, path, rect, g'
 
-const patchSVGGroup = svg => {
+const patchSVGGroup = (svg) => {
   const $ = loadSVG(svg)
 
   const $svg = $('svg')
@@ -95,9 +95,7 @@ export default class SVGPlugin extends SqipPlugin {
     const blurFilterId = 'b'
     $('svg > g').attr('filter', `url(#${blurFilterId})`)
     $('svg').prepend(
-      `<filter id="${blurFilterId}"><feGaussianBlur stdDeviation="${
-        this.options.blur
-      }" />`
+      `<filter id="${blurFilterId}"><feGaussianBlur stdDeviation="${this.options.blur}" />`
     )
 
     return $.html()

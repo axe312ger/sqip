@@ -13,18 +13,18 @@
   "dependencies": {
     "aspect-ratio": "^2.1.1",
     "brotli-size": "^4.0.0",
-    "cli-progress": "^3.4.0",
+    "cli-progress": "^3.8.2",
     "convert-hrtime": "^3.0.0",
-    "data-uri-to-buffer": "^3.0.0",
-    "execa": "3.1.0",
-    "fs-extra": "^8.0.1",
+    "data-uri-to-buffer": "^3.0.1",
+    "execa": "4.0.2",
+    "fs-extra": "^9.0.1",
     "gzip-size": "^5.1.1",
-    "htm": "^2.1.1",
+    "htm": "^3.0.4",
     "lqip": "^2.1.0",
-    "mozjpeg": "^6.0.1",
+    "mozjpeg": "^7.0.0",
     "pretty-bytes": "^5.2.0",
     "probe-image-size": "^5.0.0",
-    "sharp": "^0.23.4",
+    "sharp": "^0.25.4",
     "sqip": "^1.0.0-alpha.31",
     "sqip-legacy": "npm:sqip@legacy",
     "sqip-plugin-blur": "^1.0.0-alpha.32",
@@ -36,7 +36,6 @@
     "vhtml": "^2.2.0"
   },
   "devDependencies": {
-    "gh-pages": "^2.1.1",
-    "nodemon": "^2.0.2"
+    "gh-pages": "^3.1.0"
   }
 }

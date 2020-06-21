@@ -36,10 +36,7 @@ const variants = [
     `,
     resultFileType: 'jpg',
     task: async ({ path, dist }) => {
-      const rawThumbnail = await sharp(path)
-        .resize(300)
-        .jpeg()
-        .toBuffer()
+      const rawThumbnail = await sharp(path).resize(300).jpeg().toBuffer()
       const tmpPath = resolve(
         tmpdir(),
         `sqip-demo-tmp-thumbnail-${Date.now()}.jpg`
@@ -71,17 +68,14 @@ const variants = [
     title: 'LQIP custom',
     description: html`
       <p>
-        32px thumbnail generated with <a href="https://sharp.dimens.io/en/stable/">sharp</a>,
-        minified with
+        32px thumbnail generated with
+        <a href="https://sharp.dimens.io/en/stable/">sharp</a>, minified with
         <a href="https://github.com/mozilla/mozjpeg">mozjpeg</a>
       </p>
     `,
     resultFileType: 'jpg',
     task: async ({ path, dist }) => {
-      const rawThumbnail = await sharp(path)
-        .resize(32)
-        .jpeg()
-        .toBuffer()
+      const rawThumbnail = await sharp(path).resize(32).jpeg().toBuffer()
       const tmpPath = resolve(tmpdir(), `sqip-demo-tmp-lqip-${Date.now()}.jpg`)
       await writeFile(tmpPath, rawThumbnail)
       await execa(mozjpeg, ['-outfile', dist, tmpPath])
@@ -108,9 +102,7 @@ const variants = [
   {
     name: 'sqip',
     title: 'SQIP default',
-    description: html`
-      <p>Just the default settings</p>
-    `,
+    description: html` <p>Just the default settings</p> `,
     config: { input: 'path/to/file.jpg' },
     resultFileType: 'svg',
     task: async ({ path, dist }) => {

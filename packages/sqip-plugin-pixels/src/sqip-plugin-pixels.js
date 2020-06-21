@@ -1,5 +1,5 @@
 import sharp from 'sharp'
-import window from 'svgdom'
+import { createSVGWindow } from 'svgdom'
 import { SVG, registerWindow } from '@svgdotjs/svg.js'
 
 import { SqipPlugin } from 'sqip'
@@ -25,7 +25,10 @@ export default class PixelsPlugin extends SqipPlugin {
     super(...arguments)
     this.options = { width: 8, pixelSize: 100, ...pluginOptions }
 
-    registerWindow(window, window.document)
+    const window = createSVGWindow()
+    const document = window.document
+
+    registerWindow(window, document)
   }
 
   async apply(imageBuffer) {
@@ -46,7 +49,8 @@ export default class PixelsPlugin extends SqipPlugin {
     let row = 0
 
     const canvas = SVG().size(info.width * pixelSize, info.height * pixelSize)
-    for (var i = 0; i < data.length; i += 4) {
+
+    for (var i = 0; i < data.length; i += info.channels) {
       var red = data[i]
       var green = data[i + 1]
       var blue = data[i + 2]

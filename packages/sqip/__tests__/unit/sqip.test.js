@@ -30,19 +30,19 @@ jest.mock('sqip-plugin-data-uri')
 primitive.mockImplementation(function primitiveMock() {
   return {
     apply: jest.fn(() => Buffer.from(EXAMPLE_SVG)),
-    checkForPrimitive: jest.fn(),
+    checkForPrimitive: jest.fn()
   }
 })
 
 blur.mockImplementation(function blurMock() {
   return {
-    apply: jest.fn(() => Buffer.from(EXAMPLE_SVG)),
+    apply: jest.fn(() => Buffer.from(EXAMPLE_SVG))
   }
 })
 
 svgo.mockImplementation(function svgoMock() {
   return {
-    apply: jest.fn(() => Buffer.from(EXAMPLE_SVG)),
+    apply: jest.fn(() => Buffer.from(EXAMPLE_SVG))
   }
 })
 
@@ -52,7 +52,7 @@ datauri.mockImplementation(function datauriMock({ metadata }) {
       metadata.dataURI = 'data:image/svg+xml,dataURI'
       metadata.dataURIBase64 = 'data:image/svg+xml;base64,dataURIBase64=='
       return Buffer.from(EXAMPLE_SVG)
-    }),
+    })
   }
 })
 

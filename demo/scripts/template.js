@@ -1,4 +1,4 @@
-module.exports = content => `
+module.exports = (content) => `
 <html>
   <head>
     <meta charset="UTF-8" />

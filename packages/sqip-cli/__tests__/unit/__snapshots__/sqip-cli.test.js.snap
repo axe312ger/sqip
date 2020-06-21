@@ -19,8 +19,8 @@ Array [
   [1m--version[22m [4mstring[24m         Show version number                                  
   [1m-p[22m, [1m--plugins[22m [4mstring[][24m   One or more plugins. E.g. \\"-p primitive blur\\"        
   [1m-i[22m, [1m--input[22m [4mstring[24m                                                            
-  [1m-o[22m, [1m--output[22m [4mstring[24m      Save the resulting SVG to a file. The svg result     
-                           will be returned by default.                         
+  [1m-o[22m, [1m--output[22m [4mstring[24m      Define the path of the resulting file. By default    
+                           SQIP will guess the output file name.                
   [1m-w[22m, [1m--width[22m [4mnumber[24m       Width of the resulting file. Negative values and 0   
                            will fall back to original image width.              
   [1m--silent[22m                 Supress all output                                   
@@ -98,8 +98,8 @@ Array [
   [1m--version[22m [4mstring[24m         Show version number                                  
   [1m-p[22m, [1m--plugins[22m [4mstring[][24m   One or more plugins. E.g. \\"-p primitive blur\\"        
   [1m-i[22m, [1m--input[22m [4mstring[24m                                                            
-  [1m-o[22m, [1m--output[22m [4mstring[24m      Save the resulting SVG to a file. The svg result     
-                           will be returned by default.                         
+  [1m-o[22m, [1m--output[22m [4mstring[24m      Define the path of the resulting file. By default    
+                           SQIP will guess the output file name.                
   [1m-w[22m, [1m--width[22m [4mnumber[24m       Width of the resulting file. Negative values and 0   
                            will fall back to original image width.              
   [1m--silent[22m                 Supress all output                                   

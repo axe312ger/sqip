@@ -31,16 +31,11 @@ function isValidStdout(stdout) {
 
 describe('cli api', () => {
   test('no config exists programm and shows help', async () => {
-    try {
-      await execa(cliCmd, [cliPath], {
+    await expect(() =>
+      execa(cliCmd, [cliPath], {
         stripFinalNewline: true
       })
-      throw new Error('cli should exit with help message')
-    } catch (err) {
-      expect(err.stdout).toMatchSnapshot()
-      expect(err.stderr).toMatchSnapshot()
-      expect(err.code).toBe(1)
-    }
+    ).rejects.toThrowErrorMatchingSnapshot()
   })
   test('--help shows help screen to user', async () => {
     const { stdout } = await execa(cliCmd, [cliPath, '--help'], {
@@ -49,9 +44,13 @@ describe('cli api', () => {
     expect(stdout).toMatchSnapshot()
   })
   test('no output will not show stored at hint', async () => {
-    const { stdout } = await execa(cliCmd, [cliPath, '--input', inputFile, '-p', 'pixels'], {
-      stripFinalNewline: true
-    })
+    const { stdout } = await execa(
+      cliCmd,
+      [cliPath, '--input', inputFile, '-p', 'pixels'],
+      {
+        stripFinalNewline: true
+      }
+    )
 
     expect(stdout).not.toMatch(/Stored at:/)
   })
@@ -64,7 +63,7 @@ describe('cli api', () => {
       }
     )
 
-    expect(stdout).toMatch("")
+    expect(stdout).toMatch('')
   })
   test('-o save result to file and basic svg structure is applied', async () => {
     const outputFile = resolve(
