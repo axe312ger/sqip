@@ -36,7 +36,7 @@ describe('cli api', () => {
       execa(cliCmd, [cliPath], {
         stripFinalNewline: true
       })
-    ).rejects.toThrowErrorMatchingSnapshot()
+    ).rejects.toThrowError('Please provide the following arguments: input')
   })
   test('--help shows help screen to user', async () => {
     const { stdout } = await execa(cliCmd, [cliPath, '--help'], {
