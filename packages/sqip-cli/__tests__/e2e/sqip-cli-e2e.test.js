@@ -15,6 +15,7 @@ const inputFile = resolve(
   'fixtures',
   'beach.jpg'
 )
+const outputFile = resolve(process.cwd(), 'beach.svg')
 const cliPath = resolve(__dirname, '..', '..', 'dist', 'wrapper.js')
 const cliCmd = `node`
 
@@ -43,17 +44,6 @@ describe('cli api', () => {
     })
     expect(stdout).toMatchSnapshot()
   })
-  test('no output will not show stored at hint', async () => {
-    const { stdout } = await execa(
-      cliCmd,
-      [cliPath, '--input', inputFile, '-p', 'pixels'],
-      {
-        stripFinalNewline: true
-      }
-    )
-
-    expect(stdout).not.toMatch(/Stored at:/)
-  })
   test('--silent disables logging to stdout', async () => {
     const { stdout } = await execa(
       cliCmd,
@@ -65,15 +55,10 @@ describe('cli api', () => {
 
     expect(stdout).toMatch('')
   })
-  test('-o save result to file and basic svg structure is applied', async () => {
-    const outputFile = resolve(
-      tmpdir(),
-      `sqip-e2e-test-${new Date().getTime()}.svg`
-    )
-
+  test('basic svg structure is applied', async () => {
     const { stdout } = await execa(
       cliCmd,
-      [cliPath, '-i', inputFile, '-o', outputFile, '-p', 'pixels'],
+      [cliPath, '-i', inputFile, '-p', 'pixels'],
       {
         stripFinalNewline: true
       }
@@ -90,5 +75,25 @@ describe('cli api', () => {
     expect($('svg')).toHaveLength(1)
 
     await remove(outputFile)
+  })
+  test('-o saves file to given path', async () => {
+    const tmpOutputFile = resolve(
+      tmpdir(),
+      `sqip-e2e-test-${new Date().getTime()}.svg`
+    )
+
+    const { stdout } = await execa(
+      cliCmd,
+      [cliPath, '-i', inputFile, '-o', tmpOutputFile, '-p', 'pixels'],
+      {
+        stripFinalNewline: true
+      }
+    )
+    isValidStdout(stdout)
+
+    // Does the new file exist
+    expect(await stat(tmpOutputFile)).toBeTruthy()
+
+    await remove(tmpOutputFile)
   })
 })
