@@ -1,19 +1,3 @@
-// #############################################################################
-// #
-// # "SQIP" (pronounced \skwɪb\ like the non-magical folk of magical descent)
-// # is a SVG-based LQIP technique - https://github.com/technopagan/sqip
-// #
-// # Installation as CLI:
-// # npm install -g sqip
-// #
-// # Installation as lib:
-// # npm install sqip
-// #
-// # Requirements:
-// # * Node.js >= v6 (https://nodejs.org/en/)
-// #
-// #############################################################################
-
 import path from 'path'
 
 import Debug from 'debug'
