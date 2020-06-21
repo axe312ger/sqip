@@ -47,7 +47,7 @@ describe('primitive e2e/integration tests', () => {
 
     expect(await stat(outputFile)).toBeTruthy()
 
-    const darkMuted = stdout.match(/#[0-9a-f]{6}/g)[4]
+    const darkMuted = stdout.split('DarkVibrant')[1].match(/#[0-9a-f]{6}/g)[4]
 
     const content = await readFile(outputFile)
 
