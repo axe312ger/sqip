@@ -55,7 +55,7 @@ function getSizes(input) {
       const dist = resolve(PROCESSED, name)
       const start = hrtime()
       let result = await task({ path, dist })
-      const processTime = process.hrtime(start)
+      const processTime = process.hrtime.bigint(start)
 
       const sizes = getSizes(result)
       if (name === 'original-minified') {

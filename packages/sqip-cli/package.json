@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "cheerio": "^1.0.0-rc.3",
-    "execa": "^4.0.2",
+    "execa": "^5.0.0",
     "fs-extra": "^9.0.1",
     "semver": "^7.3.2"
   }
