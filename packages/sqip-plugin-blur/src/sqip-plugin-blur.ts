@@ -1,15 +1,15 @@
-import { loadSVG, SqipPlugin } from 'sqip'
+import { loadSVG, PluginOptions, SqipPlugin, SqipPluginOptions } from 'sqip'
 
 const PRIMITIVE_SVG_ELEMENTS = 'circle, ellipse, line, polygon, path, rect, g'
 
-const patchSVGGroup = (svg) => {
+const patchSVGGroup = (svg: string) => {
   const $ = loadSVG(svg)
 
   const $svg = $('svg')
   const $primitiveShapes = $svg.children(PRIMITIVE_SVG_ELEMENTS)
 
   // Check if actual shapes are grouped
-  if (!$primitiveShapes.filter('g').length !== 1) {
+  if ($primitiveShapes.filter('g').length === 1) {
     const $group = $('<g/>')
     const $realShapes = $primitiveShapes.not('rect:first-child')
 
@@ -18,6 +18,14 @@ const patchSVGGroup = (svg) => {
   }
 
   return $.html()
+}
+
+interface BlurPluginOptions extends SqipPluginOptions {
+  options: BlurOptions
+}
+
+interface BlurOptions extends PluginOptions {
+  blur: number
 }
 
 export default class SVGPlugin extends SqipPlugin {
@@ -33,12 +41,13 @@ export default class SVGPlugin extends SqipPlugin {
       }
     ]
   }
-  constructor({ pluginOptions }) {
-    super(...arguments)
+  constructor(options: BlurPluginOptions) {
+    super(options)
+    const { pluginOptions } = options
     this.options = { blur: 12, ...pluginOptions }
   }
 
-  apply(imageBuffer) {
+  apply(imageBuffer: Buffer) {
     let svg = this.prepareSVG(imageBuffer.toString())
     if (this.options.blur) {
       svg = this.applyBlurFilter(svg)
@@ -47,7 +56,7 @@ export default class SVGPlugin extends SqipPlugin {
   }
 
   // Prepare SVG. For now, this will just ensure that the viewbox attribute is set
-  prepareSVG(svg) {
+  prepareSVG(svg: string) {
     const $ = loadSVG(svg)
     const $svg = $('svg')
     const { width, height } = this.metadata
@@ -76,8 +85,8 @@ export default class SVGPlugin extends SqipPlugin {
 
     // Remove x and y attributes since they default to 0
     // @todo test in rare browsers
-    $bgRect.attr('x', null)
-    $bgRect.attr('y', null)
+    $bgRect.removeAttr('x')
+    $bgRect.removeAttr('y')
 
     // Improve compression via simplifying fill
     $bgRect.attr('width', '100%')
@@ -86,7 +95,7 @@ export default class SVGPlugin extends SqipPlugin {
     return $.html()
   }
 
-  applyBlurFilter(svg) {
+  applyBlurFilter(svg: string) {
     if (!this.options.blur) {
       return svg
     }
