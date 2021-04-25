@@ -2,7 +2,16 @@ import sharp from 'sharp'
 import { createSVGWindow } from 'svgdom'
 import { SVG, registerWindow } from '@svgdotjs/svg.js'
 
-import { SqipPlugin } from 'sqip'
+import { PluginOptions, SqipPlugin, SqipPluginOptions } from 'sqip'
+
+declare module '@svgdotjs/svg.js' {
+  export function registerWindow(window: any, document: any): any
+}
+
+interface PixelOptions extends PluginOptions {
+  width: number
+  pixelSize: number
+}
 
 export default class PixelsPlugin extends SqipPlugin {
   static get cliOptions() {
@@ -20,9 +29,13 @@ export default class PixelsPlugin extends SqipPlugin {
       }
     ]
   }
+  private options: PixelOptions
 
-  constructor({ pluginOptions }) {
-    super(...arguments)
+  constructor(options: SqipPluginOptions) {
+    super(options)
+
+    const { pluginOptions } = options
+
     this.options = { width: 8, pixelSize: 100, ...pluginOptions }
 
     const window = createSVGWindow()
@@ -31,7 +44,7 @@ export default class PixelsPlugin extends SqipPlugin {
     registerWindow(window, document)
   }
 
-  async apply(imageBuffer) {
+  async apply(imageBuffer: Buffer) {
     if (this.metadata.type === 'svg') {
       throw new Error(
         'The pixels plugin needs a raster image buffer as input. Check if you run this plugin in the first place.'

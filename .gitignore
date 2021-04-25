@@ -1,7 +1,7 @@
 lerna-debug.log
 yarn-error.log
 packages/*/dist
-
+tsconfig.tsbuildinfo
 
 ### Node ###
 # Logs
