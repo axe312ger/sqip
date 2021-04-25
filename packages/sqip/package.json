@@ -6,11 +6,13 @@
   "homepage": "https://github.com/axe312ger/sqip#readme",
   "license": "MIT",
   "scripts": {
+    "build": "tsc -b",
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "engines": {
     "node": ">=12.13.0"
   },
+  "types": "dist/sqip.d.ts",
   "main": "dist/sqip.js",
   "directories": {
     "lib": "dist",
@@ -55,6 +57,10 @@
     "sqip-plugin-svgo": "^1.0.0-alpha.0"
   },
   "devDependencies": {
+    "@types/debug": "^4.1.5",
+    "@types/expand-tilde": "^2.0.0",
+    "@types/fs-extra": "^9.0.11",
+    "@types/probe-image-size": "^7.0.0",
     "debug": "^4.1.1"
   }
 }

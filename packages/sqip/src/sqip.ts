@@ -9,13 +9,15 @@ import termimg from 'term-img'
 import Table from 'cli-table3'
 import chalk from 'chalk'
 
+import { Palette } from '@vibrant/color'
+
 import { locateFiles } from './helpers'
 
 const debug = Debug('sqip')
 
 const mainKeys = ['originalWidth', 'originalHeight', 'width', 'height', 'type']
 
-const paletteKeys = [
+const PALETTE_KEYS: (keyof Palette)[] = [
   'Vibrant',
   'DarkVibrant',
   'LightVibrant',
@@ -24,9 +26,59 @@ const paletteKeys = [
   'LightMuted'
 ]
 
+interface SqipPluginInterface {
+  metadata: SqipImageMetadata
+  sqipConfig: SqipConfig
+  apply?(imageBuffer: Buffer): Promise<Buffer>
+}
+
+export interface SqipPluginOptions {
+  pluginOptions: PluginOptions
+  options: PluginOptions
+  metadata: SqipImageMetadata
+  sqipConfig: SqipConfig
+}
+
+export interface PluginOptions {
+  [key: string]: unknown
+}
+
+interface PluginResolver {
+  name: string
+  options?: PluginOptions
+}
+
+interface SqipConfig {
+  input: string
+  outputFileName: string
+  output: string
+  silent: boolean
+  parseableOutput: boolean
+  plugins: PluginType[]
+  width?: number
+}
+
+interface ProcessFileOptions {
+  buffer: Buffer
+  outputFileName: string
+  config: SqipConfig
+}
+
+interface SqipImageMetadata {
+  originalWidth: number
+  originalHeight: number
+  palette: Palette
+  height?: number
+  width?: number
+  type?: string
+  [key: string]: unknown
+}
+
+type PluginType = PluginResolver | string
+
 // Resolves plugins based on a given config
 // Array of plugin names or config objects, even mixed.
-export async function resolvePlugins(plugins) {
+export async function resolvePlugins(plugins: PluginType[]) {
   return Promise.all(
     plugins.map(async (plugin) => {
       if (typeof plugin === 'string') {
@@ -58,7 +110,11 @@ export async function resolvePlugins(plugins) {
   )
 }
 
-async function processFile({ buffer, outputFileName, config }) {
+async function processFile({
+  buffer,
+  outputFileName,
+  config
+}: ProcessFileOptions) {
   const { output, silent, parseableOutput } = config
   const result = await processImage({ buffer, config })
   const { content, metadata } = result
@@ -122,61 +178,75 @@ async function processFile({ buffer, outputFileName, config }) {
     }
 
     // Metadata
-    const tableConfig = parseableOutput && {
-      chars: {
-        top: '',
-        'top-mid': '',
-        'top-left': '',
-        'top-right': '',
-        bottom: '',
-        'bottom-mid': '',
-        'bottom-left': '',
-        'bottom-right': '',
-        left: '',
-        'left-mid': '',
-        mid: '',
-        'mid-mid': '',
-        right: '',
-        'right-mid': '',
-        middle: ' '
-      },
-      style: { 'padding-left': 0, 'padding-right': 0 }
-    }
+    const tableConfig = parseableOutput
+      ? {
+          chars: {
+            top: '',
+            'top-mid': '',
+            'top-left': '',
+            'top-right': '',
+            bottom: '',
+            'bottom-mid': '',
+            'bottom-left': '',
+            'bottom-right': '',
+            left: '',
+            'left-mid': '',
+            mid: '',
+            'mid-mid': '',
+            right: '',
+            'right-mid': '',
+            middle: ' '
+          },
+          style: { 'padding-left': 0, 'padding-right': 0 }
+        }
+      : undefined
 
     // Figure out which metadata keys to show
     const allKeys = [...mainKeys, 'palette']
-    const restMetadata = { ...metadata }
-    allKeys.forEach((k) => delete restMetadata[k])
 
     const mainTable = new Table(tableConfig)
     mainTable.push(mainKeys)
-    mainTable.push(mainKeys.map((key) => metadata[key]))
+    mainTable.push(
+      mainKeys.map((key) => String(metadata[key]) || 'can not display')
+    )
     console.log(mainTable.toString())
 
     // Show color palette
     const paletteTable = new Table(tableConfig)
-    paletteTable.push(paletteKeys)
+    paletteTable.push(PALETTE_KEYS)
     paletteTable.push(
-      paletteKeys
-        .map((key) => metadata.palette[key].getHex())
+      PALETTE_KEYS.map((key) => metadata.palette[key]?.hex)
+        .filter<string>((hex): hex is string => typeof hex === 'string')
         .map((hex) => chalk.hex(hex)(hex))
     )
     console.log(paletteTable.toString())
 
-    Object.keys(restMetadata).forEach((key) => {
-      console.log(chalk.bold(`${key}:`))
-      console.log(restMetadata[key])
-    })
+    Object.keys(metadata)
+      .filter((key) => ![...mainKeys, 'palette'].includes(key))
+      .forEach((key) => {
+        console.log(chalk.bold(`${key}:`))
+        console.log(metadata[key])
+      })
   }
 
   return result
 }
 
-async function processImage({ buffer, config }) {
+interface ProcessImageOptions {
+  buffer: Buffer
+  config: SqipConfig
+}
+
+async function processImage({ buffer, config }: ProcessImageOptions) {
   const originalSizes = imageSize.sync(buffer)
   const vibrant = Vibrant.from(buffer)
   const palette = await vibrant.quality(0).getPalette()
-  let metadata = {
+
+  if (!originalSizes) {
+    throw new Error('Unable to get image size')
+  }
+
+  let metadata: SqipImageMetadata = {
     originalWidth: originalSizes.width,
     originalHeight: originalSizes.height,
     palette
@@ -186,7 +256,7 @@ async function processImage({ buffer, config }) {
   const plugins = await resolvePlugins(config.plugins)
 
   // Interate through plugins and apply them to last returned image
-  if (config.width > 0) {
+  if (config.width && config.width > 0) {
     // Resize to desired output width
     buffer = await sharp(buffer).resize(config.width).toBuffer()
 
@@ -213,7 +283,7 @@ async function processImage({ buffer, config }) {
   return { content: buffer, metadata }
 }
 
-export default async function sqip(options) {
+export default async function sqip(options: SqipConfig) {
   // Build configuration based on passed options and default options
   const defaultOptions = {
     plugins: [
@@ -232,7 +302,7 @@ export default async function sqip(options) {
   const { input, outputFileName, parseableOutput, silent } = config
 
   if (parseableOutput) {
-    chalk.enabled = false
+    chalk.level = 0
   }
 
   // Validate configuration
@@ -293,11 +363,14 @@ export default async function sqip(options) {
   return results[0]
 }
 
-export class SqipPlugin {
-  constructor({ sqipConfig, metadata }) {
+export class SqipPlugin implements SqipPluginInterface {
+  constructor(options: SqipPluginOptions) {
+    const { sqipConfig, metadata } = options
     this.sqipConfig = sqipConfig || {}
     this.metadata = metadata || {}
   }
+  metadata: SqipImageMetadata
+  sqipConfig: SqipConfig
 }
 
 export * from './helpers'

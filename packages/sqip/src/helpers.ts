@@ -6,16 +6,18 @@ import expandTilde from 'expand-tilde'
 import fastGlob from 'fast-glob'
 import fs from 'fs-extra'
 
+import { Palette } from '@vibrant/color'
+
 const debug = Debug('sqip')
 
-export const loadSVG = (svg) => {
+export const loadSVG = (svg: string) => {
   return cheerio.load(svg, {
     normalizeWhitespace: true,
     xmlMode: true
   })
 }
 
-export async function locateFiles(input) {
+export async function locateFiles(input: string) {
   const enhancedInput = expandTilde(input)
   let globPattern = enhancedInput
   try {
@@ -59,6 +61,11 @@ https://github.com/micromatch/micromatch#matching-features`
   return files
 }
 
-export function parseColor({ palette, color }) {
-  return color in palette ? palette[color].getHex() : color
+interface ParseColorOptions {
+  palette: Palette
+  color: string
+}
+
+export function parseColor({ palette, color }: ParseColorOptions) {
+  return color in palette ? palette[color]?.hex : color
 }
