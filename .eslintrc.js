@@ -1,15 +1,25 @@
 module.exports = {
-  parser: 'babel-eslint',
-  parserOptions: {
-    ecmaVersion: 2018,
-    sourceType: 'module'
-  },
-  plugins: ['node', 'jest'],
+  root: true,
+  parser: '@typescript-eslint/parser',
+  plugins: [
+    '@typescript-eslint'
+    // 'jest'
+  ],
   extends: [
     'eslint:recommended',
-    'plugin:node/recommended',
-    'plugin:jest/recommended'
+    'plugin:@typescript-eslint/recommended',
+    'prettier',
+    'prettier/@typescript-eslint'
+    // 'plugin:node/recommended',
+    // 'plugin:jest/recommended'
   ],
+
+  // parser: 'babel-eslint',
+  parserOptions: {
+    ecmaVersion: 2020,
+    sourceType: 'module'
+  },
+  // plugins: ['node', 'jest'],
   env: {
     'jest/globals': true,
     es6: true,
