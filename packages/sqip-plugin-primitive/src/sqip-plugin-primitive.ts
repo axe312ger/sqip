@@ -1,11 +1,25 @@
-import fs from 'fs-extra'
+import { access } from 'fs/promises'
+import { constants } from 'fs'
 import path from 'path'
 import os from 'os'
 
 import execa from 'execa'
 import Debug from 'debug'
 
-import { SqipPlugin, parseColor } from 'sqip'
+import { SqipPlugin, parseColor, SqipPluginOptions, PluginOptions } from 'sqip'
+
+interface PrimitivePluginOptions extends SqipPluginOptions {
+  options: PrimitiveOptions
+}
+
+interface PrimitiveOptions extends PluginOptions {
+  numberOfPrimitives: number
+  mode: number
+  rep: number
+  alpha: number
+  background: string
+  cores: number
+}
 
 const debug = Debug('sqip-plugin-primitive')
 
@@ -13,8 +27,13 @@ const VENDOR_DIR = path.resolve(__dirname, '..', 'vendor')
 let primitiveExecutable = 'primitive'
 
 // Since Primitive is only interested in the larger dimension of the input image, let's find it
-const findLargerImageDimension = ({ width, height }) =>
-  width > height ? width : height
+const findLargerImageDimension = ({
+  width,
+  height
+}: {
+  width: number
+  height: number
+}) => (width > height ? width : height)
 
 export default class PrimitivePlugin extends SqipPlugin {
   static get cliOptions() {
@@ -71,8 +90,9 @@ export default class PrimitivePlugin extends SqipPlugin {
     ]
   }
 
-  constructor({ pluginOptions }) {
-    super(...arguments)
+  constructor(options: PrimitivePluginOptions) {
+    super(options)
+    const { pluginOptions } = options
     this.options = {
       numberOfPrimitives: 8,
       mode: 0,
@@ -84,7 +104,9 @@ export default class PrimitivePlugin extends SqipPlugin {
     }
   }
 
-  async apply(imageBuffer) {
+  public options: PrimitiveOptions
+
+  async apply(imageBuffer: Buffer) {
     if (this.metadata.type === 'svg') {
       throw new Error(
         'Primitive needs a raster image buffer as input. Check if you run this plugin in the first place.'
@@ -106,26 +128,26 @@ export default class PrimitivePlugin extends SqipPlugin {
     const background = parseColor({ color: userBg, palette })
 
     const { stdout } = await execa(
-      primitiveExecutable,
+      'primitiveExecutable',
       [
         '-i',
         '-',
         '-o',
         '-',
         '-n',
-        numberOfPrimitives,
+        String(numberOfPrimitives),
         '-m',
-        mode,
+        String(mode),
         '-s',
-        findLargerImageDimension({ width, height }),
+        String(findLargerImageDimension({ width, height })),
         '-rep',
-        rep,
+        String(rep),
         '-a',
-        alpha,
+        String(alpha),
         '-bg',
-        background,
+        String(background),
         '-j',
-        cores
+        String(cores)
       ],
       { input: imageBuffer }
     )
@@ -145,10 +167,11 @@ export default class PrimitivePlugin extends SqipPlugin {
 
     debug(`Trying to locate primitive binary at ${primitivePath}`)
 
-    if (await fs.exists(primitivePath)) {
+    try {
+      await access(primitivePath, constants.X_OK)
       primitiveExecutable = primitivePath
       return
-    }
+    } catch (e) {}
 
     const errorMessage =
       'Please ensure that Primitive (https://github.com/fogleman/primitive, written in Golang) is installed and globally available'

@@ -66,6 +66,6 @@ interface ParseColorOptions {
   color: string
 }
 
-export function parseColor({ palette, color }: ParseColorOptions) {
-  return color in palette ? palette[color]?.hex : color
+export function parseColor({ palette, color }: ParseColorOptions): string {
+  return palette[color]?.hex || color
 }
