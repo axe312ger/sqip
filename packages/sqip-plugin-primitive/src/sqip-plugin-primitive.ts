@@ -128,7 +128,7 @@ export default class PrimitivePlugin extends SqipPlugin {
     const background = parseColor({ color: userBg, palette })
 
     const { stdout } = await execa(
-      'primitiveExecutable',
+      primitiveExecutable,
       [
         '-i',
         '-',
@@ -154,7 +154,7 @@ export default class PrimitivePlugin extends SqipPlugin {
 
     this.metadata.type = 'svg'
 
-    return stdout
+    return Buffer.from(stdout)
   }
 
   // Sanity check: use the exit state of 'type' to check for Primitive availability
