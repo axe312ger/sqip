@@ -29,7 +29,7 @@ export default class PixelsPlugin extends SqipPlugin {
       }
     ]
   }
-  private options: PixelOptions
+  public options: PixelOptions
 
   constructor(options: SqipPluginOptions) {
     super(options)

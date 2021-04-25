@@ -68,9 +68,9 @@ interface SqipImageMetadata {
   originalWidth: number
   originalHeight: number
   palette: Palette
-  height?: number
-  width?: number
-  type?: string
+  height: number
+  width: number
+  type: string
   [key: string]: unknown
 }
 
@@ -261,7 +261,10 @@ async function processImage({ buffer, config }: ProcessImageOptions) {
   let metadata: SqipImageMetadata = {
     originalWidth: originalSizes.width,
     originalHeight: originalSizes.height,
-    palette
+    palette,
+    type: 'unknown',
+    width: 0,
+    height: 0
   }
 
   // Load plugins
@@ -273,8 +276,8 @@ async function processImage({ buffer, config }: ProcessImageOptions) {
     buffer = await sharp(buffer).resize(config.width).toBuffer()
 
     const resizedMetadata = await sharp(buffer).metadata()
-    metadata.width = resizedMetadata.width
-    metadata.height = resizedMetadata.height
+    metadata.width = resizedMetadata.width || 0
+    metadata.height = resizedMetadata.height || 0
   } else {
     // Fall back to original size, keep image as is
     metadata.width = originalSizes.width
