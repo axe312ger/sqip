@@ -21,6 +21,7 @@
     "url": "git+https://github.com/axe312ger/sqip.git"
   },
   "scripts": {
+    "build": "tsc -b",
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "bugs": {
@@ -37,6 +38,8 @@
     "sqip-plugin-svgo": "^1.0.0-alpha.33"
   },
   "devDependencies": {
+    "@types/command-line-args": "^5.0.0",
+    "@types/command-line-usage": "^5.0.1",
     "cheerio": "^1.0.0-rc.3",
     "execa": "^5.0.0",
     "fs-extra": "^9.0.1",

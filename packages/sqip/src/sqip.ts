@@ -10,6 +10,7 @@ import Table from 'cli-table3'
 import chalk from 'chalk'
 
 import { Palette } from '@vibrant/color'
+import { OptionDefinition } from 'command-line-args'
 
 import { locateFiles } from './helpers'
 
@@ -29,7 +30,7 @@ const PALETTE_KEYS: (keyof Palette)[] = [
 interface SqipPluginInterface {
   metadata: SqipImageMetadata
   sqipConfig: SqipConfig
-  apply?(imageBuffer: Buffer): Promise<Buffer>
+  apply(imageBuffer: Buffer): Promise<Buffer>
 }
 
 export interface SqipPluginOptions {
@@ -37,6 +38,10 @@ export interface SqipPluginOptions {
   options: PluginOptions
   metadata: SqipImageMetadata
   sqipConfig: SqipConfig
+}
+export interface SqipCliOptionDefinition extends OptionDefinition {
+  description?: string
+  required?: boolean
 }
 
 export interface PluginOptions {
@@ -50,7 +55,7 @@ interface PluginResolver {
 
 interface SqipConfig {
   input: string
-  outputFileName: string
+  outputFileName?: string
   output: string
   silent: boolean
   parseableOutput: boolean
@@ -80,17 +85,25 @@ export class SqipPlugin implements SqipPluginInterface {
   public metadata: SqipImageMetadata
   public sqipConfig: SqipConfig
   public options: PluginOptions
+  static cliOptions: SqipCliOptionDefinition[]
+
   constructor(options: SqipPluginOptions) {
     const { sqipConfig, metadata } = options
     this.sqipConfig = sqipConfig || {}
     this.metadata = metadata || {}
     this.options = {}
   }
+  async apply(imageBuffer: Buffer) {
+    throw new Error('Not implemented')
+    return imageBuffer
+  }
 }
 
 // Resolves plugins based on a given config
 // Array of plugin names or config objects, even mixed.
-export async function resolvePlugins(plugins: PluginType[]) {
+export async function resolvePlugins(
+  plugins: PluginType[]
+): Promise<(PluginResolver & { Plugin: typeof SqipPlugin })[]> {
   return Promise.all(
     plugins.map(async (plugin) => {
       if (typeof plugin === 'string') {
@@ -288,8 +301,9 @@ async function processImage({ buffer, config }: ProcessImageOptions) {
     debug(`Construct ${name}`)
     const plugin = new Plugin({
       sqipConfig: config,
-      pluginOptions,
-      metadata
+      pluginOptions: pluginOptions || {},
+      metadata,
+      options: {}
     })
     debug(`Apply ${name}`)
     buffer = await plugin.apply(buffer)
@@ -329,6 +343,11 @@ export default async function sqip(options: SqipConfig) {
 
   // If input is a Buffer
   if (Buffer.isBuffer(input)) {
+    if (!outputFileName) {
+      throw new Error(
+        `${outputFileName} is required when passing image as buffer`
+      )
+    }
     return processFile({
       buffer: input,
       outputFileName,

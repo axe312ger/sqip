@@ -1,16 +1,16 @@
 import path from 'path'
 
 import Debug from 'debug'
-import commandLineArgs from 'command-line-args'
+import commandLineArgs, { OptionDefinition } from 'command-line-args'
 import commandLineUsage from 'command-line-usage'
 
-import sqip, { resolvePlugins } from 'sqip'
+import sqip, { resolvePlugins, SqipCliOptionDefinition } from 'sqip'
 
 const { version } = require('../package.json')
 
 const debug = Debug('sqip-cli')
 
-const defaultOptionList = [
+const defaultOptionList: SqipCliOptionDefinition[] = [
   {
     name: 'help',
     alias: 'h',
@@ -44,26 +44,26 @@ const defaultOptionList = [
     name: 'width',
     alias: 'w',
     type: Number,
-    default: 300,
+    defaultValue: 300,
     description:
       'Width of the resulting file. Negative values and 0 will fall back to original image width.'
   },
   {
     name: 'silent',
     type: Boolean,
-    default: false,
+    defaultValue: false,
     description: 'Supress all output'
   },
   {
     name: 'parseable-output',
     type: Boolean,
-    default: false,
+    defaultValue: false,
     description:
       'Ensure the output is parseable. Will suppress the preview images and the table borders.'
   }
 ]
 
-function showHelp({ optionList }) {
+function showHelp({ optionList }: { optionList: SqipCliOptionDefinition[] }) {
   const sections = [
     {
       header: 'sqip CLI',
@@ -114,23 +114,30 @@ export default async function sqipCLI() {
     process.exit(1)
   }
 
+  interface Definition {
+    [key: string]: unknown
+  }
+
   // Add new cli options based on enabled plugins
-  const pluginOptions = resolvedPlugins.reduce((definitions, plugin) => {
-    const {
-      name,
-      Plugin: { cliOptions }
-    } = plugin
-    if (cliOptions) {
-      return [
-        ...definitions,
-        ...cliOptions.map((option) => ({
-          ...option,
-          name: `${name}-${option.name}`
-        }))
-      ]
-    }
-    return definitions
-  }, [])
+  const pluginOptions = resolvedPlugins.reduce<SqipCliOptionDefinition[]>(
+    (definitions, plugin) => {
+      const {
+        name,
+        Plugin: { cliOptions }
+      } = plugin
+      if (cliOptions) {
+        return [
+          ...definitions,
+          ...cliOptions.map((option) => ({
+            ...option,
+            name: `${name}-${option.name}`
+          }))
+        ]
+      }
+      return definitions
+    },
+    []
+  )
 
   const optionList = [...defaultOptionList, ...pluginOptions]
 
