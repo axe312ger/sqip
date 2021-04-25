@@ -76,6 +76,18 @@ interface SqipImageMetadata {
 
 type PluginType = PluginResolver | string
 
+export class SqipPlugin implements SqipPluginInterface {
+  public metadata: SqipImageMetadata
+  public sqipConfig: SqipConfig
+  public options: PluginOptions
+  constructor(options: SqipPluginOptions) {
+    const { sqipConfig, metadata } = options
+    this.sqipConfig = sqipConfig || {}
+    this.metadata = metadata || {}
+    this.options = {}
+  }
+}
+
 // Resolves plugins based on a given config
 // Array of plugin names or config objects, even mixed.
 export async function resolvePlugins(plugins: PluginType[]) {
@@ -361,16 +373,6 @@ export default async function sqip(options: SqipConfig) {
     return results
   }
   return results[0]
-}
-
-export class SqipPlugin implements SqipPluginInterface {
-  constructor(options: SqipPluginOptions) {
-    const { sqipConfig, metadata } = options
-    this.sqipConfig = sqipConfig || {}
-    this.metadata = metadata || {}
-  }
-  metadata: SqipImageMetadata
-  sqipConfig: SqipConfig
 }
 
 export * from './helpers'

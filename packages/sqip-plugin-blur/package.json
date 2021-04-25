@@ -5,6 +5,7 @@
   "author": "Benedikt Rötsch <info@benedikt-roetsch.de>",
   "homepage": "https://github.com/axe312ger/sqip#readme",
   "license": "MIT",
+  "types": "dist/sqip-plugin-blur.d.ts",
   "main": "dist/sqip-plugin-blur.js",
   "directories": {
     "lib": "dist",
@@ -18,6 +19,7 @@
     "url": "git+https://github.com/axe312ger/sqip.git"
   },
   "scripts": {
+    "build": "tsc -b",
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "bugs": {
