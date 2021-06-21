@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`sqip-plugin-data-uri encodes in mini-svg-data-uri and base64 1`] = `
+Object {
+  "dataURI": "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3e%3ccircle cx='50' cy='50' r='40' fill='red' stroke='black' stroke-width='3'/%3e%3c/svg%3e",
+  "dataURIBase64": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI0MCIgZmlsbD0icmVkIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMyIvPjwvc3ZnPg==",
+  "height": 0,
+  "originalHeight": 0,
+  "originalWidth": 0,
+  "palette": Object {
+    "DarkMuted": Object {
+      "population": 420,
+      "rgb": Array [
+        4,
+        2,
+        0,
+      ],
+    },
+    "DarkVibrant": Object {
+      "population": 421,
+      "rgb": Array [
+        4,
+        2,
+        1,
+      ],
+    },
+    "LightMuted": Object {
+      "population": 422,
+      "rgb": Array [
+        4,
+        2,
+        2,
+      ],
+    },
+    "LightVibrant": Object {
+      "population": 423,
+      "rgb": Array [
+        4,
+        2,
+        3,
+      ],
+    },
+    "Muted": Object {
+      "population": 424,
+      "rgb": Array [
+        4,
+        2,
+        4,
+      ],
+    },
+    "Vibrant": Object {
+      "population": 425,
+      "rgb": Array [
+        4,
+        2,
+        5,
+      ],
+    },
+  },
+  "type": "mocked",
+  "width": 0,
+}
+`;

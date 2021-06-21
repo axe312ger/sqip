@@ -67,5 +67,6 @@ interface ParseColorOptions {
 }
 
 export function parseColor({ palette, color }: ParseColorOptions): string {
+  // @todo test, fallback to or detect transparent as color (for bg)
   return palette[color]?.hex || color
 }

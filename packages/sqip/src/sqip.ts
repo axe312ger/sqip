@@ -62,11 +62,11 @@ interface PluginResolver {
 }
 
 interface SqipConfig {
-  input: string
+  input: string | Buffer
   outputFileName?: string
   output: string
-  silent: boolean
-  parseableOutput: boolean
+  silent?: boolean
+  parseableOutput?: boolean
   plugins: PluginType[]
   width?: number
 }

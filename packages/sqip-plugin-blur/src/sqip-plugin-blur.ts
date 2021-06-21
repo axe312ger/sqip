@@ -31,7 +31,7 @@ interface BlurPluginOptions extends SqipPluginOptions {
 }
 
 interface BlurOptions extends PluginOptions {
-  blur: number
+  blur?: number
 }
 
 export default class SVGPlugin extends SqipPlugin {

@@ -2,6 +2,7 @@ import { resolve } from 'path'
 import { readFileSync } from 'fs'
 
 import cheerio from 'cheerio'
+import { Swatch } from '@vibrant/color'
 
 import sqipPluginPotrace from '../../src/sqip-plugin-potrace'
 
@@ -14,31 +15,34 @@ const FILE_DEMO_BEACH = resolve(
 )
 const fileContent = readFileSync(FILE_DEMO_BEACH)
 
-const vibrantGetHexMock = jest.fn(() => '#Vibrant')
-const lightVibrantGetHexMock = jest.fn(() => '#LightVibrant')
-const darkVibrantGetHexMock = jest.fn(() => '#DarkVibrant')
-const mutedGetHexMock = jest.fn(() => '#Muted')
-const lightMutedGetHexMock = jest.fn(() => '#LightMuted')
-const darkMutedGetHexMock = jest.fn(() => '#DarkMuted')
-
-const mockedPalette = {
-  Vibrant: { getHex: vibrantGetHexMock },
-  LightVibrant: { getHex: lightVibrantGetHexMock },
-  DarkVibrant: { getHex: darkVibrantGetHexMock },
-  Muted: { getHex: mutedGetHexMock },
-  LightMuted: { getHex: lightMutedGetHexMock },
-  DarkMuted: { getHex: darkMutedGetHexMock }
+const mockedMetadata = {
+  height: 0,
+  width: 0,
+  originalHeight: 0,
+  originalWidth: 0,
+  palette: {
+    DarkMuted: new Swatch([4, 2, 0], 420),
+    DarkVibrant: new Swatch([4, 2, 1], 421),
+    LightMuted: new Swatch([4, 2, 2], 422),
+    LightVibrant: new Swatch([4, 2, 3], 423),
+    Muted: new Swatch([4, 2, 4], 424),
+    Vibrant: new Swatch([4, 2, 5], 425)
+  },
+  type: 'mocked'
+}
+const mockedConfig = {
+  input: 'mocked',
+  output: 'mocked',
+  plugins: ['pixels']
 }
 
 describe('sqip-plugin-potrace', () => {
   it('default output', async () => {
     const plugin = new sqipPluginPotrace({
-      sqipConfig: {},
       pluginOptions: {},
-      metadata: {
-        palette: mockedPalette
-      },
-      filePath: FILE_DEMO_BEACH
+      options: {},
+      metadata: mockedMetadata,
+      sqipConfig: mockedConfig
     })
     const result = await plugin.apply(fileContent)
 
@@ -53,17 +57,15 @@ describe('sqip-plugin-potrace', () => {
     // Creates one single path
     const $path = $('svg path')
     expect($path).toHaveLength(1)
-    expect($path.attr('fill')).toEqual('#Vibrant')
+    expect($path.attr('fill')).toEqual('#040205')
   })
 
   it('posterize', async () => {
     const plugin = new sqipPluginPotrace({
-      sqipConfig: {},
       pluginOptions: { posterize: true, steps: 2 },
-      metadata: {
-        palette: mockedPalette
-      },
-      filePath: FILE_DEMO_BEACH
+      options: {},
+      metadata: mockedMetadata,
+      sqipConfig: mockedConfig
     })
     const result = await plugin.apply(fileContent)
 
@@ -71,27 +73,25 @@ describe('sqip-plugin-potrace', () => {
 
     // Background
     const $bg = $('svg > rect')
-    expect($bg.attr('fill')).toBe('#DarkMuted')
+    expect($bg.attr('fill')).toBe('#040200')
 
     // Foreground: Multiple paths with Light Vibrant Color
     const $paths = $('svg path')
 
     expect($paths).toHaveLength(2)
-    expect($paths.first().attr('fill')).toEqual('#LightVibrant')
-    expect($paths.last().attr('fill')).toEqual('#LightVibrant')
+    expect($paths.first().attr('fill')).toEqual('#040203')
+    expect($paths.last().attr('fill')).toEqual('#040203')
   })
 
   it('custom config', async () => {
     const plugin = new sqipPluginPotrace({
-      sqipConfig: {},
       pluginOptions: {
         color: '#Color',
         background: '#Background'
       },
-      metadata: {
-        palette: mockedPalette
-      },
-      filePath: FILE_DEMO_BEACH
+      options: {},
+      metadata: mockedMetadata,
+      sqipConfig: mockedConfig
     })
     const result = await plugin.apply(fileContent)
 
