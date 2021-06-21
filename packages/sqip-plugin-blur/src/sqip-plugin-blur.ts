@@ -1,8 +1,14 @@
-import { loadSVG, PluginOptions, SqipPlugin, SqipPluginOptions } from 'sqip'
+import {
+  loadSVG,
+  PluginOptions,
+  SqipPlugin,
+  SqipPluginOptions,
+  SqipCliOptionDefinition
+} from 'sqip'
 
 const PRIMITIVE_SVG_ELEMENTS = 'circle, ellipse, line, polygon, path, rect, g'
 
-const patchSVGGroup = (svg: string) => {
+const patchSVGGroup = (svg: string): string => {
   const $ = loadSVG(svg)
 
   const $svg = $('svg')
@@ -29,7 +35,7 @@ interface BlurOptions extends PluginOptions {
 }
 
 export default class SVGPlugin extends SqipPlugin {
-  static get cliOptions() {
+  static get cliOptions(): SqipCliOptionDefinition[] {
     return [
       {
         name: 'blur',
@@ -47,7 +53,7 @@ export default class SVGPlugin extends SqipPlugin {
     this.options = { blur: 12, ...pluginOptions }
   }
 
-  apply(imageBuffer: Buffer) {
+  apply(imageBuffer: Buffer): Buffer {
     let svg = this.prepareSVG(imageBuffer.toString())
     if (this.options.blur) {
       svg = this.applyBlurFilter(svg)
@@ -56,7 +62,7 @@ export default class SVGPlugin extends SqipPlugin {
   }
 
   // Prepare SVG. For now, this will just ensure that the viewbox attribute is set
-  prepareSVG(svg: string) {
+  prepareSVG(svg: string): string {
     const $ = loadSVG(svg)
     const $svg = $('svg')
     const { width, height } = this.metadata
@@ -95,7 +101,7 @@ export default class SVGPlugin extends SqipPlugin {
     return $.html()
   }
 
-  applyBlurFilter(svg: string) {
+  applyBlurFilter(svg: string): string {
     if (!this.options.blur) {
       return svg
     }

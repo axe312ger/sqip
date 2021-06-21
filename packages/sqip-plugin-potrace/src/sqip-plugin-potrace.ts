@@ -1,6 +1,12 @@
 import { promisify } from 'util'
 
-import { SqipPlugin, parseColor, SqipPluginOptions, PluginOptions } from 'sqip'
+import {
+  SqipPlugin,
+  parseColor,
+  SqipPluginOptions,
+  PluginOptions,
+  SqipCliOptionDefinition
+} from 'sqip'
 
 import potrace, { PotraceDefaultOptions } from 'potrace'
 
@@ -16,7 +22,7 @@ interface PotraceOptions extends PotraceDefaultOptions, PluginOptions {
 }
 
 export default class sqipPluginPotrace extends SqipPlugin {
-  static get cliOptions() {
+  static get cliOptions(): SqipCliOptionDefinition[] {
     return [
       {
         name: 'color',
@@ -116,7 +122,7 @@ export default class sqipPluginPotrace extends SqipPlugin {
     }
   }
 
-  async apply(imageBuffer: Buffer) {
+  async apply(imageBuffer: Buffer): Promise<Buffer> {
     if (this.metadata.type === 'svg') {
       throw new Error(
         'The pixels plugin needs a raster image as input. Check if you run this plugin in the first place.'
@@ -147,8 +153,7 @@ export default class sqipPluginPotrace extends SqipPlugin {
         parseColor({ color: userColor, palette })
 
       const result = await posterize(imageBuffer, {
-        // @todo
-        steps: steps as any,
+        steps: Number(steps),
         background,
         color,
         turnPolicy,

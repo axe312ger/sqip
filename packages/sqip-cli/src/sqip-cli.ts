@@ -1,12 +1,11 @@
 import path from 'path'
+import fs from 'fs'
 
 import Debug from 'debug'
-import commandLineArgs, { OptionDefinition } from 'command-line-args'
+import commandLineArgs from 'command-line-args'
 import commandLineUsage from 'command-line-usage'
 
 import sqip, { resolvePlugins, SqipCliOptionDefinition } from 'sqip'
-
-const { version } = require('../package.json')
 
 const debug = Debug('sqip-cli')
 
@@ -87,10 +86,12 @@ $ sqip -i input.jpg -n 25 -b 0 -o result.svg`
   console.log(usage)
 }
 
-export default async function sqipCLI() {
+export default async function sqipCLI(): Promise<undefined> {
   const pluginDetectionArgs = commandLineArgs(defaultOptionList, {
     partial: true
   })
+
+  const { version } = JSON.parse(fs.readFileSync('../package.json').toString())
 
   if ('version' in pluginDetectionArgs) {
     console.log(version)
@@ -112,10 +113,6 @@ export default async function sqipCLI() {
   } catch (err) {
     console.error(err)
     process.exit(1)
-  }
-
-  interface Definition {
-    [key: string]: unknown
   }
 
   // Add new cli options based on enabled plugins

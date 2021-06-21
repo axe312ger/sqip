@@ -2,10 +2,15 @@ import sharp from 'sharp'
 import { createSVGWindow } from 'svgdom'
 import { SVG, registerWindow } from '@svgdotjs/svg.js'
 
-import { PluginOptions, SqipPlugin, SqipPluginOptions } from 'sqip'
+import {
+  PluginOptions,
+  SqipCliOptionDefinition,
+  SqipPlugin,
+  SqipPluginOptions
+} from 'sqip'
 
 declare module '@svgdotjs/svg.js' {
-  export function registerWindow(window: any, document: any): any
+  export function registerWindow(window: unknown, document: unknown): unknown
 }
 
 interface PixelOptions extends PluginOptions {
@@ -14,7 +19,7 @@ interface PixelOptions extends PluginOptions {
 }
 
 export default class PixelsPlugin extends SqipPlugin {
-  static get cliOptions() {
+  static get cliOptions(): SqipCliOptionDefinition[] {
     return [
       {
         name: 'width',
@@ -44,7 +49,7 @@ export default class PixelsPlugin extends SqipPlugin {
     registerWindow(window, document)
   }
 
-  async apply(imageBuffer: Buffer) {
+  async apply(imageBuffer: Buffer): Promise<Buffer> {
     if (this.metadata.type === 'svg') {
       throw new Error(
         'The pixels plugin needs a raster image buffer as input. Check if you run this plugin in the first place.'
@@ -63,10 +68,10 @@ export default class PixelsPlugin extends SqipPlugin {
 
     const canvas = SVG().size(info.width * pixelSize, info.height * pixelSize)
 
-    for (var i = 0; i < data.length; i += info.channels) {
-      var red = data[i]
-      var green = data[i + 1]
-      var blue = data[i + 2]
+    for (let i = 0; i < data.length; i += info.channels) {
+      const red = data[i]
+      const green = data[i + 1]
+      const blue = data[i + 2]
       canvas
         .rect(1 * pixelSize, 1 * pixelSize)
         .attr({ fill: `rgb(${red},${green},${blue})` })
