@@ -3,10 +3,8 @@ import { SqipPlugin, SqipPluginOptions, PluginOptions } from 'sqip'
 import SVGO from 'svgo'
 
 interface SvgoPluginOptions extends SqipPluginOptions {
-  pluginOptions: Partial<SvgoOptions>
+  pluginOptions: Partial<PluginOptions>
 }
-
-interface SvgoOptions extends PluginOptions {}
 
 // SVGO with settings for maximum compression to optimize the Primitive-generated SVG
 export default class SVGOPlugin extends SqipPlugin {
@@ -70,9 +68,9 @@ export default class SVGOPlugin extends SqipPlugin {
       ...pluginOptions
     }
   }
-  async apply(svg: Buffer) {
+  async apply(svg: Buffer): Promise<Buffer> {
     const svgo = new SVGO(this.options)
     const { data } = await svgo.optimize(svg.toString())
-    return data
+    return Buffer.from(data)
   }
 }

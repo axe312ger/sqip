@@ -14,6 +14,8 @@ import { OptionDefinition } from 'command-line-args'
 
 import { locateFiles } from './helpers'
 
+export { loadSVG, parseColor } from './helpers'
+
 const debug = Debug('sqip')
 
 const mainKeys = ['originalWidth', 'originalHeight', 'width', 'height', 'type']
@@ -30,7 +32,12 @@ const PALETTE_KEYS: (keyof Palette)[] = [
 interface SqipPluginInterface {
   metadata: SqipImageMetadata
   sqipConfig: SqipConfig
-  apply(imageBuffer: Buffer): Promise<Buffer>
+  apply(imageBuffer: Buffer): Promise<Buffer> | Buffer
+}
+
+export interface SqipResult {
+  content: Buffer
+  metadata: SqipImageMetadata
 }
 
 export interface SqipPluginOptions {
@@ -42,6 +49,7 @@ export interface SqipPluginOptions {
 export interface SqipCliOptionDefinition extends OptionDefinition {
   description?: string
   required?: boolean
+  default?: boolean
 }
 
 export interface PluginOptions {
@@ -93,7 +101,7 @@ export class SqipPlugin implements SqipPluginInterface {
     this.metadata = metadata || {}
     this.options = {}
   }
-  async apply(imageBuffer: Buffer) {
+  apply(imageBuffer: Buffer): Promise<Buffer> | Buffer {
     throw new Error('Not implemented')
     return imageBuffer
   }
@@ -227,7 +235,8 @@ async function processFile({
       : undefined
 
     // Figure out which metadata keys to show
-    const allKeys = [...mainKeys, 'palette']
+    // @todo why is this unused?
+    // const allKeys = [...mainKeys, 'palette']
 
     const mainTable = new Table(tableConfig)
     mainTable.push(mainKeys)
@@ -262,7 +271,10 @@ interface ProcessImageOptions {
   config: SqipConfig
 }
 
-async function processImage({ buffer, config }: ProcessImageOptions) {
+async function processImage({
+  buffer,
+  config
+}: ProcessImageOptions): Promise<SqipResult> {
   const originalSizes = imageSize.sync(buffer)
   const vibrant = Vibrant.from(buffer)
   const palette = await vibrant.quality(0).getPalette()
@@ -271,7 +283,7 @@ async function processImage({ buffer, config }: ProcessImageOptions) {
     throw new Error('Unable to get image size')
   }
 
-  let metadata: SqipImageMetadata = {
+  const metadata: SqipImageMetadata = {
     originalWidth: originalSizes.width,
     originalHeight: originalSizes.height,
     palette,
@@ -312,7 +324,9 @@ async function processImage({ buffer, config }: ProcessImageOptions) {
   return { content: buffer, metadata }
 }
 
-export default async function sqip(options: SqipConfig) {
+export default async function sqip(
+  options: SqipConfig
+): Promise<SqipResult | SqipResult[]> {
   // Build configuration based on passed options and default options
   const defaultOptions = {
     plugins: [

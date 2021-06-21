@@ -21,6 +21,7 @@
   },
   "scripts": {
     "build": "tsc -b",
+    "watch": "tsc -w",
     "prepare": "npm run build-vendor",
     "build-vendor": "node scripts/bundle-vendor.js"
   },

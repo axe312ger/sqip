@@ -37,7 +37,7 @@ npx lerna --help
 
 SQIP is organized in packages. They are located in the `packages` directory. Each package is released as a separate NPM package.
 
-All packages should follow the same directory structure to allow proper babel transpilation.
+All packages should follow the same directory structure to allow proper TS builds.
 
 #### Relevant files and directories:
 

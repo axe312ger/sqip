@@ -6,19 +6,25 @@ import os from 'os'
 import execa from 'execa'
 import Debug from 'debug'
 
-import { SqipPlugin, parseColor, SqipPluginOptions, PluginOptions } from 'sqip'
+import {
+  SqipPlugin,
+  parseColor,
+  SqipPluginOptions,
+  PluginOptions,
+  SqipCliOptionDefinition
+} from 'sqip'
 
 interface PrimitivePluginOptions extends SqipPluginOptions {
   options: PrimitiveOptions
 }
 
 interface PrimitiveOptions extends PluginOptions {
-  numberOfPrimitives: number
-  mode: number
-  rep: number
-  alpha: number
-  background: string
-  cores: number
+  numberOfPrimitives?: number
+  mode?: number
+  rep?: number
+  alpha?: number
+  background?: string
+  cores?: number
 }
 
 const debug = Debug('sqip-plugin-primitive')
@@ -36,7 +42,7 @@ const findLargerImageDimension = ({
 }) => (width > height ? width : height)
 
 export default class PrimitivePlugin extends SqipPlugin {
-  static get cliOptions() {
+  static get cliOptions(): SqipCliOptionDefinition[] {
     return [
       {
         name: 'numberOfPrimitives',
@@ -92,7 +98,7 @@ export default class PrimitivePlugin extends SqipPlugin {
 
   constructor(options: PrimitivePluginOptions) {
     super(options)
-    const { pluginOptions } = options
+    const { options: pluginOptions } = options
     this.options = {
       numberOfPrimitives: 8,
       mode: 0,
@@ -106,7 +112,7 @@ export default class PrimitivePlugin extends SqipPlugin {
 
   public options: PrimitiveOptions
 
-  async apply(imageBuffer: Buffer) {
+  async apply(imageBuffer: Buffer): Promise<Buffer> {
     if (this.metadata.type === 'svg') {
       throw new Error(
         'Primitive needs a raster image buffer as input. Check if you run this plugin in the first place.'
@@ -158,7 +164,7 @@ export default class PrimitivePlugin extends SqipPlugin {
   }
 
   // Sanity check: use the exit state of 'type' to check for Primitive availability
-  async checkForPrimitive() {
+  async checkForPrimitive(): Promise<undefined> {
     const platform = os.platform()
     const primitivePath = path.join(
       VENDOR_DIR,
@@ -171,7 +177,9 @@ export default class PrimitivePlugin extends SqipPlugin {
       await access(primitivePath, constants.X_OK)
       primitiveExecutable = primitivePath
       return
-    } catch (e) {}
+    } catch (e) {
+      // noop
+    }
 
     const errorMessage =
       'Please ensure that Primitive (https://github.com/fogleman/primitive, written in Golang) is installed and globally available'

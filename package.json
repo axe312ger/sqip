@@ -3,8 +3,8 @@
   "private": true,
   "scripts": {
     "prepare": "lerna run prepare",
-    "build": "lerna exec --parallel --ignore sqip-demo 'babel --root-mode upward src --out-dir dist --delete-dir-on-start'",
-    "build:watch": "lerna exec --parallel --ignore sqip-demo 'babel --root-mode upward src --out-dir dist --delete-dir-on-start --watch --verbose'",
+    "build": "npx lerna run build --no-private --scope sqip && npx lerna run build --no-private --ignore sqip",
+    "build:watch": "lerna exec --ignore sqip-demo 'npm run watch'",
     "test": "npm run lint && npm run test:unit && npm run test:e2e",
     "test:unit": "TERM=xterm jest --testPathPattern='unit/*' --coverage",
     "test:unit:watch": "TERM=xterm jest --testPathPattern='unit/*' --coverage --watch",
@@ -18,15 +18,9 @@
     "publish:canary": "npm run publish -- --dist-tag canary"
   },
   "devDependencies": {
-    "@babel/cli": "^7.10.3",
-    "@babel/core": "^7.10.3",
-    "@babel/preset-env": "^7.10.3",
+    "@types/jest": "^26.0.22",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
-    "babel-eslint": "^10.1.0",
-    "babel-jest": "^26.0.1",
-    "babel-plugin-add-module-exports": "^1.0.0",
-    "babel-plugin-dynamic-import-node": "^2.3.3",
     "codecov": "^3.7.0",
     "cz-conventional-changelog": "^3.2.0",
     "eslint": "^7.25.0",

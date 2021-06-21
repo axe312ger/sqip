@@ -1,6 +1,6 @@
 import path from 'path'
 
-import cheerio from 'cheerio'
+import cheerio, { Root } from 'cheerio'
 import Debug from 'debug'
 import expandTilde from 'expand-tilde'
 import fastGlob from 'fast-glob'
@@ -10,14 +10,14 @@ import { Palette } from '@vibrant/color'
 
 const debug = Debug('sqip')
 
-export const loadSVG = (svg: string) => {
+export const loadSVG = (svg: string): Root => {
   return cheerio.load(svg, {
     normalizeWhitespace: true,
     xmlMode: true
   })
 }
 
-export async function locateFiles(input: string) {
+export async function locateFiles(input: string): Promise<string[]> {
   const enhancedInput = expandTilde(input)
   let globPattern = enhancedInput
   try {
