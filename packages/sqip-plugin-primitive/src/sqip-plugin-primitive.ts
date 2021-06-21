@@ -131,7 +131,9 @@ export default class PrimitivePlugin extends SqipPlugin {
 
     const { width, height, palette } = this.metadata
 
-    const background = parseColor({ color: userBg, palette })
+    const background = userBg
+      ? parseColor({ color: userBg, palette })
+      : palette['Muted']?.hex
 
     const { stdout } = await execa(
       primitiveExecutable,

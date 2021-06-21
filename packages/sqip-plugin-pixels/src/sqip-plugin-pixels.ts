@@ -14,8 +14,17 @@ declare module '@svgdotjs/svg.js' {
 }
 
 interface PixelOptions extends PluginOptions {
+  width?: number
+  pixelSize?: number
+}
+
+interface PixelConfig extends PluginOptions {
   width: number
   pixelSize: number
+}
+
+interface PixelPluginOptions extends SqipPluginOptions {
+  pluginOptions: PixelOptions
 }
 
 export default class PixelsPlugin extends SqipPlugin {
@@ -34,14 +43,18 @@ export default class PixelsPlugin extends SqipPlugin {
       }
     ]
   }
-  public options: PixelOptions
+  public options: PixelConfig
 
-  constructor(options: SqipPluginOptions) {
+  constructor(options: PixelPluginOptions) {
     super(options)
 
     const { pluginOptions } = options
 
-    this.options = { width: 8, pixelSize: 100, ...pluginOptions }
+    this.options = Object.assign(
+      {},
+      { width: 8, pixelSize: 100 },
+      pluginOptions
+    )
 
     const window = createSVGWindow()
     const document = window.document

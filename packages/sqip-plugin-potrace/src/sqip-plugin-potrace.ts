@@ -149,7 +149,7 @@ export default class sqipPluginPotrace extends SqipPlugin {
         (userBackground === 'COLOR_AUTO' && palette.DarkMuted?.hex) ||
         parseColor({ color: userBackground, palette })
       const color =
-        (userColor === 'COLOR_AUTO' && palette.LightVibran?.hex) ||
+        (userColor === 'COLOR_AUTO' && palette.LightVibrant?.hex) ||
         parseColor({ color: userColor, palette })
 
       const result = await posterize(imageBuffer, {

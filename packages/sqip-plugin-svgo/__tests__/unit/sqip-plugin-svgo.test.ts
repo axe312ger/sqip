@@ -11,7 +11,7 @@ SVGO.mockImplementation(function SVGOmock() {
 
 test('runSVGO', async () => {
   const svgoPlugin = new SvgoPlugin({})
-  const inputSVG = '<svg />'
+  const inputSVG = Buffer.from('<svg />')
   await svgoPlugin.apply(inputSVG)
   expect(SVGO).toHaveBeenCalledTimes(1)
   expect(SVGO.mock.calls[0]).toMatchSnapshot()

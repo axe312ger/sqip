@@ -10,12 +10,12 @@ const FILE_JPG = resolve(DIR_FIXTURES, 'beach.jpg')
 const FILE_SVG = resolve(DIR_FIXTURES, 'beach-sqip.svg')
 
 test('loadSVG', async () => {
-  const svgContent = await readFile(FILE_SVG)
-  const $svg = loadSVG(svgContent)
+  const svgContentBuffer = await readFile(FILE_SVG)
+  const $svg = loadSVG(svgContentBuffer.toString())
   expect($svg('svg')).toHaveLength(1)
 })
 
-const cleanResultArray = (results) =>
+const cleanResultArray = (results: string[]) =>
   results.map((result) => result.replace(DIR_ROOT, ''))
 
 describe('locateFiles', () => {
