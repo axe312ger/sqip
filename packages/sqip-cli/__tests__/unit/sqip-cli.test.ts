@@ -70,8 +70,8 @@ describe('sqip-plugin-cli', () => {
 
   it('passes all given args to library', async () => {
     process.argv = [
-      null,
-      null,
+      '',
+      '',
       '-i',
       'foo',
       '--output',

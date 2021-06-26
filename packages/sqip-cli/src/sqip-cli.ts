@@ -1,9 +1,10 @@
 import path from 'path'
-import fs from 'fs'
 
-import Debug from 'debug'
 import commandLineArgs from 'command-line-args'
 import commandLineUsage from 'command-line-usage'
+import Debug from 'debug'
+import fs from 'fs-extra'
+import pkgUp from 'pkg-up'
 
 import sqip, { resolvePlugins, SqipCliOptionDefinition } from 'sqip'
 
@@ -91,9 +92,12 @@ export default async function sqipCLI(): Promise<undefined> {
     partial: true
   })
 
-  const { version } = JSON.parse(fs.readFileSync('../package.json').toString())
-
   if ('version' in pluginDetectionArgs) {
+    const closestPackageJSON = await pkgUp()
+    if (!closestPackageJSON) {
+      throw new Error('Unable to detect CLI version')
+    }
+    const { version } = await fs.readJSON(closestPackageJSON)
     console.log(version)
     return process.exit(0)
   }

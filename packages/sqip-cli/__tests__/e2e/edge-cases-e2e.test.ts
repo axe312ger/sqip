@@ -27,6 +27,7 @@ describe('broken input files', () => {
         stripFinalNewline: true
       }
     )
+    console.log(stdout)
     expect(stdout).toMatch(/originalWidth.+originalHeight.+width.+height.+type/)
     expect(stdout).toMatch(
       /Vibrant.+DarkVibrant.+LightVibrant.+Muted.+DarkMuted.+LightMuted/
