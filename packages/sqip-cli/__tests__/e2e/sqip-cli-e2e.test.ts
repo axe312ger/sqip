@@ -21,7 +21,7 @@ const cliCmd = `node`
 
 jest.setTimeout(20000)
 
-function isValidStdout(stdout) {
+function isValidStdout(stdout: string) {
   expect(stdout).toMatch(/Processing: \/([A-z0-9-_+]+\/)*[A-z0-9-_]+\.jpg/)
   expect(stdout).toMatch(/Stored at: \/([A-z0-9-_+]+\/)*[A-z0-9-_]+\.svg/)
   expect(stdout).toMatch(/originalWidth.+originalHeight.+width.+height.+type/)
