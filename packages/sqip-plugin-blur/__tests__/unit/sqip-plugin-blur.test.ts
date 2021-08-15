@@ -32,55 +32,26 @@ const sampleWithGroup =
 const sampleWithoutGroup =
   '<svg viewBox="0 0 1024 768"><rect fill="#bada55"/><polygon points="0,100 50,25 50,75 100,0" /></svg>'
 
-describe('does prepare svg properly', () => {
+describe('does prepare problematic svgs properly for blurring', () => {
   const svgPlugin = new SvgPlugin({
     pluginOptions: {},
     options: {},
     metadata: mockedMetadata,
     sqipConfig: mockedConfig
   })
-  test('svg without viewport, not given width & height', () => {
-    expect(() =>
-      svgPlugin.prepareSVG(sampleNoViewBox)
-    ).toThrowErrorMatchingSnapshot()
-  })
-  test('svg without viewport, given width & height', () => {
-    const svgPlugin = new SvgPlugin({
-      pluginOptions: {},
-      options: {},
-      metadata: mockedMetadata,
-      sqipConfig: mockedConfig
-    })
+  test('svg without viewport, but given width & height', () => {
     const result = svgPlugin.prepareSVG(sampleNoViewBox)
     expect(result).toMatchSnapshot()
   })
-  test('svg with group, with config', () => {
-    const svgPlugin = new SvgPlugin({
-      pluginOptions: {},
-      options: {},
-      metadata: mockedMetadata,
-      sqipConfig: mockedConfig
-    })
+  test('svg with group', () => {
     const result = svgPlugin.prepareSVG(sampleWithGroup)
     expect(result).toMatchSnapshot()
   })
-  test('svg without group, config with dimensions only', () => {
-    const svgPlugin = new SvgPlugin({
-      pluginOptions: {},
-      options: {},
-      metadata: mockedMetadata,
-      sqipConfig: mockedConfig
-    })
+  test('svg without group', () => {
     const result = svgPlugin.prepareSVG(sampleWithoutGroup)
     expect(result).toMatchSnapshot()
   })
   test('svg with missing background', () => {
-    const svgPlugin = new SvgPlugin({
-      pluginOptions: {},
-      options: {},
-      metadata: mockedMetadata,
-      sqipConfig: mockedConfig
-    })
     expect(() =>
       svgPlugin.prepareSVG(sampleNoBg)
     ).toThrowErrorMatchingSnapshot()
