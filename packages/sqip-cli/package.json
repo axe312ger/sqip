@@ -43,7 +43,7 @@
   "devDependencies": {
     "@types/command-line-args": "^5.0.0",
     "@types/command-line-usage": "^5.0.1",
-    "@types/semver": "^7.3.6",
+    "@types/semver": "^7.3.8",
     "cheerio": "^1.0.0-rc.3",
     "execa": "^5.0.0",
     "semver": "^7.3.5"
