@@ -2,7 +2,7 @@ version: 2.0
 jobs:
   lint:
     docker:
-      - image: circleci/golang:1.17-node
+      - image: circleci/golang:1.15-node
     steps:
       - run: node --version
       - run: npm --version
@@ -23,7 +23,7 @@ jobs:
       - run: yarn run lint
   test-unit:
     docker:
-      - image: circleci/golang:1.17-node
+      - image: circleci/golang:1.15-node
     steps:
       - run: node --version
       - run: npm --version
@@ -45,7 +45,7 @@ jobs:
       - run: yarn codecov
   test-e2e:
     docker:
-      - image: circleci/golang:1.17-node
+      - image: circleci/golang:1.15-node
     steps:
       - run: node --version
       - run: npm --version
