@@ -5,6 +5,7 @@ import { SVG, registerWindow } from '@svgdotjs/svg.js'
 import {
   PluginOptions,
   SqipCliOptionDefinition,
+  SqipImageMetadata,
   SqipPlugin,
   SqipPluginOptions
 } from 'sqip'
@@ -62,8 +63,11 @@ export default class PixelsPlugin extends SqipPlugin {
     registerWindow(window, document)
   }
 
-  async apply(imageBuffer: Buffer): Promise<Buffer> {
-    if (this.metadata.type === 'svg') {
+  async apply(
+    imageBuffer: Buffer,
+    metadata: SqipImageMetadata
+  ): Promise<Buffer> {
+    if (metadata.type === 'svg') {
       throw new Error(
         'The pixels plugin needs a raster image buffer as input. Check if you run this plugin in the first place.'
       )

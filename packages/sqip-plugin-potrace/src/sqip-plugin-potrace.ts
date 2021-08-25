@@ -5,7 +5,8 @@ import {
   parseColor,
   SqipPluginOptions,
   PluginOptions,
-  SqipCliOptionDefinition
+  SqipCliOptionDefinition,
+  SqipImageMetadata
 } from 'sqip'
 
 import potrace, { PotraceDefaultOptions } from 'potrace'
@@ -122,8 +123,11 @@ export default class sqipPluginPotrace extends SqipPlugin {
     }
   }
 
-  async apply(imageBuffer: Buffer): Promise<Buffer> {
-    if (this.metadata.type === 'svg') {
+  async apply(
+    imageBuffer: Buffer,
+    metadata: SqipImageMetadata
+  ): Promise<Buffer> {
+    if (metadata.type === 'svg') {
       throw new Error(
         'The pixels plugin needs a raster image as input. Check if you run this plugin in the first place.'
       )
@@ -142,7 +146,7 @@ export default class sqipPluginPotrace extends SqipPlugin {
       steps
     } = this.options
 
-    const { palette } = this.metadata
+    const { palette } = metadata
 
     if (this.options.posterize) {
       const background =

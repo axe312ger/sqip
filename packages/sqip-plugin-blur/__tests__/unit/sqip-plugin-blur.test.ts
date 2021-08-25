@@ -1,8 +1,9 @@
 import SvgPlugin from '../../src/sqip-plugin-blur'
 
 import { Swatch } from '@vibrant/color'
+import { SqipImageMetadata } from 'sqip/src/sqip'
 
-const mockedMetadata = {
+const mockedMetadata: SqipImageMetadata = {
   width: 1024,
   height: 640,
   type: 'svg',
@@ -20,7 +21,7 @@ const mockedMetadata = {
 const mockedConfig = {
   input: 'mocked',
   output: 'mocked',
-  plugins: ['pixels']
+  plugins: ['blur']
 }
 
 const sampleNoViewBox =
@@ -36,24 +37,23 @@ describe('does prepare problematic svgs properly for blurring', () => {
   const svgPlugin = new SvgPlugin({
     pluginOptions: {},
     options: {},
-    metadata: mockedMetadata,
     sqipConfig: mockedConfig
   })
   test('svg without viewport, but given width & height', () => {
-    const result = svgPlugin.prepareSVG(sampleNoViewBox)
+    const result = svgPlugin.prepareSVG(sampleNoViewBox, mockedMetadata)
     expect(result).toMatchSnapshot()
   })
   test('svg with group', () => {
-    const result = svgPlugin.prepareSVG(sampleWithGroup)
+    const result = svgPlugin.prepareSVG(sampleWithGroup, mockedMetadata)
     expect(result).toMatchSnapshot()
   })
   test('svg without group', () => {
-    const result = svgPlugin.prepareSVG(sampleWithoutGroup)
+    const result = svgPlugin.prepareSVG(sampleWithoutGroup, mockedMetadata)
     expect(result).toMatchSnapshot()
   })
   test('svg with missing background', () => {
     expect(() =>
-      svgPlugin.prepareSVG(sampleNoBg)
+      svgPlugin.prepareSVG(sampleNoBg, mockedMetadata)
     ).toThrowErrorMatchingSnapshot()
   })
 })
@@ -62,7 +62,6 @@ describe('applies blur filter', () => {
   test('do nothing when no blur is given', () => {
     const svgPlugin = new SvgPlugin({
       options: {},
-      metadata: mockedMetadata,
       sqipConfig: mockedConfig,
       pluginOptions: {
         blur: 0
@@ -74,7 +73,6 @@ describe('applies blur filter', () => {
   test('svg with group and blur', () => {
     const svgPlugin = new SvgPlugin({
       options: {},
-      metadata: mockedMetadata,
       sqipConfig: mockedConfig,
       pluginOptions: {
         blur: 5
@@ -86,7 +84,6 @@ describe('applies blur filter', () => {
   test('svg without group and blur', () => {
     const svgPlugin = new SvgPlugin({
       options: {},
-      metadata: mockedMetadata,
       sqipConfig: mockedConfig,
       pluginOptions: {
         blur: 5

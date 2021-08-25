@@ -6,6 +6,7 @@ import sqipPluginPixels from '../../src/sqip-plugin-pixels'
 import { Swatch } from '@vibrant/color'
 
 import cheerio from 'cheerio'
+import { SqipImageMetadata } from 'sqip/src/sqip'
 
 const FILE_DEMO_BEACH = resolve(
   __dirname,
@@ -17,7 +18,7 @@ const FILE_DEMO_BEACH = resolve(
 const fileContent = readFileSync(FILE_DEMO_BEACH)
 
 const mockedSwatch = new Swatch([4, 2, 0], 420)
-const mockedMetadata = {
+const mockedMetadata: SqipImageMetadata = {
   height: 0,
   width: 0,
   originalHeight: 0,
@@ -30,7 +31,7 @@ const mockedMetadata = {
     Muted: mockedSwatch,
     Vibrant: mockedSwatch
   },
-  type: 'mocked'
+  type: 'pixel'
 }
 const mockedConfig = {
   input: 'mocked',
@@ -43,10 +44,9 @@ describe('sqip-plugin-pixels', () => {
     const plugin = new sqipPluginPixels({
       pluginOptions: {},
       options: {},
-      metadata: mockedMetadata,
       sqipConfig: mockedConfig
     })
-    const result = await plugin.apply(fileContent)
+    const result = await plugin.apply(fileContent, mockedMetadata)
 
     const $ = cheerio.load(result, { xml: true })
 
@@ -65,10 +65,9 @@ describe('sqip-plugin-pixels', () => {
     const plugin = new sqipPluginPixels({
       pluginOptions: { width: 16, pixelSize: 50 },
       options: {},
-      metadata: mockedMetadata,
       sqipConfig: mockedConfig
     })
-    const result = await plugin.apply(fileContent)
+    const result = await plugin.apply(fileContent, mockedMetadata)
 
     const $ = cheerio.load(result, { xml: true })
 

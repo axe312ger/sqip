@@ -15,17 +15,22 @@ Array [
 
 [4m[1mOptions[22m[24m
 
-  [1m-h[22m, [1m--help[22m [4mstring[24m        Show help                                            
-  [1m--version[22m [4mstring[24m         Show version number                                  
-  [1m-p[22m, [1m--plugins[22m [4mstring[][24m   One or more plugins. E.g. \\"-p primitive blur\\"        
+  [1m-h[22m, [1m--help[22m [4mstring[24m                Show help                                    
+  [1m--version[22m [4mstring[24m                 Show version number                          
+  [1m-p[22m, [1m--plugins[22m [4mstring[][24m           One or more plugins. E.g. \\"-p primitive      
+                                   blur\\"                                        
   [1m-i[22m, [1m--input[22m [4mstring[24m                                                            
-  [1m-o[22m, [1m--output[22m [4mstring[24m      Define the path of the resulting file. By default    
-                           SQIP will guess the output file name.                
-  [1m-w[22m, [1m--width[22m [4mnumber[24m       Width of the resulting file. Negative values and 0   
-                           will fall back to original image width.              
-  [1m--silent[22m                 Supress all output                                   
-  [1m--parseable-output[22m       Ensure the output is parseable. Will suppress the    
-                           preview images and the table borders.                
+  [1m-o[22m, [1m--output[22m [4mstring[24m              Define the path of the resulting file. By    
+                                   default SQIP will guess the output file      
+                                   name.                                        
+  [1m-w[22m, [1m--width[22m [4mnumber[24m               Width of the resulting file. Negative values 
+                                   and 0 will fall back to original image       
+                                   width.                                       
+  [1m--silent[22m                         Supress all output                           
+  [1m--parseable-output[22m               Ensure the output is parseable. Will         
+                                   suppress the preview images and the table    
+                                   borders.                                     
+  [1m--mocked-mocked-plugin-option[22m    This is mocked                               
 
 [4m[1mExamples[22m[24m
 
@@ -94,17 +99,22 @@ Array [
 
 [4m[1mOptions[22m[24m
 
-  [1m-h[22m, [1m--help[22m [4mstring[24m        Show help                                            
-  [1m--version[22m [4mstring[24m         Show version number                                  
-  [1m-p[22m, [1m--plugins[22m [4mstring[][24m   One or more plugins. E.g. \\"-p primitive blur\\"        
+  [1m-h[22m, [1m--help[22m [4mstring[24m                Show help                                    
+  [1m--version[22m [4mstring[24m                 Show version number                          
+  [1m-p[22m, [1m--plugins[22m [4mstring[][24m           One or more plugins. E.g. \\"-p primitive      
+                                   blur\\"                                        
   [1m-i[22m, [1m--input[22m [4mstring[24m                                                            
-  [1m-o[22m, [1m--output[22m [4mstring[24m      Define the path of the resulting file. By default    
-                           SQIP will guess the output file name.                
-  [1m-w[22m, [1m--width[22m [4mnumber[24m       Width of the resulting file. Negative values and 0   
-                           will fall back to original image width.              
-  [1m--silent[22m                 Supress all output                                   
-  [1m--parseable-output[22m       Ensure the output is parseable. Will suppress the    
-                           preview images and the table borders.                
+  [1m-o[22m, [1m--output[22m [4mstring[24m              Define the path of the resulting file. By    
+                                   default SQIP will guess the output file      
+                                   name.                                        
+  [1m-w[22m, [1m--width[22m [4mnumber[24m               Width of the resulting file. Negative values 
+                                   and 0 will fall back to original image       
+                                   width.                                       
+  [1m--silent[22m                         Supress all output                           
+  [1m--parseable-output[22m               Ensure the output is parseable. Will         
+                                   suppress the preview images and the table    
+                                   borders.                                     
+  [1m--mocked-mocked-plugin-option[22m    This is mocked                               
 
 [4m[1mExamples[22m[24m
 
@@ -134,26 +144,27 @@ exports[`sqip-plugin-cli passes all given args to library 1`] = `
 Array [
   Array [
     Object {
-      "input": "foo",
-      "output": "bar",
-      "parseableOutput": undefined,
+      "input": "mocked-image.jpg",
+      "output": "/tmp/mocked-image.svg",
+      "parseableOutput": false,
       "plugins": Array [
         Object {
-          "name": "primitive",
-          "options": Object {},
-        },
-        Object {
-          "name": "blur",
-          "options": Object {},
-        },
-        Object {
-          "name": "svgo",
+          "name": "mocked",
           "options": Object {},
         },
       ],
-      "silent": undefined,
-      "width": 1337,
+      "silent": false,
+      "width": 300,
     },
+  ],
+]
+`;
+
+exports[`sqip-plugin-cli throws on missing input: error 1`] = `
+Array [
+  Array [
+    "
+Please provide the following arguments: input",
   ],
 ]
 `;

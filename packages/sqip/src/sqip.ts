@@ -29,23 +29,11 @@ const PALETTE_KEYS: (keyof Palette)[] = [
   'LightMuted'
 ]
 
-interface SqipPluginInterface {
-  metadata: SqipImageMetadata
-  sqipConfig: SqipConfig
-  apply(imageBuffer: Buffer): Promise<Buffer> | Buffer
-}
-
 export interface SqipResult {
   content: Buffer
   metadata: SqipImageMetadata
 }
 
-export interface SqipPluginOptions {
-  pluginOptions: PluginOptions
-  options: PluginOptions
-  metadata: SqipImageMetadata
-  sqipConfig: SqipConfig
-}
 export interface SqipCliOptionDefinition extends OptionDefinition {
   description?: string
   required?: boolean
@@ -61,10 +49,20 @@ interface PluginResolver {
   options?: PluginOptions
 }
 
+interface SqipOptions {
+  input: string | Buffer
+  outputFileName?: string
+  output?: string
+  silent?: boolean
+  parseableOutput?: boolean
+  plugins?: PluginType[]
+  width?: number
+}
+
 interface SqipConfig {
   input: string | Buffer
   outputFileName?: string
-  output: string
+  output?: string
   silent?: boolean
   parseableOutput?: boolean
   plugins: PluginType[]
@@ -77,32 +75,45 @@ interface ProcessFileOptions {
   config: SqipConfig
 }
 
-interface SqipImageMetadata {
+export interface SqipImageMetadata {
   originalWidth: number
   originalHeight: number
   palette: Palette
   height: number
   width: number
-  type: string
+  type: 'unknown' | 'pixel' | 'svg'
   [key: string]: unknown
 }
 
 type PluginType = PluginResolver | string
 
+export interface SqipPluginOptions {
+  pluginOptions: PluginOptions
+  options: PluginOptions
+  sqipConfig: SqipConfig
+}
+interface SqipPluginInterface {
+  sqipConfig: SqipConfig
+  apply(
+    imageBuffer: Buffer,
+    metadata?: SqipImageMetadata
+  ): Promise<Buffer> | Buffer
+}
 export class SqipPlugin implements SqipPluginInterface {
-  public metadata: SqipImageMetadata
   public sqipConfig: SqipConfig
   public options: PluginOptions
   static cliOptions: SqipCliOptionDefinition[]
 
   constructor(options: SqipPluginOptions) {
-    const { sqipConfig, metadata } = options
+    const { sqipConfig } = options
     this.sqipConfig = sqipConfig || {}
-    this.metadata = metadata || {}
     this.options = {}
   }
-  apply(imageBuffer: Buffer): Promise<Buffer> | Buffer {
-    throw new Error('Not implemented')
+  apply(
+    imageBuffer: Buffer,
+    metadata: SqipImageMetadata
+  ): Promise<Buffer> | Buffer {
+    console.log(metadata)
     return imageBuffer
   }
 }
@@ -287,6 +298,7 @@ async function processImage({
     originalWidth: originalSizes.width,
     originalHeight: originalSizes.height,
     palette,
+    // @todo this should be set by plugins and detected initially
     type: 'unknown',
     width: 0,
     height: 0
@@ -295,37 +307,41 @@ async function processImage({
   // Load plugins
   const plugins = await resolvePlugins(config.plugins)
 
-  // Interate through plugins and apply them to last returned image
+  // Determine output image size
   if (config.width && config.width > 0) {
     // Resize to desired output width
-    buffer = await sharp(buffer).resize(config.width).toBuffer()
+    try {
+      buffer = await sharp(buffer).resize(config.width).toBuffer()
 
-    const resizedMetadata = await sharp(buffer).metadata()
-    metadata.width = resizedMetadata.width || 0
-    metadata.height = resizedMetadata.height || 0
+      const resizedMetadata = await sharp(buffer).metadata()
+      metadata.width = resizedMetadata.width || 0
+      metadata.height = resizedMetadata.height || 0
+    } catch (err) {
+      throw new Error('Unable to resize')
+    }
   } else {
     // Fall back to original size, keep image as is
     metadata.width = originalSizes.width
     metadata.height = originalSizes.height
   }
 
+  // Interate through plugins and apply them to last returned image
   for (const { name, options: pluginOptions, Plugin } of plugins) {
     debug(`Construct ${name}`)
     const plugin = new Plugin({
       sqipConfig: config,
       pluginOptions: pluginOptions || {},
-      metadata,
       options: {}
     })
     debug(`Apply ${name}`)
-    buffer = await plugin.apply(buffer)
+    buffer = await plugin.apply(buffer, metadata)
   }
 
   return { content: buffer, metadata }
 }
 
 export default async function sqip(
-  options: SqipConfig
+  options: SqipOptions
 ): Promise<SqipResult | SqipResult[]> {
   // Build configuration based on passed options and default options
   const defaultOptions = {
@@ -340,7 +356,7 @@ export default async function sqip(
     silent: true
   }
 
-  const config = Object.assign({}, defaultOptions, options)
+  const config: SqipConfig = Object.assign({}, defaultOptions, options)
 
   const { input, outputFileName, parseableOutput, silent } = config
 
@@ -349,7 +365,7 @@ export default async function sqip(
   }
 
   // Validate configuration
-  if (!input) {
+  if (!input || input.length === 0) {
     throw new Error(
       'Please provide an input image, e.g. sqip({ input: "input.jpg" })'
     )

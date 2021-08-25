@@ -11,7 +11,8 @@ import {
   parseColor,
   SqipPluginOptions,
   PluginOptions,
-  SqipCliOptionDefinition
+  SqipCliOptionDefinition,
+  SqipImageMetadata
 } from 'sqip'
 
 interface PrimitivePluginOptions extends SqipPluginOptions {
@@ -112,8 +113,11 @@ export default class PrimitivePlugin extends SqipPlugin {
 
   public options: PrimitiveOptions
 
-  async apply(imageBuffer: Buffer): Promise<Buffer> {
-    if (this.metadata.type === 'svg') {
+  async apply(
+    imageBuffer: Buffer,
+    metadata: SqipImageMetadata
+  ): Promise<Buffer> {
+    if (metadata.type === 'svg') {
       throw new Error(
         'Primitive needs a raster image buffer as input. Check if you run this plugin in the first place.'
       )
@@ -129,13 +133,13 @@ export default class PrimitivePlugin extends SqipPlugin {
       cores
     } = this.options
 
-    const { width, height, palette } = this.metadata
+    const { width, height, palette } = metadata
 
     const background = userBg
       ? parseColor({ color: userBg, palette })
       : palette['Muted']?.hex
 
-    const { stdout } = await execa(
+    const result = await execa(
       primitiveExecutable,
       [
         '-i',
@@ -160,9 +164,9 @@ export default class PrimitivePlugin extends SqipPlugin {
       { input: imageBuffer }
     )
 
-    this.metadata.type = 'svg'
+    metadata.type = 'svg'
 
-    return Buffer.from(stdout)
+    return Buffer.from(result.stdout)
   }
 
   // Sanity check: use the exit state of 'type' to check for Primitive availability
@@ -173,26 +177,29 @@ export default class PrimitivePlugin extends SqipPlugin {
       `primitive-${platform}-${os.arch()}${platform === 'win32' ? '.exe' : ''}`
     )
 
-    debug(`Trying to locate primitive binary at ${primitivePath}`)
-
     try {
       await access(primitivePath, constants.X_OK)
+      debug(`Found primitive binary at ${primitivePath}`)
       primitiveExecutable = primitivePath
       return
     } catch (e) {
       // noop
     }
 
-    const errorMessage =
-      'Please ensure that Primitive (https://github.com/fogleman/primitive, written in Golang) is installed and globally available'
+    // Test if primitive is available as global executable
     try {
-      if (os.platform() === 'win32') {
+      if (platform === 'win32') {
         await execa('where', ['primitive'])
       } else {
         await execa('type', ['primitive'])
       }
     } catch (e) {
-      throw new Error(errorMessage)
+      throw new Error(
+        'Please ensure that Primitive (https://github.com/fogleman/primitive, written in Golang) is installed and globally available.'
+      )
     }
+
+    debug(`Found globally available primitive binary`)
+    primitiveExecutable = 'primitive'
   }
 }

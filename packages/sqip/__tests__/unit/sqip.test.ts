@@ -2,17 +2,16 @@ import { resolve } from 'path'
 import { tmpdir } from 'os'
 
 import fs from 'fs-extra'
+import { mocked } from 'ts-jest/utils'
 
-import sqip from '../../src/sqip'
+import sqip, { SqipImageMetadata, SqipResult } from '../../src/sqip'
 import primitive from 'sqip-plugin-primitive'
 import blur from 'sqip-plugin-blur'
 import svgo from 'sqip-plugin-svgo'
 import datauri from 'sqip-plugin-data-uri'
 
 const mockedConfig = {
-  input: 'mocked',
-  output: 'mocked',
-  plugins: ['pixels']
+  input: 'mocked'
 }
 
 const FILE_NOT_EXIST = '/this/file/does/not/exist.jpg'
@@ -34,36 +33,32 @@ jest.mock('sqip-plugin-blur')
 jest.mock('sqip-plugin-svgo')
 jest.mock('sqip-plugin-data-uri')
 
-primitive.mockImplementation(function primitiveMock() {
-  return {
-    apply: jest.fn(() => Buffer.from(EXAMPLE_SVG)),
-    checkForPrimitive: jest.fn()
-  }
-})
+const mockedPrimitive = mocked(primitive, true)
+mockedPrimitive.prototype.apply.mockImplementation(async () =>
+  Buffer.from(EXAMPLE_SVG)
+)
 
-blur.mockImplementation(function blurMock() {
-  return {
-    apply: jest.fn(() => Buffer.from(EXAMPLE_SVG))
-  }
-})
+const mockedBlur = mocked(blur, true)
+mockedBlur.prototype.apply.mockImplementation((buffer) => buffer)
 
-svgo.mockImplementation(function svgoMock() {
-  return {
-    apply: jest.fn(() => Buffer.from(EXAMPLE_SVG))
-  }
-})
+const mockedSVGO = mocked(svgo, true)
+mockedSVGO.prototype.apply.mockImplementation(async (buffer) => buffer)
 
-datauri.mockImplementation(function datauriMock({ metadata }) {
-  return {
-    apply: jest.fn(() => {
-      metadata.dataURI = 'data:image/svg+xml,dataURI'
-      metadata.dataURIBase64 = 'data:image/svg+xml;base64,dataURIBase64=='
-      return Buffer.from(EXAMPLE_SVG)
-    })
-  }
+const mockedDatauri = mocked(datauri, true)
+mockedDatauri.prototype.apply.mockImplementation((buffer, metadata) => {
+  metadata.dataURI = 'data:image/svg+xml,dataURI'
+  metadata.dataURIBase64 = 'data:image/svg+xml;base64,dataURIBase64=='
+  return buffer
 })
+interface JSONCompatibleResult {
+  metadata: SqipImageMetadata
+  content: string | Buffer
+}
 
-function expectValidResult(result) {
+function expectValidResult(result: SqipResult | SqipResult[]) {
+  if (Array.isArray(result)) {
+    result = result[0]
+  }
   // Metadata has valid palette
   expect(Object.keys(result.metadata.palette).sort()).toStrictEqual(
     [
@@ -75,11 +70,10 @@ function expectValidResult(result) {
       'DarkMuted'
     ].sort()
   )
-  expect(result.metadata.palette.Vibrant.constructor.name).toBe('Swatch')
+  expect(result.metadata.palette?.Vibrant?.constructor?.name).toBe('Swatch')
 
   // Clean result from values that depend on OS and snapshot test it
-  const jsonCompatibleResult = { ...result, metadata: { ...result.metadata } }
-  jsonCompatibleResult.metadata.palette = 'mocked'
+  const jsonCompatibleResult: JSONCompatibleResult = result
   jsonCompatibleResult.content = jsonCompatibleResult.content.toString()
   expect(jsonCompatibleResult).toMatchSnapshot()
 }
@@ -90,28 +84,34 @@ describe('node api', () => {
     errorSpy.mockClear()
   })
 
-  test('no config passed', async () => {
-    await expect(sqip(mockedConfig)).rejects.toThrowErrorMatchingSnapshot()
+  test('throws when empty input is passed', async () => {
+    await expect(
+      sqip({
+        input: ''
+      })
+    ).rejects.toThrowErrorMatchingSnapshot()
   })
 
-  test('empty config passed', async () => {
-    await expect(sqip(mockedConfig)).rejects.toThrowErrorMatchingSnapshot()
-  })
-
-  test('invalid input path', async () => {
+  test('throws when invalid input path is passed', async () => {
     await expect(
       sqip({ ...mockedConfig, input: FILE_NOT_EXIST })
     ).rejects.toThrowErrorMatchingSnapshot()
   })
 
+  // eslint-disable-next-line jest/expect-expect
   test('resolves valid input path', async () => {
     const result = await sqip({ ...mockedConfig, input: FILE_DEMO_BEACH })
     expectValidResult(result)
   })
 
+  // eslint-disable-next-line jest/expect-expect
   test('accepts buffers as input', async () => {
     const input = await fs.readFile(FILE_DEMO_BEACH)
-    const result = await sqip({ ...mockedConfig, input })
+    const result = await sqip({
+      ...mockedConfig,
+      input,
+      outputFileName: 'buffer-test.svg'
+    })
     expectValidResult(result)
   })
 
@@ -125,6 +125,7 @@ describe('node api', () => {
       await fs.unlink(output)
     })
 
+    // eslint-disable-next-line jest/expect-expect
     test('outputs to file path', async () => {
       const result = await sqip({
         ...mockedConfig,
@@ -147,29 +148,49 @@ describe('node api', () => {
 
   describe('width', () => {
     test('default resizes as expected', async () => {
-      const result = await sqip({ ...mockedConfig, input: FILE_DEMO_BEACH })
+      let result = await sqip({ ...mockedConfig, input: FILE_DEMO_BEACH })
+      if (Array.isArray(result)) {
+        result = result[0]
+      }
       expect(result.metadata.width).toBe(300)
       expect(result.metadata.height).toBe(188)
     })
 
     test('custom resizes as expected', async () => {
-      const result = await sqip({
+      let result = await sqip({
         ...mockedConfig,
         input: FILE_DEMO_BEACH,
         width: 600
       })
+      if (Array.isArray(result)) {
+        result = result[0]
+      }
       expect(result.metadata.width).toBe(600)
       expect(result.metadata.height).toBe(375)
     })
 
     test('value 0 falls back to original', async () => {
-      const result = await sqip({ input: FILE_DEMO_BEACH, width: 0 })
+      let result = await sqip({
+        ...mockedConfig,
+        input: FILE_DEMO_BEACH,
+        width: 0
+      })
+      if (Array.isArray(result)) {
+        result = result[0]
+      }
       expect(result.metadata.width).toBe(1024)
       expect(result.metadata.height).toBe(640)
     })
 
     test('negative value falls back to original', async () => {
-      const result = await sqip({ input: FILE_DEMO_BEACH, width: -1 })
+      let result = await sqip({
+        ...mockedConfig,
+        input: FILE_DEMO_BEACH,
+        width: -1
+      })
+      if (Array.isArray(result)) {
+        result = result[0]
+      }
       expect(result.metadata.width).toBe(1024)
       expect(result.metadata.height).toBe(640)
     })
