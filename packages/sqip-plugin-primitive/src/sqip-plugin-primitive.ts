@@ -99,7 +99,8 @@ export default class PrimitivePlugin extends SqipPlugin {
 
   constructor(options: PrimitivePluginOptions) {
     super(options)
-    const { options: pluginOptions } = options
+    const { pluginOptions } = options
+
     this.options = {
       numberOfPrimitives: 8,
       mode: 0,
