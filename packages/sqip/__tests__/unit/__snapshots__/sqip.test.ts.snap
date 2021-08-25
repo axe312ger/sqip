@@ -9,23 +9,61 @@ Object {
     "height": 188,
     "originalHeight": 640,
     "originalWidth": 1024,
-    "palette": "mocked",
+    "palette": Object {
+      "DarkMuted": Object {
+        "population": 17029,
+        "rgb": Array [
+          105,
+          78,
+          53,
+        ],
+      },
+      "DarkVibrant": Object {
+        "population": 131,
+        "rgb": Array [
+          190,
+          78,
+          12,
+        ],
+      },
+      "LightMuted": Object {
+        "population": 51394,
+        "rgb": Array [
+          207,
+          200,
+          183,
+        ],
+      },
+      "LightVibrant": Object {
+        "population": 15762,
+        "rgb": Array [
+          242,
+          177,
+          122,
+        ],
+      },
+      "Muted": Object {
+        "population": 17204,
+        "rgb": Array [
+          92,
+          143,
+          164,
+        ],
+      },
+      "Vibrant": Object {
+        "population": 4821,
+        "rgb": Array [
+          221,
+          133,
+          47,
+        ],
+      },
+    },
+    "type": "unknown",
     "width": 300,
   },
 }
 `;
-
-exports[`node api empty config passed 1`] = `"Please provide an input image, e.g. sqip({ input: \\"input.jpg\\" })"`;
-
-exports[`node api invalid input path 1`] = `
-"Unable to find any files via /this/file/does/not/exist.jpg. Make sure the file exists.
-
-If you are using globbing patterns, the following features are supported:
-
-https://github.com/micromatch/micromatch#matching-features"
-`;
-
-exports[`node api no config passed 1`] = `"Please provide an input image, e.g. sqip({ input: \\"input.jpg\\" })"`;
 
 exports[`node api output outputs to file path 1`] = `
 Object {
@@ -36,7 +74,57 @@ Object {
     "height": 188,
     "originalHeight": 640,
     "originalWidth": 1024,
-    "palette": "mocked",
+    "palette": Object {
+      "DarkMuted": Object {
+        "population": 17029,
+        "rgb": Array [
+          105,
+          78,
+          53,
+        ],
+      },
+      "DarkVibrant": Object {
+        "population": 131,
+        "rgb": Array [
+          190,
+          78,
+          12,
+        ],
+      },
+      "LightMuted": Object {
+        "population": 51394,
+        "rgb": Array [
+          207,
+          200,
+          183,
+        ],
+      },
+      "LightVibrant": Object {
+        "population": 15762,
+        "rgb": Array [
+          242,
+          177,
+          122,
+        ],
+      },
+      "Muted": Object {
+        "population": 17204,
+        "rgb": Array [
+          92,
+          143,
+          164,
+        ],
+      },
+      "Vibrant": Object {
+        "population": 4821,
+        "rgb": Array [
+          221,
+          133,
+          47,
+        ],
+      },
+    },
+    "type": "unknown",
     "width": 300,
   },
 }
@@ -51,7 +139,57 @@ Object {
     "height": 188,
     "originalHeight": 640,
     "originalWidth": 1024,
-    "palette": "mocked",
+    "palette": Object {
+      "DarkMuted": Object {
+        "population": 17029,
+        "rgb": Array [
+          105,
+          78,
+          53,
+        ],
+      },
+      "DarkVibrant": Object {
+        "population": 131,
+        "rgb": Array [
+          190,
+          78,
+          12,
+        ],
+      },
+      "LightMuted": Object {
+        "population": 51394,
+        "rgb": Array [
+          207,
+          200,
+          183,
+        ],
+      },
+      "LightVibrant": Object {
+        "population": 15762,
+        "rgb": Array [
+          242,
+          177,
+          122,
+        ],
+      },
+      "Muted": Object {
+        "population": 17204,
+        "rgb": Array [
+          92,
+          143,
+          164,
+        ],
+      },
+      "Vibrant": Object {
+        "population": 4821,
+        "rgb": Array [
+          221,
+          133,
+          47,
+        ],
+      },
+    },
+    "type": "unknown",
     "width": 300,
   },
 }
@@ -61,4 +199,14 @@ exports[`node api throws nicely when plugin not found 1`] = `
 "Unable to load plugin \\"sqip-plugin-i-dont-exist\\". Try installing it via:
 
  npm install sqip-plugin-i-dont-exist"
+`;
+
+exports[`node api throws when empty input is passed 1`] = `"Please provide an input image, e.g. sqip({ input: \\"input.jpg\\" })"`;
+
+exports[`node api throws when invalid input path is passed 1`] = `
+"Unable to find any files via /this/file/does/not/exist.jpg. Make sure the file exists.
+
+If you are using globbing patterns, the following features are supported:
+
+https://github.com/micromatch/micromatch#matching-features"
 `;

@@ -57,7 +57,7 @@ Object {
       ],
     },
   },
-  "type": "mocked",
+  "type": "svg",
   "width": 0,
 }
 `;

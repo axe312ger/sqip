@@ -93,7 +93,7 @@ export default async function sqipCLI(): Promise<undefined> {
   })
 
   if ('version' in pluginDetectionArgs) {
-    const closestPackageJSON = await pkgUp()
+    const closestPackageJSON = await pkgUp({ cwd: __dirname })
     if (!closestPackageJSON) {
       throw new Error('Unable to detect CLI version')
     }

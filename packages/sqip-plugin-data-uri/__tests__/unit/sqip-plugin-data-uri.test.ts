@@ -1,12 +1,13 @@
 import sqipPluginDataUri from '../../src/sqip-plugin-data-uri'
 
 import { Swatch } from '@vibrant/color'
+import { SqipImageMetadata } from 'sqip/src/sqip'
 
 const EXAMPLE_SVG = Buffer.from(
   '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="red" stroke="#000" stroke-width="3"/></svg>'
 )
 
-const mockedMetadata = {
+const mockedMetadata: SqipImageMetadata = {
   height: 0,
   width: 0,
   originalHeight: 0,
@@ -19,7 +20,7 @@ const mockedMetadata = {
     Muted: new Swatch([4, 2, 4], 424),
     Vibrant: new Swatch([4, 2, 5], 425)
   },
-  type: 'mocked'
+  type: 'svg'
 }
 const mockedConfig = {
   input: 'mocked',
@@ -32,10 +33,9 @@ describe('sqip-plugin-data-uri', () => {
     const plugin = new sqipPluginDataUri({
       pluginOptions: {},
       options: {},
-      metadata: mockedMetadata,
       sqipConfig: mockedConfig
     })
-    const result = plugin.apply(EXAMPLE_SVG)
+    const result = plugin.apply(EXAMPLE_SVG, mockedMetadata)
     expect(result).toBe(EXAMPLE_SVG)
   })
   it('encodes in mini-svg-data-uri and base64', () => {
@@ -43,10 +43,9 @@ describe('sqip-plugin-data-uri', () => {
     const plugin = new sqipPluginDataUri({
       pluginOptions: {},
       options: {},
-      metadata,
       sqipConfig: mockedConfig
     })
-    plugin.apply(EXAMPLE_SVG)
+    plugin.apply(EXAMPLE_SVG, metadata)
     expect(metadata).toMatchSnapshot()
   })
 })

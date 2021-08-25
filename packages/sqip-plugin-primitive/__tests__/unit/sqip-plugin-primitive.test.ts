@@ -1,67 +1,94 @@
-import path from 'path'
-import execaMock from 'execa'
-import fsMock from 'fs-extra'
-import osMock from 'os'
+import execa, { ExecaChildProcess } from 'execa'
+import fs from 'fs/promises'
+import os from 'os'
+import { Swatch } from '@vibrant/color'
+import { mocked } from 'ts-jest/utils'
 
 import PrimitivePlugin from '../../src/sqip-plugin-primitive'
+import { SqipImageMetadata } from 'sqip/src/sqip'
 
 jest.mock('execa')
-jest.mock('fs-extra')
-
+jest.mock('fs/promises')
 jest.mock('os', () => ({
-  ...jest.requireActual('os'),
+  ...(jest.requireActual('os') as typeof os),
   platform: jest.fn(() => 'unknownOS'),
   arch: jest.fn(() => 'nonExistingArch'),
-  cpus: () => 1
+  cpus: () => [1]
 }))
 
-const VENDOR_DIR = path.resolve(__dirname, '../../vendor')
-let originalExit = null
+const mockedExeca = mocked(execa, true)
+mockedExeca.mockImplementation(() => {
+  const result = ({
+    stdout: 'mocked'
+  } as unknown) as ExecaChildProcess<Buffer>
+  return result
+})
+const mockedFs = mocked(fs, true)
+mockedFs.access.mockImplementation(async () =>
+  Promise.reject(new Error('Mocked: Binary not available'))
+)
+const mockedOs = mocked(os, true)
+
+const proccessExitSpy = jest.spyOn(process, 'exit').mockImplementation()
+
+const mockedMetadata: SqipImageMetadata = {
+  width: 1024,
+  height: 640,
+  type: 'pixel',
+  originalHeight: 1024,
+  originalWidth: 640,
+  palette: {
+    DarkMuted: new Swatch([4, 2, 0], 420),
+    DarkVibrant: new Swatch([4, 2, 1], 421),
+    LightMuted: new Swatch([4, 2, 2], 422),
+    LightVibrant: new Swatch([4, 2, 3], 423),
+    Muted: new Swatch([4, 2, 4], 424),
+    Vibrant: new Swatch([4, 2, 5], 425)
+  }
+}
+const mockedConfig = {
+  input: 'mocked',
+  output: 'mocked',
+  plugins: ['primitive']
+}
 
 describe('checkForPrimitive', () => {
-  const primitivePlugin = new PrimitivePlugin({})
-
-  beforeAll(() => {
-    originalExit = global.process.exit
-    global.process.exit = jest.fn()
-  })
-
-  beforeEach(() => {
-    osMock.platform.mockImplementation(() => 'unknownOS')
-    osMock.arch.mockImplementation(() => 'x64')
+  const primitivePlugin = new PrimitivePlugin({
+    pluginOptions: {},
+    options: {},
+    sqipConfig: mockedConfig
   })
 
   afterEach(() => {
-    execaMock.mockReset()
-    fsMock.exists.mockClear()
-    osMock.arch.mockClear()
-    osMock.platform.mockClear()
-    global.process.exit.mockClear()
+    mockedExeca.mockClear()
+    mockedFs.access.mockClear()
+    mockedOs.arch.mockClear()
+    mockedOs.platform.mockClear()
+    proccessExitSpy.mockClear()
   })
 
   afterAll(() => {
-    global.process.exit = originalExit
+    proccessExitSpy.mockReset()
   })
 
   test('bundled executable exists', async () => {
-    osMock.platform.mockImplementation(() => 'linux')
-    fsMock.exists.mockImplementationOnce(() => true)
+    mockedFs.access.mockImplementationOnce(async () => Promise.resolve())
 
     await primitivePlugin.checkForPrimitive()
 
     expect(global.process.exit).not.toHaveBeenCalled()
-    expect(execaMock).not.toHaveBeenCalled()
+    expect(mockedExeca).not.toHaveBeenCalled()
   })
 
   test('uses where for windows, type for POSIX', async () => {
-    osMock.platform.mockImplementation(() => 'win32')
+    mockedOs.platform.mockImplementationOnce(() => 'win32')
     await primitivePlugin.checkForPrimitive()
-    expect(execaMock).toHaveBeenCalledWith('where', ['primitive'])
-    expect(fsMock.exists.mock.calls[0][0]).toMatch(/\.exe$/)
+    expect(mockedExeca).toHaveBeenCalledWith('where', ['primitive'])
+    expect(mockedFs.access.mock.calls[0][0]).toMatch(/\.exe$/)
 
-    osMock.platform.mockImplementation(() => 'linux')
+    mockedOs.platform.mockImplementationOnce(() => 'linux')
     await primitivePlugin.checkForPrimitive()
-    expect(execaMock).toHaveBeenCalledWith('type', ['primitive'])
+    expect(mockedExeca).toHaveBeenCalledWith('type', ['primitive'])
   })
 
   test('bundled executable does not exist but primitive is globally installed', async () => {
@@ -69,7 +96,7 @@ describe('checkForPrimitive', () => {
   })
 
   test('bundled executable does not exist, primitive not installed globally', async () => {
-    execaMock.mockImplementationOnce(() => {
+    mockedExeca.mockImplementationOnce(() => {
       throw new Error('not installed')
     })
 
@@ -80,67 +107,51 @@ describe('checkForPrimitive', () => {
 })
 
 describe('runPrimitive', () => {
-  let config, metadata
-  const filePath = '/path/to/input/file.jpg'
-  const fileContent = Buffer.from('mocked')
-
-  beforeEach(() => {
-    execaMock.mockResolvedValue({ stdout: {} })
-    config = {}
-    metadata = {
-      width: 100,
-      height: 200,
-      type: 'jpg',
-      palette: {
-        DarkMuted: { getHex: () => '#123456' }
-      }
-    }
-  })
+  const fileContent = Buffer.from('mocked-file-content')
 
   afterEach(() => {
-    execaMock.mockReset()
+    mockedExeca.mockClear()
   })
 
   test('executes primitive with default config', async () => {
     const primitivePlugin = new PrimitivePlugin({
-      pluginOptions: config,
-      metadata,
-      filePath
+      pluginOptions: {},
+      options: {},
+      sqipConfig: mockedConfig
     })
-    await primitivePlugin.apply(fileContent)
-    expect(execaMock.mock.calls).toHaveLength(2)
-    expect(execaMock.mock.calls[1]).toHaveLength(3)
-    fixProcessArgumentsForSnapshot(execaMock)
-    expect(execaMock.mock.calls[1]).toMatchSnapshot()
+    await primitivePlugin.apply(fileContent, { ...mockedMetadata })
+    expect(mockedExeca.mock.calls).toHaveLength(2)
+    expect(mockedExeca.mock.calls[1]).toHaveLength(3)
+    expect(mockedExeca.mock.calls[1]).toMatchSnapshot()
   })
 
   test('executes primitive with custom config, applying default number of primitives', async () => {
-    config = {
-      mode: 5
-    }
     const primitivePlugin = new PrimitivePlugin({
-      pluginOptions: config,
-      metadata,
-      filePath
+      pluginOptions: { mode: 5 },
+      options: {},
+
+      sqipConfig: mockedConfig
     })
-    await primitivePlugin.apply(fileContent)
-    expect(execaMock.mock.calls).toHaveLength(2)
-    expect(execaMock.mock.calls[1]).toHaveLength(3)
-    fixProcessArgumentsForSnapshot(execaMock)
-    expect(execaMock.mock.calls[1]).toMatchSnapshot()
+    await primitivePlugin.apply(fileContent, { ...mockedMetadata })
+    expect(mockedExeca.mock.calls).toHaveLength(2)
+    expect(mockedExeca.mock.calls[1]).toHaveLength(3)
+    expect(mockedExeca.mock.calls[1]).toMatchSnapshot()
   })
 
   test('executes primitive with landscape dimensions', async () => {
     const primitivePlugin = new PrimitivePlugin({
-      pluginOptions: config,
-      metadata: { ...metadata, width: 600, height: 300 },
-      filePath
+      pluginOptions: {},
+      options: {},
+      sqipConfig: mockedConfig
     })
-    await primitivePlugin.apply(fileContent)
-    expect(execaMock.mock.calls).toHaveLength(2)
-    expect(execaMock.mock.calls[1]).toHaveLength(3)
-    fixProcessArgumentsForSnapshot(execaMock)
-    expect(execaMock.mock.calls[1]).toMatchSnapshot()
+    await primitivePlugin.apply(fileContent, {
+      ...mockedMetadata,
+      width: 600,
+      height: 300
+    })
+    expect(mockedExeca.mock.calls).toHaveLength(2)
+    expect(mockedExeca.mock.calls[1]).toHaveLength(3)
+    expect(mockedExeca.mock.calls[1]).toMatchSnapshot()
   })
 
   test('allows avg as value for background', async () => {
@@ -148,14 +159,13 @@ describe('runPrimitive', () => {
       pluginOptions: {
         background: 'avg'
       },
-      metadata,
-      filePath
+      options: {},
+      sqipConfig: mockedConfig
     })
-    await primitivePlugin.apply(fileContent)
-    expect(execaMock.mock.calls).toHaveLength(2)
-    expect(execaMock.mock.calls[1]).toHaveLength(3)
-    fixProcessArgumentsForSnapshot(execaMock)
-    expect(execaMock.mock.calls[1]).toMatchSnapshot()
+    await primitivePlugin.apply(fileContent, { ...mockedMetadata })
+    expect(mockedExeca.mock.calls).toHaveLength(2)
+    expect(mockedExeca.mock.calls[1]).toHaveLength(3)
+    expect(mockedExeca.mock.calls[1]).toMatchSnapshot()
   })
 
   test('allows hex as value for background', async () => {
@@ -163,29 +173,12 @@ describe('runPrimitive', () => {
       pluginOptions: {
         background: '#654321'
       },
-      metadata,
-      filePath
+      options: {},
+      sqipConfig: mockedConfig
     })
-    await primitivePlugin.apply(fileContent)
-    expect(execaMock.mock.calls).toHaveLength(2)
-    expect(execaMock.mock.calls[1]).toHaveLength(3)
-    fixProcessArgumentsForSnapshot(execaMock)
-    expect(execaMock.mock.calls[1]).toMatchSnapshot()
+    await primitivePlugin.apply(fileContent, { ...mockedMetadata })
+    expect(mockedExeca.mock.calls).toHaveLength(2)
+    expect(mockedExeca.mock.calls[1]).toHaveLength(3)
+    expect(mockedExeca.mock.calls[1]).toMatchSnapshot()
   })
 })
-
-function fixProcessArgumentsForSnapshot(execaMock) {
-  execaMock.mock.calls[1][0] = execaMock.mock.calls[1][0].replace(
-    VENDOR_DIR,
-    '/VENDOR/DIR'
-  )
-  execaMock.mock.calls[1][1] = execaMock.mock.calls[1][1].map((arg) => {
-    if (typeof arg !== 'string') {
-      return arg
-    }
-    return arg.replace(
-      /primitive-tempfile-[0-9]+.svg/g,
-      'primitive-tempfile.svg'
-    )
-  })
-}
