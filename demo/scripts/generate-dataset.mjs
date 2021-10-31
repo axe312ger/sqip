@@ -1,15 +1,16 @@
-const { resolve, parse } = require('path')
-const { hrtime } = require('process')
+import { resolve, parse } from 'path'
 
-const { readdir, writeJSON, createReadStream } = require('fs-extra')
-const brotliSize = require('brotli-size')
-const gzipSize = require('gzip-size')
-const prettyBytes = require('pretty-bytes')
-const imageSize = require('probe-image-size')
-const aspectRatio = require('aspect-ratio')
-const cliProgress = require('cli-progress')
+import { promises as fs, createReadStream } from 'fs'
+import brotliSize from 'brotli-size'
+import gzipSize from 'gzip-size'
+import prettyBytes from 'pretty-bytes'
+import imageSize from 'probe-image-size'
+import aspectRatio from 'aspect-ratio'
+import cliProgress from 'cli-progress'
 
-const { ORIGINAL, PROCESSED, DATASET, variants } = require('./config')
+import { ORIGINAL, PROCESSED, DATASET, variants } from './config.mjs'
+
+const { readdir, writeFile } = fs
 
 function getSizes(input) {
   const originalBytes = Buffer.byteLength(input)
@@ -53,9 +54,9 @@ function getSizes(input) {
       const { name: variantName, task, resultFileType } = variant
       const name = `${filename}-${variantName}.${resultFileType}`
       const dist = resolve(PROCESSED, name)
-      const start = hrtime()
+      const start = process.hrtime.bigint()
       let result = await task({ path, dist })
-      const processTime = process.hrtime.bigint(start)
+      const processTime = Number(process.hrtime.bigint() - start)
 
       const sizes = getSizes(result)
       if (name === 'original-minified') {
@@ -74,5 +75,5 @@ function getSizes(input) {
   progressBar.stop()
 
   console.log('Writing dataset.json...')
-  await writeJSON(DATASET, images, { spaces: 2 })
+  await writeFile(DATASET, JSON.stringify(images, null, 2))
 })()

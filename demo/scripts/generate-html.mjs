@@ -1,11 +1,13 @@
-const { join, resolve } = require('path')
+import { join, resolve } from 'path'
 
-const { readJSON, writeFile } = require('fs-extra')
-const convertHrtime = require('convert-hrtime')
-const prettyBytes = require('pretty-bytes')
+import { promises as fs } from 'fs'
+import convertHrtime from 'convert-hrtime'
+import prettyBytes from 'pretty-bytes'
 
-const { DATASET, variants, html } = require('./config')
-const template = require('./template')
+import { DATASET, variants, html } from './config.mjs'
+import template from './template.mjs'
+
+const { readFile, writeFile } = fs
 
 function VariantResult({
   variantName,
@@ -114,7 +116,8 @@ const Row = ({ image }) => {
 }
 
 ;(async () => {
-  const images = await readJSON(DATASET)
+  const imagesFile = await readFile(DATASET)
+  const images = JSON.parse(imagesFile.toString())
 
   const processingTimes = variants.map(({ name }) => {
     return images.reduce((total, { results }) => {
@@ -134,7 +137,7 @@ const Row = ({ image }) => {
     }, 0)
   })
 
-  const indexPath = resolve(__dirname, '..', 'public', 'index.html')
+  const indexPath = resolve('.', 'public', 'index.html')
 
   const pageContent = template(html`
     <table>
