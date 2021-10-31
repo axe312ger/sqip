@@ -14,12 +14,12 @@ jobs:
             - yarn-packages-v1-{{ .Branch }}-
             - yarn-packages-v1-
       - run: yarn
+      - run: yarn run build
       - save_cache:
           paths:
             - ~/.cache/yarn
             - ./node_modules
           key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
-      - run: yarn run build
       - run: yarn run lint
   test-unit:
     docker:
@@ -35,12 +35,12 @@ jobs:
             - yarn-packages-v1-{{ .Branch }}-
             - yarn-packages-v1-
       - run: yarn
+      - run: yarn run build
       - save_cache:
           paths:
             - ~/.cache/yarn
             - ./node_modules
           key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
-      - run: yarn run build
       - run: DEBUG="sqip*,jest*" yarn run test:unit -- --verbose
       - run: yarn codecov
   test-e2e:
