@@ -13,7 +13,7 @@
     "test:e2e": "TERM=xterm jest --testPathPattern='e2e/*'",
     "test:e2e:watch": "TERM=xterm jest --testPathPattern='e2e/*' --watch",
     "lint": "eslint packages/*/src --ext .ts,.tsx",
-    "format": "lerna exec 'prettier --write src/**/*.js __tests__/**/*.js'",
+    "format": "lerna exec --ignore sqip-demo 'prettier --parser typescript --write src/**/*.ts __tests__/**/*.ts'",
     "check-dependencies": "lerna exec --ignore sqip-demo \"pwd && npx depcheck --ignore-dirs 'dist' .\" --no-bail --concurrency 1",
     "publish": "npm run build && lerna publish --conventional-commits",
     "publish:canary": "npm run publish -- --dist-tag canary"

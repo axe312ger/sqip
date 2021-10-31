@@ -18,9 +18,9 @@ jest.mock('os', () => ({
 
 const mockedExeca = mocked(execa, true)
 mockedExeca.mockImplementation(() => {
-  const result = ({
+  const result = {
     stdout: 'mocked'
-  } as unknown) as ExecaChildProcess<Buffer>
+  } as unknown as ExecaChildProcess<Buffer>
   return result
 })
 const mockedFs = mocked(fs, true)

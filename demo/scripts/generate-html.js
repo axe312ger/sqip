@@ -49,9 +49,7 @@ function VariantResult({
               />
             </div>
           `}
-      <div class="sizes">
-        ${originalPercent}%
-      </div>
+      <div class="sizes">${originalPercent}%</div>
       <div class="overlay">
         <p>
           <strong><a href="${url}">${name}</a></strong>
@@ -120,8 +118,9 @@ const Row = ({ image }) => {
 
   const processingTimes = variants.map(({ name }) => {
     return images.reduce((total, { results }) => {
-      const time = results.find(({ variantName }) => variantName === name)
-        .processTime
+      const time = results.find(
+        ({ variantName }) => variantName === name
+      ).processTime
       return total + convertHrtime(time).seconds
     }, 0)
   })

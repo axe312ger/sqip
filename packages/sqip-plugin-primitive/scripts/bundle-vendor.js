@@ -24,12 +24,14 @@ try {
   // Get primitive
   execSync(`go install github.com/hashbite/primitive@latest`)
 } catch (err) {
-  console.log('\n---\n\nUnable to download and build primitive from https://github.com/hashbite/primitive.\n\nIs go installed?\n\nSome users might just want to download it from here: https://golang.org/dl/\n\nBrew users: brew install go\n\n---\n\n')
+  console.log(
+    '\n---\n\nUnable to download and build primitive from https://github.com/hashbite/primitive.\n\nIs go installed?\n\nSome users might just want to download it from here: https://golang.org/dl/\n\nBrew users: brew install go\n\n---\n\n'
+  )
   process.exit(1)
 }
 
 // Build executables
-builds.forEach(build => {
+builds.forEach((build) => {
   const { os, arch, filename } = build
   const path = resolve(__dirname, '..', 'primitive-binaries', filename)
   if (existsSync(path)) {
