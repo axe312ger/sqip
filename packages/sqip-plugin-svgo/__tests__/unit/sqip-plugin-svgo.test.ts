@@ -6,9 +6,10 @@ jest.mock('svgo')
 
 const mockedSVGO = mocked(SVGO, true)
 
-mockedSVGO.prototype.optimize.mockImplementation(() =>
-  Promise.resolve({ data: 'mocked', info: { width: '1024', height: '768' } })
-)
+mockedSVGO.optimize.mockImplementation(() => ({
+  data: 'mocked',
+  info: { width: '1024', height: '768' }
+}))
 
 const mockedConfig = {
   input: 'mocked',
@@ -16,18 +17,16 @@ const mockedConfig = {
   plugins: ['svgo']
 }
 
-test('runSVGO', async () => {
+test('runSVGO', () => {
   const svgoPlugin = new SvgoPlugin({
     pluginOptions: {},
     options: {},
     sqipConfig: mockedConfig
   })
   const inputSVG = Buffer.from('<svg />')
-  await svgoPlugin.apply(inputSVG)
-  expect(mockedSVGO).toHaveBeenCalledTimes(1)
-  expect(mockedSVGO.mock.calls[0]).toMatchSnapshot()
-  expect(mockedSVGO.prototype.optimize).toHaveBeenCalledTimes(1)
-  expect(mockedSVGO.prototype.optimize.mock.calls[0][0]).toBe(
-    inputSVG.toString()
-  )
+  svgoPlugin.apply(inputSVG)
+
+  expect(mockedSVGO.optimize).toHaveBeenCalledTimes(1)
+  expect(mockedSVGO.optimize.mock.calls[0][0]).toBe(inputSVG.toString())
+  expect(mockedSVGO.optimize.mock.calls[0]).toMatchSnapshot()
 })

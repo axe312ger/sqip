@@ -2,6 +2,7 @@
 
 exports[`runSVGO 1`] = `
 Array [
+  "<svg />",
   Object {
     "floatPrecision": 1,
     "multipass": true,

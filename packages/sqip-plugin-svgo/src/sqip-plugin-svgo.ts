@@ -1,6 +1,6 @@
 import { SqipPlugin, SqipPluginOptions, PluginOptions } from 'sqip'
 
-import SVGO from 'svgo'
+import { optimize, OptimizedSvg } from 'svgo'
 
 interface SvgoPluginOptions extends SqipPluginOptions {
   pluginOptions: Partial<PluginOptions>
@@ -68,9 +68,8 @@ export default class SVGOPlugin extends SqipPlugin {
       ...pluginOptions
     }
   }
-  async apply(svg: Buffer): Promise<Buffer> {
-    const svgo = new SVGO(this.options)
-    const { data } = await svgo.optimize(svg.toString())
-    return Buffer.from(data)
+  apply(svg: Buffer): Buffer {
+    const result = optimize(svg.toString(), this.options)
+    return Buffer.from(result.data)
   }
 }
