@@ -33,7 +33,7 @@
     "svgdom": "^0.1.8"
   },
   "devDependencies": {
-    "cheerio": "1.0.0-rc.6"
+    "cheerio": "1.0.0-rc.10"
   },
   "gitHead": "3bed73cc4f8557baad9e23a87dbee24b019c14ff"
 }
