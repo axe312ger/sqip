@@ -1,6 +1,6 @@
 {
   "extends": [
-    "config:base",
-    "ignorePresets": [":prHourlyLimit2"]
-  ]
+    "config:base"
+  ],
+  "ignorePresets": [":prHourlyLimit2"]
 }
