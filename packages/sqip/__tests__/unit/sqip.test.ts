@@ -42,7 +42,7 @@ const mockedBlur = mocked(blur, true)
 mockedBlur.prototype.apply.mockImplementation((buffer) => buffer)
 
 const mockedSVGO = mocked(svgo, true)
-mockedSVGO.prototype.apply.mockImplementation(async (buffer) => buffer)
+mockedSVGO.prototype.apply.mockImplementation((buffer) => buffer)
 
 const mockedDatauri = mocked(datauri, true)
 mockedDatauri.prototype.apply.mockImplementation((buffer, metadata) => {
