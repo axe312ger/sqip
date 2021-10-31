@@ -1,6 +1,6 @@
 import path from 'path'
 
-import cheerio, { Root } from 'cheerio'
+import cheerio from 'cheerio'
 import Debug from 'debug'
 import expandTilde from 'expand-tilde'
 import fastGlob from 'fast-glob'
@@ -10,7 +10,7 @@ import { Palette } from '@vibrant/color'
 
 const debug = Debug('sqip')
 
-export const loadSVG = (svg: string): Root => {
+export const loadSVG = (svg: string) => {
   return cheerio.load(svg, {
     normalizeWhitespace: true,
     xmlMode: true
