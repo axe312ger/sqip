@@ -1,4 +1,4 @@
-module.exports = (content) => `
+export default (content) => `
 <html>
   <head>
     <meta charset="UTF-8" />

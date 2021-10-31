@@ -1,30 +1,34 @@
-const { resolve } = require('path')
-const { tmpdir } = require('os')
+import { resolve } from 'path'
+import { tmpdir } from 'os'
 
-const { readFile, writeFile, unlink } = require('fs-extra')
-const dataURIToBuffer = require('data-uri-to-buffer')
-const mozjpeg = require('mozjpeg')
-const execa = require('execa')
-const lqip = require('lqip')
-const sqip = require('sqip').default
-const sqipLegacy = require('sqip-legacy')
-const htm = require('htm')
-const vhtml = require('vhtml')
-const sharp = require('sharp')
+import { promises as fs } from 'fs'
+import dataURIToBuffer from 'data-uri-to-buffer'
+import mozjpeg from 'mozjpeg'
+import execa from 'execa'
+import lqip from 'lqip'
+import * as sqipWtf from 'sqip'
+import sqipLegacy from 'sqip-legacy'
+import htm from 'htm'
+import vhtml from 'vhtml'
+import sharp from 'sharp'
 
-const html = htm.bind(vhtml)
+// @todo why is that?
+const sqip = sqipWtf.default.default
 
-const ROOT = resolve(__dirname, '..')
-const ORIGINAL = resolve(__dirname, ROOT, 'public', 'original')
-const PROCESSED = resolve(__dirname, ROOT, 'public', 'processed')
-const DATASET = resolve(__dirname, ROOT, 'public', 'dataset.json')
+const { readFile, writeFile, unlink } = fs
 
-async function writeImage({ dataURI, dist }) {
+export const html = htm.bind(vhtml)
+
+export const ORIGINAL = resolve('.', 'public', 'original')
+export const PROCESSED = resolve('.', 'public', 'processed')
+export const DATASET = resolve('.', 'public', 'dataset.json')
+
+export async function writeImage({ dataURI, dist }) {
   const content = dataURIToBuffer(dataURI)
   await writeFile(dist, content)
 }
 
-const variants = [
+export const variants = [
   {
     name: 'thumbnail',
     title: 'Thumbnail',
@@ -244,12 +248,3 @@ const variants = [
     }
   }
 ]
-
-module.exports = {
-  ROOT,
-  ORIGINAL,
-  PROCESSED,
-  DATASET,
-  variants,
-  html
-}
