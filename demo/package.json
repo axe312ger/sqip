@@ -14,7 +14,7 @@
   "dependencies": {
     "aspect-ratio": "2.1.1",
     "brotli-size": "4.0.0",
-    "cli-progress": "3.9.0",
+    "cli-progress": "3.9.1",
     "convert-hrtime": "5.0.0",
     "data-uri-to-buffer": "3.0.1",
     "execa": "5.0.0",
