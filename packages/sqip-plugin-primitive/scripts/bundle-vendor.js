@@ -9,6 +9,11 @@ const builds = [
     filename: 'primitive-darwin-x64'
   },
   {
+    os: 'darwin',
+    arch: 'arm64',
+    filename: 'primitive-darwin-arm64'
+  },
+  {
     os: 'linux',
     arch: 'amd64',
     filename: 'primitive-linux-x64'
