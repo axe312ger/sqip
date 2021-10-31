@@ -30,7 +30,7 @@ interface PrimitiveOptions extends PluginOptions {
 
 const debug = Debug('sqip-plugin-primitive')
 
-const VENDOR_DIR = path.resolve(__dirname, '..', 'vendor')
+const VENDOR_DIR = path.resolve(__dirname, '..', 'primitive-binaries')
 let primitiveExecutable = 'primitive'
 
 // Since Primitive is only interested in the larger dimension of the input image, let's find it
@@ -196,7 +196,7 @@ export default class PrimitivePlugin extends SqipPlugin {
       }
     } catch (e) {
       throw new Error(
-        'Please ensure that Primitive (https://github.com/fogleman/primitive, written in Golang) is installed and globally available.'
+        'Please ensure that Primitive (https://github.com/hashbite/primitive, written in Golang) is installed and globally available.'
       )
     }
 

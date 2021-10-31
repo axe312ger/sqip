@@ -54,7 +54,7 @@ Get a more detailed look on [our demo website](https://axe312ger.github.io/sqip/
 The most common plugin `sqip-plugin-primitive` is packed with a 64bit executable for all 3 major operating systems. Users with non 32-bit operating system or those who simply want to use the latest and greatest verison of primitive need:
 
 * Golang (https://golang.org/doc/install)
-* Primitive (https://github.com/fogleman/primitive) (`go get -u github.com/fogleman/primitive`)
+* Primitive (https://github.com/hashbite/primitive) (`go get -u github.com/hashbite/primitive`)
 
 After installing Primitive, you may also need to add the path to the ```Primitive``` binary file.
 
@@ -435,7 +435,7 @@ provides a much better initial visual impression but comes at the cost of
 significantly increased bytesize for the LQIP implementation.
 
 SQIP is an attempt to find a balance between these two extremes: it makes use
-of [Primitive](https://github.com/fogleman/primitive) to generate a SVG
+of [Primitive](https://github.com/hashbite/primitive) to generate a SVG
 consisting of several simple shapes that approximate the main features visible
 inside the image, optimizes the SVG using [SVGO](https://github.com/svg/svgo)
 and adds a Gaussian Blur filter to it. This produces a SVG placeholder which

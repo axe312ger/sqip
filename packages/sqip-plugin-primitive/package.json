@@ -13,7 +13,7 @@
   },
   "files": [
     "dist",
-    "vendor"
+    "primitive-binaries"
   ],
   "repository": {
     "type": "git",
