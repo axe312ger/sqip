@@ -7,7 +7,7 @@
     "build:watch": "lerna exec --ignore sqip-demo 'npm run watch'",
     "build:clean": "rm -rf \"packages/*/dist/*\" packages/*/tsconfig.tsbuildinfo",
     "test": "npm run lint && npm run test:unit && npm run test:e2e",
-    "test:unit": "TERM=xterm jest --testPathPattern='unit/*' --coverage",
+    "test:unit": "TERM=xterm jest --testPathPattern='unit/*' --coverage --runInBand",
     "test:unit:watch": "TERM=xterm jest --testPathPattern='unit/*' --coverage --watch",
     "pretest:e2e": "npm run build",
     "test:e2e": "TERM=xterm jest --testPathPattern='e2e/*'",
