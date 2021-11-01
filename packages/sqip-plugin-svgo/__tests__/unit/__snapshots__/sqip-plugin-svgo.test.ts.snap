@@ -7,147 +7,17 @@ Array [
     "floatPrecision": 1,
     "multipass": true,
     "plugins": Array [
-      Object {
-        "removeDoctype": true,
-      },
-      Object {
-        "removeXMLProcInst": true,
-      },
-      Object {
-        "removeComments": true,
-      },
-      Object {
-        "removeMetadata": true,
-      },
-      Object {
-        "removeXMLNS": false,
-      },
-      Object {
-        "removeEditorsNSData": true,
-      },
-      Object {
-        "cleanupAttrs": true,
-      },
-      Object {
-        "inlineStyles": true,
-      },
-      Object {
-        "minifyStyles": true,
-      },
-      Object {
-        "convertStyleToAttrs": true,
-      },
-      Object {
-        "cleanupIDs": true,
-      },
-      Object {
-        "prefixIds": true,
-      },
-      Object {
-        "removeRasterImages": true,
-      },
-      Object {
-        "removeUselessDefs": true,
-      },
-      Object {
-        "cleanupNumericValues": true,
-      },
-      Object {
-        "cleanupListOfValues": true,
-      },
-      Object {
-        "convertColors": true,
-      },
-      Object {
-        "removeUnknownsAndDefaults": true,
-      },
-      Object {
-        "removeNonInheritableGroupAttrs": true,
-      },
-      Object {
-        "removeUselessStrokeAndFill": true,
-      },
-      Object {
-        "removeViewBox": false,
-      },
-      Object {
-        "cleanupEnableBackground": true,
-      },
-      Object {
-        "removeHiddenElems": true,
-      },
-      Object {
-        "removeEmptyText": true,
-      },
-      Object {
-        "convertShapeToPath": true,
-      },
-      Object {
-        "moveElemsAttrsToGroup": true,
-      },
-      Object {
-        "moveGroupAttrsToElems": true,
-      },
-      Object {
-        "collapseGroups": true,
-      },
-      Object {
-        "convertPathData": true,
-      },
-      Object {
-        "convertTransform": true,
-      },
-      Object {
-        "removeEmptyAttrs": true,
-      },
-      Object {
-        "removeEmptyContainers": true,
-      },
-      Object {
-        "mergePaths": true,
-      },
-      Object {
-        "removeUnusedNS": true,
-      },
-      Object {
-        "sortAttrs": true,
-      },
-      Object {
-        "removeTitle": true,
-      },
-      Object {
-        "removeDesc": true,
-      },
-      Object {
-        "removeDimensions": true,
-      },
-      Object {
-        "removeAttrs": false,
-      },
-      Object {
-        "removeAttributesBySelector": false,
-      },
-      Object {
-        "removeElementsByAttr": false,
-      },
-      Object {
-        "addClassesToSVGElement": false,
-      },
-      Object {
-        "removeStyleElement": false,
-      },
-      Object {
-        "removeScriptElement": false,
-      },
-      Object {
-        "addAttributesToSVGElement": false,
-      },
-      Object {
-        "removeOffCanvasPaths": true,
-      },
-      Object {
-        "reusePaths": true,
-      },
+      "preset-default",
+      "cleanupListOfValues",
+      "convertStyleToAttrs",
+      "prefixIds",
+      "removeDimensions",
+      "removeOffCanvasPaths",
+      "removeRasterImages",
+      "removeScriptElement",
+      "removeStyleElement",
+      "reusePaths",
+      "sortAttrs",
     ],
   },
 ]
