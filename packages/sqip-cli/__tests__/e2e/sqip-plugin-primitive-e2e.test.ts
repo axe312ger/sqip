@@ -27,7 +27,7 @@ const inputFile = resolve(
 const cliPath = resolve(__dirname, '..', '..', 'dist', 'wrapper.js')
 const cliCmd = `node`
 
-jest.setTimeout(20000)
+jest.setTimeout(30000)
 
 describe('primitive e2e/integration tests', () => {
   test('run with default settings', async () => {
