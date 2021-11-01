@@ -4,7 +4,7 @@ import { tmpdir } from 'os'
 import fs from 'fs-extra'
 import { mocked } from 'ts-jest/utils'
 
-import sqip, { SqipImageMetadata, SqipResult } from '../../src/sqip'
+import { sqip, SqipImageMetadata, SqipResult } from '../../src/sqip'
 import primitive from 'sqip-plugin-primitive'
 import blur from 'sqip-plugin-blur'
 import svgo from 'sqip-plugin-svgo'

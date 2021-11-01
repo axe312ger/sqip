@@ -1,19 +1,15 @@
-import { resolve } from 'path'
-import { tmpdir } from 'os'
-
-import { promises as fs } from 'fs'
 import dataURIToBuffer from 'data-uri-to-buffer'
-import mozjpeg from 'mozjpeg'
 import execa from 'execa'
-import lqip from 'lqip'
-import * as sqipWtf from 'sqip'
-import sqipLegacy from 'sqip-legacy'
+import { promises as fs } from 'fs'
 import htm from 'htm'
-import vhtml from 'vhtml'
+import lqip from 'lqip'
+import mozjpeg from 'mozjpeg'
+import { tmpdir } from 'os'
+import { resolve } from 'path'
 import sharp from 'sharp'
-
-// @todo why is that?
-const sqip = sqipWtf.default.default
+import { sqip } from 'sqip'
+import sqipLegacy from 'sqip-legacy'
+import vhtml from 'vhtml'
 
 const { readFile, writeFile, unlink } = fs
 

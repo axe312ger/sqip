@@ -5,7 +5,7 @@
 ## Usage
 
 ```
-import sqip from 'sqip';
+import { sqip } from 'sqip'
 
 // TODO: DEMONSTRATE API
 ```
