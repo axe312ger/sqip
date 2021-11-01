@@ -1,12 +1,12 @@
 import { mocked } from 'ts-jest/utils'
-import sqip, { resolvePlugins } from 'sqip'
+import { sqip, resolvePlugins } from 'sqip'
 import sqipCLI from '../../src/sqip-cli'
 
 import semver from 'semver'
 
 jest.mock('sqip', () => ({
   __esModule: true,
-  default: jest.fn(async () => []),
+  sqip: jest.fn(async () => []),
   resolvePlugins: jest.fn(() => [
     {
       name: 'mocked',
