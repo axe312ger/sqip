@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.34](https://github.com/axe312ger/sqip/compare/sqip@1.0.0-alpha.33...sqip@1.0.0-alpha.34) (2021-11-01)
+
+
+### Bug Fixes
+
+* export sqip named instead of default ([9ff25c9](https://github.com/axe312ger/sqip/commit/9ff25c921719f47d19f92729fd1e0198bdced6ab))
+* **deps:** update dependency fs-extra to v10 ([f054fdb](https://github.com/axe312ger/sqip/commit/f054fdb81ff06d6bdb9d05b9c31c5be4c8d049d9))
+* **deps:** update dependency sharp to ^0.29.0 ([6db66e0](https://github.com/axe312ger/sqip/commit/6db66e0a1126fd0386895d722047b69beaeaf8c6))
+
+
+
+
+
 # [1.0.0-alpha.33](https://github.com/axe312ger/sqip/compare/sqip@1.0.0-alpha.32...sqip@1.0.0-alpha.33) (2021-10-31)
 
 **Note:** Version bump only for package sqip

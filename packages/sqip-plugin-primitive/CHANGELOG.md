@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.36](https://github.com/axe312ger/sqip/compare/sqip-plugin-primitive@1.0.0-alpha.35...sqip-plugin-primitive@1.0.0-alpha.36) (2021-11-01)
+
+
+### Bug Fixes
+
+* **deps:** update dependency execa to v5.1.1 ([5c45a1a](https://github.com/axe312ger/sqip/commit/5c45a1aee249f758b037d6a7959dd20617eea94c))
+* **deps:** update dependency fs-extra to v10 ([f054fdb](https://github.com/axe312ger/sqip/commit/f054fdb81ff06d6bdb9d05b9c31c5be4c8d049d9))
+
+
+
+
+
 # [1.0.0-alpha.35](https://github.com/axe312ger/sqip/compare/sqip-plugin-primitive@1.0.0-alpha.34...sqip-plugin-primitive@1.0.0-alpha.35) (2021-10-31)
 
 **Note:** Version bump only for package sqip-plugin-primitive
