@@ -340,7 +340,7 @@ async function processImage({
   return { content: buffer, metadata }
 }
 
-export default async function sqip(
+export async function sqip(
   options: SqipOptions
 ): Promise<SqipResult | SqipResult[]> {
   // Build configuration based on passed options and default options
