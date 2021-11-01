@@ -6,7 +6,7 @@ import Debug from 'debug'
 import fs from 'fs-extra'
 import pkgUp from 'pkg-up'
 
-import sqip, { resolvePlugins, SqipCliOptionDefinition } from 'sqip'
+import { sqip, resolvePlugins, SqipCliOptionDefinition } from 'sqip'
 
 const debug = Debug('sqip-cli')
 
