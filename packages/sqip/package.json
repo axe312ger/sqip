@@ -43,6 +43,7 @@
     "chalk": "^4.1.0",
     "cheerio": "^1.0.0-rc.10",
     "cli-table3": "^0.6.0",
+    "command-line-args": "^5.2.0",
     "expand-tilde": "^2.0.2",
     "fast-glob": "^3.2.4",
     "fs-extra": "^10.0.0",
@@ -52,6 +53,7 @@
     "term-img": "^5.0.0"
   },
   "peerDependencies": {
+    "@vibrant/color": "^3.2.0-alpha",
     "sqip-plugin-blur": "^1.0.0-alpha.0",
     "sqip-plugin-data-uri": "^1.0.0-alpha.0",
     "sqip-plugin-primitive": "^1.0.0-alpha.0",
@@ -62,6 +64,7 @@
     "@types/expand-tilde": "2.0.0",
     "@types/fs-extra": "9.0.13",
     "@types/probe-image-size": "7.0.1",
-    "debug": "4.3.2"
+    "debug": "4.3.2",
+    "ts-jest": "^27.0.7"
   }
 }
