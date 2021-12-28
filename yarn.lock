@@ -10231,16 +10231,6 @@ sprintf-js@~1.0.2:
     svgo "^0.7.2"
     xmldom "^0.1.27"
 
-sqip@^0.3.3:
-  version "0.3.3"
-  resolved "https://registry.npmjs.org/sqip/-/sqip-0.3.3.tgz#920bbd38428db1fb267072a2c7c885c8c36d0e15"
-  integrity sha512-2sP0y3S1NPM+PEx85YopfSeby2LsX344LBGL8WN06X5H59ELg7HKZaH2K/A+l4qqTUDQmGeaXVvsmG3bth7dow==
-  dependencies:
-    argv "0.0.2"
-    image-size "^0.6.1"
-    svgo "^0.7.2"
-    xmldom "^0.1.27"
-
 sshpk@^1.7.0:
   version "1.16.1"
   resolved "https://registry.yarnpkg.com/sshpk/-/sshpk-1.16.1.tgz#fb661c0bef29b39db40769ee39fa70093d6f6877"
