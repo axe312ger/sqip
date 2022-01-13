@@ -1,6 +1,6 @@
 import { SqipPlugin, SqipPluginOptions, PluginOptions } from 'sqip'
 
-import { optimize, OptimizedError } from 'svgo'
+import { optimize } from 'svgo'
 
 interface SvgoPluginOptions extends SqipPluginOptions {
   pluginOptions: Partial<PluginOptions>
