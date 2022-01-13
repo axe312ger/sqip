@@ -8,7 +8,9 @@ const mockedSVGO = mocked(SVGO, true)
 
 mockedSVGO.optimize.mockImplementation(() => ({
   data: 'mocked',
-  info: { width: '1024', height: '768' }
+  info: { width: '1024', height: '768' },
+  error: undefined,
+  modernError: undefined
 }))
 
 const mockedConfig = {

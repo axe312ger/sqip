@@ -1,6 +1,6 @@
 import { SqipPlugin, SqipPluginOptions, PluginOptions } from 'sqip'
 
-import { optimize } from 'svgo'
+import { optimize, OptimizedError } from 'svgo'
 
 interface SvgoPluginOptions extends SqipPluginOptions {
   pluginOptions: Partial<PluginOptions>
@@ -34,6 +34,18 @@ export default class SVGOPlugin extends SqipPlugin {
   }
   apply(svg: Buffer): Buffer {
     const result = optimize(svg.toString(), this.options)
-    return Buffer.from(result.data)
+
+    if ('data' in result) {
+      return Buffer.from(result.data)
+    }
+
+    if (result.modernError) {
+      console.error(result.error)
+      throw result.modernError
+    }
+
+    throw new Error(
+      `SVGO returned an invalid result:\n${JSON.stringify(result, null, 2)}`
+    )
   }
 }

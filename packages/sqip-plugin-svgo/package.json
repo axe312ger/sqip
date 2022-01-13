@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "sqip": "^1.0.0-alpha.35",
-    "svgo": "^2.0.0"
+    "svgo": "^2.8.0"
   },
   "devDependencies": {
     "@types/svgo": "2.6.1",
