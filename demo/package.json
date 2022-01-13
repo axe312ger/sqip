@@ -1,6 +1,6 @@
 {
   "name": "sqip-demo",
-  "version": "1.0.0-alpha.38",
+  "version": "1.0.0-alpha.39",
   "main": "index.html",
   "repository": "http://axe312ger.github.io/sqip",
   "author": "Benedikt Rötsch <info@benedikt-roetsch.de>",
@@ -32,7 +32,7 @@
     "sqip-plugin-pixels": "^1.0.0-alpha.35",
     "sqip-plugin-potrace": "^1.0.0-alpha.7",
     "sqip-plugin-primitive": "^1.0.0-alpha.37",
-    "sqip-plugin-svgo": "^1.0.0-alpha.36",
+    "sqip-plugin-svgo": "^1.0.0-alpha.37",
     "vhtml": "2.2.0"
   },
   "devDependencies": {

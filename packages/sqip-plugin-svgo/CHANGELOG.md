@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.37](https://github.com/axe312ger/sqip/compare/sqip-plugin-svgo@1.0.0-alpha.36...sqip-plugin-svgo@1.0.0-alpha.37) (2022-01-13)
+
+
+### Bug Fixes
+
+* **svgo:** align code for changes in v2.8 ([29cf90f](https://github.com/axe312ger/sqip/commit/29cf90f7d9b6934dc5f4f3171a43b9aa961e8a68))
+
+
+
+
+
 # [1.0.0-alpha.36](https://github.com/axe312ger/sqip/compare/sqip-plugin-svgo@1.0.0-alpha.35...sqip-plugin-svgo@1.0.0-alpha.36) (2022-01-13)
 
 
