@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.35](https://github.com/axe312ger/sqip/compare/sqip-plugin-pixels@1.0.0-alpha.34...sqip-plugin-pixels@1.0.0-alpha.35) (2022-01-13)
+
+**Note:** Version bump only for package sqip-plugin-pixels
+
+
+
+
+
 # [1.0.0-alpha.34](https://github.com/axe312ger/sqip/compare/sqip-plugin-pixels@1.0.0-alpha.33...sqip-plugin-pixels@1.0.0-alpha.34) (2021-11-01)
 
 

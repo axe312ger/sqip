@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.36](https://github.com/axe312ger/sqip/compare/sqip-plugin-svgo@1.0.0-alpha.35...sqip-plugin-svgo@1.0.0-alpha.36) (2022-01-13)
+
+
+### Bug Fixes
+
+* uses sqip version ^1.0.0-alpha.34 in svgo plugin ([afc01a5](https://github.com/axe312ger/sqip/commit/afc01a54764811bb26db9c41614acc7c1a40d4f2))
+
+
+
+
+
 # [1.0.0-alpha.35](https://github.com/axe312ger/sqip/compare/sqip-plugin-svgo@1.0.0-alpha.34...sqip-plugin-svgo@1.0.0-alpha.35) (2021-11-01)
 
 

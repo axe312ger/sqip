@@ -1,6 +1,6 @@
 {
   "name": "sqip-plugin-svgo",
-  "version": "1.0.0-alpha.35",
+  "version": "1.0.0-alpha.36",
   "description": "> TODO: description",
   "author": "Benedikt Rötsch <info@benedikt-roetsch.de>",
   "homepage": "https://github.com/axe312ger/sqip#readme",
@@ -27,7 +27,7 @@
     "url": "https://github.com/axe312ger/sqip/issues"
   },
   "dependencies": {
-    "sqip": "^1.0.0-alpha.34",
+    "sqip": "^1.0.0-alpha.35",
     "svgo": "^2.0.0"
   },
   "devDependencies": {

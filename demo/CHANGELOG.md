@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.38](http://axe312ger.github.io/sqip/compare/sqip-demo@1.0.0-alpha.37...sqip-demo@1.0.0-alpha.38) (2022-01-13)
+
+
+### Bug Fixes
+
+* **deps:** update dependency cli-progress to v3.10.0 ([b53fa25](http://axe312ger.github.io/sqip/commit/b53fa25902ea906ba2bb27c74c7a0ebcdb9a4122))
+* **deps:** update dependency mozjpeg to v8 ([ac79567](http://axe312ger.github.io/sqip/commit/ac79567e48947596c30c3f45e1f013470813269d))
+* **deps:** update dependency probe-image-size to v7.2.2 ([aa2a149](http://axe312ger.github.io/sqip/commit/aa2a1491a89c817d0f74cf97bbd09398d890bd7b))
+* **deps:** update dependency sharp to v0.29.3 ([5451ef1](http://axe312ger.github.io/sqip/commit/5451ef1ef5ee25e371f437d4f418e9b2c07c6756))
+
+
+
+
+
 # [1.0.0-alpha.37](http://axe312ger.github.io/sqip/compare/sqip-demo@1.0.0-alpha.36...sqip-demo@1.0.0-alpha.37) (2021-11-01)
 
 
