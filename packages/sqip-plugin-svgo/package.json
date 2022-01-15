@@ -32,6 +32,6 @@
   },
   "devDependencies": {
     "@types/svgo": "2.6.1",
-    "ts-jest": "27.1.2"
+    "ts-jest": "27.1.3"
   }
 }

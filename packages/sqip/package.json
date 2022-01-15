@@ -65,6 +65,6 @@
     "@types/fs-extra": "9.0.13",
     "@types/probe-image-size": "7.0.1",
     "debug": "4.3.3",
-    "ts-jest": "27.1.2"
+    "ts-jest": "27.1.3"
   }
 }
