@@ -9817,7 +9817,21 @@ shallow-copy@~0.0.1:
   resolved "https://registry.yarnpkg.com/shallow-copy/-/shallow-copy-0.0.1.tgz#415f42702d73d810330292cc5ee86eae1a11a170"
   integrity sha1-QV9CcC1z2BAzApLMXuhurhoRoXA=
 
-sharp@0.30.0, sharp@^0.30.0:
+sharp@0.30.1:
+  version "0.30.1"
+  resolved "https://registry.yarnpkg.com/sharp/-/sharp-0.30.1.tgz#203efaf9acfc5c15c8a343800254621e56011c12"
+  integrity sha512-ycpz81q8AeVjz1pGvvirQBeJcYE2sXAjcLXR/69LWOe/oxavBLOrenZcTzvTXn83jqAGqY+OuwF+2kFXzbKtDA==
+  dependencies:
+    color "^4.2.0"
+    detect-libc "^2.0.0"
+    node-addon-api "^4.3.0"
+    prebuild-install "^7.0.1"
+    semver "^7.3.5"
+    simple-get "^4.0.1"
+    tar-fs "^2.1.1"
+    tunnel-agent "^0.6.0"
+
+sharp@^0.30.0:
   version "0.30.0"
   resolved "https://registry.yarnpkg.com/sharp/-/sharp-0.30.0.tgz#b2dd62d5f14088b11c72212354f31dff6511b070"
   integrity sha512-L3m/l6yQFr3oGBUzcSAlN/R9yGFPYqM9FpMUe6Z4nHg4sWtP3hW1rcz+aaHklhD4wX5Jqh5PY9z+A1d4Qt3Hfg==
