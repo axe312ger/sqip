@@ -23,7 +23,7 @@
     "lqip": "2.1.0",
     "mozjpeg": "8.0.0",
     "pretty-bytes": "5.6.0",
-    "probe-image-size": "7.2.2",
+    "probe-image-size": "7.2.3",
     "sharp": "0.30.0",
     "sqip": "^1.0.0-alpha.35",
     "sqip-legacy": "npm:sqip@legacy",
