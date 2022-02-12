@@ -31,7 +31,7 @@
     "svgo": "^2.8.0"
   },
   "devDependencies": {
-    "@types/svgo": "2.6.1",
+    "@types/svgo": "2.6.2",
     "ts-jest": "27.1.3"
   }
 }
