@@ -295,11 +295,13 @@ async function processImage({
   // So we try with the given image buffer, and if the code throws an exception
   // we try again after converting to TIFF. If that fails again we give up.
   const palette = await (async () => {
+    const getPalette = (buffer: Buffer) =>
+      Vibrant.from(buffer).quality(0).getPalette()
+
     try {
-      return await Vibrant.from(buffer).quality(0).getPalette()
+      return await getPalette(buffer)
     } catch {
-      const tiff = await sharp(buffer).tiff().toBuffer()
-      return Vibrant.from(tiff).quality(0).getPalette()
+      return getPalette(await sharp(buffer).tiff().toBuffer())
     }
   })()
 
