@@ -287,8 +287,21 @@ async function processImage({
   config
 }: ProcessImageOptions): Promise<SqipResult> {
   const originalSizes = imageSize.sync(buffer)
-  const vibrant = Vibrant.from(buffer)
-  const palette = await vibrant.quality(0).getPalette()
+
+  // Extract the palette from the image. We delegate to node-vibrant (which is
+  // using jimb internally), and it only supports some image formats. In
+  // particular, it does not support WebP and HEIC yet.
+  //
+  // So we try with the given image buffer, and if the code throws an exception
+  // we try again after converting to TIFF. If that fails again we give up.
+  const palette = await (async () => {
+    try {
+      return await Vibrant.from(buffer).quality(0).getPalette()
+    } catch {
+      const tiff = await sharp(buffer).tiff().toBuffer()
+      return Vibrant.from(tiff).quality(0).getPalette()
+    }
+  })()
 
   if (!originalSizes) {
     throw new Error('Unable to get image size')
