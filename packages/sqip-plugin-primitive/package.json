@@ -31,6 +31,7 @@
   "dependencies": {
     "debug": "^4.1.1",
     "execa": "5.1.1",
+    "sharp": "^0.30.0",
     "sqip": "^1.0.0-alpha.35"
   },
   "peerDependencies": {
