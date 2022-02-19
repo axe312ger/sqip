@@ -289,7 +289,7 @@ async function processImage({
   const originalSizes = imageSize.sync(buffer)
 
   // Extract the palette from the image. We delegate to node-vibrant (which is
-  // using jimb internally), and it only supports some image formats. In
+  // using jimp internally), and it only supports some image formats. In
   // particular, it does not support WebP and HEIC yet.
   //
   // So we try with the given image buffer, and if the code throws an exception
