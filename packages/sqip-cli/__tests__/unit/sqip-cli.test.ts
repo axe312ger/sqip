@@ -1,4 +1,3 @@
-import { mocked } from 'ts-jest/utils'
 import { sqip, resolvePlugins } from 'sqip'
 import sqipCLI from '../../src/sqip-cli'
 
@@ -23,8 +22,10 @@ jest.mock('sqip', () => ({
   ])
 }))
 
-const mockedSqip = mocked(sqip, true)
-const mockedResolvePlugins = mocked(resolvePlugins)
+const mockedSqip = sqip as jest.MockedFunction<typeof sqip>
+const mockedResolvePlugins = resolvePlugins as jest.MockedFunction<
+  typeof resolvePlugins
+>
 
 const logSpy = jest.spyOn(global.console, 'log').mockImplementation(() => null)
 const errorSpy = jest

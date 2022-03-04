@@ -2,7 +2,6 @@ import { resolve } from 'path'
 import { tmpdir } from 'os'
 
 import fs from 'fs-extra'
-import { mocked } from 'ts-jest/utils'
 
 import { sqip, SqipImageMetadata, SqipResult } from '../../src/sqip'
 import primitive from 'sqip-plugin-primitive'
@@ -33,18 +32,18 @@ jest.mock('sqip-plugin-blur')
 jest.mock('sqip-plugin-svgo')
 jest.mock('sqip-plugin-data-uri')
 
-const mockedPrimitive = mocked(primitive, true)
+const mockedPrimitive = primitive as jest.MockedClass<typeof primitive>
 mockedPrimitive.prototype.apply.mockImplementation(async () =>
   Buffer.from(EXAMPLE_SVG)
 )
 
-const mockedBlur = mocked(blur, true)
+const mockedBlur = blur as jest.MockedClass<typeof blur>
 mockedBlur.prototype.apply.mockImplementation((buffer) => buffer)
 
-const mockedSVGO = mocked(svgo, true)
+const mockedSVGO = svgo as jest.MockedClass<typeof svgo>
 mockedSVGO.prototype.apply.mockImplementation((buffer) => buffer)
 
-const mockedDatauri = mocked(datauri, true)
+const mockedDatauri = datauri as jest.MockedClass<typeof datauri>
 mockedDatauri.prototype.apply.mockImplementation((buffer, metadata) => {
   metadata.dataURI = 'data:image/svg+xml,dataURI'
   metadata.dataURIBase64 = 'data:image/svg+xml;base64,dataURIBase64=='
