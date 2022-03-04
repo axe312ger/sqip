@@ -47,7 +47,7 @@
     "expand-tilde": "^2.0.2",
     "fast-glob": "^3.2.4",
     "fs-extra": "^10.0.0",
-    "node-vibrant": "^3.2.0-alpha",
+    "node-vibrant": "^3.2.1-alpha.1",
     "probe-image-size": "^7.1.0",
     "sharp": "^0.30.0",
     "term-img": "^5.0.0"
