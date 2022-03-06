@@ -2,7 +2,6 @@ import execa, { ExecaChildProcess } from 'execa'
 import fs from 'fs/promises'
 import os from 'os'
 import { Swatch } from '@vibrant/color'
-import { mocked } from 'ts-jest/utils'
 
 import PrimitivePlugin from '../../src/sqip-plugin-primitive'
 import { SqipImageMetadata } from 'sqip/src/sqip'
@@ -16,18 +15,21 @@ jest.mock('os', () => ({
   cpus: () => [1]
 }))
 
-const mockedExeca = mocked(execa, true)
+const mockedExeca = execa as jest.MockedFunction<typeof execa>
 mockedExeca.mockImplementation(() => {
   const result = {
     stdout: 'mocked'
   } as unknown as ExecaChildProcess<Buffer>
   return result
 })
-const mockedFs = mocked(fs, true)
-mockedFs.access.mockImplementation(async () =>
+
+const mockedFsAccess = fs.access as jest.MockedFunction<typeof fs.access>
+
+mockedFsAccess.mockImplementation(async () =>
   Promise.reject(new Error('Mocked: Binary not available'))
 )
-const mockedOs = mocked(os, true)
+const mockedOsArch = os.arch as jest.MockedFunction<typeof os.arch>
+const mockedOsPlatform = os.platform as jest.MockedFunction<typeof os.platform>
 
 const proccessExitSpy = jest.spyOn(process, 'exit').mockImplementation()
 
@@ -61,9 +63,9 @@ describe('checkForPrimitive', () => {
 
   afterEach(() => {
     mockedExeca.mockClear()
-    mockedFs.access.mockClear()
-    mockedOs.arch.mockClear()
-    mockedOs.platform.mockClear()
+    mockedFsAccess.mockClear()
+    mockedOsArch.mockClear()
+    mockedOsPlatform.mockClear()
     proccessExitSpy.mockClear()
   })
 
@@ -72,7 +74,7 @@ describe('checkForPrimitive', () => {
   })
 
   test('bundled executable exists', async () => {
-    mockedFs.access.mockImplementationOnce(async () => Promise.resolve())
+    mockedFsAccess.mockImplementationOnce(async () => Promise.resolve())
 
     await primitivePlugin.checkForPrimitive()
 
@@ -81,12 +83,12 @@ describe('checkForPrimitive', () => {
   })
 
   test('uses where for windows, type for POSIX', async () => {
-    mockedOs.platform.mockImplementationOnce(() => 'win32')
+    mockedOsPlatform.mockImplementationOnce(() => 'win32')
     await primitivePlugin.checkForPrimitive()
     expect(mockedExeca).toHaveBeenCalledWith('where', ['primitive'])
-    expect(mockedFs.access.mock.calls[0][0]).toMatch(/\.exe$/)
+    expect(mockedFsAccess.mock.calls[0][0]).toMatch(/\.exe$/)
 
-    mockedOs.platform.mockImplementationOnce(() => 'linux')
+    mockedOsPlatform.mockImplementationOnce(() => 'linux')
     await primitivePlugin.checkForPrimitive()
     expect(mockedExeca).toHaveBeenCalledWith('type', ['primitive'])
   })

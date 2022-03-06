@@ -1,4 +1,3 @@
-import { mocked } from 'ts-jest/utils'
 import { sqip, resolvePlugins } from 'sqip'
 import sqipCLI from '../../src/sqip-cli'
 
@@ -23,8 +22,10 @@ jest.mock('sqip', () => ({
   ])
 }))
 
-const mockedSqip = mocked(sqip, true)
-const mockedResolvePlugins = mocked(resolvePlugins)
+const mockedSqip = sqip as jest.MockedFunction<typeof sqip>
+const mockedResolvePlugins = resolvePlugins as jest.MockedFunction<
+  typeof resolvePlugins
+>
 
 const logSpy = jest.spyOn(global.console, 'log').mockImplementation(() => null)
 const errorSpy = jest
@@ -51,8 +52,15 @@ describe('sqip-plugin-cli', () => {
 
     expect(mockedSqip).not.toHaveBeenCalled()
     expect(mockedResolvePlugins.mock.calls).toMatchSnapshot('resolve')
-    expect(logSpy.mock.calls).toMatchSnapshot('log')
-    expect(errorSpy.mock.calls).toMatchSnapshot('error')
+    expect(logSpy.mock.calls[0][0]).toMatch(/-h.*Show help/)
+    expect(logSpy.mock.calls[0][0]).toMatch(/-p.*One or more plugins/)
+    expect(logSpy.mock.calls[0][0]).toMatch(
+      /--output.*Define the path of the resulting file/
+    )
+    expect(logSpy.mock.calls[0][0]).toMatch(/Examples/)
+    expect(errorSpy).toBeCalledWith(
+      '\nPlease provide the following arguments: input'
+    )
     expect(global.process.exit).toHaveBeenCalledWith(1)
   })
 
@@ -75,7 +83,12 @@ describe('sqip-plugin-cli', () => {
 
     expect(mockedSqip).not.toHaveBeenCalled()
     expect(mockedResolvePlugins.mock.calls).toMatchSnapshot('resolve')
-    expect(logSpy.mock.calls).toMatchSnapshot('log')
+    expect(logSpy.mock.calls[0][0]).toMatch(/-h.*Show help/)
+    expect(logSpy.mock.calls[0][0]).toMatch(/-p.*One or more plugins/)
+    expect(logSpy.mock.calls[0][0]).toMatch(
+      /--output.*Define the path of the resulting file/
+    )
+    expect(logSpy.mock.calls[0][0]).toMatch(/Examples/)
     expect(errorSpy.mock.calls).toMatchSnapshot('error')
     expect(global.process.exit).toHaveBeenCalledWith(0)
   })

@@ -1,12 +1,13 @@
 import SVGO from 'svgo'
 import SvgoPlugin from '../../src/sqip-plugin-svgo'
-import { mocked } from 'ts-jest/utils'
 
 jest.mock('svgo')
 
-const mockedSVGO = mocked(SVGO, true)
+const mockedSVGOOptimize = SVGO.optimize as jest.MockedFunction<
+  typeof SVGO.optimize
+>
 
-mockedSVGO.optimize.mockImplementation(() => ({
+mockedSVGOOptimize.mockImplementation(() => ({
   data: 'mocked',
   info: { width: '1024', height: '768' },
   error: undefined,
@@ -28,7 +29,7 @@ test('runSVGO', () => {
   const inputSVG = Buffer.from('<svg />')
   svgoPlugin.apply(inputSVG)
 
-  expect(mockedSVGO.optimize).toHaveBeenCalledTimes(1)
-  expect(mockedSVGO.optimize.mock.calls[0][0]).toBe(inputSVG.toString())
-  expect(mockedSVGO.optimize.mock.calls[0]).toMatchSnapshot()
+  expect(mockedSVGOOptimize).toHaveBeenCalledTimes(1)
+  expect(mockedSVGOOptimize.mock.calls[0][0]).toBe(inputSVG.toString())
+  expect(mockedSVGOOptimize.mock.calls[0]).toMatchSnapshot()
 })
