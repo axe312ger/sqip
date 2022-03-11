@@ -64,6 +64,28 @@ jobs:
             - ./node_modules
           key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run: yarn run test:e2e
+  demo:
+    docker:
+      - image: circleci/golang:1.17-node
+    steps:
+      - run: node --version
+      - run: npm --version
+      - run: yarn --version
+      - checkout
+      - restore_cache:
+          keys:
+            - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - yarn-packages-v1-{{ .Branch }}-
+            - yarn-packages-v1-
+      - run: yarn
+      - run: yarn build
+      - save_cache:
+          paths:
+            - ~/.cache/yarn
+            - ./node_modules
+          key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+      - run: cd demo && yarn build:dataset
+      - run: cd demo && yarn build:html
 workflows:
   version: 2
   build_and_test:
@@ -71,3 +93,4 @@ workflows:
       - lint
       - test-unit
       - test-e2e
+      - demo
