@@ -90,6 +90,9 @@ jobs:
           key: yarn-packages-v2-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run: cd demo && yarn build:dataset
       - run: cd demo && yarn build:html
+      - store_artifacts:
+          path: /home/circleci/project/demo/public
+          destination: demo
 workflows:
   version: 2
   build_and_test:
