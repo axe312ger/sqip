@@ -2,6 +2,7 @@ import { access } from 'fs/promises'
 import { constants } from 'fs'
 import path from 'path'
 import os from 'os'
+import sharp from 'sharp'
 
 import execa from 'execa'
 import Debug from 'debug'
@@ -162,7 +163,7 @@ export default class PrimitivePlugin extends SqipPlugin {
         '-j',
         String(cores)
       ],
-      { input: imageBuffer }
+      { input: await sharp(imageBuffer).png().toBuffer() }
     )
 
     metadata.type = 'svg'

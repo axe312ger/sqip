@@ -109,7 +109,14 @@ describe('checkForPrimitive', () => {
 })
 
 describe('runPrimitive', () => {
-  const fileContent = Buffer.from('mocked-file-content')
+  // A real PNG file, because the primitive plugin pipes the buffer through
+  // sharp.
+  //
+  // Source: https://www.mjt.me.uk/posts/smallest-png/
+  const fileContent = Buffer.from(
+    'iVBORw0KGgoAAAANSUhEUgAAAQAAAAEAAQMAAABmvDolAAAAA1BMVEW10NBjBBbqAAAAH0lEQVRoge3BAQ0AAADCoPdPbQ43oAAAAAAAAAAAvg0hAAABmmDh1QAAAABJRU5ErkJggg==',
+    'base64'
+  )
 
   afterEach(() => {
     mockedExeca.mockClear()
@@ -124,7 +131,7 @@ describe('runPrimitive', () => {
     await primitivePlugin.apply(fileContent, { ...mockedMetadata })
     expect(mockedExeca.mock.calls).toHaveLength(2)
     expect(mockedExeca.mock.calls[1]).toHaveLength(3)
-    expect(mockedExeca.mock.calls[1]).toMatchSnapshot()
+    expect(mockedExeca.mock.calls[1][1]).toMatchSnapshot()
   })
 
   test('executes primitive with custom config, applying default number of primitives', async () => {
@@ -137,7 +144,7 @@ describe('runPrimitive', () => {
     await primitivePlugin.apply(fileContent, { ...mockedMetadata })
     expect(mockedExeca.mock.calls).toHaveLength(2)
     expect(mockedExeca.mock.calls[1]).toHaveLength(3)
-    expect(mockedExeca.mock.calls[1]).toMatchSnapshot()
+    expect(mockedExeca.mock.calls[1][1]).toMatchSnapshot()
   })
 
   test('executes primitive with landscape dimensions', async () => {
@@ -153,7 +160,7 @@ describe('runPrimitive', () => {
     })
     expect(mockedExeca.mock.calls).toHaveLength(2)
     expect(mockedExeca.mock.calls[1]).toHaveLength(3)
-    expect(mockedExeca.mock.calls[1]).toMatchSnapshot()
+    expect(mockedExeca.mock.calls[1][1]).toMatchSnapshot()
   })
 
   test('allows avg as value for background', async () => {
@@ -167,7 +174,7 @@ describe('runPrimitive', () => {
     await primitivePlugin.apply(fileContent, { ...mockedMetadata })
     expect(mockedExeca.mock.calls).toHaveLength(2)
     expect(mockedExeca.mock.calls[1]).toHaveLength(3)
-    expect(mockedExeca.mock.calls[1]).toMatchSnapshot()
+    expect(mockedExeca.mock.calls[1][1]).toMatchSnapshot()
   })
 
   test('allows hex as value for background', async () => {
@@ -181,6 +188,6 @@ describe('runPrimitive', () => {
     await primitivePlugin.apply(fileContent, { ...mockedMetadata })
     expect(mockedExeca.mock.calls).toHaveLength(2)
     expect(mockedExeca.mock.calls[1]).toHaveLength(3)
-    expect(mockedExeca.mock.calls[1]).toMatchSnapshot()
+    expect(mockedExeca.mock.calls[1][1]).toMatchSnapshot()
   })
 })
