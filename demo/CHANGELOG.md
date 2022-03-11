@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.40](http://axe312ger.github.io/sqip/compare/sqip-demo@1.0.0-alpha.39...sqip-demo@1.0.0-alpha.40) (2022-03-11)
+
+
+### Bug Fixes
+
+* ensure required dir exists for demo dataset generation ([797f24f](http://axe312ger.github.io/sqip/commit/797f24f7d5d9f30e2fa4571d1754c200cb0b082f))
+* use new gzip-size import structure ([01aa57b](http://axe312ger.github.io/sqip/commit/01aa57b15ab7580f0b4c401b5f7ed14831b592bb))
+* **deps:** update dependency gzip-size to v7 ([6db5397](http://axe312ger.github.io/sqip/commit/6db5397cdded30773a9aa62609ec70f0858555ed))
+* **deps:** update dependency pretty-bytes to v6 ([cf34ddf](http://axe312ger.github.io/sqip/commit/cf34ddf24c8d2d0351d6cac013328ce35bf0d201))
+* **deps:** update dependency probe-image-size to v7.2.3 ([3df5ff3](http://axe312ger.github.io/sqip/commit/3df5ff37ddf7df232db0f82d8198ec7bd44116ae))
+* **deps:** update dependency sharp to v0.30.0 ([82ca7f4](http://axe312ger.github.io/sqip/commit/82ca7f476c805b518eddb31a56683062c6efcc4f))
+* **deps:** update dependency sharp to v0.30.1 ([82375fe](http://axe312ger.github.io/sqip/commit/82375fef8326d5aad0082fa18214636bfe6c2aaf))
+* **deps:** update dependency sharp to v0.30.2 ([de89ce8](http://axe312ger.github.io/sqip/commit/de89ce81484db1d78c84f8208a10527a286a77a4))
+
+
+
+
+
 # [1.0.0-alpha.39](http://axe312ger.github.io/sqip/compare/sqip-demo@1.0.0-alpha.38...sqip-demo@1.0.0-alpha.39) (2022-01-13)
 
 **Note:** Version bump only for package sqip-demo

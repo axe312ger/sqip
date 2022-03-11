@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.36](https://github.com/axe312ger/sqip/compare/sqip@1.0.0-alpha.35...sqip@1.0.0-alpha.36) (2022-03-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency sharp to v0.30.0 ([82ca7f4](https://github.com/axe312ger/sqip/commit/82ca7f476c805b518eddb31a56683062c6efcc4f))
+
+
+
+
+
 # [1.0.0-alpha.35](https://github.com/axe312ger/sqip/compare/sqip@1.0.0-alpha.34...sqip@1.0.0-alpha.35) (2022-01-13)
 
 **Note:** Version bump only for package sqip
