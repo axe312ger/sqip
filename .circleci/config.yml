@@ -12,6 +12,7 @@ jobs:
           keys:
             - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
             - yarn-packages-v1-{{ .Branch }}-
+            - yarn-packages-v1-master-
             - yarn-packages-v1-
       - run: yarn
       - run: yarn run build
@@ -33,6 +34,7 @@ jobs:
           keys:
             - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
             - yarn-packages-v1-{{ .Branch }}-
+            - yarn-packages-v1-master-
             - yarn-packages-v1-
       - run: yarn
       - run: yarn run build
@@ -55,6 +57,7 @@ jobs:
           keys:
             - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
             - yarn-packages-v1-{{ .Branch }}-
+            - yarn-packages-v1-master-
             - yarn-packages-v1-
       - run: yarn
       - run: yarn build
@@ -76,6 +79,7 @@ jobs:
           keys:
             - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
             - yarn-packages-v1-{{ .Branch }}-
+            - yarn-packages-v1-master-
             - yarn-packages-v1-
       - run: yarn
       - run: yarn build
