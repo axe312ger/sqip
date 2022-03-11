@@ -2,7 +2,7 @@ import { resolve, parse } from 'path'
 
 import { promises as fs, createReadStream } from 'fs'
 import brotliSize from 'brotli-size'
-import gzipSize from 'gzip-size'
+import { gzipSizeSync } from 'gzip-size'
 import prettyBytes from 'pretty-bytes'
 import imageSize from 'probe-image-size'
 import aspectRatio from 'aspect-ratio'
@@ -14,7 +14,7 @@ const { readdir, writeFile } = fs
 
 function getSizes(input) {
   const originalBytes = Buffer.byteLength(input)
-  const gzipBytes = gzipSize.sync(input)
+  const gzipBytes = gzipSizeSync(input)
   const brotliBytes = brotliSize.sync(input)
   return {
     originalBytes,
