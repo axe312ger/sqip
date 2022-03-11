@@ -10,17 +10,17 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
-            - yarn-packages-v1-{{ .Branch }}-
-            - yarn-packages-v1-master-
-            - yarn-packages-v1-
+            - yarn-packages-v2-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - yarn-packages-v2-{{ .Branch }}-
+            - yarn-packages-v2-master-
+            - yarn-packages-v2-
       - run: yarn
       - run: yarn run build
       - save_cache:
           paths:
             - ~/.cache/yarn
             - ./node_modules
-          key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          key: yarn-packages-v2-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run: yarn run lint
   test-unit:
     docker:
@@ -32,17 +32,17 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
-            - yarn-packages-v1-{{ .Branch }}-
-            - yarn-packages-v1-master-
-            - yarn-packages-v1-
+            - yarn-packages-v2-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - yarn-packages-v2-{{ .Branch }}-
+            - yarn-packages-v2-master-
+            - yarn-packages-v2-
       - run: yarn
       - run: yarn run build
       - save_cache:
           paths:
             - ~/.cache/yarn
             - ./node_modules
-          key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          key: yarn-packages-v2-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run: DEBUG="sqip*,jest*" yarn run test:unit -- --verbose
       - run: yarn codecov
   test-e2e:
@@ -55,17 +55,17 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
-            - yarn-packages-v1-{{ .Branch }}-
-            - yarn-packages-v1-master-
-            - yarn-packages-v1-
+            - yarn-packages-v2-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - yarn-packages-v2-{{ .Branch }}-
+            - yarn-packages-v2-master-
+            - yarn-packages-v2-
       - run: yarn
       - run: yarn build
       - save_cache:
           paths:
             - ~/.cache/yarn
             - ./node_modules
-          key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          key: yarn-packages-v2-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run: yarn run test:e2e
   demo:
     docker:
@@ -77,17 +77,17 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
-            - yarn-packages-v1-{{ .Branch }}-
-            - yarn-packages-v1-master-
-            - yarn-packages-v1-
+            - yarn-packages-v2-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - yarn-packages-v2-{{ .Branch }}-
+            - yarn-packages-v2-master-
+            - yarn-packages-v2-
       - run: yarn
       - run: yarn build
       - save_cache:
           paths:
             - ~/.cache/yarn
             - ./node_modules
-          key: yarn-packages-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          key: yarn-packages-v2-{{ .Branch }}-{{ checksum "yarn.lock" }}
       - run: cd demo && yarn build:dataset
       - run: cd demo && yarn build:html
 workflows:
