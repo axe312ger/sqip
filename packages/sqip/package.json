@@ -64,6 +64,6 @@
     "@types/expand-tilde": "2.0.0",
     "@types/fs-extra": "9.0.13",
     "@types/probe-image-size": "7.0.1",
-    "debug": "4.3.3"
+    "debug": "4.3.4"
   }
 }
