@@ -31,7 +31,7 @@
   "dependencies": {
     "command-line-args": "^5.1.1",
     "command-line-usage": "^6.1.0",
-    "debug": "^4.1.1",
+    "debug": "^4.3.4",
     "fs-extra": "^10.0.0",
     "pkg-up": "^3.1.0",
     "sqip": "^1.0.0-alpha.36",
