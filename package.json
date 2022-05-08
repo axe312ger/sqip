@@ -24,7 +24,7 @@
     "@typescript-eslint/parser": "5.22.0",
     "codecov": "3.8.3",
     "cz-conventional-changelog": "3.3.0",
-    "eslint": "8.14.0",
+    "eslint": "8.15.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-jest": "26.1.5",
