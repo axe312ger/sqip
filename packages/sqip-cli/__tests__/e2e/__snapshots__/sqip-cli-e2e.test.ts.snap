@@ -39,7 +39,12 @@ exports[`cli api --help shows help screen to user 1`] = `
   [1m--primitive-alpha[22m [4mnumber[24m                    color alpha (use 0 to let the     
                                               algorithm choose alpha for each   
                                               shape)                            
-  [1m--primitive-background[22m [4mstring[24m               starting background color (hex)   
+  [1m--primitive-background[22m [4mstring[24m               starting background color. Either 
+                                              the name of a color from the      
+                                              color palette or a 6 digit hex    
+                                              value for solid color and a 8     
+                                              digit hex value for transparency: 
+                                              ffffff00                          
   [1m--primitive-cores[22m [4mnumber[24m                    number of parallel workers        
                                               (default uses all cores)          
   [1m-b[22m, [1m--blur-blur[22m [4mnumber[24m                      Set the stdDeviation value for    

@@ -32,7 +32,8 @@
     "debug": "^4.3.4",
     "execa": "5.1.1",
     "sharp": "^0.30.4",
-    "sqip": "^1.0.0-alpha.37"
+    "sqip": "^1.0.0-alpha.37",
+    "svgson": "^5.2.1"
   },
   "peerDependencies": {
     "@vibrant/color": "^3.2.0-alpha"

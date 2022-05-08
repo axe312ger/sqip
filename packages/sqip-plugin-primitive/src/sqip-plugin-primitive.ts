@@ -3,6 +3,7 @@ import { constants } from 'fs'
 import path from 'path'
 import os from 'os'
 import sharp from 'sharp'
+import * as svgson from 'svgson'
 
 import execa from 'execa'
 import Debug from 'debug'
@@ -86,7 +87,8 @@ export default class PrimitivePlugin extends SqipPlugin {
       {
         name: 'background',
         type: String,
-        description: 'starting background color (hex)',
+        description:
+          'starting background color. Either the name of a color from the color palette or a 6 digit hex value for solid color and a 8 digit hex value for transparency: ffffff00',
         defaultValue: 'DarkMuted'
       },
       {
@@ -137,9 +139,11 @@ export default class PrimitivePlugin extends SqipPlugin {
 
     const { width, height, palette } = metadata
 
-    const background = userBg
-      ? parseColor({ color: userBg, palette })
-      : palette['Muted']?.hex
+    const bg = String(
+      userBg ? parseColor({ color: userBg, palette }) : palette['Muted']?.hex
+    )
+      .replace('#', '')
+      .toLowerCase()
 
     const result = await execa(
       primitiveExecutable,
@@ -159,14 +163,23 @@ export default class PrimitivePlugin extends SqipPlugin {
         '-a',
         String(alpha),
         '-bg',
-        String(background),
+        bg,
         '-j',
         String(cores)
       ],
-      { input: await sharp(imageBuffer).png().toBuffer() }
+      {
+        input: await sharp(imageBuffer).png().toBuffer()
+      }
     )
 
     metadata.type = 'svg'
+
+    // Hide background rectangle/path when using transparent backgrounds
+    if (bg.match(/[0-9a-f]{6}00/)) {
+      const parsedSvg = await svgson.parse(result.stdout)
+      delete parsedSvg.children[0]
+      return Buffer.from(svgson.stringify(parsedSvg))
+    }
 
     return Buffer.from(result.stdout)
   }

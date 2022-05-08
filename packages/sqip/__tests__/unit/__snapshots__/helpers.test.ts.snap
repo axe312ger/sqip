@@ -5,6 +5,7 @@ Array [
   "/__tests__/fixtures/CMYK-example.jpg",
   "/__tests__/fixtures/beach-sqip.svg",
   "/__tests__/fixtures/beach.jpg",
+  "/__tests__/fixtures/transparent-background.png",
 ]
 `;
 
@@ -35,6 +36,7 @@ Array [
   "/__tests__/fixtures/CMYK-example.jpg",
   "/__tests__/fixtures/beach-sqip.svg",
   "/__tests__/fixtures/beach.jpg",
+  "/__tests__/fixtures/transparent-background.png",
 ]
 `;
 
@@ -43,6 +45,7 @@ Array [
   "/__tests__/fixtures/CMYK-example.jpg",
   "/__tests__/fixtures/beach-sqip.svg",
   "/__tests__/fixtures/beach.jpg",
+  "/__tests__/fixtures/transparent-background.png",
 ]
 `;
 
@@ -58,5 +61,6 @@ Array [
   "/__tests__/fixtures/CMYK-example.jpg",
   "/__tests__/fixtures/beach-sqip.svg",
   "/__tests__/fixtures/beach.jpg",
+  "/__tests__/fixtures/transparent-background.png",
 ]
 `;
