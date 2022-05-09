@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.42](http://axe312ger.github.io/sqip/compare/sqip-demo@1.0.0-alpha.41...sqip-demo@1.0.0-alpha.42) (2022-05-09)
+
+
+### Bug Fixes
+
+* **deps:** update dependency cli-progress to v3.11.0 ([5c79c56](http://axe312ger.github.io/sqip/commit/5c79c560786c2f2f96e25141bc6391d75d93c85c))
+* **deps:** update dependency htm to v3.1.1 ([55ab292](http://axe312ger.github.io/sqip/commit/55ab292f6d2a9ff868f8a7439bded50b1fa222a7))
+* **deps:** update dependency sharp to v0.30.4 ([e4bdc22](http://axe312ger.github.io/sqip/commit/e4bdc2270067bb29680ab8bc48018a7c85641625))
+
+
+
+
+
 # [1.0.0-alpha.41](http://axe312ger.github.io/sqip/compare/sqip-demo@1.0.0-alpha.40...sqip-demo@1.0.0-alpha.41) (2022-03-24)
 
 

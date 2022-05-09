@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.43](https://github.com/axe312ger/sqip/compare/sqip-cli@1.0.0-alpha.42...sqip-cli@1.0.0-alpha.43) (2022-05-09)
+
+
+### Features
+
+* properly apply detected background colors and support transparent backgrounds ([9769d45](https://github.com/axe312ger/sqip/commit/9769d4597fdfca877d1caef1c3f2cd68347fd223))
+
+
+
+
+
 # [1.0.0-alpha.42](https://github.com/axe312ger/sqip/compare/sqip-cli@1.0.0-alpha.41...sqip-cli@1.0.0-alpha.42) (2022-03-24)
 
 **Note:** Version bump only for package sqip-cli
