@@ -36,7 +36,7 @@
     "vhtml": "2.2.0"
   },
   "devDependencies": {
-    "gh-pages": "3.2.3"
+    "gh-pages": "4.0.0"
   },
   "engines": {
     "node": ">=14.0.0"
