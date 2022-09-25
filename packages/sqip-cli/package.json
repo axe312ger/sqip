@@ -44,7 +44,7 @@
     "@types/command-line-args": "5.2.0",
     "@types/command-line-usage": "5.0.2",
     "@types/semver": "7.3.9",
-    "cheerio": "1.0.0-rc.11",
+    "cheerio": "1.0.0-rc.12",
     "execa": "5.1.1",
     "semver": "7.3.7"
   }
