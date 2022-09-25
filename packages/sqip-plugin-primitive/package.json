@@ -31,7 +31,7 @@
   "dependencies": {
     "debug": "^4.3.4",
     "execa": "5.1.1",
-    "sharp": "^0.30.4",
+    "sharp": "^0.31.0",
     "sqip": "^1.0.0-alpha.38",
     "svgson": "^5.2.1"
   },
