@@ -2,7 +2,7 @@ version: 2.0
 jobs:
   lint:
     docker:
-      - image: cimg/go:1.18-node
+      - image: cimg/go:1.19-node
     steps:
       - run: node --version
       - run: npm --version
@@ -24,7 +24,7 @@ jobs:
       - run: yarn run lint
   test-unit:
     docker:
-      - image: cimg/go:1.18-node
+      - image: cimg/go:1.19-node
     steps:
       - run: node --version
       - run: npm --version
@@ -47,7 +47,7 @@ jobs:
       - run: yarn codecov
   test-e2e:
     docker:
-      - image: cimg/go:1.18-node
+      - image: cimg/go:1.19-node
     steps:
       - run: node --version
       - run: npm --version
@@ -69,7 +69,7 @@ jobs:
       - run: yarn run test:e2e
   demo:
     docker:
-      - image: cimg/go:1.18-node
+      - image: cimg/go:1.19-node
     steps:
       - run: node --version
       - run: npm --version
