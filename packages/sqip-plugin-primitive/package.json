@@ -1,6 +1,6 @@
 {
   "name": "sqip-plugin-primitive",
-  "version": "1.0.0-alpha.40",
+  "version": "1.0.0-alpha.41",
   "description": "> TODO: description",
   "author": "Benedikt Rötsch <info@benedikt-roetsch.de>",
   "homepage": "https://github.com/axe312ger/sqip#readme",
@@ -32,7 +32,7 @@
     "debug": "^4.3.4",
     "execa": "5.1.1",
     "sharp": "^0.31.0",
-    "sqip": "^1.0.0-alpha.38",
+    "sqip": "^1.0.0-alpha.39",
     "svgson": "^5.2.1"
   },
   "peerDependencies": {
