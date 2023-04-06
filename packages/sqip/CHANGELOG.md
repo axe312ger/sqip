@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.41](https://github.com/axe312ger/sqip/compare/sqip@1.0.0-alpha.40...sqip@1.0.0-alpha.41) (2023-04-06)
+
+
+### Features
+
+* export more types to simplify usage with typescript ([a9c8524](https://github.com/axe312ger/sqip/commit/a9c8524848767b029ad7dd34a6498b3aa0752868))
+
+
+
+
+
 # [1.0.0-alpha.38](https://github.com/axe312ger/sqip/compare/sqip@1.0.0-alpha.37...sqip@1.0.0-alpha.38) (2022-05-09)
 
 

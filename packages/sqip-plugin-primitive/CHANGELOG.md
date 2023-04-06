@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.43](https://github.com/axe312ger/sqip/compare/sqip-plugin-primitive@1.0.0-alpha.42...sqip-plugin-primitive@1.0.0-alpha.43) (2023-04-06)
+
+**Note:** Version bump only for package sqip-plugin-primitive
+
+
+
+
+
 # [1.0.0-alpha.40](https://github.com/axe312ger/sqip/compare/sqip-plugin-primitive@1.0.0-alpha.39...sqip-plugin-primitive@1.0.0-alpha.40) (2022-05-09)
 
 
