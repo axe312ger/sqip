@@ -44,7 +44,7 @@ export interface PluginOptions {
   [key: string]: unknown
 }
 
-interface PluginResolver {
+export interface PluginResolver {
   name: string
   options?: PluginOptions
 }
@@ -85,14 +85,14 @@ export interface SqipImageMetadata {
   [key: string]: unknown
 }
 
-type PluginType = PluginResolver | string
+export type PluginType = PluginResolver | string
 
 export interface SqipPluginOptions {
   pluginOptions: PluginOptions
   options: PluginOptions
   sqipConfig: SqipConfig
 }
-interface SqipPluginInterface {
+export interface SqipPluginInterface {
   sqipConfig: SqipConfig
   apply(
     imageBuffer: Buffer,
