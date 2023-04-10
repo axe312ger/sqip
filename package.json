@@ -34,7 +34,7 @@
     "lerna": "4.0.0",
     "prettier": "2.8.7",
     "ts-jest": "28.0.8",
-    "typescript": "4.9.4"
+    "typescript": "4.9.5"
   },
   "overrides": {
     "gifwrap": "^0.10.1"
