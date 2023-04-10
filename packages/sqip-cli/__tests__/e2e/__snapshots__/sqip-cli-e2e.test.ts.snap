@@ -2,14 +2,14 @@
 
 exports[`cli api --help shows help screen to user 1`] = `
 "
-[4m[1msqip CLI[22m[24m
+[1msqip CLI[22m
 
   Usage: sqip --input [path]                                                    
                                                                                 
   \\"SQIP\\" (pronounced skwɪb like the non-magical folk of magical descent) is a   
   SVG-based LQIP technique - https://github.com/technopagan/sqip                
 
-[4m[1mOptions[22m[24m
+[1mOptions[22m
 
   [1m-h[22m, [1m--help[22m [4mstring[24m                           Show help                         
   [1m--version[22m [4mstring[24m                            Show version number               
@@ -52,7 +52,7 @@ exports[`cli api --help shows help screen to user 1`] = `
                                               https://developer.mozilla.org/en- 
                                               US/docs/Web/SVG/Element/feGaussianBlur 
 
-[4m[1mExamples[22m[24m
+[1mExamples[22m
 
   Output input.jpg image as SQIP                                                
   $ sqip --input /path/to/input.jpg                                             

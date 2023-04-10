@@ -12,7 +12,6 @@ const debug = Debug('sqip')
 
 export const loadSVG = (svg: string) => {
   return cheerio.load(svg, {
-    normalizeWhitespace: true,
     xmlMode: true
   })
 }

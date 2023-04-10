@@ -30,7 +30,7 @@
     "@types/sharp": "^0.31.0",
     "sharp": "^0.32.0",
     "sqip": "^1.0.0-alpha.41",
-    "svgdom": "^0.1.8"
+    "svgdom": "^0.1.13"
   },
   "devDependencies": {
     "cheerio": "1.0.0-rc.12"
