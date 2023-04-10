@@ -39,11 +39,6 @@ export default class SVGOPlugin extends SqipPlugin {
       return Buffer.from(result.data)
     }
 
-    if (result.modernError) {
-      console.error(result.error)
-      throw result.modernError
-    }
-
     throw new Error(
       `SVGO returned an invalid result:\n${JSON.stringify(result, null, 2)}`
     )
