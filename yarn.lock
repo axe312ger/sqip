@@ -6379,10 +6379,10 @@ image-size@^0.6.1:
   resolved "https://registry.yarnpkg.com/image-size/-/image-size-0.6.3.tgz#e7e5c65bb534bd7cdcedd6cb5166272a85f75fb2"
   integrity sha512-47xSUiQioGaB96nqtp5/q55m0aBQSQdyIloMOc/x+QVTDZLNmXE892IIDrJ0hM1A5vcNUDD5tDffkSP5lCaIIA==
 
-image-size@^1.0.0:
-  version "1.0.1"
-  resolved "https://registry.npmjs.org/image-size/-/image-size-1.0.1.tgz#86d6cfc2b1d19eab5d2b368d4b9194d9e48541c5"
-  integrity sha512-VAwkvNSNGClRw9mDHhc5Efax8PLlsOGcUTh0T/LIriC8vPA3U5PdqXWqkz406MoYHMKW8Uf9gWr05T/rYB44kQ==
+image-size@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/image-size/-/image-size-1.0.2.tgz#d778b6d0ab75b2737c1556dd631652eb963bc486"
+  integrity sha512-xfOoWjceHntRb3qFCrh5ZFORYH8XCdYpASltMhZ/Q0KZiOwjdE/Yl2QCiWdwD+lygV5bMCvauzgu5PxBX/Yerg==
   dependencies:
     queue "6.0.2"
 
@@ -10648,12 +10648,12 @@ supports-preserve-symlinks-flag@^1.0.0:
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
 svgdom@^0.1.8:
-  version "0.1.10"
-  resolved "https://registry.npmjs.org/svgdom/-/svgdom-0.1.10.tgz#4ce84403b548fe87c9f61365453f88c53a801bdf"
-  integrity sha512-MMx2owmn+V8xYc+29MWVEsKZi7ZGxvnV4U/QNyX+miSH4F+veOL7gFO86kKawIfx1K+CogSK9ZAtod7dsf8LSA==
+  version "0.1.13"
+  resolved "https://registry.yarnpkg.com/svgdom/-/svgdom-0.1.13.tgz#1e586927a65be1ac28923529f37b2ae051edab6e"
+  integrity sha512-qcpPCOAtbQjG5ZuY28kN3F03+slpFwN5n0w3dsMCEpXu8sPhb+wuWBwHQHs7Ayvh4Ou0QIE6WH7mq/viZHdcxg==
   dependencies:
     fontkit "^1.8.1"
-    image-size "^1.0.0"
+    image-size "^1.0.2"
     sax "^1.2.4"
 
 svgo@^0.7.2:
