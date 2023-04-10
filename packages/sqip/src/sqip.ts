@@ -5,7 +5,7 @@ import fs from 'fs-extra'
 import imageSize from 'probe-image-size'
 import Vibrant from 'node-vibrant'
 import sharp from 'sharp'
-import termimg from 'term-img'
+import termimg, { UnsupportedTerminalError } from 'term-img'
 import Table from 'cli-table3'
 import chalk from 'chalk'
 
@@ -143,14 +143,9 @@ export async function resolvePlugins(
 
         return { ...plugin, Plugin: Plugin.default }
       } catch (err) {
-        if (isError(err) && err instanceof TypeError) {
-          if (err.code === 'MODULE_NOT_FOUND') {
-            throw new Error(
-              `Unable to load plugin "${moduleName}". Try installing it via:\n\n npm install ${moduleName}`
-            )
-          }
-        }
-        throw err
+        throw new Error(
+          `Unable to load plugin "${moduleName}". Try installing it via:\n\n npm install ${moduleName}`
+        )
       }
     })
   )
@@ -217,7 +212,7 @@ async function processFile({
           }
         })
       } catch (err) {
-        if (isError(err) && err instanceof TypeError) {
+        if (err instanceof UnsupportedTerminalError) {
           if (err.name === 'UnsupportedTerminalError') {
             throw err
           }
