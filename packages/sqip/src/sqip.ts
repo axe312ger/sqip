@@ -12,7 +12,7 @@ import chalk from 'chalk'
 import { Palette } from '@vibrant/color'
 import { OptionDefinition } from 'command-line-args'
 
-import { locateFiles } from './helpers'
+import { isError, locateFiles } from './helpers'
 
 export { loadSVG, parseColor } from './helpers'
 
@@ -143,10 +143,12 @@ export async function resolvePlugins(
 
         return { ...plugin, Plugin: Plugin.default }
       } catch (err) {
-        if (err.code === 'MODULE_NOT_FOUND') {
-          throw new Error(
-            `Unable to load plugin "${moduleName}". Try installing it via:\n\n npm install ${moduleName}`
-          )
+        if (isError(err) && err instanceof TypeError) {
+          if (err.code === 'MODULE_NOT_FOUND') {
+            throw new Error(
+              `Unable to load plugin "${moduleName}". Try installing it via:\n\n npm install ${moduleName}`
+            )
+          }
         }
         throw err
       }
@@ -215,8 +217,10 @@ async function processFile({
           }
         })
       } catch (err) {
-        if (err.name !== 'UnsupportedTerminalError') {
-          throw err
+        if (isError(err) && err instanceof TypeError) {
+          if (err.name === 'UnsupportedTerminalError') {
+            throw err
+          }
         }
       }
     }

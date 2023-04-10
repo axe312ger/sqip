@@ -16,6 +16,10 @@ export const loadSVG = (svg: string) => {
   })
 }
 
+export function isError(error: unknown): error is NodeJS.ErrnoException {
+  return error instanceof Error
+}
+
 export async function locateFiles(input: string): Promise<string[]> {
   const enhancedInput = expandTilde(input)
   let globPattern = enhancedInput
@@ -34,8 +38,10 @@ export async function locateFiles(input: string): Promise<string[]> {
       globPattern = `${path.resolve(enhancedInput)}/*`
     }
   } catch (err) {
-    if (err.code !== 'ENOENT') {
-      throw err
+    if (isError(err) && err instanceof TypeError) {
+      if (err.code === 'ENOENT') {
+        throw err
+      }
     }
   }
 
