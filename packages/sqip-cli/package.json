@@ -41,7 +41,7 @@
     "sqip-plugin-svgo": "^1.0.0-alpha.43"
   },
   "devDependencies": {
-    "@types/command-line-args": "5.2.0",
+    "@types/command-line-args": "5.2.2",
     "@types/command-line-usage": "5.0.2",
     "@types/semver": "7.5.0",
     "cheerio": "1.0.0-rc.12",
