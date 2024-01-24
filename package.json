@@ -4,7 +4,7 @@
   "scripts": {
     "prepare": "lerna run prepare",
     "build": "npm run build:clean && npx lerna run build --no-private --scope sqip && npx lerna run build --no-private --ignore sqip",
-    "build:watch": "lerna exec --ignore sqip-demo 'npm run watch'",
+    "build:watch": "lerna exec --ignore sqip-demo --parallel 'npm run watch'",
     "build:clean": "rm -rf \"packages/*/dist/*\" packages/*/tsconfig.tsbuildinfo",
     "test": "npm run lint && npm run test:unit && npm run test:e2e",
     "test:unit": "TERM=xterm jest --testPathPattern='unit/*' --coverage --runInBand",
