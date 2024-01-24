@@ -348,7 +348,7 @@ Set `blur` option of `blur` plugin to 3. You could use the `-b` shortcut as well
 sqip -i foo.jpg -p primitive -p blur -blur-blur 3
 ```
 
-### `--parseable-output` (CLI only)
+### `--parseable-output`
 
 non-TTY consoles and when the `--parseable-output` input flag is set, the output will be the following:
 
@@ -361,9 +361,14 @@ Vibrant DarkVibrant LightVibrant Muted   DarkMuted LightMuted
 #dd852f #be4e0c     #f2b17a      #5c8fa4 #694e35   #cfc8b7
 ```
 
-### `--silent` (CLI only)
+### `--silent`
 
 No output at all on STDOUT. The process will still return an error code & message when something failed.
+
+
+### `--print`
+
+Outputs resulting SVG to STDOUT. Ignores `--silent` and works with `--parseable-output`.
 
 ## Plugins
 

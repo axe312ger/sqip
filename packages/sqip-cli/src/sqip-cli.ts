@@ -6,7 +6,7 @@ import Debug from 'debug'
 import fs from 'fs-extra'
 import pkgUp from 'pkg-up'
 
-import { sqip, resolvePlugins, SqipCliOptionDefinition } from 'sqip'
+import { sqip, resolvePlugins, SqipCliOptionDefinition, SqipOptions } from 'sqip'
 
 const debug = Debug('sqip-cli')
 
@@ -60,6 +60,13 @@ const defaultOptionList: SqipCliOptionDefinition[] = [
     defaultValue: false,
     description:
       'Ensure the output is parseable. Will suppress the preview images and the table borders.'
+  },
+  {
+    name: 'print',
+    type: Boolean,
+    defaultValue: false,
+    description:
+      'Print resulting svg to stdout.'
   }
 ]
 
@@ -181,13 +188,14 @@ export default async function sqipCLI(): Promise<undefined> {
     return { name, options }
   })
 
-  const options = {
+  const options: SqipOptions = {
     input,
     output: output || guessedOutput,
     width,
     plugins: pluginsOptions,
     silent: args.silent,
-    parseableOutput: args['parseable-output']
+    parseableOutput: args['parseable-output'],
+    print: args.print || false
   }
 
   debug(`Final sqip options:`, options)

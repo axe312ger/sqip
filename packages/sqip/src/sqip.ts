@@ -12,7 +12,7 @@ import chalk from 'chalk'
 import { Palette } from '@vibrant/color'
 import { OptionDefinition } from 'command-line-args'
 
-import { isError, locateFiles } from './helpers'
+import { locateFiles } from './helpers'
 
 export { loadSVG, parseColor } from './helpers'
 
@@ -49,7 +49,7 @@ export interface PluginResolver {
   options?: PluginOptions
 }
 
-interface SqipOptions {
+export interface SqipOptions {
   input: string | Buffer
   outputFileName?: string
   output?: string
@@ -57,8 +57,10 @@ interface SqipOptions {
   parseableOutput?: boolean
   plugins?: PluginType[]
   width?: number
+  print?: boolean
 }
 
+// @todo why do we have this twice?
 interface SqipConfig {
   input: string | Buffer
   outputFileName?: string
@@ -67,6 +69,7 @@ interface SqipConfig {
   parseableOutput?: boolean
   plugins: PluginType[]
   width?: number
+  print?: boolean
 }
 
 interface ProcessFileOptions {
@@ -156,7 +159,7 @@ async function processFile({
   outputFileName,
   config
 }: ProcessFileOptions) {
-  const { output, silent, parseableOutput } = config
+  const { output, silent, parseableOutput, print } = config
   const result = await processImage({ buffer, config })
   const { content, metadata } = result
   let outputPath
@@ -271,6 +274,10 @@ async function processFile({
         console.log(chalk.bold(`${key}:`))
         console.log(metadata[key])
       })
+
+    if (metadata.type === 'svg' && print) {
+      console.log(`Resulting SVG:\n${result.content.toString()}`)
+    }
   }
 
   return result
@@ -367,7 +374,8 @@ export async function sqip(
     ],
     width: 300,
     parseableOutput: false,
-    silent: true
+    silent: true,
+    print: false
   }
 
   const config: SqipConfig = Object.assign({}, defaultOptions, options)
