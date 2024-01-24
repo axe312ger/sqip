@@ -51,10 +51,10 @@ describe('does prepare problematic svgs properly for blurring', () => {
     const result = svgPlugin.prepareSVG(sampleWithoutGroup, mockedMetadata)
     expect(result).toMatchSnapshot()
   })
-  test('svg with missing background', () => {
+  test('svg with missing background should not throw', () => {
     expect(() =>
       svgPlugin.prepareSVG(sampleNoBg, mockedMetadata)
-    ).toThrowErrorMatchingSnapshot()
+    ).not.toThrow()
   })
 })
 

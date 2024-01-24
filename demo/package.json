@@ -24,7 +24,7 @@
     "mozjpeg": "8.0.0",
     "pretty-bytes": "6.1.1",
     "probe-image-size": "7.2.3",
-    "sharp": "0.32.6",
+    "sharp": "0.32.0",
     "sqip": "^1.0.0-alpha.41",
     "sqip-legacy": "npm:sqip@legacy",
     "sqip-plugin-blur": "^1.0.0-alpha.42",

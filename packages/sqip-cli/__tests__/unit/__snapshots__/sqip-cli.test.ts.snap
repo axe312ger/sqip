@@ -60,6 +60,7 @@ Array [
           "options": Object {},
         },
       ],
+      "print": false,
       "silent": false,
       "width": 300,
     },

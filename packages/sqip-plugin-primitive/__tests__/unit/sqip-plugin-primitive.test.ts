@@ -18,7 +18,7 @@ jest.mock('os', () => ({
 const mockedExeca = execa as jest.MockedFunction<typeof execa>
 mockedExeca.mockImplementation(() => {
   const result = {
-    stdout: 'mocked'
+    stdout: '<svg viewBox=\"0 0 1024 768\"><rect fill="#bada5500"/><g></g></rect></svg>'
   } as unknown as ExecaChildProcess<Buffer>
   return result
 })
@@ -189,5 +189,17 @@ describe('runPrimitive', () => {
     expect(mockedExeca.mock.calls).toHaveLength(2)
     expect(mockedExeca.mock.calls[1]).toHaveLength(3)
     expect(mockedExeca.mock.calls[1][1]).toMatchSnapshot()
+  })
+
+  test('removes background rectangle when using fully transparent background', async () => {
+    const primitivePlugin = new PrimitivePlugin({
+      pluginOptions: {
+        background: '#bada5500'
+      },
+      options: {},
+      sqipConfig: mockedConfig
+    })
+    const res = await primitivePlugin.apply(fileContent, { ...mockedMetadata })
+    expect(res.toString()).toMatchSnapshot()
   })
 })

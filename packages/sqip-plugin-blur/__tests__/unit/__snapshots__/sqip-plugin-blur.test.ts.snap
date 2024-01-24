@@ -6,14 +6,8 @@ exports[`applies blur filter svg with group and blur 1`] = `"<svg viewBox=\\"0 0
 
 exports[`applies blur filter svg without group and blur 1`] = `"<svg viewBox=\\"0 0 1024 768\\"><filter id=\\"b\\"><feGaussianBlur stdDeviation=\\"5\\"/></filter><rect fill=\\"#bada55\\"/><polygon points=\\"0,100 50,25 50,75 100,0\\"/></svg>"`;
 
-exports[`does prepare problematic svgs properly for blurring svg with group 1`] = `"<svg viewBox=\\"0 0 1024 768\\"><rect fill=\\"#bada55\\" width=\\"100%\\" height=\\"100%\\"/><g><path fill=\\"#C0FFEE\\" d=\\"M51.5 17.5l4 18 15 1z\\"/></g></svg>"`;
+exports[`does prepare problematic svgs properly for blurring svg with group 1`] = `"<svg viewBox=\\"0 0 1024 768\\"><rect fill=\\"#bada55\\"/><g><path fill=\\"#C0FFEE\\" d=\\"M51.5 17.5l4 18 15 1z\\"/></g></svg>"`;
 
-exports[`does prepare problematic svgs properly for blurring svg with missing background 1`] = `
-"The SVG must have a rect as first shape element which represents the svg background color:
+exports[`does prepare problematic svgs properly for blurring svg without group 1`] = `"<svg viewBox=\\"0 0 1024 768\\"><rect fill=\\"#bada55\\"/><polygon points=\\"0,100 50,25 50,75 100,0\\"/></svg>"`;
 
-<svg viewBox=\\"0 0 1024 768\\"><path fill=\\"#bada55\\" d=\\"M0 0h1024v640H0z\\"/><g><path fill=\\"#C0FFEE\\" d=\\"M51.5 17.5l4 18 15 1z\\"/></g></svg>"
-`;
-
-exports[`does prepare problematic svgs properly for blurring svg without group 1`] = `"<svg viewBox=\\"0 0 1024 768\\"><rect fill=\\"#bada55\\" width=\\"100%\\" height=\\"100%\\"/><polygon points=\\"0,100 50,25 50,75 100,0\\"/></svg>"`;
-
-exports[`does prepare problematic svgs properly for blurring svg without viewport, but given width & height 1`] = `"<svg viewBox=\\"0 0 1024 640\\"><rect fill=\\"#bada55\\" width=\\"100%\\" height=\\"100%\\"/><g><path fill=\\"#C0FFEE\\" d=\\"M51.5 17.5l4 18 15 1z\\"/></g></svg>"`;
+exports[`does prepare problematic svgs properly for blurring svg without viewport, but given width & height 1`] = `"<svg viewBox=\\"0 0 1024 640\\"><rect fill=\\"#bada55\\"/><g><path fill=\\"#C0FFEE\\" d=\\"M51.5 17.5l4 18 15 1z\\"/></g></svg>"`;
