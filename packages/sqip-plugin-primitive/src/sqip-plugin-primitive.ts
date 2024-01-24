@@ -3,7 +3,7 @@ import { constants } from 'fs'
 import path from 'path'
 import os from 'os'
 import sharp from 'sharp'
-import * as svgson from 'svgson'
+import { loadSVG } from 'sqip'
 
 import execa from 'execa'
 import Debug from 'debug'
@@ -32,7 +32,9 @@ interface PrimitiveOptions extends PluginOptions {
 
 const debug = Debug('sqip-plugin-primitive')
 
+const PRIMITIVE_SVG_ELEMENTS = 'circle, ellipse, line, polygon, path, rect, g'
 const VENDOR_DIR = path.resolve(__dirname, '..', 'primitive-binaries')
+
 let primitiveExecutable = 'primitive'
 
 // Since Primitive is only interested in the larger dimension of the input image, let's find it
@@ -174,14 +176,28 @@ export default class PrimitivePlugin extends SqipPlugin {
 
     metadata.type = 'svg'
 
-    // Hide background rectangle/path when using transparent backgrounds
+    const $ = loadSVG(result.stdout)
+    const $svg = $('svg')
+
+    const $bgRect = $svg
+      .children(PRIMITIVE_SVG_ELEMENTS)
+      .filter('rect:first-child[fill]')
+
     if (bg.match(/[0-9a-f]{6}00/)) {
-      const parsedSvg = await svgson.parse(result.stdout)
-      delete parsedSvg.children[0]
-      return Buffer.from(svgson.stringify(parsedSvg))
+      // Remove background rectangle when using full transparent background
+      $bgRect.remove()
+    } else {
+      // Optimize Background Rectangle for compression and responsiveness
+
+      // @todo test in rare browsers
+      $bgRect.removeAttr('x')
+      $bgRect.removeAttr('y')
+
+      $bgRect.attr('width', '100%')
+      $bgRect.attr('height', '100%')
     }
 
-    return Buffer.from(result.stdout)
+    return Buffer.from($.html())
   }
 
   // Sanity check: use the exit state of 'type' to check for Primitive availability

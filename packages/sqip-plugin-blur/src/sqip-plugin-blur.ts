@@ -78,27 +78,6 @@ export default class SVGPlugin extends SqipPlugin {
       $svg.attr('viewBox', `0 0 ${width} ${height}`)
     }
 
-    const $bgRect = $svg
-      .children(PRIMITIVE_SVG_ELEMENTS)
-      .filter('rect:first-child[fill]')
-
-    // Check if filling background rectangle exists
-    // This must exist for proper blur and other transformations
-    if (!$bgRect.length) {
-      throw new Error(
-        `The SVG must have a rect as first shape element which represents the svg background color:\n\n${svg}`
-      )
-    }
-
-    // Remove x and y attributes since they default to 0
-    // @todo test in rare browsers
-    $bgRect.removeAttr('x')
-    $bgRect.removeAttr('y')
-
-    // Improve compression via simplifying fill
-    $bgRect.attr('width', '100%')
-    $bgRect.attr('height', '100%')
-
     return $.html()
   }
 
