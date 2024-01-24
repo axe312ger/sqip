@@ -14,7 +14,8 @@ jobs:
             - yarn-packages-v2-{{ .Branch }}-
             - yarn-packages-v2-master-
             - yarn-packages-v2-
-      - run: yarn --ignore-engines
+      - run: yarn
+      - run: npm rebuild
       - run: yarn run build
       - save_cache:
           paths:
@@ -36,7 +37,8 @@ jobs:
             - yarn-packages-v2-{{ .Branch }}-
             - yarn-packages-v2-master-
             - yarn-packages-v2-
-      - run: yarn --ignore-engines
+      - run: yarn
+      - run: npm rebuild
       - run: yarn run build
       - save_cache:
           paths:
@@ -59,7 +61,8 @@ jobs:
             - yarn-packages-v2-{{ .Branch }}-
             - yarn-packages-v2-master-
             - yarn-packages-v2-
-      - run: yarn --ignore-engines
+      - run: yarn
+      - run: npm rebuild
       - run: yarn build
       - save_cache:
           paths:
@@ -81,7 +84,8 @@ jobs:
             - yarn-packages-v2-{{ .Branch }}-
             - yarn-packages-v2-master-
             - yarn-packages-v2-
-      - run: yarn --ignore-engines
+      - run: yarn
+      - run: npm rebuild
       - run: yarn build
       - save_cache:
           paths:
