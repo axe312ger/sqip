@@ -3001,10 +3001,10 @@ asn1@~0.2.3:
   dependencies:
     safer-buffer "~2.1.0"
 
-aspect-ratio@2.1.4:
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/aspect-ratio/-/aspect-ratio-2.1.4.tgz#b290343d12f7e0afb3ecd5b727f3e23282b10399"
-  integrity sha512-YKC9wq4lwcMSE+9wnk1NPvv/xDIm+oLXdwXW8Mgs1/z+wXYqmjdZQpLuHexwvWkvOi/BvGYtbEYtRcrWr/rNgw==
+aspect-ratio@2.1.5:
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/aspect-ratio/-/aspect-ratio-2.1.5.tgz#54169c8802937359b018542d04ea8e35a1e45f79"
+  integrity sha512-gmIHdQ/QD5Ab7leYLt+jIcHdrb0PTdmDedatrVJqLUZF3teJwNkq1+ROa/DeAseWEiO3k9GTYy2Eb8PZPqN8fQ==
   dependencies:
     mri latest
 
