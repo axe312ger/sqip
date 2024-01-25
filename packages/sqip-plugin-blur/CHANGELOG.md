@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.43](https://github.com/axe312ger/sqip/compare/sqip-plugin-blur@1.0.0-alpha.42...sqip-plugin-blur@1.0.0-alpha.43) (2024-01-25)
+
+
+### Bug Fixes
+
+* blur plugin now works with transparent primitive backgrounds ([528f600](https://github.com/axe312ger/sqip/commit/528f600b777c38662e369978d514f4304cc3d7ca))
+
+
+
+
+
 # [1.0.0-alpha.42](https://github.com/axe312ger/sqip/compare/sqip-plugin-blur@1.0.0-alpha.41...sqip-plugin-blur@1.0.0-alpha.42) (2023-04-06)
 
 **Note:** Version bump only for package sqip-plugin-blur

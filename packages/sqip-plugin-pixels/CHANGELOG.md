@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.42](https://github.com/axe312ger/sqip/compare/sqip-plugin-pixels@1.0.0-alpha.41...sqip-plugin-pixels@1.0.0-alpha.42) (2024-01-25)
+
+
+### Bug Fixes
+
+* **deps:** update dependency sharp to v0.32.0 ([a039471](https://github.com/axe312ger/sqip/commit/a039471f2268ae2acf044a1894d9144595b55253))
+
+
+
+
+
 # [1.0.0-alpha.41](https://github.com/axe312ger/sqip/compare/sqip-plugin-pixels@1.0.0-alpha.40...sqip-plugin-pixels@1.0.0-alpha.41) (2023-04-06)
 
 **Note:** Version bump only for package sqip-plugin-pixels

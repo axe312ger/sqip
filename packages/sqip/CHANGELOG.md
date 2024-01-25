@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.42](https://github.com/axe312ger/sqip/compare/sqip@1.0.0-alpha.41...sqip@1.0.0-alpha.42) (2024-01-25)
+
+
+### Bug Fixes
+
+* fix TS error detection ([7fe1981](https://github.com/axe312ger/sqip/commit/7fe19814b38bdf016ed0e6251a640dae738327d2))
+* **deps:** update dependency sharp to v0.32.0 ([a039471](https://github.com/axe312ger/sqip/commit/a039471f2268ae2acf044a1894d9144595b55253))
+
+
+### Features
+
+* add new --print parameter to output SVG to CLI ([2cb641c](https://github.com/axe312ger/sqip/commit/2cb641c44f1339e5233cf70ed3aac59d9b2129f8))
+
+
+
+
+
 # [1.0.0-alpha.41](https://github.com/axe312ger/sqip/compare/sqip@1.0.0-alpha.40...sqip@1.0.0-alpha.41) (2023-04-06)
 
 

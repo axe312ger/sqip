@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.46](http://axe312ger.github.io/sqip/compare/sqip-demo@1.0.0-alpha.45...sqip-demo@1.0.0-alpha.46) (2024-01-25)
+
+
+### Bug Fixes
+
+* **deps:** update dependency aspect-ratio to v2.1.3 ([97a0134](http://axe312ger.github.io/sqip/commit/97a0134c4bd0f473153e7cf02fa42d15cc88b283))
+* **deps:** update dependency aspect-ratio to v2.1.4 ([77cda20](http://axe312ger.github.io/sqip/commit/77cda2010e8919619cdf8cbc6611a47dfe0d728b))
+* **deps:** update dependency pretty-bytes to v6.1.1 ([7b3907f](http://axe312ger.github.io/sqip/commit/7b3907f0086dc16a2fadf4ebaa8aa4a94cd3be41))
+* **deps:** update dependency sharp to v0.32.0 ([a039471](http://axe312ger.github.io/sqip/commit/a039471f2268ae2acf044a1894d9144595b55253))
+* **deps:** update dependency sharp to v0.32.6 ([88c2c41](http://axe312ger.github.io/sqip/commit/88c2c41cb47dce811a148b4d3c788de3d4a4d36d))
+
+
+
+
+
 # [1.0.0-alpha.45](http://axe312ger.github.io/sqip/compare/sqip-demo@1.0.0-alpha.44...sqip-demo@1.0.0-alpha.45) (2023-04-06)
 
 **Note:** Version bump only for package sqip-demo

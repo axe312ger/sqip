@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.47](https://github.com/axe312ger/sqip/compare/sqip-cli@1.0.0-alpha.46...sqip-cli@1.0.0-alpha.47) (2024-01-25)
+
+
+### Bug Fixes
+
+* blur plugin now works with transparent primitive backgrounds ([528f600](https://github.com/axe312ger/sqip/commit/528f600b777c38662e369978d514f4304cc3d7ca))
+
+
+### Features
+
+* add new --print parameter to output SVG to CLI ([2cb641c](https://github.com/axe312ger/sqip/commit/2cb641c44f1339e5233cf70ed3aac59d9b2129f8))
+
+
+
+
+
 # [1.0.0-alpha.46](https://github.com/axe312ger/sqip/compare/sqip-cli@1.0.0-alpha.45...sqip-cli@1.0.0-alpha.46) (2023-04-06)
 
 **Note:** Version bump only for package sqip-cli
