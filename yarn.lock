@@ -2265,10 +2265,10 @@
   dependencies:
     "@types/ms" "*"
 
-"@types/expand-tilde@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@types/expand-tilde/-/expand-tilde-2.0.0.tgz#c01a706675b9d60931bf6a7dc7dfa45d63540c97"
-  integrity sha512-17h/6MRHoetV2QVUVnUfrmaFCXNIFJ3uDJmXlklX2xDtlEb1W0OXLgP+qwND2Ibg/PtQfQi0vx19KGuPayjLiw==
+"@types/expand-tilde@2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@types/expand-tilde/-/expand-tilde-2.0.2.tgz#10838d718311d99d913861e18e944d55fbc094df"
+  integrity sha512-wlsMYiapmIR4Eq/Z0qysN8xaDMjSkO6AIDNFx9oxgWGeKVA1jU+NzwPRZErBNP5z6/dx6QNkNpKglBGPO9OkTA==
 
 "@types/fs-extra@11.0.3":
   version "11.0.3"
