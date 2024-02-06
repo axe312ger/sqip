@@ -2253,10 +2253,10 @@
   resolved "https://registry.yarnpkg.com/@types/command-line-args/-/command-line-args-5.2.3.tgz#553ce2fd5acf160b448d307649b38ffc60d39639"
   integrity sha512-uv0aG6R0Y8WHZLTamZwtfsDLVRnOa+n+n5rEvFWL5Na5gZ8V2Teab/duDPFzIIIhs9qizDpcavCusCLJZu62Kw==
 
-"@types/command-line-usage@5.0.3":
-  version "5.0.3"
-  resolved "https://registry.yarnpkg.com/@types/command-line-usage/-/command-line-usage-5.0.3.tgz#ff7ad6b8b36cc2592afcc46683692f97c07a90e5"
-  integrity sha512-ZESq+MDjR7QpvFfuanzfoAwfzA9e/wUUH/5uEyaZpGwqEnNddBpsyzJWltUIMgXYy97//wD0aJFgKStoZ6o1SQ==
+"@types/command-line-usage@5.0.4":
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/@types/command-line-usage/-/command-line-usage-5.0.4.tgz#374e4c62d78fbc5a670a0f36da10235af879a0d5"
+  integrity sha512-BwR5KP3Es/CSht0xqBcUXS3qCAUVXwpRKsV2+arxeb65atasuXG9LykC9Ab10Cw3s2raH92ZqOeILaQbsB2ACg==
 
 "@types/debug@4.1.10":
   version "4.1.10"
