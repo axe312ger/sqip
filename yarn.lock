@@ -2258,10 +2258,10 @@
   resolved "https://registry.yarnpkg.com/@types/command-line-usage/-/command-line-usage-5.0.3.tgz#ff7ad6b8b36cc2592afcc46683692f97c07a90e5"
   integrity sha512-ZESq+MDjR7QpvFfuanzfoAwfzA9e/wUUH/5uEyaZpGwqEnNddBpsyzJWltUIMgXYy97//wD0aJFgKStoZ6o1SQ==
 
-"@types/debug@4.1.10":
-  version "4.1.10"
-  resolved "https://registry.yarnpkg.com/@types/debug/-/debug-4.1.10.tgz#f23148a6eb771a34c466a4fc28379d8101e84494"
-  integrity sha512-tOSCru6s732pofZ+sMv9o4o3Zc+Sa8l3bxd/tweTQudFn06vAzb13ZX46Zi6m6EJ+RUbRTHvgQJ1gBtSgkaUYA==
+"@types/debug@4.1.12":
+  version "4.1.12"
+  resolved "https://registry.yarnpkg.com/@types/debug/-/debug-4.1.12.tgz#a155f21690871953410df4b6b6f53187f0500917"
+  integrity sha512-vIChWdVG3LG1SMxEvI/AK+FWJthlrqlTu7fbrlywTkkaONwk/UAGaULXRlf8vkzFBLVm0zkMdCquhL5aOjhXPQ==
   dependencies:
     "@types/ms" "*"
 
