@@ -6,7 +6,12 @@ import Debug from 'debug'
 import fs from 'fs-extra'
 import pkgUp from 'pkg-up'
 
-import { sqip, resolvePlugins, SqipCliOptionDefinition, SqipOptions } from 'sqip'
+import {
+  sqip,
+  resolvePlugins,
+  SqipCliOptionDefinition,
+  SqipOptions
+} from 'sqip'
 
 const debug = Debug('sqip-cli')
 
@@ -65,8 +70,7 @@ const defaultOptionList: SqipCliOptionDefinition[] = [
     name: 'print',
     type: Boolean,
     defaultValue: false,
-    description:
-      'Print resulting svg to stdout.'
+    description: 'Print resulting svg to stdout.'
   }
 ]
 
