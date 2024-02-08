@@ -43,7 +43,7 @@ export default class SVGPlugin extends SqipPlugin {
         alias: 'b',
         type: Number,
         description:
-          'Set the stdDeviation value for the GaussianBlur SVG filter. See: https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feGaussianBlur',
+          'Set the radius value [pixel] for the GaussianBlur CSS filter. See: https://developer.mozilla.org/en-US/docs/Web/CSS/filter-function/blur#syntax',
         defaultValue: 12
       }
     ]
@@ -87,11 +87,7 @@ export default class SVGPlugin extends SqipPlugin {
     }
     const patchedSVG = patchSVGGroup(svg)
     const $ = loadSVG(patchedSVG)
-    const blurFilterId = 'b'
-    $('svg > g').attr('filter', `url(#${blurFilterId})`)
-    $('svg').prepend(
-      `<filter id="${blurFilterId}"><feGaussianBlur stdDeviation="${this.options.blur}" />`
-    )
+    $('svg > g').attr('filter', `blur(${this.options.blur}px)`)
 
     return $.html()
   }
