@@ -397,7 +397,7 @@ export async function sqip(
   if (Buffer.isBuffer(input)) {
     if (!outputFileName) {
       throw new Error(
-        `${outputFileName} is required when passing image as buffer`
+        'OutputFileName is required when passing image as buffer'
       )
     }
     return processFile({
