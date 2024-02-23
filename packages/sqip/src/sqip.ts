@@ -347,15 +347,22 @@ async function processImage({
   }
 
   // Interate through plugins and apply them to last returned image
+
   for (const { name, options: pluginOptions, Plugin } of plugins) {
-    debug(`Construct ${name}`)
-    const plugin = new Plugin({
-      sqipConfig: config,
-      pluginOptions: pluginOptions || {},
-      options: {}
-    })
-    debug(`Apply ${name}`)
-    buffer = await plugin.apply(buffer, metadata)
+    try {
+      debug(`Construct ${name}`)
+      const plugin = new Plugin({
+        sqipConfig: config,
+        pluginOptions: pluginOptions || {},
+        options: {}
+      })
+      debug(`Apply ${name}`)
+      buffer = await plugin.apply(buffer, metadata)
+    } catch (err) {
+      console.log(`Error thrown in plugin ${name}.`)
+      console.dir({ metadata }, {depth: 3})
+      throw err
+    }
   }
 
   return { content: buffer, metadata }
