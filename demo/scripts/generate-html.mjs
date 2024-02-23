@@ -12,6 +12,7 @@ const { readFile, writeFile } = fs
 function VariantResult({
   variantName,
   name,
+  processTime,
   sizes: {
     originalBytes,
     gzipBytes,
@@ -56,7 +57,10 @@ function VariantResult({
         <p>
           <strong><a href="${url}">${name}</a></strong>
         </p>
-        <p>Size: ${width}×${height} (${ratio})</p>
+        <p>
+          Size: ${width}×${height} (${ratio})<br />Processing Time:
+          ${convertHrtime(processTime).milliseconds.toFixed(0)}ms
+        </p>
         <table>
           <thead>
             <tr>
@@ -124,7 +128,7 @@ const Row = ({ image }) => {
       const time = results.find(
         ({ variantName }) => variantName === name
       ).processTime
-      return total + convertHrtime(time).seconds
+      return total + convertHrtime(time).milliseconds
     }, 0)
   })
 
@@ -167,7 +171,7 @@ const Row = ({ image }) => {
                       width="20"
                     />
                     <span title="Average processing time"
-                      >${(processingTimes[i] / images.length).toFixed(3)}s</span
+                      >${(processingTimes[i] / images.length).toFixed(0)}ms</span
                     >
                     <span title="Average size"
                       >${' | ø '}${prettyBytes(averageBytes)}</span
