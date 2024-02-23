@@ -7,6 +7,7 @@ module.exports = {
     '<rootDir>/packages/sqip',
     '<rootDir>/packages/sqip-cli',
     '<rootDir>/packages/sqip-plugin-blur',
+    '<rootDir>/packages/sqip-plugin-blurhash',
     '<rootDir>/packages/sqip-plugin-data-uri',
     '<rootDir>/packages/sqip-plugin-pixels',
     '<rootDir>/packages/sqip-plugin-potrace',
