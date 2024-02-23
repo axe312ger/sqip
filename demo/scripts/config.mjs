@@ -30,8 +30,7 @@ export const variants = [
     title: 'Thumbnail',
     description: html`
       <p>
-        300px thumbnail of the original image, minified with
-        <a href="https://github.com/mozilla/mozjpeg">mozjpeg</a>
+        300px thumbnail of the original image, minified with <a href="https://github.com/mozilla/mozjpeg" target="_blank">mozjpeg</a>
       </p>
     `,
     resultFileType: 'jpg',
@@ -53,7 +52,7 @@ export const variants = [
     title: 'LQIP',
     description: html`
       <p>
-        Generated with <a href="https://github.com/zouhir/lqip-cli">lqip-cli</a>
+        Generated with <a href="https://github.com/zouhir/lqip-cli" target="_blank">lqip-cli</a>
       </p>
     `,
     resultFileType: 'jpg',
@@ -68,9 +67,8 @@ export const variants = [
     title: 'LQIP custom',
     description: html`
       <p>
-        32px thumbnail generated with
-        <a href="https://sharp.dimens.io/en/stable/">sharp</a>, minified with
-        <a href="https://github.com/mozilla/mozjpeg">mozjpeg</a>
+        32px thumbnail generated with <a href="https://sharp.dimens.io/en/stable/" target="_blank">sharp</a>,
+        minified with <a href="https://github.com/mozilla/mozjpeg" target="_blank">mozjpeg</a>
       </p>
     `,
     resultFileType: 'jpg',
@@ -141,6 +139,34 @@ export const variants = [
       })
       await writeImage({ dataURI, dist })
       return dataURI
+    }
+  },
+  {
+    name: 'sqip-blurhash',
+    title: 'blurhash',
+    description: html`
+      <p>
+        <a href="https://blurha.sh" target="_blank">blurha.sh</a> via${' '}
+        <a
+          href="https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-blurhash#readme"
+          >sqip-plugin-blurhash</a
+        >
+      </p>
+    `,
+    config: {
+      input: 'path/to/file.jpg',
+      plugins: ['blurhash']
+    },
+    resultFileType: 'svg',
+    task: async ({ path, dist }) => {
+      const {
+        metadata: { dataURIBase64 }
+      } = await sqip({
+        input: path,
+        plugins: ['blurhash']
+      })
+      await writeImage({ dataURI: dataURIBase64, dist })
+      return dataURIBase64
     }
   },
   {
