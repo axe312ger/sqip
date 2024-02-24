@@ -8,6 +8,7 @@ import sharp from 'sharp'
 import termimg, { UnsupportedTerminalError } from 'term-img'
 import Table from 'cli-table3'
 import chalk from 'chalk'
+import mime from 'mime'
 
 import { Palette } from '@vibrant/color'
 import { OptionDefinition } from 'command-line-args'
@@ -18,7 +19,7 @@ export { loadSVG, parseColor } from './helpers'
 
 const debug = Debug('sqip')
 
-const mainKeys = ['originalWidth', 'originalHeight', 'width', 'height', 'type']
+const mainKeys = ['filename', 'originalWidth', 'originalHeight', 'width', 'height', 'type', 'mimeType']
 
 const PALETTE_KEYS: (keyof Palette)[] = [
   'Vibrant',
@@ -73,6 +74,7 @@ interface SqipConfig {
 }
 
 interface ProcessFileOptions {
+  filePath: string
   buffer: Buffer
   outputFileName: string
   config: SqipConfig
@@ -85,6 +87,8 @@ export interface SqipImageMetadata {
   height: number
   width: number
   type: 'unknown' | 'pixel' | 'svg'
+  mimeType: string
+  filename: string
   [key: string]: unknown
 }
 
@@ -155,12 +159,13 @@ export async function resolvePlugins(
 }
 
 async function processFile({
+  filePath,
   buffer,
   outputFileName,
   config
 }: ProcessFileOptions) {
   const { output, silent, parseableOutput, print } = config
-  const result = await processImage({ buffer, config })
+  const result = await processImage({ filePath, buffer, config })
   const { content, metadata } = result
   let outputPath
 
@@ -284,11 +289,13 @@ async function processFile({
 }
 
 interface ProcessImageOptions {
+  filePath: string
   buffer: Buffer
   config: SqipConfig
 }
 
 async function processImage({
+  filePath,
   buffer,
   config
 }: ProcessImageOptions): Promise<SqipResult> {
@@ -315,7 +322,12 @@ async function processImage({
     throw new Error('Unable to get image size')
   }
 
+  const {name: filename} = path.parse(filePath)
+  const mimeType = mime.getType(filePath) || 'unknown'
+
   const metadata: SqipImageMetadata = {
+    filename,
+    mimeType,
     originalWidth: originalSizes.width,
     originalHeight: originalSizes.height,
     palette,
@@ -408,6 +420,7 @@ export async function sqip(
       )
     }
     return processFile({
+      filePath: '-',
       buffer: input,
       outputFileName,
       config
@@ -439,6 +452,7 @@ export async function sqip(
     }
     const buffer = await fs.readFile(filePath)
     const result = await processFile({
+      filePath,
       buffer,
       outputFileName: outputFileName || path.parse(filePath).name,
       config

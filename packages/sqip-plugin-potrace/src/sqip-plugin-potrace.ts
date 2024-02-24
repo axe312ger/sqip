@@ -192,6 +192,9 @@ export default class sqipPluginPotrace extends SqipPlugin {
       blackOnWhite
     })
 
+    metadata.type = 'svg'
+    metadata.mimeType = 'image/svg'
+
     return Buffer.from(result)
   }
 }
