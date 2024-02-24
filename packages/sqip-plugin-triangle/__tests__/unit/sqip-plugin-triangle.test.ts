@@ -19,12 +19,21 @@ const mockedExeca = execa as jest.MockedFunction<typeof execa>
 mockedExeca.mockImplementation(() => {
   const result = {
     stdout:
-      '<svg viewBox="0 0 1024 768"><rect fill="#bada5500"/><g></g></rect></svg>'
+      '<svg viewBox="0 0 1024 768"><rect width="100%" height="100%" fill="#bada5500"/><g><path fill="#fff" d="M300,188 L0,188 L174,146 L300,188"/></g></rect></svg>'
   } as unknown as ExecaChildProcess<Buffer>
   return result
 })
 
 const mockedFsAccess = fs.access as jest.MockedFunction<typeof fs.access>
+
+const mockedFsReadFile = fs.readFile as jest.MockedFunction<typeof fs.readFile>
+mockedFsReadFile.mockImplementation(() =>
+  Promise.resolve(
+    Buffer.from(
+      '<svg viewBox="0 0 1024 768"><rect width="100%" height="100%" fill="#bada5500"/><g><path fill="#fff" d="M300,188 L0,188 L174,146 L300,188"/></g></rect></svg>'
+    )
+  )
+)
 
 mockedFsAccess.mockImplementation(async () =>
   Promise.reject(new Error('Mocked: Binary not available'))
@@ -131,9 +140,9 @@ describe('runTriangle', () => {
     await trianglePlugin.apply(fileContent, { ...mockedMetadata })
     expect(mockedExeca.mock.calls).toHaveLength(2)
     expect(mockedExeca.mock.calls[1]).toHaveLength(2)
-    const args = mockedExeca.mock.calls[1][1] as string[] || []
-    args[1] = "mocked"
-    args[args.length -1] = "mocked"
+    const args = (mockedExeca.mock.calls[1][1] as string[]) || []
+    args[1] = 'mocked'
+    args[args.length - 1] = 'mocked'
     expect(args).toMatchSnapshot()
   })
 
@@ -147,9 +156,9 @@ describe('runTriangle', () => {
     await trianglePlugin.apply(fileContent, { ...mockedMetadata })
     expect(mockedExeca.mock.calls).toHaveLength(2)
     expect(mockedExeca.mock.calls[1]).toHaveLength(2)
-    const args = mockedExeca.mock.calls[1][1] as string[] || []
-    args[1] = "mocked"
-    args[args.length -1] = "mocked"
+    const args = (mockedExeca.mock.calls[1][1] as string[]) || []
+    args[1] = 'mocked'
+    args[args.length - 1] = 'mocked'
     expect(args).toMatchSnapshot()
   })
 
@@ -166,9 +175,9 @@ describe('runTriangle', () => {
     })
     expect(mockedExeca.mock.calls).toHaveLength(2)
     expect(mockedExeca.mock.calls[1]).toHaveLength(2)
-    const args = mockedExeca.mock.calls[1][1] as string[] || []
-    args[1] = "mocked"
-    args[args.length -1] = "mocked"
+    const args = (mockedExeca.mock.calls[1][1] as string[]) || []
+    args[1] = 'mocked'
+    args[args.length - 1] = 'mocked'
     expect(args).toMatchSnapshot()
   })
 
@@ -183,9 +192,9 @@ describe('runTriangle', () => {
     await trianglePlugin.apply(fileContent, { ...mockedMetadata })
     expect(mockedExeca.mock.calls).toHaveLength(2)
     expect(mockedExeca.mock.calls[1]).toHaveLength(2)
-    const args = mockedExeca.mock.calls[1][1] as string[] || []
-    args[1] = "mocked"
-    args[args.length -1] = "mocked"
+    const args = (mockedExeca.mock.calls[1][1] as string[]) || []
+    args[1] = 'mocked'
+    args[args.length - 1] = 'mocked'
     expect(args).toMatchSnapshot()
   })
 })
