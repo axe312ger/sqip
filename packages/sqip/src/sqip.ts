@@ -150,6 +150,7 @@ export async function resolvePlugins(
 
         return { ...plugin, Plugin: Plugin.default }
       } catch (err) {
+        console.error(err)
         throw new Error(
           `Unable to load plugin "${moduleName}". Try installing it via:\n\n npm install ${moduleName}`
         )
