@@ -4,6 +4,8 @@ import { Swatch } from '@vibrant/color'
 import { SqipImageMetadata } from 'sqip/src/sqip'
 
 const mockedMetadata: SqipImageMetadata = {
+  filename: 'mocked',
+  mimeType: 'image/mocked',
   width: 1024,
   height: 640,
   type: 'svg',
