@@ -33,6 +33,7 @@
     "sqip-plugin-potrace": "^1.0.0-alpha.14",
     "sqip-plugin-primitive": "^1.0.0-alpha.44",
     "sqip-plugin-svgo": "^1.0.0-alpha.44",
+    "systeminformation": "^5.22.0",
     "vhtml": "2.2.0"
   },
   "devDependencies": {
