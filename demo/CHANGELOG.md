@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.47](http://axe312ger.github.io/sqip/compare/sqip-demo@1.0.0-alpha.46...sqip-demo@1.0.0-alpha.47) (2024-02-24)
+
+
+### Bug Fixes
+
+* show average processing time in demo in ms ([84bb989](http://axe312ger.github.io/sqip/commit/84bb989b618ddddc8a3fe12162f6fb4763c24637))
+* **deps:** update dependency aspect-ratio to v2.1.5 ([dd9915b](http://axe312ger.github.io/sqip/commit/dd9915b4848616375554580888b7884b1a3ea426))
+* **deps:** update dependency sharp to v0.32.6 [security] ([04c3395](http://axe312ger.github.io/sqip/commit/04c3395b131ffd1fcec67df12d4a98ca0c0c4295))
+
+
+### Features
+
+* add info about generating machine and turn into improve css a little ([2365329](http://axe312ger.github.io/sqip/commit/23653296790a37b06b4545d0620abd6d2f876e11))
+* add triangle plugin and include filename and mime type into metadata ([f8838de](http://axe312ger.github.io/sqip/commit/f8838dead30932e59bc5f00cb2e2e9e20bf70a40))
+* new blurhash plugin ([c147d05](http://axe312ger.github.io/sqip/commit/c147d050a8f99663324d3e67da5e7d65f0e2c960))
+
+
+
+
+
 # [1.0.0-alpha.46](http://axe312ger.github.io/sqip/compare/sqip-demo@1.0.0-alpha.45...sqip-demo@1.0.0-alpha.46) (2024-01-25)
 
 

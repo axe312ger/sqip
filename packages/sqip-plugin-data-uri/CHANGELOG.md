@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.44](https://github.com/axe312ger/sqip/compare/sqip-plugin-data-uri@1.0.0-alpha.43...sqip-plugin-data-uri@1.0.0-alpha.44) (2024-02-24)
+
+**Note:** Version bump only for package sqip-plugin-data-uri
+
+
+
+
+
 # [1.0.0-alpha.43](https://github.com/axe312ger/sqip/compare/sqip-plugin-data-uri@1.0.0-alpha.42...sqip-plugin-data-uri@1.0.0-alpha.43) (2024-01-25)
 
 **Note:** Version bump only for package sqip-plugin-data-uri

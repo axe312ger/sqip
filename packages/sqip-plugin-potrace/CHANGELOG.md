@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.15](https://github.com/axe312ger/sqip/compare/sqip-plugin-potrace@1.0.0-alpha.14...sqip-plugin-potrace@1.0.0-alpha.15) (2024-02-24)
+
+
+### Features
+
+* add triangle plugin and include filename and mime type into metadata ([f8838de](https://github.com/axe312ger/sqip/commit/f8838dead30932e59bc5f00cb2e2e9e20bf70a40))
+
+
+
+
+
 # [1.0.0-alpha.14](https://github.com/axe312ger/sqip/compare/sqip-plugin-potrace@1.0.0-alpha.13...sqip-plugin-potrace@1.0.0-alpha.14) (2024-01-25)
 
 **Note:** Version bump only for package sqip-plugin-potrace

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.48](https://github.com/axe312ger/sqip/compare/sqip-cli@1.0.0-alpha.47...sqip-cli@1.0.0-alpha.48) (2024-02-24)
+
+**Note:** Version bump only for package sqip-cli
+
+
+
+
+
 # [1.0.0-alpha.47](https://github.com/axe312ger/sqip/compare/sqip-cli@1.0.0-alpha.46...sqip-cli@1.0.0-alpha.47) (2024-01-25)
 
 

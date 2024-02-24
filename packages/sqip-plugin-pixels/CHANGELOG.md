@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.43](https://github.com/axe312ger/sqip/compare/sqip-plugin-pixels@1.0.0-alpha.42...sqip-plugin-pixels@1.0.0-alpha.43) (2024-02-24)
+
+
+### Features
+
+* add triangle plugin and include filename and mime type into metadata ([f8838de](https://github.com/axe312ger/sqip/commit/f8838dead30932e59bc5f00cb2e2e9e20bf70a40))
+
+
+
+
+
 # [1.0.0-alpha.42](https://github.com/axe312ger/sqip/compare/sqip-plugin-pixels@1.0.0-alpha.41...sqip-plugin-pixels@1.0.0-alpha.42) (2024-01-25)
 
 

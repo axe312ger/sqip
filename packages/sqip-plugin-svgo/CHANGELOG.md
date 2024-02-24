@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.45](https://github.com/axe312ger/sqip/compare/sqip-plugin-svgo@1.0.0-alpha.44...sqip-plugin-svgo@1.0.0-alpha.45) (2024-02-24)
+
+
+### Features
+
+* make SVGO more aggressive ([5127915](https://github.com/axe312ger/sqip/commit/5127915c1677427e8bd362ca3b08afbb3d6de38b))
+
+
+
+
+
 # [1.0.0-alpha.44](https://github.com/axe312ger/sqip/compare/sqip-plugin-svgo@1.0.0-alpha.43...sqip-plugin-svgo@1.0.0-alpha.44) (2024-01-25)
 
 **Note:** Version bump only for package sqip-plugin-svgo
