@@ -10,7 +10,7 @@ import Table from 'cli-table3'
 import chalk from 'chalk'
 import mime from 'mime'
 
-import { Palette } from '@vibrant/color'
+import type { Palette } from '@vibrant/color'
 import { OptionDefinition } from 'command-line-args'
 
 import { locateFiles } from './helpers'

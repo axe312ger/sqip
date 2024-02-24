@@ -54,7 +54,7 @@
     "term-img": "^5.0.0"
   },
   "peerDependencies": {
-    "@vibrant/color": "^3.2.0-alpha",
+    "@vibrant/color": "3.2.1-alpha.1",
     "sqip-plugin-blur": "^1.0.0-alpha.0",
     "sqip-plugin-data-uri": "^1.0.0-alpha.0",
     "sqip-plugin-primitive": "^1.0.0-alpha.0",

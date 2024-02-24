@@ -1,7 +1,7 @@
 import SvgPlugin from '../../src/sqip-plugin-blur'
 
 import { Swatch } from '@vibrant/color'
-import { SqipImageMetadata } from 'sqip/src/sqip'
+import type { SqipImageMetadata } from 'sqip/src/sqip'
 
 const mockedMetadata: SqipImageMetadata = {
   filename: 'mocked',
