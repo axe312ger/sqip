@@ -18,16 +18,40 @@ export default class SVGOPlugin extends SqipPlugin {
       floatPrecision: 1,
       plugins: [
         'preset-default',
+        'cleanupAttrs',
+        'cleanupEnableBackground',
+        'cleanupIds',
         'cleanupListOfValues',
+        'collapseGroups',
+        'convertColors',
         'convertStyleToAttrs',
+        'mergeStyles',
+        'minifyStyles',
         'prefixIds',
+        'removeComments',
+        {
+          name: 'removeDesc',
+          params: {
+            removeAny: true
+          }
+        },
         'removeDimensions',
+        'removeEditorsNSData',
+        'removeElementsByAttr',
+        'removeEmptyAttrs',
+        'removeEmptyContainers',
+        'removeEmptyText',
+        'removeHiddenElems',
         'removeOffCanvasPaths',
         'removeRasterImages',
         'removeScriptElement',
         'removeStyleElement',
+        'removeTitle',
+        'removeUselessDefs',
+        'removeUselessStrokeAndFill',
         'reusePaths',
         'sortAttrs'
+        // 'mergePaths' risky?
       ],
       ...pluginOptions
     }
