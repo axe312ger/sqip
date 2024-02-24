@@ -100,6 +100,9 @@ export default class PixelsPlugin extends SqipPlugin {
       }
     }
 
+    metadata.type = 'svg'
+    metadata.mimeType = 'image/svg'
+
     return Buffer.from(canvas.svg())
   }
 }

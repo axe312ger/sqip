@@ -100,7 +100,7 @@ export const variants = [
   {
     name: 'sqip',
     title: 'SQIP default',
-    description: html` <p>Just the default settings</p> `,
+    description: html` <p>Just the default settings (primitive + blur)</p> `,
     config: { input: 'path/to/file.jpg' },
     resultFileType: 'svg',
     task: async ({ path, dist }) => {
@@ -164,6 +164,72 @@ export const variants = [
       } = await sqip({
         input: path,
         plugins: ['blurhash']
+      })
+      await writeImage({ dataURI: dataURIBase64, dist })
+      return dataURIBase64
+    }
+  },
+  {
+    name: 'sqip-triangle',
+    title: 'triangle',
+    description: html`
+      <p>
+        <a href="https://github.com/esimov/triangle/" target="_blank"
+          >triangle</a
+        >
+        previews with blur via${' '}
+        <a
+          href="https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-triangle#readme"
+          >sqip-plugin-triangle</a
+        >
+      </p>
+    `,
+    config: {
+      input: 'path/to/file.jpg',
+      plugins: ['triangle', 'blur', 'svgo', 'data-uri']
+    },
+    resultFileType: 'svg',
+    task: async ({ path, dist }) => {
+      const {
+        metadata: { dataURIBase64 }
+      } = await sqip({
+        input: path,
+        plugins: ['triangle', 'blur', 'svgo', 'data-uri']
+      })
+      await writeImage({ dataURI: dataURIBase64, dist })
+      return dataURIBase64
+    }
+  },
+  {
+    name: 'sqip-triangle-art',
+    title: 'triangle art',
+    description: html`
+      <p>
+        <a href="https://github.com/esimov/triangle/" target="_blank"
+          >triangle</a
+        >
+        with 420 pts via${' '}
+        <a
+          href="https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-triangle#readme"
+          >sqip-plugin-triangle</a
+        >
+      </p>
+    `,
+    config: {
+      input: 'path/to/file.jpg',
+      plugins: [{ name: 'triangle', options: { pts: 420 } }, 'svgo', 'data-uri']
+    },
+    resultFileType: 'svg',
+    task: async ({ path, dist }) => {
+      const {
+        metadata: { dataURIBase64 }
+      } = await sqip({
+        input: path,
+        plugins: [
+          { name: 'triangle', options: { pts: 420 } },
+          'svgo',
+          'data-uri'
+        ]
       })
       await writeImage({ dataURI: dataURIBase64, dist })
       return dataURIBase64

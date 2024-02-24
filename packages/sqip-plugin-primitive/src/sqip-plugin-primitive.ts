@@ -174,8 +174,6 @@ export default class PrimitivePlugin extends SqipPlugin {
       }
     )
 
-    metadata.type = 'svg'
-
     const $ = loadSVG(result.stdout)
     const $svg = $('svg')
 
@@ -196,6 +194,9 @@ export default class PrimitivePlugin extends SqipPlugin {
       $bgRect.attr('width', '100%')
       $bgRect.attr('height', '100%')
     }
+
+    metadata.type = 'svg'
+    metadata.mimeType = 'image/svg'
 
     return Buffer.from($.html())
   }

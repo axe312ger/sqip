@@ -12,6 +12,7 @@ module.exports = {
     '<rootDir>/packages/sqip-plugin-pixels',
     '<rootDir>/packages/sqip-plugin-potrace',
     '<rootDir>/packages/sqip-plugin-primitive',
-    '<rootDir>/packages/sqip-plugin-svgo'
+    '<rootDir>/packages/sqip-plugin-svgo',
+    '<rootDir>/packages/sqip-plugin-triangle'
   ]
 }
