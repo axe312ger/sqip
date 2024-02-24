@@ -17,6 +17,8 @@ const FILE_DEMO_BEACH = resolve(
 const fileContent = readFileSync(FILE_DEMO_BEACH)
 
 const mockedMetadata: SqipImageMetadata = {
+  filename: 'mocked',
+  mimeType: 'image/mocked',
   height: 0,
   width: 0,
   originalHeight: 0,
@@ -44,7 +46,8 @@ describe('sqip-plugin-potrace', () => {
       options: {},
       sqipConfig: mockedConfig
     })
-    const result = await plugin.apply(fileContent, mockedMetadata)
+    const metadata = {...mockedMetadata}
+    const result = await plugin.apply(fileContent, metadata)
 
     const $ = cheerio.load(result, { xml: true })
     const $svg = $('svg')
@@ -66,7 +69,8 @@ describe('sqip-plugin-potrace', () => {
       options: {},
       sqipConfig: mockedConfig
     })
-    const result = await plugin.apply(fileContent, mockedMetadata)
+    const metadata = {...mockedMetadata}
+    const result = await plugin.apply(fileContent, metadata)
 
     const $ = cheerio.load(result, { xml: true })
 
@@ -91,7 +95,8 @@ describe('sqip-plugin-potrace', () => {
       options: {},
       sqipConfig: mockedConfig
     })
-    const result = await plugin.apply(fileContent, mockedMetadata)
+    const metadata = {...mockedMetadata}
+    const result = await plugin.apply(fileContent, metadata)
 
     const $ = cheerio.load(result, { xml: true })
 

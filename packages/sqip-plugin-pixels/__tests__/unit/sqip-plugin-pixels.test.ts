@@ -19,6 +19,8 @@ const fileContent = readFileSync(FILE_DEMO_BEACH)
 
 const mockedSwatch = new Swatch([4, 2, 0], 420)
 const mockedMetadata: SqipImageMetadata = {
+  filename: 'mocked',
+  mimeType: 'image/mocked',
   height: 0,
   width: 0,
   originalHeight: 0,
@@ -46,7 +48,8 @@ describe('sqip-plugin-pixels', () => {
       options: {},
       sqipConfig: mockedConfig
     })
-    const result = await plugin.apply(fileContent, mockedMetadata)
+    const metadata = {...mockedMetadata}
+    const result = await plugin.apply(fileContent, metadata)
 
     const $ = cheerio.load(result, { xml: true })
 
@@ -67,7 +70,8 @@ describe('sqip-plugin-pixels', () => {
       options: {},
       sqipConfig: mockedConfig
     })
-    const result = await plugin.apply(fileContent, mockedMetadata)
+    const metadata = {...mockedMetadata}
+    const result = await plugin.apply(fileContent, metadata)
 
     const $ = cheerio.load(result, { xml: true })
 

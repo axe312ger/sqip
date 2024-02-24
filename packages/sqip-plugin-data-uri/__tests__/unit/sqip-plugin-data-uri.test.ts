@@ -8,6 +8,8 @@ const EXAMPLE_SVG = Buffer.from(
 )
 
 const mockedMetadata: SqipImageMetadata = {
+  filename: 'mocked',
+  mimeType: 'image/mocked',
   height: 0,
   width: 0,
   originalHeight: 0,
