@@ -1,4 +1,4 @@
-module sqip/sqip-plusin-primitive
+module sqip/sqip-plugin-primitive
 
 go 1.17
 
