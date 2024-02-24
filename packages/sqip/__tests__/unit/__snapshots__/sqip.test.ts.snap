@@ -6,7 +6,9 @@ Object {
   "metadata": Object {
     "dataURI": "data:image/svg+xml,dataURI",
     "dataURIBase64": "data:image/svg+xml;base64,dataURIBase64==",
+    "filename": "-",
     "height": 188,
+    "mimeType": "unknown",
     "originalHeight": 640,
     "originalWidth": 1024,
     "palette": Object {
@@ -71,7 +73,9 @@ Object {
   "metadata": Object {
     "dataURI": "data:image/svg+xml,dataURI",
     "dataURIBase64": "data:image/svg+xml;base64,dataURIBase64==",
+    "filename": "beach",
     "height": 188,
+    "mimeType": "image/jpeg",
     "originalHeight": 640,
     "originalWidth": 1024,
     "palette": Object {
@@ -136,7 +140,9 @@ Object {
   "metadata": Object {
     "dataURI": "data:image/svg+xml,dataURI",
     "dataURIBase64": "data:image/svg+xml;base64,dataURIBase64==",
+    "filename": "beach",
     "height": 188,
+    "mimeType": "image/jpeg",
     "originalHeight": 640,
     "originalWidth": 1024,
     "palette": Object {

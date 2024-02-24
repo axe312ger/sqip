@@ -18,6 +18,8 @@ const fileContent = readFileSync(FILE_DEMO_BEACH)
 
 const mockedSwatch = new Swatch([4, 2, 0], 420)
 const mockedMetadata: SqipImageMetadata = {
+  filename: 'mocked',
+  mimeType: 'image/mocked',
   height: 32,
   width: 32,
   originalHeight: 0,

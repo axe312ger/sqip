@@ -35,6 +35,8 @@ const mockedOsPlatform = os.platform as jest.MockedFunction<typeof os.platform>
 const proccessExitSpy = jest.spyOn(process, 'exit').mockImplementation()
 
 const mockedMetadata: SqipImageMetadata = {
+  filename: 'mocked',
+  mimeType: 'image/mocked',
   width: 1024,
   height: 640,
   type: 'pixel',
