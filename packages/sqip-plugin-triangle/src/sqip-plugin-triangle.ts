@@ -11,7 +11,9 @@ import {
   SqipPluginOptions,
   PluginOptions,
   SqipCliOptionDefinition,
-  SqipImageMetadata
+  SqipImageMetadata,
+  loadSVG,
+  parseColor
 } from 'sqip'
 
 interface TrianglePluginOptions extends SqipPluginOptions {
@@ -103,8 +105,9 @@ export default class TrianglePlugin extends SqipPlugin {
       {
         name: 'bg',
         type: String,
-        description: 'Background color (specified as hex value)',
-        defaultValue: ' '
+        description:
+          'Background color (specified as hex value or one of the extracted palette colors)',
+        defaultValue: 'Muted'
       }
     ]
   }
@@ -127,7 +130,7 @@ export default class TrianglePlugin extends SqipPlugin {
       st: 1,
       gr: false,
       web: false,
-      bg: ' ',
+      bg: 'Muted',
       ...pluginOptions
     }
   }
@@ -145,13 +148,15 @@ export default class TrianglePlugin extends SqipPlugin {
     }
     await this.checkForTriangle()
 
-    const tmpFile = path.join(os.tmpdir(), `${metadata.filename}-${Date.now()}`)
-    const tmpSvgFile = path.join(
-      os.tmpdir(),
-      `${metadata.filename}-${Date.now()}.svg`
-    )
+    const { filename, palette } = metadata
+
+    const tmpFile = path.join(os.tmpdir(), `${filename}-${Date.now()}`)
+    const tmpSvgFile = path.join(os.tmpdir(), `${filename}-${Date.now()}.svg`)
 
     await writeFile(tmpFile, imageBuffer)
+
+    const bg = parseColor({ color: this.options.bg, palette }).toLowerCase()
+
     const triangleArgs = [
       '-in',
       tmpFile,
@@ -179,7 +184,7 @@ export default class TrianglePlugin extends SqipPlugin {
       this.options.gr ? '-gr' : null,
       this.options.web ? '-web' : null,
       '-bg',
-      this.options.bg.toString(),
+      bg,
       '-out',
       tmpSvgFile
     ].filter((v) => v !== null) as string[]
@@ -191,10 +196,17 @@ export default class TrianglePlugin extends SqipPlugin {
     await unlink(tmpFile)
     await unlink(tmpSvgFile)
 
+    const $ = loadSVG(result.toString())
+    const $svg = $('svg')
+
+    const $bgRect = $(`<rect width="100%" height="100%" fill="${bg}"/>`)
+
+    $svg.prepend($bgRect)
+
     metadata.type = 'svg'
     metadata.mimeType = 'image/svg'
 
-    return result
+    return Buffer.from($.html())
   }
 
   // Sanity check: use the exit state of 'type' to check for Triangle availability
