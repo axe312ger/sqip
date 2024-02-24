@@ -5988,10 +5988,10 @@ gh-pages@6.1.1:
     fs-extra "^11.1.1"
     globby "^6.1.0"
 
-gifwrap@^0.10.1, gifwrap@^0.9.2:
-  version "0.10.1"
-  resolved "https://registry.yarnpkg.com/gifwrap/-/gifwrap-0.10.1.tgz#9ed46a5d51913b482d4221ce9c727080260b681e"
-  integrity sha512-2760b1vpJHNmLzZ/ubTtNnEx5WApN/PYWJvXvgS+tL1egTTthayFYIQQNi136FLEDcN/IyEY2EcGpIITD6eYUw==
+gifwrap@^0.9.2:
+  version "0.9.4"
+  resolved "https://registry.yarnpkg.com/gifwrap/-/gifwrap-0.9.4.tgz#f4eb6169ba027d61df64aafbdcb1f8ae58ccc0c5"
+  integrity sha512-MDMwbhASQuVeD4JKd1fKgNgCRL3fGqMM4WaqpNhWO0JiMOAjbQdumbs4BbBZEy9/M00EHEjKN3HieVhCUlwjeQ==
   dependencies:
     image-q "^4.0.0"
     omggif "^1.0.10"
@@ -10937,6 +10937,11 @@ synckit@^0.8.6:
   dependencies:
     "@pkgr/core" "^0.1.0"
     tslib "^2.6.2"
+
+systeminformation@^5.22.0:
+  version "5.22.0"
+  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-5.22.0.tgz#d2b3c75bfa68be612d6ed4addb94cc59b901797b"
+  integrity sha512-oAP80ymt8ssrAzjX8k3frbL7ys6AotqC35oikG6/SG15wBw+tG9nCk4oPaXIhEaAOAZ8XngxUv3ORq2IuR3r4Q==
 
 table-layout@^3.0.0:
   version "3.0.2"

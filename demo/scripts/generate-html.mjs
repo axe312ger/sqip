@@ -1,4 +1,5 @@
 import { join, resolve } from 'path'
+import si from 'systeminformation'
 
 import { promises as fs } from 'fs'
 import convertHrtime from 'convert-hrtime'
@@ -143,60 +144,102 @@ const Row = ({ image }) => {
 
   const indexPath = resolve('.', 'public', 'index.html')
 
+  // Fetch system and hardware information
+  const cpu = await si.cpu()
+  const memory = si.mem()
+  const system = await si.system()
+  const diskLayout = await si.diskLayout()
+  const os = await si.osInfo()
+
+  // RAM in GB
+  const totalRam = (await memory).total / 1024 / 1024 / 1024
+
+  // Number of cores
+  const cores = cpu.cores
+
+  // Determine storage type
+  const storageType = diskLayout.map((disk) => disk.type).join(', ')
+
   const pageContent = template(html`
-    <table>
-      <thead>
-        <tr>
-          ${variants.map(({ title }) => {
-            return html` <th>${title}</th> `
-          })}
-        </tr>
-        <tr>
-          ${variants.map(({ description, config }, i) => {
-            const compressedSize = compressedSizes[i]
-            const originalSize = compressedSizes[0]
-            const averageBytes = Math.round(compressedSize / images.length)
-            const originalPercent = (
-              (compressedSize / originalSize) *
-              100
-            ).toFixed(2)
-            return html`
-              <td>
-                <div class="description">
-                  ${description}
-                  <p class="processing-time">
-                    <img
-                      alt="average processing time"
-                      src="./assets/processing-time.svg"
-                      width="20"
-                    />
-                    <span title="Average processing time"
-                      >${(processingTimes[i] / images.length).toFixed(0)}ms</span
-                    >
-                    <span title="Average size"
-                      >${' | ø '}${prettyBytes(averageBytes)}</span
-                    >
-                    <span title="Average size compared to thumbnail"
-                      >${' | ↓ '}${originalPercent}%</span
-                    >
-                  </p>
-                  ${config &&
-                  html`
-                    <details>
-                      <summary>config:</summary>
-                      <pre><code>${JSON.stringify(config, null, 2)}</code></pre>
-                    </details>
-                  `}
-                </div>
-              </td>
-            `
-          })}
-        </tr>
-      </thead>
-      <tbody>
-        ${images.map((image) => html` <${Row} image="${image}" /> `)}
-      </tbody>
-    </table>
+    <div>
+      <h3>The data on this page was generated with the following machine:</h3>
+      <dl>
+        <dt>Manifacturer:</dt>
+        <dd>${system.manufacturer}</dd>
+        <dt>OS:</dt>
+        <dd>${os.distro} - ${os.release} - ${os.platform} - ${os.arch}</dd>
+        <dt>CPU model:</dt>
+        <dd>${cpu.brand} by ${system.manufacturer}</dd>
+        <dt>CPU cores:</dt>
+        <dd>${cores}</dd>
+        <dt>CPU speed:</dt>
+        <dd>${cpu.speed} GHz</dd>
+        <dt>RAM:</dt>
+        <dd>${totalRam.toFixed(2)} GB</dd>
+        <dt>Storage type:</dt>
+        <dd>${storageType}</dd>
+      </dl>
+      <h2>Comparision of images:</h2>
+      <table>
+        <thead>
+          <tr>
+            ${variants.map(({ title }) => {
+              return html` <th>${title}</th> `
+            })}
+          </tr>
+          <tr>
+            ${variants.map(({ description, config }, i) => {
+              const compressedSize = compressedSizes[i]
+              const originalSize = compressedSizes[0]
+              const averageBytes = Math.round(compressedSize / images.length)
+              const originalPercent = (
+                (compressedSize / originalSize) *
+                100
+              ).toFixed(2)
+              return html`
+                <td>
+                  <div class="description">
+                    ${description}
+                    <p class="processing-time">
+                      <img
+                        alt="average processing time"
+                        src="./assets/processing-time.svg"
+                        width="20"
+                      />
+                      <span title="Average processing time"
+                        >${(processingTimes[i] / images.length).toFixed(
+                          0
+                        )}ms</span
+                      >
+                      <span title="Average size"
+                        >${' | ø '}${prettyBytes(averageBytes)}</span
+                      >
+                      <span title="Average size compared to thumbnail"
+                        >${' | ↓ '}${originalPercent}%</span
+                      >
+                    </p>
+                    ${config &&
+                    html`
+                      <details>
+                        <summary>config:</summary>
+                        <pre><code>${JSON.stringify(
+                          config,
+                          null,
+                          2
+                        )}</code></pre>
+                      </details>
+                    `}
+                  </div>
+                </td>
+              `
+            })}
+          </tr>
+        </thead>
+        <tbody>
+          ${images.map((image) => html` <${Row} image="${image}" /> `)}
+        </tbody>
+      </table>
+    </div>
   `)
 
   await writeFile(indexPath, pageContent)
