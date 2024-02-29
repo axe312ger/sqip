@@ -48,10 +48,11 @@ exports[`cli api --help shows help screen to user 1`] = `
                                               ffffff00                          
   [1m--primitive-cores[22m [4mnumber[24m                    number of parallel workers        
                                               (default uses all cores)          
-  [1m-b[22m, [1m--blur-blur[22m [4mnumber[24m                      Set the stdDeviation value for    
-                                              the GaussianBlur SVG filter. See: 
+  [1m-b[22m, [1m--blur-blur[22m [4mnumber[24m                      Set the radius value [pixel] for  
+                                              the GaussianBlur CSS filter. See: 
                                               https://developer.mozilla.org/en- 
-                                              US/docs/Web/SVG/Element/feGaussianBlur 
+                                              US/docs/Web/CSS/filter-           
+                                              function/blur#syntax              
 
 [1mExamples[22m
 
