@@ -33,7 +33,7 @@
     "command-line-usage": "^7.0.1",
     "debug": "^4.3.4",
     "fs-extra": "^11.1.1",
-    "pkg-up": "^3.1.0",
+    "pkg-up": "^4.0.0",
     "sqip": "^1.0.0-alpha.44",
     "sqip-plugin-blur": "^1.0.0-alpha.45",
     "sqip-plugin-data-uri": "^1.0.0-alpha.45",
