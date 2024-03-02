@@ -1,10 +1,14 @@
 import execa, { ExecaChildProcess } from 'execa'
 import fs from 'fs/promises'
 import os from 'os'
-import { Swatch } from '@vibrant/color'
 
 import TrianglePlugin from '../../src/sqip-plugin-triangle'
-import { SqipImageMetadata } from 'sqip/src/sqip'
+import { SqipImageMetadata, mockedMetadata } from 'sqip'
+
+const triangleMockedMetadata: SqipImageMetadata = {
+  ...mockedMetadata,
+  type: 'pixel'
+}
 
 jest.mock('execa')
 jest.mock('fs/promises')
@@ -43,23 +47,6 @@ const mockedOsPlatform = os.platform as jest.MockedFunction<typeof os.platform>
 
 const proccessExitSpy = jest.spyOn(process, 'exit').mockImplementation()
 
-const mockedMetadata: SqipImageMetadata = {
-  filename: 'mocked',
-  mimeType: 'image/mocked',
-  width: 1024,
-  height: 640,
-  type: 'pixel',
-  originalHeight: 1024,
-  originalWidth: 640,
-  palette: {
-    DarkMuted: new Swatch([4, 2, 0], 420),
-    DarkVibrant: new Swatch([4, 2, 1], 421),
-    LightMuted: new Swatch([4, 2, 2], 422),
-    LightVibrant: new Swatch([4, 2, 3], 423),
-    Muted: new Swatch([4, 2, 4], 424),
-    Vibrant: new Swatch([4, 2, 5], 425)
-  }
-}
 const mockedConfig = {
   input: 'mocked',
   output: 'mocked',
@@ -137,7 +124,7 @@ describe('runTriangle', () => {
       options: {},
       sqipConfig: mockedConfig
     })
-    await trianglePlugin.apply(fileContent, { ...mockedMetadata })
+    await trianglePlugin.apply(fileContent, { ...triangleMockedMetadata })
     expect(mockedExeca.mock.calls).toHaveLength(2)
     expect(mockedExeca.mock.calls[1]).toHaveLength(2)
     const args = (mockedExeca.mock.calls[1][1] as string[]) || []
@@ -153,7 +140,7 @@ describe('runTriangle', () => {
 
       sqipConfig: mockedConfig
     })
-    await trianglePlugin.apply(fileContent, { ...mockedMetadata })
+    await trianglePlugin.apply(fileContent, { ...triangleMockedMetadata })
     expect(mockedExeca.mock.calls).toHaveLength(2)
     expect(mockedExeca.mock.calls[1]).toHaveLength(2)
     const args = (mockedExeca.mock.calls[1][1] as string[]) || []
@@ -169,7 +156,7 @@ describe('runTriangle', () => {
       sqipConfig: mockedConfig
     })
     await trianglePlugin.apply(fileContent, {
-      ...mockedMetadata,
+      ...triangleMockedMetadata,
       width: 600,
       height: 300
     })
@@ -189,7 +176,7 @@ describe('runTriangle', () => {
       options: {},
       sqipConfig: mockedConfig
     })
-    await trianglePlugin.apply(fileContent, { ...mockedMetadata })
+    await trianglePlugin.apply(fileContent, { ...triangleMockedMetadata })
     expect(mockedExeca.mock.calls).toHaveLength(2)
     expect(mockedExeca.mock.calls[1]).toHaveLength(2)
     const args = (mockedExeca.mock.calls[1][1] as string[]) || []

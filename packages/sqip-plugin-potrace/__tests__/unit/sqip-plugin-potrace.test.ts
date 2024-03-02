@@ -2,10 +2,14 @@ import { resolve } from 'path'
 import { readFileSync } from 'fs'
 
 import cheerio from 'cheerio'
-import { Swatch } from '@vibrant/color'
 
 import sqipPluginPotrace from '../../src/sqip-plugin-potrace'
-import { SqipImageMetadata } from 'sqip/src/sqip'
+import { SqipImageMetadata, mockedMetadata } from 'sqip'
+
+const potraceMockedMetadata: SqipImageMetadata = {
+  ...mockedMetadata,
+  type: 'pixel'
+}
 
 const FILE_DEMO_BEACH = resolve(
   __dirname,
@@ -16,23 +20,6 @@ const FILE_DEMO_BEACH = resolve(
 )
 const fileContent = readFileSync(FILE_DEMO_BEACH)
 
-const mockedMetadata: SqipImageMetadata = {
-  filename: 'mocked',
-  mimeType: 'image/mocked',
-  height: 0,
-  width: 0,
-  originalHeight: 0,
-  originalWidth: 0,
-  palette: {
-    DarkMuted: new Swatch([4, 2, 0], 420),
-    DarkVibrant: new Swatch([4, 2, 1], 421),
-    LightMuted: new Swatch([4, 2, 2], 422),
-    LightVibrant: new Swatch([4, 2, 3], 423),
-    Muted: new Swatch([4, 2, 4], 424),
-    Vibrant: new Swatch([4, 2, 5], 425)
-  },
-  type: 'pixel'
-}
 const mockedConfig = {
   input: 'mocked',
   output: 'mocked',
@@ -46,7 +33,7 @@ describe('sqip-plugin-potrace', () => {
       options: {},
       sqipConfig: mockedConfig
     })
-    const metadata = {...mockedMetadata}
+    const metadata = { ...potraceMockedMetadata }
     const result = await plugin.apply(fileContent, metadata)
 
     const $ = cheerio.load(result, { xml: true })
@@ -69,7 +56,7 @@ describe('sqip-plugin-potrace', () => {
       options: {},
       sqipConfig: mockedConfig
     })
-    const metadata = {...mockedMetadata}
+    const metadata = { ...potraceMockedMetadata }
     const result = await plugin.apply(fileContent, metadata)
 
     const $ = cheerio.load(result, { xml: true })
@@ -95,7 +82,7 @@ describe('sqip-plugin-potrace', () => {
       options: {},
       sqipConfig: mockedConfig
     })
-    const metadata = {...mockedMetadata}
+    const metadata = { ...potraceMockedMetadata }
     const result = await plugin.apply(fileContent, metadata)
 
     const $ = cheerio.load(result, { xml: true })

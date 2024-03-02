@@ -40,6 +40,7 @@
     "perceived"
   ],
   "dependencies": {
+    "@behold/sharp-vibrant": "^0.2.1",
     "chalk": "^4.1.0",
     "cheerio": "^1.0.0-rc.10",
     "cli-table3": "^0.6.0",
@@ -48,13 +49,10 @@
     "fast-glob": "^3.2.12",
     "fs-extra": "^11.1.1",
     "mime": "3",
-    "node-vibrant": "^3.2.1-alpha.1",
-    "probe-image-size": "^7.1.0",
     "sharp": "^0.32.0",
     "term-img": "^5.0.0"
   },
   "peerDependencies": {
-    "@vibrant/color": "3.2.1-alpha.1",
     "sqip-plugin-blur": "^1.0.0-alpha.0",
     "sqip-plugin-data-uri": "^1.0.0-alpha.0",
     "sqip-plugin-primitive": "^1.0.0-alpha.0",
@@ -65,7 +63,6 @@
     "@types/expand-tilde": "2.0.2",
     "@types/fs-extra": "11.0.4",
     "@types/mime": "^3.0.4",
-    "@types/probe-image-size": "7.2.4",
     "debug": "4.3.4"
   }
 }
