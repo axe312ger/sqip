@@ -9,7 +9,7 @@ import {
   SqipImageMetadata
 } from 'sqip'
 
-import potrace, { PotraceDefaultOptions } from 'potrace'
+import potrace, { PotraceDefaultOptions } from '@gatsbyjs/potrace'
 
 const trace = promisify(potrace.trace)
 const posterize = promisify(potrace.posterize)
