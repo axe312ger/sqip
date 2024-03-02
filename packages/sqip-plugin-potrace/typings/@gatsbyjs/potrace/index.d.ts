@@ -1,4 +1,4 @@
-declare module 'potrace' {
+declare module '@gatsbyjs/potrace' {
   export interface PotraceDefaultOptions {
     turnPolicy: string
     turdSize: number
