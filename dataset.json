@@ -20,7 +20,7 @@
           "height": 225,
           "ratio": "4:3"
         },
-        "processTime": 66423125
+        "processTime": 135114958
       },
       {
         "variantName": "lqip",
@@ -39,7 +39,7 @@
           "height": 8,
           "ratio": "5:4"
         },
-        "processTime": 273293125
+        "processTime": 282654042
       },
       {
         "variantName": "lqip-custom",
@@ -58,45 +58,45 @@
           "height": 24,
           "ratio": "4:3"
         },
-        "processTime": 41783625
+        "processTime": 45429625
       },
       {
         "variantName": "sqip-legacy",
         "name": "aaron-burden-151465-unsplash-sqip-legacy.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/aaron-burden-151465-unsplash-sqip-legacy.svg",
         "sizes": {
-          "originalBytes": 1474,
-          "originalHuman": "1.47 kB",
-          "gzipBytes": 848,
-          "gzipHuman": "848 B",
-          "brotliBytes": 819,
-          "brotliHuman": "819 B"
+          "originalBytes": 1294,
+          "originalHuman": "1.29 kB",
+          "gzipBytes": 796,
+          "gzipHuman": "796 B",
+          "brotliBytes": 771,
+          "brotliHuman": "771 B"
         },
         "dimensions": {
           "width": 2000,
           "height": 1500,
           "ratio": "4:3"
         },
-        "processTime": 455847291
+        "processTime": 509725000
       },
       {
         "variantName": "sqip",
         "name": "aaron-burden-151465-unsplash-sqip.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/aaron-burden-151465-unsplash-sqip.svg",
         "sizes": {
-          "originalBytes": 1016,
-          "originalHuman": "1.02 kB",
-          "gzipBytes": 538,
-          "gzipHuman": "538 B",
-          "brotliBytes": 487,
-          "brotliHuman": "487 B"
+          "originalBytes": 954,
+          "originalHuman": "954 B",
+          "gzipBytes": 511,
+          "gzipHuman": "511 B",
+          "brotliBytes": 453,
+          "brotliHuman": "453 B"
         },
         "dimensions": {
           "width": 300,
           "height": 225,
           "ratio": "4:3"
         },
-        "processTime": 984465417
+        "processTime": 906694125
       },
       {
         "variantName": "sqip-pixels",
@@ -115,7 +115,7 @@
           "height": 600,
           "ratio": "4:3"
         },
-        "processTime": 340848083
+        "processTime": 223553750
       },
       {
         "variantName": "sqip-blurhash",
@@ -134,64 +134,64 @@
           "height": 5,
           "ratio": "4:5"
         },
-        "processTime": 246164875
+        "processTime": 99037916
       },
       {
         "variantName": "sqip-triangle",
         "name": "aaron-burden-151465-unsplash-sqip-triangle.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/aaron-burden-151465-unsplash-sqip-triangle.svg",
         "sizes": {
-          "originalBytes": 2034,
-          "originalHuman": "2.03 kB",
-          "gzipBytes": 914,
-          "gzipHuman": "914 B",
-          "brotliBytes": 874,
-          "brotliHuman": "874 B"
+          "originalBytes": 2102,
+          "originalHuman": "2.1 kB",
+          "gzipBytes": 937,
+          "gzipHuman": "937 B",
+          "brotliBytes": 914,
+          "brotliHuman": "914 B"
         },
         "dimensions": {
           "width": 300,
           "height": 225,
           "ratio": "4:3"
         },
-        "processTime": 280692542
+        "processTime": 252316916
       },
       {
         "variantName": "sqip-triangle-art",
         "name": "aaron-burden-151465-unsplash-sqip-triangle-art.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/aaron-burden-151465-unsplash-sqip-triangle-art.svg",
         "sizes": {
-          "originalBytes": 99978,
+          "originalBytes": 100226,
           "originalHuman": "100 kB",
-          "gzipBytes": 23064,
-          "gzipHuman": "23.1 kB",
-          "brotliBytes": 18818,
-          "brotliHuman": "18.8 kB"
+          "gzipBytes": 23192,
+          "gzipHuman": "23.2 kB",
+          "brotliBytes": 18951,
+          "brotliHuman": "19 kB"
         },
         "dimensions": {
           "width": 300,
           "height": 225,
           "ratio": "4:3"
         },
-        "processTime": 471477625
+        "processTime": 321211500
       },
       {
         "variantName": "sqip-art",
         "name": "aaron-burden-151465-unsplash-sqip-art.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/aaron-burden-151465-unsplash-sqip-art.svg",
         "sizes": {
-          "originalBytes": 3326,
-          "originalHuman": "3.33 kB",
-          "gzipBytes": 1195,
-          "gzipHuman": "1.2 kB",
-          "brotliBytes": 1124,
-          "brotliHuman": "1.12 kB"
+          "originalBytes": 3297,
+          "originalHuman": "3.3 kB",
+          "gzipBytes": 1190,
+          "gzipHuman": "1.19 kB",
+          "brotliBytes": 1105,
+          "brotliHuman": "1.1 kB"
         },
         "dimensions": {
           "width": 300,
           "height": 225,
           "ratio": "4:3"
         },
-        "processTime": 1505560625
+        "processTime": 1350979375
       },
       {
         "variantName": "sqip-potrace",
@@ -202,7 +202,7 @@
           "originalHuman": "49.6 kB",
           "gzipBytes": 18713,
           "gzipHuman": "18.7 kB",
-          "brotliBytes": 16838,
+          "brotliBytes": 16844,
           "brotliHuman": "16.8 kB"
         },
         "dimensions": {
@@ -210,7 +210,7 @@
           "height": 225,
           "ratio": "4:3"
         },
-        "processTime": 434232333
+        "processTime": 319945666
       },
       {
         "variantName": "sqip-potrace-posterize",
@@ -229,7 +229,7 @@
           "height": 225,
           "ratio": "4:3"
         },
-        "processTime": 1442347417
+        "processTime": 1414572916
       }
     ],
     "dimensions": {
@@ -259,7 +259,7 @@
           "height": 225,
           "ratio": "4:3"
         },
-        "processTime": 49359792
+        "processTime": 58052750
       },
       {
         "variantName": "lqip",
@@ -278,7 +278,7 @@
           "height": 8,
           "ratio": "5:4"
         },
-        "processTime": 208670708
+        "processTime": 215119625
       },
       {
         "variantName": "lqip-custom",
@@ -297,45 +297,45 @@
           "height": 24,
           "ratio": "4:3"
         },
-        "processTime": 35103916
+        "processTime": 37173417
       },
       {
         "variantName": "sqip-legacy",
         "name": "anthony-esau-173126-unsplash-sqip-legacy.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/anthony-esau-173126-unsplash-sqip-legacy.svg",
         "sizes": {
-          "originalBytes": 1294,
-          "originalHuman": "1.29 kB",
-          "gzipBytes": 783,
-          "gzipHuman": "783 B",
-          "brotliBytes": 765,
-          "brotliHuman": "765 B"
+          "originalBytes": 1178,
+          "originalHuman": "1.18 kB",
+          "gzipBytes": 749,
+          "gzipHuman": "749 B",
+          "brotliBytes": 734,
+          "brotliHuman": "734 B"
         },
         "dimensions": {
           "width": 2000,
           "height": 1500,
           "ratio": "4:3"
         },
-        "processTime": 452999166
+        "processTime": 493244416
       },
       {
         "variantName": "sqip",
         "name": "anthony-esau-173126-unsplash-sqip.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/anthony-esau-173126-unsplash-sqip.svg",
         "sizes": {
-          "originalBytes": 1051,
-          "originalHuman": "1.05 kB",
-          "gzipBytes": 527,
-          "gzipHuman": "527 B",
-          "brotliBytes": 469,
-          "brotliHuman": "469 B"
+          "originalBytes": 1018,
+          "originalHuman": "1.02 kB",
+          "gzipBytes": 536,
+          "gzipHuman": "536 B",
+          "brotliBytes": 479,
+          "brotliHuman": "479 B"
         },
         "dimensions": {
           "width": 300,
           "height": 225,
           "ratio": "4:3"
         },
-        "processTime": 903893667
+        "processTime": 708967208
       },
       {
         "variantName": "sqip-pixels",
@@ -354,7 +354,7 @@
           "height": 600,
           "ratio": "4:3"
         },
-        "processTime": 204025042
+        "processTime": 76317292
       },
       {
         "variantName": "sqip-blurhash",
@@ -373,64 +373,64 @@
           "height": 5,
           "ratio": "4:5"
         },
-        "processTime": 194735875
+        "processTime": 83021291
       },
       {
         "variantName": "sqip-triangle",
         "name": "anthony-esau-173126-unsplash-sqip-triangle.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/anthony-esau-173126-unsplash-sqip-triangle.svg",
         "sizes": {
-          "originalBytes": 2062,
-          "originalHuman": "2.06 kB",
-          "gzipBytes": 925,
-          "gzipHuman": "925 B",
-          "brotliBytes": 887,
-          "brotliHuman": "887 B"
+          "originalBytes": 2118,
+          "originalHuman": "2.12 kB",
+          "gzipBytes": 942,
+          "gzipHuman": "942 B",
+          "brotliBytes": 904,
+          "brotliHuman": "904 B"
         },
         "dimensions": {
           "width": 300,
           "height": 225,
           "ratio": "4:3"
         },
-        "processTime": 232521583
+        "processTime": 99542917
       },
       {
         "variantName": "sqip-triangle-art",
         "name": "anthony-esau-173126-unsplash-sqip-triangle-art.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/anthony-esau-173126-unsplash-sqip-triangle-art.svg",
         "sizes": {
-          "originalBytes": 101674,
+          "originalBytes": 101538,
           "originalHuman": "102 kB",
-          "gzipBytes": 23251,
-          "gzipHuman": "23.3 kB",
-          "brotliBytes": 18730,
-          "brotliHuman": "18.7 kB"
+          "gzipBytes": 23193,
+          "gzipHuman": "23.2 kB",
+          "brotliBytes": 18590,
+          "brotliHuman": "18.6 kB"
         },
         "dimensions": {
           "width": 300,
           "height": 225,
           "ratio": "4:3"
         },
-        "processTime": 426863917
+        "processTime": 319601625
       },
       {
         "variantName": "sqip-art",
         "name": "anthony-esau-173126-unsplash-sqip-art.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/anthony-esau-173126-unsplash-sqip-art.svg",
         "sizes": {
-          "originalBytes": 3325,
-          "originalHuman": "3.33 kB",
-          "gzipBytes": 1215,
-          "gzipHuman": "1.22 kB",
-          "brotliBytes": 1111,
-          "brotliHuman": "1.11 kB"
+          "originalBytes": 3290,
+          "originalHuman": "3.29 kB",
+          "gzipBytes": 1190,
+          "gzipHuman": "1.19 kB",
+          "brotliBytes": 1102,
+          "brotliHuman": "1.1 kB"
         },
         "dimensions": {
           "width": 300,
           "height": 225,
           "ratio": "4:3"
         },
-        "processTime": 1757406417
+        "processTime": 1796904875
       },
       {
         "variantName": "sqip-potrace",
@@ -439,9 +439,9 @@
         "sizes": {
           "originalBytes": 8513,
           "originalHuman": "8.51 kB",
-          "gzipBytes": 3675,
+          "gzipBytes": 3674,
           "gzipHuman": "3.67 kB",
-          "brotliBytes": 3244,
+          "brotliBytes": 3242,
           "brotliHuman": "3.24 kB"
         },
         "dimensions": {
@@ -449,7 +449,7 @@
           "height": 225,
           "ratio": "4:3"
         },
-        "processTime": 254963916
+        "processTime": 142451500
       },
       {
         "variantName": "sqip-potrace-posterize",
@@ -458,9 +458,9 @@
         "sizes": {
           "originalBytes": 29065,
           "originalHuman": "29.1 kB",
-          "gzipBytes": 11944,
+          "gzipBytes": 11942,
           "gzipHuman": "11.9 kB",
-          "brotliBytes": 10545,
+          "brotliBytes": 10544,
           "brotliHuman": "10.5 kB"
         },
         "dimensions": {
@@ -468,7 +468,7 @@
           "height": 225,
           "ratio": "4:3"
         },
-        "processTime": 1133693875
+        "processTime": 1006659125
       }
     ],
     "dimensions": {
@@ -498,7 +498,7 @@
           "height": 375,
           "ratio": "4:5"
         },
-        "processTime": 57321584
+        "processTime": 59657917
       },
       {
         "variantName": "lqip",
@@ -517,7 +517,7 @@
           "height": 13,
           "ratio": "10:13"
         },
-        "processTime": 317797125
+        "processTime": 340670375
       },
       {
         "variantName": "lqip-custom",
@@ -536,45 +536,45 @@
           "height": 40,
           "ratio": "4:5"
         },
-        "processTime": 42640500
+        "processTime": 49883000
       },
       {
         "variantName": "sqip-legacy",
         "name": "aron-visuals-974734-unsplash-sqip-legacy.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/aron-visuals-974734-unsplash-sqip-legacy.svg",
         "sizes": {
-          "originalBytes": 1306,
-          "originalHuman": "1.31 kB",
+          "originalBytes": 1274,
+          "originalHuman": "1.27 kB",
           "gzipBytes": 772,
           "gzipHuman": "772 B",
-          "brotliBytes": 750,
-          "brotliHuman": "750 B"
+          "brotliBytes": 755,
+          "brotliHuman": "755 B"
         },
         "dimensions": {
           "width": 2000,
           "height": 2500,
           "ratio": "4:5"
         },
-        "processTime": 774503542
+        "processTime": 760183416
       },
       {
         "variantName": "sqip",
         "name": "aron-visuals-974734-unsplash-sqip.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/aron-visuals-974734-unsplash-sqip.svg",
         "sizes": {
-          "originalBytes": 1084,
-          "originalHuman": "1.08 kB",
-          "gzipBytes": 553,
-          "gzipHuman": "553 B",
-          "brotliBytes": 490,
-          "brotliHuman": "490 B"
+          "originalBytes": 1093,
+          "originalHuman": "1.09 kB",
+          "gzipBytes": 537,
+          "gzipHuman": "537 B",
+          "brotliBytes": 480,
+          "brotliHuman": "480 B"
         },
         "dimensions": {
           "width": 300,
           "height": 375,
           "ratio": "4:5"
         },
-        "processTime": 867689000
+        "processTime": 731747250
       },
       {
         "variantName": "sqip-pixels",
@@ -593,7 +593,7 @@
           "height": 1000,
           "ratio": "4:5"
         },
-        "processTime": 326278084
+        "processTime": 125532750
       },
       {
         "variantName": "sqip-blurhash",
@@ -612,64 +612,64 @@
           "height": 3,
           "ratio": "4:3"
         },
-        "processTime": 320012375
+        "processTime": 119538667
       },
       {
         "variantName": "sqip-triangle",
         "name": "aron-visuals-974734-unsplash-sqip-triangle.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/aron-visuals-974734-unsplash-sqip-triangle.svg",
         "sizes": {
-          "originalBytes": 2002,
-          "originalHuman": "2 kB",
-          "gzipBytes": 903,
-          "gzipHuman": "903 B",
-          "brotliBytes": 880,
-          "brotliHuman": "880 B"
+          "originalBytes": 2054,
+          "originalHuman": "2.05 kB",
+          "gzipBytes": 897,
+          "gzipHuman": "897 B",
+          "brotliBytes": 871,
+          "brotliHuman": "871 B"
         },
         "dimensions": {
           "width": 300,
           "height": 375,
           "ratio": "4:5"
         },
-        "processTime": 355127833
+        "processTime": 155668083
       },
       {
         "variantName": "sqip-triangle-art",
         "name": "aron-visuals-974734-unsplash-sqip-triangle-art.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/aron-visuals-974734-unsplash-sqip-triangle-art.svg",
         "sizes": {
-          "originalBytes": 98530,
-          "originalHuman": "98.5 kB",
-          "gzipBytes": 21998,
-          "gzipHuman": "22 kB",
-          "brotliBytes": 18043,
-          "brotliHuman": "18 kB"
+          "originalBytes": 99162,
+          "originalHuman": "99.2 kB",
+          "gzipBytes": 22177,
+          "gzipHuman": "22.2 kB",
+          "brotliBytes": 18148,
+          "brotliHuman": "18.1 kB"
         },
         "dimensions": {
           "width": 300,
           "height": 375,
           "ratio": "4:5"
         },
-        "processTime": 509568916
+        "processTime": 363858084
       },
       {
         "variantName": "sqip-art",
         "name": "aron-visuals-974734-unsplash-sqip-art.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/aron-visuals-974734-unsplash-sqip-art.svg",
         "sizes": {
-          "originalBytes": 3344,
-          "originalHuman": "3.34 kB",
-          "gzipBytes": 1207,
+          "originalBytes": 3347,
+          "originalHuman": "3.35 kB",
+          "gzipBytes": 1214,
           "gzipHuman": "1.21 kB",
-          "brotliBytes": 1136,
-          "brotliHuman": "1.14 kB"
+          "brotliBytes": 1122,
+          "brotliHuman": "1.12 kB"
         },
         "dimensions": {
           "width": 298,
           "height": 375,
           "ratio": "298:375"
         },
-        "processTime": 2106286125
+        "processTime": 1982935959
       },
       {
         "variantName": "sqip-potrace",
@@ -688,7 +688,7 @@
           "height": 375,
           "ratio": "4:5"
         },
-        "processTime": 364830625
+        "processTime": 159667834
       },
       {
         "variantName": "sqip-potrace-posterize",
@@ -707,7 +707,7 @@
           "height": 375,
           "ratio": "4:5"
         },
-        "processTime": 1304822917
+        "processTime": 1107435959
       }
     ],
     "dimensions": {
@@ -737,7 +737,7 @@
           "height": 188,
           "ratio": "75:47"
         },
-        "processTime": 34940792
+        "processTime": 39134583
       },
       {
         "variantName": "lqip",
@@ -756,7 +756,7 @@
           "height": 6,
           "ratio": "5:3"
         },
-        "processTime": 79561375
+        "processTime": 80203750
       },
       {
         "variantName": "lqip-custom",
@@ -775,45 +775,45 @@
           "height": 20,
           "ratio": "8:5"
         },
-        "processTime": 25945375
+        "processTime": 27418583
       },
       {
         "variantName": "sqip-legacy",
         "name": "beach-sqip-legacy.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/beach-sqip-legacy.svg",
         "sizes": {
-          "originalBytes": 1202,
-          "originalHuman": "1.2 kB",
-          "gzipBytes": 724,
-          "gzipHuman": "724 B",
-          "brotliBytes": 701,
-          "brotliHuman": "701 B"
+          "originalBytes": 1282,
+          "originalHuman": "1.28 kB",
+          "gzipBytes": 763,
+          "gzipHuman": "763 B",
+          "brotliBytes": 746,
+          "brotliHuman": "746 B"
         },
         "dimensions": {
           "width": 1024,
           "height": 640,
           "ratio": "8:5"
         },
-        "processTime": 454338042
+        "processTime": 520628125
       },
       {
         "variantName": "sqip",
         "name": "beach-sqip.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/beach-sqip.svg",
         "sizes": {
-          "originalBytes": 1016,
-          "originalHuman": "1.02 kB",
-          "gzipBytes": 537,
-          "gzipHuman": "537 B",
-          "brotliBytes": 481,
-          "brotliHuman": "481 B"
+          "originalBytes": 1048,
+          "originalHuman": "1.05 kB",
+          "gzipBytes": 540,
+          "gzipHuman": "540 B",
+          "brotliBytes": 486,
+          "brotliHuman": "486 B"
         },
         "dimensions": {
           "width": 300,
           "height": 188,
           "ratio": "75:47"
         },
-        "processTime": 733922292
+        "processTime": 656822250
       },
       {
         "variantName": "sqip-pixels",
@@ -832,7 +832,7 @@
           "height": 500,
           "ratio": "8:5"
         },
-        "processTime": 46896209
+        "processTime": 28132041
       },
       {
         "variantName": "sqip-blurhash",
@@ -851,64 +851,64 @@
           "height": 6,
           "ratio": "2:3"
         },
-        "processTime": 50642500
+        "processTime": 30997458
       },
       {
         "variantName": "sqip-triangle",
         "name": "beach-sqip-triangle.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/beach-sqip-triangle.svg",
         "sizes": {
-          "originalBytes": 2058,
-          "originalHuman": "2.06 kB",
-          "gzipBytes": 885,
-          "gzipHuman": "885 B",
-          "brotliBytes": 846,
-          "brotliHuman": "846 B"
+          "originalBytes": 2114,
+          "originalHuman": "2.11 kB",
+          "gzipBytes": 925,
+          "gzipHuman": "925 B",
+          "brotliBytes": 887,
+          "brotliHuman": "887 B"
         },
         "dimensions": {
           "width": 300,
           "height": 188,
           "ratio": "75:47"
         },
-        "processTime": 65216917
+        "processTime": 45371167
       },
       {
         "variantName": "sqip-triangle-art",
         "name": "beach-sqip-triangle-art.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/beach-sqip-triangle-art.svg",
         "sizes": {
-          "originalBytes": 99390,
-          "originalHuman": "99.4 kB",
-          "gzipBytes": 21426,
-          "gzipHuman": "21.4 kB",
-          "brotliBytes": 17425,
-          "brotliHuman": "17.4 kB"
+          "originalBytes": 100550,
+          "originalHuman": "101 kB",
+          "gzipBytes": 21959,
+          "gzipHuman": "22 kB",
+          "brotliBytes": 17845,
+          "brotliHuman": "17.8 kB"
         },
         "dimensions": {
           "width": 300,
           "height": 188,
           "ratio": "75:47"
         },
-        "processTime": 259856708
+        "processTime": 249068750
       },
       {
         "variantName": "sqip-art",
         "name": "beach-sqip-art.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/beach-sqip-art.svg",
         "sizes": {
-          "originalBytes": 3291,
-          "originalHuman": "3.29 kB",
-          "gzipBytes": 1184,
-          "gzipHuman": "1.18 kB",
-          "brotliBytes": 1090,
-          "brotliHuman": "1.09 kB"
+          "originalBytes": 3311,
+          "originalHuman": "3.31 kB",
+          "gzipBytes": 1218,
+          "gzipHuman": "1.22 kB",
+          "brotliBytes": 1111,
+          "brotliHuman": "1.11 kB"
         },
         "dimensions": {
           "width": 300,
           "height": 187,
           "ratio": "300:187"
         },
-        "processTime": 1659405458
+        "processTime": 1685597875
       },
       {
         "variantName": "sqip-potrace",
@@ -917,9 +917,9 @@
         "sizes": {
           "originalBytes": 8768,
           "originalHuman": "8.77 kB",
-          "gzipBytes": 3627,
+          "gzipBytes": 3628,
           "gzipHuman": "3.63 kB",
-          "brotliBytes": 3152,
+          "brotliBytes": 3154,
           "brotliHuman": "3.15 kB"
         },
         "dimensions": {
@@ -927,7 +927,7 @@
           "height": 188,
           "ratio": "75:47"
         },
-        "processTime": 66571209
+        "processTime": 64196041
       },
       {
         "variantName": "sqip-potrace-posterize",
@@ -938,7 +938,7 @@
           "originalHuman": "28.4 kB",
           "gzipBytes": 11016,
           "gzipHuman": "11 kB",
-          "brotliBytes": 9678,
+          "brotliBytes": 9676,
           "brotliHuman": "9.68 kB"
         },
         "dimensions": {
@@ -946,7 +946,7 @@
           "height": 188,
           "ratio": "75:47"
         },
-        "processTime": 897279416
+        "processTime": 912753667
       }
     ],
     "dimensions": {
@@ -976,7 +976,7 @@
           "height": 418,
           "ratio": "150:209"
         },
-        "processTime": 60112375
+        "processTime": 64008083
       },
       {
         "variantName": "lqip",
@@ -995,7 +995,7 @@
           "height": 14,
           "ratio": "5:7"
         },
-        "processTime": 330272667
+        "processTime": 315833875
       },
       {
         "variantName": "lqip-custom",
@@ -1014,45 +1014,45 @@
           "height": 45,
           "ratio": "32:45"
         },
-        "processTime": 41519292
+        "processTime": 44194166
       },
       {
         "variantName": "sqip-legacy",
         "name": "charles-550068-unsplash-sqip-legacy.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/charles-550068-unsplash-sqip-legacy.svg",
         "sizes": {
-          "originalBytes": 1090,
-          "originalHuman": "1.09 kB",
-          "gzipBytes": 702,
-          "gzipHuman": "702 B",
-          "brotliBytes": 690,
-          "brotliHuman": "690 B"
+          "originalBytes": 1146,
+          "originalHuman": "1.15 kB",
+          "gzipBytes": 718,
+          "gzipHuman": "718 B",
+          "brotliBytes": 696,
+          "brotliHuman": "696 B"
         },
         "dimensions": {
           "width": 2000,
           "height": 2785,
           "ratio": "400:557"
         },
-        "processTime": 634225167
+        "processTime": 738177458
       },
       {
         "variantName": "sqip",
         "name": "charles-550068-unsplash-sqip.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/charles-550068-unsplash-sqip.svg",
         "sizes": {
-          "originalBytes": 946,
-          "originalHuman": "946 B",
-          "gzipBytes": 505,
-          "gzipHuman": "505 B",
-          "brotliBytes": 451,
-          "brotliHuman": "451 B"
+          "originalBytes": 1017,
+          "originalHuman": "1.02 kB",
+          "gzipBytes": 526,
+          "gzipHuman": "526 B",
+          "brotliBytes": 463,
+          "brotliHuman": "463 B"
         },
         "dimensions": {
           "width": 300,
           "height": 418,
           "ratio": "150:209"
         },
-        "processTime": 1076286167
+        "processTime": 802589541
       },
       {
         "variantName": "sqip-pixels",
@@ -1071,7 +1071,7 @@
           "height": 1100,
           "ratio": "8:11"
         },
-        "processTime": 327858292
+        "processTime": 124374333
       },
       {
         "variantName": "sqip-blurhash",
@@ -1090,37 +1090,37 @@
           "height": 3,
           "ratio": "4:3"
         },
-        "processTime": 327962041
+        "processTime": 115969209
       },
       {
         "variantName": "sqip-triangle",
         "name": "charles-550068-unsplash-sqip-triangle.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/charles-550068-unsplash-sqip-triangle.svg",
         "sizes": {
-          "originalBytes": 2058,
-          "originalHuman": "2.06 kB",
-          "gzipBytes": 934,
-          "gzipHuman": "934 B",
-          "brotliBytes": 879,
-          "brotliHuman": "879 B"
+          "originalBytes": 2142,
+          "originalHuman": "2.14 kB",
+          "gzipBytes": 980,
+          "gzipHuman": "980 B",
+          "brotliBytes": 940,
+          "brotliHuman": "940 B"
         },
         "dimensions": {
           "width": 300,
           "height": 418,
           "ratio": "150:209"
         },
-        "processTime": 366862833
+        "processTime": 164853959
       },
       {
         "variantName": "sqip-triangle-art",
         "name": "charles-550068-unsplash-sqip-triangle-art.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/charles-550068-unsplash-sqip-triangle-art.svg",
         "sizes": {
-          "originalBytes": 100018,
-          "originalHuman": "100 kB",
-          "gzipBytes": 22987,
-          "gzipHuman": "23 kB",
-          "brotliBytes": 18388,
+          "originalBytes": 99862,
+          "originalHuman": "99.9 kB",
+          "gzipBytes": 23121,
+          "gzipHuman": "23.1 kB",
+          "brotliBytes": 18426,
           "brotliHuman": "18.4 kB"
         },
         "dimensions": {
@@ -1128,26 +1128,26 @@
           "height": 418,
           "ratio": "150:209"
         },
-        "processTime": 522760375
+        "processTime": 373997666
       },
       {
         "variantName": "sqip-art",
         "name": "charles-550068-unsplash-sqip-art.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/charles-550068-unsplash-sqip-art.svg",
         "sizes": {
-          "originalBytes": 3260,
-          "originalHuman": "3.26 kB",
-          "gzipBytes": 1198,
-          "gzipHuman": "1.2 kB",
-          "brotliBytes": 1114,
-          "brotliHuman": "1.11 kB"
+          "originalBytes": 3191,
+          "originalHuman": "3.19 kB",
+          "gzipBytes": 1174,
+          "gzipHuman": "1.17 kB",
+          "brotliBytes": 1078,
+          "brotliHuman": "1.08 kB"
         },
         "dimensions": {
           "width": 300,
           "height": 418,
           "ratio": "150:209"
         },
-        "processTime": 2415185958
+        "processTime": 2103457292
       },
       {
         "variantName": "sqip-potrace",
@@ -1166,7 +1166,7 @@
           "height": 418,
           "ratio": "150:209"
         },
-        "processTime": 376587083
+        "processTime": 169992000
       },
       {
         "variantName": "sqip-potrace-posterize",
@@ -1185,7 +1185,7 @@
           "height": 418,
           "ratio": "150:209"
         },
-        "processTime": 1297783375
+        "processTime": 1106357208
       }
     ],
     "dimensions": {
@@ -1215,7 +1215,7 @@
           "height": 300,
           "ratio": "1:1"
         },
-        "processTime": 55636709
+        "processTime": 61829292
       },
       {
         "variantName": "lqip",
@@ -1234,7 +1234,7 @@
           "height": 10,
           "ratio": "1:1"
         },
-        "processTime": 231553916
+        "processTime": 238272083
       },
       {
         "variantName": "lqip-custom",
@@ -1253,45 +1253,45 @@
           "height": 32,
           "ratio": "1:1"
         },
-        "processTime": 39585375
+        "processTime": 43113041
       },
       {
         "variantName": "sqip-legacy",
         "name": "eric-marty-780304-unsplash-sqip-legacy.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/eric-marty-780304-unsplash-sqip-legacy.svg",
         "sizes": {
-          "originalBytes": 1306,
-          "originalHuman": "1.31 kB",
-          "gzipBytes": 769,
-          "gzipHuman": "769 B",
-          "brotliBytes": 751,
-          "brotliHuman": "751 B"
+          "originalBytes": 1262,
+          "originalHuman": "1.26 kB",
+          "gzipBytes": 766,
+          "gzipHuman": "766 B",
+          "brotliBytes": 749,
+          "brotliHuman": "749 B"
         },
         "dimensions": {
           "width": 2000,
           "height": 2000,
           "ratio": "1:1"
         },
-        "processTime": 985101084
+        "processTime": 956410083
       },
       {
         "variantName": "sqip",
         "name": "eric-marty-780304-unsplash-sqip.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/eric-marty-780304-unsplash-sqip.svg",
         "sizes": {
-          "originalBytes": 1020,
-          "originalHuman": "1.02 kB",
-          "gzipBytes": 522,
-          "gzipHuman": "522 B",
-          "brotliBytes": 464,
-          "brotliHuman": "464 B"
+          "originalBytes": 1015,
+          "originalHuman": "1.01 kB",
+          "gzipBytes": 515,
+          "gzipHuman": "515 B",
+          "brotliBytes": 456,
+          "brotliHuman": "456 B"
         },
         "dimensions": {
           "width": 300,
           "height": 300,
           "ratio": "1:1"
         },
-        "processTime": 1243208000
+        "processTime": 1207099417
       },
       {
         "variantName": "sqip-pixels",
@@ -1310,7 +1310,7 @@
           "height": 800,
           "ratio": "1:1"
         },
-        "processTime": 257476750
+        "processTime": 97997458
       },
       {
         "variantName": "sqip-blurhash",
@@ -1329,64 +1329,64 @@
           "height": 4,
           "ratio": "1:1"
         },
-        "processTime": 282139125
+        "processTime": 103822458
       },
       {
         "variantName": "sqip-triangle",
         "name": "eric-marty-780304-unsplash-sqip-triangle.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/eric-marty-780304-unsplash-sqip-triangle.svg",
         "sizes": {
-          "originalBytes": 2026,
-          "originalHuman": "2.03 kB",
-          "gzipBytes": 917,
-          "gzipHuman": "917 B",
-          "brotliBytes": 892,
-          "brotliHuman": "892 B"
+          "originalBytes": 2126,
+          "originalHuman": "2.13 kB",
+          "gzipBytes": 942,
+          "gzipHuman": "942 B",
+          "brotliBytes": 904,
+          "brotliHuman": "904 B"
         },
         "dimensions": {
           "width": 300,
           "height": 300,
           "ratio": "1:1"
         },
-        "processTime": 294876916
+        "processTime": 126423459
       },
       {
         "variantName": "sqip-triangle-art",
         "name": "eric-marty-780304-unsplash-sqip-triangle-art.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/eric-marty-780304-unsplash-sqip-triangle-art.svg",
         "sizes": {
-          "originalBytes": 100502,
-          "originalHuman": "101 kB",
-          "gzipBytes": 23163,
+          "originalBytes": 100426,
+          "originalHuman": "100 kB",
+          "gzipBytes": 23231,
           "gzipHuman": "23.2 kB",
-          "brotliBytes": 18744,
-          "brotliHuman": "18.7 kB"
+          "brotliBytes": 18827,
+          "brotliHuman": "18.8 kB"
         },
         "dimensions": {
           "width": 300,
           "height": 300,
           "ratio": "1:1"
         },
-        "processTime": 472624792
+        "processTime": 331194125
       },
       {
         "variantName": "sqip-art",
         "name": "eric-marty-780304-unsplash-sqip-art.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/eric-marty-780304-unsplash-sqip-art.svg",
         "sizes": {
-          "originalBytes": 3334,
-          "originalHuman": "3.33 kB",
-          "gzipBytes": 1210,
-          "gzipHuman": "1.21 kB",
-          "brotliBytes": 1110,
-          "brotliHuman": "1.11 kB"
+          "originalBytes": 3304,
+          "originalHuman": "3.3 kB",
+          "gzipBytes": 1218,
+          "gzipHuman": "1.22 kB",
+          "brotliBytes": 1123,
+          "brotliHuman": "1.12 kB"
         },
         "dimensions": {
           "width": 300,
           "height": 300,
           "ratio": "1:1"
         },
-        "processTime": 2417608666
+        "processTime": 2151864750
       },
       {
         "variantName": "sqip-potrace",
@@ -1397,7 +1397,7 @@
           "originalHuman": "16.4 kB",
           "gzipBytes": 6453,
           "gzipHuman": "6.45 kB",
-          "brotliBytes": 5717,
+          "brotliBytes": 5720,
           "brotliHuman": "5.72 kB"
         },
         "dimensions": {
@@ -1405,7 +1405,7 @@
           "height": 300,
           "ratio": "1:1"
         },
-        "processTime": 323663875
+        "processTime": 151192167
       },
       {
         "variantName": "sqip-potrace-posterize",
@@ -1414,9 +1414,9 @@
         "sizes": {
           "originalBytes": 85936,
           "originalHuman": "85.9 kB",
-          "gzipBytes": 30803,
+          "gzipBytes": 30804,
           "gzipHuman": "30.8 kB",
-          "brotliBytes": 27389,
+          "brotliBytes": 27380,
           "brotliHuman": "27.4 kB"
         },
         "dimensions": {
@@ -1424,7 +1424,7 @@
           "height": 300,
           "ratio": "1:1"
         },
-        "processTime": 1297978500
+        "processTime": 1104158708
       }
     ],
     "dimensions": {
@@ -1454,7 +1454,7 @@
           "height": 450,
           "ratio": "2:3"
         },
-        "processTime": 48883500
+        "processTime": 50772416
       },
       {
         "variantName": "lqip",
@@ -1473,7 +1473,7 @@
           "height": 15,
           "ratio": "2:3"
         },
-        "processTime": 336933042
+        "processTime": 291987917
       },
       {
         "variantName": "lqip-custom",
@@ -1492,45 +1492,45 @@
           "height": 48,
           "ratio": "2:3"
         },
-        "processTime": 36943125
+        "processTime": 38805875
       },
       {
         "variantName": "sqip-legacy",
         "name": "ian-dooley-298769-unsplash-sqip-legacy.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/ian-dooley-298769-unsplash-sqip-legacy.svg",
         "sizes": {
-          "originalBytes": 1030,
-          "originalHuman": "1.03 kB",
-          "gzipBytes": 669,
-          "gzipHuman": "669 B",
-          "brotliBytes": 652,
-          "brotliHuman": "652 B"
+          "originalBytes": 1062,
+          "originalHuman": "1.06 kB",
+          "gzipBytes": 711,
+          "gzipHuman": "711 B",
+          "brotliBytes": 695,
+          "brotliHuman": "695 B"
         },
         "dimensions": {
           "width": 2000,
           "height": 3000,
           "ratio": "2:3"
         },
-        "processTime": 520390167
+        "processTime": 498291959
       },
       {
         "variantName": "sqip",
         "name": "ian-dooley-298769-unsplash-sqip.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/ian-dooley-298769-unsplash-sqip.svg",
         "sizes": {
-          "originalBytes": 937,
-          "originalHuman": "937 B",
-          "gzipBytes": 486,
-          "gzipHuman": "486 B",
-          "brotliBytes": 440,
-          "brotliHuman": "440 B"
+          "originalBytes": 981,
+          "originalHuman": "981 B",
+          "gzipBytes": 511,
+          "gzipHuman": "511 B",
+          "brotliBytes": 453,
+          "brotliHuman": "453 B"
         },
         "dimensions": {
           "width": 300,
           "height": 450,
           "ratio": "2:3"
         },
-        "processTime": 1156885292
+        "processTime": 946713541
       },
       {
         "variantName": "sqip-pixels",
@@ -1549,7 +1549,7 @@
           "height": 1200,
           "ratio": "2:3"
         },
-        "processTime": 325357625
+        "processTime": 122223333
       },
       {
         "variantName": "sqip-blurhash",
@@ -1568,64 +1568,64 @@
           "height": 3,
           "ratio": "4:3"
         },
-        "processTime": 309889250
+        "processTime": 105582625
       },
       {
         "variantName": "sqip-triangle",
         "name": "ian-dooley-298769-unsplash-sqip-triangle.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/ian-dooley-298769-unsplash-sqip-triangle.svg",
         "sizes": {
-          "originalBytes": 2098,
-          "originalHuman": "2.1 kB",
-          "gzipBytes": 909,
-          "gzipHuman": "909 B",
-          "brotliBytes": 866,
-          "brotliHuman": "866 B"
+          "originalBytes": 2174,
+          "originalHuman": "2.17 kB",
+          "gzipBytes": 916,
+          "gzipHuman": "916 B",
+          "brotliBytes": 864,
+          "brotliHuman": "864 B"
         },
         "dimensions": {
           "width": 300,
           "height": 450,
           "ratio": "2:3"
         },
-        "processTime": 345186500
+        "processTime": 157452375
       },
       {
         "variantName": "sqip-triangle-art",
         "name": "ian-dooley-298769-unsplash-sqip-triangle-art.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/ian-dooley-298769-unsplash-sqip-triangle-art.svg",
         "sizes": {
-          "originalBytes": 96038,
-          "originalHuman": "96 kB",
-          "gzipBytes": 20377,
-          "gzipHuman": "20.4 kB",
-          "brotliBytes": 16193,
-          "brotliHuman": "16.2 kB"
+          "originalBytes": 96670,
+          "originalHuman": "96.7 kB",
+          "gzipBytes": 20575,
+          "gzipHuman": "20.6 kB",
+          "brotliBytes": 16554,
+          "brotliHuman": "16.6 kB"
         },
         "dimensions": {
           "width": 300,
           "height": 450,
           "ratio": "2:3"
         },
-        "processTime": 538549917
+        "processTime": 398077542
       },
       {
         "variantName": "sqip-art",
         "name": "ian-dooley-298769-unsplash-sqip-art.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/ian-dooley-298769-unsplash-sqip-art.svg",
         "sizes": {
-          "originalBytes": 3345,
-          "originalHuman": "3.35 kB",
-          "gzipBytes": 1207,
-          "gzipHuman": "1.21 kB",
-          "brotliBytes": 1099,
-          "brotliHuman": "1.1 kB"
+          "originalBytes": 3317,
+          "originalHuman": "3.32 kB",
+          "gzipBytes": 1203,
+          "gzipHuman": "1.2 kB",
+          "brotliBytes": 1112,
+          "brotliHuman": "1.11 kB"
         },
         "dimensions": {
           "width": 298,
           "height": 450,
           "ratio": "149:225"
         },
-        "processTime": 2727714792
+        "processTime": 2666310833
       },
       {
         "variantName": "sqip-potrace",
@@ -1636,7 +1636,7 @@
           "originalHuman": "4.6 kB",
           "gzipBytes": 2065,
           "gzipHuman": "2.06 kB",
-          "brotliBytes": 1751,
+          "brotliBytes": 1754,
           "brotliHuman": "1.75 kB"
         },
         "dimensions": {
@@ -1644,7 +1644,7 @@
           "height": 450,
           "ratio": "2:3"
         },
-        "processTime": 350815375
+        "processTime": 144603459
       },
       {
         "variantName": "sqip-potrace-posterize",
@@ -1653,17 +1653,17 @@
         "sizes": {
           "originalBytes": 13350,
           "originalHuman": "13.3 kB",
-          "gzipBytes": 5566,
+          "gzipBytes": 5567,
           "gzipHuman": "5.57 kB",
-          "brotliBytes": 4921,
-          "brotliHuman": "4.92 kB"
+          "brotliBytes": 4907,
+          "brotliHuman": "4.91 kB"
         },
         "dimensions": {
           "width": 300,
           "height": 450,
           "ratio": "2:3"
         },
-        "processTime": 1210736208
+        "processTime": 990792083
       }
     ],
     "dimensions": {
@@ -1693,7 +1693,7 @@
           "height": 450,
           "ratio": "2:3"
         },
-        "processTime": 79535917
+        "processTime": 83687000
       },
       {
         "variantName": "lqip",
@@ -1712,7 +1712,7 @@
           "height": 15,
           "ratio": "2:3"
         },
-        "processTime": 417752708
+        "processTime": 391146750
       },
       {
         "variantName": "lqip-custom",
@@ -1731,45 +1731,45 @@
           "height": 48,
           "ratio": "2:3"
         },
-        "processTime": 56858166
+        "processTime": 58714916
       },
       {
         "variantName": "sqip-legacy",
         "name": "meric-dagli-487815-unsplash-sqip-legacy.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/meric-dagli-487815-unsplash-sqip-legacy.svg",
         "sizes": {
-          "originalBytes": 1258,
-          "originalHuman": "1.26 kB",
-          "gzipBytes": 776,
-          "gzipHuman": "776 B",
-          "brotliBytes": 762,
-          "brotliHuman": "762 B"
+          "originalBytes": 1146,
+          "originalHuman": "1.15 kB",
+          "gzipBytes": 685,
+          "gzipHuman": "685 B",
+          "brotliBytes": 660,
+          "brotliHuman": "660 B"
         },
         "dimensions": {
           "width": 2000,
           "height": 3000,
           "ratio": "2:3"
         },
-        "processTime": 624685000
+        "processTime": 725943250
       },
       {
         "variantName": "sqip",
         "name": "meric-dagli-487815-unsplash-sqip.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/meric-dagli-487815-unsplash-sqip.svg",
         "sizes": {
-          "originalBytes": 980,
-          "originalHuman": "980 B",
-          "gzipBytes": 500,
-          "gzipHuman": "500 B",
-          "brotliBytes": 443,
-          "brotliHuman": "443 B"
+          "originalBytes": 1003,
+          "originalHuman": "1 kB",
+          "gzipBytes": 517,
+          "gzipHuman": "517 B",
+          "brotliBytes": 459,
+          "brotliHuman": "459 B"
         },
         "dimensions": {
           "width": 300,
           "height": 450,
           "ratio": "2:3"
         },
-        "processTime": 1186557000
+        "processTime": 973777750
       },
       {
         "variantName": "sqip-pixels",
@@ -1788,7 +1788,7 @@
           "height": 1200,
           "ratio": "2:3"
         },
-        "processTime": 439507875
+        "processTime": 161979417
       },
       {
         "variantName": "sqip-blurhash",
@@ -1807,64 +1807,64 @@
           "height": 3,
           "ratio": "4:3"
         },
-        "processTime": 418996667
+        "processTime": 151142917
       },
       {
         "variantName": "sqip-triangle",
         "name": "meric-dagli-487815-unsplash-sqip-triangle.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/meric-dagli-487815-unsplash-sqip-triangle.svg",
         "sizes": {
-          "originalBytes": 2034,
-          "originalHuman": "2.03 kB",
-          "gzipBytes": 921,
-          "gzipHuman": "921 B",
-          "brotliBytes": 887,
-          "brotliHuman": "887 B"
+          "originalBytes": 2110,
+          "originalHuman": "2.11 kB",
+          "gzipBytes": 945,
+          "gzipHuman": "945 B",
+          "brotliBytes": 922,
+          "brotliHuman": "922 B"
         },
         "dimensions": {
           "width": 300,
           "height": 450,
           "ratio": "2:3"
         },
-        "processTime": 462032458
+        "processTime": 201277083
       },
       {
         "variantName": "sqip-triangle-art",
         "name": "meric-dagli-487815-unsplash-sqip-triangle-art.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/meric-dagli-487815-unsplash-sqip-triangle-art.svg",
         "sizes": {
-          "originalBytes": 100526,
+          "originalBytes": 100990,
           "originalHuman": "101 kB",
-          "gzipBytes": 23499,
-          "gzipHuman": "23.5 kB",
-          "brotliBytes": 19371,
-          "brotliHuman": "19.4 kB"
+          "gzipBytes": 23651,
+          "gzipHuman": "23.7 kB",
+          "brotliBytes": 19512,
+          "brotliHuman": "19.5 kB"
         },
         "dimensions": {
           "width": 300,
           "height": 450,
           "ratio": "2:3"
         },
-        "processTime": 662483750
+        "processTime": 364364208
       },
       {
         "variantName": "sqip-art",
         "name": "meric-dagli-487815-unsplash-sqip-art.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/meric-dagli-487815-unsplash-sqip-art.svg",
         "sizes": {
-          "originalBytes": 3380,
-          "originalHuman": "3.38 kB",
-          "gzipBytes": 1221,
-          "gzipHuman": "1.22 kB",
-          "brotliBytes": 1127,
-          "brotliHuman": "1.13 kB"
+          "originalBytes": 3342,
+          "originalHuman": "3.34 kB",
+          "gzipBytes": 1229,
+          "gzipHuman": "1.23 kB",
+          "brotliBytes": 1121,
+          "brotliHuman": "1.12 kB"
         },
         "dimensions": {
           "width": 298,
           "height": 450,
           "ratio": "149:225"
         },
-        "processTime": 2140946208
+        "processTime": 1759777083
       },
       {
         "variantName": "sqip-potrace",
@@ -1883,7 +1883,7 @@
           "height": 450,
           "ratio": "2:3"
         },
-        "processTime": 462741791
+        "processTime": 194868417
       },
       {
         "variantName": "sqip-potrace-posterize",
@@ -1894,7 +1894,7 @@
           "originalHuman": "77.8 kB",
           "gzipBytes": 27392,
           "gzipHuman": "27.4 kB",
-          "brotliBytes": 24284,
+          "brotliBytes": 24271,
           "brotliHuman": "24.3 kB"
         },
         "dimensions": {
@@ -1902,7 +1902,7 @@
           "height": 450,
           "ratio": "2:3"
         },
-        "processTime": 1442451750
+        "processTime": 1163897875
       }
     ],
     "dimensions": {
@@ -1932,7 +1932,7 @@
           "height": 447,
           "ratio": "100:149"
         },
-        "processTime": 64885750
+        "processTime": 69631209
       },
       {
         "variantName": "lqip",
@@ -1951,7 +1951,7 @@
           "height": 15,
           "ratio": "2:3"
         },
-        "processTime": 191722125
+        "processTime": 170490083
       },
       {
         "variantName": "lqip-custom",
@@ -1970,45 +1970,45 @@
           "height": 48,
           "ratio": "2:3"
         },
-        "processTime": 42880625
+        "processTime": 48147458
       },
       {
         "variantName": "sqip-legacy",
         "name": "mona-lisa-sqip-legacy.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/mona-lisa-sqip-legacy.svg",
         "sizes": {
-          "originalBytes": 1238,
-          "originalHuman": "1.24 kB",
-          "gzipBytes": 769,
-          "gzipHuman": "769 B",
-          "brotliBytes": 732,
-          "brotliHuman": "732 B"
+          "originalBytes": 1346,
+          "originalHuman": "1.35 kB",
+          "gzipBytes": 807,
+          "gzipHuman": "807 B",
+          "brotliBytes": 782,
+          "brotliHuman": "782 B"
         },
         "dimensions": {
           "width": 1200,
           "height": 1788,
           "ratio": "100:149"
         },
-        "processTime": 502106583
+        "processTime": 570806084
       },
       {
         "variantName": "sqip",
         "name": "mona-lisa-sqip.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/mona-lisa-sqip.svg",
         "sizes": {
-          "originalBytes": 1038,
-          "originalHuman": "1.04 kB",
-          "gzipBytes": 520,
-          "gzipHuman": "520 B",
-          "brotliBytes": 460,
-          "brotliHuman": "460 B"
+          "originalBytes": 1059,
+          "originalHuman": "1.06 kB",
+          "gzipBytes": 522,
+          "gzipHuman": "522 B",
+          "brotliBytes": 466,
+          "brotliHuman": "466 B"
         },
         "dimensions": {
           "width": 300,
           "height": 447,
           "ratio": "100:149"
         },
-        "processTime": 642826459
+        "processTime": 599334875
       },
       {
         "variantName": "sqip-pixels",
@@ -2027,7 +2027,7 @@
           "height": 1200,
           "ratio": "2:3"
         },
-        "processTime": 197173792
+        "processTime": 90125083
       },
       {
         "variantName": "sqip-blurhash",
@@ -2046,26 +2046,26 @@
           "height": 3,
           "ratio": "4:3"
         },
-        "processTime": 187291917
+        "processTime": 79877209
       },
       {
         "variantName": "sqip-triangle",
         "name": "mona-lisa-sqip-triangle.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/mona-lisa-sqip-triangle.svg",
         "sizes": {
-          "originalBytes": 2030,
-          "originalHuman": "2.03 kB",
-          "gzipBytes": 901,
-          "gzipHuman": "901 B",
-          "brotliBytes": 875,
-          "brotliHuman": "875 B"
+          "originalBytes": 2070,
+          "originalHuman": "2.07 kB",
+          "gzipBytes": 938,
+          "gzipHuman": "938 B",
+          "brotliBytes": 916,
+          "brotliHuman": "916 B"
         },
         "dimensions": {
           "width": 300,
           "height": 447,
           "ratio": "100:149"
         },
-        "processTime": 242046334
+        "processTime": 126333542
       },
       {
         "variantName": "sqip-triangle-art",
@@ -2074,36 +2074,36 @@
         "sizes": {
           "originalBytes": 100178,
           "originalHuman": "100 kB",
-          "gzipBytes": 22932,
-          "gzipHuman": "22.9 kB",
-          "brotliBytes": 18638,
-          "brotliHuman": "18.6 kB"
+          "gzipBytes": 22983,
+          "gzipHuman": "23 kB",
+          "brotliBytes": 18701,
+          "brotliHuman": "18.7 kB"
         },
         "dimensions": {
           "width": 300,
           "height": 447,
           "ratio": "100:149"
         },
-        "processTime": 399471708
+        "processTime": 338625083
       },
       {
         "variantName": "sqip-art",
         "name": "mona-lisa-sqip-art.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/mona-lisa-sqip-art.svg",
         "sizes": {
-          "originalBytes": 3338,
-          "originalHuman": "3.34 kB",
-          "gzipBytes": 1226,
+          "originalBytes": 3360,
+          "originalHuman": "3.36 kB",
+          "gzipBytes": 1227,
           "gzipHuman": "1.23 kB",
-          "brotliBytes": 1141,
-          "brotliHuman": "1.14 kB"
+          "brotliBytes": 1125,
+          "brotliHuman": "1.13 kB"
         },
         "dimensions": {
           "width": 300,
           "height": 447,
           "ratio": "100:149"
         },
-        "processTime": 1565054708
+        "processTime": 1453737125
       },
       {
         "variantName": "sqip-potrace",
@@ -2122,7 +2122,7 @@
           "height": 447,
           "ratio": "100:149"
         },
-        "processTime": 303010250
+        "processTime": 165268458
       },
       {
         "variantName": "sqip-potrace-posterize",
@@ -2131,9 +2131,9 @@
         "sizes": {
           "originalBytes": 72217,
           "originalHuman": "72.2 kB",
-          "gzipBytes": 26408,
+          "gzipBytes": 26410,
           "gzipHuman": "26.4 kB",
-          "brotliBytes": 23666,
+          "brotliBytes": 23663,
           "brotliHuman": "23.7 kB"
         },
         "dimensions": {
@@ -2141,7 +2141,7 @@
           "height": 447,
           "ratio": "100:149"
         },
-        "processTime": 1185330000
+        "processTime": 1022229958
       }
     ],
     "dimensions": {
@@ -2171,7 +2171,7 @@
           "height": 200,
           "ratio": "3:2"
         },
-        "processTime": 42392750
+        "processTime": 49002459
       },
       {
         "variantName": "lqip",
@@ -2190,7 +2190,7 @@
           "height": 7,
           "ratio": "10:7"
         },
-        "processTime": 177475417
+        "processTime": 139854500
       },
       {
         "variantName": "lqip-custom",
@@ -2209,45 +2209,45 @@
           "height": 21,
           "ratio": "32:21"
         },
-        "processTime": 30756375
+        "processTime": 33834750
       },
       {
         "variantName": "sqip-legacy",
         "name": "quino-al-101314-unsplash-sqip-legacy.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/quino-al-101314-unsplash-sqip-legacy.svg",
         "sizes": {
-          "originalBytes": 1130,
-          "originalHuman": "1.13 kB",
-          "gzipBytes": 719,
-          "gzipHuman": "719 B",
-          "brotliBytes": 699,
-          "brotliHuman": "699 B"
+          "originalBytes": 1322,
+          "originalHuman": "1.32 kB",
+          "gzipBytes": 793,
+          "gzipHuman": "793 B",
+          "brotliBytes": 769,
+          "brotliHuman": "769 B"
         },
         "dimensions": {
           "width": 2000,
           "height": 1333,
           "ratio": "2000:1333"
         },
-        "processTime": 402617167
+        "processTime": 430478334
       },
       {
         "variantName": "sqip",
         "name": "quino-al-101314-unsplash-sqip.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/quino-al-101314-unsplash-sqip.svg",
         "sizes": {
-          "originalBytes": 925,
-          "originalHuman": "925 B",
-          "gzipBytes": 501,
-          "gzipHuman": "501 B",
-          "brotliBytes": 443,
-          "brotliHuman": "443 B"
+          "originalBytes": 956,
+          "originalHuman": "956 B",
+          "gzipBytes": 505,
+          "gzipHuman": "505 B",
+          "brotliBytes": 445,
+          "brotliHuman": "445 B"
         },
         "dimensions": {
           "width": 300,
           "height": 200,
           "ratio": "3:2"
         },
-        "processTime": 556034542
+        "processTime": 449842500
       },
       {
         "variantName": "sqip-pixels",
@@ -2266,7 +2266,7 @@
           "height": 500,
           "ratio": "8:5"
         },
-        "processTime": 150981667
+        "processTime": 61947750
       },
       {
         "variantName": "sqip-blurhash",
@@ -2285,64 +2285,64 @@
           "height": 6,
           "ratio": "2:3"
         },
-        "processTime": 165297416
+        "processTime": 64220708
       },
       {
         "variantName": "sqip-triangle",
         "name": "quino-al-101314-unsplash-sqip-triangle.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/quino-al-101314-unsplash-sqip-triangle.svg",
         "sizes": {
-          "originalBytes": 1994,
-          "originalHuman": "1.99 kB",
-          "gzipBytes": 836,
-          "gzipHuman": "836 B",
-          "brotliBytes": 806,
-          "brotliHuman": "806 B"
+          "originalBytes": 2078,
+          "originalHuman": "2.08 kB",
+          "gzipBytes": 887,
+          "gzipHuman": "887 B",
+          "brotliBytes": 848,
+          "brotliHuman": "848 B"
         },
         "dimensions": {
           "width": 300,
           "height": 200,
           "ratio": "3:2"
         },
-        "processTime": 170203750
+        "processTime": 81957333
       },
       {
         "variantName": "sqip-triangle-art",
         "name": "quino-al-101314-unsplash-sqip-triangle-art.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/quino-al-101314-unsplash-sqip-triangle-art.svg",
         "sizes": {
-          "originalBytes": 94926,
-          "originalHuman": "94.9 kB",
-          "gzipBytes": 18437,
-          "gzipHuman": "18.4 kB",
-          "brotliBytes": 14643,
-          "brotliHuman": "14.6 kB"
+          "originalBytes": 96030,
+          "originalHuman": "96 kB",
+          "gzipBytes": 18514,
+          "gzipHuman": "18.5 kB",
+          "brotliBytes": 14740,
+          "brotliHuman": "14.7 kB"
         },
         "dimensions": {
           "width": 300,
           "height": 200,
           "ratio": "3:2"
         },
-        "processTime": 405201125
+        "processTime": 290150917
       },
       {
         "variantName": "sqip-art",
         "name": "quino-al-101314-unsplash-sqip-art.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/quino-al-101314-unsplash-sqip-art.svg",
         "sizes": {
-          "originalBytes": 2852,
-          "originalHuman": "2.85 kB",
-          "gzipBytes": 1103,
-          "gzipHuman": "1.1 kB",
-          "brotliBytes": 993,
-          "brotliHuman": "993 B"
+          "originalBytes": 2985,
+          "originalHuman": "2.98 kB",
+          "gzipBytes": 1122,
+          "gzipHuman": "1.12 kB",
+          "brotliBytes": 1018,
+          "brotliHuman": "1.02 kB"
         },
         "dimensions": {
           "width": 300,
           "height": 199,
           "ratio": "300:199"
         },
-        "processTime": 1294026834
+        "processTime": 1254866666
       },
       {
         "variantName": "sqip-potrace",
@@ -2361,7 +2361,7 @@
           "height": 200,
           "ratio": "3:2"
         },
-        "processTime": 187193041
+        "processTime": 97546416
       },
       {
         "variantName": "sqip-potrace-posterize",
@@ -2380,7 +2380,7 @@
           "height": 200,
           "ratio": "3:2"
         },
-        "processTime": 1061629917
+        "processTime": 964758000
       }
     ],
     "dimensions": {
@@ -2410,7 +2410,7 @@
           "height": 300,
           "ratio": "1:1"
         },
-        "processTime": 40996666
+        "processTime": 44907250
       },
       {
         "variantName": "lqip",
@@ -2429,7 +2429,7 @@
           "height": 10,
           "ratio": "1:1"
         },
-        "processTime": 84687875
+        "processTime": 77620083
       },
       {
         "variantName": "lqip-custom",
@@ -2448,45 +2448,45 @@
           "height": 32,
           "ratio": "1:1"
         },
-        "processTime": 28909208
+        "processTime": 30482625
       },
       {
         "variantName": "sqip-legacy",
         "name": "shane-young-769905-unsplash-sqip-legacy.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/shane-young-769905-unsplash-sqip-legacy.svg",
         "sizes": {
-          "originalBytes": 1202,
-          "originalHuman": "1.2 kB",
-          "gzipBytes": 724,
-          "gzipHuman": "724 B",
-          "brotliBytes": 699,
-          "brotliHuman": "699 B"
+          "originalBytes": 1334,
+          "originalHuman": "1.33 kB",
+          "gzipBytes": 809,
+          "gzipHuman": "809 B",
+          "brotliBytes": 780,
+          "brotliHuman": "780 B"
         },
         "dimensions": {
           "width": 1024,
           "height": 1024,
           "ratio": "1:1"
         },
-        "processTime": 493308208
+        "processTime": 572074083
       },
       {
         "variantName": "sqip",
         "name": "shane-young-769905-unsplash-sqip.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/shane-young-769905-unsplash-sqip.svg",
         "sizes": {
-          "originalBytes": 1072,
-          "originalHuman": "1.07 kB",
-          "gzipBytes": 546,
-          "gzipHuman": "546 B",
-          "brotliBytes": 491,
-          "brotliHuman": "491 B"
+          "originalBytes": 1011,
+          "originalHuman": "1.01 kB",
+          "gzipBytes": 514,
+          "gzipHuman": "514 B",
+          "brotliBytes": 460,
+          "brotliHuman": "460 B"
         },
         "dimensions": {
           "width": 300,
           "height": 300,
           "ratio": "1:1"
         },
-        "processTime": 676303250
+        "processTime": 676180250
       },
       {
         "variantName": "sqip-pixels",
@@ -2505,7 +2505,7 @@
           "height": 800,
           "ratio": "1:1"
         },
-        "processTime": 75593792
+        "processTime": 37741166
       },
       {
         "variantName": "sqip-blurhash",
@@ -2524,64 +2524,64 @@
           "height": 4,
           "ratio": "1:1"
         },
-        "processTime": 76737458
+        "processTime": 41072833
       },
       {
         "variantName": "sqip-triangle",
         "name": "shane-young-769905-unsplash-sqip-triangle.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/shane-young-769905-unsplash-sqip-triangle.svg",
         "sizes": {
-          "originalBytes": 2030,
-          "originalHuman": "2.03 kB",
-          "gzipBytes": 914,
-          "gzipHuman": "914 B",
-          "brotliBytes": 884,
-          "brotliHuman": "884 B"
+          "originalBytes": 2070,
+          "originalHuman": "2.07 kB",
+          "gzipBytes": 922,
+          "gzipHuman": "922 B",
+          "brotliBytes": 898,
+          "brotliHuman": "898 B"
         },
         "dimensions": {
           "width": 300,
           "height": 300,
           "ratio": "1:1"
         },
-        "processTime": 102262583
+        "processTime": 64869500
       },
       {
         "variantName": "sqip-triangle-art",
         "name": "shane-young-769905-unsplash-sqip-triangle-art.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/shane-young-769905-unsplash-sqip-triangle-art.svg",
         "sizes": {
-          "originalBytes": 98482,
-          "originalHuman": "98.5 kB",
-          "gzipBytes": 22298,
-          "gzipHuman": "22.3 kB",
-          "brotliBytes": 18034,
-          "brotliHuman": "18 kB"
+          "originalBytes": 99594,
+          "originalHuman": "99.6 kB",
+          "gzipBytes": 22559,
+          "gzipHuman": "22.6 kB",
+          "brotliBytes": 18285,
+          "brotliHuman": "18.3 kB"
         },
         "dimensions": {
           "width": 300,
           "height": 300,
           "ratio": "1:1"
         },
-        "processTime": 271608375
+        "processTime": 218438875
       },
       {
         "variantName": "sqip-art",
         "name": "shane-young-769905-unsplash-sqip-art.svg",
         "dist": "/Users/bene/dev/opensource/sqip/demo/public/processed/shane-young-769905-unsplash-sqip-art.svg",
         "sizes": {
-          "originalBytes": 3307,
-          "originalHuman": "3.31 kB",
-          "gzipBytes": 1207,
+          "originalBytes": 3319,
+          "originalHuman": "3.32 kB",
+          "gzipBytes": 1214,
           "gzipHuman": "1.21 kB",
-          "brotliBytes": 1131,
-          "brotliHuman": "1.13 kB"
+          "brotliBytes": 1104,
+          "brotliHuman": "1.1 kB"
         },
         "dimensions": {
           "width": 300,
           "height": 300,
           "ratio": "1:1"
         },
-        "processTime": 1811722958
+        "processTime": 1829067667
       },
       {
         "variantName": "sqip-potrace",
@@ -2592,7 +2592,7 @@
           "originalHuman": "19.7 kB",
           "gzipBytes": 7715,
           "gzipHuman": "7.71 kB",
-          "brotliBytes": 6826,
+          "brotliBytes": 6829,
           "brotliHuman": "6.83 kB"
         },
         "dimensions": {
@@ -2600,7 +2600,7 @@
           "height": 300,
           "ratio": "1:1"
         },
-        "processTime": 136094416
+        "processTime": 65509250
       },
       {
         "variantName": "sqip-potrace-posterize",
@@ -2609,9 +2609,9 @@
         "sizes": {
           "originalBytes": 63742,
           "originalHuman": "63.7 kB",
-          "gzipBytes": 23203,
+          "gzipBytes": 23204,
           "gzipHuman": "23.2 kB",
-          "brotliBytes": 20739,
+          "brotliBytes": 20735,
           "brotliHuman": "20.7 kB"
         },
         "dimensions": {
@@ -2619,7 +2619,7 @@
           "height": 300,
           "ratio": "1:1"
         },
-        "processTime": 1020082709
+        "processTime": 973606375
       }
     ],
     "dimensions": {
