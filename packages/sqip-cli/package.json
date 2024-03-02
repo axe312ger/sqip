@@ -1,6 +1,6 @@
 {
   "name": "sqip-cli",
-  "version": "1.0.0-alpha.48",
+  "version": "1.0.0-alpha.49",
   "description": "> TODO: description",
   "author": "Benedikt Rötsch <info@benedikt-roetsch.de>",
   "homepage": "https://github.com/axe312ger/sqip#readme",
@@ -34,11 +34,11 @@
     "debug": "^4.3.4",
     "fs-extra": "^11.1.1",
     "pkg-up": "^3.1.0",
-    "sqip": "^1.0.0-alpha.43",
-    "sqip-plugin-blur": "^1.0.0-alpha.44",
-    "sqip-plugin-data-uri": "^1.0.0-alpha.44",
-    "sqip-plugin-primitive": "^1.0.0-alpha.45",
-    "sqip-plugin-svgo": "^1.0.0-alpha.45"
+    "sqip": "^1.0.0-alpha.44",
+    "sqip-plugin-blur": "^1.0.0-alpha.45",
+    "sqip-plugin-data-uri": "^1.0.0-alpha.45",
+    "sqip-plugin-primitive": "^1.0.0-alpha.46",
+    "sqip-plugin-svgo": "^1.0.0-alpha.46"
   },
   "devDependencies": {
     "@types/command-line-args": "5.2.3",

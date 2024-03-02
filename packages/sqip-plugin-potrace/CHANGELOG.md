@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.16](https://github.com/axe312ger/sqip/compare/sqip-plugin-potrace@1.0.0-alpha.15...sqip-plugin-potrace@1.0.0-alpha.16) (2024-03-02)
+
+
+### Bug Fixes
+
+* properly use new potrace lib ([46454ba](https://github.com/axe312ger/sqip/commit/46454bad88a0254c371cf9c7ca232d0bfa40fb99))
+
+
+
+
+
 # [1.0.0-alpha.15](https://github.com/axe312ger/sqip/compare/sqip-plugin-potrace@1.0.0-alpha.14...sqip-plugin-potrace@1.0.0-alpha.15) (2024-02-24)
 
 
