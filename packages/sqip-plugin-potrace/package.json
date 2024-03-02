@@ -27,7 +27,7 @@
     "url": "https://github.com/axe312ger/sqip/issues"
   },
   "dependencies": {
-    "potrace": "^2.1.6",
+    "@gatsbyjs/potrace": "^3.0.0",
     "sqip": "^1.0.0-alpha.43"
   },
   "devDependencies": {
