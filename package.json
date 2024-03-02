@@ -22,7 +22,6 @@
     "@types/jest": "27.5.2",
     "@typescript-eslint/eslint-plugin": "6.21.0",
     "@typescript-eslint/parser": "6.21.0",
-    "@vibrant/color": "^3.2.1-alpha.1",
     "codecov": "3.8.3",
     "cz-conventional-changelog": "3.3.0",
     "eslint": "8.56.0",

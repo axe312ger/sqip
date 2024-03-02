@@ -3,9 +3,7 @@ import { readFileSync } from 'fs'
 
 import sqipPluginBlurhash from '../../src/sqip-plugin-blurhash'
 
-import { Swatch } from '@vibrant/color'
-
-import { SqipImageMetadata } from 'sqip/src/sqip'
+import { SqipImageMetadata, mockedMetadata } from 'sqip'
 
 const FILE_DEMO_BEACH = resolve(
   __dirname,
@@ -16,24 +14,6 @@ const FILE_DEMO_BEACH = resolve(
 )
 const fileContent = readFileSync(FILE_DEMO_BEACH)
 
-const mockedSwatch = new Swatch([4, 2, 0], 420)
-const mockedMetadata: SqipImageMetadata = {
-  filename: 'mocked',
-  mimeType: 'image/mocked',
-  height: 32,
-  width: 32,
-  originalHeight: 0,
-  originalWidth: 0,
-  palette: {
-    DarkMuted: mockedSwatch,
-    DarkVibrant: mockedSwatch,
-    LightMuted: mockedSwatch,
-    LightVibrant: mockedSwatch,
-    Muted: mockedSwatch,
-    Vibrant: mockedSwatch
-  },
-  type: 'pixel'
-}
 const mockedConfig = {
   input: 'mocked',
   output: 'mocked',
@@ -47,10 +27,16 @@ describe('sqip-plugin-blurhash', () => {
       options: {},
       sqipConfig: mockedConfig
     })
-    const result = await plugin.apply(fileContent, mockedMetadata)
+    const blurhashMockedMetadata: SqipImageMetadata = {
+      ...mockedMetadata,
+      height: 32,
+      width: 32,
+      type: 'pixel'
+    }
+    const result = await plugin.apply(fileContent, blurhashMockedMetadata)
 
-    expect(mockedMetadata.blurhash).toMatchSnapshot()
-    expect(mockedMetadata.dataURIBase64).toMatchSnapshot()
+    expect(blurhashMockedMetadata.blurhash).toMatchSnapshot()
+    expect(blurhashMockedMetadata.dataURIBase64).toMatchSnapshot()
     expect(result.length).toBe(284)
   })
 
@@ -60,10 +46,16 @@ describe('sqip-plugin-blurhash', () => {
       options: {},
       sqipConfig: mockedConfig
     })
-    const result = await plugin.apply(fileContent, mockedMetadata)
+    const blurhashMockedMetadata: SqipImageMetadata = {
+      ...mockedMetadata,
+      height: 32,
+      width: 32,
+      type: 'pixel'
+    }
+    const result = await plugin.apply(fileContent, blurhashMockedMetadata)
 
-    expect(mockedMetadata.blurhash).toMatchSnapshot()
-    expect(mockedMetadata.dataURIBase64).toMatchSnapshot()
+    expect(blurhashMockedMetadata.blurhash).toMatchSnapshot()
+    expect(blurhashMockedMetadata.dataURIBase64).toMatchSnapshot()
     expect(result.length).toBe(285)
   })
 })

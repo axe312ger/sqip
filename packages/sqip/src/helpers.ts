@@ -6,7 +6,7 @@ import expandTilde from 'expand-tilde'
 import fastGlob from 'fast-glob'
 import fs from 'fs-extra'
 
-import type { Palette } from '@vibrant/color'
+import type { Palette } from '@behold/sharp-vibrant/lib/color'
 
 const debug = Debug('sqip')
 

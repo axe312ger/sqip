@@ -2,15 +2,16 @@ import path from 'path'
 
 import Debug from 'debug'
 import fs from 'fs-extra'
-import imageSize from 'probe-image-size'
-import Vibrant from 'node-vibrant'
+
+import Vibrant from '@behold/sharp-vibrant'
+import type { Palette } from '@behold/sharp-vibrant/lib/color'
+import { Swatch } from '@behold/sharp-vibrant/lib/color'
 import sharp from 'sharp'
 import termimg, { UnsupportedTerminalError } from 'term-img'
 import Table from 'cli-table3'
 import chalk from 'chalk'
 import mime from 'mime'
 
-import type { Palette } from '@vibrant/color'
 import { OptionDefinition } from 'command-line-args'
 
 import { locateFiles } from './helpers'
@@ -19,7 +20,15 @@ export { loadSVG, parseColor } from './helpers'
 
 const debug = Debug('sqip')
 
-const mainKeys = ['filename', 'originalWidth', 'originalHeight', 'width', 'height', 'type', 'mimeType']
+const mainKeys = [
+  'filename',
+  'originalWidth',
+  'originalHeight',
+  'width',
+  'height',
+  'type',
+  'mimeType'
+]
 
 const PALETTE_KEYS: (keyof Palette)[] = [
   'Vibrant',
@@ -300,15 +309,13 @@ async function processImage({
   buffer,
   config
 }: ProcessImageOptions): Promise<SqipResult> {
-  const originalSizes = imageSize.sync(buffer)
-
   // Extract the palette from the image. We delegate to node-vibrant (which is
   // using jimp internally), and it only supports some image formats. In
   // particular, it does not support WebP and HEIC yet.
   //
   // So we try with the given image buffer, and if the code throws an exception
   // we try again after converting to TIFF. If that fails again we give up.
-  const palette = await (async () => {
+  const paletteResult = await (async () => {
     const getPalette = (buffer: Buffer) =>
       Vibrant.from(buffer).quality(0).getPalette()
 
@@ -319,19 +326,15 @@ async function processImage({
     }
   })()
 
-  if (!originalSizes) {
-    throw new Error('Unable to get image size')
-  }
-
-  const {name: filename} = path.parse(filePath)
+  const { name: filename } = path.parse(filePath)
   const mimeType = mime.getType(filePath) || 'unknown'
 
   const metadata: SqipImageMetadata = {
     filename,
     mimeType,
-    originalWidth: originalSizes.width,
-    originalHeight: originalSizes.height,
-    palette,
+    originalWidth: paletteResult.imageDimensions.width,
+    originalHeight: paletteResult.imageDimensions.height,
+    palette: paletteResult.palette,
     // @todo this should be set by plugins and detected initially
     type: 'unknown',
     width: 0,
@@ -355,8 +358,8 @@ async function processImage({
     }
   } else {
     // Fall back to original size, keep image as is
-    metadata.width = originalSizes.width
-    metadata.height = originalSizes.height
+    metadata.width = metadata.originalWidth
+    metadata.height = metadata.originalHeight
   }
 
   // Interate through plugins and apply them to last returned image
@@ -373,7 +376,7 @@ async function processImage({
       buffer = await plugin.apply(buffer, metadata)
     } catch (err) {
       console.log(`Error thrown in plugin ${name}.`)
-      console.dir({ metadata }, {depth: 3})
+      console.dir({ metadata }, { depth: 3 })
       throw err
     }
   }
@@ -416,9 +419,7 @@ export async function sqip(
   // If input is a Buffer
   if (Buffer.isBuffer(input)) {
     if (!outputFileName) {
-      throw new Error(
-        'OutputFileName is required when passing image as buffer'
-      )
+      throw new Error('OutputFileName is required when passing image as buffer')
     }
     return processFile({
       filePath: '-',
@@ -472,3 +473,21 @@ export async function sqip(
 }
 
 export * from './helpers'
+
+export const mockedMetadata: SqipImageMetadata = {
+  filename: 'mocked',
+  mimeType: 'image/mocked',
+  width: 1024,
+  height: 640,
+  type: 'svg',
+  originalHeight: 1024,
+  originalWidth: 640,
+  palette: {
+    DarkMuted: new Swatch([4, 2, 0], 420),
+    DarkVibrant: new Swatch([4, 2, 1], 421),
+    LightMuted: new Swatch([4, 2, 2], 422),
+    LightVibrant: new Swatch([4, 2, 3], 423),
+    Muted: new Swatch([4, 2, 4], 424),
+    Vibrant: new Swatch([4, 2, 5], 425)
+  }
+}

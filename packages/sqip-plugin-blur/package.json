@@ -28,8 +28,5 @@
   },
   "dependencies": {
     "sqip": "^1.0.0-alpha.43"
-  },
-  "peerDependencies": {
-    "@vibrant/color": "3.2.1-alpha.1"
   }
 }

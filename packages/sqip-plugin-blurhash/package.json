@@ -31,7 +31,6 @@
     "sqip": "^1.0.0-alpha.43"
   },
   "devDependencies": {
-    "@types/jsdom": "^21.1.6",
-    "@vibrant/color": "^3.2.1-alpha.1"
+    "@types/jsdom": "^21.1.6"
   }
 }

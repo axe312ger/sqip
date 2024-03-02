@@ -13,31 +13,31 @@ Object {
     "originalWidth": 1024,
     "palette": Object {
       "DarkMuted": Object {
-        "population": 17029,
+        "population": 17355,
         "rgb": Array [
-          105,
+          104,
           78,
-          53,
+          54,
         ],
       },
       "DarkVibrant": Object {
-        "population": 131,
+        "population": 106,
         "rgb": Array [
           190,
-          78,
+          79,
           12,
         ],
       },
       "LightMuted": Object {
-        "population": 51394,
+        "population": 51474,
         "rgb": Array [
-          207,
-          200,
-          183,
+          208,
+          201,
+          182,
         ],
       },
       "LightVibrant": Object {
-        "population": 15762,
+        "population": 15729,
         "rgb": Array [
           242,
           177,
@@ -45,19 +45,19 @@ Object {
         ],
       },
       "Muted": Object {
-        "population": 17204,
+        "population": 32611,
         "rgb": Array [
-          92,
-          143,
-          164,
+          102,
+          146,
+          160,
         ],
       },
       "Vibrant": Object {
-        "population": 4821,
+        "population": 7271,
         "rgb": Array [
-          221,
-          133,
-          47,
+          228,
+          139,
+          55,
         ],
       },
     },
@@ -80,31 +80,31 @@ Object {
     "originalWidth": 1024,
     "palette": Object {
       "DarkMuted": Object {
-        "population": 17029,
+        "population": 17355,
         "rgb": Array [
-          105,
+          104,
           78,
-          53,
+          54,
         ],
       },
       "DarkVibrant": Object {
-        "population": 131,
+        "population": 106,
         "rgb": Array [
           190,
-          78,
+          79,
           12,
         ],
       },
       "LightMuted": Object {
-        "population": 51394,
+        "population": 51474,
         "rgb": Array [
-          207,
-          200,
-          183,
+          208,
+          201,
+          182,
         ],
       },
       "LightVibrant": Object {
-        "population": 15762,
+        "population": 15729,
         "rgb": Array [
           242,
           177,
@@ -112,19 +112,19 @@ Object {
         ],
       },
       "Muted": Object {
-        "population": 17204,
+        "population": 32611,
         "rgb": Array [
-          92,
-          143,
-          164,
+          102,
+          146,
+          160,
         ],
       },
       "Vibrant": Object {
-        "population": 4821,
+        "population": 7271,
         "rgb": Array [
-          221,
-          133,
-          47,
+          228,
+          139,
+          55,
         ],
       },
     },
@@ -147,31 +147,31 @@ Object {
     "originalWidth": 1024,
     "palette": Object {
       "DarkMuted": Object {
-        "population": 17029,
+        "population": 17355,
         "rgb": Array [
-          105,
+          104,
           78,
-          53,
+          54,
         ],
       },
       "DarkVibrant": Object {
-        "population": 131,
+        "population": 106,
         "rgb": Array [
           190,
-          78,
+          79,
           12,
         ],
       },
       "LightMuted": Object {
-        "population": 51394,
+        "population": 51474,
         "rgb": Array [
-          207,
-          200,
-          183,
+          208,
+          201,
+          182,
         ],
       },
       "LightVibrant": Object {
-        "population": 15762,
+        "population": 15729,
         "rgb": Array [
           242,
           177,
@@ -179,19 +179,19 @@ Object {
         ],
       },
       "Muted": Object {
-        "population": 17204,
+        "population": 32611,
         "rgb": Array [
-          92,
-          143,
-          164,
+          102,
+          146,
+          160,
         ],
       },
       "Vibrant": Object {
-        "population": 4821,
+        "population": 7271,
         "rgb": Array [
-          221,
-          133,
-          47,
+          228,
+          139,
+          55,
         ],
       },
     },

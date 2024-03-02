@@ -33,8 +33,5 @@
     "execa": "5.1.1",
     "sharp": "^0.32.0",
     "sqip": "^1.0.0-alpha.43"
-  },
-  "peerDependencies": {
-    "@vibrant/color": "3.2.1-alpha.1"
   }
 }
