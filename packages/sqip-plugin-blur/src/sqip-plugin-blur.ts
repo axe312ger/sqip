@@ -57,7 +57,10 @@ export default class SVGPlugin extends SqipPlugin {
 
     SVG(
       `<filter id="${blurFilterId}">
-        <feGaussianBlur stdDeviation="${this.options.blur}" />
+        <feGaussianBlur in="SourceGraphic" stdDeviation="${this.options.blur}" />
+        <feComponentTransfer>
+            <feFuncA type="discrete" tableValues="1 1"/>
+        </feComponentTransfer>
       </filter>`
     )
       .addTo(canvas)
