@@ -142,6 +142,45 @@ export const variants = [
     }
   },
   {
+    name: 'sqip-pixels-placeholder',
+    title: 'SQIP pixels placeholder',
+    description: html`
+      <p>
+        Pixel art based placeholder via${' '}
+        <a
+          href="https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-pixels#readme"
+          >sqip-plugin-pixels</a
+        >
+        and the blur plugin.
+      </p>
+    `,
+    config: {
+      input: 'path/to/file.jpg',
+      plugins: [
+        { name: 'pixels', options: { width: 3 } },
+        { name: 'blur', options: { blur: 24 } },
+        'svgo',
+        'data-uri'
+      ]
+    },
+    resultFileType: 'svg',
+    task: async ({ path, dist }) => {
+      const {
+        metadata: { dataURI }
+      } = await sqip({
+        input: path,
+        plugins: [
+          { name: 'pixels', options: { width: 4 } },
+          { name: 'blur', options: { blur: 24 } },
+          'svgo',
+          'data-uri'
+        ]
+      })
+      await writeImage({ dataURI, dist })
+      return dataURI
+    }
+  },
+  {
     name: 'sqip-blurhash',
     title: 'blurhash',
     description: html`
@@ -164,6 +203,35 @@ export const variants = [
       } = await sqip({
         input: path,
         plugins: ['blurhash']
+      })
+      await writeImage({ dataURI: dataURIBase64, dist })
+      return dataURIBase64
+    }
+  },
+  {
+    name: 'sqip-blurhash-detailed',
+    title: 'blurhash detailed',
+    description: html`
+      <p>
+        <a href="https://blurha.sh" target="_blank">blurha.sh</a> via${' '}
+        <a
+          href="https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-blurhash#readme"
+          >sqip-plugin-blurhash</a
+        >
+        but with more elements/pixels.
+      </p>
+    `,
+    config: {
+      input: 'path/to/file.jpg',
+      plugins: [{ name: 'blurhash', options: { width: 10 } }]
+    },
+    resultFileType: 'svg',
+    task: async ({ path, dist }) => {
+      const {
+        metadata: { dataURIBase64 }
+      } = await sqip({
+        input: path,
+        plugins: [{ name: 'blurhash', options: { width: 10 } }]
       })
       await writeImage({ dataURI: dataURIBase64, dist })
       return dataURIBase64
