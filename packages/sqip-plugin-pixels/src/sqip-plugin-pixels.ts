@@ -7,12 +7,8 @@ import {
   SqipCliOptionDefinition,
   SqipImageMetadata,
   SqipPlugin,
-  SqipPluginOptions
+  SqipPluginOptions,
 } from 'sqip'
-
-declare module '@svgdotjs/svg.js' {
-  export function registerWindow(window: unknown, document: unknown): unknown
-}
 
 interface PixelOptions extends PluginOptions {
   width?: number

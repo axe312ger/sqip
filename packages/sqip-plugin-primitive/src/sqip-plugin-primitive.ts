@@ -174,31 +174,28 @@ export default class PrimitivePlugin extends SqipPlugin {
       }
     )
 
-    const $ = loadSVG(result.stdout)
-    const $svg = $('svg')
+    const canvas = loadSVG(result.stdout)
 
-    const $bgRect = $svg
-      .children(PRIMITIVE_SVG_ELEMENTS)
-      .filter('rect:first-child[fill]')
+    const bgRect = canvas.findOne('rect:first-child[fill]')
 
-    if (bg.match(/[0-9a-f]{6}00/)) {
-      // Remove background rectangle when using full transparent background
-      $bgRect.remove()
-    } else {
-      // Optimize Background Rectangle for compression and responsiveness
+    if (bgRect) {
+      if (bg.match(/[0-9a-f]{6}00/)) {
+        // Remove background rectangle when using full transparent background
+        bgRect.remove()
+      } else {
+        // Optimize Background Rectangle for compression and responsiveness
+        bgRect.attr('x', undefined)
+        bgRect.attr('y', undefined)
 
-      // @todo test in rare browsers
-      $bgRect.removeAttr('x')
-      $bgRect.removeAttr('y')
-
-      $bgRect.attr('width', '100%')
-      $bgRect.attr('height', '100%')
+        bgRect.attr('width', '100%')
+        bgRect.attr('height', '100%')
+      }
     }
 
     metadata.type = 'svg'
     metadata.mimeType = 'image/svg'
 
-    return Buffer.from($.html())
+    return Buffer.from(canvas.svg())
   }
 
   // Sanity check: use the exit state of 'type' to check for Primitive availability

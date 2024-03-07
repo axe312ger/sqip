@@ -16,6 +16,8 @@ import {
   parseColor
 } from 'sqip'
 
+import { SVG } from '@svgdotjs/svg.js'
+
 interface TrianglePluginOptions extends SqipPluginOptions {
   options: Partial<TriangleOptions>
 }
@@ -196,17 +198,21 @@ export default class TrianglePlugin extends SqipPlugin {
     await unlink(tmpFile)
     await unlink(tmpSvgFile)
 
-    const $ = loadSVG(result.toString())
-    const $svg = $('svg')
+    const canvas = loadSVG(
+      result
+        .toString()
+        .replace(/<!DOCTYPE[^>]+>/, '')
+        .replace(/<\?xml[^>]+>/, '')
+        // .replace(/\s+/g, ' ')
+        .trim()
+    )
 
-    const $bgRect = $(`<rect width="100%" height="100%" fill="${bg}"/>`)
-
-    $svg.prepend($bgRect)
+    SVG(`<rect width="100%" height="100%" fill="${bg}"/>`).addTo(canvas).front()
 
     metadata.type = 'svg'
     metadata.mimeType = 'image/svg'
 
-    return Buffer.from($.html())
+    return Buffer.from(canvas.svg())
   }
 
   // Sanity check: use the exit state of 'type' to check for Triangle availability

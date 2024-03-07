@@ -3,29 +3,10 @@ import {
   PluginOptions,
   SqipPlugin,
   SqipPluginOptions,
-  SqipCliOptionDefinition,
-  SqipImageMetadata
+  SqipCliOptionDefinition
 } from 'sqip'
 
-const PRIMITIVE_SVG_ELEMENTS = 'circle, ellipse, line, polygon, path, rect, g'
-
-const patchSVGGroup = (svg: string): string => {
-  const $ = loadSVG(svg)
-
-  const $svg = $('svg')
-  const $primitiveShapes = $svg.children(PRIMITIVE_SVG_ELEMENTS)
-
-  // Check if actual shapes are grouped
-  if ($primitiveShapes.filter('g').length === 1) {
-    const $group = $('<g/>')
-    const $realShapes = $primitiveShapes.not('rect:first-child')
-
-    $group.append($realShapes)
-    $svg.append($group)
-  }
-
-  return $.html()
-}
+import { SVG } from '@svgdotjs/svg.js'
 
 interface BlurPluginOptions extends SqipPluginOptions {
   options: BlurOptions
@@ -54,45 +35,33 @@ export default class SVGPlugin extends SqipPlugin {
     this.options = { blur: 12, ...pluginOptions }
   }
 
-  apply(imageBuffer: Buffer, metadata: SqipImageMetadata): Buffer {
-    let svg = this.prepareSVG(imageBuffer.toString(), metadata)
-    if (this.options.blur) {
-      svg = this.applyBlurFilter(svg)
+  apply(imageBuffer: Buffer): Buffer {
+    if (!this.options.blur) {
+      return imageBuffer
     }
-    return Buffer.from(svg)
-  }
-
-  // Prepare SVG. For now, this will just ensure that the viewbox attribute is set
-  prepareSVG(svg: string, metadata: SqipImageMetadata): string {
-    const $ = loadSVG(svg)
-    const $svg = $('svg')
-    const { width, height } = metadata
-
-    // Ensure viewbox
-    if (!$svg.is('[viewBox]')) {
-      if (!(width && height)) {
-        throw new Error(
-          `SVG is missing viewBox attribute while Width and height were not passed:\n\n${svg}`
-        )
-      }
-      $svg.attr('viewBox', `0 0 ${width} ${height}`)
-    }
-
-    return $.html()
+    return Buffer.from(this.applyBlurFilter(imageBuffer.toString()))
   }
 
   applyBlurFilter(svg: string): string {
     if (!this.options.blur) {
       return svg
     }
-    const patchedSVG = patchSVGGroup(svg)
-    const $ = loadSVG(patchedSVG)
-    const blurFilterId = 'b'
-    $('svg > g').attr('filter', `url(#${blurFilterId})`)
-    $('svg').prepend(
-      `<filter id="${blurFilterId}"><feGaussianBlur stdDeviation="${this.options.blur}" />`
-    )
 
-    return $.html()
+    const canvas = loadSVG(svg)
+    const blurFilterId = 'b'
+    const group = SVG(`<g filter="url(#${blurFilterId})"/>`)
+
+    canvas.children().each(child => child.putIn(group))
+
+    group.addTo(canvas)
+
+    SVG(
+      `<filter id="${blurFilterId}">
+        <feGaussianBlur stdDeviation="${this.options.blur}" />
+      </filter>`
+    )
+      .addTo(canvas)
+      .front()
+    return canvas.svg()
   }
 }

@@ -1,6 +1,7 @@
 import path from 'path'
 
-import cheerio from 'cheerio'
+import { createSVGWindow } from 'svgdom'
+import { SVG, registerWindow } from '@svgdotjs/svg.js'
 import Debug from 'debug'
 import expandTilde from 'expand-tilde'
 import fastGlob from 'fast-glob'
@@ -11,9 +12,11 @@ import type { Palette } from '@behold/sharp-vibrant/lib/color'
 const debug = Debug('sqip')
 
 export const loadSVG = (svg: string) => {
-  return cheerio.load(svg, {
-    xmlMode: true
-  })
+  const window = createSVGWindow()
+  const document = window.document
+  registerWindow(window, document)
+
+  return SVG(svg)
 }
 
 export function isError(error: unknown): error is NodeJS.ErrnoException {
