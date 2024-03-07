@@ -76,19 +76,24 @@ export default class PixelsPlugin extends SqipPlugin {
       .raw()
       .toBuffer({ resolveWithObject: true })
 
+    const pixelHeight = pixelSize // Math.floor(pixelSize * (info.height / info.width))
+
     let column = 0
     let row = 0
 
-    const canvas = SVG().size(info.width * pixelSize, info.height * pixelSize)
+    const newWidth = info.width * pixelSize
+    const newHeight = info.height * pixelHeight
+
+    const canvas = SVG().size(newWidth, newHeight)
 
     for (let i = 0; i < data.length; i += info.channels) {
       const red = data[i]
       const green = data[i + 1]
       const blue = data[i + 2]
       canvas
-        .rect(1 * pixelSize, 1 * pixelSize)
+        .rect(1 * pixelSize, 1 * pixelHeight)
         .attr({ fill: `rgb(${red},${green},${blue})` })
-        .move(column * pixelSize, row * pixelSize)
+        .move(column * pixelSize, row * pixelHeight)
       column++
       if (column >= info.width) {
         column = 0
@@ -98,6 +103,8 @@ export default class PixelsPlugin extends SqipPlugin {
 
     metadata.type = 'svg'
     metadata.mimeType = 'image/svg'
+    metadata.height = newHeight
+    metadata.width = newWidth
 
     return Buffer.from(canvas.svg())
   }
