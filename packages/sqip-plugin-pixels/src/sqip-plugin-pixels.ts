@@ -60,24 +60,18 @@ export default class PixelsPlugin extends SqipPlugin {
 
     const { pixels } = this.options
 
-    const resizeConfig: { height?: number; width?: number } = {}
-    let useWidth = true
-    if (metadata.height > metadata.width) {
-      useWidth = false
-      resizeConfig.height = pixels
-    } else {
-      resizeConfig.width = pixels
-    }
+    const pixelSize = Math.ceil(Math.max(metadata.width, metadata.height) / pixels)
+    const pixelsHorizontal = Math.ceil(metadata.width / pixelSize)
+    const pixelsVertical = Math.ceil(metadata.height / pixelSize)
 
     const { data, info } = await sharp(imageBuffer)
-      .resize(resizeConfig)
+      .resize({
+        width: pixelsHorizontal,
+        height: pixelsVertical
+      })
       .ensureAlpha()
       .raw()
       .toBuffer({ resolveWithObject: true })
-
-    const pixelSize = Math.ceil(
-      (useWidth ? metadata.width : metadata.height) / pixels
-    )
 
     let column = 0
     let row = 0
