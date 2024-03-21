@@ -157,7 +157,7 @@ export const variants = [
     config: {
       input: 'path/to/file.jpg',
       plugins: [
-        { name: 'pixels', options: { width: 3 } },
+        { name: 'pixels', options: { pixels: 4 } },
         { name: 'blur', options: { blur: 24 } },
         'svgo',
         'data-uri'
@@ -170,7 +170,7 @@ export const variants = [
       } = await sqip({
         input: path,
         plugins: [
-          { name: 'pixels', options: { width: 4 } },
+          { name: 'pixels', options: { pixels: 4 } },
           { name: 'blur', options: { blur: 24 } },
           'svgo',
           'data-uri'

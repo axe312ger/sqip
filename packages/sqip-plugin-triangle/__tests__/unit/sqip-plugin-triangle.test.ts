@@ -23,7 +23,7 @@ const mockedExeca = execa as jest.MockedFunction<typeof execa>
 mockedExeca.mockImplementation(() => {
   const result = {
     stdout:
-      '<svg viewBox="0 0 1024 768"><rect width="100%" height="100%" fill="#bada5500"/><g><path fill="#fff" d="M300,188 L0,188 L174,146 L300,188"/></g></rect></svg>'
+      '<svg viewBox="0 0 1024 768"><path fill="#fff" d="M300,188 L0,188 L174,146 L300,188"/></svg>'
   } as unknown as ExecaChildProcess<Buffer>
   return result
 })
@@ -34,7 +34,7 @@ const mockedFsReadFile = fs.readFile as jest.MockedFunction<typeof fs.readFile>
 mockedFsReadFile.mockImplementation(() =>
   Promise.resolve(
     Buffer.from(
-      '<svg viewBox="0 0 1024 768"><rect width="100%" height="100%" fill="#bada5500"/><g><path fill="#fff" d="M300,188 L0,188 L174,146 L300,188"/></g></rect></svg>'
+      '<svg viewBox="0 0 1024 768"><path fill="#fff" d="M300,188 L0,188 L174,146 L300,188"/></svg>'
     )
   )
 )
