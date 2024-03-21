@@ -7,17 +7,15 @@ import {
   SqipCliOptionDefinition,
   SqipImageMetadata,
   SqipPlugin,
-  SqipPluginOptions,
+  SqipPluginOptions
 } from 'sqip'
 
 interface PixelOptions extends PluginOptions {
-  width?: number
-  pixelSize?: number
+  pixels?: number
 }
 
 interface PixelConfig extends PluginOptions {
-  width: number
-  pixelSize: number
+  pixels: number
 }
 
 interface PixelPluginOptions extends SqipPluginOptions {
@@ -28,15 +26,10 @@ export default class PixelsPlugin extends SqipPlugin {
   static get cliOptions(): SqipCliOptionDefinition[] {
     return [
       {
-        name: 'width',
+        name: 'pixels',
         type: Number,
-        description: 'The number of horizontal pixels',
+        description: 'The number of pixels of longer axis',
         defaultValue: 8
-      },
-      {
-        name: 'pixelSize',
-        description: 'Size of every pixel in px',
-        defaultValue: 100
       }
     ]
   }
@@ -47,11 +40,7 @@ export default class PixelsPlugin extends SqipPlugin {
 
     const { pluginOptions } = options
 
-    this.options = Object.assign(
-      {},
-      { width: 8, pixelSize: 100 },
-      pluginOptions
-    )
+    this.options = Object.assign({}, { pixels: 8 }, pluginOptions)
 
     const window = createSVGWindow()
     const document = window.document
@@ -69,31 +58,48 @@ export default class PixelsPlugin extends SqipPlugin {
       )
     }
 
-    const { width, pixelSize } = this.options
+    const { pixels } = this.options
+
+    // @todo make pixels on longest side, not shortest. looks better!
+    const resizeConfig: { height?: number; width?: number } = {}
+    // if (metadata.height > metadata.width) {
+    //   resizeConfig.height = pixels
+    // } else {
+    resizeConfig.width = pixels
+    // }
 
     const { data, info } = await sharp(imageBuffer)
-      .resize({ width })
+      .resize(resizeConfig)
       .raw()
       .toBuffer({ resolveWithObject: true })
 
-    const pixelHeight = pixelSize // Math.floor(pixelSize * (info.height / info.width))
+    const pixelSize = Math.floor(metadata.width / pixels)
 
     let column = 0
     let row = 0
 
-    const newWidth = info.width * pixelSize
-    const newHeight = info.height * pixelHeight
+    const canvas = SVG().size(metadata.width, metadata.height)
+    // canvas.css('outline', '1px dashed red')
 
-    const canvas = SVG().size(newWidth, newHeight)
+    const group = canvas.group()
+
+    // Scale up group to close the cap created by using Math.floor for pixel size. Plus another 1% to ensure we really overlap always
+    const scaleDiff = (metadata.width - pixels * pixelSize) / metadata.width
+    // @todo make scale factor configurable
+    group.attr(
+      'transform',
+      `scale(${(scaleDiff + 1.01).toFixed(3)}), translate(-${((scaleDiff / 2) * metadata.width).toFixed(3)}, -${((scaleDiff / 2) * metadata.height).toFixed(3)})`
+    )
 
     for (let i = 0; i < data.length; i += info.channels) {
       const red = data[i]
       const green = data[i + 1]
       const blue = data[i + 2]
-      canvas
-        .rect(1 * pixelSize, 1 * pixelHeight)
+      group
+        .rect(1 * pixelSize, 1 * pixelSize)
+        // @todo support transparent pixels
         .attr({ fill: `rgb(${red},${green},${blue})` })
-        .move(column * pixelSize, row * pixelHeight)
+          .move(column * pixelSize, row * pixelSize)
       column++
       if (column >= info.width) {
         column = 0
@@ -103,8 +109,6 @@ export default class PixelsPlugin extends SqipPlugin {
 
     metadata.type = 'svg'
     metadata.mimeType = 'image/svg'
-    metadata.height = newHeight
-    metadata.width = newWidth
 
     return Buffer.from(canvas.svg())
   }

@@ -32,7 +32,6 @@ interface PrimitiveOptions extends PluginOptions {
 
 const debug = Debug('sqip-plugin-primitive')
 
-const PRIMITIVE_SVG_ELEMENTS = 'circle, ellipse, line, polygon, path, rect, g'
 const VENDOR_DIR = path.resolve(__dirname, '..', 'primitive-binaries')
 
 let primitiveExecutable = 'primitive'
