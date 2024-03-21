@@ -40,7 +40,7 @@ export default class PixelsPlugin extends SqipPlugin {
 
     const { pluginOptions } = options
 
-    this.options = Object.assign({}, { pixels: 8, scale: 1.01 }, pluginOptions)
+    this.options = Object.assign({}, { pixels: 8 }, pluginOptions)
 
     const window = createSVGWindow()
     const document = window.document
@@ -76,7 +76,7 @@ export default class PixelsPlugin extends SqipPlugin {
       .toBuffer({ resolveWithObject: true })
 
     const pixelSize = Math.ceil(
-      useWidth ? metadata.width : metadata.height / pixels
+      (useWidth ? metadata.width : metadata.height) / pixels
     )
 
     let column = 0
