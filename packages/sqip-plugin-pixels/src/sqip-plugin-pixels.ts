@@ -40,7 +40,7 @@ export default class PixelsPlugin extends SqipPlugin {
 
     const { pluginOptions } = options
 
-    this.options = Object.assign({}, { pixels: 8 }, pluginOptions)
+    this.options = Object.assign({}, { pixels: 8, scale: 1.01 }, pluginOptions)
 
     const window = createSVGWindow()
     const document = window.document
@@ -60,13 +60,14 @@ export default class PixelsPlugin extends SqipPlugin {
 
     const { pixels } = this.options
 
-    // @todo make pixels on longest side, not shortest. looks better!
     const resizeConfig: { height?: number; width?: number } = {}
-    // if (metadata.height > metadata.width) {
-    //   resizeConfig.height = pixels
-    // } else {
-    resizeConfig.width = pixels
-    // }
+    let useWidth = true
+    if (metadata.height > metadata.width) {
+      useWidth = false
+      resizeConfig.height = pixels
+    } else {
+      resizeConfig.width = pixels
+    }
 
     const { data, info } = await sharp(imageBuffer)
       .resize(resizeConfig)
@@ -74,7 +75,9 @@ export default class PixelsPlugin extends SqipPlugin {
       .raw()
       .toBuffer({ resolveWithObject: true })
 
-    const pixelSize = Math.floor(metadata.width / pixels)
+    const pixelSize = Math.ceil(
+      useWidth ? metadata.width : metadata.height / pixels
+    )
 
     let column = 0
     let row = 0
@@ -84,13 +87,15 @@ export default class PixelsPlugin extends SqipPlugin {
 
     const group = canvas.group()
 
-    // Scale up group to close the cap created by using Math.floor for pixel size. Plus another 1% to ensure we really overlap always
-    const scaleDiff = (metadata.width - pixels * pixelSize) / metadata.width
-    // @todo make scale factor configurable
-    group.attr(
-      'transform',
-      `scale(${(scaleDiff + 1.01).toFixed(3)}), translate(-${((scaleDiff / 2) * metadata.width).toFixed(3)}, -${((scaleDiff / 2) * metadata.height).toFixed(3)})`
-    )
+    const overflowHorizontal = info.width * pixelSize - metadata.width
+    const overflowVertical = info.height * pixelSize - metadata.height
+
+    if (metadata.width % pixelSize !== 0 || metadata.height % pixelSize !== 0) {
+      group.attr(
+        'transform',
+        `translate(-${(overflowHorizontal / 2).toFixed(3)}, -${(overflowVertical / 2).toFixed(3)})`
+      )
+    }
 
     for (let i = 0; i < data.length; i += info.channels) {
       const red = data[i]
