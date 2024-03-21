@@ -60,7 +60,9 @@ export default class PixelsPlugin extends SqipPlugin {
 
     const { pixels } = this.options
 
-    const pixelSize = Math.ceil(Math.max(metadata.width, metadata.height) / pixels)
+    const pixelSize = Math.ceil(
+      Math.max(metadata.width, metadata.height) / pixels
+    )
     const pixelsHorizontal = Math.ceil(metadata.width / pixelSize)
     const pixelsVertical = Math.ceil(metadata.height / pixelSize)
 
@@ -97,10 +99,16 @@ export default class PixelsPlugin extends SqipPlugin {
       const blue = data[i + 2]
       const alpha = (data[i + 3] / 255).toFixed(2)
       if (parseFloat(alpha) > 0) {
-        group
+        const rect = group
           .rect(1 * pixelSize, 1 * pixelSize)
-          .attr({ fill: `rgba(${red},${green},${blue},${alpha})` })
           .move(column * pixelSize, row * pixelSize)
+
+        // Only use alpha when relevant
+        if (parseFloat(alpha) < 1) {
+          rect.attr({ fill: `rgba(${red},${green},${blue},${alpha})` })
+        } else {
+          rect.attr({ fill: `rgb(${red},${green},${blue})` })
+        }
       }
       column++
       if (column >= info.width) {
