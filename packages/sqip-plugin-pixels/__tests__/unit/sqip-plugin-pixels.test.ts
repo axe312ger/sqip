@@ -44,15 +44,13 @@ describe('sqip-plugin-pixels', () => {
     expect($rects).toHaveLength(8 * 5)
 
     const $group = $('svg > g')
-    expect($group[0].attribs.transform).toEqual(
-      'translate(-3584.000, -2240.000)'
-    )
+    expect($group[0].attribs.transform).toBeUndefined()
 
     const firstRect = $rects.get(0)
     if (!firstRect) {
       throw new Error('error parsing pixels result. no rect found.')
     }
-    expect(firstRect.attribs.width).toEqual('1024')
+    expect(firstRect.attribs.width).toEqual('128')
   })
 
   it('custom config', async () => {
@@ -71,14 +69,12 @@ describe('sqip-plugin-pixels', () => {
     expect($rects).toHaveLength(4 * 3)
 
     const $group = $('svg > g')
-    expect($group[0].attribs.transform).toEqual(
-      'translate(-1536.000, -1216.000)'
-    )
+    expect($group[0].attribs.transform).toEqual('translate(-0.000, -64.000)')
 
     const firstRect = $rects.get(0)
     if (!firstRect) {
       throw new Error('error parsing pixels result. no rect found.')
     }
-    expect(firstRect.attribs.width).toEqual('1024')
+    expect(firstRect.attribs.width).toEqual('256')
   })
 })
