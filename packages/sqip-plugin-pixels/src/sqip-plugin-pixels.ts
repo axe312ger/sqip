@@ -70,6 +70,7 @@ export default class PixelsPlugin extends SqipPlugin {
 
     const { data, info } = await sharp(imageBuffer)
       .resize(resizeConfig)
+      .ensureAlpha()
       .raw()
       .toBuffer({ resolveWithObject: true })
 
@@ -95,11 +96,13 @@ export default class PixelsPlugin extends SqipPlugin {
       const red = data[i]
       const green = data[i + 1]
       const blue = data[i + 2]
-      group
-        .rect(1 * pixelSize, 1 * pixelSize)
-        // @todo support transparent pixels
-        .attr({ fill: `rgb(${red},${green},${blue})` })
+      const alpha = (data[i + 3] / 255).toFixed(2)
+      if (parseFloat(alpha) > 0) {
+        group
+          .rect(1 * pixelSize, 1 * pixelSize)
+          .attr({ fill: `rgba(${red},${green},${blue},${alpha})` })
           .move(column * pixelSize, row * pixelSize)
+      }
       column++
       if (column >= info.width) {
         column = 0
