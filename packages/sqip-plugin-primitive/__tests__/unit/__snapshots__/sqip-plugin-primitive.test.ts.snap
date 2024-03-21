@@ -117,4 +117,4 @@ Array [
 ]
 `;
 
-exports[`runPrimitive removes background rectangle when using fully transparent background 1`] = `"<svg viewBox=\\"0 0 1024 768\\"><g/></svg>"`;
+exports[`runPrimitive removes background rectangle when using fully transparent background 1`] = `"<svg viewBox=\\"0 0 1024 768\\"><g></g></svg>"`;

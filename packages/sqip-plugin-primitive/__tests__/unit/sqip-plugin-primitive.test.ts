@@ -23,7 +23,7 @@ const mockedExeca = execa as jest.MockedFunction<typeof execa>
 mockedExeca.mockImplementation(() => {
   const result = {
     stdout:
-      '<svg viewBox="0 0 1024 768"><rect fill="#bada5500"/><g></g></rect></svg>'
+      '<svg viewBox="0 0 1024 768"><rect fill="#bada5500"/><g></g></svg>'
   } as unknown as ExecaChildProcess<Buffer>
   return result
 })
