@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.45](https://github.com/axe312ger/sqip/compare/sqip-plugin-pixels@1.0.0-alpha.44...sqip-plugin-pixels@1.0.0-alpha.45) (2024-03-21)
+
+
+### Bug Fixes
+
+* calculate pixel size on longest axis, simplifying whole pixel placement logic ([e00e959](https://github.com/axe312ger/sqip/commit/e00e9592d74e6bf29a2995a9a68ceefcb634fb7c))
+* only use RGBA when neccessary ([a63dd44](https://github.com/axe312ger/sqip/commit/a63dd449451ddf39680ce484773bd24dfa4ea473))
+* pixels now properly scale and avoid gaps on view port border ([2dba75b](https://github.com/axe312ger/sqip/commit/2dba75b67d176bd97c6d8a4b28cbd5ed487a256c))
+* properly calc pixel size for longest axis ([09d113d](https://github.com/axe312ger/sqip/commit/09d113db90bd3c43aa931b1fac9de0086f901e62))
+
+
+### Features
+
+* pixels plugin now supports transparency ([cdc4fd9](https://github.com/axe312ger/sqip/commit/cdc4fd9e71f7e57825369937359e8b38f8d0bb8f))
+
+
+
+
+
 # [1.0.0-alpha.44](https://github.com/axe312ger/sqip/compare/sqip-plugin-pixels@1.0.0-alpha.43...sqip-plugin-pixels@1.0.0-alpha.44) (2024-03-02)
 
 **Note:** Version bump only for package sqip-plugin-pixels

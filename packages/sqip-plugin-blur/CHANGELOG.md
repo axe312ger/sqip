@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.46](https://github.com/axe312ger/sqip/compare/sqip-plugin-blur@1.0.0-alpha.45...sqip-plugin-blur@1.0.0-alpha.46) (2024-03-21)
+
+
+### Features
+
+* avoid blur creating bleed at the edges of the images and make sure blur supports pixel plugin ([f501170](https://github.com/axe312ger/sqip/commit/f50117090d5facf0bf750d13ef50a4617153f051))
+
+
+
+
+
 # [1.0.0-alpha.45](https://github.com/axe312ger/sqip/compare/sqip-plugin-blur@1.0.0-alpha.44...sqip-plugin-blur@1.0.0-alpha.45) (2024-03-02)
 
 **Note:** Version bump only for package sqip-plugin-blur
