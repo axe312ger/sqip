@@ -155,9 +155,9 @@ export async function resolvePlugins(
         name.indexOf('sqip-plugin-') !== -1 ? name : `sqip-plugin-${name}`
       try {
         debug(`Loading ${moduleName}`)
-        const Plugin = await import(moduleName)
+        const { default: Plugin } = await import(moduleName)
 
-        return { ...plugin, Plugin: Plugin.default }
+        return { ...plugin, Plugin: Plugin.default || Plugin }
       } catch (err) {
         console.error(err)
         throw new Error(
