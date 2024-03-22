@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.48](https://github.com/axe312ger/sqip/compare/sqip-plugin-pixels@1.0.0-alpha.47...sqip-plugin-pixels@1.0.0-alpha.48) (2024-03-22)
+
+
+### Bug Fixes
+
+* ensure svgdom is imported dynamically to support old node versions ([89b7e2a](https://github.com/axe312ger/sqip/commit/89b7e2acc110c943e79b219df3c080adf6780521))
+
+
+
+
+
 # [1.0.0-alpha.47](https://github.com/axe312ger/sqip/compare/sqip-plugin-pixels@1.0.0-alpha.46...sqip-plugin-pixels@1.0.0-alpha.47) (2024-03-22)
 
 **Note:** Version bump only for package sqip-plugin-pixels
