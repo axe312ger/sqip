@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.5](https://github.com/axe312ger/sqip/compare/sqip-plugin-blurhash@1.0.0-alpha.4...sqip-plugin-blurhash@1.0.0-alpha.5) (2024-03-22)
+
+**Note:** Version bump only for package sqip-plugin-blurhash
+
+
+
+
+
 # [1.0.0-alpha.4](https://github.com/axe312ger/sqip/compare/sqip-plugin-blurhash@1.0.0-alpha.3...sqip-plugin-blurhash@1.0.0-alpha.4) (2024-03-22)
 
 **Note:** Version bump only for package sqip-plugin-blurhash
