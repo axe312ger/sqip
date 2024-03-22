@@ -1,6 +1,6 @@
 {
   "name": "sqip-plugin-blurhash",
-  "version": "1.0.0-alpha.8",
+  "version": "1.0.0-alpha.9",
   "description": "Plugin for blurhash",
   "author": "Benedikt Rötsch <info@benedikt-roetsch.de>",
   "homepage": "https://github.com/axe312ger/sqip#readme",
@@ -28,6 +28,6 @@
   "dependencies": {
     "blurhash": "^2.0.5",
     "sharp": "^0.32.0",
-    "sqip": "^1.0.0-alpha.49"
+    "sqip": "^1.0.0-alpha.50"
   }
 }

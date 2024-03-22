@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.51](https://github.com/axe312ger/sqip/compare/sqip-plugin-pixels@1.0.0-alpha.50...sqip-plugin-pixels@1.0.0-alpha.51) (2024-03-22)
+
+
+### Bug Fixes
+
+* avoid multiple instances of svgdom/svg.js ([71108f3](https://github.com/axe312ger/sqip/commit/71108f34bdb344085fd0339599ef29eab3faf2a8))
+
+
+
+
+
 # [1.0.0-alpha.50](https://github.com/axe312ger/sqip/compare/sqip-plugin-pixels@1.0.0-alpha.49...sqip-plugin-pixels@1.0.0-alpha.50) (2024-03-22)
 
 **Note:** Version bump only for package sqip-plugin-pixels

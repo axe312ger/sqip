@@ -1,6 +1,6 @@
 {
   "name": "sqip-plugin-triangle",
-  "version": "1.0.0-alpha.8",
+  "version": "1.0.0-alpha.9",
   "description": "> TODO: description",
   "author": "Benedikt Rötsch <info@benedikt-roetsch.de>",
   "homepage": "https://github.com/axe312ger/sqip#readme",
@@ -31,6 +31,6 @@
   "dependencies": {
     "debug": "^4.3.4",
     "execa": "5.1.1",
-    "sqip": "^1.0.0-alpha.49"
+    "sqip": "^1.0.0-alpha.50"
   }
 }

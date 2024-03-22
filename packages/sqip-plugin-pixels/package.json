@@ -1,6 +1,6 @@
 {
   "name": "sqip-plugin-pixels",
-  "version": "1.0.0-alpha.50",
+  "version": "1.0.0-alpha.51",
   "description": "Experimental plugin to create a pixelation effect",
   "author": "Benedikt Rötsch <info@benedikt-roetsch.de>",
   "homepage": "https://github.com/axe312ger/sqip#readme",
@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "sharp": "^0.32.0",
-    "sqip": "^1.0.0-alpha.49"
+    "sqip": "^1.0.0-alpha.50"
   },
   "devDependencies": {
     "cheerio": "1.0.0-rc.12"
