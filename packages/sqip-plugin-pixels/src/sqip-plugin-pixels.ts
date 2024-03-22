@@ -1,5 +1,4 @@
 import sharp from 'sharp'
-import { createSVGWindow } from 'svgdom'
 import { SVG, registerWindow } from '@svgdotjs/svg.js'
 
 import {
@@ -41,11 +40,6 @@ export default class PixelsPlugin extends SqipPlugin {
     const { pluginOptions } = options
 
     this.options = Object.assign({}, { pixels: 8 }, pluginOptions)
-
-    const window = createSVGWindow()
-    const document = window.document
-
-    registerWindow(window, document)
   }
 
   async apply(
@@ -57,6 +51,12 @@ export default class PixelsPlugin extends SqipPlugin {
         'The pixels plugin needs a raster image buffer as input. Check if you run this plugin in the first place.'
       )
     }
+
+    const { createSVGWindow } = await import('svgdom')
+    const window = createSVGWindow()
+    const document = window.document
+
+    registerWindow(window, document)
 
     const { pixels } = this.options
 

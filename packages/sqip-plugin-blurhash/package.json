@@ -29,5 +29,8 @@
     "blurhash": "^2.0.5",
     "sharp": "^0.32.0",
     "sqip": "^1.0.0-alpha.47"
+  },
+  "devDependencies": {
+    "@types/svgdom": "^0.1.2"
   }
 }

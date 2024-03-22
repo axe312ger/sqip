@@ -32,6 +32,7 @@
     "svgdom": "^0.1.13"
   },
   "devDependencies": {
+    "@types/svgdom": "^0.1.2",
     "cheerio": "1.0.0-rc.12"
   }
 }

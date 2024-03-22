@@ -1994,7 +1994,7 @@
 
 "@types/svgdom@^0.1.2":
   version "0.1.2"
-  resolved "https://registry.npmjs.org/@types/svgdom/-/svgdom-0.1.2.tgz"
+  resolved "https://registry.yarnpkg.com/@types/svgdom/-/svgdom-0.1.2.tgz#0fa63cad8ae34a610eb6f5307dc49cb0c62509ee"
   integrity sha512-ZFwX8cDhbz6jiv3JZdMVYq8SSWHOUchChPmRoMwdIu3lz89aCu/gVK9TdR1eeb0ARQ8+5rtjUKrk1UR8hh0dhQ==
 
 "@types/yargs-parser@*":
