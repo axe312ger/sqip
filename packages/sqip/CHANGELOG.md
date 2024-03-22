@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.49](https://github.com/axe312ger/sqip/compare/sqip@1.0.0-alpha.48...sqip@1.0.0-alpha.49) (2024-03-22)
+
+
+### Bug Fixes
+
+* dynamic imports seem to have double default - the ESM situation in JS is still madness ([dced6a8](https://github.com/axe312ger/sqip/commit/dced6a88aad5d4d9e738b0f6a18de8680ba2415d))
+
+
+
+
+
 # [1.0.0-alpha.48](https://github.com/axe312ger/sqip/compare/sqip@1.0.0-alpha.47...sqip@1.0.0-alpha.48) (2024-03-22)
 
 

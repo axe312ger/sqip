@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.51](https://github.com/axe312ger/sqip/compare/sqip-plugin-blur@1.0.0-alpha.50...sqip-plugin-blur@1.0.0-alpha.51) (2024-03-22)
+
+
+### Bug Fixes
+
+* dynamic imports seem to have double default - the ESM situation in JS is still madness ([dced6a8](https://github.com/axe312ger/sqip/commit/dced6a88aad5d4d9e738b0f6a18de8680ba2415d))
+
+
+
+
+
 # [1.0.0-alpha.50](https://github.com/axe312ger/sqip/compare/sqip-plugin-blur@1.0.0-alpha.49...sqip-plugin-blur@1.0.0-alpha.50) (2024-03-22)
 
 **Note:** Version bump only for package sqip-plugin-blur

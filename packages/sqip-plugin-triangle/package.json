@@ -1,6 +1,6 @@
 {
   "name": "sqip-plugin-triangle",
-  "version": "1.0.0-alpha.7",
+  "version": "1.0.0-alpha.8",
   "description": "> TODO: description",
   "author": "Benedikt Rötsch <info@benedikt-roetsch.de>",
   "homepage": "https://github.com/axe312ger/sqip#readme",
@@ -32,6 +32,6 @@
     "@svgdotjs/svg.js": "^3.0.16",
     "debug": "^4.3.4",
     "execa": "5.1.1",
-    "sqip": "^1.0.0-alpha.48"
+    "sqip": "^1.0.0-alpha.49"
   }
 }
