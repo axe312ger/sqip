@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.48](https://github.com/axe312ger/sqip/compare/sqip@1.0.0-alpha.47...sqip@1.0.0-alpha.48) (2024-03-22)
+
+
+### Bug Fixes
+
+* BREAKING - up minimum node version to 18.12.1 and configure typescript to output for that node version ([f1e051f](https://github.com/axe312ger/sqip/commit/f1e051f4962e094308116a9bbf47f063abf7dc8b))
+
+
+
+
+
 # [1.0.0-alpha.47](https://github.com/axe312ger/sqip/compare/sqip@1.0.0-alpha.46...sqip@1.0.0-alpha.47) (2024-03-22)
 
 **Note:** Version bump only for package sqip
