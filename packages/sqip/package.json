@@ -52,7 +52,7 @@
     "mime": "3",
     "sharp": "^0.32.0",
     "svgdom": "^0.1.13",
-    "term-img": "^5.0.0"
+    "term-img": "^6.0.0"
   },
   "peerDependencies": {
     "sqip-plugin-blur": "^1.0.0-alpha.0",
