@@ -29,7 +29,6 @@
     "url": "https://github.com/axe312ger/sqip/issues"
   },
   "dependencies": {
-    "@svgdotjs/svg.js": "^3.0.16",
     "debug": "^4.3.4",
     "execa": "5.1.1",
     "sqip": "^1.0.0-alpha.49"

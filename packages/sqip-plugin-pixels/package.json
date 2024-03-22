@@ -26,13 +26,10 @@
     "url": "https://github.com/axe312ger/sqip/issues"
   },
   "dependencies": {
-    "@svgdotjs/svg.js": "^3.0.16",
     "sharp": "^0.32.0",
-    "sqip": "^1.0.0-alpha.49",
-    "svgdom": "^0.1.13"
+    "sqip": "^1.0.0-alpha.49"
   },
   "devDependencies": {
-    "@types/svgdom": "^0.1.2",
     "cheerio": "1.0.0-rc.12"
   }
 }

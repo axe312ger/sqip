@@ -1,6 +1,6 @@
 import path from 'path'
 
-import { SVG, registerWindow } from '@svgdotjs/svg.js'
+import { SVG, registerWindow, Element } from '@svgdotjs/svg.js'
 import Debug from 'debug'
 import expandTilde from 'expand-tilde'
 import fastGlob from 'fast-glob'
@@ -10,13 +10,15 @@ import type { Palette } from '@behold/sharp-vibrant/lib/color'
 
 const debug = Debug('sqip')
 
-export const loadSVG = async (svg: string) => {
+export const loadSVG = async (
+  svg: string
+): Promise<{ svg: Element; SVG: typeof SVG }> => {
   const { createSVGWindow } = await import('svgdom')
   const window = createSVGWindow()
   const document = window.document
   registerWindow(window, document)
 
-  return SVG(svg)
+  return { svg: SVG(svg), SVG }
 }
 
 export function isError(error: unknown): error is NodeJS.ErrnoException {

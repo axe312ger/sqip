@@ -15,8 +15,6 @@ import {
   parseColor
 } from 'sqip'
 
-import { SVG } from '@svgdotjs/svg.js'
-
 interface TrianglePluginOptions extends SqipPluginOptions {
   options: Partial<TriangleOptions>
 }
@@ -197,7 +195,7 @@ export default class TrianglePlugin extends SqipPlugin {
     await unlink(tmpFile)
     await unlink(tmpSvgFile)
 
-    const canvas = await loadSVG(
+    const { svg: canvas, SVG } = await loadSVG(
       result
         .toString()
         .replace(/<!DOCTYPE[^>]+>/, '')

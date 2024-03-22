@@ -6,8 +6,6 @@ import {
   SqipCliOptionDefinition
 } from 'sqip'
 
-import { SVG, registerWindow } from '@svgdotjs/svg.js'
-
 interface BlurPluginOptions extends SqipPluginOptions {
   options: BlurOptions
 }
@@ -48,13 +46,7 @@ export default class SVGPlugin extends SqipPlugin {
       return svg
     }
 
-    const { createSVGWindow } = await import('svgdom')
-    const window = createSVGWindow()
-    const document = window.document
-
-    registerWindow(window, document)
-
-    const canvas = await loadSVG(svg)
+    const {svg: canvas, SVG} = await loadSVG(svg)
     const blurFilterId = 'b'
     const group = SVG(`<g filter="url(#${blurFilterId})"/>`)
 
