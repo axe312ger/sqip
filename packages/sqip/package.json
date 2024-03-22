@@ -45,6 +45,7 @@
     "chalk": "^4.1.0",
     "cli-table3": "^0.6.0",
     "command-line-args": "^5.2.0",
+    "debug": "4.3.4",
     "expand-tilde": "^2.0.2",
     "fast-glob": "^3.2.12",
     "fs-extra": "^11.1.1",
@@ -64,7 +65,6 @@
     "@types/expand-tilde": "2.0.2",
     "@types/fs-extra": "11.0.4",
     "@types/mime": "^3.0.4",
-    "@types/svgdom": "^0.1.2",
-    "debug": "4.3.4"
+    "@types/svgdom": "^0.1.2"
   }
 }
