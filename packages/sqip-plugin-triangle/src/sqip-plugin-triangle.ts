@@ -7,7 +7,6 @@ import Debug from 'debug'
 
 import {
   SqipPlugin,
-  // parseColor,
   SqipPluginOptions,
   PluginOptions,
   SqipCliOptionDefinition,

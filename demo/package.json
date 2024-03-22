@@ -27,17 +27,19 @@
     "sharp": "0.32.6",
     "sqip": "^1.0.0-alpha.45",
     "sqip-legacy": "npm:sqip@legacy",
-    "sqip-plugin-blur": "^1.0.0-alpha.46",
-    "sqip-plugin-data-uri": "^1.0.0-alpha.46",
-    "sqip-plugin-pixels": "^1.0.0-alpha.45",
-    "sqip-plugin-potrace": "^1.0.0-alpha.17",
-    "sqip-plugin-primitive": "^1.0.0-alpha.47",
-    "sqip-plugin-svgo": "^1.0.0-alpha.47",
     "systeminformation": "^5.22.0",
     "vhtml": "2.2.0"
   },
   "devDependencies": {
     "gh-pages": "6.1.1"
+  },
+  "peerDependencies": {
+    "sqip-plugin-blur": "^1.0.0-alpha.46",
+    "sqip-plugin-data-uri": "^1.0.0-alpha.46",
+    "sqip-plugin-pixels": "^1.0.0-alpha.45",
+    "sqip-plugin-potrace": "^1.0.0-alpha.17",
+    "sqip-plugin-primitive": "^1.0.0-alpha.47",
+    "sqip-plugin-svgo": "^1.0.0-alpha.47"
   },
   "engines": {
     "node": ">=14.0.0"

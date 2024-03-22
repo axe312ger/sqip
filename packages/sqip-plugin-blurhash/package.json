@@ -29,8 +29,5 @@
     "blurhash": "^2.0.5",
     "sharp": "^0.32.0",
     "sqip": "^1.0.0-alpha.45"
-  },
-  "devDependencies": {
-    "@types/jsdom": "^21.1.6"
   }
 }

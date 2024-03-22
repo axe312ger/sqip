@@ -28,8 +28,5 @@
   },
   "dependencies": {
     "sqip": "^1.0.0-alpha.45"
-  },
-  "peerDependencies": {
-    "@svgdotjs/svg.js": "^3.2.0"
   }
 }
