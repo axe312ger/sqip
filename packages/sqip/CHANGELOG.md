@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.46](https://github.com/axe312ger/sqip/compare/sqip@1.0.0-alpha.45...sqip@1.0.0-alpha.46) (2024-03-22)
+
+
+### Bug Fixes
+
+* ensure svgdom is imported dynamically to support old node versions ([9a93204](https://github.com/axe312ger/sqip/commit/9a9320450abe8f0cab69ef1cb4f85b0493398c91))
+
+
+
+
+
 # [1.0.0-alpha.45](https://github.com/axe312ger/sqip/compare/sqip@1.0.0-alpha.44...sqip@1.0.0-alpha.45) (2024-03-21)
 
 **Note:** Version bump only for package sqip

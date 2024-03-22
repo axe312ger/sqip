@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.4](https://github.com/axe312ger/sqip/compare/sqip-plugin-triangle@1.0.0-alpha.3...sqip-plugin-triangle@1.0.0-alpha.4) (2024-03-22)
+
+
+### Bug Fixes
+
+* ensure svgdom is imported dynamically to support old node versions ([9a93204](https://github.com/axe312ger/sqip/commit/9a9320450abe8f0cab69ef1cb4f85b0493398c91))
+
+
+
+
+
 # [1.0.0-alpha.3](https://github.com/axe312ger/sqip/compare/sqip-plugin-triangle@1.0.0-alpha.2...sqip-plugin-triangle@1.0.0-alpha.3) (2024-03-21)
 
 **Note:** Version bump only for package sqip-plugin-triangle
