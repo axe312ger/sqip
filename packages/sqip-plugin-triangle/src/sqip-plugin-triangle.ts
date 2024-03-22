@@ -198,7 +198,7 @@ export default class TrianglePlugin extends SqipPlugin {
     await unlink(tmpFile)
     await unlink(tmpSvgFile)
 
-    const canvas = loadSVG(
+    const canvas = await loadSVG(
       result
         .toString()
         .replace(/<!DOCTYPE[^>]+>/, '')

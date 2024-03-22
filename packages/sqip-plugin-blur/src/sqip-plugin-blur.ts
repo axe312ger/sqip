@@ -35,19 +35,20 @@ export default class SVGPlugin extends SqipPlugin {
     this.options = { blur: 12, ...pluginOptions }
   }
 
-  apply(imageBuffer: Buffer): Buffer {
+  async apply(imageBuffer: Buffer): Promise<Buffer> {
     if (!this.options.blur) {
       return imageBuffer
     }
-    return Buffer.from(this.applyBlurFilter(imageBuffer.toString()))
+    const blurredResult = await this.applyBlurFilter(imageBuffer.toString())
+    return Buffer.from(blurredResult)
   }
 
-  applyBlurFilter(svg: string): string {
+  async applyBlurFilter(svg: string): Promise<string> {
     if (!this.options.blur) {
       return svg
     }
 
-    const canvas = loadSVG(svg)
+    const canvas = await loadSVG(svg)
     const blurFilterId = 'b'
     const group = SVG(`<g filter="url(#${blurFilterId})"/>`)
 

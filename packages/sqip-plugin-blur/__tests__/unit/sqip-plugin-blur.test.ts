@@ -12,7 +12,7 @@ const sampleWithoutGroup =
   '<svg viewBox="0 0 1024 768"><rect fill="#bada55"/><polygon points="0,100 50,25 50,75 100,0" /></svg>'
 
 describe('applies blur filter', () => {
-  test('do nothing when no blur is given', () => {
+  test('do nothing when no blur is given', async () => {
     const svgPlugin = new SvgPlugin({
       options: {},
       sqipConfig: mockedConfig,
@@ -20,10 +20,10 @@ describe('applies blur filter', () => {
         blur: 0
       }
     })
-    const result = svgPlugin.applyBlurFilter(sampleWithGroup)
+    const result = await svgPlugin.applyBlurFilter(sampleWithGroup)
     expect(result).toMatchSnapshot()
   })
-  test('svg with group and blur', () => {
+  test('svg with group and blur', async () => {
     const svgPlugin = new SvgPlugin({
       options: {},
       sqipConfig: mockedConfig,
@@ -31,10 +31,10 @@ describe('applies blur filter', () => {
         blur: 5
       }
     })
-    const result = svgPlugin.applyBlurFilter(sampleWithGroup)
+    const result = await svgPlugin.applyBlurFilter(sampleWithGroup)
     expect(result).toMatchSnapshot()
   })
-  test('svg without group and blur', () => {
+  test('svg without group and blur', async () => {
     const svgPlugin = new SvgPlugin({
       options: {},
       sqipConfig: mockedConfig,
@@ -42,7 +42,7 @@ describe('applies blur filter', () => {
         blur: 5
       }
     })
-    const result = svgPlugin.applyBlurFilter(sampleWithoutGroup)
+    const result = await svgPlugin.applyBlurFilter(sampleWithoutGroup)
     expect(result).toMatchSnapshot()
   })
 })

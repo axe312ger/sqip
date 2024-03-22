@@ -11,7 +11,7 @@ const FILE_SVG = resolve(DIR_FIXTURES, 'beach-sqip.svg')
 
 test('loadSVG', async () => {
   const svgContentBuffer = await readFile(FILE_SVG)
-  const $svg = loadSVG(svgContentBuffer.toString())
+  const $svg = await loadSVG(svgContentBuffer.toString())
   expect($svg).toBeDefined()
 })
 

@@ -1,6 +1,5 @@
 import path from 'path'
 
-import { createSVGWindow } from 'svgdom'
 import { SVG, registerWindow } from '@svgdotjs/svg.js'
 import Debug from 'debug'
 import expandTilde from 'expand-tilde'
@@ -11,7 +10,8 @@ import type { Palette } from '@behold/sharp-vibrant/lib/color'
 
 const debug = Debug('sqip')
 
-export const loadSVG = (svg: string) => {
+export const loadSVG = async (svg: string) => {
+  const { createSVGWindow } = await import('svgdom')
   const window = createSVGWindow()
   const document = window.document
   registerWindow(window, document)

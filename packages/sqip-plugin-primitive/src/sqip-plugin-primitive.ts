@@ -173,7 +173,7 @@ export default class PrimitivePlugin extends SqipPlugin {
       }
     )
 
-    const canvas = loadSVG(result.stdout)
+    const canvas = await loadSVG(result.stdout)
 
     const bgRect = canvas.findOne('rect:first-child[fill]')
 
