@@ -43,7 +43,7 @@
     "gifwrap": "^0.10.1"
   },
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=18.12.1"
   },
   "workspaces": [
     "packages/*",

@@ -42,6 +42,6 @@
     "sqip-plugin-svgo": "^1.0.0-alpha.47"
   },
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=18.12.1"
   }
 }
