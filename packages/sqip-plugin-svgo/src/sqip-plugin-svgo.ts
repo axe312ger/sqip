@@ -35,7 +35,7 @@ export default class SVGOPlugin extends SqipPlugin {
             removeAny: true
           }
         },
-        'removeDimensions',
+        // 'removeDimensions',
         'removeEditorsNSData',
         'removeElementsByAttr',
         'removeEmptyAttrs',
