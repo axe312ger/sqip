@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.53](https://github.com/axe312ger/sqip/compare/sqip-plugin-svgo@1.0.0-alpha.52...sqip-plugin-svgo@1.0.0-alpha.53) (2024-03-25)
+
+
+### Bug Fixes
+
+* keep dimensions in svgs for better preview quality ([4d63b17](https://github.com/axe312ger/sqip/commit/4d63b17fd10364604df53cc85f847a2b8f910d42))
+
+
+
+
+
 # [1.0.0-alpha.52](https://github.com/axe312ger/sqip/compare/sqip-plugin-svgo@1.0.0-alpha.51...sqip-plugin-svgo@1.0.0-alpha.52) (2024-03-22)
 
 **Note:** Version bump only for package sqip-plugin-svgo
