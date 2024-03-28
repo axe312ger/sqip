@@ -90,7 +90,7 @@ export default class PrimitivePlugin extends SqipPlugin {
         type: String,
         description:
           'starting background color. Either the name of a color from the color palette or a 6 digit hex value for solid color and a 8 digit hex value for transparency: ffffff00',
-        defaultValue: 'DarkMuted'
+        defaultValue: 'Muted'
       },
       {
         name: 'cores',
@@ -110,7 +110,7 @@ export default class PrimitivePlugin extends SqipPlugin {
       mode: 0,
       rep: 0,
       alpha: 128,
-      background: 'DarkMuted',
+      background: 'Muted',
       cores: 0,
       ...pluginOptions
     }
