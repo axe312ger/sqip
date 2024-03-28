@@ -195,10 +195,10 @@ describe('runPrimitive', () => {
     expect(res.toString()).toMatchSnapshot()
   })
 
-  test('removes background rectangle when user disabled it', async () => {
+  test('removes background rectangle when user asks for it', async () => {
     const primitivePlugin = new PrimitivePlugin({
       pluginOptions: {
-        keepBackgroundElement: false
+        removeBackgroundElement: true
       },
       options: {},
       sqipConfig: mockedConfig

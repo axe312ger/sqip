@@ -28,7 +28,7 @@ interface PrimitiveOptions extends PluginOptions {
   alpha?: number
   background?: string
   cores?: number
-  keepBackgroundElement?: boolean
+  removeBackgroundElement?: boolean
 }
 
 const debug = Debug('sqip-plugin-primitive')
@@ -100,11 +100,11 @@ export default class PrimitivePlugin extends SqipPlugin {
         defaultValue: 0
       },
       {
-        name: 'keepBackgroundElement',
+        name: 'removeBackgroundElement',
         type: Boolean,
         description:
           'Should we keep the background element created by primitive? Disable this when you combine the primitive plugin with the blur plugin.',
-        defaultValue: true
+        defaultValue: false
       }
     ]
   }
@@ -120,7 +120,7 @@ export default class PrimitivePlugin extends SqipPlugin {
       alpha: 128,
       background: 'Muted',
       cores: 0,
-      keepBackgroundElement: true,
+      removeBackgroundElement: false,
       ...pluginOptions
     }
   }
@@ -145,7 +145,7 @@ export default class PrimitivePlugin extends SqipPlugin {
       alpha,
       background: userBg,
       cores,
-      keepBackgroundElement
+      removeBackgroundElement
     } = this.options
 
     const { width, height, palette } = metadata
@@ -185,20 +185,16 @@ export default class PrimitivePlugin extends SqipPlugin {
 
     const { svg: canvas } = await loadSVG(result.stdout)
 
-    const bgRect = canvas.findOne('rect:first-child[fill]')
+    const bgRect = canvas.findOne('rect[fill]')
 
     if (bgRect) {
-      if (keepBackgroundElement) {
-        if (bg.match(/[0-9a-f]{6}00/)) {
-          // Remove background rectangle when using full transparent background
-          bgRect.remove()
-        } else {
-          // Optimize Background Rectangle for compression & responsiveness
-          bgRect.attr('width', '100%')
-          bgRect.attr('height', '100%')
-        }
-      } else {
+      if (removeBackgroundElement || bg.match(/[0-9a-f]{6}00/)) {
+        // Remove background rectangle when using full transparent background
         bgRect.remove()
+      } else {
+        // Optimize Background Rectangle for compression & responsiveness
+        bgRect.attr('width', '100%')
+        bgRect.attr('height', '100%')
       }
     }
 
