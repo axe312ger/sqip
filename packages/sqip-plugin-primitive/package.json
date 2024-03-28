@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "debug": "^4.3.4",
-    "execa": "5.1.1",
+    "execa": "8.0.1",
     "sharp": "^0.32.0",
     "sqip": "^1.0.0-alpha.51"
   }
