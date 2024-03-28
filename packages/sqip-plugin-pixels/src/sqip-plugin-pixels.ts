@@ -99,9 +99,23 @@ export default class PixelsPlugin extends SqipPlugin {
       const blue = data[i + 2]
       const alpha = (data[i + 3] / 255).toFixed(2)
       if (parseFloat(alpha) > 0) {
+        // Outer pixels should overgrow the view port to support better blurring
+        const horizontalSizeModifier =
+          column === 0 || column === info.width - 1 ? 2 : 1
+        const verticalSizeModifier =
+          row === 0 || row === info.height - 1 ? 2 : 1
+        const horizontalShift = column === 0 ? pixelSize * -1 : 0
+        const verticalShift = row === 0 ? pixelSize * -1 : 0
+
         const rect = group
-          .rect(1 * pixelSize, 1 * pixelSize)
-          .move(column * pixelSize, row * pixelSize)
+          .rect(
+            horizontalSizeModifier * pixelSize,
+            verticalSizeModifier * pixelSize
+          )
+          .move(
+            column * pixelSize + horizontalShift,
+            row * pixelSize + verticalShift
+          )
 
         // Only use alpha when relevant
         if (parseFloat(alpha) < 1) {

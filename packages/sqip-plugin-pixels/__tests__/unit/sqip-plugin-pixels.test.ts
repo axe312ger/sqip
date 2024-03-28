@@ -50,7 +50,15 @@ describe('sqip-plugin-pixels', () => {
     if (!firstRect) {
       throw new Error('error parsing pixels result. no rect found.')
     }
-    expect(firstRect.attribs.width).toEqual('128')
+    expect(firstRect.attribs.width).toEqual('256')
+    expect(firstRect.attribs.height).toEqual('256')
+
+    const secondRect = $rects.get(1)
+    if (!secondRect) {
+      throw new Error('error parsing pixels result. no rect found.')
+    }
+    expect(secondRect.attribs.width).toEqual('128')
+    expect(secondRect.attribs.height).toEqual('256')
   })
 
   it('custom config', async () => {
@@ -75,6 +83,14 @@ describe('sqip-plugin-pixels', () => {
     if (!firstRect) {
       throw new Error('error parsing pixels result. no rect found.')
     }
-    expect(firstRect.attribs.width).toEqual('256')
+    expect(firstRect.attribs.width).toEqual('512')
+    expect(firstRect.attribs.height).toEqual('512')
+
+    const secondRect = $rects.get(1)
+    if (!secondRect) {
+      throw new Error('error parsing pixels result. no rect found.')
+    }
+    expect(secondRect.attribs.width).toEqual('256')
+    expect(secondRect.attribs.height).toEqual('512')
   })
 })
