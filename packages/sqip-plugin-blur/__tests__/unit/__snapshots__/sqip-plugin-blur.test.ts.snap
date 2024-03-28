@@ -1,21 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`applies blur filter do nothing when no blur is given 1`] = `"<svg viewBox=\\"0 0 1024 768\\"><rect fill=\\"#bada55\\"/><g><path fill=\\"#C0FFEE\\" d=\\"M51.5 17.5l4 18 15 1z\\"/></g></svg>"`;
+exports[`applies blur filter background fix for css blur - from palette 1`] = `"<svg viewBox=\\"0 0 1024 768\\"><g style=\\"filter: blur(12px);\\"><rect x=\\"-50%\\" y=\\"-50%\\" width=\\"200%\\" height=\\"200%\\" fill=\\"#040200\\"></rect><rect fill=\\"#bada55\\"></rect><polygon points=\\"0,100 50,25 50,75 100,0\\"></polygon></g></svg>"`;
 
-exports[`applies blur filter svg with group and blur 1`] = `
-"<svg viewBox=\\"0 0 1024 768\\"><g filter=\\"url(#b)\\"><rect fill=\\"#bada55\\"></rect><g><path fill=\\"#C0FFEE\\" d=\\"M51.5 17.5l4 18 15 1z\\"></path></g></g><filter id=\\"b\\">
-        <feGaussianBlur in=\\"SourceGraphic\\" stdDeviation=\\"5\\"></feGaussianBlur>
+exports[`applies blur filter background fix for css blur - hardcoded 1`] = `"<svg viewBox=\\"0 0 1024 768\\"><g style=\\"filter: blur(12px);\\"><rect x=\\"-50%\\" y=\\"-50%\\" width=\\"200%\\" height=\\"200%\\" fill=\\"#fff\\"></rect><rect fill=\\"#bada55\\"></rect><polygon points=\\"0,100 50,25 50,75 100,0\\"></polygon></g></svg>"`;
+
+exports[`applies blur filter default configuration 1`] = `"<svg viewBox=\\"0 0 1024 768\\"><g style=\\"filter: blur(12px);\\"><rect x=\\"-50%\\" y=\\"-50%\\" width=\\"200%\\" height=\\"200%\\" fill=\\"#040204\\"></rect><rect fill=\\"#bada55\\"></rect><polygon points=\\"0,100 50,25 50,75 100,0\\"></polygon></g></svg>"`;
+
+exports[`applies blur filter do nothing when no blur is given 1`] = `"<svg viewBox=\\"0 0 1024 768\\"><rect fill=\\"#bada55\\"/><polygon points=\\"0,100 50,25 50,75 100,0\\" /></svg>"`;
+
+exports[`applies blur filter legacy blur 1`] = `
+"<svg viewBox=\\"0 0 1024 768\\"><g filter=\\"url(#b)\\"><rect fill=\\"#bada55\\"></rect><polygon points=\\"0,100 50,25 50,75 100,0\\"></polygon><filter id=\\"b\\">
+        <feGaussianBlur in=\\"SourceGraphic\\" stdDeviation=\\"12\\"></feGaussianBlur>
         <feComponentTransfer>
             <feFuncA type=\\"discrete\\" tableValues=\\"1 1\\"></feFuncA>
         </feComponentTransfer>
-      </filter></svg>"
+      </filter></g></svg>"
 `;
 
-exports[`applies blur filter svg without group and blur 1`] = `
-"<svg viewBox=\\"0 0 1024 768\\"><g filter=\\"url(#b)\\"><rect fill=\\"#bada55\\"></rect><polygon points=\\"0,100 50,25 50,75 100,0\\"></polygon></g><filter id=\\"b\\">
-        <feGaussianBlur in=\\"SourceGraphic\\" stdDeviation=\\"5\\"></feGaussianBlur>
+exports[`applies blur filter legacy blur with custom deviation 1`] = `
+"<svg viewBox=\\"0 0 1024 768\\"><g filter=\\"url(#b)\\"><rect fill=\\"#bada55\\"></rect><polygon points=\\"0,100 50,25 50,75 100,0\\"></polygon><filter id=\\"b\\">
+        <feGaussianBlur in=\\"SourceGraphic\\" stdDeviation=\\"24\\"></feGaussianBlur>
         <feComponentTransfer>
             <feFuncA type=\\"discrete\\" tableValues=\\"1 1\\"></feFuncA>
         </feComponentTransfer>
-      </filter></svg>"
+      </filter></g></svg>"
 `;
+
+exports[`applies blur filter svg with group and blur 1`] = `"<svg viewBox=\\"0 0 1024 768\\"><g style=\\"filter: blur(5px);\\"><rect x=\\"-50%\\" y=\\"-50%\\" width=\\"200%\\" height=\\"200%\\" fill=\\"#040204\\"></rect><rect fill=\\"#bada55\\"></rect><g><path fill=\\"#C0FFEE\\" d=\\"M51.5 17.5l4 18 15 1z\\"></path></g></g></svg>"`;
+
+exports[`applies blur filter svg without group and blur 1`] = `"<svg viewBox=\\"0 0 1024 768\\"><g style=\\"filter: blur(5px);\\"><rect x=\\"-50%\\" y=\\"-50%\\" width=\\"200%\\" height=\\"200%\\" fill=\\"#040204\\"></rect><rect fill=\\"#bada55\\"></rect><polygon points=\\"0,100 50,25 50,75 100,0\\"></polygon></g></svg>"`;

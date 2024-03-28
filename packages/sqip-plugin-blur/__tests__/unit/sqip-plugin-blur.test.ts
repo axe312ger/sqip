@@ -1,3 +1,4 @@
+import { mockedMetadata } from 'sqip'
 import SvgPlugin from '../../src/sqip-plugin-blur'
 
 const mockedConfig = {
@@ -6,43 +7,90 @@ const mockedConfig = {
   plugins: ['blur']
 }
 
-const sampleWithGroup =
+const sampleWithGroup = Buffer.from(
   '<svg viewBox="0 0 1024 768"><rect fill="#bada55"/><g><path fill="#C0FFEE" d="M51.5 17.5l4 18 15 1z"/></g></svg>'
-const sampleWithoutGroup =
+)
+const sampleWithoutGroup = Buffer.from(
   '<svg viewBox="0 0 1024 768"><rect fill="#bada55"/><polygon points="0,100 50,25 50,75 100,0" /></svg>'
+)
 
 describe('applies blur filter', () => {
   test('do nothing when no blur is given', async () => {
     const svgPlugin = new SvgPlugin({
       options: {},
       sqipConfig: mockedConfig,
-      pluginOptions: {
-        blur: 0
-      }
+      pluginOptions: { blur: 0 }
     })
-    const result = await svgPlugin.applyBlurFilter(sampleWithGroup)
-    expect(result).toMatchSnapshot()
+    const result = await svgPlugin.apply(sampleWithoutGroup, mockedMetadata)
+    expect(result.toString()).toMatchSnapshot()
   })
   test('svg with group and blur', async () => {
     const svgPlugin = new SvgPlugin({
       options: {},
       sqipConfig: mockedConfig,
-      pluginOptions: {
-        blur: 5
-      }
+      pluginOptions: { blur: 5 }
     })
-    const result = await svgPlugin.applyBlurFilter(sampleWithGroup)
-    expect(result).toMatchSnapshot()
+    const result = await svgPlugin.apply(sampleWithGroup, mockedMetadata)
+    expect(result.toString()).toMatchSnapshot()
   })
   test('svg without group and blur', async () => {
     const svgPlugin = new SvgPlugin({
       options: {},
       sqipConfig: mockedConfig,
+      pluginOptions: { blur: 5 }
+    })
+    const result = await svgPlugin.apply(sampleWithoutGroup, mockedMetadata)
+    expect(result.toString()).toMatchSnapshot()
+  })
+
+  test('default configuration', async () => {
+    const svgPlugin = new SvgPlugin({
+      options: {},
+      sqipConfig: mockedConfig,
+      pluginOptions: {}
+    })
+    const result = await svgPlugin.apply(sampleWithoutGroup, mockedMetadata)
+    expect(result.toString()).toMatchSnapshot()
+  })
+
+  test('legacy blur', async () => {
+    const svgPlugin = new SvgPlugin({
+      options: {},
+      sqipConfig: mockedConfig,
+      pluginOptions: { legacyBlur: true }
+    })
+    const result = await svgPlugin.apply(sampleWithoutGroup, mockedMetadata)
+    expect(result.toString()).toMatchSnapshot()
+  })
+  test('legacy blur with custom deviation', async () => {
+    const svgPlugin = new SvgPlugin({
+      options: {},
+      sqipConfig: mockedConfig,
       pluginOptions: {
-        blur: 5
+        legacyBlur: true,
+        blur: 24
       }
     })
-    const result = await svgPlugin.applyBlurFilter(sampleWithoutGroup)
-    expect(result).toMatchSnapshot()
+    const result = await svgPlugin.apply(sampleWithoutGroup, mockedMetadata)
+    expect(result.toString()).toMatchSnapshot()
+  })
+
+  test('background fix for css blur - from palette', async () => {
+    const svgPlugin = new SvgPlugin({
+      options: {},
+      sqipConfig: mockedConfig,
+      pluginOptions: { backgroundColor: 'DarkMuted' }
+    })
+    const result = await svgPlugin.apply(sampleWithoutGroup, mockedMetadata)
+    expect(result.toString()).toMatchSnapshot()
+  })
+  test('background fix for css blur - hardcoded', async () => {
+    const svgPlugin = new SvgPlugin({
+      options: {},
+      sqipConfig: mockedConfig,
+      pluginOptions: { backgroundColor: '#fff' }
+    })
+    const result = await svgPlugin.apply(sampleWithoutGroup, mockedMetadata)
+    expect(result.toString()).toMatchSnapshot()
   })
 })
