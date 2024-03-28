@@ -26,6 +26,8 @@ exports[`applies blur filter legacy blur with custom deviation 1`] = `
       </filter></g></svg>"
 `;
 
+exports[`applies blur filter skips background fix for css blur when background is 100% transparent 1`] = `"<svg viewBox=\\"0 0 1024 768\\"><g style=\\"filter: blur(12px);\\"><rect fill=\\"#bada55\\"></rect><polygon points=\\"0,100 50,25 50,75 100,0\\"></polygon></g></svg>"`;
+
 exports[`applies blur filter svg with group and blur 1`] = `"<svg viewBox=\\"0 0 1024 768\\"><g style=\\"filter: blur(5px);\\"><rect x=\\"-50%\\" y=\\"-50%\\" width=\\"200%\\" height=\\"200%\\" fill=\\"#040204\\"></rect><rect fill=\\"#bada55\\"></rect><g><path fill=\\"#C0FFEE\\" d=\\"M51.5 17.5l4 18 15 1z\\"></path></g></g></svg>"`;
 
 exports[`applies blur filter svg without group and blur 1`] = `"<svg viewBox=\\"0 0 1024 768\\"><g style=\\"filter: blur(5px);\\"><rect x=\\"-50%\\" y=\\"-50%\\" width=\\"200%\\" height=\\"200%\\" fill=\\"#040204\\"></rect><rect fill=\\"#bada55\\"></rect><polygon points=\\"0,100 50,25 50,75 100,0\\"></polygon></g></svg>"`;

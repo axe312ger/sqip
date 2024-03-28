@@ -93,4 +93,13 @@ describe('applies blur filter', () => {
     const result = await svgPlugin.apply(sampleWithoutGroup, mockedMetadata)
     expect(result.toString()).toMatchSnapshot()
   })
+  test('skips background fix for css blur when background is 100% transparent', async () => {
+    const svgPlugin = new SvgPlugin({
+      options: {},
+      sqipConfig: mockedConfig,
+      pluginOptions: { backgroundColor: '#FFFFFF00' }
+    })
+    const result = await svgPlugin.apply(sampleWithoutGroup, mockedMetadata)
+    expect(result.toString()).toMatchSnapshot()
+  })
 })

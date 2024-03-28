@@ -48,11 +48,18 @@ export default class SVGPlugin extends SqipPlugin {
   constructor(options: BlurPluginOptions) {
     super(options)
     const { pluginOptions } = options
-    this.options = { blur: 12, legacyBlur: false, backgroundColor: 'Muted', ...pluginOptions }
+    this.options = {
+      blur: 12,
+      legacyBlur: false,
+      backgroundColor: 'Muted',
+      ...pluginOptions
+    }
   }
 
-  async apply(imageBuffer: Buffer,
-    metadata: SqipImageMetadata): Promise<Buffer> {
+  async apply(
+    imageBuffer: Buffer,
+    metadata: SqipImageMetadata
+  ): Promise<Buffer> {
     if (!this.options.blur) {
       return imageBuffer
     }
@@ -61,7 +68,7 @@ export default class SVGPlugin extends SqipPlugin {
       return imageBuffer
     }
 
-    const svg = imageBuffer.toString();
+    const svg = imageBuffer.toString()
 
     const { svg: canvas, SVG } = await loadSVG(svg)
 
@@ -95,13 +102,14 @@ export default class SVGPlugin extends SqipPlugin {
               palette: metadata.palette
             })
           : metadata.palette['Muted']?.hex
-      )
-        .toLowerCase()
+      ).toLowerCase()
 
-      const imageBorderFix = SVG(
-        `<rect x="-50%" y="-50%" width="200%" height="200%" fill="${bg}"/>`
-      )
-      imageBorderFix.addTo(group);
+      if (!bg.match(/[0-9a-f]{6}00/)) {
+        const imageBorderFix = SVG(
+          `<rect x="-50%" y="-50%" width="200%" height="200%" fill="${bg}"/>`
+        )
+        imageBorderFix.addTo(group)
+      }
     }
 
     canvas.children().each((child) => child.putIn(group))
