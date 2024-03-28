@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.51](https://github.com/axe312ger/sqip/compare/sqip@1.0.0-alpha.50...sqip@1.0.0-alpha.51) (2024-03-28)
+
+
+### Features
+
+* sqip now can naively detect the image background color and the pixels blugin supports setting background color which will be handled as transparent pixels ([f4b7748](https://github.com/axe312ger/sqip/commit/f4b774859591390be3e80c6f3f8b0ec062af4716))
+
+
+
+
+
 # [1.0.0-alpha.50](https://github.com/axe312ger/sqip/compare/sqip@1.0.0-alpha.49...sqip@1.0.0-alpha.50) (2024-03-22)
 
 

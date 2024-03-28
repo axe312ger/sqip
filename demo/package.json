@@ -1,6 +1,6 @@
 {
   "name": "sqip-demo",
-  "version": "1.0.0-alpha.54",
+  "version": "1.0.0-alpha.55",
   "main": "index.html",
   "repository": "http://axe312ger.github.io/sqip",
   "author": "Benedikt Rötsch <info@benedikt-roetsch.de>",
@@ -25,7 +25,7 @@
     "pretty-bytes": "6.1.1",
     "probe-image-size": "7.2.3",
     "sharp": "0.32.6",
-    "sqip": "^1.0.0-alpha.50",
+    "sqip": "^1.0.0-alpha.51",
     "sqip-legacy": "npm:sqip@legacy",
     "systeminformation": "^5.22.0",
     "vhtml": "2.2.0"

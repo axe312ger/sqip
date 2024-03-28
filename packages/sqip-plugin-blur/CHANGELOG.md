@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.53](https://github.com/axe312ger/sqip/compare/sqip-plugin-blur@1.0.0-alpha.52...sqip-plugin-blur@1.0.0-alpha.53) (2024-03-28)
+
+
+### Features
+
+* blur plugin now uses css blur while the legacy SVG Gaussian Blur is still optionally available ([5ffeab5](https://github.com/axe312ger/sqip/commit/5ffeab5f1486edc9fe735a1127d78343ec237319))
+
+
+
+
+
 # [1.0.0-alpha.52](https://github.com/axe312ger/sqip/compare/sqip-plugin-blur@1.0.0-alpha.51...sqip-plugin-blur@1.0.0-alpha.52) (2024-03-22)
 
 

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.53](https://github.com/axe312ger/sqip/compare/sqip-plugin-primitive@1.0.0-alpha.52...sqip-plugin-primitive@1.0.0-alpha.53) (2024-03-28)
+
+
+### Bug Fixes
+
+* use Muted as default everywhere for Primitive ([622b262](https://github.com/axe312ger/sqip/commit/622b262de0b1d6ccaeaed627479b0063ed0bf6c4))
+
+
+### Features
+
+* add option to primitive to remove the background rectangle/element ([a30d166](https://github.com/axe312ger/sqip/commit/a30d166e712c218f476b6fbf8465fac07e37edff))
+
+
+
+
+
 # [1.0.0-alpha.52](https://github.com/axe312ger/sqip/compare/sqip-plugin-primitive@1.0.0-alpha.51...sqip-plugin-primitive@1.0.0-alpha.52) (2024-03-22)
 
 

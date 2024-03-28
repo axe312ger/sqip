@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.53](https://github.com/axe312ger/sqip/compare/sqip-plugin-pixels@1.0.0-alpha.52...sqip-plugin-pixels@1.0.0-alpha.53) (2024-03-28)
+
+
+### Features
+
+* sqip now can naively detect the image background color and the pixels blugin supports setting background color which will be handled as transparent pixels ([f4b7748](https://github.com/axe312ger/sqip/commit/f4b774859591390be3e80c6f3f8b0ec062af4716))
+* the outer pixels now overlap the viewport to allow css blur without ugly borders ([6295d54](https://github.com/axe312ger/sqip/commit/6295d54731af88903c4fc92640df1e8791bed784))
+
+
+
+
+
 # [1.0.0-alpha.52](https://github.com/axe312ger/sqip/compare/sqip-plugin-pixels@1.0.0-alpha.51...sqip-plugin-pixels@1.0.0-alpha.52) (2024-03-22)
 
 **Note:** Version bump only for package sqip-plugin-pixels
