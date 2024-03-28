@@ -65,7 +65,7 @@ Array [
   "-a",
   "128",
   "-bg",
-  "040200",
+  "040204",
   "-j",
   "0",
 ]
@@ -88,7 +88,7 @@ Array [
   "-a",
   "128",
   "-bg",
-  "040200",
+  "040204",
   "-j",
   "0",
 ]
@@ -111,10 +111,12 @@ Array [
   "-a",
   "128",
   "-bg",
-  "040200",
+  "040204",
   "-j",
   "0",
 ]
 `;
+
+exports[`runPrimitive removes background rectangle when user disabled it 1`] = `"<svg viewBox=\\"0 0 1024 768\\"><g></g></svg>"`;
 
 exports[`runPrimitive removes background rectangle when using fully transparent background 1`] = `"<svg viewBox=\\"0 0 1024 768\\"><g></g></svg>"`;

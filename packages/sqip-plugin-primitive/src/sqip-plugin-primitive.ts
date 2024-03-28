@@ -28,6 +28,7 @@ interface PrimitiveOptions extends PluginOptions {
   alpha?: number
   background?: string
   cores?: number
+  keepBackgroundElement?: boolean
 }
 
 const debug = Debug('sqip-plugin-primitive')
@@ -97,6 +98,13 @@ export default class PrimitivePlugin extends SqipPlugin {
         type: Number,
         description: 'number of parallel workers (default uses all cores)',
         defaultValue: 0
+      },
+      {
+        name: 'keepBackgroundElement',
+        type: Boolean,
+        description:
+          'Should we keep the background element created by primitive? Disable this when you combine the primitive plugin with the blur plugin.',
+        defaultValue: true
       }
     ]
   }
@@ -112,6 +120,7 @@ export default class PrimitivePlugin extends SqipPlugin {
       alpha: 128,
       background: 'Muted',
       cores: 0,
+      keepBackgroundElement: true,
       ...pluginOptions
     }
   }
@@ -135,7 +144,8 @@ export default class PrimitivePlugin extends SqipPlugin {
       rep,
       alpha,
       background: userBg,
-      cores
+      cores,
+      keepBackgroundElement
     } = this.options
 
     const { width, height, palette } = metadata
@@ -178,16 +188,17 @@ export default class PrimitivePlugin extends SqipPlugin {
     const bgRect = canvas.findOne('rect:first-child[fill]')
 
     if (bgRect) {
-      if (bg.match(/[0-9a-f]{6}00/)) {
-        // Remove background rectangle when using full transparent background
-        bgRect.remove()
+      if (keepBackgroundElement) {
+        if (bg.match(/[0-9a-f]{6}00/)) {
+          // Remove background rectangle when using full transparent background
+          bgRect.remove()
+        } else {
+          // Optimize Background Rectangle for compression & responsiveness
+          bgRect.attr('width', '100%')
+          bgRect.attr('height', '100%')
+        }
       } else {
-        // Optimize Background Rectangle for compression and responsiveness
-        bgRect.attr('x', undefined)
-        bgRect.attr('y', undefined)
-
-        bgRect.attr('width', '100%')
-        bgRect.attr('height', '100%')
+        bgRect.remove()
       }
     }
 
