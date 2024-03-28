@@ -14,7 +14,7 @@ import mime from 'mime'
 
 import { OptionDefinition } from 'command-line-args'
 
-import { locateFiles } from './helpers'
+import { findBackgroundColor, locateFiles } from './helpers'
 
 export { loadSVG, parseColor } from './helpers'
 
@@ -31,6 +31,7 @@ const mainKeys = [
 ]
 
 const PALETTE_KEYS: (keyof Palette)[] = [
+  'Background',
   'Vibrant',
   'DarkVibrant',
   'LightVibrant',
@@ -93,6 +94,7 @@ export interface SqipImageMetadata {
   originalWidth: number
   originalHeight: number
   palette: Palette
+  backgroundColor: string
   height: number
   width: number
   type: 'unknown' | 'pixel' | 'svg'
@@ -277,14 +279,17 @@ async function processFile({
     const paletteTable = new Table(tableConfig)
     paletteTable.push(PALETTE_KEYS)
     paletteTable.push(
-      PALETTE_KEYS.map((key) => metadata.palette[key]?.hex)
+      [
+        metadata.backgroundColor,
+        ...PALETTE_KEYS.map((key) => metadata.palette[key]?.hex)
+      ]
         .filter<string>((hex): hex is string => typeof hex === 'string')
         .map((hex) => chalk.hex(hex)(hex))
     )
     console.log(paletteTable.toString())
 
     Object.keys(metadata)
-      .filter((key) => ![...mainKeys, 'palette'].includes(key))
+      .filter((key) => ![...mainKeys, 'palette', 'backgroundColor'].includes(key))
       .forEach((key) => {
         console.log(chalk.bold(`${key}:`))
         console.log(metadata[key])
@@ -326,6 +331,8 @@ async function processImage({
     }
   })()
 
+  const backgroundColor = await findBackgroundColor(buffer)
+
   const { name: filename } = path.parse(filePath)
   const mimeType = mime.getType(filePath) || 'unknown'
 
@@ -335,6 +342,7 @@ async function processImage({
     originalWidth: paletteResult.imageDimensions.width,
     originalHeight: paletteResult.imageDimensions.height,
     palette: paletteResult.palette,
+    backgroundColor,
     // @todo this should be set by plugins and detected initially
     type: 'unknown',
     width: 0,
@@ -482,6 +490,7 @@ export const mockedMetadata: SqipImageMetadata = {
   type: 'svg',
   originalHeight: 1024,
   originalWidth: 640,
+  backgroundColor: '#FFFFFF00',
   palette: {
     DarkMuted: new Swatch([4, 2, 0], 420),
     DarkVibrant: new Swatch([4, 2, 1], 421),

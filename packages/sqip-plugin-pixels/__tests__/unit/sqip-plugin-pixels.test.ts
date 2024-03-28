@@ -93,4 +93,6 @@ describe('sqip-plugin-pixels', () => {
     expect(secondRect.attribs.width).toEqual('256')
     expect(secondRect.attribs.height).toEqual('512')
   })
+
+  // @todo test transparent pixel creation with new logo fixture
 })

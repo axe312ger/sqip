@@ -6,19 +6,30 @@ import {
   SqipCliOptionDefinition,
   SqipImageMetadata,
   SqipPlugin,
-  SqipPluginOptions
+  SqipPluginOptions,
+  parseColor
 } from 'sqip'
 
 interface PixelOptions extends PluginOptions {
   pixels?: number
+  backgroundColor?: string
 }
 
 interface PixelConfig extends PluginOptions {
   pixels: number
+  backgroundColor: string
 }
 
 interface PixelPluginOptions extends SqipPluginOptions {
   pluginOptions: PixelOptions
+}
+
+const HEX = '0123456789ABCDEF'
+const toHex = (value: number) => {
+  let rtn = ''
+  while (value !== 0)
+    (rtn = HEX[value % 16] + rtn), (value = Math.floor(value / 16))
+  return rtn
 }
 
 export default class PixelsPlugin extends SqipPlugin {
@@ -29,6 +40,13 @@ export default class PixelsPlugin extends SqipPlugin {
         type: Number,
         description: 'The number of pixels of longer axis',
         defaultValue: 8
+      },
+      {
+        name: 'backgroundColor',
+        type: String,
+        description:
+          'If a pixel has this color, it will be handled as transparent pixel. (Supports hex with alpha and names of palette colors)',
+        defaultValue: 'DETECT'
       }
     ]
   }
@@ -39,7 +57,11 @@ export default class PixelsPlugin extends SqipPlugin {
 
     const { pluginOptions } = options
 
-    this.options = Object.assign({}, { pixels: 8 }, pluginOptions)
+    this.options = Object.assign(
+      {},
+      { pixels: 8, backgroundColor: 'DETECT' },
+      pluginOptions
+    )
   }
 
   async apply(
@@ -58,7 +80,15 @@ export default class PixelsPlugin extends SqipPlugin {
 
     registerWindow(window, document)
 
-    const { pixels } = this.options
+    const { pixels, backgroundColor } = this.options
+
+    const bg =
+      backgroundColor === 'DETECT'
+        ? metadata.backgroundColor
+        : parseColor({
+            color: this.options.backgroundColor as string, // @todo TypeScript of our plugins really needs some love
+            palette: metadata.palette
+          })
 
     const pixelSize = Math.ceil(
       Math.max(metadata.width, metadata.height) / pixels
@@ -66,12 +96,34 @@ export default class PixelsPlugin extends SqipPlugin {
     const pixelsHorizontal = Math.ceil(metadata.width / pixelSize)
     const pixelsVertical = Math.ceil(metadata.height / pixelSize)
 
-    const { data, info } = await sharp(imageBuffer)
+    // Turn non-transparent pixels with detected background color into actually transparent pixels
+    const { data: bgData, info: bgInfo } = await sharp(imageBuffer)
+      .ensureAlpha()
+      .raw()
+      .toBuffer({ resolveWithObject: true })
+
+    for (let i = 0; i < bgData.length; i += 4) {
+      if (
+        `#${toHex(bgData[i])}${toHex(bgData[i + 1])}${toHex(bgData[i + 2])}` ===
+          bg.toUpperCase() &&
+        bgData[i + 3] === 255
+      ) {
+        bgData[i + 3] = 0
+      }
+    }
+
+    const { data, info } = await sharp(bgData, {
+      raw: {
+        width: bgInfo.width,
+        height: bgInfo.height,
+        channels: 4
+      }
+    })
+      .toFormat('png')
       .resize({
         width: pixelsHorizontal,
         height: pixelsVertical
       })
-      .ensureAlpha()
       .raw()
       .toBuffer({ resolveWithObject: true })
 
