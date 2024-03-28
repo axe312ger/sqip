@@ -25,7 +25,6 @@ Array [
           "removeAny": true,
         },
       },
-      "removeDimensions",
       "removeEditorsNSData",
       "removeElementsByAttr",
       "removeEmptyAttrs",
