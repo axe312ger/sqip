@@ -488,3 +488,12 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 
 For more information, please refer to [<http://unlicense.org/>](http://unlicense.org/)
+
+
+---
+
+## 🛠️ Sponsored by [hashbite.net](https://hashbite.net) | support & custom development available
+
+We welcome everyone to post issues, fork the project, and contribute via pull requests. Together we can make this a better tool for all of us!
+
+If the contribution process feels too slow or complex for your needs, [hashbite.net](https://hashbite.net) can quickly implement features, fix bugs, or develop custom variations of this plugin on a paid basis. Just reach out through their website for direct support.
