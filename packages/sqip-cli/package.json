@@ -45,10 +45,10 @@
     "@types/command-line-usage": "5.0.4",
     "@types/debug": "4.1.12",
     "@types/fs-extra": "11.0.4",
-    "@types/semver": "7.5.6",
+    "@types/semver": "7.7.0",
     "cheerio": "1.0.0-rc.12",
     "execa": "5.1.1",
-    "semver": "7.6.0",
+    "semver": "7.7.2",
     "svgson": "^5.2.1"
   }
 }
