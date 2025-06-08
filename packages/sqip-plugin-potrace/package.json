@@ -31,6 +31,6 @@
     "sqip": "^1.0.0-alpha.51"
   },
   "devDependencies": {
-    "cheerio": "1.0.0-rc.12"
+    "cheerio": "1.1.0"
   }
 }
