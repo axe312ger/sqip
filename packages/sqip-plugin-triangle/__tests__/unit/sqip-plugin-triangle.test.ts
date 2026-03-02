@@ -78,7 +78,7 @@ describe('checkForTriangle', () => {
   })
 
   afterAll(() => {
-    proccessExitSpy.mockReset()
+    proccessExitSpy.mockRestore()
   })
 
   test('bundled executable exists', async () => {

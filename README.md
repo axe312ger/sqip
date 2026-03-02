@@ -13,22 +13,22 @@
 By combining plugins you can use it for several purposes:
 
 - Create super-tiny image previews to improve your websites lazy loading experience
-- Do art by converting images into abstract representations of themselfes
+- Do art by converting images into abstract representations of themselves
 - Quickly convert, resize or optimize a set of pixel or vector images
 - More? Ideas, contributions and community plugins are very welcome
 
 ## Table of contents
 
-- [Examples](#Examples)
-- [Requirements](#Requirements)
-- [Node](#Node)
-- [CLI](#CLI)
-- [Config](#Config)
-- [Plugins](#plugins-1)
-- [Background & reseach](#background--reseach)
-- [Credits](#Credits)
-- [Contributing](#Contributing)
-- [License](#License)
+- [Examples](#examples)
+- [Requirements](#requirements)
+- [Node](#node)
+- [CLI](#cli)
+- [Config](#config)
+- [Plugins](#plugins)
+- [Background & research](#background--research-about-image-placeholder--previews)
+- [Credits](#credits)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Examples
 
@@ -341,7 +341,7 @@ await sqip({
 
 - Can be specified multiple times: `-p svgo -p blur`
 - If prefix was skipped, plugin names will be transformed to: `sqip-plugin-[name]`
-- To set plugin options, see [plugin specifc config](#plugin-specific-confic)
+- To set plugin options, see [plugin specific config](#plugin-specific-config)
 
 ### Plugin specific config
 
@@ -513,7 +513,7 @@ DEBUG=sqip* node myscript.js
 DEBUG=sqip* sqip --input...
 ```
 
-## Background & reseach about image placeholder & previews
+## Background & research about image placeholder & previews
 
 Image placeholders are a thing: from grey boxes in skeleton screens over boxes
 that show the predominant color of the image that will later occupy the space

@@ -40,21 +40,19 @@ mockedPrimitive.prototype.apply.mockImplementation(async () =>
 
 const mockedBlur = blur as unknown as MockedClass<typeof blur>
 mockedBlur.prototype.apply.mockImplementation(
-  (async (buffer: Buffer) => buffer) as any
+  async (buffer: Buffer, _metadata: SqipImageMetadata) => buffer
 )
 
 const mockedSVGO = svgo as unknown as MockedClass<typeof svgo>
-mockedSVGO.prototype.apply.mockImplementation(
-  ((buffer: Buffer) => buffer) as any
-)
+mockedSVGO.prototype.apply.mockImplementation((buffer: Buffer) => buffer)
 
 const mockedDatauri = datauri as unknown as MockedClass<typeof datauri>
 mockedDatauri.prototype.apply.mockImplementation(
-  ((buffer: Buffer, metadata: SqipImageMetadata) => {
+  (buffer: Buffer, metadata: SqipImageMetadata) => {
     metadata.dataURI = 'data:image/svg+xml,dataURI'
     metadata.dataURIBase64 = 'data:image/svg+xml;base64,dataURIBase64=='
     return buffer
-  }) as any
+  }
 )
 interface JSONCompatibleResult {
   metadata: SqipImageMetadata
