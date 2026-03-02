@@ -43,7 +43,10 @@ describe('cli api', () => {
     const { stdout } = await execa(cliCmd, [cliPath, '--help'], {
       stripFinalNewline: true
     })
-    expect(stdout).toMatchSnapshot()
+    // Strip trailing whitespace from each line since command-line-usage
+    // pads to terminal width, which varies between environments
+    const normalized = stdout.replace(/[^\S\n]+$/gm, '')
+    expect(normalized).toMatchSnapshot()
   })
   test('--silent disables logging to stdout', async () => {
     const { stdout } = await execa(
