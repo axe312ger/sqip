@@ -213,4 +213,23 @@ describe('node api', () => {
       expect(logSpy).toHaveBeenCalled()
     })
   })
+
+  test('parseableOutput disables chalk colors', async () => {
+    const result = await sqip({
+      ...mockedConfig,
+      input: FILE_DEMO_BEACH,
+      parseableOutput: true,
+      silent: false
+    })
+    expectValidResult(result)
+    expect(logSpy).toHaveBeenCalled()
+  })
+
+  test('throws when buffer input is missing outputFileName', async () => {
+    const input = await fs.readFile(FILE_DEMO_BEACH)
+    await expect(
+      sqip({ ...mockedConfig, input })
+    ).rejects.toThrow('OutputFileName is required when passing image as buffer')
+  })
+
 })

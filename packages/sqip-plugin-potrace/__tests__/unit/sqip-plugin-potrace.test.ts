@@ -97,4 +97,21 @@ describe('sqip-plugin-potrace', () => {
     expect($path).toHaveLength(1)
     expect($path.attr('fill')).toEqual('#Color')
   })
+
+  test('cliOptions returns array of option definitions', () => {
+    expect(Array.isArray(sqipPluginPotrace.cliOptions)).toBe(true)
+    expect(sqipPluginPotrace.cliOptions.length).toBeGreaterThan(0)
+  })
+
+  test('throws when input is svg', async () => {
+    const plugin = new sqipPluginPotrace({
+      pluginOptions: {},
+      options: {},
+      sqipConfig: mockedConfig
+    })
+    const svgMetadata: SqipImageMetadata = { ...potraceMockedMetadata, type: 'svg' }
+    await expect(
+      plugin.apply(Buffer.from('test'), svgMetadata)
+    ).rejects.toThrow('raster image')
+  })
 })

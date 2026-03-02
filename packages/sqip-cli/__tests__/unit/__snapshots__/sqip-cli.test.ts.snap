@@ -11,29 +11,12 @@ exports[`sqip-plugin-cli > --help: show help > resolve 1`] = `
       "svgo",
     ],
   ],
-  [
-    [
-      "primitive",
-      "blur",
-      "svgo",
-    ],
-  ],
 ]
 `;
 
 exports[`sqip-plugin-cli > --version: show version > error 1`] = `[]`;
 
-exports[`sqip-plugin-cli > --version: show version > resolve 1`] = `
-[
-  [
-    [
-      "primitive",
-      "blur",
-      "svgo",
-    ],
-  ],
-]
-`;
+exports[`sqip-plugin-cli > --version: show version > resolve 1`] = `[]`;
 
 exports[`sqip-plugin-cli > no args: show help and require input option > resolve 1`] = `
 [

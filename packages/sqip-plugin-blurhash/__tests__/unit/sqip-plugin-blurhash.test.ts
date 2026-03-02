@@ -58,4 +58,9 @@ describe('sqip-plugin-blurhash', () => {
     expect(blurhashMockedMetadata.dataURIBase64).toMatchSnapshot()
     expect(result.length).toBe(285)
   })
+
+  test('cliOptions returns array of option definitions', () => {
+    expect(Array.isArray(sqipPluginBlurhash.cliOptions)).toBe(true)
+    expect(sqipPluginBlurhash.cliOptions.length).toBeGreaterThan(0)
+  })
 })

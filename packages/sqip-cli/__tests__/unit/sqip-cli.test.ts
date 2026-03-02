@@ -34,11 +34,16 @@ const errorSpy = vi
 
 const proccessExitSpy = vi.spyOn(process, 'exit').mockImplementation(() => undefined as never)
 
+const originalArgv = process.argv
+
 describe('sqip-plugin-cli', () => {
   afterEach(() => {
     logSpy.mockClear()
     errorSpy.mockClear()
     proccessExitSpy.mockClear()
+    mockedSqip.mockClear()
+    mockedResolvePlugins.mockClear()
+    process.argv = originalArgv
   })
 
   afterAll(() => {
@@ -121,5 +126,35 @@ describe('sqip-plugin-cli', () => {
     expect(errorSpy).not.toHaveBeenCalled()
     expect(mockedSqip).toHaveBeenCalled()
     expect(mockedSqip.mock.calls).toMatchSnapshot()
+  })
+
+  it('parses plugin-specific options from CLI args', async () => {
+    process.argv = [
+      '',
+      '',
+      '-i',
+      'mocked-image.jpg',
+      '--mocked-mocked-plugin-option'
+    ]
+
+    await sqipCLI()
+
+    expect(mockedSqip).toHaveBeenCalled()
+    const callArgs = mockedSqip.mock.calls[0][0]
+    const mockedPlugin = callArgs.plugins?.find(
+      (p: { name: string }) => p.name === 'mocked'
+    ) as { name: string; options: Record<string, unknown> } | undefined
+    expect(mockedPlugin).toBeDefined()
+    expect(mockedPlugin?.options).toEqual({ 'mocked-plugin-option': true })
+  })
+
+  it('handles sqip errors gracefully', async () => {
+    mockedSqip.mockRejectedValueOnce(new Error('test error'))
+    process.argv = ['', '', '-i', 'mocked-image.jpg']
+
+    await sqipCLI()
+
+    expect(errorSpy).toHaveBeenCalled()
+    expect(proccessExitSpy).toHaveBeenCalledWith(1)
   })
 })

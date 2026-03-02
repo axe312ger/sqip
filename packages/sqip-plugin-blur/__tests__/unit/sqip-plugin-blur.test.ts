@@ -102,4 +102,9 @@ describe('applies blur filter', () => {
     const result = await svgPlugin.apply(sampleWithoutGroup, mockedMetadata)
     expect(result.toString()).toMatchSnapshot()
   })
+
+  test('cliOptions returns array of option definitions', () => {
+    expect(Array.isArray(SvgPlugin.cliOptions)).toBe(true)
+    expect(SvgPlugin.cliOptions.length).toBeGreaterThan(0)
+  })
 })
