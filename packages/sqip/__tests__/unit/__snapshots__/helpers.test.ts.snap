@@ -1,7 +1,72 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`locateFiles > expandes tilde in glob "~+/__tests__/fixtures" 1`] = `
+[
+  "/__tests__/fixtures/CMYK-example.jpg",
+  "/__tests__/fixtures/beach-sqip.svg",
+  "/__tests__/fixtures/beach.jpg",
+  "/__tests__/fixtures/transparent-background.png",
+]
+`;
+
+exports[`locateFiles > invalid directory or files yields empty array 1`] = `
+[Error: Unable to find any files via /foo/bar/baz. Make sure the file exists.
+
+If you are using globbing patterns, the following features are supported:
+
+https://github.com/micromatch/micromatch#matching-features]
+`;
+
+exports[`locateFiles > invalid glob 1`] = `
+[Error: Unable to find any files via /foo/bar/baz/*. Make sure the file exists.
+
+If you are using globbing patterns, the following features are supported:
+
+https://github.com/micromatch/micromatch#matching-features]
+`;
+
+exports[`locateFiles > single file 1`] = `
+[
+  "/__tests__/fixtures/beach.jpg",
+]
+`;
+
+exports[`locateFiles > subdirectory glob "**/*" 1`] = `
+[
+  "/__tests__/fixtures/CMYK-example.jpg",
+  "/__tests__/fixtures/beach-sqip.svg",
+  "/__tests__/fixtures/beach.jpg",
+  "/__tests__/fixtures/transparent-background.png",
+]
+`;
+
+exports[`locateFiles > whole directory with glob "*" 1`] = `
+[
+  "/__tests__/fixtures/CMYK-example.jpg",
+  "/__tests__/fixtures/beach-sqip.svg",
+  "/__tests__/fixtures/beach.jpg",
+  "/__tests__/fixtures/transparent-background.png",
+]
+`;
+
+exports[`locateFiles > whole directory with glob "*.{jpg,jpeg}" 1`] = `
+[
+  "/__tests__/fixtures/CMYK-example.jpg",
+  "/__tests__/fixtures/beach.jpg",
+]
+`;
+
+exports[`locateFiles > whole directory without glob 1`] = `
+[
+  "/__tests__/fixtures/CMYK-example.jpg",
+  "/__tests__/fixtures/beach-sqip.svg",
+  "/__tests__/fixtures/beach.jpg",
+  "/__tests__/fixtures/transparent-background.png",
+]
+`;
 
 exports[`locateFiles expandes tilde in glob "~+/__tests__/fixtures" 1`] = `
-Array [
+[
   "/__tests__/fixtures/CMYK-example.jpg",
   "/__tests__/fixtures/beach-sqip.svg",
   "/__tests__/fixtures/beach.jpg",
@@ -26,13 +91,13 @@ https://github.com/micromatch/micromatch#matching-features"
 `;
 
 exports[`locateFiles single file 1`] = `
-Array [
+[
   "/__tests__/fixtures/beach.jpg",
 ]
 `;
 
 exports[`locateFiles subdirectory glob "**/*" 1`] = `
-Array [
+[
   "/__tests__/fixtures/CMYK-example.jpg",
   "/__tests__/fixtures/beach-sqip.svg",
   "/__tests__/fixtures/beach.jpg",
@@ -41,7 +106,7 @@ Array [
 `;
 
 exports[`locateFiles whole directory with glob "*" 1`] = `
-Array [
+[
   "/__tests__/fixtures/CMYK-example.jpg",
   "/__tests__/fixtures/beach-sqip.svg",
   "/__tests__/fixtures/beach.jpg",
@@ -50,14 +115,14 @@ Array [
 `;
 
 exports[`locateFiles whole directory with glob "*.{jpg,jpeg}" 1`] = `
-Array [
+[
   "/__tests__/fixtures/CMYK-example.jpg",
   "/__tests__/fixtures/beach.jpg",
 ]
 `;
 
 exports[`locateFiles whole directory without glob 1`] = `
-Array [
+[
   "/__tests__/fixtures/CMYK-example.jpg",
   "/__tests__/fixtures/beach-sqip.svg",
   "/__tests__/fixtures/beach.jpg",

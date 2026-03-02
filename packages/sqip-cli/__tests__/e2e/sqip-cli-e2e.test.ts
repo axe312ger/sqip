@@ -2,8 +2,9 @@ import { resolve } from 'path'
 import { tmpdir } from 'os'
 import { stat, remove, readFile } from 'fs-extra'
 
-import cheerio from 'cheerio'
-import execa from 'execa'
+import { load as cheerioLoad } from 'cheerio'
+import { vi } from 'vitest'
+import { execa } from 'execa'
 
 const inputFile = resolve(
   __dirname,
@@ -19,7 +20,7 @@ const outputFile = resolve(process.cwd(), 'beach.svg')
 const cliPath = resolve(__dirname, '..', '..', 'dist', 'wrapper.js')
 const cliCmd = `node`
 
-jest.setTimeout(20000)
+vi.setConfig({ testTimeout: 20000 })
 
 function isValidStdout(stdout: string) {
   expect(stdout).toMatch(/Processing: \/([A-z0-9-_+]+\/)*[A-z0-9-_]+\.jpg/)
@@ -36,7 +37,7 @@ describe('cli api', () => {
       execa(cliCmd, [cliPath], {
         stripFinalNewline: true
       })
-    ).rejects.toThrowError('Please provide the following arguments: input')
+    ).rejects.toThrow('Please provide the following arguments: input')
   })
   test('--help shows help screen to user', async () => {
     const { stdout } = await execa(cliCmd, [cliPath, '--help'], {
@@ -69,7 +70,7 @@ describe('cli api', () => {
     expect(await stat(outputFile)).toBeTruthy()
 
     const content = await readFile(outputFile)
-    const $ = cheerio.load(content, { xml: true })
+    const $ = cheerioLoad(content, { xml: true })
 
     // File content is actually a parseable svg
     expect($('svg')).toHaveLength(1)

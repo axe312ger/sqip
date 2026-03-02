@@ -1,8 +1,9 @@
 import { access, writeFile, unlink, readFile } from 'fs/promises'
 import { constants } from 'fs'
 import path from 'path'
+import { fileURLToPath } from 'url'
 import os from 'os'
-import execa from 'execa'
+import { execa } from 'execa'
 import Debug from 'debug'
 
 import {
@@ -37,6 +38,7 @@ interface TriangleOptions extends PluginOptions {
 
 const debug = Debug('sqip-plugin-triangle')
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const VENDOR_DIR = path.resolve(__dirname, '..', 'triangle-binaries')
 
 let triangleExecutable = 'triangle'
@@ -225,7 +227,7 @@ export default class TrianglePlugin extends SqipPlugin {
       debug(`Found triangle binary at ${trianglePath}`)
       triangleExecutable = trianglePath
       return
-    } catch (e) {
+    } catch {
       // noop
     }
 
@@ -236,7 +238,7 @@ export default class TrianglePlugin extends SqipPlugin {
       } else {
         await execa('type', ['triangle'])
       }
-    } catch (e) {
+    } catch {
       throw new Error(
         'Please ensure that triangle (https://github.com/esimov/triangle, written in Golang) is installed and globally available.'
       )

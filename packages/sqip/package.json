@@ -1,6 +1,7 @@
 {
   "name": "sqip",
   "version": "1.0.0-alpha.51",
+  "type": "module",
   "description": "SQIP - SVG-Based Image Placeholder",
   "author": "Benedikt Rötsch <info@benedikt-roetsch.de>",
   "homepage": "https://github.com/axe312ger/sqip#readme",
@@ -42,17 +43,17 @@
   "dependencies": {
     "@behold/sharp-vibrant": "^0.2.1",
     "@svgdotjs/svg.js": "^3.2.0",
-    "chalk": "^4.1.0",
+    "chalk": "^5.6.2",
     "cli-table3": "^0.6.0",
-    "command-line-args": "^5.2.0",
+    "command-line-args": "^6.0.1",
     "debug": "4.3.4",
     "expand-tilde": "^2.0.2",
     "fast-glob": "^3.2.12",
     "fs-extra": "^11.1.1",
-    "mime": "3",
+    "mime": "^4.1.0",
     "sharp": "^0.32.0",
     "svgdom": "^0.1.13",
-    "term-img": "^5.0.0"
+    "term-img": "^7.1.0"
   },
   "peerDependencies": {
     "sqip-plugin-blur": "^1.0.0-alpha.0",
@@ -64,7 +65,6 @@
     "@types/debug": "4.1.12",
     "@types/expand-tilde": "2.0.2",
     "@types/fs-extra": "11.0.4",
-    "@types/mime": "^3.0.4",
     "@types/svgdom": "^0.1.2"
   }
 }

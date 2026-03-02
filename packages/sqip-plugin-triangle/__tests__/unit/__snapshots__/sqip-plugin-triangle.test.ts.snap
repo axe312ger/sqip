@@ -1,9 +1,9 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`checkForTriangle bundled executable does not exist, triangle not installed globally 1`] = `"Please ensure that triangle (https://github.com/esimov/triangle, written in Golang) is installed and globally available."`;
+exports[`checkForTriangle > bundled executable does not exist, triangle not installed globally 1`] = `[Error: Please ensure that triangle (https://github.com/esimov/triangle, written in Golang) is installed and globally available.]`;
 
-exports[`runTriangle allows hex as value for background 1`] = `
-Array [
+exports[`runTriangle > allows hex as value for background 1`] = `
+[
   "-in",
   "mocked",
   "-bl",
@@ -33,8 +33,8 @@ Array [
 ]
 `;
 
-exports[`runTriangle executes triangle with custom config, applying default number of triangles 1`] = `
-Array [
+exports[`runTriangle > executes triangle with custom config, applying default number of triangles 1`] = `
+[
   "-in",
   "mocked",
   "-bl",
@@ -64,8 +64,8 @@ Array [
 ]
 `;
 
-exports[`runTriangle executes triangle with default config 1`] = `
-Array [
+exports[`runTriangle > executes triangle with default config 1`] = `
+[
   "-in",
   "mocked",
   "-bl",
@@ -95,8 +95,8 @@ Array [
 ]
 `;
 
-exports[`runTriangle executes triangle with landscape dimensions 1`] = `
-Array [
+exports[`runTriangle > executes triangle with landscape dimensions 1`] = `
+[
   "-in",
   "mocked",
   "-bl",

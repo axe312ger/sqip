@@ -1,6 +1,7 @@
 {
   "name": "sqip-plugin-primitive",
   "version": "1.0.0-alpha.53",
+  "type": "module",
   "description": "> TODO: description",
   "author": "Benedikt Rötsch <info@benedikt-roetsch.de>",
   "homepage": "https://github.com/axe312ger/sqip#readme",
@@ -23,14 +24,14 @@
     "build": "tsc -b",
     "watch": "tsc -w",
     "prepare": "npm run build-vendor",
-    "build-vendor": "node scripts/bundle-vendor.js"
+    "build-vendor": "node scripts/bundle-vendor.cjs"
   },
   "bugs": {
     "url": "https://github.com/axe312ger/sqip/issues"
   },
   "dependencies": {
     "debug": "^4.3.4",
-    "execa": "5.1.1",
+    "execa": "^9.6.1",
     "sharp": "^0.32.0",
     "sqip": "^1.0.0-alpha.51"
   }

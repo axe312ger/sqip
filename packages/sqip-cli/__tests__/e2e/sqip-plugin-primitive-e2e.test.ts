@@ -2,8 +2,8 @@ import { resolve } from 'path'
 import { tmpdir } from 'os'
 import { stat, remove, readFile } from 'fs-extra'
 
-import cheerio from 'cheerio'
-import execa from 'execa'
+import { load as cheerioLoad } from 'cheerio'
+import { execa } from 'execa'
 
 function isValidStdout(stdout: string) {
   expect(stdout).toMatch(/Processing: \/([A-z0-9-_+]+\/)*[A-z0-9-_]+\.jpg/)
@@ -27,7 +27,9 @@ const inputFile = resolve(
 const cliPath = resolve(__dirname, '..', '..', 'dist', 'wrapper.js')
 const cliCmd = `node`
 
-jest.setTimeout(30000)
+import { vi } from 'vitest'
+
+vi.setConfig({ testTimeout: 30000 })
 
 describe('primitive e2e/integration tests', () => {
   test('run with default settings', async () => {
@@ -57,7 +59,7 @@ describe('primitive e2e/integration tests', () => {
 
     const content = await readFile(outputFile)
 
-    const $ = cheerio.load(content, { xml: true })
+    const $ = cheerioLoad(content, { xml: true })
     const $primitives = $('svg > g *:not(g)')
     const types = [
       ...new Set($primitives.map((i, $primitive) => $primitive.tagName).get())
@@ -116,7 +118,7 @@ describe('primitive e2e/integration tests', () => {
 
     const content = await readFile(outputFile)
 
-    const $ = cheerio.load(content, { xml: true })
+    const $ = cheerioLoad(content, { xml: true })
     const $primitives = $('svg > g *:not(g)')
     const types = [
       ...new Set($primitives.map((i, $primitive) => $primitive.tagName).get())

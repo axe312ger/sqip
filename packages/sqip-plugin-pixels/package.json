@@ -1,6 +1,7 @@
 {
   "name": "sqip-plugin-pixels",
   "version": "1.0.0-alpha.53",
+  "type": "module",
   "description": "Experimental plugin to create a pixelation effect",
   "author": "Benedikt Rötsch <info@benedikt-roetsch.de>",
   "homepage": "https://github.com/axe312ger/sqip#readme",
@@ -32,6 +33,6 @@
     "svgdom": "^0.1.19"
   },
   "devDependencies": {
-    "cheerio": "1.0.0-rc.12"
+    "cheerio": "^1.0.0"
   }
 }

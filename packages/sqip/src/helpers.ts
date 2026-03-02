@@ -7,7 +7,7 @@ import fastGlob from 'fast-glob'
 import fs from 'fs-extra'
 import sharp from 'sharp'
 
-import type { Palette } from '@behold/sharp-vibrant/lib/color'
+import type { Palette } from '@behold/sharp-vibrant/lib/color.js'
 
 const debug = Debug('sqip')
 

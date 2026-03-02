@@ -1,4 +1,5 @@
-import execa, { ExecaChildProcess } from 'execa'
+import { vi, type MockedFunction } from 'vitest'
+import { execa } from 'execa'
 import fs from 'fs/promises'
 import os from 'os'
 
@@ -10,27 +11,35 @@ const triangleMockedMetadata: SqipImageMetadata = {
   type: 'pixel'
 }
 
-jest.mock('execa')
-jest.mock('fs/promises')
-jest.mock('os', () => ({
-  ...(jest.requireActual('os') as typeof os),
-  platform: jest.fn(() => 'unknownOS'),
-  arch: jest.fn(() => 'nonExistingArch'),
-  cpus: () => [1]
-}))
-
-const mockedExeca = execa as jest.MockedFunction<typeof execa>
-mockedExeca.mockImplementation(() => {
-  const result = {
-    stdout:
-      '<svg viewBox="0 0 1024 768"><path fill="#fff" d="M300,188 L0,188 L174,146 L300,188"/></svg>'
-  } as unknown as ExecaChildProcess<Buffer>
-  return result
+vi.mock('execa')
+vi.mock('fs/promises')
+vi.mock('os', async () => {
+  const actual = await vi.importActual<typeof os>('os')
+  return {
+    ...actual,
+    default: {
+      ...actual,
+      platform: vi.fn(() => 'unknownOS'),
+      arch: vi.fn(() => 'nonExistingArch'),
+      cpus: () => [1]
+    },
+    platform: vi.fn(() => 'unknownOS'),
+    arch: vi.fn(() => 'nonExistingArch'),
+    cpus: () => [1]
+  }
 })
 
-const mockedFsAccess = fs.access as jest.MockedFunction<typeof fs.access>
+const mockedExeca = execa as unknown as MockedFunction<typeof execa>
+mockedExeca.mockImplementation((() => {
+  return {
+    stdout:
+      '<svg viewBox="0 0 1024 768"><path fill="#fff" d="M300,188 L0,188 L174,146 L300,188"/></svg>'
+  }
+}) as any)
 
-const mockedFsReadFile = fs.readFile as jest.MockedFunction<typeof fs.readFile>
+const mockedFsAccess = fs.access as MockedFunction<typeof fs.access>
+
+const mockedFsReadFile = fs.readFile as MockedFunction<typeof fs.readFile>
 mockedFsReadFile.mockImplementation(() =>
   Promise.resolve(
     Buffer.from(
@@ -42,10 +51,10 @@ mockedFsReadFile.mockImplementation(() =>
 mockedFsAccess.mockImplementation(async () =>
   Promise.reject(new Error('Mocked: Binary not available'))
 )
-const mockedOsArch = os.arch as jest.MockedFunction<typeof os.arch>
-const mockedOsPlatform = os.platform as jest.MockedFunction<typeof os.platform>
+const mockedOsArch = os.arch as MockedFunction<typeof os.arch>
+const mockedOsPlatform = os.platform as MockedFunction<typeof os.platform>
 
-const proccessExitSpy = jest.spyOn(process, 'exit').mockImplementation()
+const proccessExitSpy = vi.spyOn(process, 'exit').mockImplementation(() => undefined as never)
 
 const mockedConfig = {
   input: 'mocked',

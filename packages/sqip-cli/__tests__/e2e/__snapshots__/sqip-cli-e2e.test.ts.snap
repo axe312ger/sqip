@@ -1,20 +1,20 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`cli api --help shows help screen to user 1`] = `
+exports[`cli api > --help shows help screen to user 1`] = `
 "
 [1msqip CLI[22m
 
   Usage: sqip --input [path]                                                    
                                                                                 
-  \\"SQIP\\" (pronounced skwɪb like the non-magical folk of magical descent) is a   
+  "SQIP" (pronounced skwɪb like the non-magical folk of magical descent) is a   
   SVG-based LQIP technique - https://github.com/technopagan/sqip                
 
 [1mOptions[22m
 
   [1m-h[22m, [1m--help[22m [4mstring[24m                           Show help                         
   [1m--version[22m [4mstring[24m                            Show version number               
-  [1m-p[22m, [1m--plugins[22m [4mstring[][24m                      One or more plugins. E.g. \\"-p     
-                                              primitive blur\\"                   
+  [1m-p[22m, [1m--plugins[22m [4mstring[][24m                      One or more plugins. E.g. "-p     
+                                              primitive blur"                   
   [1m-i[22m, [1m--input[22m [4mstring[24m                                                            
   [1m-o[22m, [1m--output[22m [4mstring[24m                         Define the path of the resulting  
                                               file. By default SQIP will guess  

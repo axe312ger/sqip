@@ -1,9 +1,10 @@
+import { vi, type MockedFunction } from 'vitest'
 import SVGO from 'svgo'
 import SvgoPlugin from '../../src/sqip-plugin-svgo'
 
-jest.mock('svgo')
+vi.mock('svgo')
 
-const mockedSVGOOptimize = SVGO.optimize as jest.MockedFunction<
+const mockedSVGOOptimize = SVGO.optimize as MockedFunction<
   typeof SVGO.optimize
 >
 

@@ -1,12 +1,12 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`runSVGO 1`] = `
-Array [
+[
   "<svg />",
-  Object {
+  {
     "floatPrecision": 1,
     "multipass": true,
-    "plugins": Array [
+    "plugins": [
       "preset-default",
       "cleanupAttrs",
       "cleanupEnableBackground",
@@ -19,9 +19,9 @@ Array [
       "minifyStyles",
       "prefixIds",
       "removeComments",
-      Object {
+      {
         "name": "removeDesc",
-        "params": Object {
+        "params": {
           "removeAny": true,
         },
       },
