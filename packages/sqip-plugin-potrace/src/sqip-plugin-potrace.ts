@@ -9,7 +9,7 @@ import {
   SqipImageMetadata
 } from 'sqip'
 
-import potrace, { PotraceDefaultOptions } from 'potrace'
+import potrace, { PotraceDefaultOptions } from '@gatsbyjs/potrace'
 
 const trace = promisify(potrace.trace)
 const posterize = promisify(potrace.posterize)
@@ -191,6 +191,9 @@ export default class sqipPluginPotrace extends SqipPlugin {
       threshold,
       blackOnWhite
     })
+
+    metadata.type = 'svg'
+    metadata.mimeType = 'image/svg'
 
     return Buffer.from(result)
   }

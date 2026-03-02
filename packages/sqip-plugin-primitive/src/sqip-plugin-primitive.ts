@@ -28,11 +28,11 @@ interface PrimitiveOptions extends PluginOptions {
   alpha?: number
   background?: string
   cores?: number
+  removeBackgroundElement?: boolean
 }
 
 const debug = Debug('sqip-plugin-primitive')
 
-const PRIMITIVE_SVG_ELEMENTS = 'circle, ellipse, line, polygon, path, rect, g'
 const VENDOR_DIR = path.resolve(__dirname, '..', 'primitive-binaries')
 
 let primitiveExecutable = 'primitive'
@@ -91,13 +91,20 @@ export default class PrimitivePlugin extends SqipPlugin {
         type: String,
         description:
           'starting background color. Either the name of a color from the color palette or a 6 digit hex value for solid color and a 8 digit hex value for transparency: ffffff00',
-        defaultValue: 'DarkMuted'
+        defaultValue: 'Muted'
       },
       {
         name: 'cores',
         type: Number,
         description: 'number of parallel workers (default uses all cores)',
         defaultValue: 0
+      },
+      {
+        name: 'removeBackgroundElement',
+        type: Boolean,
+        description:
+          'Should we keep the background element created by primitive? Disable this when you combine the primitive plugin with the blur plugin.',
+        defaultValue: false
       }
     ]
   }
@@ -111,8 +118,9 @@ export default class PrimitivePlugin extends SqipPlugin {
       mode: 0,
       rep: 0,
       alpha: 128,
-      background: 'DarkMuted',
+      background: 'Muted',
       cores: 0,
+      removeBackgroundElement: false,
       ...pluginOptions
     }
   }
@@ -136,7 +144,8 @@ export default class PrimitivePlugin extends SqipPlugin {
       rep,
       alpha,
       background: userBg,
-      cores
+      cores,
+      removeBackgroundElement
     } = this.options
 
     const { width, height, palette } = metadata
@@ -174,30 +183,25 @@ export default class PrimitivePlugin extends SqipPlugin {
       }
     )
 
-    metadata.type = 'svg'
+    const { svg: canvas } = await loadSVG(result.stdout)
 
-    const $ = loadSVG(result.stdout)
-    const $svg = $('svg')
+    const bgRect = canvas.findOne('rect[fill]')
 
-    const $bgRect = $svg
-      .children(PRIMITIVE_SVG_ELEMENTS)
-      .filter('rect:first-child[fill]')
-
-    if (bg.match(/[0-9a-f]{6}00/)) {
-      // Remove background rectangle when using full transparent background
-      $bgRect.remove()
-    } else {
-      // Optimize Background Rectangle for compression and responsiveness
-
-      // @todo test in rare browsers
-      $bgRect.removeAttr('x')
-      $bgRect.removeAttr('y')
-
-      $bgRect.attr('width', '100%')
-      $bgRect.attr('height', '100%')
+    if (bgRect) {
+      if (removeBackgroundElement || bg.match(/[0-9a-f]{6}00/)) {
+        // Remove background rectangle when using full transparent background
+        bgRect.remove()
+      } else {
+        // Optimize Background Rectangle for compression & responsiveness
+        bgRect.attr('width', '100%')
+        bgRect.attr('height', '100%')
+      }
     }
 
-    return Buffer.from($.html())
+    metadata.type = 'svg'
+    metadata.mimeType = 'image/svg'
+
+    return Buffer.from(canvas.svg())
   }
 
   // Sanity check: use the exit state of 'type' to check for Primitive availability

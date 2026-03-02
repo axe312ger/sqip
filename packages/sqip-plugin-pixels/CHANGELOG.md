@@ -3,6 +3,118 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.53](https://github.com/axe312ger/sqip/compare/sqip-plugin-pixels@1.0.0-alpha.52...sqip-plugin-pixels@1.0.0-alpha.53) (2024-03-28)
+
+
+### Features
+
+* sqip now can naively detect the image background color and the pixels blugin supports setting background color which will be handled as transparent pixels ([f4b7748](https://github.com/axe312ger/sqip/commit/f4b774859591390be3e80c6f3f8b0ec062af4716))
+* the outer pixels now overlap the viewport to allow css blur without ugly borders ([6295d54](https://github.com/axe312ger/sqip/commit/6295d54731af88903c4fc92640df1e8791bed784))
+
+
+
+
+
+# [1.0.0-alpha.52](https://github.com/axe312ger/sqip/compare/sqip-plugin-pixels@1.0.0-alpha.51...sqip-plugin-pixels@1.0.0-alpha.52) (2024-03-22)
+
+**Note:** Version bump only for package sqip-plugin-pixels
+
+
+
+
+
+# [1.0.0-alpha.51](https://github.com/axe312ger/sqip/compare/sqip-plugin-pixels@1.0.0-alpha.50...sqip-plugin-pixels@1.0.0-alpha.51) (2024-03-22)
+
+
+### Bug Fixes
+
+* avoid multiple instances of svgdom/svg.js ([71108f3](https://github.com/axe312ger/sqip/commit/71108f34bdb344085fd0339599ef29eab3faf2a8))
+
+
+
+
+
+# [1.0.0-alpha.50](https://github.com/axe312ger/sqip/compare/sqip-plugin-pixels@1.0.0-alpha.49...sqip-plugin-pixels@1.0.0-alpha.50) (2024-03-22)
+
+**Note:** Version bump only for package sqip-plugin-pixels
+
+
+
+
+
+# [1.0.0-alpha.49](https://github.com/axe312ger/sqip/compare/sqip-plugin-pixels@1.0.0-alpha.48...sqip-plugin-pixels@1.0.0-alpha.49) (2024-03-22)
+
+**Note:** Version bump only for package sqip-plugin-pixels
+
+
+
+
+
+# [1.0.0-alpha.48](https://github.com/axe312ger/sqip/compare/sqip-plugin-pixels@1.0.0-alpha.47...sqip-plugin-pixels@1.0.0-alpha.48) (2024-03-22)
+
+
+### Bug Fixes
+
+* ensure svgdom is imported dynamically to support old node versions ([89b7e2a](https://github.com/axe312ger/sqip/commit/89b7e2acc110c943e79b219df3c080adf6780521))
+
+
+
+
+
+# [1.0.0-alpha.47](https://github.com/axe312ger/sqip/compare/sqip-plugin-pixels@1.0.0-alpha.46...sqip-plugin-pixels@1.0.0-alpha.47) (2024-03-22)
+
+**Note:** Version bump only for package sqip-plugin-pixels
+
+
+
+
+
+# [1.0.0-alpha.46](https://github.com/axe312ger/sqip/compare/sqip-plugin-pixels@1.0.0-alpha.45...sqip-plugin-pixels@1.0.0-alpha.46) (2024-03-22)
+
+**Note:** Version bump only for package sqip-plugin-pixels
+
+
+
+
+
+# [1.0.0-alpha.45](https://github.com/axe312ger/sqip/compare/sqip-plugin-pixels@1.0.0-alpha.44...sqip-plugin-pixels@1.0.0-alpha.45) (2024-03-21)
+
+
+### Bug Fixes
+
+* calculate pixel size on longest axis, simplifying whole pixel placement logic ([e00e959](https://github.com/axe312ger/sqip/commit/e00e9592d74e6bf29a2995a9a68ceefcb634fb7c))
+* only use RGBA when neccessary ([a63dd44](https://github.com/axe312ger/sqip/commit/a63dd449451ddf39680ce484773bd24dfa4ea473))
+* pixels now properly scale and avoid gaps on view port border ([2dba75b](https://github.com/axe312ger/sqip/commit/2dba75b67d176bd97c6d8a4b28cbd5ed487a256c))
+* properly calc pixel size for longest axis ([09d113d](https://github.com/axe312ger/sqip/commit/09d113db90bd3c43aa931b1fac9de0086f901e62))
+
+
+### Features
+
+* pixels plugin now supports transparency ([cdc4fd9](https://github.com/axe312ger/sqip/commit/cdc4fd9e71f7e57825369937359e8b38f8d0bb8f))
+
+
+
+
+
+# [1.0.0-alpha.44](https://github.com/axe312ger/sqip/compare/sqip-plugin-pixels@1.0.0-alpha.43...sqip-plugin-pixels@1.0.0-alpha.44) (2024-03-02)
+
+**Note:** Version bump only for package sqip-plugin-pixels
+
+
+
+
+
+# [1.0.0-alpha.43](https://github.com/axe312ger/sqip/compare/sqip-plugin-pixels@1.0.0-alpha.42...sqip-plugin-pixels@1.0.0-alpha.43) (2024-02-24)
+
+
+### Features
+
+* add triangle plugin and include filename and mime type into metadata ([f8838de](https://github.com/axe312ger/sqip/commit/f8838dead30932e59bc5f00cb2e2e9e20bf70a40))
+
+
+
+
+
 # [1.0.0-alpha.42](https://github.com/axe312ger/sqip/compare/sqip-plugin-pixels@1.0.0-alpha.41...sqip-plugin-pixels@1.0.0-alpha.42) (2024-01-25)
 
 

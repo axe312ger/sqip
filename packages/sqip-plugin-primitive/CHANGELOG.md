@@ -3,6 +3,95 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.53](https://github.com/axe312ger/sqip/compare/sqip-plugin-primitive@1.0.0-alpha.52...sqip-plugin-primitive@1.0.0-alpha.53) (2024-03-28)
+
+
+### Bug Fixes
+
+* use Muted as default everywhere for Primitive ([622b262](https://github.com/axe312ger/sqip/commit/622b262de0b1d6ccaeaed627479b0063ed0bf6c4))
+
+
+### Features
+
+* add option to primitive to remove the background rectangle/element ([a30d166](https://github.com/axe312ger/sqip/commit/a30d166e712c218f476b6fbf8465fac07e37edff))
+
+
+
+
+
+# [1.0.0-alpha.52](https://github.com/axe312ger/sqip/compare/sqip-plugin-primitive@1.0.0-alpha.51...sqip-plugin-primitive@1.0.0-alpha.52) (2024-03-22)
+
+
+### Bug Fixes
+
+* avoid multiple instances of svgdom/svg.js ([71108f3](https://github.com/axe312ger/sqip/commit/71108f34bdb344085fd0339599ef29eab3faf2a8))
+
+
+
+
+
+# [1.0.0-alpha.51](https://github.com/axe312ger/sqip/compare/sqip-plugin-primitive@1.0.0-alpha.50...sqip-plugin-primitive@1.0.0-alpha.51) (2024-03-22)
+
+**Note:** Version bump only for package sqip-plugin-primitive
+
+
+
+
+
+# [1.0.0-alpha.50](https://github.com/axe312ger/sqip/compare/sqip-plugin-primitive@1.0.0-alpha.49...sqip-plugin-primitive@1.0.0-alpha.50) (2024-03-22)
+
+**Note:** Version bump only for package sqip-plugin-primitive
+
+
+
+
+
+# [1.0.0-alpha.49](https://github.com/axe312ger/sqip/compare/sqip-plugin-primitive@1.0.0-alpha.48...sqip-plugin-primitive@1.0.0-alpha.49) (2024-03-22)
+
+**Note:** Version bump only for package sqip-plugin-primitive
+
+
+
+
+
+# [1.0.0-alpha.48](https://github.com/axe312ger/sqip/compare/sqip-plugin-primitive@1.0.0-alpha.47...sqip-plugin-primitive@1.0.0-alpha.48) (2024-03-22)
+
+
+### Bug Fixes
+
+* ensure svgdom is imported dynamically to support old node versions ([9a93204](https://github.com/axe312ger/sqip/commit/9a9320450abe8f0cab69ef1cb4f85b0493398c91))
+
+
+
+
+
+# [1.0.0-alpha.47](https://github.com/axe312ger/sqip/compare/sqip-plugin-primitive@1.0.0-alpha.46...sqip-plugin-primitive@1.0.0-alpha.47) (2024-03-21)
+
+**Note:** Version bump only for package sqip-plugin-primitive
+
+
+
+
+
+# [1.0.0-alpha.46](https://github.com/axe312ger/sqip/compare/sqip-plugin-primitive@1.0.0-alpha.45...sqip-plugin-primitive@1.0.0-alpha.46) (2024-03-02)
+
+**Note:** Version bump only for package sqip-plugin-primitive
+
+
+
+
+
+# [1.0.0-alpha.45](https://github.com/axe312ger/sqip/compare/sqip-plugin-primitive@1.0.0-alpha.44...sqip-plugin-primitive@1.0.0-alpha.45) (2024-02-24)
+
+
+### Features
+
+* add triangle plugin and include filename and mime type into metadata ([f8838de](https://github.com/axe312ger/sqip/commit/f8838dead30932e59bc5f00cb2e2e9e20bf70a40))
+
+
+
+
+
 # [1.0.0-alpha.44](https://github.com/axe312ger/sqip/compare/sqip-plugin-primitive@1.0.0-alpha.43...sqip-plugin-primitive@1.0.0-alpha.44) (2024-01-25)
 
 

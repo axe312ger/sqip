@@ -3,6 +3,88 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.23](https://github.com/axe312ger/sqip/compare/sqip-plugin-potrace@1.0.0-alpha.22...sqip-plugin-potrace@1.0.0-alpha.23) (2024-03-28)
+
+**Note:** Version bump only for package sqip-plugin-potrace
+
+
+
+
+
+# [1.0.0-alpha.22](https://github.com/axe312ger/sqip/compare/sqip-plugin-potrace@1.0.0-alpha.21...sqip-plugin-potrace@1.0.0-alpha.22) (2024-03-22)
+
+**Note:** Version bump only for package sqip-plugin-potrace
+
+
+
+
+
+# [1.0.0-alpha.21](https://github.com/axe312ger/sqip/compare/sqip-plugin-potrace@1.0.0-alpha.20...sqip-plugin-potrace@1.0.0-alpha.21) (2024-03-22)
+
+**Note:** Version bump only for package sqip-plugin-potrace
+
+
+
+
+
+# [1.0.0-alpha.20](https://github.com/axe312ger/sqip/compare/sqip-plugin-potrace@1.0.0-alpha.19...sqip-plugin-potrace@1.0.0-alpha.20) (2024-03-22)
+
+**Note:** Version bump only for package sqip-plugin-potrace
+
+
+
+
+
+# [1.0.0-alpha.19](https://github.com/axe312ger/sqip/compare/sqip-plugin-potrace@1.0.0-alpha.18...sqip-plugin-potrace@1.0.0-alpha.19) (2024-03-22)
+
+**Note:** Version bump only for package sqip-plugin-potrace
+
+
+
+
+
+# [1.0.0-alpha.18](https://github.com/axe312ger/sqip/compare/sqip-plugin-potrace@1.0.0-alpha.17...sqip-plugin-potrace@1.0.0-alpha.18) (2024-03-22)
+
+**Note:** Version bump only for package sqip-plugin-potrace
+
+
+
+
+
+# [1.0.0-alpha.17](https://github.com/axe312ger/sqip/compare/sqip-plugin-potrace@1.0.0-alpha.16...sqip-plugin-potrace@1.0.0-alpha.17) (2024-03-21)
+
+
+### Bug Fixes
+
+* ensure proper typings are available for updated potrace ([37c8aed](https://github.com/axe312ger/sqip/commit/37c8aed4bcd849b98fe4f5d2a0bac83efa1dda6e))
+* typings for potrace ([120d50c](https://github.com/axe312ger/sqip/commit/120d50ce34733df2164c69070ce3cfe748428338))
+
+
+
+
+
+# [1.0.0-alpha.16](https://github.com/axe312ger/sqip/compare/sqip-plugin-potrace@1.0.0-alpha.15...sqip-plugin-potrace@1.0.0-alpha.16) (2024-03-02)
+
+
+### Bug Fixes
+
+* properly use new potrace lib ([46454ba](https://github.com/axe312ger/sqip/commit/46454bad88a0254c371cf9c7ca232d0bfa40fb99))
+
+
+
+
+
+# [1.0.0-alpha.15](https://github.com/axe312ger/sqip/compare/sqip-plugin-potrace@1.0.0-alpha.14...sqip-plugin-potrace@1.0.0-alpha.15) (2024-02-24)
+
+
+### Features
+
+* add triangle plugin and include filename and mime type into metadata ([f8838de](https://github.com/axe312ger/sqip/commit/f8838dead30932e59bc5f00cb2e2e9e20bf70a40))
+
+
+
+
+
 # [1.0.0-alpha.14](https://github.com/axe312ger/sqip/compare/sqip-plugin-potrace@1.0.0-alpha.13...sqip-plugin-potrace@1.0.0-alpha.14) (2024-01-25)
 
 **Note:** Version bump only for package sqip-plugin-potrace

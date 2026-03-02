@@ -3,6 +3,92 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.54](https://github.com/axe312ger/sqip/compare/sqip-plugin-svgo@1.0.0-alpha.53...sqip-plugin-svgo@1.0.0-alpha.54) (2024-03-28)
+
+**Note:** Version bump only for package sqip-plugin-svgo
+
+
+
+
+
+# [1.0.0-alpha.53](https://github.com/axe312ger/sqip/compare/sqip-plugin-svgo@1.0.0-alpha.52...sqip-plugin-svgo@1.0.0-alpha.53) (2024-03-25)
+
+
+### Bug Fixes
+
+* keep dimensions in svgs for better preview quality ([4d63b17](https://github.com/axe312ger/sqip/commit/4d63b17fd10364604df53cc85f847a2b8f910d42))
+
+
+
+
+
+# [1.0.0-alpha.52](https://github.com/axe312ger/sqip/compare/sqip-plugin-svgo@1.0.0-alpha.51...sqip-plugin-svgo@1.0.0-alpha.52) (2024-03-22)
+
+**Note:** Version bump only for package sqip-plugin-svgo
+
+
+
+
+
+# [1.0.0-alpha.51](https://github.com/axe312ger/sqip/compare/sqip-plugin-svgo@1.0.0-alpha.50...sqip-plugin-svgo@1.0.0-alpha.51) (2024-03-22)
+
+**Note:** Version bump only for package sqip-plugin-svgo
+
+
+
+
+
+# [1.0.0-alpha.50](https://github.com/axe312ger/sqip/compare/sqip-plugin-svgo@1.0.0-alpha.49...sqip-plugin-svgo@1.0.0-alpha.50) (2024-03-22)
+
+**Note:** Version bump only for package sqip-plugin-svgo
+
+
+
+
+
+# [1.0.0-alpha.49](https://github.com/axe312ger/sqip/compare/sqip-plugin-svgo@1.0.0-alpha.48...sqip-plugin-svgo@1.0.0-alpha.49) (2024-03-22)
+
+**Note:** Version bump only for package sqip-plugin-svgo
+
+
+
+
+
+# [1.0.0-alpha.48](https://github.com/axe312ger/sqip/compare/sqip-plugin-svgo@1.0.0-alpha.47...sqip-plugin-svgo@1.0.0-alpha.48) (2024-03-22)
+
+**Note:** Version bump only for package sqip-plugin-svgo
+
+
+
+
+
+# [1.0.0-alpha.47](https://github.com/axe312ger/sqip/compare/sqip-plugin-svgo@1.0.0-alpha.46...sqip-plugin-svgo@1.0.0-alpha.47) (2024-03-21)
+
+**Note:** Version bump only for package sqip-plugin-svgo
+
+
+
+
+
+# [1.0.0-alpha.46](https://github.com/axe312ger/sqip/compare/sqip-plugin-svgo@1.0.0-alpha.45...sqip-plugin-svgo@1.0.0-alpha.46) (2024-03-02)
+
+**Note:** Version bump only for package sqip-plugin-svgo
+
+
+
+
+
+# [1.0.0-alpha.45](https://github.com/axe312ger/sqip/compare/sqip-plugin-svgo@1.0.0-alpha.44...sqip-plugin-svgo@1.0.0-alpha.45) (2024-02-24)
+
+
+### Features
+
+* make SVGO more aggressive ([5127915](https://github.com/axe312ger/sqip/commit/5127915c1677427e8bd362ca3b08afbb3d6de38b))
+
+
+
+
+
 # [1.0.0-alpha.44](https://github.com/axe312ger/sqip/compare/sqip-plugin-svgo@1.0.0-alpha.43...sqip-plugin-svgo@1.0.0-alpha.44) (2024-01-25)
 
 **Note:** Version bump only for package sqip-plugin-svgo

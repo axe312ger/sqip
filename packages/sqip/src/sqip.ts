@@ -2,25 +2,36 @@ import path from 'path'
 
 import Debug from 'debug'
 import fs from 'fs-extra'
-import imageSize from 'probe-image-size'
-import Vibrant from 'node-vibrant'
+
+import Vibrant from '@behold/sharp-vibrant'
+import type { Palette } from '@behold/sharp-vibrant/lib/color'
+import { Swatch } from '@behold/sharp-vibrant/lib/color'
 import sharp from 'sharp'
 import termimg, { UnsupportedTerminalError } from 'term-img'
 import Table from 'cli-table3'
 import chalk from 'chalk'
+import mime from 'mime'
 
-import { Palette } from '@vibrant/color'
 import { OptionDefinition } from 'command-line-args'
 
-import { locateFiles } from './helpers'
+import { findBackgroundColor, locateFiles } from './helpers'
 
 export { loadSVG, parseColor } from './helpers'
 
 const debug = Debug('sqip')
 
-const mainKeys = ['originalWidth', 'originalHeight', 'width', 'height', 'type']
+const mainKeys = [
+  'filename',
+  'originalWidth',
+  'originalHeight',
+  'width',
+  'height',
+  'type',
+  'mimeType'
+]
 
 const PALETTE_KEYS: (keyof Palette)[] = [
+  'Background',
   'Vibrant',
   'DarkVibrant',
   'LightVibrant',
@@ -73,6 +84,7 @@ interface SqipConfig {
 }
 
 interface ProcessFileOptions {
+  filePath: string
   buffer: Buffer
   outputFileName: string
   config: SqipConfig
@@ -82,9 +94,12 @@ export interface SqipImageMetadata {
   originalWidth: number
   originalHeight: number
   palette: Palette
+  backgroundColor: string
   height: number
   width: number
   type: 'unknown' | 'pixel' | 'svg'
+  mimeType: string
+  filename: string
   [key: string]: unknown
 }
 
@@ -142,10 +157,11 @@ export async function resolvePlugins(
         name.indexOf('sqip-plugin-') !== -1 ? name : `sqip-plugin-${name}`
       try {
         debug(`Loading ${moduleName}`)
-        const Plugin = await import(moduleName)
+        const { default: Plugin } = await import(moduleName)
 
-        return { ...plugin, Plugin: Plugin.default }
+        return { ...plugin, Plugin: Plugin.default || Plugin }
       } catch (err) {
+        console.error(err)
         throw new Error(
           `Unable to load plugin "${moduleName}". Try installing it via:\n\n npm install ${moduleName}`
         )
@@ -155,12 +171,13 @@ export async function resolvePlugins(
 }
 
 async function processFile({
+  filePath,
   buffer,
   outputFileName,
   config
 }: ProcessFileOptions) {
   const { output, silent, parseableOutput, print } = config
-  const result = await processImage({ buffer, config })
+  const result = await processImage({ filePath, buffer, config })
   const { content, metadata } = result
   let outputPath
 
@@ -262,14 +279,17 @@ async function processFile({
     const paletteTable = new Table(tableConfig)
     paletteTable.push(PALETTE_KEYS)
     paletteTable.push(
-      PALETTE_KEYS.map((key) => metadata.palette[key]?.hex)
+      [
+        metadata.backgroundColor,
+        ...PALETTE_KEYS.map((key) => metadata.palette[key]?.hex)
+      ]
         .filter<string>((hex): hex is string => typeof hex === 'string')
         .map((hex) => chalk.hex(hex)(hex))
     )
     console.log(paletteTable.toString())
 
     Object.keys(metadata)
-      .filter((key) => ![...mainKeys, 'palette'].includes(key))
+      .filter((key) => ![...mainKeys, 'palette', 'backgroundColor'].includes(key))
       .forEach((key) => {
         console.log(chalk.bold(`${key}:`))
         console.log(metadata[key])
@@ -284,23 +304,23 @@ async function processFile({
 }
 
 interface ProcessImageOptions {
+  filePath: string
   buffer: Buffer
   config: SqipConfig
 }
 
 async function processImage({
+  filePath,
   buffer,
   config
 }: ProcessImageOptions): Promise<SqipResult> {
-  const originalSizes = imageSize.sync(buffer)
-
   // Extract the palette from the image. We delegate to node-vibrant (which is
   // using jimp internally), and it only supports some image formats. In
   // particular, it does not support WebP and HEIC yet.
   //
   // So we try with the given image buffer, and if the code throws an exception
   // we try again after converting to TIFF. If that fails again we give up.
-  const palette = await (async () => {
+  const paletteResult = await (async () => {
     const getPalette = (buffer: Buffer) =>
       Vibrant.from(buffer).quality(0).getPalette()
 
@@ -311,14 +331,18 @@ async function processImage({
     }
   })()
 
-  if (!originalSizes) {
-    throw new Error('Unable to get image size')
-  }
+  const backgroundColor = await findBackgroundColor(buffer)
+
+  const { name: filename } = path.parse(filePath)
+  const mimeType = mime.getType(filePath) || 'unknown'
 
   const metadata: SqipImageMetadata = {
-    originalWidth: originalSizes.width,
-    originalHeight: originalSizes.height,
-    palette,
+    filename,
+    mimeType,
+    originalWidth: paletteResult.imageDimensions.width,
+    originalHeight: paletteResult.imageDimensions.height,
+    palette: paletteResult.palette,
+    backgroundColor,
     // @todo this should be set by plugins and detected initially
     type: 'unknown',
     width: 0,
@@ -342,20 +366,27 @@ async function processImage({
     }
   } else {
     // Fall back to original size, keep image as is
-    metadata.width = originalSizes.width
-    metadata.height = originalSizes.height
+    metadata.width = metadata.originalWidth
+    metadata.height = metadata.originalHeight
   }
 
   // Interate through plugins and apply them to last returned image
+
   for (const { name, options: pluginOptions, Plugin } of plugins) {
-    debug(`Construct ${name}`)
-    const plugin = new Plugin({
-      sqipConfig: config,
-      pluginOptions: pluginOptions || {},
-      options: {}
-    })
-    debug(`Apply ${name}`)
-    buffer = await plugin.apply(buffer, metadata)
+    try {
+      debug(`Construct ${name}`)
+      const plugin = new Plugin({
+        sqipConfig: config,
+        pluginOptions: pluginOptions || {},
+        options: {}
+      })
+      debug(`Apply ${name}`)
+      buffer = await plugin.apply(buffer, metadata)
+    } catch (err) {
+      console.log(`Error thrown in plugin ${name}.`)
+      console.dir({ metadata }, { depth: 3 })
+      throw err
+    }
   }
 
   return { content: buffer, metadata }
@@ -396,11 +427,10 @@ export async function sqip(
   // If input is a Buffer
   if (Buffer.isBuffer(input)) {
     if (!outputFileName) {
-      throw new Error(
-        `${outputFileName} is required when passing image as buffer`
-      )
+      throw new Error('OutputFileName is required when passing image as buffer')
     }
     return processFile({
+      filePath: '-',
       buffer: input,
       outputFileName,
       config
@@ -432,6 +462,7 @@ export async function sqip(
     }
     const buffer = await fs.readFile(filePath)
     const result = await processFile({
+      filePath,
       buffer,
       outputFileName: outputFileName || path.parse(filePath).name,
       config
@@ -450,3 +481,22 @@ export async function sqip(
 }
 
 export * from './helpers'
+
+export const mockedMetadata: SqipImageMetadata = {
+  filename: 'mocked',
+  mimeType: 'image/mocked',
+  width: 1024,
+  height: 640,
+  type: 'svg',
+  originalHeight: 1024,
+  originalWidth: 640,
+  backgroundColor: '#FFFFFF00',
+  palette: {
+    DarkMuted: new Swatch([4, 2, 0], 420),
+    DarkVibrant: new Swatch([4, 2, 1], 421),
+    LightMuted: new Swatch([4, 2, 2], 422),
+    LightVibrant: new Swatch([4, 2, 3], 423),
+    Muted: new Swatch([4, 2, 4], 424),
+    Vibrant: new Swatch([4, 2, 5], 425)
+  }
+}

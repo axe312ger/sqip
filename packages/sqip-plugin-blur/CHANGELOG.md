@@ -3,6 +3,101 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.53](https://github.com/axe312ger/sqip/compare/sqip-plugin-blur@1.0.0-alpha.52...sqip-plugin-blur@1.0.0-alpha.53) (2024-03-28)
+
+
+### Features
+
+* blur plugin now uses css blur while the legacy SVG Gaussian Blur is still optionally available ([5ffeab5](https://github.com/axe312ger/sqip/commit/5ffeab5f1486edc9fe735a1127d78343ec237319))
+
+
+
+
+
+# [1.0.0-alpha.52](https://github.com/axe312ger/sqip/compare/sqip-plugin-blur@1.0.0-alpha.51...sqip-plugin-blur@1.0.0-alpha.52) (2024-03-22)
+
+
+### Bug Fixes
+
+* avoid multiple instances of svgdom/svg.js ([71108f3](https://github.com/axe312ger/sqip/commit/71108f34bdb344085fd0339599ef29eab3faf2a8))
+
+
+
+
+
+# [1.0.0-alpha.51](https://github.com/axe312ger/sqip/compare/sqip-plugin-blur@1.0.0-alpha.50...sqip-plugin-blur@1.0.0-alpha.51) (2024-03-22)
+
+
+### Bug Fixes
+
+* dynamic imports seem to have double default - the ESM situation in JS is still madness ([dced6a8](https://github.com/axe312ger/sqip/commit/dced6a88aad5d4d9e738b0f6a18de8680ba2415d))
+
+
+
+
+
+# [1.0.0-alpha.50](https://github.com/axe312ger/sqip/compare/sqip-plugin-blur@1.0.0-alpha.49...sqip-plugin-blur@1.0.0-alpha.50) (2024-03-22)
+
+**Note:** Version bump only for package sqip-plugin-blur
+
+
+
+
+
+# [1.0.0-alpha.49](https://github.com/axe312ger/sqip/compare/sqip-plugin-blur@1.0.0-alpha.48...sqip-plugin-blur@1.0.0-alpha.49) (2024-03-22)
+
+**Note:** Version bump only for package sqip-plugin-blur
+
+
+
+
+
+# [1.0.0-alpha.48](https://github.com/axe312ger/sqip/compare/sqip-plugin-blur@1.0.0-alpha.47...sqip-plugin-blur@1.0.0-alpha.48) (2024-03-22)
+
+**Note:** Version bump only for package sqip-plugin-blur
+
+
+
+
+
+# [1.0.0-alpha.47](https://github.com/axe312ger/sqip/compare/sqip-plugin-blur@1.0.0-alpha.46...sqip-plugin-blur@1.0.0-alpha.47) (2024-03-22)
+
+
+### Bug Fixes
+
+* ensure svgdom is imported dynamically to support old node versions ([9a93204](https://github.com/axe312ger/sqip/commit/9a9320450abe8f0cab69ef1cb4f85b0493398c91))
+
+
+
+
+
+# [1.0.0-alpha.46](https://github.com/axe312ger/sqip/compare/sqip-plugin-blur@1.0.0-alpha.45...sqip-plugin-blur@1.0.0-alpha.46) (2024-03-21)
+
+
+### Features
+
+* avoid blur creating bleed at the edges of the images and make sure blur supports pixel plugin ([f501170](https://github.com/axe312ger/sqip/commit/f50117090d5facf0bf750d13ef50a4617153f051))
+
+
+
+
+
+# [1.0.0-alpha.45](https://github.com/axe312ger/sqip/compare/sqip-plugin-blur@1.0.0-alpha.44...sqip-plugin-blur@1.0.0-alpha.45) (2024-03-02)
+
+**Note:** Version bump only for package sqip-plugin-blur
+
+
+
+
+
+# [1.0.0-alpha.44](https://github.com/axe312ger/sqip/compare/sqip-plugin-blur@1.0.0-alpha.43...sqip-plugin-blur@1.0.0-alpha.44) (2024-02-24)
+
+**Note:** Version bump only for package sqip-plugin-blur
+
+
+
+
+
 # [1.0.0-alpha.43](https://github.com/axe312ger/sqip/compare/sqip-plugin-blur@1.0.0-alpha.42...sqip-plugin-blur@1.0.0-alpha.43) (2024-01-25)
 
 

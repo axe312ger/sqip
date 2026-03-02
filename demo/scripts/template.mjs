@@ -6,9 +6,7 @@ export default (content) => `
     <style type="text/css">
       body {
         font-family: sans-serif;
-        background: black;
         padding: 2rem;
-        color: white;
       }
       a {
         color: tomato;
@@ -42,7 +40,7 @@ export default (content) => `
       }
       th {
         text-align: left;
-        padding: 1rem;
+        padding: 0.5rem 1rem;
       }
       .description {
         padding: 1rem;
@@ -55,6 +53,7 @@ export default (content) => `
         position: absolute;
         right: 0.5rem;
         bottom: 0.5rem;
+        color: white;
       }
       .overlay {
         display: none;
@@ -80,6 +79,10 @@ export default (content) => `
         width: auto;
         padding: 0.25rem;
         vertical-align: top;
+        background: transparent !important;
+      }
+      .overlay p {
+        font-size: 0.85em;
       }
       .preview-wrapper {
         position: relative;
@@ -93,6 +96,13 @@ export default (content) => `
       }
       p.processing-time img {
         vertical-align: text-bottom;
+      }
+      dt {
+        font-weight: bold;
+      }
+      th:nth-child(2n),
+      td:nth-child(2n) {
+        background: #f0f0f0;
       }
     </style>
   </head>

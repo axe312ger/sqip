@@ -1,10 +1,14 @@
 import execa, { ExecaChildProcess } from 'execa'
 import fs from 'fs/promises'
 import os from 'os'
-import { Swatch } from '@vibrant/color'
 
 import PrimitivePlugin from '../../src/sqip-plugin-primitive'
-import { SqipImageMetadata } from 'sqip/src/sqip'
+import { SqipImageMetadata, mockedMetadata } from 'sqip'
+
+const sqipMockedMetadata: SqipImageMetadata = {
+  ...mockedMetadata,
+  type: 'pixel'
+}
 
 jest.mock('execa')
 jest.mock('fs/promises')
@@ -19,7 +23,7 @@ const mockedExeca = execa as jest.MockedFunction<typeof execa>
 mockedExeca.mockImplementation(() => {
   const result = {
     stdout:
-      '<svg viewBox="0 0 1024 768"><rect fill="#bada5500"/><g></g></rect></svg>'
+      '<svg viewBox="0 0 1024 768"><rect fill="#bada5500"/><g></g></svg>'
   } as unknown as ExecaChildProcess<Buffer>
   return result
 })
@@ -34,21 +38,6 @@ const mockedOsPlatform = os.platform as jest.MockedFunction<typeof os.platform>
 
 const proccessExitSpy = jest.spyOn(process, 'exit').mockImplementation()
 
-const mockedMetadata: SqipImageMetadata = {
-  width: 1024,
-  height: 640,
-  type: 'pixel',
-  originalHeight: 1024,
-  originalWidth: 640,
-  palette: {
-    DarkMuted: new Swatch([4, 2, 0], 420),
-    DarkVibrant: new Swatch([4, 2, 1], 421),
-    LightMuted: new Swatch([4, 2, 2], 422),
-    LightVibrant: new Swatch([4, 2, 3], 423),
-    Muted: new Swatch([4, 2, 4], 424),
-    Vibrant: new Swatch([4, 2, 5], 425)
-  }
-}
 const mockedConfig = {
   input: 'mocked',
   output: 'mocked',
@@ -129,7 +118,7 @@ describe('runPrimitive', () => {
       options: {},
       sqipConfig: mockedConfig
     })
-    await primitivePlugin.apply(fileContent, { ...mockedMetadata })
+    await primitivePlugin.apply(fileContent, { ...sqipMockedMetadata })
     expect(mockedExeca.mock.calls).toHaveLength(2)
     expect(mockedExeca.mock.calls[1]).toHaveLength(3)
     expect(mockedExeca.mock.calls[1][1]).toMatchSnapshot()
@@ -142,7 +131,7 @@ describe('runPrimitive', () => {
 
       sqipConfig: mockedConfig
     })
-    await primitivePlugin.apply(fileContent, { ...mockedMetadata })
+    await primitivePlugin.apply(fileContent, { ...sqipMockedMetadata })
     expect(mockedExeca.mock.calls).toHaveLength(2)
     expect(mockedExeca.mock.calls[1]).toHaveLength(3)
     expect(mockedExeca.mock.calls[1][1]).toMatchSnapshot()
@@ -155,7 +144,7 @@ describe('runPrimitive', () => {
       sqipConfig: mockedConfig
     })
     await primitivePlugin.apply(fileContent, {
-      ...mockedMetadata,
+      ...sqipMockedMetadata,
       width: 600,
       height: 300
     })
@@ -172,7 +161,7 @@ describe('runPrimitive', () => {
       options: {},
       sqipConfig: mockedConfig
     })
-    await primitivePlugin.apply(fileContent, { ...mockedMetadata })
+    await primitivePlugin.apply(fileContent, { ...sqipMockedMetadata })
     expect(mockedExeca.mock.calls).toHaveLength(2)
     expect(mockedExeca.mock.calls[1]).toHaveLength(3)
     expect(mockedExeca.mock.calls[1][1]).toMatchSnapshot()
@@ -186,7 +175,7 @@ describe('runPrimitive', () => {
       options: {},
       sqipConfig: mockedConfig
     })
-    await primitivePlugin.apply(fileContent, { ...mockedMetadata })
+    await primitivePlugin.apply(fileContent, { ...sqipMockedMetadata })
     expect(mockedExeca.mock.calls).toHaveLength(2)
     expect(mockedExeca.mock.calls[1]).toHaveLength(3)
     expect(mockedExeca.mock.calls[1][1]).toMatchSnapshot()
@@ -200,7 +189,23 @@ describe('runPrimitive', () => {
       options: {},
       sqipConfig: mockedConfig
     })
-    const res = await primitivePlugin.apply(fileContent, { ...mockedMetadata })
+    const res = await primitivePlugin.apply(fileContent, {
+      ...sqipMockedMetadata
+    })
+    expect(res.toString()).toMatchSnapshot()
+  })
+
+  test('removes background rectangle when user asks for it', async () => {
+    const primitivePlugin = new PrimitivePlugin({
+      pluginOptions: {
+        removeBackgroundElement: true
+      },
+      options: {},
+      sqipConfig: mockedConfig
+    })
+    const res = await primitivePlugin.apply(fileContent, {
+      ...sqipMockedMetadata
+    })
     expect(res.toString()).toMatchSnapshot()
   })
 })

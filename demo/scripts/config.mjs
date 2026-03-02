@@ -30,8 +30,7 @@ export const variants = [
     title: 'Thumbnail',
     description: html`
       <p>
-        300px thumbnail of the original image, minified with
-        <a href="https://github.com/mozilla/mozjpeg">mozjpeg</a>
+        300px thumbnail of the original image, minified with <a href="https://github.com/mozilla/mozjpeg" target="_blank">mozjpeg</a>
       </p>
     `,
     resultFileType: 'jpg',
@@ -53,7 +52,7 @@ export const variants = [
     title: 'LQIP',
     description: html`
       <p>
-        Generated with <a href="https://github.com/zouhir/lqip-cli">lqip-cli</a>
+        Generated with <a href="https://github.com/zouhir/lqip-cli" target="_blank">lqip-cli</a>
       </p>
     `,
     resultFileType: 'jpg',
@@ -68,9 +67,8 @@ export const variants = [
     title: 'LQIP custom',
     description: html`
       <p>
-        32px thumbnail generated with
-        <a href="https://sharp.dimens.io/en/stable/">sharp</a>, minified with
-        <a href="https://github.com/mozilla/mozjpeg">mozjpeg</a>
+        32px thumbnail generated with <a href="https://sharp.dimens.io/en/stable/" target="_blank">sharp</a>,
+        minified with <a href="https://github.com/mozilla/mozjpeg" target="_blank">mozjpeg</a>
       </p>
     `,
     resultFileType: 'jpg',
@@ -102,7 +100,7 @@ export const variants = [
   {
     name: 'sqip',
     title: 'SQIP default',
-    description: html` <p>Just the default settings</p> `,
+    description: html` <p>Just the default settings (primitive + blur)</p> `,
     config: { input: 'path/to/file.jpg' },
     resultFileType: 'svg',
     task: async ({ path, dist }) => {
@@ -141,6 +139,168 @@ export const variants = [
       })
       await writeImage({ dataURI, dist })
       return dataURI
+    }
+  },
+  {
+    name: 'sqip-pixels-placeholder',
+    title: 'SQIP pixels placeholder',
+    description: html`
+      <p>
+        Pixel art based placeholder via${' '}
+        <a
+          href="https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-pixels#readme"
+          >sqip-plugin-pixels</a
+        >
+        and the blur plugin.
+      </p>
+    `,
+    config: {
+      input: 'path/to/file.jpg',
+      plugins: [
+        { name: 'pixels', options: { pixels: 4 } },
+        { name: 'blur', options: { blur: 24 } },
+        'svgo',
+        'data-uri'
+      ]
+    },
+    resultFileType: 'svg',
+    task: async ({ path, dist }) => {
+      const {
+        metadata: { dataURI }
+      } = await sqip({
+        input: path,
+        plugins: [
+          { name: 'pixels', options: { pixels: 4 } },
+          { name: 'blur', options: { blur: 24 } },
+          'svgo',
+          'data-uri'
+        ]
+      })
+      await writeImage({ dataURI, dist })
+      return dataURI
+    }
+  },
+  {
+    name: 'sqip-blurhash',
+    title: 'blurhash',
+    description: html`
+      <p>
+        <a href="https://blurha.sh" target="_blank">blurha.sh</a> via${' '}
+        <a
+          href="https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-blurhash#readme"
+          >sqip-plugin-blurhash</a
+        >
+      </p>
+    `,
+    config: {
+      input: 'path/to/file.jpg',
+      plugins: ['blurhash']
+    },
+    resultFileType: 'svg',
+    task: async ({ path, dist }) => {
+      const {
+        metadata: { dataURIBase64 }
+      } = await sqip({
+        input: path,
+        plugins: ['blurhash']
+      })
+      await writeImage({ dataURI: dataURIBase64, dist })
+      return dataURIBase64
+    }
+  },
+  {
+    name: 'sqip-blurhash-detailed',
+    title: 'blurhash detailed',
+    description: html`
+      <p>
+        <a href="https://blurha.sh" target="_blank">blurha.sh</a> via${' '}
+        <a
+          href="https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-blurhash#readme"
+          >sqip-plugin-blurhash</a
+        >
+        but with more elements/pixels.
+      </p>
+    `,
+    config: {
+      input: 'path/to/file.jpg',
+      plugins: [{ name: 'blurhash', options: { width: 10 } }]
+    },
+    resultFileType: 'svg',
+    task: async ({ path, dist }) => {
+      const {
+        metadata: { dataURIBase64 }
+      } = await sqip({
+        input: path,
+        plugins: [{ name: 'blurhash', options: { width: 10 } }]
+      })
+      await writeImage({ dataURI: dataURIBase64, dist })
+      return dataURIBase64
+    }
+  },
+  {
+    name: 'sqip-triangle',
+    title: 'triangle',
+    description: html`
+      <p>
+        <a href="https://github.com/esimov/triangle/" target="_blank"
+          >triangle</a
+        >
+        previews with blur via${' '}
+        <a
+          href="https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-triangle#readme"
+          >sqip-plugin-triangle</a
+        >
+      </p>
+    `,
+    config: {
+      input: 'path/to/file.jpg',
+      plugins: ['triangle', 'blur', 'svgo', 'data-uri']
+    },
+    resultFileType: 'svg',
+    task: async ({ path, dist }) => {
+      const {
+        metadata: { dataURIBase64 }
+      } = await sqip({
+        input: path,
+        plugins: ['triangle', 'blur', 'svgo', 'data-uri']
+      })
+      await writeImage({ dataURI: dataURIBase64, dist })
+      return dataURIBase64
+    }
+  },
+  {
+    name: 'sqip-triangle-art',
+    title: 'triangle art',
+    description: html`
+      <p>
+        <a href="https://github.com/esimov/triangle/" target="_blank"
+          >triangle</a
+        >
+        with 420 pts via${' '}
+        <a
+          href="https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-triangle#readme"
+          >sqip-plugin-triangle</a
+        >
+      </p>
+    `,
+    config: {
+      input: 'path/to/file.jpg',
+      plugins: [{ name: 'triangle', options: { pts: 420 } }, 'svgo', 'data-uri']
+    },
+    resultFileType: 'svg',
+    task: async ({ path, dist }) => {
+      const {
+        metadata: { dataURIBase64 }
+      } = await sqip({
+        input: path,
+        plugins: [
+          { name: 'triangle', options: { pts: 420 } },
+          'svgo',
+          'data-uri'
+        ]
+      })
+      await writeImage({ dataURI: dataURIBase64, dist })
+      return dataURIBase64
     }
   },
   {

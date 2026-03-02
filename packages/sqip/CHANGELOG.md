@@ -3,6 +3,98 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.51](https://github.com/axe312ger/sqip/compare/sqip@1.0.0-alpha.50...sqip@1.0.0-alpha.51) (2024-03-28)
+
+
+### Features
+
+* sqip now can naively detect the image background color and the pixels blugin supports setting background color which will be handled as transparent pixels ([f4b7748](https://github.com/axe312ger/sqip/commit/f4b774859591390be3e80c6f3f8b0ec062af4716))
+
+
+
+
+
+# [1.0.0-alpha.50](https://github.com/axe312ger/sqip/compare/sqip@1.0.0-alpha.49...sqip@1.0.0-alpha.50) (2024-03-22)
+
+
+### Bug Fixes
+
+* avoid multiple instances of svgdom/svg.js ([71108f3](https://github.com/axe312ger/sqip/commit/71108f34bdb344085fd0339599ef29eab3faf2a8))
+
+
+
+
+
+# [1.0.0-alpha.49](https://github.com/axe312ger/sqip/compare/sqip@1.0.0-alpha.48...sqip@1.0.0-alpha.49) (2024-03-22)
+
+
+### Bug Fixes
+
+* dynamic imports seem to have double default - the ESM situation in JS is still madness ([dced6a8](https://github.com/axe312ger/sqip/commit/dced6a88aad5d4d9e738b0f6a18de8680ba2415d))
+
+
+
+
+
+# [1.0.0-alpha.48](https://github.com/axe312ger/sqip/compare/sqip@1.0.0-alpha.47...sqip@1.0.0-alpha.48) (2024-03-22)
+
+
+### Bug Fixes
+
+* BREAKING - up minimum node version to 18.12.1 and configure typescript to output for that node version ([f1e051f](https://github.com/axe312ger/sqip/commit/f1e051f4962e094308116a9bbf47f063abf7dc8b))
+
+
+
+
+
+# [1.0.0-alpha.47](https://github.com/axe312ger/sqip/compare/sqip@1.0.0-alpha.46...sqip@1.0.0-alpha.47) (2024-03-22)
+
+**Note:** Version bump only for package sqip
+
+
+
+
+
+# [1.0.0-alpha.46](https://github.com/axe312ger/sqip/compare/sqip@1.0.0-alpha.45...sqip@1.0.0-alpha.46) (2024-03-22)
+
+
+### Bug Fixes
+
+* ensure svgdom is imported dynamically to support old node versions ([9a93204](https://github.com/axe312ger/sqip/commit/9a9320450abe8f0cab69ef1cb4f85b0493398c91))
+
+
+
+
+
+# [1.0.0-alpha.45](https://github.com/axe312ger/sqip/compare/sqip@1.0.0-alpha.44...sqip@1.0.0-alpha.45) (2024-03-21)
+
+**Note:** Version bump only for package sqip
+
+
+
+
+
+# [1.0.0-alpha.44](https://github.com/axe312ger/sqip/compare/sqip@1.0.0-alpha.43...sqip@1.0.0-alpha.44) (2024-03-02)
+
+**Note:** Version bump only for package sqip
+
+
+
+
+
+# [1.0.0-alpha.43](https://github.com/axe312ger/sqip/compare/sqip@1.0.0-alpha.42...sqip@1.0.0-alpha.43) (2024-02-24)
+
+
+### Features
+
+* add triangle plugin and include filename and mime type into metadata ([f8838de](https://github.com/axe312ger/sqip/commit/f8838dead30932e59bc5f00cb2e2e9e20bf70a40))
+* improve debug information when a plugin throws an error ([8cff60b](https://github.com/axe312ger/sqip/commit/8cff60b1ae57f8e1bdd7f01bb7b130d54ffdddaa))
+* show actual error when loading a plugin fails ([6c868ae](https://github.com/axe312ger/sqip/commit/6c868aef4d0f4038ec417a7d7ae574e77dff204c))
+
+
+
+
+
 # [1.0.0-alpha.42](https://github.com/axe312ger/sqip/compare/sqip@1.0.0-alpha.41...sqip@1.0.0-alpha.42) (2024-01-25)
 
 

@@ -11,9 +11,9 @@
     "skipLibCheck": true,
 
     "esModuleInterop": true,
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "target": "es2015",
+    "module": "Node16",
+    "moduleResolution": "Node16",
+    "target": "ES2022",
 
     "composite": true
   }

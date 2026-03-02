@@ -1,6 +1,6 @@
 {
   "name": "sqip-plugin-potrace",
-  "version": "1.0.0-alpha.14",
+  "version": "1.0.0-alpha.23",
   "description": "> TODO: description",
   "author": "Benedikt Rötsch <info@benedikt-roetsch.de>",
   "homepage": "https://github.com/axe312ger/sqip#readme",
@@ -27,13 +27,10 @@
     "url": "https://github.com/axe312ger/sqip/issues"
   },
   "dependencies": {
-    "potrace": "^2.1.6",
-    "sqip": "^1.0.0-alpha.42"
+    "@gatsbyjs/potrace": "^3.0.0",
+    "sqip": "^1.0.0-alpha.51"
   },
   "devDependencies": {
     "cheerio": "1.0.0-rc.12"
-  },
-  "peerDependencies": {
-    "@vibrant/color": "^3.2.0-alpha"
   }
 }

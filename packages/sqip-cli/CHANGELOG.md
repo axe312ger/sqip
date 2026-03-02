@@ -3,6 +3,94 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.58](https://github.com/axe312ger/sqip/compare/sqip-cli@1.0.0-alpha.57...sqip-cli@1.0.0-alpha.58) (2024-03-28)
+
+**Note:** Version bump only for package sqip-cli
+
+
+
+
+
+# [1.0.0-alpha.57](https://github.com/axe312ger/sqip/compare/sqip-cli@1.0.0-alpha.56...sqip-cli@1.0.0-alpha.57) (2024-03-25)
+
+**Note:** Version bump only for package sqip-cli
+
+
+
+
+
+# [1.0.0-alpha.56](https://github.com/axe312ger/sqip/compare/sqip-cli@1.0.0-alpha.55...sqip-cli@1.0.0-alpha.56) (2024-03-22)
+
+**Note:** Version bump only for package sqip-cli
+
+
+
+
+
+# [1.0.0-alpha.55](https://github.com/axe312ger/sqip/compare/sqip-cli@1.0.0-alpha.54...sqip-cli@1.0.0-alpha.55) (2024-03-22)
+
+**Note:** Version bump only for package sqip-cli
+
+
+
+
+
+# [1.0.0-alpha.54](https://github.com/axe312ger/sqip/compare/sqip-cli@1.0.0-alpha.53...sqip-cli@1.0.0-alpha.54) (2024-03-22)
+
+**Note:** Version bump only for package sqip-cli
+
+
+
+
+
+# [1.0.0-alpha.53](https://github.com/axe312ger/sqip/compare/sqip-cli@1.0.0-alpha.52...sqip-cli@1.0.0-alpha.53) (2024-03-22)
+
+**Note:** Version bump only for package sqip-cli
+
+
+
+
+
+# [1.0.0-alpha.52](https://github.com/axe312ger/sqip/compare/sqip-cli@1.0.0-alpha.51...sqip-cli@1.0.0-alpha.52) (2024-03-22)
+
+**Note:** Version bump only for package sqip-cli
+
+
+
+
+
+# [1.0.0-alpha.51](https://github.com/axe312ger/sqip/compare/sqip-cli@1.0.0-alpha.50...sqip-cli@1.0.0-alpha.51) (2024-03-22)
+
+**Note:** Version bump only for package sqip-cli
+
+
+
+
+
+# [1.0.0-alpha.50](https://github.com/axe312ger/sqip/compare/sqip-cli@1.0.0-alpha.49...sqip-cli@1.0.0-alpha.50) (2024-03-21)
+
+**Note:** Version bump only for package sqip-cli
+
+
+
+
+
+# [1.0.0-alpha.49](https://github.com/axe312ger/sqip/compare/sqip-cli@1.0.0-alpha.48...sqip-cli@1.0.0-alpha.49) (2024-03-02)
+
+**Note:** Version bump only for package sqip-cli
+
+
+
+
+
+# [1.0.0-alpha.48](https://github.com/axe312ger/sqip/compare/sqip-cli@1.0.0-alpha.47...sqip-cli@1.0.0-alpha.48) (2024-02-24)
+
+**Note:** Version bump only for package sqip-cli
+
+
+
+
+
 # [1.0.0-alpha.47](https://github.com/axe312ger/sqip/compare/sqip-cli@1.0.0-alpha.46...sqip-cli@1.0.0-alpha.47) (2024-01-25)
 
 
