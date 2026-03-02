@@ -224,16 +224,34 @@ sqip CLI
 
 Options
 
-  -h, --help                                  Show help
-  --version                                   Show version number
-  -p, --plugins string[]                      One or more plugins. E.g. "-p primitive blur"
+  -h, --help string                           Show help
+  --version string                            Show version number
+  -p, --plugins string[]                      One or more plugins. E.g. "-p
+                                              primitive blur"
   -i, --input string
-  -o, --output string                         Save the resulting SVG to a file. The svg result will be returned by default.
-  -n, --primitive-numberOfPrimitives number   The number of primitive shapes to use to build the SQIP SVG
+  -o, --output string                         Define the path of the resulting
+                                              file. By default SQIP will guess
+                                              the output file name.
+  -w, --width number                          Width of the resulting file.
+                                              Negative values and 0 will fall
+                                              back to original image width.
+  --silent                                    Supress all output
+  --parseable-output                          Ensure the output is parseable.
+                                              Will suppress the preview images
+                                              and the table borders.
+  --print                                     Print resulting svg to stdout.
+  -n, --primitive-numberOfPrimitives number   The number of primitive shapes to
+                                              use to build the SQIP SVG
   -m, --primitive-mode number                 The style of primitives to use:
-                                              0=combo, 1=triangle, 2=rect, 3=ellipse, 4=circle, 5=rotatedrect, 6=beziers,
+                                              0=combo, 1=triangle, 2=rect,
+                                              3=ellipse, 4=circle,
+                                              5=rotatedrect, 6=beziers,
                                               7=rotatedellipse, 8=polygon
-  -b, --blur-blur number                      Set the GaussianBlur SVG filter value. Disable it via 0.
+  -b, --blur-blur number                      Set the blur value. If you pass a
+                                              number, it will be converted to
+                                              px for css blur. It will also set
+                                              the stdDeviation for the legacy
+                                              SVG blur.
 
 Examples
 
