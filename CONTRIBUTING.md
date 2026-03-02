@@ -11,26 +11,19 @@
 
 ## Development Setup
 
-[![lerna](https://img.shields.io/badge/lerna-monorepo-4B32C3.svg?logo=lerna&style=flat)](https://lerna.js.org/) [![yarn](https://img.shields.io/badge/yarn-package%20management-C21325.svg?logo=yarn&style=flat)](https://yarnpkg.com)
-
-SQIP uses a `monorepo` pattern to manage its many dependencies and relies on Lerna and [Yarn](https://yarnpkg.com/) to configure the repository for active development.
+SQIP uses a `monorepo` pattern to manage its many dependencies via [npm workspaces](https://docs.npmjs.com/cli/v10/using-npm/workspaces). [Lerna](https://lerna.js.org/) is used only for publishing and changelog generation.
 
 ### Requirements
 
-* Make sure to have [Yarn installed](https://yarnpkg.com/en/docs/install)
+* Node.js >= 20
+* npm (comes with Node.js)
 
 ### Installation and repo setup
 
-Yarn will automatically setup the monorepo for you. The only thing you have to do:
+npm will automatically setup the monorepo workspaces for you:
 
 ```sh
-yarn
-```
-
-You can find all available lerna commands via
-
-```sh
-npx lerna --help
+npm install
 ```
 
 ### Directory structure
@@ -55,7 +48,7 @@ All packages should follow the same directory structure to allow proper TS build
 │   │   ├── package.json
 │   │   └── src
 │   ├── ...
-└── yarn.lock
+└── package-lock.json
 ```
 
 ## Developing
@@ -66,7 +59,7 @@ A `npm run` will give you a first overview of all available scripts.
 
 ### Building the source
 
-To build/transpile the source of all packages via babel, execute:
+To build/transpile the source of all packages via TypeScript, execute:
 
 ```sh
 npm run build
@@ -82,9 +75,9 @@ npm run build:watch
 
 To build a new SQIP plugin is pretty simple:
 
-1. Make sure the SQIP repository is checked out at master with the latest status and you ran `yarn`.
-1. Create a rough file structure via `lerna create --es-module sqip-plugin-my-amazing-plugin`
-2. Use the following template to rocket-start your new plugin:
+1. Make sure the SQIP repository is checked out at master with the latest status and you ran `npm install`.
+2. Create a new directory under `packages/` for your plugin (e.g. `packages/sqip-plugin-my-amazing-plugin`).
+3. Use the following template to rocket-start your new plugin:
 
 ```js
 import { SqipPlugin } from 'sqip'
@@ -145,21 +138,13 @@ export default class MyAmazingPlugin extends SqipPlugin {
 }
 ```
 
-### Add dependencies to package
+### Add dependencies to a package
 
-To add a dependency to a package, you need to go into the package directory and execute Yarn as usual:
-
-```sh
-yarn add the-dependency-i-badly-need
-```
-
-You might speed this up by using:
+To add a dependency to a specific package, use npm's workspace flag:
 
 ```sh
-npx lerna add the-dependency-i-badly-need
+npm install the-dependency-i-badly-need -w sqip-plugin-my-amazing-plugin
 ```
-
-Make sure to read `npx lerna add --help`
 
 ## Testing
 
