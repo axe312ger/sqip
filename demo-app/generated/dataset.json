@@ -1,0 +1,2634 @@
+[
+  {
+    "filename": "aaron-burden-151465-unsplash",
+    "originalPath": "aaron-burden-151465-unsplash.jpg",
+    "dimensions": {
+      "width": 2000,
+      "height": 1500
+    },
+    "originalSize": 583149,
+    "results": [
+      {
+        "variantName": "thumbnail",
+        "category": "baseline",
+        "title": "Thumbnail (300px)",
+        "pluginChain": [
+          "sharp resize"
+        ],
+        "fileName": "aaron-burden-151465-unsplash-thumbnail.jpg",
+        "resultFileType": "jpg",
+        "sizes": {
+          "originalBytes": 25733,
+          "gzipBytes": 25721,
+          "brotliBytes": 25590
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 225
+        },
+        "processTimeMs": 25
+      },
+      {
+        "variantName": "lqip-modern-webp",
+        "category": "baseline",
+        "title": "LQIP Modern (WebP)",
+        "pluginChain": [
+          "lqip-modern"
+        ],
+        "fileName": "aaron-burden-151465-unsplash-lqip-modern-webp.webp",
+        "resultFileType": "webp",
+        "sizes": {
+          "originalBytes": 80,
+          "gzipBytes": 101,
+          "brotliBytes": 84
+        },
+        "dimensions": {
+          "width": 16,
+          "height": 12
+        },
+        "processTimeMs": 25
+      },
+      {
+        "variantName": "lqip-modern-webp-hd",
+        "category": "baseline",
+        "title": "LQIP Modern (WebP HD)",
+        "pluginChain": [
+          "lqip-modern(32px)"
+        ],
+        "fileName": "aaron-burden-151465-unsplash-lqip-modern-webp-hd.webp",
+        "resultFileType": "webp",
+        "sizes": {
+          "originalBytes": 292,
+          "gzipBytes": 315,
+          "brotliBytes": 296
+        },
+        "dimensions": {
+          "width": 32,
+          "height": 24
+        },
+        "processTimeMs": 26
+      },
+      {
+        "variantName": "lqip-modern-jpeg",
+        "category": "baseline",
+        "title": "LQIP Modern (JPEG)",
+        "pluginChain": [
+          "lqip-modern"
+        ],
+        "fileName": "aaron-burden-151465-unsplash-lqip-modern-jpeg.jpg",
+        "resultFileType": "jpg",
+        "sizes": {
+          "originalBytes": 293,
+          "gzipBytes": 217,
+          "brotliBytes": 215
+        },
+        "dimensions": {
+          "width": 16,
+          "height": 12
+        },
+        "processTimeMs": 24
+      },
+      {
+        "variantName": "sqip-default",
+        "category": "standard",
+        "title": "SQIP Default",
+        "pluginChain": [
+          "primitive",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "aaron-burden-151465-unsplash-sqip-default.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 967,
+          "gzipBytes": 401,
+          "brotliBytes": 355
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 225
+        },
+        "processTimeMs": 1276
+      },
+      {
+        "variantName": "sqip-pixels",
+        "category": "standard",
+        "title": "SQIP Pixels",
+        "pluginChain": [
+          "pixels",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "aaron-burden-151465-unsplash-sqip-pixels.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 2327,
+          "gzipBytes": 536,
+          "brotliBytes": 425
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 225
+        },
+        "processTimeMs": 178
+      },
+      {
+        "variantName": "sqip-potrace",
+        "category": "standard",
+        "title": "SQIP Potrace",
+        "pluginChain": [
+          "potrace",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "aaron-burden-151465-unsplash-sqip-potrace.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 49590,
+          "gzipBytes": 18703,
+          "brotliBytes": 16834
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 225
+        },
+        "processTimeMs": 397
+      },
+      {
+        "variantName": "sqip-potrace-posterize",
+        "category": "standard",
+        "title": "SQIP Potrace Posterize",
+        "pluginChain": [
+          "potrace(posterize)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "aaron-burden-151465-unsplash-sqip-potrace-posterize.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 173454,
+          "gzipBytes": 62788,
+          "brotliBytes": 55717
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 225
+        },
+        "processTimeMs": 1345
+      },
+      {
+        "variantName": "sqip-triangle",
+        "category": "standard",
+        "title": "SQIP Triangle",
+        "pluginChain": [
+          "triangle",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "aaron-burden-151465-unsplash-sqip-triangle.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 1477,
+          "gzipBytes": 524,
+          "brotliBytes": 478
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 225
+        },
+        "processTimeMs": 225
+      },
+      {
+        "variantName": "sqip-blurhash",
+        "category": "standard",
+        "title": "SQIP Blurhash",
+        "pluginChain": [
+          "blurhash"
+        ],
+        "fileName": "aaron-burden-151465-unsplash-sqip-blurhash.jpg",
+        "resultFileType": "jpg",
+        "sizes": {
+          "originalBytes": 272,
+          "gzipBytes": 187,
+          "brotliBytes": 190
+        },
+        "dimensions": {
+          "width": 4,
+          "height": 5
+        },
+        "processTimeMs": 128
+      },
+      {
+        "variantName": "sqip-blurhash-hd",
+        "category": "standard",
+        "title": "SQIP Blurhash HD",
+        "pluginChain": [
+          "blurhash(width:10)"
+        ],
+        "fileName": "aaron-burden-151465-unsplash-sqip-blurhash-hd.jpg",
+        "resultFileType": "jpg",
+        "sizes": {
+          "originalBytes": 289,
+          "gzipBytes": 212,
+          "brotliBytes": 202
+        },
+        "dimensions": {
+          "width": 9,
+          "height": 9
+        },
+        "processTimeMs": 147
+      },
+      {
+        "variantName": "sqip-primitive-art",
+        "category": "artistic",
+        "title": "Primitive Art",
+        "pluginChain": [
+          "primitive(50, triangles)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "aaron-burden-151465-unsplash-sqip-primitive-art.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 2935,
+          "gzipBytes": 1132,
+          "brotliBytes": 1048
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 225
+        },
+        "processTimeMs": 1636
+      },
+      {
+        "variantName": "sqip-primitive-circles",
+        "category": "artistic",
+        "title": "Primitive Circles",
+        "pluginChain": [
+          "primitive(30, circles)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "aaron-burden-151465-unsplash-sqip-primitive-circles.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 1627,
+          "gzipBytes": 564,
+          "brotliBytes": 463
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 225
+        },
+        "processTimeMs": 1701
+      },
+      {
+        "variantName": "sqip-triangle-art",
+        "category": "artistic",
+        "title": "Triangle Art",
+        "pluginChain": [
+          "triangle(pts:420)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "aaron-burden-151465-unsplash-sqip-triangle-art.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 75418,
+          "gzipBytes": 16760,
+          "brotliBytes": 14070
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 225
+        },
+        "processTimeMs": 323
+      },
+      {
+        "variantName": "sqip-pixels-mosaic",
+        "category": "artistic",
+        "title": "Pixel Mosaic",
+        "pluginChain": [
+          "pixels(16)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "aaron-burden-151465-unsplash-sqip-pixels-mosaic.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 9071,
+          "gzipBytes": 1693,
+          "brotliBytes": 1131
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 225
+        },
+        "processTimeMs": 155
+      }
+    ]
+  },
+  {
+    "filename": "anthony-esau-173126-unsplash",
+    "originalPath": "anthony-esau-173126-unsplash.jpg",
+    "dimensions": {
+      "width": 2000,
+      "height": 1500
+    },
+    "originalSize": 301201,
+    "results": [
+      {
+        "variantName": "thumbnail",
+        "category": "baseline",
+        "title": "Thumbnail (300px)",
+        "pluginChain": [
+          "sharp resize"
+        ],
+        "fileName": "anthony-esau-173126-unsplash-thumbnail.jpg",
+        "resultFileType": "jpg",
+        "sizes": {
+          "originalBytes": 15602,
+          "gzipBytes": 15582,
+          "brotliBytes": 15503
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 225
+        },
+        "processTimeMs": 16
+      },
+      {
+        "variantName": "lqip-modern-webp",
+        "category": "baseline",
+        "title": "LQIP Modern (WebP)",
+        "pluginChain": [
+          "lqip-modern"
+        ],
+        "fileName": "anthony-esau-173126-unsplash-lqip-modern-webp.webp",
+        "resultFileType": "webp",
+        "sizes": {
+          "originalBytes": 100,
+          "gzipBytes": 123,
+          "brotliBytes": 104
+        },
+        "dimensions": {
+          "width": 16,
+          "height": 12
+        },
+        "processTimeMs": 16
+      },
+      {
+        "variantName": "lqip-modern-webp-hd",
+        "category": "baseline",
+        "title": "LQIP Modern (WebP HD)",
+        "pluginChain": [
+          "lqip-modern(32px)"
+        ],
+        "fileName": "anthony-esau-173126-unsplash-lqip-modern-webp-hd.webp",
+        "resultFileType": "webp",
+        "sizes": {
+          "originalBytes": 244,
+          "gzipBytes": 267,
+          "brotliBytes": 248
+        },
+        "dimensions": {
+          "width": 32,
+          "height": 24
+        },
+        "processTimeMs": 15
+      },
+      {
+        "variantName": "lqip-modern-jpeg",
+        "category": "baseline",
+        "title": "LQIP Modern (JPEG)",
+        "pluginChain": [
+          "lqip-modern"
+        ],
+        "fileName": "anthony-esau-173126-unsplash-lqip-modern-jpeg.jpg",
+        "resultFileType": "jpg",
+        "sizes": {
+          "originalBytes": 313,
+          "gzipBytes": 242,
+          "brotliBytes": 260
+        },
+        "dimensions": {
+          "width": 16,
+          "height": 12
+        },
+        "processTimeMs": 13
+      },
+      {
+        "variantName": "sqip-default",
+        "category": "standard",
+        "title": "SQIP Default",
+        "pluginChain": [
+          "primitive",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "anthony-esau-173126-unsplash-sqip-default.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 749,
+          "gzipBytes": 402,
+          "brotliBytes": 361
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 225
+        },
+        "processTimeMs": 763
+      },
+      {
+        "variantName": "sqip-pixels",
+        "category": "standard",
+        "title": "SQIP Pixels",
+        "pluginChain": [
+          "pixels",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "anthony-esau-173126-unsplash-sqip-pixels.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 2327,
+          "gzipBytes": 533,
+          "brotliBytes": 433
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 225
+        },
+        "processTimeMs": 100
+      },
+      {
+        "variantName": "sqip-potrace",
+        "category": "standard",
+        "title": "SQIP Potrace",
+        "pluginChain": [
+          "potrace",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "anthony-esau-173126-unsplash-sqip-potrace.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 8505,
+          "gzipBytes": 3670,
+          "brotliBytes": 3220
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 225
+        },
+        "processTimeMs": 174
+      },
+      {
+        "variantName": "sqip-potrace-posterize",
+        "category": "standard",
+        "title": "SQIP Potrace Posterize",
+        "pluginChain": [
+          "potrace(posterize)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "anthony-esau-173126-unsplash-sqip-potrace-posterize.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 29029,
+          "gzipBytes": 11925,
+          "brotliBytes": 10529
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 225
+        },
+        "processTimeMs": 1017
+      },
+      {
+        "variantName": "sqip-triangle",
+        "category": "standard",
+        "title": "SQIP Triangle",
+        "pluginChain": [
+          "triangle",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "anthony-esau-173126-unsplash-sqip-triangle.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 1497,
+          "gzipBytes": 524,
+          "brotliBytes": 470
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 225
+        },
+        "processTimeMs": 117
+      },
+      {
+        "variantName": "sqip-blurhash",
+        "category": "standard",
+        "title": "SQIP Blurhash",
+        "pluginChain": [
+          "blurhash"
+        ],
+        "fileName": "anthony-esau-173126-unsplash-sqip-blurhash.jpg",
+        "resultFileType": "jpg",
+        "sizes": {
+          "originalBytes": 284,
+          "gzipBytes": 202,
+          "brotliBytes": 203
+        },
+        "dimensions": {
+          "width": 4,
+          "height": 5
+        },
+        "processTimeMs": 101
+      },
+      {
+        "variantName": "sqip-blurhash-hd",
+        "category": "standard",
+        "title": "SQIP Blurhash HD",
+        "pluginChain": [
+          "blurhash(width:10)"
+        ],
+        "fileName": "anthony-esau-173126-unsplash-sqip-blurhash-hd.jpg",
+        "resultFileType": "jpg",
+        "sizes": {
+          "originalBytes": 302,
+          "gzipBytes": 228,
+          "brotliBytes": 233
+        },
+        "dimensions": {
+          "width": 9,
+          "height": 9
+        },
+        "processTimeMs": 128
+      },
+      {
+        "variantName": "sqip-primitive-art",
+        "category": "artistic",
+        "title": "Primitive Art",
+        "pluginChain": [
+          "primitive(50, triangles)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "anthony-esau-173126-unsplash-sqip-primitive-art.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 2936,
+          "gzipBytes": 1145,
+          "brotliBytes": 1050
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 225
+        },
+        "processTimeMs": 1706
+      },
+      {
+        "variantName": "sqip-primitive-circles",
+        "category": "artistic",
+        "title": "Primitive Circles",
+        "pluginChain": [
+          "primitive(30, circles)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "anthony-esau-173126-unsplash-sqip-primitive-circles.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 1596,
+          "gzipBytes": 522,
+          "brotliBytes": 442
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 225
+        },
+        "processTimeMs": 1682
+      },
+      {
+        "variantName": "sqip-triangle-art",
+        "category": "artistic",
+        "title": "Triangle Art",
+        "pluginChain": [
+          "triangle(pts:420)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "anthony-esau-173126-unsplash-sqip-triangle-art.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 76394,
+          "gzipBytes": 16717,
+          "brotliBytes": 13769
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 225
+        },
+        "processTimeMs": 339
+      },
+      {
+        "variantName": "sqip-pixels-mosaic",
+        "category": "artistic",
+        "title": "Pixel Mosaic",
+        "pluginChain": [
+          "pixels(16)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "anthony-esau-173126-unsplash-sqip-pixels-mosaic.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 9071,
+          "gzipBytes": 1665,
+          "brotliBytes": 1153
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 225
+        },
+        "processTimeMs": 114
+      }
+    ]
+  },
+  {
+    "filename": "aron-visuals-974734-unsplash",
+    "originalPath": "aron-visuals-974734-unsplash.jpg",
+    "dimensions": {
+      "width": 2000,
+      "height": 2500
+    },
+    "originalSize": 350470,
+    "results": [
+      {
+        "variantName": "thumbnail",
+        "category": "baseline",
+        "title": "Thumbnail (300px)",
+        "pluginChain": [
+          "sharp resize"
+        ],
+        "fileName": "aron-visuals-974734-unsplash-thumbnail.jpg",
+        "resultFileType": "jpg",
+        "sizes": {
+          "originalBytes": 14180,
+          "gzipBytes": 14174,
+          "brotliBytes": 14099
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 375
+        },
+        "processTimeMs": 23
+      },
+      {
+        "variantName": "lqip-modern-webp",
+        "category": "baseline",
+        "title": "LQIP Modern (WebP)",
+        "pluginChain": [
+          "lqip-modern"
+        ],
+        "fileName": "aron-visuals-974734-unsplash-lqip-modern-webp.webp",
+        "resultFileType": "webp",
+        "sizes": {
+          "originalBytes": 80,
+          "gzipBytes": 103,
+          "brotliBytes": 84
+        },
+        "dimensions": {
+          "width": 13,
+          "height": 16
+        },
+        "processTimeMs": 23
+      },
+      {
+        "variantName": "lqip-modern-webp-hd",
+        "category": "baseline",
+        "title": "LQIP Modern (WebP HD)",
+        "pluginChain": [
+          "lqip-modern(32px)"
+        ],
+        "fileName": "aron-visuals-974734-unsplash-lqip-modern-webp-hd.webp",
+        "resultFileType": "webp",
+        "sizes": {
+          "originalBytes": 158,
+          "gzipBytes": 181,
+          "brotliBytes": 162
+        },
+        "dimensions": {
+          "width": 26,
+          "height": 32
+        },
+        "processTimeMs": 23
+      },
+      {
+        "variantName": "lqip-modern-jpeg",
+        "category": "baseline",
+        "title": "LQIP Modern (JPEG)",
+        "pluginChain": [
+          "lqip-modern"
+        ],
+        "fileName": "aron-visuals-974734-unsplash-lqip-modern-jpeg.jpg",
+        "resultFileType": "jpg",
+        "sizes": {
+          "originalBytes": 298,
+          "gzipBytes": 228,
+          "brotliBytes": 257
+        },
+        "dimensions": {
+          "width": 13,
+          "height": 16
+        },
+        "processTimeMs": 22
+      },
+      {
+        "variantName": "sqip-default",
+        "category": "standard",
+        "title": "SQIP Default",
+        "pluginChain": [
+          "primitive",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "aron-visuals-974734-unsplash-sqip-default.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 772,
+          "gzipBytes": 404,
+          "brotliBytes": 362
+        },
+        "dimensions": {
+          "width": 298,
+          "height": 375
+        },
+        "processTimeMs": 1137
+      },
+      {
+        "variantName": "sqip-pixels",
+        "category": "standard",
+        "title": "SQIP Pixels",
+        "pluginChain": [
+          "pixels",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "aron-visuals-974734-unsplash-sqip-pixels.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 2834,
+          "gzipBytes": 572,
+          "brotliBytes": 449
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 375
+        },
+        "processTimeMs": 163
+      },
+      {
+        "variantName": "sqip-potrace",
+        "category": "standard",
+        "title": "SQIP Potrace",
+        "pluginChain": [
+          "potrace",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "aron-visuals-974734-unsplash-sqip-potrace.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 6632,
+          "gzipBytes": 2886,
+          "brotliBytes": 2518
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 375
+        },
+        "processTimeMs": 178
+      },
+      {
+        "variantName": "sqip-potrace-posterize",
+        "category": "standard",
+        "title": "SQIP Potrace Posterize",
+        "pluginChain": [
+          "potrace(posterize)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "aron-visuals-974734-unsplash-sqip-potrace-posterize.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 56008,
+          "gzipBytes": 20816,
+          "brotliBytes": 18560
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 375
+        },
+        "processTimeMs": 1109
+      },
+      {
+        "variantName": "sqip-triangle",
+        "category": "standard",
+        "title": "SQIP Triangle",
+        "pluginChain": [
+          "triangle",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "aron-visuals-974734-unsplash-sqip-triangle.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 1452,
+          "gzipBytes": 521,
+          "brotliBytes": 484
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 375
+        },
+        "processTimeMs": 182
+      },
+      {
+        "variantName": "sqip-blurhash",
+        "category": "standard",
+        "title": "SQIP Blurhash",
+        "pluginChain": [
+          "blurhash"
+        ],
+        "fileName": "aron-visuals-974734-unsplash-sqip-blurhash.jpg",
+        "resultFileType": "jpg",
+        "sizes": {
+          "originalBytes": 284,
+          "gzipBytes": 203,
+          "brotliBytes": 200
+        },
+        "dimensions": {
+          "width": 4,
+          "height": 3
+        },
+        "processTimeMs": 150
+      },
+      {
+        "variantName": "sqip-blurhash-hd",
+        "category": "standard",
+        "title": "SQIP Blurhash HD",
+        "pluginChain": [
+          "blurhash(width:10)"
+        ],
+        "fileName": "aron-visuals-974734-unsplash-sqip-blurhash-hd.jpg",
+        "resultFileType": "jpg",
+        "sizes": {
+          "originalBytes": 303,
+          "gzipBytes": 228,
+          "brotliBytes": 221
+        },
+        "dimensions": {
+          "width": 9,
+          "height": 7
+        },
+        "processTimeMs": 184
+      },
+      {
+        "variantName": "sqip-primitive-art",
+        "category": "artistic",
+        "title": "Primitive Art",
+        "pluginChain": [
+          "primitive(50, triangles)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "aron-visuals-974734-unsplash-sqip-primitive-art.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 3013,
+          "gzipBytes": 1181,
+          "brotliBytes": 1092
+        },
+        "dimensions": {
+          "width": 298,
+          "height": 375
+        },
+        "processTimeMs": 2445
+      },
+      {
+        "variantName": "sqip-primitive-circles",
+        "category": "artistic",
+        "title": "Primitive Circles",
+        "pluginChain": [
+          "primitive(30, circles)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "aron-visuals-974734-unsplash-sqip-primitive-circles.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 1592,
+          "gzipBytes": 545,
+          "brotliBytes": 455
+        },
+        "dimensions": {
+          "width": 298,
+          "height": 375
+        },
+        "processTimeMs": 1917
+      },
+      {
+        "variantName": "sqip-triangle-art",
+        "category": "artistic",
+        "title": "Triangle Art",
+        "pluginChain": [
+          "triangle(pts:420)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "aron-visuals-974734-unsplash-sqip-triangle-art.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 74206,
+          "gzipBytes": 16449,
+          "brotliBytes": 13523
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 375
+        },
+        "processTimeMs": 340
+      },
+      {
+        "variantName": "sqip-pixels-mosaic",
+        "category": "artistic",
+        "title": "Pixel Mosaic",
+        "pluginChain": [
+          "pixels(16)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "aron-visuals-974734-unsplash-sqip-pixels-mosaic.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 9830,
+          "gzipBytes": 1735,
+          "brotliBytes": 1210
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 375
+        },
+        "processTimeMs": 183
+      }
+    ]
+  },
+  {
+    "filename": "beach",
+    "originalPath": "beach.jpg",
+    "dimensions": {
+      "width": 1024,
+      "height": 640
+    },
+    "originalSize": 60855,
+    "results": [
+      {
+        "variantName": "thumbnail",
+        "category": "baseline",
+        "title": "Thumbnail (300px)",
+        "pluginChain": [
+          "sharp resize"
+        ],
+        "fileName": "beach-thumbnail.jpg",
+        "resultFileType": "jpg",
+        "sizes": {
+          "originalBytes": 8755,
+          "gzipBytes": 8729,
+          "brotliBytes": 8675
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 188
+        },
+        "processTimeMs": 5
+      },
+      {
+        "variantName": "lqip-modern-webp",
+        "category": "baseline",
+        "title": "LQIP Modern (WebP)",
+        "pluginChain": [
+          "lqip-modern"
+        ],
+        "fileName": "beach-lqip-modern-webp.webp",
+        "resultFileType": "webp",
+        "sizes": {
+          "originalBytes": 80,
+          "gzipBytes": 103,
+          "brotliBytes": 84
+        },
+        "dimensions": {
+          "width": 16,
+          "height": 10
+        },
+        "processTimeMs": 4
+      },
+      {
+        "variantName": "lqip-modern-webp-hd",
+        "category": "baseline",
+        "title": "LQIP Modern (WebP HD)",
+        "pluginChain": [
+          "lqip-modern(32px)"
+        ],
+        "fileName": "beach-lqip-modern-webp-hd.webp",
+        "resultFileType": "webp",
+        "sizes": {
+          "originalBytes": 166,
+          "gzipBytes": 189,
+          "brotliBytes": 170
+        },
+        "dimensions": {
+          "width": 32,
+          "height": 20
+        },
+        "processTimeMs": 4
+      },
+      {
+        "variantName": "lqip-modern-jpeg",
+        "category": "baseline",
+        "title": "LQIP Modern (JPEG)",
+        "pluginChain": [
+          "lqip-modern"
+        ],
+        "fileName": "beach-lqip-modern-jpeg.jpg",
+        "resultFileType": "jpg",
+        "sizes": {
+          "originalBytes": 309,
+          "gzipBytes": 242,
+          "brotliBytes": 262
+        },
+        "dimensions": {
+          "width": 16,
+          "height": 10
+        },
+        "processTimeMs": 4
+      },
+      {
+        "variantName": "sqip-default",
+        "category": "standard",
+        "title": "SQIP Default",
+        "pluginChain": [
+          "primitive",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "beach-sqip-default.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 815,
+          "gzipBytes": 404,
+          "brotliBytes": 364
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 187
+        },
+        "processTimeMs": 546
+      },
+      {
+        "variantName": "sqip-pixels",
+        "category": "standard",
+        "title": "SQIP Pixels",
+        "pluginChain": [
+          "pixels",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "beach-sqip-pixels.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 1867,
+          "gzipBytes": 470,
+          "brotliBytes": 379
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 188
+        },
+        "processTimeMs": 35
+      },
+      {
+        "variantName": "sqip-potrace",
+        "category": "standard",
+        "title": "SQIP Potrace",
+        "pluginChain": [
+          "potrace",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "beach-sqip-potrace.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 8760,
+          "gzipBytes": 3623,
+          "brotliBytes": 3159
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 188
+        },
+        "processTimeMs": 75
+      },
+      {
+        "variantName": "sqip-potrace-posterize",
+        "category": "standard",
+        "title": "SQIP Potrace Posterize",
+        "pluginChain": [
+          "potrace(posterize)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "beach-sqip-potrace-posterize.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 28315,
+          "gzipBytes": 11000,
+          "brotliBytes": 9662
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 188
+        },
+        "processTimeMs": 966
+      },
+      {
+        "variantName": "sqip-triangle",
+        "category": "standard",
+        "title": "SQIP Triangle",
+        "pluginChain": [
+          "triangle",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "beach-sqip-triangle.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 1506,
+          "gzipBytes": 530,
+          "brotliBytes": 479
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 188
+        },
+        "processTimeMs": 52
+      },
+      {
+        "variantName": "sqip-blurhash",
+        "category": "standard",
+        "title": "SQIP Blurhash",
+        "pluginChain": [
+          "blurhash"
+        ],
+        "fileName": "beach-sqip-blurhash.jpg",
+        "resultFileType": "jpg",
+        "sizes": {
+          "originalBytes": 283,
+          "gzipBytes": 202,
+          "brotliBytes": 198
+        },
+        "dimensions": {
+          "width": 4,
+          "height": 6
+        },
+        "processTimeMs": 35
+      },
+      {
+        "variantName": "sqip-blurhash-hd",
+        "category": "standard",
+        "title": "SQIP Blurhash HD",
+        "pluginChain": [
+          "blurhash(width:10)"
+        ],
+        "fileName": "beach-sqip-blurhash-hd.jpg",
+        "resultFileType": "jpg",
+        "sizes": {
+          "originalBytes": 302,
+          "gzipBytes": 226,
+          "brotliBytes": 215
+        },
+        "dimensions": {
+          "width": 9,
+          "height": 9
+        },
+        "processTimeMs": 62
+      },
+      {
+        "variantName": "sqip-primitive-art",
+        "category": "artistic",
+        "title": "Primitive Art",
+        "pluginChain": [
+          "primitive(50, triangles)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "beach-sqip-primitive-art.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 2975,
+          "gzipBytes": 1149,
+          "brotliBytes": 1063
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 187
+        },
+        "processTimeMs": 1505
+      },
+      {
+        "variantName": "sqip-primitive-circles",
+        "category": "artistic",
+        "title": "Primitive Circles",
+        "pluginChain": [
+          "primitive(30, circles)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "beach-sqip-primitive-circles.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 1614,
+          "gzipBytes": 551,
+          "brotliBytes": 445
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 187
+        },
+        "processTimeMs": 1481
+      },
+      {
+        "variantName": "sqip-triangle-art",
+        "category": "artistic",
+        "title": "Triangle Art",
+        "pluginChain": [
+          "triangle(pts:420)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "beach-sqip-triangle-art.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 75125,
+          "gzipBytes": 15953,
+          "brotliBytes": 13057
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 188
+        },
+        "processTimeMs": 413
+      },
+      {
+        "variantName": "sqip-pixels-mosaic",
+        "category": "artistic",
+        "title": "Pixel Mosaic",
+        "pluginChain": [
+          "pixels(16)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "beach-sqip-pixels-mosaic.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 7205,
+          "gzipBytes": 1405,
+          "brotliBytes": 1004
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 188
+        },
+        "processTimeMs": 64
+      }
+    ]
+  },
+  {
+    "filename": "eric-marty-780304-unsplash",
+    "originalPath": "eric-marty-780304-unsplash.jpg",
+    "dimensions": {
+      "width": 2000,
+      "height": 2000
+    },
+    "originalSize": 343022,
+    "results": [
+      {
+        "variantName": "thumbnail",
+        "category": "baseline",
+        "title": "Thumbnail (300px)",
+        "pluginChain": [
+          "sharp resize"
+        ],
+        "fileName": "eric-marty-780304-unsplash-thumbnail.jpg",
+        "resultFileType": "jpg",
+        "sizes": {
+          "originalBytes": 18628,
+          "gzipBytes": 18628,
+          "brotliBytes": 18508
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 300
+        },
+        "processTimeMs": 19
+      },
+      {
+        "variantName": "lqip-modern-webp",
+        "category": "baseline",
+        "title": "LQIP Modern (WebP)",
+        "pluginChain": [
+          "lqip-modern"
+        ],
+        "fileName": "eric-marty-780304-unsplash-lqip-modern-webp.webp",
+        "resultFileType": "webp",
+        "sizes": {
+          "originalBytes": 76,
+          "gzipBytes": 99,
+          "brotliBytes": 80
+        },
+        "dimensions": {
+          "width": 16,
+          "height": 16
+        },
+        "processTimeMs": 17
+      },
+      {
+        "variantName": "lqip-modern-webp-hd",
+        "category": "baseline",
+        "title": "LQIP Modern (WebP HD)",
+        "pluginChain": [
+          "lqip-modern(32px)"
+        ],
+        "fileName": "eric-marty-780304-unsplash-lqip-modern-webp-hd.webp",
+        "resultFileType": "webp",
+        "sizes": {
+          "originalBytes": 170,
+          "gzipBytes": 193,
+          "brotliBytes": 174
+        },
+        "dimensions": {
+          "width": 32,
+          "height": 32
+        },
+        "processTimeMs": 18
+      },
+      {
+        "variantName": "lqip-modern-jpeg",
+        "category": "baseline",
+        "title": "LQIP Modern (JPEG)",
+        "pluginChain": [
+          "lqip-modern"
+        ],
+        "fileName": "eric-marty-780304-unsplash-lqip-modern-jpeg.jpg",
+        "resultFileType": "jpg",
+        "sizes": {
+          "originalBytes": 299,
+          "gzipBytes": 227,
+          "brotliBytes": 229
+        },
+        "dimensions": {
+          "width": 16,
+          "height": 16
+        },
+        "processTimeMs": 17
+      },
+      {
+        "variantName": "sqip-default",
+        "category": "standard",
+        "title": "SQIP Default",
+        "pluginChain": [
+          "primitive",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "eric-marty-780304-unsplash-sqip-default.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 989,
+          "gzipBytes": 384,
+          "brotliBytes": 340
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 300
+        },
+        "processTimeMs": 1044
+      },
+      {
+        "variantName": "sqip-pixels",
+        "category": "standard",
+        "title": "SQIP Pixels",
+        "pluginChain": [
+          "pixels",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "eric-marty-780304-unsplash-sqip-pixels.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 2973,
+          "gzipBytes": 670,
+          "brotliBytes": 541
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 300
+        },
+        "processTimeMs": 150
+      },
+      {
+        "variantName": "sqip-potrace",
+        "category": "standard",
+        "title": "SQIP Potrace",
+        "pluginChain": [
+          "potrace",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "eric-marty-780304-unsplash-sqip-potrace.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 16348,
+          "gzipBytes": 6447,
+          "brotliBytes": 5720
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 300
+        },
+        "processTimeMs": 198
+      },
+      {
+        "variantName": "sqip-potrace-posterize",
+        "category": "standard",
+        "title": "SQIP Potrace Posterize",
+        "pluginChain": [
+          "potrace(posterize)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "eric-marty-780304-unsplash-sqip-potrace-posterize.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 85900,
+          "gzipBytes": 30803,
+          "brotliBytes": 27372
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 300
+        },
+        "processTimeMs": 1168
+      },
+      {
+        "variantName": "sqip-triangle",
+        "category": "standard",
+        "title": "SQIP Triangle",
+        "pluginChain": [
+          "triangle",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "eric-marty-780304-unsplash-sqip-triangle.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 1483,
+          "gzipBytes": 516,
+          "brotliBytes": 464
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 300
+        },
+        "processTimeMs": 151
+      },
+      {
+        "variantName": "sqip-blurhash",
+        "category": "standard",
+        "title": "SQIP Blurhash",
+        "pluginChain": [
+          "blurhash"
+        ],
+        "fileName": "eric-marty-780304-unsplash-sqip-blurhash.jpg",
+        "resultFileType": "jpg",
+        "sizes": {
+          "originalBytes": 288,
+          "gzipBytes": 207,
+          "brotliBytes": 207
+        },
+        "dimensions": {
+          "width": 4,
+          "height": 4
+        },
+        "processTimeMs": 118
+      },
+      {
+        "variantName": "sqip-blurhash-hd",
+        "category": "standard",
+        "title": "SQIP Blurhash HD",
+        "pluginChain": [
+          "blurhash(width:10)"
+        ],
+        "fileName": "eric-marty-780304-unsplash-sqip-blurhash-hd.jpg",
+        "resultFileType": "jpg",
+        "sizes": {
+          "originalBytes": 301,
+          "gzipBytes": 227,
+          "brotliBytes": 230
+        },
+        "dimensions": {
+          "width": 9,
+          "height": 9
+        },
+        "processTimeMs": 157
+      },
+      {
+        "variantName": "sqip-primitive-art",
+        "category": "artistic",
+        "title": "Primitive Art",
+        "pluginChain": [
+          "primitive(50, triangles)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "eric-marty-780304-unsplash-sqip-primitive-art.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 2993,
+          "gzipBytes": 1185,
+          "brotliBytes": 1098
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 300
+        },
+        "processTimeMs": 2215
+      },
+      {
+        "variantName": "sqip-primitive-circles",
+        "category": "artistic",
+        "title": "Primitive Circles",
+        "pluginChain": [
+          "primitive(30, circles)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "eric-marty-780304-unsplash-sqip-primitive-circles.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 1602,
+          "gzipBytes": 569,
+          "brotliBytes": 460
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 300
+        },
+        "processTimeMs": 2255
+      },
+      {
+        "variantName": "sqip-triangle-art",
+        "category": "artistic",
+        "title": "Triangle Art",
+        "pluginChain": [
+          "triangle(pts:420)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "eric-marty-780304-unsplash-sqip-triangle-art.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 76161,
+          "gzipBytes": 16898,
+          "brotliBytes": 13952
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 300
+        },
+        "processTimeMs": 371
+      },
+      {
+        "variantName": "sqip-pixels-mosaic",
+        "category": "artistic",
+        "title": "Pixel Mosaic",
+        "pluginChain": [
+          "pixels(16)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "eric-marty-780304-unsplash-sqip-pixels-mosaic.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 11548,
+          "gzipBytes": 2140,
+          "brotliBytes": 1478
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 300
+        },
+        "processTimeMs": 167
+      }
+    ]
+  },
+  {
+    "filename": "hashbite-consent-manager-logo",
+    "originalPath": "hashbite-consent-manager-logo.png",
+    "dimensions": {
+      "width": 360,
+      "height": 360
+    },
+    "originalSize": 26089,
+    "results": [
+      {
+        "variantName": "thumbnail",
+        "category": "baseline",
+        "title": "Thumbnail (300px)",
+        "pluginChain": [
+          "sharp resize"
+        ],
+        "fileName": "hashbite-consent-manager-logo-thumbnail.jpg",
+        "resultFileType": "jpg",
+        "sizes": {
+          "originalBytes": 11499,
+          "gzipBytes": 11293,
+          "brotliBytes": 11233
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 300
+        },
+        "processTimeMs": 8
+      },
+      {
+        "variantName": "lqip-modern-webp",
+        "category": "baseline",
+        "title": "LQIP Modern (WebP)",
+        "pluginChain": [
+          "lqip-modern"
+        ],
+        "fileName": "hashbite-consent-manager-logo-lqip-modern-webp.webp",
+        "resultFileType": "webp",
+        "sizes": {
+          "originalBytes": 268,
+          "gzipBytes": 291,
+          "brotliBytes": 272
+        },
+        "dimensions": {
+          "width": 16,
+          "height": 16
+        },
+        "processTimeMs": 5
+      },
+      {
+        "variantName": "lqip-modern-webp-hd",
+        "category": "baseline",
+        "title": "LQIP Modern (WebP HD)",
+        "pluginChain": [
+          "lqip-modern(32px)"
+        ],
+        "fileName": "hashbite-consent-manager-logo-lqip-modern-webp-hd.webp",
+        "resultFileType": "webp",
+        "sizes": {
+          "originalBytes": 506,
+          "gzipBytes": 529,
+          "brotliBytes": 510
+        },
+        "dimensions": {
+          "width": 32,
+          "height": 32
+        },
+        "processTimeMs": 7
+      },
+      {
+        "variantName": "lqip-modern-jpeg",
+        "category": "baseline",
+        "title": "LQIP Modern (JPEG)",
+        "pluginChain": [
+          "lqip-modern"
+        ],
+        "fileName": "hashbite-consent-manager-logo-lqip-modern-jpeg.jpg",
+        "resultFileType": "jpg",
+        "sizes": {
+          "originalBytes": 321,
+          "gzipBytes": 252,
+          "brotliBytes": 278
+        },
+        "dimensions": {
+          "width": 16,
+          "height": 16
+        },
+        "processTimeMs": 4
+      },
+      {
+        "variantName": "sqip-default",
+        "category": "standard",
+        "title": "SQIP Default",
+        "pluginChain": [
+          "primitive",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "hashbite-consent-manager-logo-sqip-default.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 718,
+          "gzipBytes": 383,
+          "brotliBytes": 342
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 300
+        },
+        "processTimeMs": 1332
+      },
+      {
+        "variantName": "sqip-pixels",
+        "category": "standard",
+        "title": "SQIP Pixels",
+        "pluginChain": [
+          "pixels",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "hashbite-consent-manager-logo-sqip-pixels.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 2812,
+          "gzipBytes": 689,
+          "brotliBytes": 580
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 300
+        },
+        "processTimeMs": 34
+      },
+      {
+        "variantName": "sqip-potrace",
+        "category": "standard",
+        "title": "SQIP Potrace",
+        "pluginChain": [
+          "potrace",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "hashbite-consent-manager-logo-sqip-potrace.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 2562,
+          "gzipBytes": 1260,
+          "brotliBytes": 1141
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 300
+        },
+        "processTimeMs": 54
+      },
+      {
+        "variantName": "sqip-potrace-posterize",
+        "category": "standard",
+        "title": "SQIP Potrace Posterize",
+        "pluginChain": [
+          "potrace(posterize)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "hashbite-consent-manager-logo-sqip-potrace-posterize.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 7679,
+          "gzipBytes": 3429,
+          "brotliBytes": 3020
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 300
+        },
+        "processTimeMs": 928
+      },
+      {
+        "variantName": "sqip-triangle",
+        "category": "standard",
+        "title": "SQIP Triangle",
+        "pluginChain": [
+          "triangle",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "hashbite-consent-manager-logo-sqip-triangle.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 1293,
+          "gzipBytes": 437,
+          "brotliBytes": 398
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 300
+        },
+        "processTimeMs": 53
+      },
+      {
+        "variantName": "sqip-blurhash",
+        "category": "standard",
+        "title": "SQIP Blurhash",
+        "pluginChain": [
+          "blurhash"
+        ],
+        "fileName": "hashbite-consent-manager-logo-sqip-blurhash.jpg",
+        "resultFileType": "jpg",
+        "sizes": {
+          "originalBytes": 279,
+          "gzipBytes": 199,
+          "brotliBytes": 194
+        },
+        "dimensions": {
+          "width": 4,
+          "height": 4
+        },
+        "processTimeMs": 21
+      },
+      {
+        "variantName": "sqip-blurhash-hd",
+        "category": "standard",
+        "title": "SQIP Blurhash HD",
+        "pluginChain": [
+          "blurhash(width:10)"
+        ],
+        "fileName": "hashbite-consent-manager-logo-sqip-blurhash-hd.jpg",
+        "resultFileType": "jpg",
+        "sizes": {
+          "originalBytes": 308,
+          "gzipBytes": 240,
+          "brotliBytes": 237
+        },
+        "dimensions": {
+          "width": 9,
+          "height": 9
+        },
+        "processTimeMs": 51
+      },
+      {
+        "variantName": "sqip-primitive-art",
+        "category": "artistic",
+        "title": "Primitive Art",
+        "pluginChain": [
+          "primitive(50, triangles)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "hashbite-consent-manager-logo-sqip-primitive-art.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 2787,
+          "gzipBytes": 1092,
+          "brotliBytes": 1014
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 300
+        },
+        "processTimeMs": 2987
+      },
+      {
+        "variantName": "sqip-primitive-circles",
+        "category": "artistic",
+        "title": "Primitive Circles",
+        "pluginChain": [
+          "primitive(30, circles)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "hashbite-consent-manager-logo-sqip-primitive-circles.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 1446,
+          "gzipBytes": 495,
+          "brotliBytes": 422
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 300
+        },
+        "processTimeMs": 2279
+      },
+      {
+        "variantName": "sqip-triangle-art",
+        "category": "artistic",
+        "title": "Triangle Art",
+        "pluginChain": [
+          "triangle(pts:420)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "hashbite-consent-manager-logo-sqip-triangle-art.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 64391,
+          "gzipBytes": 12016,
+          "brotliBytes": 9837
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 300
+        },
+        "processTimeMs": 303
+      },
+      {
+        "variantName": "sqip-pixels-mosaic",
+        "category": "artistic",
+        "title": "Pixel Mosaic",
+        "pluginChain": [
+          "pixels(16)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "hashbite-consent-manager-logo-sqip-pixels-mosaic.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 9954,
+          "gzipBytes": 1939,
+          "brotliBytes": 1552
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 300
+        },
+        "processTimeMs": 54
+      }
+    ]
+  },
+  {
+    "filename": "ian-dooley-298769-unsplash",
+    "originalPath": "ian-dooley-298769-unsplash.jpg",
+    "dimensions": {
+      "width": 2000,
+      "height": 3000
+    },
+    "originalSize": 93202,
+    "results": [
+      {
+        "variantName": "thumbnail",
+        "category": "baseline",
+        "title": "Thumbnail (300px)",
+        "pluginChain": [
+          "sharp resize"
+        ],
+        "fileName": "ian-dooley-298769-unsplash-thumbnail.jpg",
+        "resultFileType": "jpg",
+        "sizes": {
+          "originalBytes": 6061,
+          "gzipBytes": 5874,
+          "brotliBytes": 5708
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 450
+        },
+        "processTimeMs": 20
+      },
+      {
+        "variantName": "lqip-modern-webp",
+        "category": "baseline",
+        "title": "LQIP Modern (WebP)",
+        "pluginChain": [
+          "lqip-modern"
+        ],
+        "fileName": "ian-dooley-298769-unsplash-lqip-modern-webp.webp",
+        "resultFileType": "webp",
+        "sizes": {
+          "originalBytes": 64,
+          "gzipBytes": 85,
+          "brotliBytes": 68
+        },
+        "dimensions": {
+          "width": 11,
+          "height": 16
+        },
+        "processTimeMs": 17
+      },
+      {
+        "variantName": "lqip-modern-webp-hd",
+        "category": "baseline",
+        "title": "LQIP Modern (WebP HD)",
+        "pluginChain": [
+          "lqip-modern(32px)"
+        ],
+        "fileName": "ian-dooley-298769-unsplash-lqip-modern-webp-hd.webp",
+        "resultFileType": "webp",
+        "sizes": {
+          "originalBytes": 98,
+          "gzipBytes": 121,
+          "brotliBytes": 102
+        },
+        "dimensions": {
+          "width": 21,
+          "height": 32
+        },
+        "processTimeMs": 14
+      },
+      {
+        "variantName": "lqip-modern-jpeg",
+        "category": "baseline",
+        "title": "LQIP Modern (JPEG)",
+        "pluginChain": [
+          "lqip-modern"
+        ],
+        "fileName": "ian-dooley-298769-unsplash-lqip-modern-jpeg.jpg",
+        "resultFileType": "jpg",
+        "sizes": {
+          "originalBytes": 284,
+          "gzipBytes": 212,
+          "brotliBytes": 202
+        },
+        "dimensions": {
+          "width": 11,
+          "height": 16
+        },
+        "processTimeMs": 16
+      },
+      {
+        "variantName": "sqip-default",
+        "category": "standard",
+        "title": "SQIP Default",
+        "pluginChain": [
+          "primitive",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "ian-dooley-298769-unsplash-sqip-default.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 672,
+          "gzipBytes": 383,
+          "brotliBytes": 341
+        },
+        "dimensions": {
+          "width": 298,
+          "height": 450
+        },
+        "processTimeMs": 907
+      },
+      {
+        "variantName": "sqip-pixels",
+        "category": "standard",
+        "title": "SQIP Pixels",
+        "pluginChain": [
+          "pixels",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "ian-dooley-298769-unsplash-sqip-pixels.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 2324,
+          "gzipBytes": 612,
+          "brotliBytes": 476
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 450
+        },
+        "processTimeMs": 160
+      },
+      {
+        "variantName": "sqip-potrace",
+        "category": "standard",
+        "title": "SQIP Potrace",
+        "pluginChain": [
+          "potrace",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "ian-dooley-298769-unsplash-sqip-potrace.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 4590,
+          "gzipBytes": 2060,
+          "brotliBytes": 1761
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 450
+        },
+        "processTimeMs": 177
+      },
+      {
+        "variantName": "sqip-potrace-posterize",
+        "category": "standard",
+        "title": "SQIP Potrace Posterize",
+        "pluginChain": [
+          "potrace(posterize)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "ian-dooley-298769-unsplash-sqip-potrace-posterize.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 13314,
+          "gzipBytes": 5550,
+          "brotliBytes": 4914
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 450
+        },
+        "processTimeMs": 1108
+      },
+      {
+        "variantName": "sqip-triangle",
+        "category": "standard",
+        "title": "SQIP Triangle",
+        "pluginChain": [
+          "triangle",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "ian-dooley-298769-unsplash-sqip-triangle.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 1532,
+          "gzipBytes": 508,
+          "brotliBytes": 465
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 450
+        },
+        "processTimeMs": 173
+      },
+      {
+        "variantName": "sqip-blurhash",
+        "category": "standard",
+        "title": "SQIP Blurhash",
+        "pluginChain": [
+          "blurhash"
+        ],
+        "fileName": "ian-dooley-298769-unsplash-sqip-blurhash.jpg",
+        "resultFileType": "jpg",
+        "sizes": {
+          "originalBytes": 278,
+          "gzipBytes": 198,
+          "brotliBytes": 201
+        },
+        "dimensions": {
+          "width": 4,
+          "height": 3
+        },
+        "processTimeMs": 121
+      },
+      {
+        "variantName": "sqip-blurhash-hd",
+        "category": "standard",
+        "title": "SQIP Blurhash HD",
+        "pluginChain": [
+          "blurhash(width:10)"
+        ],
+        "fileName": "ian-dooley-298769-unsplash-sqip-blurhash-hd.jpg",
+        "resultFileType": "jpg",
+        "sizes": {
+          "originalBytes": 288,
+          "gzipBytes": 211,
+          "brotliBytes": 213
+        },
+        "dimensions": {
+          "width": 9,
+          "height": 6
+        },
+        "processTimeMs": 131
+      },
+      {
+        "variantName": "sqip-primitive-art",
+        "category": "artistic",
+        "title": "Primitive Art",
+        "pluginChain": [
+          "primitive(50, triangles)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "ian-dooley-298769-unsplash-sqip-primitive-art.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 2998,
+          "gzipBytes": 1153,
+          "brotliBytes": 1052
+        },
+        "dimensions": {
+          "width": 298,
+          "height": 450
+        },
+        "processTimeMs": 2684
+      },
+      {
+        "variantName": "sqip-primitive-circles",
+        "category": "artistic",
+        "title": "Primitive Circles",
+        "pluginChain": [
+          "primitive(30, circles)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "ian-dooley-298769-unsplash-sqip-primitive-circles.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 1594,
+          "gzipBytes": 542,
+          "brotliBytes": 459
+        },
+        "dimensions": {
+          "width": 298,
+          "height": 450
+        },
+        "processTimeMs": 1904
+      },
+      {
+        "variantName": "sqip-triangle-art",
+        "category": "artistic",
+        "title": "Triangle Art",
+        "pluginChain": [
+          "triangle(pts:420)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "ian-dooley-298769-unsplash-sqip-triangle-art.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 74067,
+          "gzipBytes": 14901,
+          "brotliBytes": 12024
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 450
+        },
+        "processTimeMs": 413
+      },
+      {
+        "variantName": "sqip-pixels-mosaic",
+        "category": "artistic",
+        "title": "Pixel Mosaic",
+        "pluginChain": [
+          "pixels(16)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "ian-dooley-298769-unsplash-sqip-pixels-mosaic.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 8100,
+          "gzipBytes": 1326,
+          "brotliBytes": 998
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 450
+        },
+        "processTimeMs": 164
+      }
+    ]
+  },
+  {
+    "filename": "mona-lisa",
+    "originalPath": "mona-lisa.jpg",
+    "dimensions": {
+      "width": 1200,
+      "height": 1788
+    },
+    "originalSize": 404974,
+    "results": [
+      {
+        "variantName": "thumbnail",
+        "category": "baseline",
+        "title": "Thumbnail (300px)",
+        "pluginChain": [
+          "sharp resize"
+        ],
+        "fileName": "mona-lisa-thumbnail.jpg",
+        "resultFileType": "jpg",
+        "sizes": {
+          "originalBytes": 23012,
+          "gzipBytes": 22987,
+          "brotliBytes": 22888
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 447
+        },
+        "processTimeMs": 26
+      },
+      {
+        "variantName": "lqip-modern-webp",
+        "category": "baseline",
+        "title": "LQIP Modern (WebP)",
+        "pluginChain": [
+          "lqip-modern"
+        ],
+        "fileName": "mona-lisa-lqip-modern-webp.webp",
+        "resultFileType": "webp",
+        "sizes": {
+          "originalBytes": 96,
+          "gzipBytes": 119,
+          "brotliBytes": 100
+        },
+        "dimensions": {
+          "width": 11,
+          "height": 16
+        },
+        "processTimeMs": 21
+      },
+      {
+        "variantName": "lqip-modern-webp-hd",
+        "category": "baseline",
+        "title": "LQIP Modern (WebP HD)",
+        "pluginChain": [
+          "lqip-modern(32px)"
+        ],
+        "fileName": "mona-lisa-lqip-modern-webp-hd.webp",
+        "resultFileType": "webp",
+        "sizes": {
+          "originalBytes": 174,
+          "gzipBytes": 197,
+          "brotliBytes": 178
+        },
+        "dimensions": {
+          "width": 22,
+          "height": 32
+        },
+        "processTimeMs": 22
+      },
+      {
+        "variantName": "lqip-modern-jpeg",
+        "category": "baseline",
+        "title": "LQIP Modern (JPEG)",
+        "pluginChain": [
+          "lqip-modern"
+        ],
+        "fileName": "mona-lisa-lqip-modern-jpeg.jpg",
+        "resultFileType": "jpg",
+        "sizes": {
+          "originalBytes": 305,
+          "gzipBytes": 235,
+          "brotliBytes": 232
+        },
+        "dimensions": {
+          "width": 11,
+          "height": 16
+        },
+        "processTimeMs": 21
+      },
+      {
+        "variantName": "sqip-default",
+        "category": "standard",
+        "title": "SQIP Default",
+        "pluginChain": [
+          "primitive",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "mona-lisa-sqip-default.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 752,
+          "gzipBytes": 379,
+          "brotliBytes": 337
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 447
+        },
+        "processTimeMs": 816
+      },
+      {
+        "variantName": "sqip-pixels",
+        "category": "standard",
+        "title": "SQIP Pixels",
+        "pluginChain": [
+          "pixels",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "mona-lisa-sqip-pixels.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 2351,
+          "gzipBytes": 581,
+          "brotliBytes": 445
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 447
+        },
+        "processTimeMs": 128
+      },
+      {
+        "variantName": "sqip-potrace",
+        "category": "standard",
+        "title": "SQIP Potrace",
+        "pluginChain": [
+          "potrace",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "mona-lisa-sqip-potrace.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 24971,
+          "gzipBytes": 9667,
+          "brotliBytes": 8550
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 447
+        },
+        "processTimeMs": 209
+      },
+      {
+        "variantName": "sqip-potrace-posterize",
+        "category": "standard",
+        "title": "SQIP Potrace Posterize",
+        "pluginChain": [
+          "potrace(posterize)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "mona-lisa-sqip-potrace-posterize.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 72181,
+          "gzipBytes": 26399,
+          "brotliBytes": 23651
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 447
+        },
+        "processTimeMs": 1139
+      },
+      {
+        "variantName": "sqip-triangle",
+        "category": "standard",
+        "title": "SQIP Triangle",
+        "pluginChain": [
+          "triangle",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "mona-lisa-sqip-triangle.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 1484,
+          "gzipBytes": 532,
+          "brotliBytes": 484
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 447
+        },
+        "processTimeMs": 148
+      },
+      {
+        "variantName": "sqip-blurhash",
+        "category": "standard",
+        "title": "SQIP Blurhash",
+        "pluginChain": [
+          "blurhash"
+        ],
+        "fileName": "mona-lisa-sqip-blurhash.jpg",
+        "resultFileType": "jpg",
+        "sizes": {
+          "originalBytes": 287,
+          "gzipBytes": 205,
+          "brotliBytes": 210
+        },
+        "dimensions": {
+          "width": 4,
+          "height": 3
+        },
+        "processTimeMs": 100
+      },
+      {
+        "variantName": "sqip-blurhash-hd",
+        "category": "standard",
+        "title": "SQIP Blurhash HD",
+        "pluginChain": [
+          "blurhash(width:10)"
+        ],
+        "fileName": "mona-lisa-sqip-blurhash-hd.jpg",
+        "resultFileType": "jpg",
+        "sizes": {
+          "originalBytes": 301,
+          "gzipBytes": 226,
+          "brotliBytes": 230
+        },
+        "dimensions": {
+          "width": 9,
+          "height": 6
+        },
+        "processTimeMs": 108
+      },
+      {
+        "variantName": "sqip-primitive-art",
+        "category": "artistic",
+        "title": "Primitive Art",
+        "pluginChain": [
+          "primitive(50, triangles)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "mona-lisa-sqip-primitive-art.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 2978,
+          "gzipBytes": 1175,
+          "brotliBytes": 1086
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 447
+        },
+        "processTimeMs": 2027
+      },
+      {
+        "variantName": "sqip-primitive-circles",
+        "category": "artistic",
+        "title": "Primitive Circles",
+        "pluginChain": [
+          "primitive(30, circles)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "mona-lisa-sqip-primitive-circles.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 1592,
+          "gzipBytes": 549,
+          "brotliBytes": 461
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 447
+        },
+        "processTimeMs": 1942
+      },
+      {
+        "variantName": "sqip-triangle-art",
+        "category": "artistic",
+        "title": "Triangle Art",
+        "pluginChain": [
+          "triangle(pts:420)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "mona-lisa-sqip-triangle-art.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 74619,
+          "gzipBytes": 16737,
+          "brotliBytes": 13678
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 447
+        },
+        "processTimeMs": 359
+      },
+      {
+        "variantName": "sqip-pixels-mosaic",
+        "category": "artistic",
+        "title": "Pixel Mosaic",
+        "pluginChain": [
+          "pixels(16)",
+          "svgo",
+          "data-uri"
+        ],
+        "fileName": "mona-lisa-sqip-pixels-mosaic.svg",
+        "resultFileType": "svg",
+        "sizes": {
+          "originalBytes": 8379,
+          "gzipBytes": 1552,
+          "brotliBytes": 1071
+        },
+        "dimensions": {
+          "width": 300,
+          "height": 447
+        },
+        "processTimeMs": 150
+      }
+    ]
+  }
+]

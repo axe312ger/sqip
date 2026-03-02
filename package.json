@@ -42,7 +42,6 @@
   "workspaces": [
     "packages/*",
     "integrations/*",
-    "demo",
     "demo-app"
   ],
   "config": {
