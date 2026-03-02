@@ -1,5 +1,6 @@
 import { resolve } from 'path'
 import { tmpdir } from 'os'
+import { vi, type MockedClass } from 'vitest'
 
 import fs from 'fs-extra'
 
@@ -24,30 +25,30 @@ const FILE_DEMO_BEACH = resolve(
 const EXAMPLE_SVG =
   '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="red" stroke="#000" stroke-width="3"/></svg>'
 
-const logSpy = jest.spyOn(global.console, 'log')
-const errorSpy = jest.spyOn(global.console, 'error')
+const logSpy = vi.spyOn(global.console, 'log')
+const errorSpy = vi.spyOn(global.console, 'error')
 
-jest.mock('sqip-plugin-primitive')
-jest.mock('sqip-plugin-blur')
-jest.mock('sqip-plugin-svgo')
-jest.mock('sqip-plugin-data-uri')
+vi.mock('sqip-plugin-primitive')
+vi.mock('sqip-plugin-blur')
+vi.mock('sqip-plugin-svgo')
+vi.mock('sqip-plugin-data-uri')
 
-const mockedPrimitive = primitive as jest.MockedClass<typeof primitive>
+const mockedPrimitive = primitive as unknown as MockedClass<typeof primitive>
 mockedPrimitive.prototype.apply.mockImplementation(async () =>
   Buffer.from(EXAMPLE_SVG)
 )
 
-const mockedBlur = blur as jest.MockedClass<typeof blur>
+const mockedBlur = blur as unknown as MockedClass<typeof blur>
 mockedBlur.prototype.apply.mockImplementation(
   (async (buffer: Buffer) => buffer) as any
 )
 
-const mockedSVGO = svgo as jest.MockedClass<typeof svgo>
+const mockedSVGO = svgo as unknown as MockedClass<typeof svgo>
 mockedSVGO.prototype.apply.mockImplementation(
   ((buffer: Buffer) => buffer) as any
 )
 
-const mockedDatauri = datauri as jest.MockedClass<typeof datauri>
+const mockedDatauri = datauri as unknown as MockedClass<typeof datauri>
 mockedDatauri.prototype.apply.mockImplementation(
   ((buffer: Buffer, metadata: SqipImageMetadata) => {
     metadata.dataURI = 'data:image/svg+xml,dataURI'
@@ -103,13 +104,11 @@ describe('node api', () => {
     ).rejects.toThrowErrorMatchingSnapshot()
   })
 
-  // eslint-disable-next-line jest/expect-expect
   test('resolves valid input path', async () => {
     const result = await sqip({ ...mockedConfig, input: FILE_DEMO_BEACH })
     expectValidResult(result)
   })
 
-  // eslint-disable-next-line jest/expect-expect
   test('accepts buffers as input', async () => {
     const input = await fs.readFile(FILE_DEMO_BEACH)
     const result = await sqip({
@@ -130,7 +129,6 @@ describe('node api', () => {
       await fs.unlink(output)
     })
 
-    // eslint-disable-next-line jest/expect-expect
     test('outputs to file path', async () => {
       const result = await sqip({
         ...mockedConfig,

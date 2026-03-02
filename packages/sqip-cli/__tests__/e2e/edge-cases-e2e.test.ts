@@ -3,7 +3,8 @@ import { tmpdir } from 'os'
 import fs from 'fs/promises'
 import * as svgson from 'svgson'
 
-import execa from 'execa'
+import { vi } from 'vitest'
+import { execa } from 'execa'
 
 const FIXTURES = resolve(
   __dirname,
@@ -17,7 +18,7 @@ const FIXTURES = resolve(
 const cliPath = resolve(__dirname, '..', '..', 'dist', 'wrapper.js')
 const cliCmd = `node`
 
-jest.setTimeout(20000)
+vi.setConfig({ testTimeout: 20000 })
 
 const tmpPathCMYK = resolve(tmpdir(), 'test-cmyk.svg')
 const tmpPathTransparentBackground = resolve(

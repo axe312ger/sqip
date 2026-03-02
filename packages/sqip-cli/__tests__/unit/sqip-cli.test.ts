@@ -1,12 +1,12 @@
+import { vi, type MockedFunction } from 'vitest'
 import { sqip, resolvePlugins } from 'sqip'
 import sqipCLI from '../../src/sqip-cli'
 
 import semver from 'semver'
 
-jest.mock('sqip', () => ({
-  __esModule: true,
-  sqip: jest.fn(async () => []),
-  resolvePlugins: jest.fn(() => [
+vi.mock('sqip', () => ({
+  sqip: vi.fn(async () => []),
+  resolvePlugins: vi.fn(() => [
     {
       name: 'mocked',
       Plugin: {
@@ -22,17 +22,17 @@ jest.mock('sqip', () => ({
   ])
 }))
 
-const mockedSqip = sqip as jest.MockedFunction<typeof sqip>
-const mockedResolvePlugins = resolvePlugins as jest.MockedFunction<
+const mockedSqip = sqip as MockedFunction<typeof sqip>
+const mockedResolvePlugins = resolvePlugins as MockedFunction<
   typeof resolvePlugins
 >
 
-const logSpy = jest.spyOn(global.console, 'log').mockImplementation(() => null)
-const errorSpy = jest
+const logSpy = vi.spyOn(global.console, 'log').mockImplementation(() => null)
+const errorSpy = vi
   .spyOn(global.console, 'error')
   .mockImplementation(() => null)
 
-const proccessExitSpy = jest.spyOn(process, 'exit').mockImplementation()
+const proccessExitSpy = vi.spyOn(process, 'exit').mockImplementation(() => undefined as never)
 
 describe('sqip-plugin-cli', () => {
   afterEach(() => {
@@ -58,7 +58,7 @@ describe('sqip-plugin-cli', () => {
       /--output.*Define the path of the resulting file/
     )
     expect(logSpy.mock.calls[0][0]).toMatch(/Examples/)
-    expect(errorSpy).toBeCalledWith(
+    expect(errorSpy).toHaveBeenCalledWith(
       '\nPlease provide the following arguments: input'
     )
     expect(global.process.exit).toHaveBeenCalledWith(1)

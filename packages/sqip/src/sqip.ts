@@ -4,8 +4,8 @@ import Debug from 'debug'
 import fs from 'fs-extra'
 
 import Vibrant from '@behold/sharp-vibrant'
-import type { Palette } from '@behold/sharp-vibrant/lib/color'
-import { Swatch } from '@behold/sharp-vibrant/lib/color'
+import type { Palette } from '@behold/sharp-vibrant/lib/color.js'
+import { Swatch } from '@behold/sharp-vibrant/lib/color.js'
 import sharp from 'sharp'
 import termimg, { UnsupportedTerminalError } from 'term-img'
 import Table from 'cli-table3'
@@ -14,9 +14,9 @@ import mime from 'mime'
 
 import { OptionDefinition } from 'command-line-args'
 
-import { findBackgroundColor, locateFiles } from './helpers'
+import { findBackgroundColor, locateFiles } from './helpers.js'
 
-export { loadSVG, parseColor } from './helpers'
+export { loadSVG, parseColor } from './helpers.js'
 
 const debug = Debug('sqip')
 
@@ -196,13 +196,13 @@ async function processFile({
         )
       }
       outputPath = path.resolve(output, `${outputFileName}.svg`)
-    } catch (err) {
+    } catch {
       // Output directory or file does not exist. We will create it later on.
       outputPath = output
     }
 
     debug(`Writing ${outputPath}`)
-    await fs.writeFile(outputPath, content)
+    await fs.writeFile(outputPath, content as Uint8Array)
   }
 
   // Gather CLI output information
@@ -277,7 +277,7 @@ async function processFile({
 
     // Show color palette
     const paletteTable = new Table(tableConfig)
-    paletteTable.push(PALETTE_KEYS)
+    paletteTable.push(PALETTE_KEYS as string[])
     paletteTable.push(
       [
         metadata.backgroundColor,
@@ -361,7 +361,7 @@ async function processImage({
       const resizedMetadata = await sharp(buffer).metadata()
       metadata.width = resizedMetadata.width || 0
       metadata.height = resizedMetadata.height || 0
-    } catch (err) {
+    } catch {
       throw new Error('Unable to resize')
     }
   } else {
@@ -446,7 +446,7 @@ export async function sqip(
     try {
       debug('check file ' + file)
       await fs.access(file, fs.constants.R_OK)
-    } catch (err) {
+    } catch {
       throw new Error(`Unable to read file ${file}`)
     }
   }
@@ -480,7 +480,7 @@ export async function sqip(
   return results[0]
 }
 
-export * from './helpers'
+export * from './helpers.js'
 
 export const mockedMetadata: SqipImageMetadata = {
   filename: 'mocked',

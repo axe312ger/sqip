@@ -1,9 +1,9 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`node api accepts buffers as input 1`] = `
-Object {
-  "content": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 100 100\\"><circle cx=\\"50\\" cy=\\"50\\" r=\\"40\\" fill=\\"red\\" stroke=\\"#000\\" stroke-width=\\"3\\"/></svg>",
-  "metadata": Object {
+exports[`node api > accepts buffers as input 1`] = `
+{
+  "content": "<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="red" stroke="#000" stroke-width="3"/></svg>",
+  "metadata": {
     "backgroundColor": "#454449",
     "dataURI": "data:image/svg+xml,dataURI",
     "dataURIBase64": "data:image/svg+xml;base64,dataURIBase64==",
@@ -12,50 +12,50 @@ Object {
     "mimeType": "unknown",
     "originalHeight": 640,
     "originalWidth": 1024,
-    "palette": Object {
-      "DarkMuted": Object {
+    "palette": {
+      "DarkMuted": {
         "population": 17355,
-        "rgb": Array [
+        "rgb": [
           104,
           78,
           54,
         ],
       },
-      "DarkVibrant": Object {
+      "DarkVibrant": {
         "population": 106,
-        "rgb": Array [
+        "rgb": [
           190,
           79,
           12,
         ],
       },
-      "LightMuted": Object {
+      "LightMuted": {
         "population": 51474,
-        "rgb": Array [
+        "rgb": [
           208,
           201,
           182,
         ],
       },
-      "LightVibrant": Object {
+      "LightVibrant": {
         "population": 15729,
-        "rgb": Array [
+        "rgb": [
           242,
           177,
           122,
         ],
       },
-      "Muted": Object {
+      "Muted": {
         "population": 32611,
-        "rgb": Array [
+        "rgb": [
           102,
           146,
           160,
         ],
       },
-      "Vibrant": Object {
+      "Vibrant": {
         "population": 7271,
-        "rgb": Array [
+        "rgb": [
           228,
           139,
           55,
@@ -68,10 +68,10 @@ Object {
 }
 `;
 
-exports[`node api output outputs to file path 1`] = `
-Object {
-  "content": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 100 100\\"><circle cx=\\"50\\" cy=\\"50\\" r=\\"40\\" fill=\\"red\\" stroke=\\"#000\\" stroke-width=\\"3\\"/></svg>",
-  "metadata": Object {
+exports[`node api > output > outputs to file path 1`] = `
+{
+  "content": "<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="red" stroke="#000" stroke-width="3"/></svg>",
+  "metadata": {
     "backgroundColor": "#454449",
     "dataURI": "data:image/svg+xml,dataURI",
     "dataURIBase64": "data:image/svg+xml;base64,dataURIBase64==",
@@ -80,50 +80,50 @@ Object {
     "mimeType": "image/jpeg",
     "originalHeight": 640,
     "originalWidth": 1024,
-    "palette": Object {
-      "DarkMuted": Object {
+    "palette": {
+      "DarkMuted": {
         "population": 17355,
-        "rgb": Array [
+        "rgb": [
           104,
           78,
           54,
         ],
       },
-      "DarkVibrant": Object {
+      "DarkVibrant": {
         "population": 106,
-        "rgb": Array [
+        "rgb": [
           190,
           79,
           12,
         ],
       },
-      "LightMuted": Object {
+      "LightMuted": {
         "population": 51474,
-        "rgb": Array [
+        "rgb": [
           208,
           201,
           182,
         ],
       },
-      "LightVibrant": Object {
+      "LightVibrant": {
         "population": 15729,
-        "rgb": Array [
+        "rgb": [
           242,
           177,
           122,
         ],
       },
-      "Muted": Object {
+      "Muted": {
         "population": 32611,
-        "rgb": Array [
+        "rgb": [
           102,
           146,
           160,
         ],
       },
-      "Vibrant": Object {
+      "Vibrant": {
         "population": 7271,
-        "rgb": Array [
+        "rgb": [
           228,
           139,
           55,
@@ -136,10 +136,10 @@ Object {
 }
 `;
 
-exports[`node api resolves valid input path 1`] = `
-Object {
-  "content": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 100 100\\"><circle cx=\\"50\\" cy=\\"50\\" r=\\"40\\" fill=\\"red\\" stroke=\\"#000\\" stroke-width=\\"3\\"/></svg>",
-  "metadata": Object {
+exports[`node api > resolves valid input path 1`] = `
+{
+  "content": "<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="red" stroke="#000" stroke-width="3"/></svg>",
+  "metadata": {
     "backgroundColor": "#454449",
     "dataURI": "data:image/svg+xml,dataURI",
     "dataURIBase64": "data:image/svg+xml;base64,dataURIBase64==",
@@ -148,50 +148,50 @@ Object {
     "mimeType": "image/jpeg",
     "originalHeight": 640,
     "originalWidth": 1024,
-    "palette": Object {
-      "DarkMuted": Object {
+    "palette": {
+      "DarkMuted": {
         "population": 17355,
-        "rgb": Array [
+        "rgb": [
           104,
           78,
           54,
         ],
       },
-      "DarkVibrant": Object {
+      "DarkVibrant": {
         "population": 106,
-        "rgb": Array [
+        "rgb": [
           190,
           79,
           12,
         ],
       },
-      "LightMuted": Object {
+      "LightMuted": {
         "population": 51474,
-        "rgb": Array [
+        "rgb": [
           208,
           201,
           182,
         ],
       },
-      "LightVibrant": Object {
+      "LightVibrant": {
         "population": 15729,
-        "rgb": Array [
+        "rgb": [
           242,
           177,
           122,
         ],
       },
-      "Muted": Object {
+      "Muted": {
         "population": 32611,
-        "rgb": Array [
+        "rgb": [
           102,
           146,
           160,
         ],
       },
-      "Vibrant": Object {
+      "Vibrant": {
         "population": 7271,
-        "rgb": Array [
+        "rgb": [
           228,
           139,
           55,
@@ -204,18 +204,18 @@ Object {
 }
 `;
 
-exports[`node api throws nicely when plugin not found 1`] = `
-"Unable to load plugin \\"sqip-plugin-i-dont-exist\\". Try installing it via:
+exports[`node api > throws nicely when plugin not found 1`] = `
+[Error: Unable to load plugin "sqip-plugin-i-dont-exist". Try installing it via:
 
- npm install sqip-plugin-i-dont-exist"
+ npm install sqip-plugin-i-dont-exist]
 `;
 
-exports[`node api throws when empty input is passed 1`] = `"Please provide an input image, e.g. sqip({ input: \\"input.jpg\\" })"`;
+exports[`node api > throws when empty input is passed 1`] = `[Error: Please provide an input image, e.g. sqip({ input: "input.jpg" })]`;
 
-exports[`node api throws when invalid input path is passed 1`] = `
-"Unable to find any files via /this/file/does/not/exist.jpg. Make sure the file exists.
+exports[`node api > throws when invalid input path is passed 1`] = `
+[Error: Unable to find any files via /this/file/does/not/exist.jpg. Make sure the file exists.
 
 If you are using globbing patterns, the following features are supported:
 
-https://github.com/micromatch/micromatch#matching-features"
+https://github.com/micromatch/micromatch#matching-features]
 `;

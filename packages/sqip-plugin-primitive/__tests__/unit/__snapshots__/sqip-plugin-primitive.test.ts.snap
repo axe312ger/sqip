@@ -1,9 +1,9 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`checkForPrimitive bundled executable does not exist, primitive not installed globally 1`] = `"Please ensure that Primitive (https://github.com/hashbite/primitive, written in Golang) is installed and globally available."`;
+exports[`checkForPrimitive > bundled executable does not exist, primitive not installed globally 1`] = `[Error: Please ensure that Primitive (https://github.com/hashbite/primitive, written in Golang) is installed and globally available.]`;
 
-exports[`runPrimitive allows avg as value for background 1`] = `
-Array [
+exports[`runPrimitive > allows avg as value for background 1`] = `
+[
   "-i",
   "-",
   "-o",
@@ -25,8 +25,8 @@ Array [
 ]
 `;
 
-exports[`runPrimitive allows hex as value for background 1`] = `
-Array [
+exports[`runPrimitive > allows hex as value for background 1`] = `
+[
   "-i",
   "-",
   "-o",
@@ -48,8 +48,8 @@ Array [
 ]
 `;
 
-exports[`runPrimitive executes primitive with custom config, applying default number of primitives 1`] = `
-Array [
+exports[`runPrimitive > executes primitive with custom config, applying default number of primitives 1`] = `
+[
   "-i",
   "-",
   "-o",
@@ -71,8 +71,8 @@ Array [
 ]
 `;
 
-exports[`runPrimitive executes primitive with default config 1`] = `
-Array [
+exports[`runPrimitive > executes primitive with default config 1`] = `
+[
   "-i",
   "-",
   "-o",
@@ -94,8 +94,8 @@ Array [
 ]
 `;
 
-exports[`runPrimitive executes primitive with landscape dimensions 1`] = `
-Array [
+exports[`runPrimitive > executes primitive with landscape dimensions 1`] = `
+[
   "-i",
   "-",
   "-o",
@@ -117,6 +117,6 @@ Array [
 ]
 `;
 
-exports[`runPrimitive removes background rectangle when user asks for it 1`] = `"<svg viewBox=\\"0 0 1024 768\\"><g></g></svg>"`;
+exports[`runPrimitive > removes background rectangle when user asks for it 1`] = `"<svg viewBox="0 0 1024 768"><g></g></svg>"`;
 
-exports[`runPrimitive removes background rectangle when using fully transparent background 1`] = `"<svg viewBox=\\"0 0 1024 768\\"><g></g></svg>"`;
+exports[`runPrimitive > removes background rectangle when using fully transparent background 1`] = `"<svg viewBox="0 0 1024 768"><g></g></svg>"`;

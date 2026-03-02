@@ -1,32 +1,18 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`sqip-plugin-cli --help: show help: error 1`] = `Array []`;
+exports[`sqip-plugin-cli > --help: show help > error 1`] = `[]`;
 
-exports[`sqip-plugin-cli --help: show help: resolve 1`] = `
-Array [
-  Array [
-    Array [
+exports[`sqip-plugin-cli > --help: show help > resolve 1`] = `
+[
+  [
+    [
       "primitive",
       "blur",
       "svgo",
     ],
   ],
-  Array [
-    Array [
-      "primitive",
-      "blur",
-      "svgo",
-    ],
-  ],
-]
-`;
-
-exports[`sqip-plugin-cli --version: show version: error 1`] = `Array []`;
-
-exports[`sqip-plugin-cli --version: show version: resolve 1`] = `
-Array [
-  Array [
-    Array [
+  [
+    [
       "primitive",
       "blur",
       "svgo",
@@ -35,10 +21,12 @@ Array [
 ]
 `;
 
-exports[`sqip-plugin-cli no args: show help and require input option: resolve 1`] = `
-Array [
-  Array [
-    Array [
+exports[`sqip-plugin-cli > --version: show version > error 1`] = `[]`;
+
+exports[`sqip-plugin-cli > --version: show version > resolve 1`] = `
+[
+  [
+    [
       "primitive",
       "blur",
       "svgo",
@@ -47,17 +35,29 @@ Array [
 ]
 `;
 
-exports[`sqip-plugin-cli passes all given args to library 1`] = `
-Array [
-  Array [
-    Object {
+exports[`sqip-plugin-cli > no args: show help and require input option > resolve 1`] = `
+[
+  [
+    [
+      "primitive",
+      "blur",
+      "svgo",
+    ],
+  ],
+]
+`;
+
+exports[`sqip-plugin-cli > passes all given args to library 1`] = `
+[
+  [
+    {
       "input": "mocked-image.jpg",
       "output": "/tmp/mocked-image.svg",
       "parseableOutput": false,
-      "plugins": Array [
-        Object {
+      "plugins": [
+        {
           "name": "mocked",
-          "options": Object {},
+          "options": {},
         },
       ],
       "print": false,
@@ -68,9 +68,9 @@ Array [
 ]
 `;
 
-exports[`sqip-plugin-cli throws on missing input: error 1`] = `
-Array [
-  Array [
+exports[`sqip-plugin-cli > throws on missing input > error 1`] = `
+[
+  [
     "
 Please provide the following arguments: input",
   ],

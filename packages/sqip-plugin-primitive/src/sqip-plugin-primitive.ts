@@ -1,11 +1,12 @@
 import { access } from 'fs/promises'
 import { constants } from 'fs'
 import path from 'path'
+import { fileURLToPath } from 'url'
 import os from 'os'
 import sharp from 'sharp'
 import { loadSVG } from 'sqip'
 
-import execa from 'execa'
+import { execa } from 'execa'
 import Debug from 'debug'
 
 import {
@@ -33,6 +34,7 @@ interface PrimitiveOptions extends PluginOptions {
 
 const debug = Debug('sqip-plugin-primitive')
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const VENDOR_DIR = path.resolve(__dirname, '..', 'primitive-binaries')
 
 let primitiveExecutable = 'primitive'
@@ -217,7 +219,7 @@ export default class PrimitivePlugin extends SqipPlugin {
       debug(`Found primitive binary at ${primitivePath}`)
       primitiveExecutable = primitivePath
       return
-    } catch (e) {
+    } catch {
       // noop
     }
 
@@ -228,7 +230,7 @@ export default class PrimitivePlugin extends SqipPlugin {
       } else {
         await execa('type', ['primitive'])
       }
-    } catch (e) {
+    } catch {
       throw new Error(
         'Please ensure that Primitive (https://github.com/hashbite/primitive, written in Golang) is installed and globally available.'
       )

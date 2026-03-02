@@ -1,7 +1,7 @@
 import { resolve } from 'path'
 import { readFileSync } from 'fs'
 
-import cheerio from 'cheerio'
+import { load as cheerioLoad } from 'cheerio'
 
 import sqipPluginPotrace from '../../src/sqip-plugin-potrace'
 import { SqipImageMetadata, mockedMetadata } from 'sqip'
@@ -36,7 +36,7 @@ describe('sqip-plugin-potrace', () => {
     const metadata = { ...potraceMockedMetadata }
     const result = await plugin.apply(fileContent, metadata)
 
-    const $ = cheerio.load(result, { xml: true })
+    const $ = cheerioLoad(result, { xml: true })
     const $svg = $('svg')
 
     // Sets correct dimensions
@@ -59,7 +59,7 @@ describe('sqip-plugin-potrace', () => {
     const metadata = { ...potraceMockedMetadata }
     const result = await plugin.apply(fileContent, metadata)
 
-    const $ = cheerio.load(result, { xml: true })
+    const $ = cheerioLoad(result, { xml: true })
 
     // Background
     const $bg = $('svg > rect')
@@ -85,7 +85,7 @@ describe('sqip-plugin-potrace', () => {
     const metadata = { ...potraceMockedMetadata }
     const result = await plugin.apply(fileContent, metadata)
 
-    const $ = cheerio.load(result, { xml: true })
+    const $ = cheerioLoad(result, { xml: true })
 
     // Background
     const $bg = $('svg > rect')

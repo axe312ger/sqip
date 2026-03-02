@@ -27,8 +27,10 @@ interface PixelPluginOptions extends SqipPluginOptions {
 const HEX = '0123456789ABCDEF'
 const toHex = (value: number) => {
   let rtn = ''
-  while (value !== 0)
-    (rtn = HEX[value % 16] + rtn), (value = Math.floor(value / 16))
+  while (value !== 0) {
+    rtn = HEX[value % 16] + rtn
+    value = Math.floor(value / 16)
+  }
   return rtn
 }
 
