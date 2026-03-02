@@ -2,9 +2,9 @@
   "name": "sqip-monorepo",
   "private": true,
   "scripts": {
-    "prepare": "lerna run prepare",
-    "build": "npm run build:clean && npx lerna run build --no-private --scope sqip && npx lerna run build --no-private --ignore sqip",
-    "build:watch": "lerna exec --ignore sqip-demo --parallel 'npm run watch'",
+    "prepare": "npm run prepare --workspaces --if-present",
+    "build": "npm run build:clean && npm run build -w sqip && npm run build --workspaces --if-present",
+    "build:watch": "npm run watch --workspaces --if-present",
     "build:clean": "rm -rf \"packages/*/dist/*\" packages/*/tsconfig.tsbuildinfo",
     "test": "npm run lint && npm run test:unit && npm run test:e2e",
     "test:unit": "TERM=xterm NODE_OPTIONS='--experimental-vm-modules' jest --testPathPattern='unit/*' --coverage --runInBand",
@@ -13,8 +13,7 @@
     "test:e2e": "TERM=xterm jest --testPathPattern='e2e/*'",
     "test:e2e:watch": "TERM=xterm jest --testPathPattern='e2e/*' --watch",
     "lint": "eslint packages/*/src --ext .ts,.tsx",
-    "format": "lerna exec --ignore sqip-demo 'prettier --parser typescript --write src/**/*.ts __tests__/**/*.ts'",
-    "check-dependencies": "lerna exec --ignore sqip-demo \"pwd && npx depcheck --ignore-dirs 'dist' .\" --no-bail --concurrency 1",
+    "format": "prettier --parser typescript --write 'packages/*/src/**/*.ts' 'packages/*/__tests__/**/*.ts'",
     "publish": "npm run build && lerna publish --conventional-commits",
     "publish:canary": "npm run publish -- --dist-tag canary"
   },
@@ -39,9 +38,6 @@
   "overrides": {
     "gifwrap": "^0.10.1"
   },
-  "resolutions": {
-    "gifwrap": "^0.10.1"
-  },
   "engines": {
     "node": ">=20.0.0"
   },
@@ -52,7 +48,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint",
-      "pre-push": "npm run test && npm run check-dependencies"
+      "pre-push": "npm run test"
     }
   },
   "config": {

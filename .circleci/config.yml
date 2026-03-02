@@ -6,94 +6,82 @@ jobs:
     steps:
       - run: node --version
       - run: npm --version
-      - run: yarn --version
       - checkout
       - restore_cache:
           keys:
-            - yarn-packages-v2-{{ .Branch }}-{{ checksum "yarn.lock" }}
-            - yarn-packages-v2-{{ .Branch }}-
-            - yarn-packages-v2-master-
-            - yarn-packages-v2-
-      - run: yarn
-      - run: npm rebuild
-      - run: yarn run build
+            - npm-packages-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
+            - npm-packages-v1-{{ .Branch }}-
+            - npm-packages-v1-master-
+            - npm-packages-v1-
+      - run: npm ci
+      - run: npm run build
       - save_cache:
           paths:
-            - ~/.cache/yarn
-            - ./node_modules
-          key: yarn-packages-v2-{{ .Branch }}-{{ checksum "yarn.lock" }}
-      - run: yarn run lint
+            - ~/.npm
+          key: npm-packages-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
+      - run: npm run lint
   test-unit:
     docker:
       - image: cimg/go:1.23-node
     steps:
       - run: node --version
       - run: npm --version
-      - run: yarn --version
       - checkout
       - restore_cache:
           keys:
-            - yarn-packages-v2-{{ .Branch }}-{{ checksum "yarn.lock" }}
-            - yarn-packages-v2-{{ .Branch }}-
-            - yarn-packages-v2-master-
-            - yarn-packages-v2-
-      - run: yarn
-      - run: npm rebuild
-      - run: yarn run build
+            - npm-packages-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
+            - npm-packages-v1-{{ .Branch }}-
+            - npm-packages-v1-master-
+            - npm-packages-v1-
+      - run: npm ci
+      - run: npm run build
       - save_cache:
           paths:
-            - ~/.cache/yarn
-            - ./node_modules
-          key: yarn-packages-v2-{{ .Branch }}-{{ checksum "yarn.lock" }}
-      - run: DEBUG="sqip*,jest*" yarn run test:unit -- --verbose
-      - run: yarn codecov
+            - ~/.npm
+          key: npm-packages-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
+      - run: DEBUG="sqip*,jest*" npm run test:unit -- --verbose
+      - run: npx codecov
   test-e2e:
     docker:
       - image: cimg/go:1.23-node
     steps:
       - run: node --version
       - run: npm --version
-      - run: yarn --version
       - checkout
       - restore_cache:
           keys:
-            - yarn-packages-v2-{{ .Branch }}-{{ checksum "yarn.lock" }}
-            - yarn-packages-v2-{{ .Branch }}-
-            - yarn-packages-v2-master-
-            - yarn-packages-v2-
-      - run: yarn
-      - run: npm rebuild
-      - run: yarn build
+            - npm-packages-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
+            - npm-packages-v1-{{ .Branch }}-
+            - npm-packages-v1-master-
+            - npm-packages-v1-
+      - run: npm ci
+      - run: npm run build
       - save_cache:
           paths:
-            - ~/.cache/yarn
-            - ./node_modules
-          key: yarn-packages-v2-{{ .Branch }}-{{ checksum "yarn.lock" }}
-      - run: yarn run test:e2e
+            - ~/.npm
+          key: npm-packages-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
+      - run: npm run test:e2e
   demo:
     docker:
       - image: cimg/go:1.23-node
     steps:
       - run: node --version
       - run: npm --version
-      - run: yarn --version
       - checkout
       - restore_cache:
           keys:
-            - yarn-packages-v2-{{ .Branch }}-{{ checksum "yarn.lock" }}
-            - yarn-packages-v2-{{ .Branch }}-
-            - yarn-packages-v2-master-
-            - yarn-packages-v2-
-      - run: yarn
-      - run: npm rebuild
-      - run: yarn build
+            - npm-packages-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
+            - npm-packages-v1-{{ .Branch }}-
+            - npm-packages-v1-master-
+            - npm-packages-v1-
+      - run: npm ci
+      - run: npm run build
       - save_cache:
           paths:
-            - ~/.cache/yarn
-            - ./node_modules
-          key: yarn-packages-v2-{{ .Branch }}-{{ checksum "yarn.lock" }}
-      - run: cd demo && yarn build:dataset
-      - run: cd demo && yarn build:html
+            - ~/.npm
+          key: npm-packages-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
+      - run: npm run build:dataset -w sqip-demo
+      - run: npm run build:html -w sqip-demo
       - store_artifacts:
           path: /home/circleci/project/demo/public
           destination: demo
