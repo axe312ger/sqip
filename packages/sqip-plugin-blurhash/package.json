@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "blurhash": "^2.0.5",
-    "sharp": "^0.32.0",
+    "sharp": "^0.34.5",
     "sqip": "^1.0.0-alpha.51"
   }
 }

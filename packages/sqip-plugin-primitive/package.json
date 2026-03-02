@@ -32,7 +32,7 @@
   "dependencies": {
     "debug": "^4.3.4",
     "execa": "^9.6.1",
-    "sharp": "^0.32.0",
+    "sharp": "^0.34.5",
     "sqip": "^1.0.0-alpha.51"
   }
 }
