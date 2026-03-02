@@ -13,7 +13,16 @@ if (existsSync(datasetPath)) {
   dataset = JSON.parse(readFileSync(datasetPath, 'utf-8'))
 }
 
-const imageNames = [...new Set(dataset.map((img: any) => img.filename))] as string[]
+// Build thumbnail data for image selector buttons
+const imageThumbs = dataset.map((img: any) => {
+  const thumb = img.results.find((r: any) => r.variantName === 'thumbnail')
+  return {
+    name: img.filename as string,
+    src: thumb ? `/processed/${thumb.fileName}` : '',
+    width: thumb?.dimensions?.width ?? 300,
+    height: thumb?.dimensions?.height ?? 225,
+  }
+})
 ---
 
 <Layout title="SQIP Interactive Demo">
@@ -41,7 +50,7 @@ const imageNames = [...new Set(dataset.map((img: any) => img.filename))] as stri
       </div>
     ) : (
       <>
-        <FilterBar imageNames={imageNames} />
+        <FilterBar imageThumbs={imageThumbs} />
         <StatsPanel />
         <ImageGrid images={dataset} />
       </>
@@ -50,7 +59,8 @@ const imageNames = [...new Set(dataset.map((img: any) => img.filename))] as stri
 
   <script is:inline define:vars={{ dataset }}>
     if (dataset.length > 0) {
-      var imageSelect = document.getElementById('image-select')
+      var thumbBtns = document.querySelectorAll('[data-image-select]')
+      var selectedImage = thumbBtns.length > 0 ? thumbBtns[0].dataset.imageSelect : ''
       var categoryToggles = document.querySelectorAll('[data-category-toggle]')
       var variantToggles = document.querySelectorAll('[data-variant-toggle]')
       var blurToggle = document.getElementById('blur-toggle')
@@ -74,8 +84,7 @@ const imageNames = [...new Set(dataset.map((img: any) => img.filename))] as stri
       }
 
       function getCurrentImageData() {
-        var selected = imageSelect.value
-        return dataset.find(function(img) { return img.filename === selected }) || dataset[0]
+        return dataset.find(function(img) { return img.filename === selectedImage }) || dataset[0]
       }
 
       function updateStats() {
@@ -110,9 +119,8 @@ const imageNames = [...new Set(dataset.map((img: any) => img.filename))] as stri
       }
 
       function updateImageSections() {
-        var selected = imageSelect.value
         document.querySelectorAll('.image-section').forEach(function(section) {
-          section.style.display = section.dataset.image === selected ? '' : 'none'
+          section.style.display = section.dataset.image === selectedImage ? '' : 'none'
         })
       }
 
@@ -175,9 +183,14 @@ const imageNames = [...new Set(dataset.map((img: any) => img.filename))] as stri
         if (blurToggle.checked) applyBlur()
       })
 
-      // Image selector
-      imageSelect.addEventListener('change', function() {
-        updateVisibility()
+      // Image selector — thumbnail buttons
+      thumbBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          selectedImage = btn.dataset.imageSelect
+          thumbBtns.forEach(function(b) { b.classList.remove('active') })
+          btn.classList.add('active')
+          updateVisibility()
+        })
       })
 
       // Initial render — show first image only
