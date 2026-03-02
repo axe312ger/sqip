@@ -4,6 +4,7 @@ exports[`node api accepts buffers as input 1`] = `
 Object {
   "content": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 100 100\\"><circle cx=\\"50\\" cy=\\"50\\" r=\\"40\\" fill=\\"red\\" stroke=\\"#000\\" stroke-width=\\"3\\"/></svg>",
   "metadata": Object {
+    "backgroundColor": "#454449",
     "dataURI": "data:image/svg+xml,dataURI",
     "dataURIBase64": "data:image/svg+xml;base64,dataURIBase64==",
     "filename": "-",
@@ -71,6 +72,7 @@ exports[`node api output outputs to file path 1`] = `
 Object {
   "content": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 100 100\\"><circle cx=\\"50\\" cy=\\"50\\" r=\\"40\\" fill=\\"red\\" stroke=\\"#000\\" stroke-width=\\"3\\"/></svg>",
   "metadata": Object {
+    "backgroundColor": "#454449",
     "dataURI": "data:image/svg+xml,dataURI",
     "dataURIBase64": "data:image/svg+xml;base64,dataURIBase64==",
     "filename": "beach",
@@ -138,6 +140,7 @@ exports[`node api resolves valid input path 1`] = `
 Object {
   "content": "<svg xmlns=\\"http://www.w3.org/2000/svg\\" viewBox=\\"0 0 100 100\\"><circle cx=\\"50\\" cy=\\"50\\" r=\\"40\\" fill=\\"red\\" stroke=\\"#000\\" stroke-width=\\"3\\"/></svg>",
   "metadata": Object {
+    "backgroundColor": "#454449",
     "dataURI": "data:image/svg+xml,dataURI",
     "dataURIBase64": "data:image/svg+xml;base64,dataURIBase64==",
     "filename": "beach",
