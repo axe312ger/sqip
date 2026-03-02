@@ -1,18 +1,15 @@
 import { vi, type MockedFunction } from 'vitest'
-import SVGO from 'svgo'
+import { optimize } from 'svgo'
 import SvgoPlugin from '../../src/sqip-plugin-svgo'
 
-vi.mock('svgo')
+vi.mock('svgo', () => ({
+  optimize: vi.fn()
+}))
 
-const mockedSVGOOptimize = SVGO.optimize as MockedFunction<
-  typeof SVGO.optimize
->
+const mockedSVGOOptimize = optimize as MockedFunction<typeof optimize>
 
 mockedSVGOOptimize.mockImplementation(() => ({
-  data: 'mocked',
-  info: { width: '1024', height: '768' },
-  error: undefined,
-  modernError: undefined
+  data: 'mocked'
 }))
 
 const mockedConfig = {
