@@ -1,4 +1,4 @@
-export type Category = 'baseline' | 'standard' | 'artistic'
+export type Category = 'placeholder' | 'artistic'
 
 export interface VariantConfig {
   name: string
@@ -7,6 +7,10 @@ export interface VariantConfig {
   description: string
   pluginChain: string[]
   resultFileType: 'jpg' | 'webp' | 'svg'
+  /** Code snippet showing how to reproduce this variant */
+  configSnippet: string
+  /** Non-trivial native dependencies (e.g. 'sharp', 'Go') */
+  dependencies: string[]
   sqipConfig?: {
     plugins: (string | { name: string; options: Record<string, unknown> })[]
   }
@@ -20,70 +24,71 @@ export interface VariantConfig {
 }
 
 export const categories: Record<Category, { label: string; description: string }> = {
-  baseline: {
-    label: 'Baselines',
-    description: 'Reference images and non-SQIP placeholder techniques',
-  },
-  standard: {
-    label: 'SQIP Standard',
-    description: 'Default and common SQIP plugin configurations',
+  placeholder: {
+    label: 'Placeholders',
+    description: 'Fast, small placeholders for lazy-loading images',
   },
   artistic: {
-    label: 'Artistic / Complex',
-    description: 'Creative and high-detail plugin chains',
+    label: 'Artistic',
+    description: 'Slow, detailed variants for decorative or artistic use',
   },
 }
 
 export const variants: VariantConfig[] = [
-  // === Baselines ===
+  // === Placeholders ===
   {
     name: 'thumbnail',
     title: 'Thumbnail (300px)',
-    category: 'baseline',
+    category: 'placeholder',
     description: 'A 300px wide JPEG thumbnail via sharp — the baseline for size comparison.',
     pluginChain: ['sharp resize'],
     resultFileType: 'jpg',
+    configSnippet: `import sharp from 'sharp'\nawait sharp('image.jpg').resize(300).jpeg().toBuffer()`,
+    dependencies: ['sharp'],
     thumbnail: true,
   },
   {
     name: 'lqip-modern-webp',
     title: 'LQIP Modern (WebP)',
-    category: 'baseline',
-    description:
-      'Medium\'s approach: 16px resize + WebP quality 20 via lqip-modern.',
+    category: 'placeholder',
+    description: "Medium's approach: 16px resize + WebP quality 20 via lqip-modern.",
     pluginChain: ['lqip-modern'],
     resultFileType: 'webp',
+    configSnippet: `import lqip from 'lqip-modern'\nconst { content } = await lqip('image.jpg')`,
+    dependencies: ['sharp'],
     lqipModern: { outputFormat: 'webp' },
   },
   {
     name: 'lqip-modern-webp-hd',
     title: 'LQIP Modern (WebP HD)',
-    category: 'baseline',
-    description:
-      'Double resolution (32px) WebP via lqip-modern — more detail at a small size cost.',
+    category: 'placeholder',
+    description: 'Double resolution (32px) WebP via lqip-modern — more detail at a small size cost.',
     pluginChain: ['lqip-modern(32px)'],
     resultFileType: 'webp',
+    configSnippet: `import lqip from 'lqip-modern'\nconst { content } = await lqip('image.jpg', { resize: 32 })`,
+    dependencies: ['sharp'],
     lqipModern: { outputFormat: 'webp', resize: 32 },
   },
   {
     name: 'lqip-modern-jpeg',
     title: 'LQIP Modern (JPEG)',
-    category: 'baseline',
-    description:
-      'Same as LQIP Modern but with JPEG output via lqip-modern.',
+    category: 'placeholder',
+    description: 'Same as LQIP Modern but with JPEG output via lqip-modern.',
     pluginChain: ['lqip-modern'],
     resultFileType: 'jpg',
+    configSnippet: `import lqip from 'lqip-modern'\nconst { content } = await lqip('image.jpg', { outputFormat: 'jpeg' })`,
+    dependencies: ['sharp'],
     lqipModern: { outputFormat: 'jpeg' },
   },
-
-  // === SQIP Standard ===
   {
     name: 'sqip-default',
     title: 'SQIP Default',
-    category: 'standard',
+    category: 'placeholder',
     description: 'Default settings: 8 geometric primitives + SVGO optimization.',
     pluginChain: ['primitive', 'svgo', 'data-uri'],
     resultFileType: 'svg',
+    configSnippet: `import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['primitive', 'svgo', 'data-uri'],\n})`,
+    dependencies: ['Go', 'sharp'],
     sqipConfig: {
       plugins: ['primitive', 'svgo', 'data-uri'],
     },
@@ -91,44 +96,38 @@ export const variants: VariantConfig[] = [
   {
     name: 'sqip-pixels',
     title: 'SQIP Pixels',
-    category: 'standard',
+    category: 'placeholder',
     description: 'Pixel art placeholder via sqip-plugin-pixels.',
     pluginChain: ['pixels', 'svgo', 'data-uri'],
     resultFileType: 'svg',
+    configSnippet: `import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['pixels', 'svgo', 'data-uri'],\n})`,
+    dependencies: ['sharp'],
     sqipConfig: {
       plugins: ['pixels', 'svgo', 'data-uri'],
     },
   },
-
   {
     name: 'sqip-potrace',
     title: 'SQIP Potrace',
-    category: 'standard',
+    category: 'placeholder',
     description: 'Vector tracing via sqip-plugin-potrace.',
     pluginChain: ['potrace', 'svgo', 'data-uri'],
     resultFileType: 'svg',
+    configSnippet: `import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['potrace', 'svgo', 'data-uri'],\n})`,
+    dependencies: ['sharp'],
     sqipConfig: {
       plugins: ['potrace', 'svgo', 'data-uri'],
     },
   },
   {
-    name: 'sqip-potrace-posterize',
-    title: 'SQIP Potrace Posterize',
-    category: 'standard',
-    description: 'Multi-color posterized vector tracing — richer detail than single-color potrace.',
-    pluginChain: ['potrace(posterize)', 'svgo', 'data-uri'],
-    resultFileType: 'svg',
-    sqipConfig: {
-      plugins: [{ name: 'potrace', options: { posterize: true } }, 'svgo', 'data-uri'],
-    },
-  },
-  {
     name: 'sqip-triangle',
     title: 'SQIP Triangle',
-    category: 'standard',
+    category: 'placeholder',
     description: 'Delaunay triangulation via sqip-plugin-triangle.',
     pluginChain: ['triangle', 'svgo', 'data-uri'],
     resultFileType: 'svg',
+    configSnippet: `import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['triangle', 'svgo', 'data-uri'],\n})`,
+    dependencies: ['Go', 'sharp'],
     sqipConfig: {
       plugins: ['triangle', 'svgo', 'data-uri'],
     },
@@ -136,10 +135,12 @@ export const variants: VariantConfig[] = [
   {
     name: 'sqip-blurhash',
     title: 'SQIP Blurhash',
-    category: 'standard',
+    category: 'placeholder',
     description: 'BlurHash encoding — ultra-compact placeholder.',
     pluginChain: ['blurhash'],
     resultFileType: 'jpg',
+    configSnippet: `import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['blurhash'],\n})`,
+    dependencies: ['sharp'],
     sqipConfig: {
       plugins: ['blurhash'],
     },
@@ -147,16 +148,31 @@ export const variants: VariantConfig[] = [
   {
     name: 'sqip-blurhash-hd',
     title: 'SQIP Blurhash HD',
-    category: 'standard',
+    category: 'placeholder',
     description: 'BlurHash with increased resolution (width: 10) for more detail.',
     pluginChain: ['blurhash(width:10)'],
     resultFileType: 'jpg',
+    configSnippet: `import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'blurhash', options: { width: 10 } },\n  ],\n})`,
+    dependencies: ['sharp'],
     sqipConfig: {
       plugins: [{ name: 'blurhash', options: { width: 10 } }],
     },
   },
 
-  // === Artistic / Complex ===
+  // === Artistic ===
+  {
+    name: 'sqip-potrace-posterize',
+    title: 'Potrace Posterize',
+    category: 'artistic',
+    description: 'Multi-color posterized vector tracing — richer detail than single-color potrace.',
+    pluginChain: ['potrace(posterize)', 'svgo', 'data-uri'],
+    resultFileType: 'svg',
+    configSnippet: `import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'potrace', options: { posterize: true } },\n    'svgo', 'data-uri',\n  ],\n})`,
+    dependencies: ['sharp'],
+    sqipConfig: {
+      plugins: [{ name: 'potrace', options: { posterize: true } }, 'svgo', 'data-uri'],
+    },
+  },
   {
     name: 'sqip-primitive-art',
     title: 'Primitive Art',
@@ -164,6 +180,8 @@ export const variants: VariantConfig[] = [
     description: '50 triangles — high-detail geometric art.',
     pluginChain: ['primitive(50, triangles)', 'svgo', 'data-uri'],
     resultFileType: 'svg',
+    configSnippet: `import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'primitive', options: { numberOfPrimitives: 50, mode: 1 } },\n    'svgo', 'data-uri',\n  ],\n})`,
+    dependencies: ['Go', 'sharp'],
     sqipConfig: {
       plugins: [
         { name: 'primitive', options: { numberOfPrimitives: 50, mode: 1 } },
@@ -179,6 +197,8 @@ export const variants: VariantConfig[] = [
     description: '30 circles — organic, bokeh-like art.',
     pluginChain: ['primitive(30, circles)', 'svgo', 'data-uri'],
     resultFileType: 'svg',
+    configSnippet: `import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'primitive', options: { numberOfPrimitives: 30, mode: 4 } },\n    'svgo', 'data-uri',\n  ],\n})`,
+    dependencies: ['Go', 'sharp'],
     sqipConfig: {
       plugins: [
         { name: 'primitive', options: { numberOfPrimitives: 30, mode: 4 } },
@@ -194,11 +214,12 @@ export const variants: VariantConfig[] = [
     description: 'High-detail low-poly art with 420 points.',
     pluginChain: ['triangle(pts:420)', 'svgo', 'data-uri'],
     resultFileType: 'svg',
+    configSnippet: `import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'triangle', options: { pts: 420 } },\n    'svgo', 'data-uri',\n  ],\n})`,
+    dependencies: ['Go', 'sharp'],
     sqipConfig: {
       plugins: [{ name: 'triangle', options: { pts: 420 } }, 'svgo', 'data-uri'],
     },
   },
-
   {
     name: 'sqip-pixels-mosaic',
     title: 'Pixel Mosaic',
@@ -206,6 +227,8 @@ export const variants: VariantConfig[] = [
     description: 'Large 16px pixel mosaic — bold, chunky pixel art.',
     pluginChain: ['pixels(16)', 'svgo', 'data-uri'],
     resultFileType: 'svg',
+    configSnippet: `import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'pixels', options: { pixels: 16 } },\n    'svgo', 'data-uri',\n  ],\n})`,
+    dependencies: ['sharp'],
     sqipConfig: {
       plugins: [{ name: 'pixels', options: { pixels: 16 } }, 'svgo', 'data-uri'],
     },

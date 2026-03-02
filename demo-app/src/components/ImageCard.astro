@@ -12,6 +12,8 @@ interface Props {
   dimensions: { width: number; height: number }
   processTimeMs: number
   imageSrc: string
+  configSnippet?: string
+  dependencies?: string[]
 }
 
 function fmtB(bytes: number): string {
@@ -21,7 +23,7 @@ function fmtB(bytes: number): string {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`
 }
 
-const { title, category, pluginChain, sizes, dimensions, processTimeMs, imageSrc, variantName } = Astro.props
+const { title, category, pluginChain, sizes, dimensions, processTimeMs, imageSrc, variantName, configSnippet, dependencies = [] } = Astro.props
 ---
 
 <div class="card" data-variant={variantName} data-category={category}>
@@ -41,11 +43,26 @@ const { title, category, pluginChain, sizes, dimensions, processTimeMs, imageSrc
   </div>
   <div class="card-info">
     <div class="card-title">{title}</div>
-    <PluginChainBadge chain={pluginChain} category={category} />
+    <div class="card-meta">
+      <PluginChainBadge chain={pluginChain} category={category} />
+      {dependencies.length > 0 && (
+        <div class="dep-badges">
+          {dependencies.map((dep) => (
+            <span class={`dep-badge dep-${dep.toLowerCase()}`}>{dep}</span>
+          ))}
+        </div>
+      )}
+    </div>
     <div class="card-stats">
       <span class="stat">{fmtB(sizes.gzipBytes)}</span>
       <span class="stat">{processTimeMs}ms</span>
     </div>
+    {configSnippet && (
+      <details class="config-details">
+        <summary>Config</summary>
+        <pre><code>{configSnippet}</code></pre>
+      </details>
+    )}
   </div>
 </div>
 
@@ -123,6 +140,38 @@ const { title, category, pluginChain, sizes, dimensions, processTimeMs, imageSrc
     font-size: 0.85rem;
   }
 
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .dep-badges {
+    display: inline-flex;
+    gap: 0.25rem;
+  }
+
+  .dep-badge {
+    font-size: 0.6rem;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  .dep-go {
+    border-color: #00add8;
+    color: #00add8;
+  }
+
+  .dep-sharp {
+    border-color: #99cc00;
+    color: #99cc00;
+  }
+
   .card-stats {
     display: flex;
     gap: 0.75rem;
@@ -132,5 +181,32 @@ const { title, category, pluginChain, sizes, dimensions, processTimeMs, imageSrc
 
   .stat {
     font-family: var(--font-mono);
+  }
+
+  .config-details {
+    margin-top: 0.25rem;
+  }
+
+  .config-details summary {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .config-details summary:hover {
+    color: var(--accent);
+  }
+
+  .config-details pre {
+    margin: 0.35rem 0 0;
+    padding: 0.5rem;
+    background: var(--tag-bg);
+    border-radius: 4px;
+    overflow-x: auto;
+    font-size: 0.65rem;
+    line-height: 1.5;
+    font-family: var(--font-mono);
+    color: var(--text);
   }
 </style>

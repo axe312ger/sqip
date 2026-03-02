@@ -165,15 +165,17 @@ const imageThumbs = dataset.map((img: any) => {
         })
       })
 
-      // CSS blur
+      // CSS blur — only applied to placeholder variants, never artistic
       function applyBlur() {
         var enabled = blurToggle.checked
         var px = blurSlider.value
         blurSliderGroup.classList.toggle('active', enabled)
         blurValue.textContent = px + 'px'
         var filterVal = enabled ? 'blur(' + px + 'px)' : ''
-        document.querySelectorAll('.preview').forEach(function(img) {
-          img.style.filter = filterVal
+        document.querySelectorAll('.card').forEach(function(card) {
+          var img = card.querySelector('.preview')
+          if (!img) return
+          img.style.filter = card.dataset.category === 'artistic' ? '' : filterVal
         })
       }
 

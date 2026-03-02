@@ -38,6 +38,8 @@ interface VariantResult {
   sizes: Sizes
   dimensions: Dimensions
   processTimeMs: number
+  configSnippet: string
+  dependencies: string[]
 }
 
 interface ImageEntry {
@@ -191,6 +193,8 @@ async function main() {
           sizes,
           dimensions: resultDimensions,
           processTimeMs,
+          configSnippet: variant.configSnippet,
+          dependencies: variant.dependencies,
         })
       } catch (err) {
         console.error(`\nError: ${filename} / ${variant.name}:`, err)
@@ -204,6 +208,8 @@ async function main() {
           sizes: { originalBytes: 0, gzipBytes: 0, brotliBytes: 0 },
           dimensions: { width: 0, height: 0 },
           processTimeMs: 0,
+          configSnippet: variant.configSnippet,
+          dependencies: variant.dependencies,
         })
       }
 

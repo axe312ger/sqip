@@ -29,6 +29,8 @@ const { images } = Astro.props
           dimensions={result.dimensions}
           processTimeMs={result.processTimeMs}
           imageSrc={`/processed/${result.fileName}`}
+          configSnippet={result.configSnippet}
+          dependencies={result.dependencies}
         />
       ))}
     </div>

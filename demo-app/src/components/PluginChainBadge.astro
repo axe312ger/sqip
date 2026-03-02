@@ -4,7 +4,7 @@ interface Props {
   category?: string
 }
 
-const { chain, category = 'standard' } = Astro.props
+const { chain, category = 'placeholder' } = Astro.props
 ---
 
 <div class={`badge badge-${category}`}>
@@ -34,14 +34,9 @@ const { chain, category = 'standard' } = Astro.props
     color: var(--tag-text);
   }
 
-  .badge-baseline .step {
-    background: color-mix(in srgb, var(--badge-baseline) 15%, var(--tag-bg));
-    color: var(--badge-baseline);
-  }
-
-  .badge-standard .step {
-    background: color-mix(in srgb, var(--badge-standard) 15%, var(--tag-bg));
-    color: var(--badge-standard);
+  .badge-placeholder .step {
+    background: color-mix(in srgb, var(--badge-placeholder) 15%, var(--tag-bg));
+    color: var(--badge-placeholder);
   }
 
   .badge-artistic .step {

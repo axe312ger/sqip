@@ -17,8 +17,7 @@
   --font: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'SF Mono', 'Fira Code', 'Fira Mono', monospace;
 
-  --badge-baseline: #3498db;
-  --badge-standard: #27ae60;
+  --badge-placeholder: #3498db;
   --badge-artistic: #9b59b6;
 }
 
@@ -36,8 +35,7 @@
     --shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.4);
 
-    --badge-baseline: #5dade2;
-    --badge-standard: #52be80;
+    --badge-placeholder: #5dade2;
     --badge-artistic: #bb8fce;
   }
 }
