@@ -43,7 +43,7 @@ Get a more detailed look on [our demo website](https://axe312ger.github.io/sqip/
 
 ## Requirements
 
-* Node.js >= v8 (https://nodejs.org/en/)
+* Node.js >= 20 (https://nodejs.org/en/)
 * 64bit OS (Not all plugins, see below)
 
 <details>

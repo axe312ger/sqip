@@ -4,6 +4,7 @@
 
 Most important notes:
 
+* **Node.js >= 20 is now required** (v0 supported Node.js >= 8)
 * The API is now async
 * The new plugin based system requires a different configuration
 * The result is now as a Buffer available as `result.content`
