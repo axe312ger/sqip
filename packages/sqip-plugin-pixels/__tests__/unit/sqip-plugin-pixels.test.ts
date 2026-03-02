@@ -95,4 +95,9 @@ describe('sqip-plugin-pixels', () => {
   })
 
   // @todo test transparent pixel creation with new logo fixture
+
+  test('cliOptions returns array of option definitions', () => {
+    expect(Array.isArray(sqipPluginPixels.cliOptions)).toBe(true)
+    expect(sqipPluginPixels.cliOptions.length).toBeGreaterThan(0)
+  })
 })

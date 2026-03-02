@@ -31,3 +31,15 @@ test('runSVGO', () => {
   expect(mockedSVGOOptimize.mock.calls[0][0]).toBe(inputSVG.toString())
   expect(mockedSVGOOptimize.mock.calls[0]).toMatchSnapshot()
 })
+
+test('throws when svgo returns invalid result', async () => {
+  mockedSVGOOptimize.mockImplementation(() => ({}) as any)
+  const plugin = new SvgoPlugin({
+    pluginOptions: {},
+    options: {},
+    sqipConfig: mockedConfig
+  })
+  expect(() =>
+    plugin.apply(Buffer.from('<svg></svg>'))
+  ).toThrow()
+})

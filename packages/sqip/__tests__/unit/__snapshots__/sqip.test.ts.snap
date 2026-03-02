@@ -136,6 +136,74 @@ exports[`node api > output > outputs to file path 1`] = `
 }
 `;
 
+exports[`node api > parseableOutput disables chalk colors 1`] = `
+{
+  "content": "<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="red" stroke="#000" stroke-width="3"/></svg>",
+  "metadata": {
+    "backgroundColor": "#454449",
+    "dataURI": "data:image/svg+xml,dataURI",
+    "dataURIBase64": "data:image/svg+xml;base64,dataURIBase64==",
+    "filename": "beach",
+    "height": 188,
+    "mimeType": "image/jpeg",
+    "originalHeight": 640,
+    "originalWidth": 1024,
+    "palette": {
+      "DarkMuted": {
+        "population": 17355,
+        "rgb": [
+          104,
+          78,
+          54,
+        ],
+      },
+      "DarkVibrant": {
+        "population": 106,
+        "rgb": [
+          190,
+          79,
+          12,
+        ],
+      },
+      "LightMuted": {
+        "population": 51474,
+        "rgb": [
+          208,
+          201,
+          182,
+        ],
+      },
+      "LightVibrant": {
+        "population": 15729,
+        "rgb": [
+          242,
+          177,
+          122,
+        ],
+      },
+      "Muted": {
+        "population": 32611,
+        "rgb": [
+          102,
+          146,
+          160,
+        ],
+      },
+      "Vibrant": {
+        "population": 7271,
+        "rgb": [
+          228,
+          139,
+          55,
+        ],
+      },
+    },
+    "type": "unknown",
+    "width": 300,
+  },
+}
+`;
+
 exports[`node api > resolves valid input path 1`] = `
 {
   "content": "<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="red" stroke="#000" stroke-width="3"/></svg>",

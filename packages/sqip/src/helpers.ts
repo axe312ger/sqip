@@ -44,11 +44,10 @@ export async function locateFiles(input: string): Promise<string[]> {
       globPattern = `${path.resolve(enhancedInput)}/*`
     }
   } catch (err) {
-    if (isError(err) && err instanceof TypeError) {
-      if (err.code === 'ENOENT') {
-        throw err
-      }
+    if (isError(err) && err.code !== 'ENOENT') {
+      throw err
     }
+    // ENOENT is expected when input is a glob pattern, not a real path
   }
 
   // Find all files matching the enhanced glob

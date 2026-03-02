@@ -218,3 +218,20 @@ describe('runPrimitive', () => {
     expect(res.toString()).toMatchSnapshot()
   })
 })
+
+test('cliOptions returns array of option definitions', () => {
+  expect(Array.isArray(PrimitivePlugin.cliOptions)).toBe(true)
+  expect(PrimitivePlugin.cliOptions.length).toBeGreaterThan(0)
+})
+
+test('throws when input is svg', async () => {
+  const plugin = new PrimitivePlugin({
+    pluginOptions: {},
+    options: {},
+    sqipConfig: mockedConfig
+  })
+  const svgMetadata: SqipImageMetadata = { ...sqipMockedMetadata, type: 'svg' }
+  await expect(
+    plugin.apply(Buffer.from('test'), svgMetadata)
+  ).rejects.toThrow('raster image')
+})

@@ -64,10 +64,6 @@ export default class SVGPlugin extends SqipPlugin {
       return imageBuffer
     }
 
-    if (!this.options.blur) {
-      return imageBuffer
-    }
-
     const svg = imageBuffer.toString()
 
     const { svg: canvas, SVG } = await loadSVG(svg)

@@ -7,7 +7,7 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       include: ['packages/*/src/**/*.ts'],
-      exclude: ['packages/*/dist/**']
+      exclude: ['packages/*/dist/**', '**/wrapper.ts']
     },
     typecheck: {
       tsconfig: './tsconfig.json'

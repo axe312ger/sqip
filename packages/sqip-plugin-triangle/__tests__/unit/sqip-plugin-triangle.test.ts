@@ -194,3 +194,20 @@ describe('runTriangle', () => {
     expect(args).toMatchSnapshot()
   })
 })
+
+test('cliOptions returns array of option definitions', () => {
+  expect(Array.isArray(TrianglePlugin.cliOptions)).toBe(true)
+  expect(TrianglePlugin.cliOptions.length).toBeGreaterThan(0)
+})
+
+test('throws when input is svg', async () => {
+  const plugin = new TrianglePlugin({
+    pluginOptions: {},
+    options: {},
+    sqipConfig: mockedConfig
+  })
+  const svgMetadata: SqipImageMetadata = { ...triangleMockedMetadata, type: 'svg' }
+  await expect(
+    plugin.apply(Buffer.from('test'), svgMetadata)
+  ).rejects.toThrow('raster image')
+})
