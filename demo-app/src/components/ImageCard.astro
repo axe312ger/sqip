@@ -15,6 +15,7 @@ interface Props {
   thumbnailSrc?: string
   configSnippet?: string
   dependencies?: string[]
+  originalAspectRatio?: number
 }
 
 function fmtB(bytes: number): string {
@@ -24,11 +25,11 @@ function fmtB(bytes: number): string {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`
 }
 
-const { title, category, pluginChain, sizes, dimensions, processTimeMs, imageSrc, thumbnailSrc, variantName, configSnippet, dependencies = [] } = Astro.props
+const { title, category, pluginChain, sizes, dimensions, processTimeMs, imageSrc, thumbnailSrc, variantName, configSnippet, dependencies = [], originalAspectRatio } = Astro.props
 ---
 
 <div class="card" data-variant={variantName} data-category={category}>
-  <div class="card-image">
+  <div class="card-image" style={originalAspectRatio ? `aspect-ratio: ${originalAspectRatio};` : undefined}>
     <img class="preview" src={imageSrc} alt={title} loading="lazy" />
     {thumbnailSrc && (
       <img class="thumbnail-hover" src={thumbnailSrc} alt="" loading="lazy" />
@@ -97,6 +98,8 @@ const { title, category, pluginChain, sizes, dimensions, processTimeMs, imageSrc
 
   .card-image img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
     display: block;
   }
 
