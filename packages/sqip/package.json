@@ -1,6 +1,6 @@
 {
   "name": "sqip",
-  "version": "1.0.0-alpha.51",
+  "version": "1.0.0-beta.1",
   "type": "module",
   "description": "SQIP - SVG-Based Image Placeholder",
   "author": "Benedikt Rötsch <info@benedikt-roetsch.de>",

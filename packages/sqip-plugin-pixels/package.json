@@ -1,6 +1,6 @@
 {
   "name": "sqip-plugin-pixels",
-  "version": "1.0.0-alpha.53",
+  "version": "1.0.0-beta.1",
   "type": "module",
   "description": "Experimental plugin to create a pixelation effect",
   "author": "Benedikt Rötsch <info@benedikt-roetsch.de>",
