@@ -17,22 +17,26 @@ const { images } = Astro.props
       </span>
     </div>
     <div class="grid">
-      {image.results.map((result: any) => (
-        <ImageCard
-          variantName={result.variantName}
-          title={result.title}
-          category={result.category}
-          pluginChain={result.pluginChain}
-          fileName={result.fileName}
-          resultFileType={result.resultFileType}
-          sizes={result.sizes}
-          dimensions={result.dimensions}
-          processTimeMs={result.processTimeMs}
-          imageSrc={`/processed/${result.fileName}`}
-          configSnippet={result.configSnippet}
-          dependencies={result.dependencies}
-        />
-      ))}
+      {(() => {
+        const refSrc = image.referenceImage ? `/processed/${image.referenceImage}` : ''
+        return image.results.map((result: any) => (
+          <ImageCard
+            variantName={result.variantName}
+            title={result.title}
+            category={result.category}
+            pluginChain={result.pluginChain}
+            fileName={result.fileName}
+            resultFileType={result.resultFileType}
+            sizes={result.sizes}
+            dimensions={result.dimensions}
+            processTimeMs={result.processTimeMs}
+            imageSrc={`/processed/${result.fileName}`}
+            thumbnailSrc={refSrc}
+            configSnippet={result.configSnippet}
+            dependencies={result.dependencies}
+          />
+        ))
+      })()}
     </div>
   </div>
 ))}
@@ -63,13 +67,7 @@ const { images } = Astro.props
 
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(var(--card-size, 280px), 1fr));
     gap: 1rem;
-  }
-
-  @media (min-width: 1200px) {
-    .grid {
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    }
   }
 </style>

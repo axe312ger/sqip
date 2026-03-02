@@ -12,6 +12,7 @@ interface Props {
   dimensions: { width: number; height: number }
   processTimeMs: number
   imageSrc: string
+  thumbnailSrc?: string
   configSnippet?: string
   dependencies?: string[]
 }
@@ -23,23 +24,15 @@ function fmtB(bytes: number): string {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`
 }
 
-const { title, category, pluginChain, sizes, dimensions, processTimeMs, imageSrc, variantName, configSnippet, dependencies = [] } = Astro.props
+const { title, category, pluginChain, sizes, dimensions, processTimeMs, imageSrc, thumbnailSrc, variantName, configSnippet, dependencies = [] } = Astro.props
 ---
 
 <div class="card" data-variant={variantName} data-category={category}>
   <div class="card-image">
     <img class="preview" src={imageSrc} alt={title} loading="lazy" />
-    <div class="overlay">
-      <table>
-        <tbody>
-          <tr><td>Raw</td><td>{fmtB(sizes.originalBytes)}</td></tr>
-          <tr><td>Gzip</td><td>{fmtB(sizes.gzipBytes)}</td></tr>
-          <tr><td>Brotli</td><td>{fmtB(sizes.brotliBytes)}</td></tr>
-          {dimensions.width > 0 && <tr><td>Size</td><td>{dimensions.width}&times;{dimensions.height}</td></tr>}
-          <tr><td>Time</td><td>{processTimeMs}ms</td></tr>
-        </tbody>
-      </table>
-    </div>
+    {thumbnailSrc && (
+      <img class="thumbnail-hover" src={thumbnailSrc} alt="" loading="lazy" />
+    )}
   </div>
   <div class="card-info">
     <div class="card-title">{title}</div>
@@ -54,14 +47,31 @@ const { title, category, pluginChain, sizes, dimensions, processTimeMs, imageSrc
       )}
     </div>
     <div class="card-stats">
-      <span class="stat">{fmtB(sizes.gzipBytes)}</span>
-      <span class="stat">{processTimeMs}ms</span>
+      <div class="stat-row">
+        <span class="stat-label">Raw</span>
+        <span class="stat-value">{fmtB(sizes.originalBytes)}</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Gzip</span>
+        <span class="stat-value">{fmtB(sizes.gzipBytes)}</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Brotli</span>
+        <span class="stat-value">{fmtB(sizes.brotliBytes)}</span>
+      </div>
+      {dimensions.width > 0 && (
+        <div class="stat-row">
+          <span class="stat-label">Size</span>
+          <span class="stat-value">{dimensions.width}&times;{dimensions.height}</span>
+        </div>
+      )}
+      <div class="stat-row">
+        <span class="stat-label">Time</span>
+        <span class="stat-value">{processTimeMs}ms</span>
+      </div>
     </div>
     {configSnippet && (
-      <details class="config-details">
-        <summary>Config</summary>
-        <pre><code>{configSnippet}</code></pre>
-      </details>
+      <pre class="config-snippet"><code>{configSnippet}</code></pre>
     )}
   </div>
 </div>
@@ -73,59 +83,40 @@ const { title, category, pluginChain, sizes, dimensions, processTimeMs, imageSrc
     border-radius: var(--radius);
     overflow: hidden;
     box-shadow: var(--shadow);
-    transition: box-shadow 0.2s, transform 0.2s;
   }
 
   .card:hover {
     box-shadow: var(--shadow-lg);
-    transform: translateY(-2px);
   }
 
   .card-image {
     position: relative;
-    aspect-ratio: 4 / 3;
     overflow: hidden;
     background: var(--bg-hover);
   }
 
   .card-image img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
     display: block;
+  }
+
+  .preview {
     transition: filter 0.2s ease;
   }
 
-  .overlay {
+  .thumbnail-hover {
     position: absolute;
     inset: 0;
-    background: var(--bg-overlay);
-    color: var(--text-overlay);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     opacity: 0;
-    transition: opacity 0.2s;
-    padding: 1rem;
+    transition: opacity 0.3s ease;
+    z-index: 1;
   }
 
-  .card:hover .overlay {
+  .card:hover .thumbnail-hover {
     opacity: 1;
-  }
-
-  .overlay table {
-    font-size: 0.8rem;
-    border-collapse: collapse;
-  }
-
-  .overlay td {
-    padding: 2px 8px;
-  }
-
-  .overlay td:first-child {
-    font-weight: 600;
-    text-align: right;
-    color: rgba(255, 255, 255, 0.7);
   }
 
   .card-info {
@@ -173,33 +164,25 @@ const { title, category, pluginChain, sizes, dimensions, processTimeMs, imageSrc
   }
 
   .card-stats {
-    display: flex;
-    gap: 0.75rem;
-    font-size: 0.75rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1px 0.5rem;
+    font-size: 0.7rem;
     color: var(--text-muted);
-  }
-
-  .stat {
     font-family: var(--font-mono);
   }
 
-  .config-details {
-    margin-top: 0.25rem;
+  .stat-label {
+    text-align: right;
+    opacity: 0.6;
   }
 
-  .config-details summary {
-    font-size: 0.7rem;
-    color: var(--text-muted);
-    cursor: pointer;
-    user-select: none;
+  .stat-value {
+    text-align: left;
   }
 
-  .config-details summary:hover {
-    color: var(--accent);
-  }
-
-  .config-details pre {
-    margin: 0.35rem 0 0;
+  .config-snippet {
+    margin: 0.25rem 0 0;
     padding: 0.5rem;
     background: var(--tag-bg);
     border-radius: 4px;
@@ -208,5 +191,10 @@ const { title, category, pluginChain, sizes, dimensions, processTimeMs, imageSrc
     line-height: 1.5;
     font-family: var(--font-mono);
     color: var(--text);
+  }
+
+  .config-snippet code {
+    white-space: pre-wrap;
+    word-break: break-word;
   }
 </style>

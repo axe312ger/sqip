@@ -67,6 +67,7 @@ const imageThumbs = dataset.map((img: any) => {
       var blurSlider = document.getElementById('blur-slider')
       var blurValue = document.getElementById('blur-value')
       var blurSliderGroup = document.getElementById('blur-slider-group')
+      var sizeToggles = document.querySelectorAll('[data-size-toggle]')
 
       function formatBytes(bytes) {
         if (bytes === 0) return '0 B'
@@ -185,6 +186,19 @@ const imageThumbs = dataset.map((img: any) => {
         if (blurToggle.checked) applyBlur()
       })
 
+      // Card size toggle
+      function applyCardSize(size) {
+        document.querySelectorAll('.grid').forEach(function(grid) {
+          grid.style.setProperty('--card-size', size + 'px')
+        })
+      }
+
+      sizeToggles.forEach(function(radio) {
+        radio.addEventListener('change', function() {
+          if (radio.checked) applyCardSize(radio.value)
+        })
+      })
+
       // Image selector — thumbnail buttons
       thumbBtns.forEach(function(btn) {
         btn.addEventListener('click', function() {
@@ -195,7 +209,8 @@ const imageThumbs = dataset.map((img: any) => {
         })
       })
 
-      // Initial render — show first image only
+      // Initial render — show first image only, apply default card size
+      applyCardSize(300)
       updateVisibility()
     }
   </script>

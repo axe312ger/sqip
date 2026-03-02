@@ -47,6 +47,7 @@ interface ImageEntry {
   originalPath: string
   dimensions: Dimensions
   originalSize: number
+  referenceImage: string
   results: VariantResult[]
 }
 
@@ -163,6 +164,12 @@ async function main() {
     const dimensions = await getDimensions(imagePath)
     const originalStat = await fs.stat(imagePath)
 
+    // Generate a 1200px reference JPEG for hover comparison
+    const refFileName = `${filename}-reference.jpg`
+    const refPath = resolve(PROCESSED, refFileName)
+    await sharp(imagePath).resize(1200).jpeg({ quality: 85 }).toBuffer()
+      .then(buf => fs.writeFile(refPath, buf))
+
     const results: VariantResult[] = []
 
     for (const variant of variants) {
@@ -225,6 +232,7 @@ async function main() {
       originalPath: file,
       dimensions,
       originalSize: originalStat.size,
+      referenceImage: refFileName,
       results,
     })
   }
