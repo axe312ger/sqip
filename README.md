@@ -1,10 +1,7 @@
-**This is the `v1 alpha` readme. [You can find the current docs here.](https://github.com/axe312ger/sqip/tree/legacy#readme)**
-
 SQIP - a pluggable image converter with vector support
 ====================
 
-[![npm](https://img.shields.io/npm/v/sqip.svg?label=npm@latest)](https://www.npmjs.com/package/sqip)
-[![npm](https://img.shields.io/npm/v/sqip/canary.svg)](https://www.npmjs.com/package/sqip)
+[![npm](https://img.shields.io/npm/v/sqip.svg)](https://www.npmjs.com/package/sqip)
 [![npm](https://img.shields.io/npm/dm/sqip.svg)](https://www.npmjs.com/package/sqip)
 
 [![CircleCI](https://circleci.com/gh/axe312ger/sqip.svg?style=svg)](https://circleci.com/gh/axe312ger/sqip)
@@ -86,12 +83,12 @@ You need the core plugin `sqip` plus all the plugins you want to use like `sqip-
 For example:
 
 ```bash
-npm install sqip@canary sqip-plugin-primitive@canary sqip-plugin-svgo@canary sqip-plugin-data-uri@canary
+npm install sqip sqip-plugin-primitive sqip-plugin-svgo sqip-plugin-data-uri
 ```
 
-**This is the `v1 alpha` readme. [Click here for v0 "stable" instructions.](https://github.com/axe312ger/sqip/tree/legacy#readme)**
-
 **Hint:** SQIP is plugin based, you might want to install more plugins later on. See [Plugins](#plugins-1) section.
+
+> Migrating from v0? See the [Migration Guide](./MIGRATION.md).
 
 ### Usage
 
@@ -201,10 +198,8 @@ This will run:
 ### Installation
 
 ```sh
-npm install -g sqip-cli@canary
+npm install -g sqip-cli
 ```
-
-**This is the `v1 alpha` readme. [You can find the current docs here.](https://github.com/axe312ger/sqip/tree/legacy#readme)**
 
 ### Usage examples
 
@@ -304,7 +299,7 @@ Set the width of the resulting image. Negative values and 0 will fall back to th
 
 ### `plugins`
 
-**Default:** `['primitive', 'svgo']`
+**Default:** `['primitive', 'blur', 'svgo', 'data-uri']`
 
 Array of plugins. Either as a string (default config will be applied) or as a config object.
 
@@ -378,12 +373,110 @@ SQIP comes with some core plugins, the community is very welcome to [contribute 
 
 Here is a list of all current core plugins:
 
-* [sqip-plugin-primitive](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-primitive#readme)
-* [sqip-plugin-blur](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-blur#readme)
-* [sqip-plugin-svgo](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-svgo#readme)
-* [sqip-plugin-datauri](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-datauri#readme)
-* [sqip-plugin-pixels](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-pixels#readme)
-* [sqip-plugin-potrace](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-potrace#readme)
+* [sqip-plugin-primitive](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-primitive#readme) — Generate SVG shapes using [Primitive](https://github.com/hashbite/primitive)
+* [sqip-plugin-blur](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-blur#readme) — Add CSS or SVG blur to the image
+* [sqip-plugin-svgo](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-svgo#readme) — Optimize SVG output with SVGO
+* [sqip-plugin-data-uri](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-data-uri#readme) — Convert SVG to Data URI
+* [sqip-plugin-pixels](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-pixels#readme) — Create a pixelated placeholder
+* [sqip-plugin-potrace](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-potrace#readme) — Trace images into vector paths
+* [sqip-plugin-triangle](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-triangle#readme) — Generate triangulated SVG art
+* [sqip-plugin-blurhash](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-blurhash#readme) — Generate BlurHash previews
+
+### Plugin Configuration Reference
+
+<details>
+<summary><strong>sqip-plugin-primitive</strong> — Generate SVG shapes</summary>
+
+| Option | Type | Default | CLI Flag | Description |
+|--------|------|---------|----------|-------------|
+| `numberOfPrimitives` | Number | `8` | `-n` | The number of primitive shapes to use |
+| `mode` | Number | `0` | `-m` | Shape style: 0=combo, 1=triangle, 2=rect, 3=ellipse, 4=circle, 5=rotatedrect, 6=beziers, 7=rotatedellipse, 8=polygon |
+| `rep` | Number | `0` | | Extra shapes each iteration with reduced search |
+| `alpha` | Number | `128` | | Color alpha (0 = algorithm chooses) |
+| `background` | String | `'Muted'` | | Background color: palette color name or hex value |
+| `cores` | Number | `0` | | Parallel workers (0 = all cores) |
+| `removeBackgroundElement` | Boolean | `false` | | Remove the background element created by primitive |
+</details>
+
+<details>
+<summary><strong>sqip-plugin-blur</strong> — Add blur effect</summary>
+
+| Option | Type | Default | CLI Flag | Description |
+|--------|------|---------|----------|-------------|
+| `blur` | Number | `12` | `-b` | Blur value in px for CSS blur / stdDeviation for SVG blur |
+| `legacyBlur` | Boolean | `false` | | Use SVG `feGaussianBlur` filter instead of CSS `filter: blur()` |
+| `backgroundColor` | String | `'Muted'` | | Background rectangle color to prevent transparent blur edges |
+</details>
+
+<details>
+<summary><strong>sqip-plugin-svgo</strong> — Optimize SVG output</summary>
+
+Passes all options through to [SVGO](https://github.com/svg/svgo). See SVGO documentation for available options.
+</details>
+
+<details>
+<summary><strong>sqip-plugin-data-uri</strong> — Convert to Data URI</summary>
+
+No configuration options. Converts the SVG output to a Data URI string, available as `result.metadata.dataURI` and `result.metadata.dataURIBase64`.
+</details>
+
+<details>
+<summary><strong>sqip-plugin-pixels</strong> — Pixelated placeholder</summary>
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `pixels` | Number | `8` | Number of pixels on the longer axis |
+| `backgroundColor` | String | `'DETECT'` | Transparent pixel color (hex with alpha or palette color name) |
+</details>
+
+<details>
+<summary><strong>sqip-plugin-potrace</strong> — Vector tracing</summary>
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `posterize` | Boolean | `false` | Use posterize instead of trace |
+| `steps` | Number | `4` | Posterize: number of threshold steps |
+| `color` | String | auto | Fill color |
+| `background` | String | auto | Background color |
+| `turnPolicy` | String | `'TURNPOLICY_MINORITY'` | Path decomposition ambiguity resolution |
+| `turdSize` | Number | `2` | Suppress speckles up to this size |
+| `alphaMax` | Number | `1` | Corner threshold parameter |
+| `optCurve` | Boolean | `true` | Enable curve optimization |
+| `optTolerance` | Number | `0.2` | Curve optimization tolerance |
+| `threshold` | Number | auto | Black/white threshold (0-255) |
+| `blackOnWhite` | Boolean | `true` | Which side of threshold becomes vector shape |
+</details>
+
+<details>
+<summary><strong>sqip-plugin-triangle</strong> — Triangulated SVG art</summary>
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `bl` | Number | `2` | Blur radius |
+| `nf` | Number | `0` | Noise factor |
+| `bf` | Number | `1` | Blur factor |
+| `ef` | Number | `6` | Edge factor |
+| `pr` | Number | `0.075` | Point rate |
+| `pth` | Number | `10` | Points threshold |
+| `pts` | Number | `6` | Maximum number of points |
+| `so` | Number | `10` | Sobel filter threshold |
+| `sl` | Boolean | `false` | Use solid stroke color |
+| `wf` | Number | `0` | Wireframe mode |
+| `st` | Number | `1` | Stroke width |
+| `gr` | Boolean | `false` | Grayscale mode |
+| `bg` | String | `'Muted'` | Background color (hex or palette color name) |
+</details>
+
+<details>
+<summary><strong>sqip-plugin-blurhash</strong> — BlurHash previews</summary>
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `width` | Number | `4` | Horizontal blur components (max 9) |
+| `height` | Number | `-1` | Vertical blur components (max 9, -1 = auto) |
+| `resizeWidth` | Number | `64` | Resize image width for faster processing |
+| `resizeHeight` | Number | `-1` | Resize image height for faster processing (-1 = auto) |
+</details>
 
 ## Debugging
 
