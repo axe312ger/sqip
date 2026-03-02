@@ -9,9 +9,7 @@ const DIR_FIXTURES = resolve(DIR_ROOT, '__tests__', 'fixtures')
 const FILE_JPG = resolve(DIR_FIXTURES, 'beach.jpg')
 const FILE_SVG = resolve(DIR_FIXTURES, 'beach-sqip.svg')
 
-// TODO: Re-enable after ESM migration. svgdom is ESM-only and uses import.meta.url
-// which is incompatible with Jest's CJS-based module system.
-test.skip('loadSVG', async () => {
+test('loadSVG', async () => {
   const svgContentBuffer = await readFile(FILE_SVG)
   const { svg } = await loadSVG(svgContentBuffer.toString())
   expect(svg).toBeDefined()
