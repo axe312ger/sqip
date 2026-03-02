@@ -1,0 +1,135 @@
+---
+import PluginChainBadge from './PluginChainBadge.astro'
+
+interface Props {
+  variantName: string
+  title: string
+  category: string
+  pluginChain: string[]
+  fileName: string
+  resultFileType: string
+  sizes: { originalBytes: number; gzipBytes: number; brotliBytes: number }
+  dimensions: { width: number; height: number }
+  processTimeMs: number
+  imageSrc: string
+}
+
+function fmtB(bytes: number): string {
+  if (bytes === 0) return '0 B'
+  if (bytes < 1024) return `${bytes} B`
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`
+}
+
+const { title, category, pluginChain, sizes, dimensions, processTimeMs, imageSrc, variantName } = Astro.props
+---
+
+<div class="card" data-variant={variantName} data-category={category}>
+  <div class="card-image">
+    <img class="preview" src={imageSrc} alt={title} loading="lazy" />
+    <div class="overlay">
+      <table>
+        <tbody>
+          <tr><td>Raw</td><td>{fmtB(sizes.originalBytes)}</td></tr>
+          <tr><td>Gzip</td><td>{fmtB(sizes.gzipBytes)}</td></tr>
+          <tr><td>Brotli</td><td>{fmtB(sizes.brotliBytes)}</td></tr>
+          {dimensions.width > 0 && <tr><td>Size</td><td>{dimensions.width}&times;{dimensions.height}</td></tr>}
+          <tr><td>Time</td><td>{processTimeMs}ms</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card-info">
+    <div class="card-title">{title}</div>
+    <PluginChainBadge chain={pluginChain} category={category} />
+    <div class="card-stats">
+      <span class="stat">{fmtB(sizes.gzipBytes)}</span>
+      <span class="stat">{processTimeMs}ms</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+
+  .card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+  }
+
+  .card-image {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: var(--bg-hover);
+  }
+
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: var(--bg-overlay);
+    color: var(--text-overlay);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s;
+    padding: 1rem;
+  }
+
+  .card:hover .overlay {
+    opacity: 1;
+  }
+
+  .overlay table {
+    font-size: 0.8rem;
+    border-collapse: collapse;
+  }
+
+  .overlay td {
+    padding: 2px 8px;
+  }
+
+  .overlay td:first-child {
+    font-weight: 600;
+    text-align: right;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .card-info {
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .card-title {
+    font-weight: 600;
+    font-size: 0.85rem;
+  }
+
+  .card-stats {
+    display: flex;
+    gap: 0.75rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .stat {
+    font-family: var(--font-mono);
+  }
+</style>

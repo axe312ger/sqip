@@ -1,0 +1,161 @@
+---
+import { categories, variants, type Category } from '../data/variants'
+
+interface Props {
+  imageNames: string[]
+}
+
+const { imageNames } = Astro.props
+const categoryKeys = Object.keys(categories) as Category[]
+---
+
+<div class="filter-bar" id="filter-bar">
+  <div class="filter-section">
+    <h3>Source Image</h3>
+    <select id="image-select">
+      {imageNames.map((name) => (
+        <option value={name}>{name}</option>
+      ))}
+    </select>
+  </div>
+
+  <div class="filter-section">
+    <h3>Categories</h3>
+    <div class="toggle-group">
+      {categoryKeys.map((key) => (
+        <label class={`toggle toggle-${key}`}>
+          <input type="checkbox" checked data-category-toggle={key} />
+          <span class="toggle-label">{categories[key].label}</span>
+          <span class="toggle-count">
+            {variants.filter((v) => v.category === key).length}
+          </span>
+        </label>
+      ))}
+    </div>
+  </div>
+
+  <div class="filter-section">
+    <h3>Variants</h3>
+    <div class="variant-toggles">
+      {variants.map((v) => (
+        <label class="variant-toggle" data-variant-label={v.name}>
+          <input type="checkbox" checked data-variant-toggle={v.name} data-variant-category={v.category} />
+          <span class="variant-name">{v.title}</span>
+        </label>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .filter-bar {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 1rem;
+  }
+
+  .filter-section h3 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin: 0 0 0.5rem;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  #image-select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 0.85rem;
+  }
+
+  .toggle-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.15s;
+    user-select: none;
+  }
+
+  .toggle:has(input:checked) {
+    border-color: transparent;
+  }
+
+  .toggle-baseline:has(input:checked) {
+    background: color-mix(in srgb, var(--badge-baseline) 15%, transparent);
+    color: var(--badge-baseline);
+  }
+
+  .toggle-standard:has(input:checked) {
+    background: color-mix(in srgb, var(--badge-standard) 15%, transparent);
+    color: var(--badge-standard);
+  }
+
+  .toggle-artistic:has(input:checked) {
+    background: color-mix(in srgb, var(--badge-artistic) 15%, transparent);
+    color: var(--badge-artistic);
+  }
+
+  .toggle input {
+    display: none;
+  }
+
+  .toggle-count {
+    font-size: 0.7rem;
+    opacity: 0.7;
+  }
+
+  .variant-toggles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .variant-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    font-size: 0.75rem;
+    transition: all 0.15s;
+    user-select: none;
+  }
+
+  .variant-toggle input {
+    display: none;
+  }
+
+  .variant-toggle:has(input:checked) {
+    background: var(--bg-hover);
+    border-color: var(--text-muted);
+  }
+
+  .variant-toggle:has(input:not(:checked)) {
+    opacity: 0.4;
+  }
+</style>

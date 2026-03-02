@@ -1,0 +1,73 @@
+---
+import ImageCard from './ImageCard.astro'
+
+interface Props {
+  images: any[]
+}
+
+const { images } = Astro.props
+---
+
+{images.map((image) => (
+  <div class="image-section" data-image={image.filename}>
+    <div class="image-header">
+      <h2>{image.filename}</h2>
+      <span class="image-meta">
+        {image.dimensions.width}&times;{image.dimensions.height} &mdash; {(image.originalSize / 1024).toFixed(0)} KB
+      </span>
+    </div>
+    <div class="grid">
+      {image.results.map((result: any) => (
+        <ImageCard
+          variantName={result.variantName}
+          title={result.title}
+          category={result.category}
+          pluginChain={result.pluginChain}
+          fileName={result.fileName}
+          resultFileType={result.resultFileType}
+          sizes={result.sizes}
+          dimensions={result.dimensions}
+          processTimeMs={result.processTimeMs}
+          imageSrc={`/processed/${result.fileName}`}
+        />
+      ))}
+    </div>
+  </div>
+))}
+
+<style>
+  .image-section {
+    margin-bottom: 2.5rem;
+  }
+
+  .image-header {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .image-header h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .image-meta {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+
+  @media (min-width: 1200px) {
+    .grid {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+  }
+</style>

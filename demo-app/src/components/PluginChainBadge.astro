@@ -1,0 +1,56 @@
+---
+interface Props {
+  chain: string[]
+  category?: string
+}
+
+const { chain, category = 'standard' } = Astro.props
+---
+
+<div class={`badge badge-${category}`}>
+  {chain.map((step, i) => (
+    <>
+      <span class="step">{step}</span>
+      {i < chain.length - 1 && <span class="arrow">&rarr;</span>}
+    </>
+  ))}
+</div>
+
+<style>
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.15rem;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    line-height: 1;
+  }
+
+  .step {
+    padding: 2px 5px;
+    border-radius: 3px;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+  }
+
+  .badge-baseline .step {
+    background: color-mix(in srgb, var(--badge-baseline) 15%, var(--tag-bg));
+    color: var(--badge-baseline);
+  }
+
+  .badge-standard .step {
+    background: color-mix(in srgb, var(--badge-standard) 15%, var(--tag-bg));
+    color: var(--badge-standard);
+  }
+
+  .badge-artistic .step {
+    background: color-mix(in srgb, var(--badge-artistic) 15%, var(--tag-bg));
+    color: var(--badge-artistic);
+  }
+
+  .arrow {
+    opacity: 0.4;
+    font-size: 0.6rem;
+  }
+</style>
