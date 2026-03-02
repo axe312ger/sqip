@@ -6,7 +6,7 @@
     "prepare": "husky && npm run prepare --workspaces --if-present",
     "build": "npm run build:clean && npm run build -w sqip && npm run build --workspaces --if-present",
     "build:watch": "npm run watch --workspaces --if-present",
-    "build:clean": "rm -rf \"packages/*/dist/*\" packages/*/tsconfig.tsbuildinfo \"integrations/*/dist/*\" integrations/*/tsconfig.tsbuildinfo",
+    "build:clean": "rm -rf packages/*/dist/* packages/*/tsconfig.tsbuildinfo integrations/*/dist/* integrations/*/tsconfig.tsbuildinfo",
     "test": "npm run lint && npm run test:unit && npm run test:e2e",
     "test:unit": "TERM=xterm vitest run 'unit' --coverage",
     "test:unit:watch": "TERM=xterm vitest 'unit' --coverage",
@@ -42,7 +42,8 @@
   "workspaces": [
     "packages/*",
     "integrations/*",
-    "demo"
+    "demo",
+    "demo-app"
   ],
   "config": {
     "commitizen": {
