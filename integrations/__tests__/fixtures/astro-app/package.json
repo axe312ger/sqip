@@ -1,0 +1,17 @@
+{
+  "name": "astro-sqip-test",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "astro build"
+  },
+  "dependencies": {
+    "astro": "^5.0.0",
+    "vite-plugin-sqip": "file:../../../vite-plugin-sqip",
+    "sqip": "file:../../../../packages/sqip",
+    "sqip-plugin-primitive": "file:../../../../packages/sqip-plugin-primitive",
+    "sqip-plugin-blur": "file:../../../../packages/sqip-plugin-blur",
+    "sqip-plugin-svgo": "file:../../../../packages/sqip-plugin-svgo",
+    "sqip-plugin-data-uri": "file:../../../../packages/sqip-plugin-data-uri"
+  }
+}

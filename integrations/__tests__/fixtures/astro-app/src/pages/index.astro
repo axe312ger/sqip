@@ -1,0 +1,12 @@
+---
+// @ts-expect-error -- vite-plugin-sqip produces a virtual module
+import placeholder from '../assets/test.jpg?sqip'
+---
+
+<html>
+  <head><title>SQIP Astro Test</title></head>
+  <body>
+    <h1>SQIP Astro Test</h1>
+    <pre id="sqip-data">{JSON.stringify(placeholder)}</pre>
+  </body>
+</html>

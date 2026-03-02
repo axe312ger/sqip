@@ -8,12 +8,22 @@ packages/*/__tests__/**/*.js
 packages/*/__tests__/**/*.js.map
 packages/*/__tests__/**/*.d.ts
 packages/*/__tests__/**/*.d.ts.map
+integrations/*/dist
+integrations/*/src/**/*.js
+integrations/*/src/**/*.js.map
+integrations/*/src/**/*.d.ts
+integrations/*/src/**/*.d.ts.map
+integrations/*/__tests__/**/*.js
+integrations/*/__tests__/**/*.js.map
+integrations/*/__tests__/**/*.d.ts
+integrations/*/__tests__/**/*.d.ts.map
 vitest.config.js
 vitest.config.js.map
 vitest.config.d.ts
 vitest.config.d.ts.map
 tsconfig.tsbuildinfo
 packages/*/*.tsbuildinfo
+integrations/*/*.tsbuildinfo
 .DS_Store
 
 ### Node ###
