@@ -1,7 +1,7 @@
 {
   "name": "sqip",
   "version": "1.0.0-alpha.51",
-  "description": "> TODO: description",
+  "description": "SQIP - SVG-Based Image Placeholder",
   "author": "Benedikt Rötsch <info@benedikt-roetsch.de>",
   "homepage": "https://github.com/axe312ger/sqip#readme",
   "license": "MIT",
