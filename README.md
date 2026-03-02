@@ -39,7 +39,7 @@ Get a more detailed look on [our demo website](https://axe312ger.github.io/sqip/
 ## Requirements
 
 - Node.js >= 20 (https://nodejs.org/en/)
-- 64bit OS (Not all plugins, see below)
+- 64-bit OS (Not all plugins, see below)
 
 <details>
 <summary>
@@ -341,9 +341,9 @@ await sqip({
 
 - Can be specified multiple times: `-p svgo -p blur`
 - If prefix was skipped, plugin names will be transformed to: `sqip-plugin-[name]`
-- To set plugin options, see [plugin specific config](#plugin-specific-config)
+- To set plugin options, see [plugin-specific config](#plugin-specific-config)
 
-### Plugin specific config
+### Plugin-specific config
 
 - See the [Plugins](#plugins) section for a list of available plugins.
 - List all plugins subcommands by adding the plugin plus using the help parameter. For example: `-p blur -p svgo -h` will list you all options of the blur and the svgo plugins.
