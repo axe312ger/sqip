@@ -32,7 +32,8 @@
     "vitest": "^4.0.18"
   },
   "overrides": {
-    "gifwrap": "^0.10.1"
+    "gifwrap": "^0.10.1",
+    "sharp": "^0.34.5"
   },
   "engines": {
     "node": ">=20.0.0"
@@ -51,8 +52,5 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "dependencies": {
-    "chalk": "^5.6.2"
   }
 }
