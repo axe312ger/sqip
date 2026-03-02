@@ -26,9 +26,7 @@ const mockedConfig = {
   plugins: ['pixels']
 }
 
-// TODO: Re-enable after ESM migration. svgdom is ESM-only and uses import.meta.url
-// which is incompatible with Jest's CJS-based module system.
-describe.skip('sqip-plugin-pixels', () => {
+describe('sqip-plugin-pixels', () => {
   it('default output', async () => {
     const plugin = new sqipPluginPixels({
       pluginOptions: {},
