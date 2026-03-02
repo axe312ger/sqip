@@ -14,6 +14,7 @@ interface BlurPluginOptions extends SqipPluginOptions {
 
 interface BlurOptions extends PluginOptions {
   blur?: number | string
+  styleBlur?: boolean
   legacyBlur?: boolean
   backgroundColor?: string
 }
@@ -26,14 +27,21 @@ export default class SVGPlugin extends SqipPlugin {
         alias: 'b',
         type: Number || String,
         description:
-          'Set the blur value. If you pass a number, it will be converted to px for css blur. It will also set the stdDeviation for the legacy SVG blur.',
+          'Set the radius value [pixel] for the GaussianBlur CSS filter. See: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/filter-function/blur',
         defaultValue: 12
+      },
+      {
+        name: 'styleBlur',
+        type: Boolean,
+        description:
+          'Use CSS style attribute instead of SVG filter attribute. See: https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Attribute/filter',
+        defaultValue: false
       },
       {
         name: 'legacyBlur',
         type: Boolean,
         description:
-          'Use GaussianBlur SVG filter instead of css blur. See: https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feGaussianBlur',
+          'Use GaussianBlur SVG filter instead of CSS blur. See: https://developer.mozilla.org/en-US/docs/Web/SVG/Element/feGaussianBlur',
         defaultValue: false
       },
       {
@@ -93,7 +101,11 @@ export default class SVGPlugin extends SqipPlugin {
         typeof this.options.blur === 'string'
           ? this.options.blur
           : `${this.options.blur}px`
-      group.attr('style', `filter: blur(${cssBlur});`)
+
+      if (this.options.styleBlur)
+        group.attr('style', `filter: blur(${cssBlur});`)
+      else
+        group.attr('filter', `blur(${cssBlur})`)
 
       const bg = String(
         this.options.backgroundColor
