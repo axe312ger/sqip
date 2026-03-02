@@ -39,7 +39,7 @@ jobs:
           paths:
             - ~/.npm
           key: npm-packages-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
-      - run: npm run test:unit -- --verbose
+      - run: npm run test:unit -- --reporter=verbose
   test-e2e:
     docker:
       - image: cimg/go:1.23-node

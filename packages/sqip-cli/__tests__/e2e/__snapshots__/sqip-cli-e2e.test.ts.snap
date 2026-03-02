@@ -53,13 +53,17 @@ exports[`cli api > --help shows help screen to user 1`] = `
                                               Disable this when you combine the
                                               primitive plugin with the blur
                                               plugin.
-  [1m-b[22m, [1m--blur-blur[22m [4mnumber[24m                      Set the blur value. If you pass a
-                                              number, it will be converted to
-                                              px for css blur. It will also set
-                                              the stdDeviation for the legacy
-                                              SVG blur.
+  [1m-b[22m, [1m--blur-blur[22m [4mnumber[24m                      Set the radius value [pixel] for
+                                              the GaussianBlur CSS filter. See:
+                                              https://developer.mozilla.org/en-
+                                              US/docs/Web/CSS/Reference/Values/filter-
+                                              function/blur
+  [1m--blur-styleBlur[22m                            Use CSS style attribute instead
+                                              of SVG filter attribute. See:
+                                              https://developer.mozilla.org/en-
+                                              US/docs/Web/SVG/Reference/Attribute/filter
   [1m--blur-legacyBlur[22m                           Use GaussianBlur SVG filter
-                                              instead of css blur. See:
+                                              instead of CSS blur. See:
                                               https://developer.mozilla.org/en-
                                               US/docs/Web/SVG/Element/feGaussianBlur
   [1m--blur-backgroundColor[22m [4mstring[24m               If set, the plugin will add an
