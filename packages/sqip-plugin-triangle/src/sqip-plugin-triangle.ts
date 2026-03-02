@@ -197,16 +197,14 @@ export default class TrianglePlugin extends SqipPlugin {
     await unlink(tmpFile)
     await unlink(tmpSvgFile)
 
-    const { svg: canvas, SVG } = await loadSVG(
+    const { svg: canvas } = await loadSVG(
       result
         .toString()
         .replace(/<!DOCTYPE[^>]+>/, '')
         .replace(/<\?xml[^>]+>/, '')
-        // .replace(/\s+/g, ' ')
+        .replace(/<rect[^>]*\/?>(<\/rect>)?/g, '')
         .trim()
     )
-
-    SVG(`<rect width="100%" height="100%" fill="${bg}"/>`).addTo(canvas).front()
 
     metadata.type = 'svg'
     metadata.mimeType = 'image/svg'
