@@ -43,9 +43,13 @@ describe('cli api', () => {
     const { stdout } = await execa(cliCmd, [cliPath, '--help'], {
       stripFinalNewline: true
     })
-    // Strip trailing whitespace from each line since command-line-usage
-    // pads to terminal width, which varies between environments
-    const normalized = stdout.replace(/[^\S\n]+$/gm, '')
+    // Normalize whitespace: strip ANSI codes and collapse runs of spaces
+    // to a single space so output doesn't depend on terminal width
+    const normalized = stdout
+      // eslint-disable-next-line no-control-regex
+      .replace(/\x1b\[[0-9;]*m/g, '')
+      .replace(/[^\S\n]+/g, ' ')
+      .replace(/ $/gm, '')
     expect(normalized).toMatchSnapshot()
   })
   test('--silent disables logging to stdout', async () => {
