@@ -129,10 +129,23 @@ async function main() {
     process.exit(1)
   }
 
+  // Curated subset for good visual diversity + faster generation
+  const INCLUDE = new Set([
+    'aaron-burden-151465-unsplash.jpg',
+    'anthony-esau-173126-unsplash.jpg',
+    'aron-visuals-974734-unsplash.jpg',
+    'beach.jpg',
+    'eric-marty-780304-unsplash.jpg',
+    'hashbite-consent-manager-logo.png',
+    'ian-dooley-298769-unsplash.jpg',
+    'mona-lisa.jpg',
+  ])
+
   const allFiles = await fs.readdir(ORIGINAL)
   const imageFiles = allFiles.filter((file) => {
     const { ext } = parse(file)
-    return ['.jpg', '.jpeg', '.png', '.webp'].includes(ext.toLowerCase())
+    if (!['.jpg', '.jpeg', '.png', '.webp'].includes(ext.toLowerCase())) return false
+    return INCLUDE.size === 0 || INCLUDE.has(file)
   })
 
   const total = imageFiles.length * variants.length
