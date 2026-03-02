@@ -213,6 +213,8 @@ describe('node api', () => {
   })
 
   test('parseableOutput disables chalk colors', async () => {
+    const chalk = await import('chalk')
+    const originalLevel = chalk.default.level
     const result = await sqip({
       ...mockedConfig,
       input: FILE_DEMO_BEACH,
@@ -221,6 +223,8 @@ describe('node api', () => {
     })
     expectValidResult(result)
     expect(logSpy).toHaveBeenCalled()
+    expect(chalk.default.level).toBe(0)
+    chalk.default.level = originalLevel
   })
 
   test('throws when buffer input is missing outputFileName', async () => {

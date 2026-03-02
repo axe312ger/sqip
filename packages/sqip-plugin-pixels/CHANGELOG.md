@@ -47,7 +47,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Bug Fixes
 
 - calculate pixel size on longest axis, simplifying whole pixel placement logic ([e00e959](https://github.com/axe312ger/sqip/commit/e00e9592d74e6bf29a2995a9a68ceefcb634fb7c))
-- only use RGBA when neccessary ([a63dd44](https://github.com/axe312ger/sqip/commit/a63dd449451ddf39680ce484773bd24dfa4ea473))
+- only use RGBA when necessary ([a63dd44](https://github.com/axe312ger/sqip/commit/a63dd449451ddf39680ce484773bd24dfa4ea473))
 - pixels now properly scale and avoid gaps on view port border ([2dba75b](https://github.com/axe312ger/sqip/commit/2dba75b67d176bd97c6d8a4b28cbd5ed487a256c))
 - properly calc pixel size for longest axis ([09d113d](https://github.com/axe312ger/sqip/commit/09d113db90bd3c43aa931b1fac9de0086f901e62))
 
@@ -108,7 +108,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-- **squip-plugin-pixels:** fix colormaping since sharp converts to srgb ([e802c5d](https://github.com/axe312ger/sqip/commit/e802c5d5f233e4f2bdb1100c097a4b7d57f6edca))
+- **squip-plugin-pixels:** fix colormapping since sharp converts to srgb ([e802c5d](https://github.com/axe312ger/sqip/commit/e802c5d5f233e4f2bdb1100c097a4b7d57f6edca))
 
 # [1.0.0-alpha.31](https://github.com/axe312ger/sqip/compare/sqip-plugin-pixels@1.0.0-alpha.30...sqip-plugin-pixels@1.0.0-alpha.31) (2019-12-26)
 
