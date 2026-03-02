@@ -13,7 +13,7 @@
     "test:e2e": "TERM=xterm jest --testPathPattern='e2e/*'",
     "test:e2e:watch": "TERM=xterm jest --testPathPattern='e2e/*' --watch",
     "lint": "eslint packages/*/src --ext .ts,.tsx",
-    "format": "prettier --parser typescript --write 'packages/*/src/**/*.ts' 'packages/*/__tests__/**/*.ts'",
+    "format": "prettier --write 'packages/*/src/**/*.ts' 'packages/*/__tests__/**/*.ts' '**/*.md'",
     "publish": "npm run build && lerna publish --conventional-commits",
     "publish:canary": "npm run publish -- --dist-tag canary"
   },

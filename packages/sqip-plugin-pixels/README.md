@@ -4,7 +4,6 @@
 
 ## Usage
 
-
 ## Options
 
 ```
