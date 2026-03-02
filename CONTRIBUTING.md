@@ -4,10 +4,9 @@
 
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
 
-
 > :+1::tada: First off, thanks for taking the time to contribute! :tada::+1:
 
-*Atom Dev Team* - [CONTRIBUTING.md](https://github.com/atom/atom/blob/master/CONTRIBUTING.md)
+_Atom Dev Team_ - [CONTRIBUTING.md](https://github.com/atom/atom/blob/master/CONTRIBUTING.md)
 
 ## Development Setup
 
@@ -15,8 +14,8 @@ SQIP uses a `monorepo` pattern to manage its many dependencies via [npm workspac
 
 ### Requirements
 
-* Node.js >= 20
-* npm (comes with Node.js)
+- Node.js >= 20
+- npm (comes with Node.js)
 
 ### Installation and repo setup
 
@@ -101,9 +100,8 @@ export default class MyAmazingPlugin extends SqipPlugin {
      * Will enhance your plugin instance with the following:
      * this.metadata: Object with width, height and type
      * this.sqipConfig: The configuration passed to SQIP by the user
-    */
+     */
     super(...arguments)
-
 
     // Set your options
     this.options = {
@@ -118,9 +116,7 @@ export default class MyAmazingPlugin extends SqipPlugin {
 
     // Check for correct format for your plugin
     if (this.metadata.type !== 'svg') {
-      throw new Error(
-        'The plugin needs a svg image as input.'
-      )
+      throw new Error('The plugin needs a svg image as input.')
     }
 
     // Read plugin options
@@ -152,8 +148,8 @@ npm install the-dependency-i-badly-need -w sqip-plugin-my-amazing-plugin
 
 This project uses [eslint](https://eslint.org/) for linting and [jest](https://github.com/facebook/jest) for unit and e2e tests.
 
-* Run `npm run lint` to lint all packages
-* Run `npm run test` to lint and test all packages
+- Run `npm run lint` to lint all packages
+- Run `npm run test` to lint and test all packages
 
 ### Watching and executing specific tests
 
@@ -165,13 +161,13 @@ npx jest packages/sqip/__tests__/unit/sqip.test.js --watch
 
 ### Unit tests
 
-* Run `npm run test:unit` to execute unit tests in all packages
-* Run `npm run test:unit:watch` to execute unit tests in all packages and rerun if code changes
+- Run `npm run test:unit` to execute unit tests in all packages
+- Run `npm run test:unit:watch` to execute unit tests in all packages and rerun if code changes
 
 ### End to end tests
 
-* Run `npm run test:e2e` to execute end to end tests in all packages. Will build the packages before execution.
-* Run `npm run test:e2e:watch` to execute end to end tests in all packages and rerun if code changes
+- Run `npm run test:e2e` to execute end to end tests in all packages. Will build the packages before execution.
+- Run `npm run test:e2e:watch` to execute end to end tests in all packages and rerun if code changes
 
 **Hint:** When watching end to end tests, you need to rebuild the source after each of your changes. You can use `npm run build:watch` for this.
 

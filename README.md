@@ -1,5 +1,4 @@
-SQIP - a pluggable image converter with vector support
-====================
+# SQIP - a pluggable image converter with vector support
 
 [![npm](https://img.shields.io/npm/v/sqip.svg)](https://www.npmjs.com/package/sqip)
 [![npm](https://img.shields.io/npm/dm/sqip.svg)](https://www.npmjs.com/package/sqip)
@@ -13,24 +12,23 @@ SQIP - a pluggable image converter with vector support
 
 By combining plugins you can use it for several purposes:
 
-* Create super-tiny image previews to improve your websites lazy loading experience
-* Do art by converting images into abstract representations of themselfes
-* Quickly convert, resize or optimize a set of pixel or vector images
-* More? Ideas, contributions and community plugins are very welcome
-
+- Create super-tiny image previews to improve your websites lazy loading experience
+- Do art by converting images into abstract representations of themselfes
+- Quickly convert, resize or optimize a set of pixel or vector images
+- More? Ideas, contributions and community plugins are very welcome
 
 ## Table of contents
 
-* [Examples](#Examples)
-* [Requirements](#Requirements)
-* [Node](#Node)
-* [CLI](#CLI)
-* [Config](#Config)
-* [Plugins](#plugins-1)
-* [Background & reseach](#background--reseach)
-* [Credits](#Credits)
-* [Contributing](#Contributing)
-* [License](#License)
+- [Examples](#Examples)
+- [Requirements](#Requirements)
+- [Node](#Node)
+- [CLI](#CLI)
+- [Config](#Config)
+- [Plugins](#plugins-1)
+- [Background & reseach](#background--reseach)
+- [Credits](#Credits)
+- [Contributing](#Contributing)
+- [License](#License)
 
 ## Examples
 
@@ -40,8 +38,8 @@ Get a more detailed look on [our demo website](https://axe312ger.github.io/sqip/
 
 ## Requirements
 
-* Node.js >= 20 (https://nodejs.org/en/)
-* 64bit OS (Not all plugins, see below)
+- Node.js >= 20 (https://nodejs.org/en/)
+- 64bit OS (Not all plugins, see below)
 
 <details>
 <summary>
@@ -50,10 +48,10 @@ Get a more detailed look on [our demo website](https://axe312ger.github.io/sqip/
 
 The most common plugin `sqip-plugin-primitive` is packed with a 64bit executable for all 3 major operating systems. Users with non 32-bit operating system or those who simply want to use the latest and greatest verison of primitive need:
 
-* Golang (https://golang.org/doc/install)
-* Primitive (https://github.com/hashbite/primitive) (`go get -u github.com/hashbite/primitive`)
+- Golang (https://golang.org/doc/install)
+- Primitive (https://github.com/hashbite/primitive) (`go get -u github.com/hashbite/primitive`)
 
-After installing Primitive, you may also need to add the path to the ```Primitive``` binary file.
+After installing Primitive, you may also need to add the path to the `Primitive` binary file.
 
 #### For macOS
 
@@ -63,7 +61,7 @@ It would generally look something like
 /Users/myMacbook/go/bin
 ```
 
-To do this on a Mac, type: ```sudo vim /etc/paths``` into your terminal, and add the path to your ```Primitive``` binary file, but be sure to add the full path, ```/Users/<username>/go/bin``` and not ```~/go/bin```.
+To do this on a Mac, type: `sudo vim /etc/paths` into your terminal, and add the path to your `Primitive` binary file, but be sure to add the full path, `/Users/<username>/go/bin` and not `~/go/bin`.
 
 #### For PC
 
@@ -96,7 +94,7 @@ SQIP is async.
 
 ```js
 try {
-  const result = await sqip({...options})
+  const result = await sqip({ ...options })
   console.log(result)
 } catch (err) {
   console.error(err)
@@ -104,9 +102,9 @@ try {
 
 // or
 
-sqip({...options})
-  .then(result => console.log(result))
-  .catch(error => console.error(error))
+sqip({ ...options })
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error))
 ```
 
 If you passed a single image to process, SQIP will return the following result object:
@@ -141,13 +139,11 @@ Plugins might add their own meta data
 
 Multiple input images will result in an array of result objects.
 
-
 #### Process folder with default settings
 
 ```js
 import { sqip } from 'sqip'
 import { resolve } from 'path'
-
 ;(async () => {
   try {
     // Process whole folder with default settings
@@ -167,8 +163,8 @@ import { resolve } from 'path'
 
 This will run:
 
-* Primitive with custom settings
-* SVGO with default settings
+- Primitive with custom settings
+- SVGO with default settings
 
 ```js
 ;(async () => {
@@ -180,18 +176,17 @@ This will run:
         name: 'sqip-plugin-primitive',
         options: {
           numberOfPrimitives: 8,
-          mode: 0,
-        },
+          mode: 0
+        }
       },
-      'sqip-plugin-svgo',
-    ],
+      'sqip-plugin-svgo'
+    ]
   })
   console.log(pluginResults)
 })()
 ```
 
 [For further configuration options see here](#config)
-
 
 ## CLI
 
@@ -261,6 +256,7 @@ Examples
   Save input.jpg as result.svg with 25 shapes and no blur
   $ sqip -i input.jpg -n 25 -b 0 -o result.svg
 ```
+
 </details>
 
 #### Process single file
@@ -343,15 +339,15 @@ await sqip({
 
 `-p/--plugins`
 
-* Can be specified multiple times: `-p svgo -p blur`
-* If prefix was skipped, plugin names will be transformed to: `sqip-plugin-[name]`
-* To set plugin options, see [plugin specifc config](#plugin-specific-confic)
+- Can be specified multiple times: `-p svgo -p blur`
+- If prefix was skipped, plugin names will be transformed to: `sqip-plugin-[name]`
+- To set plugin options, see [plugin specifc config](#plugin-specific-confic)
 
 ### Plugin specific config
 
-* See the [Plugins](#plugins) section for a list of available plugins.
-* List all plugins subcommands by adding the plugin plus using the help parameter. For example: `-p blur -p svgo -h` will list you all options of the blur and the svgo plugins.
-* Follows the pattern `--[plugin-name]-[option]=[value]`
+- See the [Plugins](#plugins) section for a list of available plugins.
+- List all plugins subcommands by adding the plugin plus using the help parameter. For example: `-p blur -p svgo -h` will list you all options of the blur and the svgo plugins.
+- Follows the pattern `--[plugin-name]-[option]=[value]`
 
 **Example:**
 
@@ -378,7 +374,6 @@ Vibrant DarkVibrant LightVibrant Muted   DarkMuted LightMuted
 
 No output at all on STDOUT. The process will still return an error code & message when something failed.
 
-
 ### `--print`
 
 Outputs resulting SVG to STDOUT. Ignores `--silent` and works with `--parseable-output`.
@@ -391,116 +386,124 @@ SQIP comes with some core plugins, the community is very welcome to [contribute 
 
 Here is a list of all current core plugins:
 
-* [sqip-plugin-primitive](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-primitive#readme) — Generate SVG shapes using [Primitive](https://github.com/hashbite/primitive)
-* [sqip-plugin-blur](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-blur#readme) — Add CSS or SVG blur to the image
-* [sqip-plugin-svgo](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-svgo#readme) — Optimize SVG output with SVGO
-* [sqip-plugin-data-uri](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-data-uri#readme) — Convert SVG to Data URI
-* [sqip-plugin-pixels](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-pixels#readme) — Create a pixelated placeholder
-* [sqip-plugin-potrace](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-potrace#readme) — Trace images into vector paths
-* [sqip-plugin-triangle](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-triangle#readme) — Generate triangulated SVG art
-* [sqip-plugin-blurhash](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-blurhash#readme) — Generate BlurHash previews
+- [sqip-plugin-primitive](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-primitive#readme) — Generate SVG shapes using [Primitive](https://github.com/hashbite/primitive)
+- [sqip-plugin-blur](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-blur#readme) — Add CSS or SVG blur to the image
+- [sqip-plugin-svgo](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-svgo#readme) — Optimize SVG output with SVGO
+- [sqip-plugin-data-uri](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-data-uri#readme) — Convert SVG to Data URI
+- [sqip-plugin-pixels](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-pixels#readme) — Create a pixelated placeholder
+- [sqip-plugin-potrace](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-potrace#readme) — Trace images into vector paths
+- [sqip-plugin-triangle](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-triangle#readme) — Generate triangulated SVG art
+- [sqip-plugin-blurhash](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-blurhash#readme) — Generate BlurHash previews
 
 ### Plugin Configuration Reference
 
 <details>
 <summary><strong>sqip-plugin-primitive</strong> — Generate SVG shapes</summary>
 
-| Option | Type | Default | CLI Flag | Description |
-|--------|------|---------|----------|-------------|
-| `numberOfPrimitives` | Number | `8` | `-n` | The number of primitive shapes to use |
-| `mode` | Number | `0` | `-m` | Shape style: 0=combo, 1=triangle, 2=rect, 3=ellipse, 4=circle, 5=rotatedrect, 6=beziers, 7=rotatedellipse, 8=polygon |
-| `rep` | Number | `0` | | Extra shapes each iteration with reduced search |
-| `alpha` | Number | `128` | | Color alpha (0 = algorithm chooses) |
-| `background` | String | `'Muted'` | | Background color: palette color name or hex value |
-| `cores` | Number | `0` | | Parallel workers (0 = all cores) |
-| `removeBackgroundElement` | Boolean | `false` | | Remove the background element created by primitive |
+| Option                    | Type    | Default   | CLI Flag | Description                                                                                                          |
+| ------------------------- | ------- | --------- | -------- | -------------------------------------------------------------------------------------------------------------------- |
+| `numberOfPrimitives`      | Number  | `8`       | `-n`     | The number of primitive shapes to use                                                                                |
+| `mode`                    | Number  | `0`       | `-m`     | Shape style: 0=combo, 1=triangle, 2=rect, 3=ellipse, 4=circle, 5=rotatedrect, 6=beziers, 7=rotatedellipse, 8=polygon |
+| `rep`                     | Number  | `0`       |          | Extra shapes each iteration with reduced search                                                                      |
+| `alpha`                   | Number  | `128`     |          | Color alpha (0 = algorithm chooses)                                                                                  |
+| `background`              | String  | `'Muted'` |          | Background color: palette color name or hex value                                                                    |
+| `cores`                   | Number  | `0`       |          | Parallel workers (0 = all cores)                                                                                     |
+| `removeBackgroundElement` | Boolean | `false`   |          | Remove the background element created by primitive                                                                   |
+
 </details>
 
 <details>
 <summary><strong>sqip-plugin-blur</strong> — Add blur effect</summary>
 
-| Option | Type | Default | CLI Flag | Description |
-|--------|------|---------|----------|-------------|
-| `blur` | Number | `12` | `-b` | Blur value in px for CSS blur / stdDeviation for SVG blur |
-| `legacyBlur` | Boolean | `false` | | Use SVG `feGaussianBlur` filter instead of CSS `filter: blur()` |
-| `backgroundColor` | String | `'Muted'` | | Background rectangle color to prevent transparent blur edges |
+| Option            | Type    | Default   | CLI Flag | Description                                                     |
+| ----------------- | ------- | --------- | -------- | --------------------------------------------------------------- |
+| `blur`            | Number  | `12`      | `-b`     | Blur value in px for CSS blur / stdDeviation for SVG blur       |
+| `legacyBlur`      | Boolean | `false`   |          | Use SVG `feGaussianBlur` filter instead of CSS `filter: blur()` |
+| `backgroundColor` | String  | `'Muted'` |          | Background rectangle color to prevent transparent blur edges    |
+
 </details>
 
 <details>
 <summary><strong>sqip-plugin-svgo</strong> — Optimize SVG output</summary>
 
 Passes all options through to [SVGO](https://github.com/svg/svgo). See SVGO documentation for available options.
+
 </details>
 
 <details>
 <summary><strong>sqip-plugin-data-uri</strong> — Convert to Data URI</summary>
 
 No configuration options. Converts the SVG output to a Data URI string, available as `result.metadata.dataURI` and `result.metadata.dataURIBase64`.
+
 </details>
 
 <details>
 <summary><strong>sqip-plugin-pixels</strong> — Pixelated placeholder</summary>
 
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| `pixels` | Number | `8` | Number of pixels on the longer axis |
+| Option            | Type   | Default    | Description                                                    |
+| ----------------- | ------ | ---------- | -------------------------------------------------------------- |
+| `pixels`          | Number | `8`        | Number of pixels on the longer axis                            |
 | `backgroundColor` | String | `'DETECT'` | Transparent pixel color (hex with alpha or palette color name) |
+
 </details>
 
 <details>
 <summary><strong>sqip-plugin-potrace</strong> — Vector tracing</summary>
 
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| `posterize` | Boolean | `false` | Use posterize instead of trace |
-| `steps` | Number | `4` | Posterize: number of threshold steps |
-| `color` | String | auto | Fill color |
-| `background` | String | auto | Background color |
-| `turnPolicy` | String | `'TURNPOLICY_MINORITY'` | Path decomposition ambiguity resolution |
-| `turdSize` | Number | `2` | Suppress speckles up to this size |
-| `alphaMax` | Number | `1` | Corner threshold parameter |
-| `optCurve` | Boolean | `true` | Enable curve optimization |
-| `optTolerance` | Number | `0.2` | Curve optimization tolerance |
-| `threshold` | Number | auto | Black/white threshold (0-255) |
-| `blackOnWhite` | Boolean | `true` | Which side of threshold becomes vector shape |
+| Option         | Type    | Default                 | Description                                  |
+| -------------- | ------- | ----------------------- | -------------------------------------------- |
+| `posterize`    | Boolean | `false`                 | Use posterize instead of trace               |
+| `steps`        | Number  | `4`                     | Posterize: number of threshold steps         |
+| `color`        | String  | auto                    | Fill color                                   |
+| `background`   | String  | auto                    | Background color                             |
+| `turnPolicy`   | String  | `'TURNPOLICY_MINORITY'` | Path decomposition ambiguity resolution      |
+| `turdSize`     | Number  | `2`                     | Suppress speckles up to this size            |
+| `alphaMax`     | Number  | `1`                     | Corner threshold parameter                   |
+| `optCurve`     | Boolean | `true`                  | Enable curve optimization                    |
+| `optTolerance` | Number  | `0.2`                   | Curve optimization tolerance                 |
+| `threshold`    | Number  | auto                    | Black/white threshold (0-255)                |
+| `blackOnWhite` | Boolean | `true`                  | Which side of threshold becomes vector shape |
+
 </details>
 
 <details>
 <summary><strong>sqip-plugin-triangle</strong> — Triangulated SVG art</summary>
 
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| `bl` | Number | `2` | Blur radius |
-| `nf` | Number | `0` | Noise factor |
-| `bf` | Number | `1` | Blur factor |
-| `ef` | Number | `6` | Edge factor |
-| `pr` | Number | `0.075` | Point rate |
-| `pth` | Number | `10` | Points threshold |
-| `pts` | Number | `6` | Maximum number of points |
-| `so` | Number | `10` | Sobel filter threshold |
-| `sl` | Boolean | `false` | Use solid stroke color |
-| `wf` | Number | `0` | Wireframe mode |
-| `st` | Number | `1` | Stroke width |
-| `gr` | Boolean | `false` | Grayscale mode |
-| `bg` | String | `'Muted'` | Background color (hex or palette color name) |
+| Option | Type    | Default   | Description                                  |
+| ------ | ------- | --------- | -------------------------------------------- |
+| `bl`   | Number  | `2`       | Blur radius                                  |
+| `nf`   | Number  | `0`       | Noise factor                                 |
+| `bf`   | Number  | `1`       | Blur factor                                  |
+| `ef`   | Number  | `6`       | Edge factor                                  |
+| `pr`   | Number  | `0.075`   | Point rate                                   |
+| `pth`  | Number  | `10`      | Points threshold                             |
+| `pts`  | Number  | `6`       | Maximum number of points                     |
+| `so`   | Number  | `10`      | Sobel filter threshold                       |
+| `sl`   | Boolean | `false`   | Use solid stroke color                       |
+| `wf`   | Number  | `0`       | Wireframe mode                               |
+| `st`   | Number  | `1`       | Stroke width                                 |
+| `gr`   | Boolean | `false`   | Grayscale mode                               |
+| `bg`   | String  | `'Muted'` | Background color (hex or palette color name) |
+
 </details>
 
 <details>
 <summary><strong>sqip-plugin-blurhash</strong> — BlurHash previews</summary>
 
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| `width` | Number | `4` | Horizontal blur components (max 9) |
-| `height` | Number | `-1` | Vertical blur components (max 9, -1 = auto) |
-| `resizeWidth` | Number | `64` | Resize image width for faster processing |
-| `resizeHeight` | Number | `-1` | Resize image height for faster processing (-1 = auto) |
+| Option         | Type   | Default | Description                                           |
+| -------------- | ------ | ------- | ----------------------------------------------------- |
+| `width`        | Number | `4`     | Horizontal blur components (max 9)                    |
+| `height`       | Number | `-1`    | Vertical blur components (max 9, -1 = auto)           |
+| `resizeWidth`  | Number | `64`    | Resize image width for faster processing              |
+| `resizeHeight` | Number | `-1`    | Resize image height for faster processing (-1 = auto) |
+
 </details>
 
 ## Debugging
 
 If something is not going as expected, adding debug output might help a lot. You can achieve this by setting the `DEBUG` environment variable to `sqip*`.
 
-On a *NIX environment, you might do the following:
+On a \*NIX environment, you might do the following:
 
 ```sh
 DEBUG=sqip* node myscript.js
@@ -568,10 +571,10 @@ Pull requests, forks and stars are always welcome. For bugs and feature requests
 
 ## Credits
 
-* trivago N.V. (https://github.com/trivago)
-* Efe Gürkan Yalaman (https://github.com/efegurkan)
-* Benedikt Rötsch (https://github.com/axe312ger)
-* Michael Fogleman (https://github.com/fogleman)
+- trivago N.V. (https://github.com/trivago)
+- Efe Gürkan Yalaman (https://github.com/efegurkan)
+- Benedikt Rötsch (https://github.com/axe312ger)
+- Michael Fogleman (https://github.com/fogleman)
 
 ## License
 
