@@ -100,4 +100,19 @@ describe('sqip-plugin-pixels', () => {
     expect(Array.isArray(sqipPluginPixels.cliOptions)).toBe(true)
     expect(sqipPluginPixels.cliOptions.length).toBeGreaterThan(0)
   })
+
+  test('throws when input is svg', async () => {
+    const plugin = new sqipPluginPixels({
+      pluginOptions: {},
+      options: {},
+      sqipConfig: mockedConfig
+    })
+    const svgMetadata: SqipImageMetadata = {
+      ...mockedMetadata,
+      type: 'svg'
+    }
+    await expect(
+      plugin.apply(fileContent, svgMetadata)
+    ).rejects.toThrow('raster image')
+  })
 })
