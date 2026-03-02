@@ -16,7 +16,7 @@
     "lint": "eslint packages/*/src",
     "format": "prettier --write 'packages/*/src/**/*.ts' 'packages/*/__tests__/**/*.ts' '**/*.md'",
     "publish": "npm run build && lerna publish --conventional-commits",
-    "publish:canary": "npm run publish -- --dist-tag canary"
+    "publish:beta": "npm run publish -- --dist-tag beta"
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^4.0.18",
