@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "prepare": "npm run prepare --workspaces --if-present",
+    "prepare": "husky && npm run prepare --workspaces --if-present",
     "build": "npm run build:clean && npm run build -w sqip && npm run build --workspaces --if-present",
     "build:watch": "npm run watch --workspaces --if-present",
     "build:clean": "rm -rf \"packages/*/dist/*\" packages/*/tsconfig.tsbuildinfo",
@@ -24,7 +24,7 @@
     "eslint": "^9.39.3",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.5",
-    "husky": "8.0.3",
+    "husky": "^9.1.7",
     "lerna": "^9.0.5",
     "prettier": "^3.8.1",
     "typescript": "^5.9.3",
@@ -42,12 +42,6 @@
     "packages/*",
     "demo"
   ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint",
-      "pre-push": "npm run test"
-    }
-  },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
