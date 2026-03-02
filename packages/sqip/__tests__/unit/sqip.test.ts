@@ -38,17 +38,23 @@ mockedPrimitive.prototype.apply.mockImplementation(async () =>
 )
 
 const mockedBlur = blur as jest.MockedClass<typeof blur>
-mockedBlur.prototype.apply.mockImplementation((buffer) => buffer)
+mockedBlur.prototype.apply.mockImplementation(
+  (async (buffer: Buffer) => buffer) as any
+)
 
 const mockedSVGO = svgo as jest.MockedClass<typeof svgo>
-mockedSVGO.prototype.apply.mockImplementation((buffer) => buffer)
+mockedSVGO.prototype.apply.mockImplementation(
+  ((buffer: Buffer) => buffer) as any
+)
 
 const mockedDatauri = datauri as jest.MockedClass<typeof datauri>
-mockedDatauri.prototype.apply.mockImplementation((buffer, metadata) => {
-  metadata.dataURI = 'data:image/svg+xml,dataURI'
-  metadata.dataURIBase64 = 'data:image/svg+xml;base64,dataURIBase64=='
-  return buffer
-})
+mockedDatauri.prototype.apply.mockImplementation(
+  ((buffer: Buffer, metadata: SqipImageMetadata) => {
+    metadata.dataURI = 'data:image/svg+xml,dataURI'
+    metadata.dataURIBase64 = 'data:image/svg+xml;base64,dataURIBase64=='
+    return buffer
+  }) as any
+)
 interface JSONCompatibleResult {
   metadata: SqipImageMetadata
   content: string | Buffer
