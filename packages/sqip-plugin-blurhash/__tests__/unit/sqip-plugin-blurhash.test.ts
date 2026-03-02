@@ -63,4 +63,19 @@ describe('sqip-plugin-blurhash', () => {
     expect(Array.isArray(sqipPluginBlurhash.cliOptions)).toBe(true)
     expect(sqipPluginBlurhash.cliOptions.length).toBeGreaterThan(0)
   })
+
+  test('throws when input is svg', async () => {
+    const plugin = new sqipPluginBlurhash({
+      pluginOptions: {},
+      options: {},
+      sqipConfig: mockedConfig
+    })
+    const svgMetadata: SqipImageMetadata = {
+      ...mockedMetadata,
+      type: 'svg'
+    }
+    await expect(
+      plugin.apply(fileContent, svgMetadata)
+    ).rejects.toThrow('raster image')
+  })
 })

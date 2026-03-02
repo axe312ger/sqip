@@ -148,6 +148,18 @@ describe('sqip-plugin-cli', () => {
     expect(mockedPlugin?.options).toEqual({ 'mocked-plugin-option': true })
   })
 
+  it('handles resolvePlugins errors gracefully', async () => {
+    mockedResolvePlugins.mockRejectedValueOnce(new Error('plugin not found'))
+    process.argv = ['', '', '-i', 'mocked-image.jpg']
+
+    // process.exit is mocked so execution continues past the catch block,
+    // causing a secondary TypeError. We only care that the error was reported.
+    await sqipCLI().catch(() => {})
+
+    expect(errorSpy).toHaveBeenCalled()
+    expect(proccessExitSpy).toHaveBeenCalledWith(1)
+  })
+
   it('handles sqip errors gracefully', async () => {
     mockedSqip.mockRejectedValueOnce(new Error('test error'))
     process.argv = ['', '', '-i', 'mocked-image.jpg']

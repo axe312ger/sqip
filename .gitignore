@@ -1,6 +1,19 @@
 lerna-debug.log
 packages/*/dist
+packages/*/src/**/*.js
+packages/*/src/**/*.js.map
+packages/*/src/**/*.d.ts
+packages/*/src/**/*.d.ts.map
+packages/*/__tests__/**/*.js
+packages/*/__tests__/**/*.js.map
+packages/*/__tests__/**/*.d.ts
+packages/*/__tests__/**/*.d.ts.map
+vitest.config.js
+vitest.config.js.map
+vitest.config.d.ts
+vitest.config.d.ts.map
 tsconfig.tsbuildinfo
+packages/*/*.tsbuildinfo
 .DS_Store
 
 ### Node ###
