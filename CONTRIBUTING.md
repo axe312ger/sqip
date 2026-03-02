@@ -164,12 +164,12 @@ npx vitest packages/sqip/__tests__/unit/sqip.test.ts
 - Run `npm run test:unit` to execute unit tests in all packages
 - Run `npm run test:unit:watch` to execute unit tests in all packages and rerun if code changes
 
-### End to end tests
+### End-to-end tests
 
-- Run `npm run test:e2e` to execute end to end tests in all packages. Will build the packages before execution.
-- Run `npm run test:e2e:watch` to execute end to end tests in all packages and rerun if code changes
+- Run `npm run test:e2e` to execute end-to-end tests in all packages. Will build the packages before execution.
+- Run `npm run test:e2e:watch` to execute end-to-end tests in all packages and rerun if code changes
 
-**Hint:** When watching end to end tests, you need to rebuild the source after each of your changes. You can use `npm run build:watch` for this.
+**Hint:** When watching end-to-end tests, you need to rebuild the source after each of your changes. You can use `npm run build:watch` for this.
 
 ## Code style
 

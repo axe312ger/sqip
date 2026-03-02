@@ -24,14 +24,9 @@ interface PixelPluginOptions extends SqipPluginOptions {
   pluginOptions: PixelOptions
 }
 
-const HEX = '0123456789ABCDEF'
 const toHex = (value: number) => {
-  let rtn = ''
-  while (value !== 0) {
-    rtn = HEX[value % 16] + rtn
-    value = Math.floor(value / 16)
-  }
-  return rtn
+  const hex = value.toString(16).toUpperCase()
+  return hex.length < 2 ? '0' + hex : hex
 }
 
 export default class PixelsPlugin extends SqipPlugin {
