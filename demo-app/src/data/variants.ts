@@ -81,11 +81,11 @@ export const variants: VariantConfig[] = [
     name: 'sqip-default',
     title: 'SQIP Default',
     category: 'standard',
-    description: 'Default settings: 8 geometric primitives + blur + SVGO optimization.',
-    pluginChain: ['primitive', 'blur', 'svgo', 'data-uri'],
+    description: 'Default settings: 8 geometric primitives + SVGO optimization.',
+    pluginChain: ['primitive', 'svgo', 'data-uri'],
     resultFileType: 'svg',
     sqipConfig: {
-      plugins: ['primitive', 'blur', 'svgo', 'data-uri'],
+      plugins: ['primitive', 'svgo', 'data-uri'],
     },
   },
   {
@@ -99,22 +99,7 @@ export const variants: VariantConfig[] = [
       plugins: ['pixels', 'svgo', 'data-uri'],
     },
   },
-  {
-    name: 'sqip-pixels-blur',
-    title: 'SQIP Pixels + Blur',
-    category: 'standard',
-    description: 'Pixel art with a soft blur — creates a smooth, painterly placeholder.',
-    pluginChain: ['pixels(4)', 'blur(24)', 'svgo', 'data-uri'],
-    resultFileType: 'svg',
-    sqipConfig: {
-      plugins: [
-        { name: 'pixels', options: { pixels: 4 } },
-        { name: 'blur', options: { blur: 24 } },
-        'svgo',
-        'data-uri',
-      ],
-    },
-  },
+
   {
     name: 'sqip-potrace',
     title: 'SQIP Potrace',
@@ -191,13 +176,12 @@ export const variants: VariantConfig[] = [
     name: 'sqip-primitive-circles',
     title: 'Primitive Circles',
     category: 'artistic',
-    description: '30 circles with a soft blur — organic, bokeh-like art.',
-    pluginChain: ['primitive(30, circles)', 'blur(4)', 'svgo', 'data-uri'],
+    description: '30 circles — organic, bokeh-like art.',
+    pluginChain: ['primitive(30, circles)', 'svgo', 'data-uri'],
     resultFileType: 'svg',
     sqipConfig: {
       plugins: [
         { name: 'primitive', options: { numberOfPrimitives: 30, mode: 4 } },
-        { name: 'blur', options: { blur: 4 } },
         'svgo',
         'data-uri',
       ],
@@ -214,17 +198,7 @@ export const variants: VariantConfig[] = [
       plugins: [{ name: 'triangle', options: { pts: 420 } }, 'svgo', 'data-uri'],
     },
   },
-  {
-    name: 'sqip-potrace-blur',
-    title: 'Potrace + Blur',
-    category: 'artistic',
-    description: 'Soft vector tracing — potrace with a gentle blur for a dreamy effect.',
-    pluginChain: ['potrace', 'blur(6)', 'svgo', 'data-uri'],
-    resultFileType: 'svg',
-    sqipConfig: {
-      plugins: ['potrace', { name: 'blur', options: { blur: 6 } }, 'svgo', 'data-uri'],
-    },
-  },
+
   {
     name: 'sqip-pixels-mosaic',
     title: 'Pixel Mosaic',

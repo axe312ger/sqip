@@ -53,6 +53,10 @@ const imageNames = [...new Set(dataset.map((img: any) => img.filename))] as stri
       var imageSelect = document.getElementById('image-select')
       var categoryToggles = document.querySelectorAll('[data-category-toggle]')
       var variantToggles = document.querySelectorAll('[data-variant-toggle]')
+      var blurToggle = document.getElementById('blur-toggle')
+      var blurSlider = document.getElementById('blur-slider')
+      var blurValue = document.getElementById('blur-value')
+      var blurSliderGroup = document.getElementById('blur-slider-group')
 
       function formatBytes(bytes) {
         if (bytes === 0) return '0 B'
@@ -151,6 +155,24 @@ const imageNames = [...new Set(dataset.map((img: any) => img.filename))] as stri
           if (catCb) catCb.checked = allChecked
           updateVisibility()
         })
+      })
+
+      // CSS blur
+      function applyBlur() {
+        var enabled = blurToggle.checked
+        var px = blurSlider.value
+        blurSliderGroup.classList.toggle('active', enabled)
+        blurValue.textContent = px + 'px'
+        var filterVal = enabled ? 'blur(' + px + 'px)' : ''
+        document.querySelectorAll('.preview').forEach(function(img) {
+          img.style.filter = filterVal
+        })
+      }
+
+      blurToggle.addEventListener('change', applyBlur)
+      blurSlider.addEventListener('input', function() {
+        blurValue.textContent = blurSlider.value + 'px'
+        if (blurToggle.checked) applyBlur()
       })
 
       // Image selector
