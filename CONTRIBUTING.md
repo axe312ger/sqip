@@ -1,6 +1,6 @@
 # Contributing to SQIP
 
-[![CircleCI](https://circleci.com/gh/axe312ger/sqip.svg?style=svg)](https://circleci.com/gh/axe312ger/sqip) [![codecov](https://codecov.io/gh/axe312ger/sqip/branch/master/graph/badge.svg)](https://codecov.io/gh/axe312ger/sqip) [![Maintainability](https://api.codeclimate.com/v1/badges/fc81fa5e535561c0a6ff/maintainability)](https://codeclimate.com/github/axe312ger/sqip/maintainability)
+[![CircleCI](https://circleci.com/gh/axe312ger/sqip.svg?style=svg)](https://circleci.com/gh/axe312ger/sqip) [![Maintainability](https://api.codeclimate.com/v1/badges/fc81fa5e535561c0a6ff/maintainability)](https://codeclimate.com/github/axe312ger/sqip/maintainability)
 
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
 
@@ -144,9 +144,9 @@ npm install the-dependency-i-badly-need -w sqip-plugin-my-amazing-plugin
 
 ## Testing
 
-[![eslint](https://img.shields.io/badge/eslint-linting-4B32C3.svg?logo=eslint&style=flat)](https://eslint.org/) [![jest](https://img.shields.io/badge/jest-testing-C21325.svg?logo=jest&style=flat)](https://github.com/facebook/jest)
+[![eslint](https://img.shields.io/badge/eslint-linting-4B32C3.svg?logo=eslint&style=flat)](https://eslint.org/) [![vitest](https://img.shields.io/badge/vitest-testing-6E9F18.svg?logo=vitest&style=flat)](https://vitest.dev/)
 
-This project uses [eslint](https://eslint.org/) for linting and [jest](https://github.com/facebook/jest) for unit and e2e tests.
+This project uses [eslint](https://eslint.org/) for linting and [Vitest](https://vitest.dev/) for unit and e2e tests.
 
 - Run `npm run lint` to lint all packages
 - Run `npm run test` to lint and test all packages
@@ -156,7 +156,7 @@ This project uses [eslint](https://eslint.org/) for linting and [jest](https://g
 Run a specific test file and watch for changes:
 
 ```sh
-npx jest packages/sqip/__tests__/unit/sqip.test.js --watch
+npx vitest packages/sqip/__tests__/unit/sqip.test.ts
 ```
 
 ### Unit tests
