@@ -6,41 +6,38 @@ import fs from 'fs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const fixtureDir = path.resolve(__dirname, 'fixtures/nextjs-app')
+const buildDir = path.join(fixtureDir, '.next')
 
 describe('sqip-loader Next.js integration', () => {
   beforeAll(() => {
+    // Clean previous build artifacts
+    fs.rmSync(buildDir, { recursive: true, force: true })
+
     // Install dependencies for the fixture app
     execSync('npm install', {
       cwd: fixtureDir,
       stdio: 'pipe',
       timeout: 120_000
     })
-  })
 
-  test('next build succeeds with sqip-loader', () => {
-    const result = execSync('npx next build', {
+    // Run the build once for all tests
+    execSync('npx next build', {
       cwd: fixtureDir,
       stdio: 'pipe',
       timeout: 120_000,
       env: { ...process.env, NODE_ENV: 'production' }
     })
+  })
 
-    const output = result.toString()
-
-    // Build should complete successfully
-    expect(output).toContain('Collecting page data')
+  test('next build succeeds with sqip-loader', () => {
+    expect(fs.existsSync(buildDir)).toBe(true)
   })
 
   test('build output contains sqip placeholder data', () => {
-    // Check that the build output directory exists
-    const buildDir = path.join(fixtureDir, '.next')
-    expect(fs.existsSync(buildDir)).toBe(true)
-
-    // Search for sqip data in the build output
     const serverDir = path.join(buildDir, 'server')
     expect(fs.existsSync(serverDir)).toBe(true)
 
-    // Find any JS files in the build that contain our sqip output
+    // Find any JS/HTML files in the build that contain our sqip output
     const findSqipData = (dir: string): boolean => {
       const entries = fs.readdirSync(dir, { withFileTypes: true })
       for (const entry of entries) {

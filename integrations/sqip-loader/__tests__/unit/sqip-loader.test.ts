@@ -44,6 +44,10 @@ describe('sqip-loader', () => {
     expect(typeof sqipLoader).toBe('function')
   })
 
+  test('has raw flag set to true', () => {
+    expect(sqipLoader.raw).toBe(true)
+  })
+
   test('calls sqip with input buffer and default options', async () => {
     const ctx = createLoaderContext()
     const buffer = Buffer.from('fake-image-data')

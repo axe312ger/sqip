@@ -6,34 +6,35 @@ import fs from 'fs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const fixtureDir = path.resolve(__dirname, 'fixtures/astro-app')
+const distDir = path.join(fixtureDir, 'dist')
 
 describe('vite-plugin-sqip Astro integration', () => {
   beforeAll(() => {
+    // Clean previous build artifacts
+    fs.rmSync(distDir, { recursive: true, force: true })
+
     // Install dependencies for the fixture app
     execSync('npm install', {
       cwd: fixtureDir,
       stdio: 'pipe',
       timeout: 120_000
     })
-  })
 
-  test('astro build succeeds with vite-plugin-sqip', () => {
+    // Run the build once for all tests
     execSync('npx astro build', {
       cwd: fixtureDir,
       stdio: 'pipe',
       timeout: 120_000,
       env: { ...process.env, NODE_ENV: 'production' }
     })
+  })
 
-    // Build should complete — if it throws, the test fails
-    const distDir = path.join(fixtureDir, 'dist')
+  test('astro build succeeds with vite-plugin-sqip', () => {
     expect(fs.existsSync(distDir)).toBe(true)
   })
 
   test('build output contains sqip placeholder data', () => {
-    const distDir = path.join(fixtureDir, 'dist')
-
-    // Find HTML files in the build output
+    // Find HTML or JS files in the build output
     const findSqipData = (dir: string): boolean => {
       const entries = fs.readdirSync(dir, { withFileTypes: true })
       for (const entry of entries) {

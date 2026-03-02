@@ -28,64 +28,65 @@ describe('sqip-loader webpack integration', () => {
       path.join(os.tmpdir(), 'sqip-webpack-test-')
     )
 
-    const config: webpack.Configuration = {
-      mode: 'production',
-      entry: path.resolve(fixturesDir, 'webpack-entry.js'),
-      output: {
-        path: outputDir,
-        filename: 'bundle.js',
-        library: { type: 'commonjs2' }
-      },
-      module: {
-        rules: [
-          {
-            test: /\.(jpg|jpeg|png|gif|webp)$/,
-            use: [
-              {
-                loader: path.resolve(
-                  fixturesDir,
-                  '../../sqip-loader/src/index.ts'
-                ),
-                options: {
-                  plugins: [
-                    {
-                      name: 'primitive',
-                      options: { numberOfPrimitives: 4, mode: 0 }
-                    },
-                    'blur',
-                    'svgo',
-                    'data-uri'
-                  ],
-                  width: 128
+    try {
+      const config: webpack.Configuration = {
+        mode: 'production',
+        entry: path.resolve(fixturesDir, 'webpack-entry.js'),
+        output: {
+          path: outputDir,
+          filename: 'bundle.js',
+          library: { type: 'commonjs2' }
+        },
+        module: {
+          rules: [
+            {
+              test: /\.(jpg|jpeg|png|gif|webp)$/,
+              use: [
+                {
+                  loader: path.resolve(
+                    fixturesDir,
+                    '../../sqip-loader/src/index.ts'
+                  ),
+                  options: {
+                    plugins: [
+                      {
+                        name: 'primitive',
+                        options: { numberOfPrimitives: 4, mode: 0 }
+                      },
+                      'blur',
+                      'svgo',
+                      'data-uri'
+                    ],
+                    width: 128
+                  }
                 }
-              }
-            ]
+              ]
+            }
+          ]
+        },
+        resolve: {
+          extensionAlias: {
+            '.js': ['.ts', '.js']
           }
-        ]
-      },
-      resolve: {
-        extensionAlias: {
-          '.js': ['.ts', '.js']
+        },
+        resolveLoader: {
+          extensions: ['.ts', '.js']
         }
-      },
-      resolveLoader: {
-        extensions: ['.ts', '.js']
       }
+
+      const stats = await runWebpack(config)
+
+      expect(stats.hasErrors()).toBe(false)
+
+      const bundlePath = path.join(outputDir, 'bundle.js')
+      const bundleContent = await fs.readFile(bundlePath, 'utf-8')
+
+      // The bundle should contain SVG data and metadata
+      expect(bundleContent).toContain('svg')
+      expect(bundleContent).toContain('metadata')
+      expect(bundleContent).toContain('dataURI')
+    } finally {
+      await fs.rm(outputDir, { recursive: true, force: true })
     }
-
-    const stats = await runWebpack(config)
-
-    expect(stats.hasErrors()).toBe(false)
-
-    const bundlePath = path.join(outputDir, 'bundle.js')
-    const bundleContent = await fs.readFile(bundlePath, 'utf-8')
-
-    // The bundle should contain SVG data and metadata
-    expect(bundleContent).toContain('svg')
-    expect(bundleContent).toContain('metadata')
-    expect(bundleContent).toContain('dataURI')
-
-    // Clean up
-    await fs.rm(outputDir, { recursive: true, force: true })
   })
 })

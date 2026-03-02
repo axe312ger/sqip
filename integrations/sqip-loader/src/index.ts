@@ -42,4 +42,4 @@ const sqipLoader: RawLoaderDefinitionFunction<SqipLoaderOptions> = function (
     })
 }
 
-export default sqipLoader
+export default Object.assign(sqipLoader, { raw: true as const })
