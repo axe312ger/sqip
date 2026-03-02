@@ -6,15 +6,16 @@
     "prepare": "husky && npm run prepare --workspaces --if-present",
     "build": "npm run build:clean && npm run build -w sqip && npm run build --workspaces --if-present",
     "build:watch": "npm run watch --workspaces --if-present",
-    "build:clean": "rm -rf \"packages/*/dist/*\" packages/*/tsconfig.tsbuildinfo",
+    "build:clean": "rm -rf \"packages/*/dist/*\" packages/*/tsconfig.tsbuildinfo \"integrations/*/dist/*\" integrations/*/tsconfig.tsbuildinfo",
     "test": "npm run lint && npm run test:unit && npm run test:e2e",
     "test:unit": "TERM=xterm vitest run 'unit' --coverage",
     "test:unit:watch": "TERM=xterm vitest 'unit' --coverage",
     "pretest:e2e": "npm run build",
     "test:e2e": "TERM=xterm vitest run 'e2e'",
     "test:e2e:watch": "TERM=xterm vitest 'e2e'",
-    "lint": "eslint packages/*/src",
-    "format": "prettier --write 'packages/*/src/**/*.ts' 'packages/*/__tests__/**/*.ts' '**/*.md'",
+    "test:integration": "TERM=xterm vitest run --config vitest.integration.config.ts",
+    "lint": "eslint packages/*/src integrations/*/src",
+    "format": "prettier --write 'packages/*/src/**/*.ts' 'packages/*/__tests__/**/*.ts' 'integrations/*/src/**/*.ts' 'integrations/*/__tests__/**/*.ts' '**/*.md'",
     "publish": "npm run build && lerna publish --conventional-commits",
     "publish:beta": "npm run publish -- --dist-tag beta"
   },
@@ -40,6 +41,7 @@
   },
   "workspaces": [
     "packages/*",
+    "integrations/*",
     "demo"
   ],
   "config": {

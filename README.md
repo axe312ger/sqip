@@ -25,6 +25,7 @@ By combining plugins you can use it for several purposes:
 - [CLI](#cli)
 - [Config](#config)
 - [Plugins](#plugins)
+- [Bundler Integrations](#bundler-integrations)
 - [Background & research](#background--research-about-image-placeholder--previews)
 - [Credits](#credits)
 - [Contributing](#contributing)
@@ -512,6 +513,100 @@ DEBUG=sqip* node myscript.js
 
 DEBUG=sqip* sqip --input...
 ```
+
+## Bundler Integrations
+
+SQIP integrates with most common JavaScript frameworks and bundlers via two official packages. Together they cover **Webpack, Turbopack, Vite, Rollup** and any framework built on top of them — including **Next.js, Nuxt, SvelteKit, Astro, Remix**, and more.
+
+| Package | Bundlers | Frameworks |
+|---|---|---|
+| [`sqip-loader`](./integrations/sqip-loader) | Webpack 5, Turbopack | Next.js, Nuxt (Webpack mode), any Webpack-based setup |
+| [`vite-plugin-sqip`](./integrations/vite-plugin-sqip) | Vite, Rollup | Astro, SvelteKit, Nuxt (Vite mode), Remix (Vite mode), any Vite-based setup |
+
+### sqip-loader
+
+Webpack/Turbopack loader. Receives raw image buffers and emits JS modules with SQIP metadata.
+
+```bash
+npm install sqip-loader sqip sqip-plugin-primitive sqip-plugin-blur sqip-plugin-svgo sqip-plugin-data-uri
+```
+
+**webpack.config.js:**
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.(jpe?g|png|gif|webp)$/i,
+        use: [
+          {
+            loader: 'sqip-loader',
+            options: {
+              plugins: [
+                { name: 'primitive', options: { numberOfPrimitives: 8, mode: 0 } },
+                'blur',
+                'svgo',
+                'data-uri'
+              ],
+              width: 300
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+```js
+import placeholder from './photo.jpg'
+
+// placeholder.metadata.dataURI → "data:image/svg+xml,..."
+// placeholder.svg → "<svg ...>...</svg>"
+```
+
+For a full **Next.js** reference implementation using `sqip-loader` in `next.config.mjs`, see [`integrations/__tests__/fixtures/nextjs-app/`](./integrations/__tests__/fixtures/nextjs-app/).
+
+For a standalone **Webpack** reference, see [`integrations/__tests__/fixtures/webpack-app/`](./integrations/__tests__/fixtures/webpack-app/).
+
+### vite-plugin-sqip
+
+Vite/Rollup plugin. Uses the `?sqip` query parameter to opt-in per import, so it doesn't interfere with Vite's built-in asset handling.
+
+```bash
+npm install vite-plugin-sqip sqip sqip-plugin-primitive sqip-plugin-blur sqip-plugin-svgo sqip-plugin-data-uri
+```
+
+**vite.config.js:**
+
+```js
+import sqipPlugin from 'vite-plugin-sqip'
+
+export default {
+  plugins: [
+    sqipPlugin({
+      plugins: [
+        { name: 'primitive', options: { numberOfPrimitives: 8, mode: 0 } },
+        'blur',
+        'svgo',
+        'data-uri'
+      ],
+      width: 300
+    })
+  ]
+}
+```
+
+```js
+// The ?sqip query triggers the plugin — regular imports are unaffected
+import placeholder from './photo.jpg?sqip'
+
+// placeholder.metadata.dataURI → "data:image/svg+xml,..."
+// placeholder.svg → "<svg ...>...</svg>"
+```
+
+For a full **Astro** reference implementation using `vite-plugin-sqip`, see [`integrations/__tests__/fixtures/astro-app/`](./integrations/__tests__/fixtures/astro-app/).
 
 ## Background & research about image placeholder & previews
 

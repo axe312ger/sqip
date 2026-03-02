@@ -13,6 +13,9 @@
   "include": [
     "vitest-env.d.ts",
     "packages/*/__tests__/**/*.ts",
-    "packages/*/src/**/*.ts"
+    "packages/*/src/**/*.ts",
+    "integrations/*/__tests__/**/*.ts",
+    "integrations/*/src/**/*.ts",
+    "integrations/__tests__/**/*.ts"
   ]
 }
