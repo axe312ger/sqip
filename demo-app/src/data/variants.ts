@@ -395,4 +395,15 @@ export const variants: VariantConfig[] = [
       plugins: ['svgo', 'data-uri'],
     },
   },
+  {
+    name: 'blur-lqip-24',
+    title: 'LQIP Modern (24px)',
+    category: 'blur-test',
+    description: 'Raster LQIP at 24px width — inherently blurry when upscaled, no blur plugin needed.',
+    pluginChain: ['lqip-modern(24px)'],
+    resultFileType: 'webp',
+    configSnippet: `import lqip from 'lqip-modern'\nconst { content } = await lqip('image.jpg', { resize: 24 })`,
+    dependencies: ['sharp'],
+    lqipModern: { outputFormat: 'webp', resize: 24 },
+  },
 ]
