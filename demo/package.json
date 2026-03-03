@@ -3,7 +3,7 @@
   "version": "1.0.0-beta.1",
   "main": "index.html",
   "repository": "http://axe312ger.github.io/sqip",
-  "author": "Benedikt Rötsch <info@benedikt-roetsch.de>",
+  "author": "Benedikt Rötsch <benedikt@hashbite.net>",
   "license": "UNLICENSE",
   "private": true,
   "scripts": {

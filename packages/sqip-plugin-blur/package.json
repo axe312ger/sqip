@@ -3,7 +3,7 @@
   "version": "1.0.0-beta.1",
   "type": "module",
   "description": "SQIP plugin to add CSS or SVG blur effects to images",
-  "author": "Benedikt Rötsch <info@benedikt-roetsch.de>",
+  "author": "Benedikt Rötsch <benedikt@hashbite.net>",
   "homepage": "https://github.com/axe312ger/sqip#readme",
   "license": "MIT",
   "types": "dist/sqip-plugin-blur.d.ts",
