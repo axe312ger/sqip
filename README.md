@@ -50,7 +50,7 @@ Check out the [interactive demo](https://sqip.vercel.app/) to compare all plugin
 The most common plugin `sqip-plugin-primitive` is packed with a 64bit executable for all 3 major operating systems. Users with non 32-bit operating system or those who simply want to use the latest and greatest verison of primitive need:
 
 - Golang (https://golang.org/doc/install)
-- Primitive (https://github.com/hashbite/primitive) (`go get -u github.com/hashbite/primitive`)
+- Primitive (https://github.com/fogleman/primitive) (`go get -u github.com/fogleman/primitive`)
 
 After installing Primitive, you may also need to add the path to the `Primitive` binary file.
 
@@ -387,7 +387,7 @@ SQIP comes with some core plugins, the community is very welcome to [contribute 
 
 Here is a list of all current core plugins:
 
-- [sqip-plugin-primitive](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-primitive#readme) — Generate SVG shapes using [Primitive](https://github.com/hashbite/primitive)
+- [sqip-plugin-primitive](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-primitive#readme) — Generate SVG shapes using [Primitive](https://github.com/fogleman/primitive)
 - [sqip-plugin-blur](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-blur#readme) — Add CSS or SVG blur effects to images
 - [sqip-plugin-svgo](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-svgo#readme) — Optimize SVG output with SVGO
 - [sqip-plugin-data-uri](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-data-uri#readme) — Convert SVG output into embeddable Data URI strings
@@ -649,7 +649,7 @@ provides a much better initial visual impression but comes at the cost of
 significantly increased bytesize for the LQIP implementation.
 
 SQIP is an attempt to find a balance between these two extremes: it makes use
-of [Primitive](https://github.com/hashbite/primitive) to generate a SVG
+of [Primitive](https://github.com/fogleman/primitive) to generate a SVG
 consisting of several simple shapes that approximate the main features visible
 inside the image, optimizes the SVG using [SVGO](https://github.com/svg/svgo)
 and adds a Gaussian Blur filter to it. This produces a SVG placeholder which

@@ -2,7 +2,7 @@
 
 > SQIP plugin to generate SVG shapes using Primitive
 
-Generates SVG shapes that approximate the input image using [Primitive](https://github.com/hashbite/primitive), a maintained Go port of [fogleman/primitive](https://github.com/fogleman/primitive). This is typically the first plugin in the SQIP pipeline — it takes a raster image and produces an SVG composed of geometric shapes (triangles, rectangles, ellipses, etc.) that resemble the original.
+Generates SVG shapes that approximate the input image using [Primitive](https://github.com/fogleman/primitive). This is typically the first plugin in the SQIP pipeline — it takes a raster image and produces an SVG composed of geometric shapes (triangles, rectangles, ellipses, etc.) that resemble the original.
 
 ## Examples
 
@@ -18,7 +18,7 @@ Generates SVG shapes that approximate the input image using [Primitive](https://
 npm install sqip sqip-plugin-primitive
 ```
 
-> **Note:** This plugin ships with pre-built 64-bit Primitive binaries for macOS, Linux, and Windows. On non-64-bit systems, you'll need to install [Go](https://golang.org/doc/install) and [Primitive](https://github.com/hashbite/primitive) manually.
+> **Note:** This plugin ships with pre-built 64-bit Primitive binaries for macOS, Linux, and Windows. On non-64-bit systems, you'll need to install [Go](https://golang.org/doc/install) and [Primitive](https://github.com/fogleman/primitive) manually.
 
 ## Options
 
