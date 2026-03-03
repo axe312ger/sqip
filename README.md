@@ -388,11 +388,11 @@ SQIP comes with some core plugins, the community is very welcome to [contribute 
 Here is a list of all current core plugins:
 
 - [sqip-plugin-primitive](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-primitive#readme) — Generate SVG shapes using [Primitive](https://github.com/hashbite/primitive)
-- [sqip-plugin-blur](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-blur#readme) — Add CSS or SVG blur to the image
+- [sqip-plugin-blur](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-blur#readme) — Add CSS or SVG blur effects to images
 - [sqip-plugin-svgo](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-svgo#readme) — Optimize SVG output with SVGO
-- [sqip-plugin-data-uri](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-data-uri#readme) — Convert SVG to Data URI
-- [sqip-plugin-pixels](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-pixels#readme) — Create a pixelated placeholder
-- [sqip-plugin-potrace](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-potrace#readme) — Trace images into vector paths
+- [sqip-plugin-data-uri](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-data-uri#readme) — Convert SVG output into embeddable Data URI strings
+- [sqip-plugin-pixels](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-pixels#readme) — Create pixelated SVG placeholders
+- [sqip-plugin-potrace](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-potrace#readme) — Trace raster images into SVG vector paths
 - [sqip-plugin-triangle](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-triangle#readme) — Generate triangulated SVG art
 - [sqip-plugin-blurhash](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-blurhash#readme) — Generate BlurHash previews
 

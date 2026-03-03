@@ -2,7 +2,7 @@
   "name": "sqip-plugin-potrace",
   "version": "1.0.0-beta.1",
   "type": "module",
-  "description": "> TODO: description",
+  "description": "SQIP plugin to trace raster images into SVG vector paths",
   "author": "Benedikt Rötsch <info@benedikt-roetsch.de>",
   "homepage": "https://github.com/axe312ger/sqip#readme",
   "license": "MIT",
