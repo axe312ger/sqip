@@ -1,3 +1,4 @@
+import { fstatSync } from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
@@ -36,7 +37,8 @@ const defaultOptionList: SqipCliOptionDefinition[] = [
     name: 'input',
     alias: 'i',
     type: String,
-    required: true
+    description:
+      'Input file path. Can also be provided via stdin: command | sqip'
   },
   {
     name: 'output',
@@ -56,8 +58,8 @@ const defaultOptionList: SqipCliOptionDefinition[] = [
   {
     name: 'silent',
     type: Boolean,
-    defaultValue: false,
-    description: 'Supress all output'
+    description:
+      'Supress all output. Defaults to true when reading from stdin.'
   },
   {
     name: 'parseable-output',
@@ -69,8 +71,8 @@ const defaultOptionList: SqipCliOptionDefinition[] = [
   {
     name: 'print',
     type: Boolean,
-    defaultValue: false,
-    description: 'Print resulting svg to stdout.'
+    description:
+      'Print resulting svg to stdout. Defaults to true when reading from stdin.'
   }
 ]
 
@@ -79,7 +81,7 @@ function showHelp({ optionList }: { optionList: SqipCliOptionDefinition[] }) {
     {
       header: 'sqip CLI',
       content:
-        'Usage: sqip --input [path]\n\n"SQIP" (pronounced \\skwɪb\\ like the non-magical folk of magical descent) is a SVG-based LQIP technique - https://github.com/technopagan/sqip'
+        'Usage: sqip --input [path]\n       command | sqip\n\n"SQIP" (pronounced \\skwɪb\\ like the non-magical folk of magical descent) is a SVG-based LQIP technique - https://github.com/technopagan/sqip'
     },
     {
       header: 'Options',
@@ -91,12 +93,17 @@ function showHelp({ optionList }: { optionList: SqipCliOptionDefinition[] }) {
 $ sqip --input /path/to/input.jpg
 
 Save input.jpg as result.svg with 25 shapes and no blur
-$ sqip -i input.jpg -n 25 -b 0 -o result.svg`
+$ sqip -i input.jpg -n 25 -b 0 -o result.svg
+
+Process an image from stdin
+$ curl -s https://example.com/image.jpg | sqip -p pixels blur svgo`
     }
   ]
   const usage = commandLineUsage(sections)
   console.log(usage)
 }
+
+
 
 export default async function sqipCLI(): Promise<undefined> {
   const pluginDetectionArgs = commandLineArgs(defaultOptionList, {
@@ -162,21 +169,35 @@ export default async function sqipCLI(): Promise<undefined> {
     return process.exit(0)
   }
 
-  const missing = optionList
-    .filter(({ required }) => required)
-    .filter(({ name }) => !args[name])
-    .map(({ name }) => name)
+  // Detect piped stdin when no --input flag is provided.
+  // Use fstatSync to check if fd 0 is a pipe (FIFO) — this reliably detects
+  // shell pipes (e.g., cat img | sqip) without hanging in non-TTY environments.
+  if (!args.input) {
+    const stdinIsPiped = (() => {
+      try { return fstatSync(0).isFIFO() } catch { return false }
+    })()
 
-  if (missing.length) {
+    if (stdinIsPiped) {
+      const chunks = await process.stdin.toArray()
+      const stdinBuffer = Buffer.concat(chunks)
+
+      if (stdinBuffer.length > 0) {
+        args.input = stdinBuffer
+      }
+    }
+  }
+
+  if (!args.input) {
     showHelp({ optionList })
     console.error(
-      `\nPlease provide the following arguments: ${missing.join(', ')}`
+      `\nPlease provide the following arguments: input`
     )
     return process.exit(1)
   }
 
   const { input, output, width } = args
-  const { name } = path.parse(input)
+  const fromStdin = Buffer.isBuffer(input)
+  const name = fromStdin ? 'stdin' : path.parse(input).name
   const guessedOutput = path.resolve(process.cwd(), `${name}.svg`)
 
   // Build list of plugins with options based on passed arguments
@@ -192,12 +213,13 @@ export default async function sqipCLI(): Promise<undefined> {
 
   const options: SqipOptions = {
     input,
-    output: output || guessedOutput,
+    outputFileName: fromStdin ? 'stdin' : undefined,
+    output: fromStdin ? output : output || guessedOutput,
     width,
     plugins: pluginsOptions,
-    silent: args.silent,
+    silent: fromStdin ? args.silent ?? true : args.silent || false,
     parseableOutput: args['parseable-output'],
-    print: args.print || false
+    print: fromStdin ? args.print ?? true : args.print || false
   }
 
   debug(`Final sqip options:`, options)

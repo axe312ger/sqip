@@ -300,6 +300,11 @@ async function processFile({
     }
   }
 
+  // Print to stdout even when silent (for piping)
+  if (silent && print && metadata.type === 'svg') {
+    process.stdout.write(result.content.toString())
+  }
+
   return result
 }
 
@@ -333,8 +338,20 @@ async function processImage({
 
   const backgroundColor = await findBackgroundColor(buffer)
 
-  const { name: filename } = path.parse(filePath)
-  const mimeType = mime.getType(filePath) || 'unknown'
+  let filename: string
+  let mimeType: string
+
+  if (filePath === '-') {
+    // Input from stdin — detect format from buffer contents
+    const sharpMeta = await sharp(buffer).metadata()
+    filename = config.outputFileName || 'stdin'
+    mimeType = sharpMeta.format
+      ? mime.getType(sharpMeta.format) || `image/${sharpMeta.format}`
+      : 'unknown'
+  } else {
+    filename = path.parse(filePath).name
+    mimeType = mime.getType(filePath) || 'unknown'
+  }
 
   const metadata: SqipImageMetadata = {
     filename,

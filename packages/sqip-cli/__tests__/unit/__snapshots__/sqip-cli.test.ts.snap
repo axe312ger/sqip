@@ -36,6 +36,7 @@ exports[`sqip-plugin-cli > passes all given args to library 1`] = `
     {
       "input": "mocked-image.jpg",
       "output": "/tmp/mocked-image.svg",
+      "outputFileName": undefined,
       "parseableOutput": false,
       "plugins": [
         {
