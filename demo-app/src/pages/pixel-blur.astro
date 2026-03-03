@@ -1,0 +1,450 @@
+---
+import { readFileSync, existsSync } from 'node:fs'
+import { resolve } from 'node:path'
+import Layout from '../layouts/Layout.astro'
+
+const datasetPath = resolve(process.cwd(), 'generated', 'dataset.json')
+let dataset: any[] = []
+if (existsSync(datasetPath)) {
+  dataset = JSON.parse(readFileSync(datasetPath, 'utf-8'))
+}
+
+const pixelVariants = [
+  'lqip-modern-webp',
+  'lqip-modern-webp-hd',
+  'lqip-modern-jpeg',
+  'sqip-blurhash',
+  'sqip-blurhash-hd',
+]
+
+const paletteKeys = ['Vibrant', 'DarkVibrant', 'LightVibrant', 'Muted', 'DarkMuted', 'LightMuted']
+
+function fmtB(bytes: number): string {
+  if (bytes === 0) return '0 B'
+  if (bytes < 1024) return `${bytes} B`
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`
+}
+---
+
+<Layout title="Pixel Placeholder Blur — SQIP Demo">
+  <div class="container">
+    <header>
+      <h1>Pixel / JPEG Placeholder Blur</h1>
+      <p class="subtitle">
+        Raster placeholders (LQIP, BlurHash) are inherently blurry at small sizes.
+        Adding a CSS <code>filter: blur()</code> in the browser smooths visible pixels further,
+        but bleeds surrounding colors into the image edges.
+        The trick: set a background color on the image container so the blurred edge stays clean.
+        Pick a palette color below to compare the effect.
+      </p>
+    </header>
+
+    {dataset.length === 0 ? (
+      <div class="empty-state">
+        <h2>No data generated yet</h2>
+        <p>Run the data generation script first:</p>
+        <pre><code>cd demo-app && npm run generate</code></pre>
+      </div>
+    ) : (
+      <>
+        <div class="controls">
+          <div class="control-group">
+            <label class="control-label">Background Color</label>
+            <div class="color-picker" id="color-picker">
+              <button class="color-btn" data-color="#000000" title="Black">
+                <span class="color-swatch" style="background:#000000"></span>
+                <span class="color-name">Black</span>
+              </button>
+              <button class="color-btn" data-color="#ffffff" title="White">
+                <span class="color-swatch" style="background:#ffffff; border: 1px solid var(--border);"></span>
+                <span class="color-name">White</span>
+              </button>
+              {paletteKeys.map((key) => (
+                <button
+                  class:list={['color-btn palette-btn', { active: key === 'Muted' }]}
+                  data-palette-key={key}
+                  title={key}
+                >
+                  <span class="color-swatch" data-swatch-key={key}></span>
+                  <span class="color-name">{key}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label">Blur Strength</label>
+            <div class="blur-control">
+              <input type="range" id="blur-range" min="0" max="30" value="10" />
+              <span class="blur-value" id="blur-value">10px</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="variant-legend">
+          {pixelVariants.map((v) => {
+            const label = dataset[0]?.results.find((r: any) => r.variantName === v)?.title ?? v
+            return <span class="legend-item">{label}</span>
+          })}
+        </div>
+
+        {dataset.map((image: any) => {
+          const refSrc = image.referenceImage ? `/processed/${image.referenceImage}` : ''
+          const origAR = image.dimensions.width / image.dimensions.height
+          const results = pixelVariants
+            .map((v: string) => image.results.find((r: any) => r.variantName === v))
+            .filter(Boolean)
+
+          return (
+            <div class="image-row" data-palette={JSON.stringify(image.palette)}>
+              <div class="image-label">
+                <span class="image-name">{image.filename.replace(/-unsplash/, '').replace(/\.\w+$/, '')}</span>
+                <span class="image-dims">{image.dimensions.width}&times;{image.dimensions.height}</span>
+              </div>
+              <div class="pixel-columns">
+                {results.map((result: any) => (
+                  <div class="pixel-cell">
+                    <div class="cell-image" style={`aspect-ratio: ${origAR};`}>
+                      <img
+                        class="preview"
+                        src={`/processed/${result.fileName}`}
+                        alt={result.title}
+                        loading="lazy"
+                      />
+                      {refSrc && (
+                        <img class="hover-original" src={refSrc} alt="" loading="lazy" />
+                      )}
+                    </div>
+                    <div class="cell-stats">
+                      <span>{fmtB(result.sizes.gzipBytes)} gz</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )
+        })}
+      </>
+    )}
+  </div>
+
+  <script is:inline>
+    var blurRange = document.getElementById('blur-range')
+    var blurValueEl = document.getElementById('blur-value')
+    var colorPicker = document.getElementById('color-picker')
+    var rows = document.querySelectorAll('.image-row')
+    var activeColor = null // null means "use palette key"
+    var activePaletteKey = 'Muted'
+    var blurPx = 10
+
+    function applyAll() {
+      rows.forEach(function(row) {
+        var palette = JSON.parse(row.dataset.palette)
+        var bg = activeColor || palette[activePaletteKey] || '#888'
+        row.querySelectorAll('.cell-image').forEach(function(cell) {
+          cell.style.backgroundColor = bg
+        })
+        row.querySelectorAll('.preview').forEach(function(img) {
+          img.style.filter = blurPx > 0 ? 'blur(' + blurPx + 'px)' : 'none'
+        })
+      })
+    }
+
+    // Init swatch colors from first image palette
+    var firstPalette = rows.length > 0 ? JSON.parse(rows[0].dataset.palette) : {}
+    document.querySelectorAll('[data-swatch-key]').forEach(function(sw) {
+      var hex = firstPalette[sw.dataset.swatchKey]
+      if (hex) sw.style.backgroundColor = hex
+    })
+
+    // Color picker
+    colorPicker.addEventListener('click', function(e) {
+      var btn = e.target.closest('.color-btn')
+      if (!btn) return
+      colorPicker.querySelectorAll('.color-btn').forEach(function(b) { b.classList.remove('active') })
+      btn.classList.add('active')
+      if (btn.dataset.color) {
+        activeColor = btn.dataset.color
+        activePaletteKey = null
+      } else if (btn.dataset.paletteKey) {
+        activeColor = null
+        activePaletteKey = btn.dataset.paletteKey
+      }
+      applyAll()
+    })
+
+    // Blur slider
+    blurRange.addEventListener('input', function() {
+      blurPx = parseInt(blurRange.value, 10)
+      blurValueEl.textContent = blurPx + 'px'
+      applyAll()
+    })
+
+    applyAll()
+  </script>
+</Layout>
+
+<style>
+  header {
+    margin-bottom: 1.5rem;
+  }
+
+  .subtitle {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  .subtitle code {
+    background: var(--tag-bg);
+    padding: 0.1em 0.35em;
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--bg-card);
+    border: 2px dashed var(--border);
+    border-radius: var(--radius);
+  }
+
+  .empty-state h2 {
+    border-bottom: none;
+  }
+
+  .empty-state pre {
+    background: var(--tag-bg);
+    padding: 1rem;
+    border-radius: 6px;
+    display: inline-block;
+    font-family: var(--font-mono);
+  }
+
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+    padding: 1rem 1.25rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    align-items: start;
+  }
+
+  .control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .control-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+  }
+
+  .color-picker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .color-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--bg);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 0.7rem;
+    font-family: var(--font);
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .color-btn:hover {
+    border-color: var(--accent);
+  }
+
+  .color-btn.active {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 30%, transparent);
+  }
+
+  .color-swatch {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
+  .color-name {
+    white-space: nowrap;
+  }
+
+  .blur-control {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  #blur-range {
+    width: 160px;
+    accent-color: var(--accent);
+  }
+
+  .blur-value {
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    min-width: 3em;
+  }
+
+  .variant-legend {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding: 0.75rem 1rem;
+    padding-left: 120px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .legend-item {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--text);
+  }
+
+  .image-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 1rem;
+    align-items: start;
+    margin-bottom: 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.75rem;
+    box-shadow: var(--shadow);
+  }
+
+  .image-label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding-top: 0.25rem;
+  }
+
+  .image-name {
+    font-size: 0.75rem;
+    font-weight: 600;
+    word-break: break-word;
+    line-height: 1.3;
+  }
+
+  .image-dims {
+    font-size: 0.65rem;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+  }
+
+  .pixel-columns {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.75rem;
+  }
+
+  .pixel-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .cell-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+  }
+
+  .cell-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .preview {
+    transition: opacity 0.3s ease, filter 0.2s ease;
+  }
+
+  .hover-original {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+  }
+
+  .pixel-cell:hover .hover-original {
+    opacity: 1;
+  }
+
+  .cell-stats {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.65rem;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    padding: 0 0.25rem;
+  }
+
+  @media (max-width: 900px) {
+    .variant-legend {
+      padding-left: 1rem;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .image-row {
+      grid-template-columns: 1fr;
+    }
+
+    .image-label {
+      flex-direction: row;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+
+    .pixel-columns {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 550px) {
+    .variant-legend {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .pixel-columns {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
