@@ -3,7 +3,8 @@
     "config:base"
   ],
   "ignorePresets": [":prHourlyLimit2"],
-   "packageRules": [
+  "ignorePaths": ["demo/**"],
+  "packageRules": [
     {
       "extends": "monorepo:lerna",
       "groupName": "lerna"
