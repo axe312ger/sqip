@@ -13,7 +13,7 @@ interface Props {
 }
 
 const { imageThumbs } = Astro.props
-const categoryKeys = Object.keys(categories) as Category[]
+const categoryKeys = (Object.keys(categories) as Category[]).filter((k) => k !== 'blur-test')
 ---
 
 <div class="filter-bar" id="filter-bar">
@@ -77,7 +77,7 @@ const categoryKeys = Object.keys(categories) as Category[]
   <div class="filter-section">
     <h3>Variants</h3>
     <div class="variant-toggles">
-      {variants.map((v) => (
+      {variants.filter((v) => v.category !== 'blur-test').map((v) => (
         <label class="variant-toggle" data-variant-label={v.name}>
           <input type="checkbox" checked data-variant-toggle={v.name} data-variant-category={v.category} />
           <span class="variant-name">{v.title}</span>
