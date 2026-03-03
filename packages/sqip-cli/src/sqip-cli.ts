@@ -5,7 +5,6 @@ import commandLineArgs from 'command-line-args'
 import commandLineUsage from 'command-line-usage'
 import Debug from 'debug'
 import fs from 'fs-extra'
-import { pkgUp } from 'pkg-up'
 
 import {
   sqip,
@@ -105,11 +104,9 @@ export default async function sqipCLI(): Promise<undefined> {
   })
 
   if ('version' in pluginDetectionArgs) {
-    const closestPackageJSON = await pkgUp({ cwd: path.dirname(fileURLToPath(import.meta.url)) })
-    if (!closestPackageJSON) {
-      throw new Error('Unable to detect CLI version')
-    }
-    const { version } = await fs.readJSON(closestPackageJSON)
+    const __dirname = path.dirname(fileURLToPath(import.meta.url))
+    const packageJSONPath = path.resolve(__dirname, '..', 'package.json')
+    const { version } = await fs.readJSON(packageJSONPath)
     console.log(version)
     return process.exit(0)
   }
