@@ -2,7 +2,7 @@
 
 > SQIP core library — SVG-Based Image Placeholder
 
-**SQIP** (pronounced \skwɪb\) is a flexible, pluggable image processor available as a Node.js API. By combining plugins, you can generate super-tiny SVG image previews, create abstract art from photographs, or quickly process a set of images.
+**SQIP** (pronounced \skwɪb\) is a flexible, pluggable image processor available as a Node.js API. By combining plugins, you can generate super-tiny SVG previews, create abstract art from photographs, or quickly process a set of images.
 
 This is the core library. You'll also need one or more plugins — see [Plugins](#plugins) below.
 
@@ -101,12 +101,12 @@ const result = await sqip({
 
 | Plugin | Description |
 | ------ | ----------- |
-| [`sqip-plugin-primitive`](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-primitive#readme) | Generate SVG shapes using Primitive |
-| [`sqip-plugin-blur`](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-blur#readme) | Add CSS or SVG blur to the image |
+| [`sqip-plugin-primitive`](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-primitive#readme) | Generate SVG shapes using [Primitive](https://github.com/fogleman/primitive) |
+| [`sqip-plugin-blur`](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-blur#readme) | Add CSS or SVG blur effects to images |
 | [`sqip-plugin-svgo`](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-svgo#readme) | Optimize SVG output with SVGO |
-| [`sqip-plugin-data-uri`](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-data-uri#readme) | Convert SVG to Data URI |
-| [`sqip-plugin-pixels`](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-pixels#readme) | Create a pixelated placeholder |
-| [`sqip-plugin-potrace`](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-potrace#readme) | Trace images into vector paths |
+| [`sqip-plugin-data-uri`](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-data-uri#readme) | Convert SVG output into embeddable Data URI strings |
+| [`sqip-plugin-pixels`](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-pixels#readme) | Create pixelated SVG placeholders |
+| [`sqip-plugin-potrace`](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-potrace#readme) | Trace raster images into SVG vector paths |
 | [`sqip-plugin-triangle`](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-triangle#readme) | Generate triangulated SVG art |
 | [`sqip-plugin-blurhash`](https://github.com/axe312ger/sqip/tree/master/packages/sqip-plugin-blurhash#readme) | Generate BlurHash previews |
 
