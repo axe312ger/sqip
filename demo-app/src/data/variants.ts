@@ -1,4 +1,4 @@
-export type Category = 'placeholder' | 'artistic'
+export type Category = 'placeholder' | 'artistic' | 'blur-test'
 
 export interface VariantConfig {
   name: string
@@ -31,6 +31,10 @@ export const categories: Record<Category, { label: string; description: string }
   artistic: {
     label: 'Artistic',
     description: 'Slow, detailed variants for decorative or artistic use',
+  },
+  'blur-test': {
+    label: 'Blur Test',
+    description: 'Compare different blur techniques side by side',
   },
 }
 
@@ -231,6 +235,65 @@ export const variants: VariantConfig[] = [
     dependencies: ['sharp'],
     sqipConfig: {
       plugins: [{ name: 'pixels', options: { pixels: 16 } }, 'svgo', 'data-uri'],
+    },
+  },
+
+  // === Blur Test ===
+  {
+    name: 'blur-none',
+    title: 'No Blur',
+    category: 'blur-test',
+    description: 'Baseline: 8 geometric primitives without any blur applied.',
+    pluginChain: ['primitive', 'svgo', 'data-uri'],
+    resultFileType: 'svg',
+    configSnippet: `import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['primitive', 'svgo', 'data-uri'],\n})`,
+    dependencies: ['Go', 'sharp'],
+    sqipConfig: {
+      plugins: ['primitive', 'svgo', 'data-uri'],
+    },
+  },
+  {
+    name: 'blur-legacy',
+    title: 'Legacy SVG Blur',
+    category: 'blur-test',
+    description: 'Classic SVG feGaussianBlur filter — works everywhere but increases SVG size.',
+    pluginChain: ['primitive', 'blur(legacy)', 'svgo', 'data-uri'],
+    resultFileType: 'svg',
+    configSnippet: `import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    'primitive',\n    { name: 'blur', options: { legacyBlur: true } },\n    'svgo', 'data-uri',\n  ],\n})`,
+    dependencies: ['Go', 'sharp'],
+    sqipConfig: {
+      plugins: [
+        'primitive',
+        { name: 'blur', options: { legacyBlur: true } },
+        'svgo',
+        'data-uri',
+      ],
+    },
+  },
+  {
+    name: 'blur-css',
+    title: 'CSS Blur (Plugin)',
+    category: 'blur-test',
+    description: 'CSS filter blur applied inside the SVG by the blur plugin — compact and modern.',
+    pluginChain: ['primitive', 'blur', 'svgo', 'data-uri'],
+    resultFileType: 'svg',
+    configSnippet: `import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    'primitive', 'blur', 'svgo', 'data-uri',\n  ],\n})`,
+    dependencies: ['Go', 'sharp'],
+    sqipConfig: {
+      plugins: ['primitive', 'blur', 'svgo', 'data-uri'],
+    },
+  },
+  {
+    name: 'blur-browser',
+    title: 'CSS Blur (Browser)',
+    category: 'blur-test',
+    description: 'No blur in the SVG — CSS filter:blur() applied on the <img> element at display time.',
+    pluginChain: ['primitive', 'svgo', 'data-uri'],
+    resultFileType: 'svg',
+    configSnippet: `<!-- No blur plugin needed -->\n<img\n  src="placeholder.svg"\n  style="filter: blur(12px);"\n/>`,
+    dependencies: ['Go', 'sharp'],
+    sqipConfig: {
+      plugins: ['primitive', 'svgo', 'data-uri'],
     },
   },
 ]

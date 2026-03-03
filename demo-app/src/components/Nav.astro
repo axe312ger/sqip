@@ -1,0 +1,50 @@
+---
+const currentPath = Astro.url.pathname
+
+const links = [
+  { href: '/', label: 'Dashboard' },
+  { href: '/blur-test', label: 'Blur Test' },
+]
+---
+
+<nav class="site-nav">
+  {links.map((link) => (
+    <a
+      href={link.href}
+      class:list={['nav-link', { active: currentPath === link.href || currentPath === link.href + '/' }]}
+    >
+      {link.label}
+    </a>
+  ))}
+</nav>
+
+<style>
+  .site-nav {
+    display: flex;
+    gap: 0.25rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0;
+  }
+
+  .nav-link {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .nav-link:hover {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .nav-link.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+</style>
