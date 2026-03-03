@@ -9,6 +9,8 @@ packages/*/__tests__/**/*.js.map
 packages/*/__tests__/**/*.d.ts
 packages/*/__tests__/**/*.d.ts.map
 integrations/*/dist
+integrations/__tests__/fixtures/*/.astro
+integrations/__tests__/fixtures/*/dist
 integrations/*/src/**/*.js
 integrations/*/src/**/*.js.map
 integrations/*/src/**/*.d.ts

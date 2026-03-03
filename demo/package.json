@@ -9,7 +9,7 @@
   "scripts": {
     "build:dataset": "node scripts/generate-dataset.mjs",
     "build:html": "node scripts/generate-html.mjs",
-    "deploy": "npm run build:html && gh-pages -d public"
+    "deploy": "echo 'Legacy demo — deploy via new demo-app instead'"
   },
   "dependencies": {
     "aspect-ratio": "2.1.9",
@@ -30,9 +30,7 @@
     "systeminformation": "^5.22.0",
     "vhtml": "2.2.0"
   },
-  "devDependencies": {
-    "gh-pages": "6.1.1"
-  },
+  "devDependencies": {},
   "peerDependencies": {
     "sqip-plugin-blur": "^1.0.0-alpha.46",
     "sqip-plugin-data-uri": "^1.0.0-alpha.46",

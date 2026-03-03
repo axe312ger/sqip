@@ -1,0 +1,63 @@
+---
+// StatsPanel — updated via client-side JS in index.astro
+---
+
+<div class="stats-panel" id="stats-panel">
+  <div class="stat-item">
+    <span class="stat-label">Variants</span>
+    <span class="stat-value" id="stat-count">—</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-label">Avg Gzip</span>
+    <span class="stat-value" id="stat-avg-gzip">—</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-label">Avg Brotli</span>
+    <span class="stat-value" id="stat-avg-brotli">—</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-label">Avg Time</span>
+    <span class="stat-value" id="stat-avg-time">—</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-label">Smallest</span>
+    <span class="stat-value" id="stat-smallest">—</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-label">Fastest</span>
+    <span class="stat-value" id="stat-fastest">—</span>
+  </div>
+</div>
+
+<style>
+  .stats-panel {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.75rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow);
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .stat-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+  }
+
+  .stat-value {
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: var(--font-mono);
+  }
+</style>

@@ -81,14 +81,14 @@ export default class BlurhashPlugin extends SqipPlugin {
     const resizeHeight =
       this.options.resizeHeight > 0
         ? this.options.resizeHeight
-        : Math.round(resizeWidth * aspectRatio)
+        : Math.round(resizeWidth / aspectRatio)
 
     const componentsWidth = Math.min(9, this.options.width)
     const componentsHeight = Math.min(
       9,
       this.options.height > 0
-        ? this.options.resizeHeight
-        : Math.round(componentsWidth * aspectRatio)
+        ? this.options.height
+        : Math.max(1, Math.round(componentsWidth / aspectRatio))
     )
 
     const hash: string = await new Promise((resolve, reject) => {
@@ -112,13 +112,16 @@ export default class BlurhashPlugin extends SqipPlugin {
         })
     })
 
-    const pixels = decode(hash, componentsWidth, componentsHeight)
+    // Decode to a small but reasonable pixel size for JPEG output
+    const decodeWidth = this.options.width > 4 ? 64 : 32
+    const decodeHeight = Math.max(1, Math.round(decodeWidth / aspectRatio))
+    const pixels = decode(hash, decodeWidth, decodeHeight)
 
     const resizedImageBuf = await sharp(Buffer.from(pixels), {
       raw: {
         channels: 4,
-        width: componentsWidth, //this.options.width,
-        height: componentsHeight //this.options.height
+        width: decodeWidth,
+        height: decodeHeight
       }
     })
       .jpeg({

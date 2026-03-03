@@ -1,0 +1,289 @@
+---
+import { categories, variants, type Category } from '../data/variants'
+
+interface ImageThumb {
+  name: string
+  src: string
+  width: number
+  height: number
+}
+
+interface Props {
+  imageThumbs: ImageThumb[]
+}
+
+const { imageThumbs } = Astro.props
+const categoryKeys = Object.keys(categories) as Category[]
+---
+
+<div class="filter-bar" id="filter-bar">
+  <div class="filter-section">
+    <h3>Source Image</h3>
+    <div class="image-thumbs" id="image-thumbs">
+      {imageThumbs.map((thumb, i) => (
+        <button
+          class={`thumb-btn${i === 0 ? ' active' : ''}`}
+          data-image-select={thumb.name}
+          title={thumb.name}
+          type="button"
+        >
+          <img src={thumb.src} alt={thumb.name} width={thumb.width} height={thumb.height} loading="lazy" />
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <div class="settings-row">
+    <div class="filter-section">
+      <h3>Categories</h3>
+      <div class="toggle-group">
+        {categoryKeys.map((key) => (
+          <label class={`toggle toggle-${key}`}>
+            <input type="checkbox" checked data-category-toggle={key} />
+            <span class="toggle-label">{categories[key].label}</span>
+            <span class="toggle-count">
+              {variants.filter((v) => v.category === key).length}
+            </span>
+          </label>
+        ))}
+      </div>
+    </div>
+
+    <div class="filter-section">
+      <h3>Card Size</h3>
+      <div class="toggle-group" id="size-toggles">
+        <label class="toggle size-toggle">
+          <input type="radio" name="card-size" value="150" checked data-size-toggle />
+          <span class="toggle-label">150px</span>
+        </label>
+        <label class="toggle size-toggle">
+          <input type="radio" name="card-size" value="300" data-size-toggle />
+          <span class="toggle-label">300px</span>
+        </label>
+        <label class="toggle size-toggle">
+          <input type="radio" name="card-size" value="600" data-size-toggle />
+          <span class="toggle-label">600px</span>
+        </label>
+        <label class="toggle size-toggle">
+          <input type="radio" name="card-size" value="1200" data-size-toggle />
+          <span class="toggle-label">1200px</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="filter-section">
+      <h3>CSS Blur</h3>
+      <div class="blur-controls">
+        <label class="toggle blur-toggle">
+          <input type="checkbox" id="blur-toggle" />
+          <span class="toggle-label">Apply blur</span>
+        </label>
+        <div class="blur-slider-group" id="blur-slider-group">
+          <input type="range" id="blur-slider" min="0" max="30" value="12" step="1" />
+          <span class="blur-value" id="blur-value">12px</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="filter-section">
+    <h3>Variants</h3>
+    <div class="variant-toggles">
+      {variants.map((v) => (
+        <label class="variant-toggle" data-variant-label={v.name}>
+          <input type="checkbox" checked data-variant-toggle={v.name} data-variant-category={v.category} />
+          <span class="variant-name">{v.title}</span>
+        </label>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .filter-bar {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 1rem;
+  }
+
+  .settings-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  @media (min-width: 900px) {
+    .settings-row {
+      display: grid;
+      grid-template-columns: auto auto 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+  }
+
+  .filter-section h3 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin: 0 0 0.5rem;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .image-thumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .thumb-btn {
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    padding: 0;
+    cursor: pointer;
+    background: none;
+    overflow: hidden;
+    opacity: 0.5;
+    transition: all 0.15s;
+    width: 64px;
+    height: 48px;
+  }
+
+  .thumb-btn:hover {
+    opacity: 0.8;
+    border-color: var(--text-muted);
+  }
+
+  .thumb-btn.active {
+    opacity: 1;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 30%, transparent);
+  }
+
+  .thumb-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .toggle-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.15s;
+    user-select: none;
+  }
+
+  .toggle:has(input:checked) {
+    border-color: transparent;
+  }
+
+  .toggle-placeholder:has(input:checked) {
+    background: color-mix(in srgb, var(--badge-placeholder) 15%, transparent);
+    color: var(--badge-placeholder);
+  }
+
+  .toggle-artistic:has(input:checked) {
+    background: color-mix(in srgb, var(--badge-artistic) 15%, transparent);
+    color: var(--badge-artistic);
+  }
+
+  .size-toggle:has(input:checked) {
+    background: var(--bg-hover);
+    border-color: var(--accent);
+    color: var(--text);
+  }
+
+  .toggle input {
+    display: none;
+  }
+
+  .toggle-count {
+    font-size: 0.7rem;
+    opacity: 0.7;
+  }
+
+  .variant-toggles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .variant-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    font-size: 0.75rem;
+    transition: all 0.15s;
+    user-select: none;
+  }
+
+  .variant-toggle input {
+    display: none;
+  }
+
+  .variant-toggle:has(input:checked) {
+    background: var(--bg-hover);
+    border-color: var(--text-muted);
+  }
+
+  .variant-toggle:has(input:not(:checked)) {
+    opacity: 0.4;
+  }
+
+  .blur-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .blur-slider-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.3;
+    pointer-events: none;
+    transition: opacity 0.15s;
+  }
+
+  .blur-slider-group.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  #blur-slider {
+    width: 140px;
+    accent-color: var(--accent);
+  }
+
+  .blur-value {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    min-width: 3em;
+  }
+</style>

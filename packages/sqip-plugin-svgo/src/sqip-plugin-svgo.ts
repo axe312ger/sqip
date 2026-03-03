@@ -44,7 +44,7 @@ export default class SVGOPlugin extends SqipPlugin {
         'removeHiddenElems',
         'removeOffCanvasPaths',
         'removeRasterImages',
-        'removeScriptElement',
+        'removeScripts',
         'removeStyleElement',
         'removeTitle',
         'removeUselessDefs',

@@ -33,7 +33,7 @@ exports[`runSVGO 1`] = `
       "removeHiddenElems",
       "removeOffCanvasPaths",
       "removeRasterImages",
-      "removeScriptElement",
+      "removeScripts",
       "removeStyleElement",
       "removeTitle",
       "removeUselessDefs",

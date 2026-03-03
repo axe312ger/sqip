@@ -1,0 +1,203 @@
+---
+import PluginChainBadge from './PluginChainBadge.astro'
+
+interface Props {
+  variantName: string
+  title: string
+  category: string
+  pluginChain: string[]
+  fileName: string
+  resultFileType: string
+  sizes: { originalBytes: number; gzipBytes: number; brotliBytes: number }
+  dimensions: { width: number; height: number }
+  processTimeMs: number
+  imageSrc: string
+  thumbnailSrc?: string
+  configSnippet?: string
+  dependencies?: string[]
+  originalAspectRatio?: number
+}
+
+function fmtB(bytes: number): string {
+  if (bytes === 0) return '0 B'
+  if (bytes < 1024) return `${bytes} B`
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`
+}
+
+const { title, category, pluginChain, sizes, dimensions, processTimeMs, imageSrc, thumbnailSrc, variantName, configSnippet, dependencies = [], originalAspectRatio } = Astro.props
+---
+
+<div class="card" data-variant={variantName} data-category={category}>
+  <div class="card-image" style={originalAspectRatio ? `aspect-ratio: ${originalAspectRatio};` : undefined}>
+    <img class="preview" src={imageSrc} alt={title} loading="lazy" />
+    {thumbnailSrc && (
+      <img class="thumbnail-hover" src={thumbnailSrc} alt="" loading="lazy" />
+    )}
+  </div>
+  <div class="card-info">
+    <div class="card-title">{title}</div>
+    <div class="card-meta">
+      <PluginChainBadge chain={pluginChain} category={category} />
+      {dependencies.length > 0 && (
+        <div class="dep-badges">
+          {dependencies.map((dep) => (
+            <span class={`dep-badge dep-${dep.toLowerCase()}`}>{dep}</span>
+          ))}
+        </div>
+      )}
+    </div>
+    <div class="card-stats">
+      <div class="stat-row">
+        <span class="stat-label">Raw</span>
+        <span class="stat-value">{fmtB(sizes.originalBytes)}</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Gzip</span>
+        <span class="stat-value">{fmtB(sizes.gzipBytes)}</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Brotli</span>
+        <span class="stat-value">{fmtB(sizes.brotliBytes)}</span>
+      </div>
+      {dimensions.width > 0 && (
+        <div class="stat-row">
+          <span class="stat-label">Size</span>
+          <span class="stat-value">{dimensions.width}&times;{dimensions.height}</span>
+        </div>
+      )}
+      <div class="stat-row">
+        <span class="stat-label">Time</span>
+        <span class="stat-value">{processTimeMs}ms</span>
+      </div>
+    </div>
+    {configSnippet && (
+      <pre class="config-snippet"><code>{configSnippet}</code></pre>
+    )}
+  </div>
+</div>
+
+<style>
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  .card:hover {
+    box-shadow: var(--shadow-lg);
+  }
+
+  .card-image {
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-hover);
+  }
+
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .preview {
+    transition: filter 0.2s ease;
+  }
+
+  .thumbnail-hover {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+  }
+
+  .card:hover .thumbnail-hover {
+    opacity: 1;
+  }
+
+  .card-info {
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .card-title {
+    font-weight: 600;
+    font-size: 0.85rem;
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .dep-badges {
+    display: inline-flex;
+    gap: 0.25rem;
+  }
+
+  .dep-badge {
+    font-size: 0.6rem;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  .dep-go {
+    border-color: #00add8;
+    color: #00add8;
+  }
+
+  .dep-sharp {
+    border-color: #99cc00;
+    color: #99cc00;
+  }
+
+  .card-stats {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1px 0.5rem;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+  }
+
+  .stat-label {
+    text-align: right;
+    opacity: 0.6;
+  }
+
+  .stat-value {
+    text-align: left;
+  }
+
+  .config-snippet {
+    margin: 0.25rem 0 0;
+    padding: 0.5rem;
+    background: var(--tag-bg);
+    border-radius: 4px;
+    overflow-x: auto;
+    font-size: 0.65rem;
+    line-height: 1.5;
+    font-family: var(--font-mono);
+    color: var(--text);
+  }
+
+  .config-snippet code {
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+</style>

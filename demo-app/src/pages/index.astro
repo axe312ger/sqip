@@ -1,0 +1,259 @@
+---
+import { readFileSync, existsSync } from 'node:fs'
+import { resolve } from 'node:path'
+import Layout from '../layouts/Layout.astro'
+import FilterBar from '../components/FilterBar.astro'
+import StatsPanel from '../components/StatsPanel.astro'
+import ImageGrid from '../components/ImageGrid.astro'
+
+// Load dataset at build/dev time from the filesystem
+const datasetPath = resolve(process.cwd(), 'generated', 'dataset.json')
+let dataset: any[] = []
+if (existsSync(datasetPath)) {
+  dataset = JSON.parse(readFileSync(datasetPath, 'utf-8'))
+}
+
+// Build thumbnail data for image selector buttons
+const imageThumbs = dataset.map((img: any) => {
+  const thumb = img.results.find((r: any) => r.variantName === 'thumbnail')
+  return {
+    name: img.filename as string,
+    src: thumb ? `/processed/${thumb.fileName}` : '',
+    width: thumb?.dimensions?.width ?? 300,
+    height: thumb?.dimensions?.height ?? 225,
+  }
+})
+---
+
+<Layout title="SQIP Interactive Demo">
+  <div class="container">
+    <header>
+      <h1>
+        SQIP Demo
+        <a href="https://github.com/axe312ger/sqip" target="_blank" class="github-link">
+          <svg width="24" height="24" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+          </svg>
+        </a>
+      </h1>
+      <p class="subtitle">
+        Interactive comparison of SVG-based image placeholders.
+        Generate low-quality image previews with different plugin chains.
+      </p>
+    </header>
+
+    {dataset.length === 0 ? (
+      <div class="empty-state">
+        <h2>No data generated yet</h2>
+        <p>Run the data generation script first:</p>
+        <pre><code>cd demo-app && npm run generate</code></pre>
+      </div>
+    ) : (
+      <>
+        <FilterBar imageThumbs={imageThumbs} />
+        <StatsPanel />
+        <ImageGrid images={dataset} />
+      </>
+    )}
+  </div>
+
+  <script is:inline define:vars={{ dataset }}>
+    if (dataset.length > 0) {
+      var thumbBtns = document.querySelectorAll('[data-image-select]')
+      var selectedImage = thumbBtns.length > 0 ? thumbBtns[0].dataset.imageSelect : ''
+      var categoryToggles = document.querySelectorAll('[data-category-toggle]')
+      var variantToggles = document.querySelectorAll('[data-variant-toggle]')
+      var blurToggle = document.getElementById('blur-toggle')
+      var blurSlider = document.getElementById('blur-slider')
+      var blurValue = document.getElementById('blur-value')
+      var blurSliderGroup = document.getElementById('blur-slider-group')
+      var sizeToggles = document.querySelectorAll('[data-size-toggle]')
+
+      function formatBytes(bytes) {
+        if (bytes === 0) return '0 B'
+        if (bytes < 1024) return bytes + ' B'
+        if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB'
+        return (bytes / (1024 * 1024)).toFixed(1) + ' MB'
+      }
+
+      function getVisibleVariants() {
+        var visible = new Set()
+        variantToggles.forEach(function(cb) {
+          if (cb.checked) visible.add(cb.dataset.variantToggle)
+        })
+        return visible
+      }
+
+      function getCurrentImageData() {
+        return dataset.find(function(img) { return img.filename === selectedImage }) || dataset[0]
+      }
+
+      function updateStats() {
+        var visible = getVisibleVariants()
+        var imageData = getCurrentImageData()
+        var visibleResults = imageData.results.filter(function(r) {
+          return visible.has(r.variantName) && r.sizes.gzipBytes > 0
+        })
+
+        document.getElementById('stat-count').textContent = visibleResults.length
+
+        if (visibleResults.length === 0) {
+          document.getElementById('stat-avg-gzip').textContent = '\u2014'
+          document.getElementById('stat-avg-brotli').textContent = '\u2014'
+          document.getElementById('stat-avg-time').textContent = '\u2014'
+          document.getElementById('stat-smallest').textContent = '\u2014'
+          document.getElementById('stat-fastest').textContent = '\u2014'
+          return
+        }
+
+        var avgGzip = visibleResults.reduce(function(s, r) { return s + r.sizes.gzipBytes }, 0) / visibleResults.length
+        var avgBrotli = visibleResults.reduce(function(s, r) { return s + r.sizes.brotliBytes }, 0) / visibleResults.length
+        var avgTime = visibleResults.reduce(function(s, r) { return s + r.processTimeMs }, 0) / visibleResults.length
+        var smallest = visibleResults.reduce(function(min, r) { return r.sizes.gzipBytes < min.sizes.gzipBytes ? r : min })
+        var fastest = visibleResults.reduce(function(min, r) { return r.processTimeMs < min.processTimeMs ? r : min })
+
+        document.getElementById('stat-avg-gzip').textContent = formatBytes(Math.round(avgGzip))
+        document.getElementById('stat-avg-brotli').textContent = formatBytes(Math.round(avgBrotli))
+        document.getElementById('stat-avg-time').textContent = Math.round(avgTime) + 'ms'
+        document.getElementById('stat-smallest').textContent = smallest.title + ' (' + formatBytes(smallest.sizes.gzipBytes) + ')'
+        document.getElementById('stat-fastest').textContent = fastest.title + ' (' + fastest.processTimeMs + 'ms)'
+      }
+
+      function updateImageSections() {
+        document.querySelectorAll('.image-section').forEach(function(section) {
+          section.style.display = section.dataset.image === selectedImage ? '' : 'none'
+        })
+      }
+
+      function updateVisibility() {
+        var visible = getVisibleVariants()
+
+        // Show only the selected image section
+        updateImageSections()
+
+        // Show/hide individual cards within the visible section
+        document.querySelectorAll('.card').forEach(function(card) {
+          var name = card.dataset.variant
+          card.style.display = visible.has(name) ? '' : 'none'
+        })
+
+        updateStats()
+      }
+
+      // Category toggle: check/uncheck all variants in that category
+      categoryToggles.forEach(function(cb) {
+        cb.addEventListener('change', function() {
+          var cat = cb.dataset.categoryToggle
+          var checked = cb.checked
+          variantToggles.forEach(function(vcb) {
+            if (vcb.dataset.variantCategory === cat) {
+              vcb.checked = checked
+            }
+          })
+          updateVisibility()
+        })
+      })
+
+      // Individual variant toggle — sync category checkbox
+      variantToggles.forEach(function(cb) {
+        cb.addEventListener('change', function() {
+          var cat = cb.dataset.variantCategory
+          var allInCat = Array.from(variantToggles).filter(function(v) { return v.dataset.variantCategory === cat })
+          var allChecked = allInCat.every(function(v) { return v.checked })
+          var catCb = document.querySelector('[data-category-toggle="' + cat + '"]')
+          if (catCb) catCb.checked = allChecked
+          updateVisibility()
+        })
+      })
+
+      // CSS blur — only applied to placeholder variants, never artistic
+      function applyBlur() {
+        var enabled = blurToggle.checked
+        var px = blurSlider.value
+        blurSliderGroup.classList.toggle('active', enabled)
+        blurValue.textContent = px + 'px'
+        var filterVal = enabled ? 'blur(' + px + 'px)' : ''
+        document.querySelectorAll('.card').forEach(function(card) {
+          var img = card.querySelector('.preview')
+          if (!img) return
+          img.style.filter = card.dataset.category === 'artistic' ? '' : filterVal
+        })
+      }
+
+      blurToggle.addEventListener('change', applyBlur)
+      blurSlider.addEventListener('input', function() {
+        blurValue.textContent = blurSlider.value + 'px'
+        if (blurToggle.checked) applyBlur()
+      })
+
+      // Card size toggle
+      function applyCardSize(size) {
+        document.querySelectorAll('.grid').forEach(function(grid) {
+          grid.style.setProperty('--card-size', size + 'px')
+        })
+      }
+
+      sizeToggles.forEach(function(radio) {
+        radio.addEventListener('change', function() {
+          if (radio.checked) applyCardSize(radio.value)
+        })
+      })
+
+      // Image selector — thumbnail buttons
+      thumbBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          selectedImage = btn.dataset.imageSelect
+          thumbBtns.forEach(function(b) { b.classList.remove('active') })
+          btn.classList.add('active')
+          updateVisibility()
+        })
+      })
+
+      // Initial render — show first image only, apply default card size
+      applyCardSize(150)
+      updateVisibility()
+    }
+  </script>
+</Layout>
+
+<style>
+  header {
+    margin-bottom: 1.5rem;
+  }
+
+  h1 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .github-link {
+    vertical-align: middle;
+    opacity: 0.5;
+    transition: opacity 0.15s;
+  }
+
+  .github-link:hover {
+    opacity: 1;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--bg-card);
+    border: 2px dashed var(--border);
+    border-radius: var(--radius);
+  }
+
+  .empty-state h2 {
+    border-bottom: none;
+  }
+
+  .empty-state pre {
+    background: var(--tag-bg);
+    padding: 1rem;
+    border-radius: 6px;
+    display: inline-block;
+    font-family: var(--font-mono);
+  }
+</style>

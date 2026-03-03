@@ -33,9 +33,9 @@ By combining plugins you can use it for several purposes:
 
 ## Examples
 
-Get a more detailed look on [our demo website](https://axe312ger.github.io/sqip/).
+Check out the [interactive demo](https://sqip.vercel.app/) to compare all plugins and configurations side by side.
 
-[![](demo/example.jpg)](https://axe312ger.github.io/sqip/)
+[![SQIP demo comparing placeholder variants](demo/example.jpg)](https://sqip.vercel.app/)
 
 ## Requirements
 
