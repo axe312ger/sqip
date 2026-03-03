@@ -6,6 +6,7 @@ import { gzipSync, brotliCompressSync } from 'zlib'
 import sharp from 'sharp'
 import lqipModern from 'lqip-modern'
 import { sqip } from 'sqip'
+import Vibrant from '@behold/sharp-vibrant'
 
 import { variants } from '../src/data/variants.js'
 import type { VariantConfig } from '../src/data/variants.js'
@@ -42,12 +43,17 @@ interface VariantResult {
   dependencies: string[]
 }
 
+interface PaletteEntry {
+  [key: string]: string | undefined
+}
+
 interface ImageEntry {
   filename: string
   originalPath: string
   dimensions: Dimensions
   originalSize: number
   referenceImage: string
+  palette: PaletteEntry
   results: VariantResult[]
 }
 
@@ -170,6 +176,25 @@ async function main() {
     await sharp(imagePath).resize(1200).jpeg({ quality: 85 }).toBuffer()
       .then(buf => fs.writeFile(refPath, buf))
 
+    // Extract color palette using sharp-vibrant
+    const palette: PaletteEntry = {}
+    try {
+      const imgBuffer = await fs.readFile(imagePath)
+      const getPalette = (buf: Buffer) => Vibrant.from(buf).quality(0).getPalette()
+      let paletteResult
+      try {
+        paletteResult = await getPalette(imgBuffer)
+      } catch {
+        paletteResult = await getPalette(await sharp(imgBuffer).tiff().toBuffer())
+      }
+      const KEYS = ['Vibrant', 'DarkVibrant', 'LightVibrant', 'Muted', 'DarkMuted', 'LightMuted'] as const
+      for (const key of KEYS) {
+        palette[key] = paletteResult.palette[key]?.hex
+      }
+    } catch (err) {
+      console.error(`\nWarning: could not extract palette for ${filename}:`, err)
+    }
+
     const results: VariantResult[] = []
 
     for (const variant of variants) {
@@ -233,6 +258,7 @@ async function main() {
       dimensions,
       originalSize: originalStat.size,
       referenceImage: refFileName,
+      palette,
       results,
     })
   }

@@ -15,6 +15,22 @@ const { images } = Astro.props
       <span class="image-meta">
         {image.dimensions.width}&times;{image.dimensions.height} &mdash; {(image.originalSize / 1024).toFixed(0)} KB
       </span>
+      {image.palette && Object.keys(image.palette).length > 0 && (
+        <div class="palette-row">
+          {(['Vibrant', 'DarkVibrant', 'LightVibrant', 'Muted', 'DarkMuted', 'LightMuted'] as const).map((key) => {
+            const hex = image.palette[key]
+            return hex ? (
+              <span class="swatch">
+                <span class="swatch-color" style={`background:${hex}`} />
+                <span class="swatch-text">
+                  <span class="swatch-key">{key}</span>
+                  <span class="swatch-hex">{hex}</span>
+                </span>
+              </span>
+            ) : null
+          })}
+        </div>
+      )}
     </div>
     <div class="grid">
       {(() => {
@@ -65,6 +81,50 @@ const { images } = Astro.props
     font-size: 0.8rem;
     color: var(--text-muted);
     font-family: var(--font-mono);
+  }
+
+  .palette-row {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 0.25rem;
+  }
+
+  .swatch {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    cursor: default;
+  }
+
+  .swatch-color {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .swatch-text {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 3px;
+    font-size: 0.65rem;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  .swatch-key {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 0.6rem;
+  }
+
+  .swatch-hex {
+    opacity: 0.8;
   }
 
   .grid {
