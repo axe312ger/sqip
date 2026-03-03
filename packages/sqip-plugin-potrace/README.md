@@ -1,21 +1,77 @@
 # `sqip-plugin-potrace`
 
-> TODO: description
+> SQIP plugin to trace raster images into SVG vector paths
+
+Traces raster images into SVG vector paths using [@gatsbyjs/potrace](https://www.npmjs.com/package/@gatsbyjs/potrace), a Node.js implementation of the [Potrace](http://potrace.sourceforge.net/) algorithm. Supports both single-color tracing (default) and multi-color posterization. Produces clean, stylized silhouettes of the original image.
+
+## Examples
+
+| Original (59 KB) | Trace — default (8.5 KB) | Posterize — 8 steps (27.6 KB) |
+|---|---|---|
+| <img src="./examples/beach.jpg" width="300" alt="Original" /> | <img src="./examples/beach-sqip-potrace.svg" width="300" alt="Trace" /> | <img src="./examples/beach-sqip-potrace-posterize.svg" width="300" alt="Posterize" /> |
+
+> Try the [interactive demo](https://sqip.vercel.app/) to compare all plugins and configurations side by side.
+
+## Installation
+
+```bash
+npm install sqip sqip-plugin-potrace
+```
 
 ## Options
 
-##### Options
+| Option         | Type    | Default                 | CLI Flag                  | Description                                                                     |
+| -------------- | ------- | ----------------------- | ------------------------- | ------------------------------------------------------------------------------- |
+| `posterize`    | Boolean | `false`                 | `--potrace-posterize`     | Use posterize mode instead of trace (multi-color output)                        |
+| `steps`        | Number  | `4`                     | `--potrace-steps`         | Number of threshold steps (posterize mode only)                                 |
+| `color`        | String  | *auto*                  | `--potrace-color`         | Fill color — SQIP picks a fitting color by default                              |
+| `background`   | String  | *auto*                  | `--potrace-background`    | Background color — SQIP picks a fitting color by default                        |
+| `turnPolicy`   | String  | `'TURNPOLICY_MINORITY'` | `--potrace-turnPolicy`    | Ambiguity resolution: TURNPOLICY_BLACK, TURNPOLICY_WHITE, TURNPOLICY_LEFT, TURNPOLICY_RIGHT, TURNPOLICY_MINORITY, TURNPOLICY_MAJORITY |
+| `turdSize`     | Number  | `2`                     | `--potrace-turdSize`      | Suppress speckles up to this pixel size                                         |
+| `alphaMax`     | Number  | `1`                     | `--potrace-alphaMax`      | Corner threshold parameter                                                      |
+| `optCurve`     | Boolean | `true`                  | `--potrace-optCurve`      | Enable curve optimization                                                       |
+| `optTolerance` | Number  | `0.2`                   | `--potrace-optTolerance`  | Curve optimization tolerance                                                    |
+| `threshold`    | Number  | *auto*                  | `--potrace-threshold`     | Black/white threshold (0–255). Auto uses multilevel thresholding algorithm.     |
+| `blackOnWhite` | Boolean | `true`                  | `--potrace-blackOnWhite`  | Which side of the threshold becomes the vector shape                            |
 
-| Argument               | Type     | Description                                                                                                                                                                                                               |
-| ---------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| --potrace-color        | string   | Fill color. SQIP will pick a fitting color by default.                                                                                                                                                                    |
-| --potrace-background   | string   | Background color. SQIP will pick a fitting color by default.                                                                                                                                                              |
-| --potrace-posterize    | boolean  | Use posterize instead of trace                                                                                                                                                                                            |
-| --potrace-steps        | number[] | Posterize only: Number of steps or array of thresholds                                                                                                                                                                    |
-| --potrace-turnPolicy   | string   | how to resolve ambiguities in path decomposition. Possible values are exported as constants: TURNPOLICY_BLACK, TURNPOLICY_WHITE, TURNPOLICY_LEFT, TURNPOLICY_RIGHT, TURNPOLICY_MINORITY, TURNPOLICY_MAJORITY.             |
-| --potrace-turdSize     | number   | suppress speckles of up to this size                                                                                                                                                                                      |
-| --potrace-alphaMax     | number   | corner threshold parameter                                                                                                                                                                                                |
-| --potrace-optCurve     | boolean  | curve optimization                                                                                                                                                                                                        |
-| --potrace-optTolerance | number   | curve optimization tolerance                                                                                                                                                                                              |
-| --potrace-threshold    | number   | threshold below which color is considered black. Should be a number in range 0..255. By default THRESHOLD_AUTO is used in which case threshold will be selected automatically using Algorithm For Multilevel Thresholding |
-| --potrace-blackOnWhite | boolean  | specifies colors by which side from threshold should be turned into vector shape                                                                                                                                          |
+## Usage
+
+### Node API
+
+```js
+import { sqip } from 'sqip'
+
+// Single-color trace
+const traced = await sqip({
+  input: 'photo.jpg',
+  plugins: [
+    'sqip-plugin-potrace',
+    'sqip-plugin-svgo',
+    'sqip-plugin-data-uri',
+  ],
+})
+
+// Multi-color posterize
+const posterized = await sqip({
+  input: 'photo.jpg',
+  plugins: [
+    { name: 'sqip-plugin-potrace', options: { posterize: true, steps: 8 } },
+    'sqip-plugin-svgo',
+    'sqip-plugin-data-uri',
+  ],
+})
+```
+
+### CLI
+
+```bash
+# Default trace
+sqip -i photo.jpg -p potrace -p svgo
+
+# Posterize with 8 steps
+sqip -i photo.jpg -p potrace -p svgo --potrace-posterize --potrace-steps 8
+```
+
+## Part of SQIP
+
+This plugin is part of the [SQIP](https://github.com/axe312ger/sqip) project. See the main README for the full list of plugins and integrations.

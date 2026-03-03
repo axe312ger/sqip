@@ -2,7 +2,7 @@
   "name": "sqip-plugin-blurhash",
   "version": "1.0.0-beta.1",
   "type": "module",
-  "description": "Plugin for blurhash",
+  "description": "SQIP plugin to generate BlurHash previews",
   "author": "Benedikt Rötsch <info@benedikt-roetsch.de>",
   "homepage": "https://github.com/axe312ger/sqip#readme",
   "license": "ISC",
