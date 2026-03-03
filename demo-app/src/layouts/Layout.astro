@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css'
+import Nav from '../components/Nav.astro'
 
 interface Props {
   title: string
@@ -20,6 +21,9 @@ const matomoSiteId = import.meta.env.PUBLIC_MATOMO_SITE_ID || ''
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>
+    <div class="nav-container">
+      <Nav />
+    </div>
     <slot />
     <script is:inline define:vars={{ matomoUrl, matomoSiteId }}>
       // Matomo analytics — only initialized when URL and site ID are configured
@@ -60,3 +64,11 @@ const matomoSiteId = import.meta.env.PUBLIC_MATOMO_SITE_ID || ''
     </script>
   </body>
 </html>
+
+<style>
+  .nav-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 1rem 2rem 0;
+  }
+</style>

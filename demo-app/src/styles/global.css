@@ -19,6 +19,7 @@
 
   --badge-placeholder: #3498db;
   --badge-artistic: #9b59b6;
+  --badge-blur-test: #e67e22;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -37,6 +38,7 @@
 
     --badge-placeholder: #5dade2;
     --badge-artistic: #bb8fce;
+    --badge-blur-test: #f0a04b;
   }
 }
 
