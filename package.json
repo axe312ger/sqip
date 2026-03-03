@@ -22,7 +22,7 @@
   "devDependencies": {
     "@vitest/coverage-v8": "^4.0.18",
     "cz-conventional-changelog": "3.3.0",
-    "eslint": "^9.39.3",
+    "eslint": "^10.0.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.5",
     "husky": "^9.1.7",

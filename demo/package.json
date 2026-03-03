@@ -12,7 +12,7 @@
     "deploy": "echo 'Legacy demo — deploy via new demo-app instead'"
   },
   "dependencies": {
-    "aspect-ratio": "2.1.5",
+    "aspect-ratio": "2.1.9",
     "brotli-size": "4.0.0",
     "cli-progress": "3.12.0",
     "convert-hrtime": "5.0.0",
@@ -22,7 +22,7 @@
     "htm": "3.1.1",
     "lqip": "2.1.0",
     "mozjpeg": "8.0.0",
-    "pretty-bytes": "6.1.1",
+    "pretty-bytes": "7.1.0",
     "probe-image-size": "7.2.3",
     "sharp": "^0.34.5",
     "sqip": "^1.0.0-alpha.51",
