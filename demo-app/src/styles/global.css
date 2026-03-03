@@ -18,6 +18,7 @@
   --font-mono: 'SF Mono', 'Fira Code', 'Fira Mono', monospace;
 
   --badge-placeholder: #3498db;
+  --badge-placeholder-blur: #2ecc71;
   --badge-artistic: #9b59b6;
   --badge-blur-test: #e67e22;
 }
@@ -37,6 +38,7 @@
     --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.4);
 
     --badge-placeholder: #5dade2;
+    --badge-placeholder-blur: #58d68d;
     --badge-artistic: #bb8fce;
     --badge-blur-test: #f0a04b;
   }

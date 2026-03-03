@@ -2,7 +2,6 @@
 import { readFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
 import Layout from '../layouts/Layout.astro'
-import PluginChainBadge from '../components/PluginChainBadge.astro'
 
 const datasetPath = resolve(process.cwd(), 'generated', 'dataset.json')
 let dataset: any[] = []
@@ -11,14 +10,12 @@ if (existsSync(datasetPath)) {
 }
 
 const blurVariants = ['blur-none', 'blur-legacy', 'blur-css', 'blur-browser']
-
-const imageThumbs = dataset.map((img: any) => {
-  const thumb = img.results.find((r: any) => r.variantName === 'thumbnail')
-  return {
-    name: img.filename as string,
-    src: thumb ? `/processed/${thumb.fileName}` : '',
-  }
-})
+const blurLabels: Record<string, string> = {
+  'blur-none': 'No Blur',
+  'blur-legacy': 'Legacy SVG Blur',
+  'blur-css': 'CSS Blur (Plugin)',
+  'blur-browser': 'CSS Blur (Browser)',
+}
 
 function fmtB(bytes: number): string {
   if (bytes === 0) return '0 B'
@@ -31,11 +28,11 @@ function fmtB(bytes: number): string {
 <Layout title="Blur Test — SQIP Demo">
   <div class="container">
     <header>
-      <h1>Blur Test</h1>
+      <h1>Blur Technique Comparison</h1>
       <p class="subtitle">
-        Compare different blur techniques: no blur, legacy SVG feGaussianBlur,
-        CSS blur applied inside the SVG by the plugin, and CSS blur applied on
-        the <code>&lt;img&gt;</code> element by the browser.
+        Compare different blur techniques side by side across all images.
+        Hover any placeholder to see the original. Notice how browser-applied CSS blur
+        bleeds the image edges, while the plugin-applied blur stays clean.
       </p>
     </header>
 
@@ -47,33 +44,29 @@ function fmtB(bytes: number): string {
       </div>
     ) : (
       <>
-        <div class="image-selector">
-          <h3>Source Image</h3>
-          <div class="image-thumbs" id="image-thumbs">
-            {imageThumbs.map((thumb, i) => (
-              <button
-                class={`thumb-btn${i === 0 ? ' active' : ''}`}
-                data-image-select={thumb.name}
-                title={thumb.name}
-                type="button"
-              >
-                <img src={thumb.src} alt={thumb.name} loading="lazy" />
-              </button>
-            ))}
-          </div>
+        <div class="variant-legend">
+          {blurVariants.map((v) => (
+            <span class="legend-item">{blurLabels[v]}</span>
+          ))}
         </div>
 
-        {dataset.map((image) => {
+        {dataset.map((image: any) => {
           const refSrc = image.referenceImage ? `/processed/${image.referenceImage}` : ''
           const origAR = image.dimensions.width / image.dimensions.height
-          const results = image.results.filter((r: any) => blurVariants.includes(r.variantName))
+          const results = blurVariants
+            .map((v: string) => image.results.find((r: any) => r.variantName === v))
+            .filter(Boolean)
 
           return (
-            <div class="image-section" data-image={image.filename}>
-              <div class="blur-grid">
+            <div class="image-row">
+              <div class="image-label">
+                <span class="image-name">{image.filename.replace(/-unsplash/, '').replace(/\.\w+$/, '')}</span>
+                <span class="image-dims">{image.dimensions.width}&times;{image.dimensions.height}</span>
+              </div>
+              <div class="blur-columns">
                 {results.map((result: any) => (
-                  <div class="blur-card" data-variant={result.variantName}>
-                    <div class="card-image" style={`aspect-ratio: ${origAR};`}>
+                  <div class="blur-cell" data-variant={result.variantName}>
+                    <div class="cell-image" style={`aspect-ratio: ${origAR};`}>
                       <img
                         class="preview"
                         src={`/processed/${result.fileName}`}
@@ -81,21 +74,11 @@ function fmtB(bytes: number): string {
                         loading="lazy"
                       />
                       {refSrc && (
-                        <img class="thumbnail-hover" src={refSrc} alt="" loading="lazy" />
+                        <img class="hover-original" src={refSrc} alt="" loading="lazy" />
                       )}
                     </div>
-                    <div class="card-info">
-                      <div class="card-title">{result.title}</div>
-                      <PluginChainBadge chain={result.pluginChain} category={result.category} />
-                      <div class="card-stats">
-                        <span class="stat">Raw: {fmtB(result.sizes.originalBytes)}</span>
-                        <span class="stat">Gzip: {fmtB(result.sizes.gzipBytes)}</span>
-                        <span class="stat">Brotli: {fmtB(result.sizes.brotliBytes)}</span>
-                        <span class="stat">Time: {result.processTimeMs}ms</span>
-                      </div>
-                      <p class="card-desc">{result.configSnippet && (
-                        <pre class="config-snippet"><code>{result.configSnippet}</code></pre>
-                      )}</p>
+                    <div class="cell-stats">
+                      <span>{fmtB(result.sizes.gzipBytes)} gz</span>
                     </div>
                   </div>
                 ))}
@@ -108,34 +91,10 @@ function fmtB(bytes: number): string {
   </div>
 
   <script is:inline>
-    (function() {
-      var thumbBtns = document.querySelectorAll('[data-image-select]')
-      if (thumbBtns.length === 0) return
-
-      var selectedImage = thumbBtns[0].dataset.imageSelect
-
-      function updateImageSections() {
-        document.querySelectorAll('.image-section').forEach(function(section) {
-          section.style.display = section.dataset.image === selectedImage ? '' : 'none'
-        })
-      }
-
-      thumbBtns.forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          selectedImage = btn.dataset.imageSelect
-          thumbBtns.forEach(function(b) { b.classList.remove('active') })
-          btn.classList.add('active')
-          updateImageSections()
-        })
-      })
-
-      // Apply CSS blur on the browser-blur variant cards
-      document.querySelectorAll('.blur-card[data-variant="blur-browser"] .preview').forEach(function(img) {
-        img.style.filter = 'blur(12px)'
-      })
-
-      updateImageSections()
-    })()
+    // Apply CSS blur on the browser-blur variant cells
+    document.querySelectorAll('.blur-cell[data-variant="blur-browser"] .preview').forEach(function(img) {
+      img.style.filter = 'blur(12px)'
+    })
   </script>
 </Layout>
 
@@ -148,14 +107,6 @@ function fmtB(bytes: number): string {
     color: var(--text-muted);
     font-size: 1rem;
     margin: 0;
-  }
-
-  .subtitle code {
-    background: var(--tag-bg);
-    padding: 0.1rem 0.4rem;
-    border-radius: 3px;
-    font-size: 0.9em;
-    font-family: var(--font-mono);
   }
 
   .empty-state {
@@ -178,86 +129,79 @@ function fmtB(bytes: number): string {
     font-family: var(--font-mono);
   }
 
-  .image-selector {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.25rem;
-    margin-bottom: 1.5rem;
-    box-shadow: var(--shadow);
-  }
-
-  .image-selector h3 {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-muted);
-    margin: 0 0 0.5rem;
-  }
-
-  .image-thumbs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .thumb-btn {
-    border: 2px solid var(--border);
-    border-radius: 6px;
-    padding: 0;
-    cursor: pointer;
-    background: none;
-    overflow: hidden;
-    opacity: 0.5;
-    transition: all 0.15s;
-    width: 64px;
-    height: 48px;
-  }
-
-  .thumb-btn:hover {
-    opacity: 0.8;
-    border-color: var(--text-muted);
-  }
-
-  .thumb-btn.active {
-    opacity: 1;
-    border-color: var(--accent);
-    box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 30%, transparent);
-  }
-
-  .thumb-btn img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  .blur-grid {
+  .variant-legend {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 1.25rem;
-    margin-bottom: 2rem;
-  }
-
-  .blur-card {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding: 0.75rem 1rem;
+    padding-left: 120px;
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    overflow: hidden;
     box-shadow: var(--shadow);
   }
 
-  .blur-card:hover {
-    box-shadow: var(--shadow-lg);
+  .legend-item {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--text);
   }
 
-  .card-image {
+  .image-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 1rem;
+    align-items: start;
+    margin-bottom: 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.75rem;
+    box-shadow: var(--shadow);
+  }
+
+  .image-label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding-top: 0.25rem;
+  }
+
+  .image-name {
+    font-size: 0.75rem;
+    font-weight: 600;
+    word-break: break-word;
+    line-height: 1.3;
+  }
+
+  .image-dims {
+    font-size: 0.65rem;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+  }
+
+  .blur-columns {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+  }
+
+  .blur-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .cell-image {
     position: relative;
     overflow: hidden;
+    border-radius: 6px;
     background: var(--bg-hover);
   }
 
-  .card-image img {
+  .cell-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -265,10 +209,10 @@ function fmtB(bytes: number): string {
   }
 
   .preview {
-    transition: filter 0.2s ease;
+    transition: opacity 0.3s ease;
   }
 
-  .thumbnail-hover {
+  .hover-original {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -279,44 +223,37 @@ function fmtB(bytes: number): string {
     z-index: 1;
   }
 
-  .blur-card:hover .thumbnail-hover {
+  .blur-cell:hover .hover-original {
     opacity: 1;
   }
 
-  .card-info {
-    padding: 1rem;
+  .cell-stats {
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .card-title {
-    font-weight: 600;
-    font-size: 1rem;
-  }
-
-  .card-stats {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    font-size: 0.75rem;
+    justify-content: space-between;
+    font-size: 0.65rem;
     font-family: var(--font-mono);
     color: var(--text-muted);
+    padding: 0 0.25rem;
   }
 
-  .card-desc {
-    margin: 0;
-  }
+  @media (max-width: 800px) {
+    .variant-legend {
+      padding-left: 1rem;
+      grid-template-columns: repeat(2, 1fr);
+    }
 
-  .config-snippet {
-    margin: 0;
-    padding: 0.75rem;
-    background: var(--tag-bg);
-    border-radius: 4px;
-    overflow-x: auto;
-    font-size: 0.7rem;
-    line-height: 1.5;
-    font-family: var(--font-mono);
-    color: var(--text);
+    .image-row {
+      grid-template-columns: 1fr;
+    }
+
+    .image-label {
+      flex-direction: row;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+
+    .blur-columns {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 </style>

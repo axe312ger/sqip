@@ -1,4 +1,4 @@
-export type Category = 'placeholder' | 'artistic' | 'blur-test'
+export type Category = 'placeholder' | 'placeholder-blur' | 'artistic' | 'blur-test'
 
 export interface VariantConfig {
   name: string
@@ -21,12 +21,22 @@ export interface VariantConfig {
   }
   /** If set, this variant is a sharp thumbnail */
   thumbnail?: boolean
+  /**
+   * If set, this variant derives from the named base variant's output.
+   * The generate script runs the base variant once, then applies only this
+   * variant's plugins (blur, svgo, data-uri) on the same base SVG.
+   */
+  deriveFrom?: string
 }
 
 export const categories: Record<Category, { label: string; description: string }> = {
   placeholder: {
     label: 'Placeholders',
     description: 'Fast, small placeholders for lazy-loading images',
+  },
+  'placeholder-blur': {
+    label: 'Placeholders with Blur',
+    description: 'Placeholders with the blur plugin applied for a smoother look',
   },
   artistic: {
     label: 'Artistic',
@@ -163,6 +173,88 @@ export const variants: VariantConfig[] = [
     },
   },
 
+  // === Placeholders with Blur ===
+  {
+    name: 'sqip-default-blur',
+    title: 'SQIP Default + Blur',
+    category: 'placeholder-blur',
+    description: '8 geometric primitives smoothed with CSS blur (12px).',
+    pluginChain: ['primitive', 'blur', 'svgo', 'data-uri'],
+    resultFileType: 'svg',
+    configSnippet: `import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['primitive', 'blur', 'svgo', 'data-uri'],\n})`,
+    dependencies: ['Go', 'sharp'],
+    sqipConfig: {
+      plugins: ['primitive', 'blur', 'svgo', 'data-uri'],
+    },
+  },
+  {
+    name: 'sqip-pixels-blur',
+    title: 'SQIP Pixels + Blur',
+    category: 'placeholder-blur',
+    description: 'Pixel grid smoothed with a light CSS blur (8px).',
+    pluginChain: ['pixels', 'blur(8)', 'svgo', 'data-uri'],
+    resultFileType: 'svg',
+    configSnippet: `import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    'pixels',\n    { name: 'blur', options: { blur: 8 } },\n    'svgo', 'data-uri',\n  ],\n})`,
+    dependencies: ['sharp'],
+    sqipConfig: {
+      plugins: [
+        'pixels',
+        { name: 'blur', options: { blur: 8 } },
+        'svgo',
+        'data-uri',
+      ],
+    },
+  },
+  {
+    name: 'sqip-potrace-blur',
+    title: 'SQIP Potrace + Blur',
+    category: 'placeholder-blur',
+    description: 'Traced outlines softened with a light CSS blur (6px).',
+    pluginChain: ['potrace', 'blur(6)', 'svgo', 'data-uri'],
+    resultFileType: 'svg',
+    configSnippet: `import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    'potrace',\n    { name: 'blur', options: { blur: 6 } },\n    'svgo', 'data-uri',\n  ],\n})`,
+    dependencies: ['sharp'],
+    sqipConfig: {
+      plugins: [
+        'potrace',
+        { name: 'blur', options: { blur: 6 } },
+        'svgo',
+        'data-uri',
+      ],
+    },
+  },
+  {
+    name: 'sqip-triangle-blur',
+    title: 'SQIP Triangle + Blur',
+    category: 'placeholder-blur',
+    description: 'Delaunay triangulation smoothed with CSS blur (12px).',
+    pluginChain: ['triangle', 'blur', 'svgo', 'data-uri'],
+    resultFileType: 'svg',
+    configSnippet: `import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['triangle', 'blur', 'svgo', 'data-uri'],\n})`,
+    dependencies: ['Go', 'sharp'],
+    sqipConfig: {
+      plugins: ['triangle', 'blur', 'svgo', 'data-uri'],
+    },
+  },
+  {
+    name: 'sqip-primitive-circles-blur',
+    title: 'Primitive Circles + Blur',
+    category: 'placeholder-blur',
+    description: '30 circles smoothed with CSS blur (10px).',
+    pluginChain: ['primitive(30, circles)', 'blur(10)', 'svgo', 'data-uri'],
+    resultFileType: 'svg',
+    configSnippet: `import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'primitive', options: { numberOfPrimitives: 30, mode: 4 } },\n    { name: 'blur', options: { blur: 10 } },\n    'svgo', 'data-uri',\n  ],\n})`,
+    dependencies: ['Go', 'sharp'],
+    sqipConfig: {
+      plugins: [
+        { name: 'primitive', options: { numberOfPrimitives: 30, mode: 4 } },
+        { name: 'blur', options: { blur: 10 } },
+        'svgo',
+        'data-uri',
+      ],
+    },
+  },
+
   // === Artistic ===
   {
     name: 'sqip-potrace-posterize',
@@ -239,6 +331,10 @@ export const variants: VariantConfig[] = [
   },
 
   // === Blur Test ===
+  // All blur-test variants derive from a shared base primitive SVG.
+  // The generate script runs primitive once per image and caches the raw SVG.
+  // Each variant then applies its own plugins (blur/svgo/data-uri) on that
+  // same base, ensuring identical primitive shapes for fair comparison.
   {
     name: 'blur-none',
     title: 'No Blur',
@@ -246,10 +342,11 @@ export const variants: VariantConfig[] = [
     description: 'Baseline: 8 geometric primitives without any blur applied.',
     pluginChain: ['primitive', 'svgo', 'data-uri'],
     resultFileType: 'svg',
-    configSnippet: `import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['primitive', 'svgo', 'data-uri'],\n})`,
+    configSnippet: `import { sqip } from 'sqip'\\nconst result = await sqip({\\n  input: 'image.jpg',\\n  plugins: ['primitive', 'svgo', 'data-uri'],\\n})`,
     dependencies: ['Go', 'sharp'],
+    deriveFrom: 'blur-test-base',
     sqipConfig: {
-      plugins: ['primitive', 'svgo', 'data-uri'],
+      plugins: ['svgo', 'data-uri'],
     },
   },
   {
@@ -259,11 +356,11 @@ export const variants: VariantConfig[] = [
     description: 'Classic SVG feGaussianBlur filter — works everywhere but increases SVG size.',
     pluginChain: ['primitive', 'blur(legacy)', 'svgo', 'data-uri'],
     resultFileType: 'svg',
-    configSnippet: `import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    'primitive',\n    { name: 'blur', options: { legacyBlur: true } },\n    'svgo', 'data-uri',\n  ],\n})`,
+    configSnippet: `import { sqip } from 'sqip'\\nconst result = await sqip({\\n  input: 'image.jpg',\\n  plugins: [\\n    'primitive',\\n    { name: 'blur', options: { legacyBlur: true } },\\n    'svgo', 'data-uri',\\n  ],\\n})`,
     dependencies: ['Go', 'sharp'],
+    deriveFrom: 'blur-test-base',
     sqipConfig: {
       plugins: [
-        'primitive',
         { name: 'blur', options: { legacyBlur: true } },
         'svgo',
         'data-uri',
@@ -277,10 +374,11 @@ export const variants: VariantConfig[] = [
     description: 'CSS filter blur applied inside the SVG by the blur plugin — compact and modern.',
     pluginChain: ['primitive', 'blur', 'svgo', 'data-uri'],
     resultFileType: 'svg',
-    configSnippet: `import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    'primitive', 'blur', 'svgo', 'data-uri',\n  ],\n})`,
+    configSnippet: `import { sqip } from 'sqip'\\nconst result = await sqip({\\n  input: 'image.jpg',\\n  plugins: [\\n    'primitive', 'blur', 'svgo', 'data-uri',\\n  ],\\n})`,
     dependencies: ['Go', 'sharp'],
+    deriveFrom: 'blur-test-base',
     sqipConfig: {
-      plugins: ['primitive', 'blur', 'svgo', 'data-uri'],
+      plugins: ['blur', 'svgo', 'data-uri'],
     },
   },
   {
@@ -290,10 +388,11 @@ export const variants: VariantConfig[] = [
     description: 'No blur in the SVG — CSS filter:blur() applied on the <img> element at display time.',
     pluginChain: ['primitive', 'svgo', 'data-uri'],
     resultFileType: 'svg',
-    configSnippet: `<!-- No blur plugin needed -->\n<img\n  src="placeholder.svg"\n  style="filter: blur(12px);"\n/>`,
+    configSnippet: `<!-- No blur plugin needed -->\\n<img\\n  src="placeholder.svg"\\n  style="filter: blur(12px);"\\n/>`,
     dependencies: ['Go', 'sharp'],
+    deriveFrom: 'blur-test-base',
     sqipConfig: {
-      plugins: ['primitive', 'svgo', 'data-uri'],
+      plugins: ['svgo', 'data-uri'],
     },
   },
 ]

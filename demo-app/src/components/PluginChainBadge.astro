@@ -39,6 +39,11 @@ const { chain, category = 'placeholder' } = Astro.props
     color: var(--badge-placeholder);
   }
 
+  .badge-placeholder-blur .step {
+    background: color-mix(in srgb, var(--badge-placeholder-blur) 15%, var(--tag-bg));
+    color: var(--badge-placeholder-blur);
+  }
+
   .badge-artistic .step {
     background: color-mix(in srgb, var(--badge-artistic) 15%, var(--tag-bg));
     color: var(--badge-artistic);
