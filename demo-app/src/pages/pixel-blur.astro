@@ -262,6 +262,9 @@ function fmtB(bytes: number): string {
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     align-items: start;
+    position: sticky;
+    top: 0;
+    z-index: 11;
   }
 
   .control-group {
@@ -374,9 +377,6 @@ function fmtB(bytes: number): string {
     border: 1px solid var(--border);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
-    position: sticky;
-    top: 0;
-    z-index: 10;
   }
 
   .legend-item {
