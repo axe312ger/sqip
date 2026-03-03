@@ -17,7 +17,16 @@ export default class SVGOPlugin extends SqipPlugin {
       multipass: true,
       floatPrecision: 1,
       plugins: [
-        'preset-default',
+        {
+          name: 'preset-default',
+          params: {
+            overrides: {
+              convertTransform: {
+                transformPrecision: 2,
+              },
+            },
+          },
+        },
         'cleanupAttrs',
         'cleanupEnableBackground',
         'cleanupIds',

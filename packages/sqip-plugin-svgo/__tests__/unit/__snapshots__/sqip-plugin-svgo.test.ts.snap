@@ -7,7 +7,16 @@ exports[`runSVGO 1`] = `
     "floatPrecision": 1,
     "multipass": true,
     "plugins": [
-      "preset-default",
+      {
+        "name": "preset-default",
+        "params": {
+          "overrides": {
+            "convertTransform": {
+              "transformPrecision": 2,
+            },
+          },
+        },
+      },
       "cleanupAttrs",
       "cleanupEnableBackground",
       "cleanupIds",
