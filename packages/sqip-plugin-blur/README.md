@@ -41,17 +41,8 @@ const result = await sqip({
   input: 'photo.jpg',
   plugins: [
     'sqip-plugin-primitive',
+    // remove or comment out to disable blur
     { name: 'sqip-plugin-blur', options: { blur: 12 } },
-    'sqip-plugin-svgo',
-  ],
-})
-
-// No blur (set to 0)
-const sharp = await sqip({
-  input: 'photo.jpg',
-  plugins: [
-    'sqip-plugin-primitive',
-    { name: 'sqip-plugin-blur', options: { blur: 0 } },
     'sqip-plugin-svgo',
   ],
 })
@@ -66,8 +57,8 @@ sqip -i photo.jpg -p primitive -p blur -p svgo
 # Custom blur value
 sqip -i photo.jpg -p primitive -p blur -p svgo -b 6
 
-# No blur
-sqip -i photo.jpg -p primitive -p blur -p svgo -b 0
+# No blur — just omit the blur plugin
+sqip -i photo.jpg -p primitive -p svgo
 ```
 
 ## Part of SQIP
