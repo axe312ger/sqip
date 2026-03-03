@@ -1,6 +1,6 @@
 # `sqip-cli`
 
-> CLI interface for SQIP — SVG-Based Image Placeholder
+> CLI for SQIP — SVG-Based Image Placeholder
 
 Command-line tool for [SQIP](https://github.com/axe312ger/sqip). Process images into SVG-based placeholders directly from your terminal.
 
@@ -10,10 +10,10 @@ Command-line tool for [SQIP](https://github.com/axe312ger/sqip). Process images 
 npm install -g sqip-cli
 ```
 
-This installs the `sqip` command globally. You also need the core library and plugins:
+This installs the `sqip` command globally. The default plugin chain (`primitive → blur → svgo → data-uri`) is included with `sqip`, so no extra install is needed for the standard pipeline. If you want to use non-default plugins (e.g. `sqip-plugin-pixels`, `sqip-plugin-potrace`, `sqip-plugin-triangle`, `sqip-plugin-blurhash`), install them globally as well:
 
 ```bash
-npm install -g sqip sqip-plugin-primitive sqip-plugin-blur sqip-plugin-svgo sqip-plugin-data-uri
+npm install -g sqip-plugin-pixels
 ```
 
 ## Usage
