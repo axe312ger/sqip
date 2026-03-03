@@ -9,12 +9,13 @@ if (existsSync(datasetPath)) {
   dataset = JSON.parse(readFileSync(datasetPath, 'utf-8'))
 }
 
-const blurVariants = ['blur-none', 'blur-legacy', 'blur-css', 'blur-browser']
+const blurVariants = ['blur-none', 'blur-legacy', 'blur-css', 'blur-browser', 'blur-lqip-24']
 const blurLabels: Record<string, string> = {
   'blur-none': 'No Blur',
   'blur-legacy': 'Legacy SVG Blur',
   'blur-css': 'CSS Blur (Plugin)',
   'blur-browser': 'CSS Blur (Browser)',
+  'blur-lqip-24': 'LQIP Modern (24px)',
 }
 
 function fmtB(bytes: number): string {
@@ -131,7 +132,7 @@ function fmtB(bytes: number): string {
 
   .variant-legend {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 0.75rem;
     margin-bottom: 1rem;
     padding: 0.75rem 1rem;
@@ -140,6 +141,9 @@ function fmtB(bytes: number): string {
     border: 1px solid var(--border);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 10;
   }
 
   .legend-item {
@@ -184,7 +188,7 @@ function fmtB(bytes: number): string {
 
   .blur-columns {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 0.75rem;
   }
 

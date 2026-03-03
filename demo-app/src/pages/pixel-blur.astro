@@ -35,8 +35,9 @@ function fmtB(bytes: number): string {
         Raster placeholders (LQIP, BlurHash) are inherently blurry at small sizes.
         Adding a CSS <code>filter: blur()</code> in the browser smooths visible pixels further,
         but bleeds surrounding colors into the image edges.
-        The trick: set a background color on the image container so the blurred edge stays clean.
-        Pick a palette color below to compare the effect.
+        Two fixes: set a <strong>background color</strong> on the container,
+        or <strong>zoom</strong> the image slightly (<code>transform: scale(1.1)</code>) so the blurred
+        edge overflows the container. Compare both below.
       </p>
     </header>
 
@@ -78,6 +79,15 @@ function fmtB(bytes: number): string {
             <div class="blur-control">
               <input type="range" id="blur-range" min="0" max="30" value="10" />
               <span class="blur-value" id="blur-value">10px</span>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label">Edge Fix</label>
+            <div class="mode-picker" id="mode-picker">
+              <button class="mode-btn active" data-mode="bgcolor">Background Color</button>
+              <button class="mode-btn" data-mode="zoom">Zoom (scale 1.1)</button>
+              <button class="mode-btn" data-mode="none">None</button>
             </div>
           </div>
         </div>
@@ -133,22 +143,29 @@ function fmtB(bytes: number): string {
     var blurRange = document.getElementById('blur-range')
     var blurValueEl = document.getElementById('blur-value')
     var colorPicker = document.getElementById('color-picker')
+    var modePicker = document.getElementById('mode-picker')
     var rows = document.querySelectorAll('.image-row')
     var activeColor = null // null means "use palette key"
     var activePaletteKey = 'Muted'
     var blurPx = 10
+    var edgeMode = 'bgcolor' // 'bgcolor' | 'zoom' | 'none'
 
     function applyAll() {
       rows.forEach(function(row) {
         var palette = JSON.parse(row.dataset.palette)
         var bg = activeColor || palette[activePaletteKey] || '#888'
         row.querySelectorAll('.cell-image').forEach(function(cell) {
-          cell.style.backgroundColor = bg
+          cell.style.backgroundColor = edgeMode === 'bgcolor' ? bg : 'transparent'
         })
         row.querySelectorAll('.preview').forEach(function(img) {
           img.style.filter = blurPx > 0 ? 'blur(' + blurPx + 'px)' : 'none'
+          img.style.transform = edgeMode === 'zoom' && blurPx > 0 ? 'scale(' + (1 + blurPx * 0.01) + ')' : 'none'
         })
       })
+
+      // Dim the color picker when not in bgcolor mode
+      colorPicker.style.opacity = edgeMode === 'bgcolor' ? '1' : '0.4'
+      colorPicker.style.pointerEvents = edgeMode === 'bgcolor' ? 'auto' : 'none'
     }
 
     // Init swatch colors from first image palette
@@ -171,6 +188,16 @@ function fmtB(bytes: number): string {
         activeColor = null
         activePaletteKey = btn.dataset.paletteKey
       }
+      applyAll()
+    })
+
+    // Mode picker
+    modePicker.addEventListener('click', function(e) {
+      var btn = e.target.closest('.mode-btn')
+      if (!btn) return
+      modePicker.querySelectorAll('.mode-btn').forEach(function(b) { b.classList.remove('active') })
+      btn.classList.add('active')
+      edgeMode = btn.dataset.mode
       applyAll()
     })
 
@@ -310,6 +337,32 @@ function fmtB(bytes: number): string {
     min-width: 3em;
   }
 
+  .mode-picker {
+    display: flex;
+    gap: 0.35rem;
+  }
+
+  .mode-btn {
+    padding: 0.3rem 0.6rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--bg);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 0.7rem;
+    font-family: var(--font);
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .mode-btn:hover {
+    border-color: var(--accent);
+  }
+
+  .mode-btn.active {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 30%, transparent);
+  }
+
   .variant-legend {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -321,6 +374,9 @@ function fmtB(bytes: number): string {
     border: 1px solid var(--border);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 10;
   }
 
   .legend-item {
@@ -390,7 +446,7 @@ function fmtB(bytes: number): string {
   }
 
   .preview {
-    transition: opacity 0.3s ease, filter 0.2s ease;
+    transition: opacity 0.3s ease, filter 0.2s ease, transform 0.2s ease;
   }
 
   .hover-original {
