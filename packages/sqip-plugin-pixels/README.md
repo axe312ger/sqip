@@ -2,7 +2,7 @@
 
 > SQIP plugin to create pixelated SVG placeholders
 
-Creates a pixelated SVG placeholder by downsampling the image to a small grid of colored rectangles. Uses [sharp](https://sharp.pixelplumbing.com/) for image downsampling and [@svgdotjs/svg.js](https://github.com/svgdotjs/svg.js) for SVG generation. The result is a tiny SVG that gives a color impression of the original image. Can be combined with the blur plugin for a smoother appearance.
+Creates a pixelated SVG placeholder by downsampling the image to a small grid of colored rectangles. Uses [sharp](https://sharp.pixelplumbing.com/) for image downsampling and [@svgdotjs/svg.js](https://github.com/svgdotjs/svg.js) for SVG generation. The result is a tiny SVG that gives a color impression of the original image. It can be combined with the blur plugin for a smoother appearance.
 
 ## Examples
 
