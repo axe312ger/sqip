@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.2](https://github.com/axe312ger/sqip/compare/sqip-plugin-blur@1.0.0-alpha.53...sqip-plugin-blur@1.0.0-beta.2) (2026-03-03)
+
+### Bug Fixes
+
+- typos, broken links, toHex bug, and test cleanup ([8085204](https://github.com/axe312ger/sqip/commit/8085204e155132d6747b4227edea0379728d8c06))
+- update CI config, blur snapshots, and normalize e2e help output ([3327986](https://github.com/axe312ger/sqip/commit/3327986e3405d4bda0f572093bd3588bc7dfd371))
+
 # [1.0.0-alpha.53](https://github.com/axe312ger/sqip/compare/sqip-plugin-blur@1.0.0-alpha.52...sqip-plugin-blur@1.0.0-alpha.53) (2024-03-28)
 
 ### Features

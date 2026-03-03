@@ -1,6 +1,6 @@
 {
   "name": "sqip-plugin-blurhash",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "type": "module",
   "description": "SQIP plugin to generate BlurHash previews",
   "author": "Benedikt Rötsch <benedikt@hashbite.net>",
@@ -29,6 +29,6 @@
   "dependencies": {
     "blurhash": "^2.0.5",
     "sharp": "^0.34.5",
-    "sqip": "^1.0.0-alpha.51"
+    "sqip": "^1.0.0-beta.2"
   }
 }

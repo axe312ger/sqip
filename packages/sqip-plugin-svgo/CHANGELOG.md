@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.2](https://github.com/axe312ger/sqip/compare/sqip-plugin-svgo@1.0.0-alpha.54...sqip-plugin-svgo@1.0.0-beta.2) (2026-03-03)
+
+### Features
+
+- interactive Astro demo app with plugin comparison ([#374](https://github.com/axe312ger/sqip/issues/374)) ([9dbea31](https://github.com/axe312ger/sqip/commit/9dbea31b20c8ed30d07e7a373575a373db1b2019))
+
 # [1.0.0-alpha.54](https://github.com/axe312ger/sqip/compare/sqip-plugin-svgo@1.0.0-alpha.53...sqip-plugin-svgo@1.0.0-alpha.54) (2024-03-28)
 
 **Note:** Version bump only for package sqip-plugin-svgo

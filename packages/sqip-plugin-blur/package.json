@@ -1,6 +1,6 @@
 {
   "name": "sqip-plugin-blur",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "type": "module",
   "description": "SQIP plugin to add CSS or SVG blur effects to images",
   "author": "Benedikt Rötsch <benedikt@hashbite.net>",
@@ -28,6 +28,6 @@
     "url": "https://github.com/axe312ger/sqip/issues"
   },
   "dependencies": {
-    "sqip": "^1.0.0-alpha.51"
+    "sqip": "^1.0.0-beta.2"
   }
 }

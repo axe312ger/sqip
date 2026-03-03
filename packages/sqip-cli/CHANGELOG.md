@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.2](https://github.com/axe312ger/sqip/compare/sqip-cli@1.0.0-alpha.58...sqip-cli@1.0.0-beta.2) (2026-03-03)
+
+### Bug Fixes
+
+- fix all unit and e2e test failures ([65fa7f8](https://github.com/axe312ger/sqip/commit/65fa7f8568639b1ae75755f8b48411aad73e7e34))
+- include trailing-whitespace normalization in help test ([78ee9cb](https://github.com/axe312ger/sqip/commit/78ee9cb693ce4594a1d1032a9f727df88bff29aa))
+- normalize e2e help snapshot by collapsing whitespace and stripping ANSI codes ([645dadb](https://github.com/axe312ger/sqip/commit/645dadb120b5131f0aa77104cbf75deb23ed6f3d))
+- update CI config, blur snapshots, and normalize e2e help output ([3327986](https://github.com/axe312ger/sqip/commit/3327986e3405d4bda0f572093bd3588bc7dfd371))
+- update e2e help snapshot to match trailing-whitespace normalization ([04f6267](https://github.com/axe312ger/sqip/commit/04f62673b4c2fc724c59675b6d619780f91f33f9))
+
 # [1.0.0-alpha.58](https://github.com/axe312ger/sqip/compare/sqip-cli@1.0.0-alpha.57...sqip-cli@1.0.0-alpha.58) (2024-03-28)
 
 **Note:** Version bump only for package sqip-cli

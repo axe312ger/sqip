@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.2](https://github.com/axe312ger/sqip/compare/sqip-plugin-data-uri@1.0.0-alpha.52...sqip-plugin-data-uri@1.0.0-beta.2) (2026-03-03)
+
+### Bug Fixes
+
+- fix all unit and e2e test failures ([65fa7f8](https://github.com/axe312ger/sqip/commit/65fa7f8568639b1ae75755f8b48411aad73e7e34))
+
 # [1.0.0-alpha.52](https://github.com/axe312ger/sqip/compare/sqip-plugin-data-uri@1.0.0-alpha.51...sqip-plugin-data-uri@1.0.0-alpha.52) (2024-03-28)
 
 **Note:** Version bump only for package sqip-plugin-data-uri

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.2](https://github.com/axe312ger/sqip/compare/sqip-plugin-potrace@1.0.0-alpha.23...sqip-plugin-potrace@1.0.0-beta.2) (2026-03-03)
+
+**Note:** Version bump only for package sqip-plugin-potrace
+
 # [1.0.0-alpha.23](https://github.com/axe312ger/sqip/compare/sqip-plugin-potrace@1.0.0-alpha.22...sqip-plugin-potrace@1.0.0-alpha.23) (2024-03-28)
 
 **Note:** Version bump only for package sqip-plugin-potrace

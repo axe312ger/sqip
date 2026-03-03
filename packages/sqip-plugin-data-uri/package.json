@@ -1,6 +1,6 @@
 {
   "name": "sqip-plugin-data-uri",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "type": "module",
   "description": "SQIP plugin to convert SVG output into embeddable Data URI strings",
   "author": "Benedikt Rötsch <benedikt@hashbite.net>",
@@ -29,6 +29,6 @@
   },
   "dependencies": {
     "mini-svg-data-uri": "^1.4.4",
-    "sqip": "^1.0.0-alpha.51"
+    "sqip": "^1.0.0-beta.2"
   }
 }

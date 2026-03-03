@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.2](https://github.com/axe312ger/sqip/compare/sqip@1.0.0-alpha.51...sqip@1.0.0-beta.2) (2026-03-03)
+
+### Bug Fixes
+
+- **deps:** update dependency debug to v4.4.3 ([86ad406](https://github.com/axe312ger/sqip/commit/86ad406bce24f0049688c7996e0079372e93edda))
+- fix all unit and e2e test failures ([65fa7f8](https://github.com/axe312ger/sqip/commit/65fa7f8568639b1ae75755f8b48411aad73e7e34))
+- typos, broken links, toHex bug, and test cleanup ([8085204](https://github.com/axe312ger/sqip/commit/8085204e155132d6747b4227edea0379728d8c06))
+- typos, hyphenation, and parseableOutput test assertion ([af9eafc](https://github.com/axe312ger/sqip/commit/af9eafc7587ac5b7a005af0850eb6b6375ae5225))
+
 # [1.0.0-alpha.51](https://github.com/axe312ger/sqip/compare/sqip@1.0.0-alpha.50...sqip@1.0.0-alpha.51) (2024-03-28)
 
 ### Features

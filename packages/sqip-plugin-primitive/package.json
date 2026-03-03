@@ -1,6 +1,6 @@
 {
   "name": "sqip-plugin-primitive",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "type": "module",
   "description": "SQIP plugin to generate SVG shapes using Primitive",
   "author": "Benedikt Rötsch <benedikt@hashbite.net>",
@@ -33,6 +33,6 @@
     "debug": "^4.3.4",
     "execa": "^9.6.1",
     "sharp": "^0.34.5",
-    "sqip": "^1.0.0-alpha.51"
+    "sqip": "^1.0.0-beta.2"
   }
 }

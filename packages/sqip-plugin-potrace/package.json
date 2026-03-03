@@ -1,6 +1,6 @@
 {
   "name": "sqip-plugin-potrace",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "type": "module",
   "description": "SQIP plugin to trace raster images into SVG vector paths",
   "author": "Benedikt Rötsch <benedikt@hashbite.net>",
@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@gatsbyjs/potrace": "^3.0.0",
-    "sqip": "^1.0.0-alpha.51"
+    "sqip": "^1.0.0-beta.2"
   },
   "devDependencies": {
     "cheerio": "^1.0.0"

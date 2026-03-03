@@ -1,6 +1,6 @@
 {
   "name": "sqip-cli",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "type": "module",
   "description": "CLI for SQIP - SVG-Based Image Placeholder",
   "author": "Benedikt Rötsch <benedikt@hashbite.net>",
@@ -35,11 +35,11 @@
     "debug": "^4.3.4",
     "fs-extra": "^11.1.1",
     "pkg-up": "^5.0.0",
-    "sqip": "^1.0.0-alpha.51",
-    "sqip-plugin-blur": "^1.0.0-alpha.53",
-    "sqip-plugin-data-uri": "^1.0.0-alpha.52",
-    "sqip-plugin-primitive": "^1.0.0-alpha.53",
-    "sqip-plugin-svgo": "^1.0.0-alpha.54"
+    "sqip": "^1.0.0-beta.2",
+    "sqip-plugin-blur": "^1.0.0-beta.2",
+    "sqip-plugin-data-uri": "^1.0.0-beta.2",
+    "sqip-plugin-primitive": "^1.0.0-beta.2",
+    "sqip-plugin-svgo": "^1.0.0-beta.2"
   },
   "devDependencies": {
     "@types/command-line-args": "5.2.3",

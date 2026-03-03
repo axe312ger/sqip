@@ -1,6 +1,6 @@
 {
   "name": "sqip-loader",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "type": "module",
   "description": "Webpack/Turbopack loader for SQIP - SVG-Based Image Placeholder",
   "author": "Benedikt Rötsch <benedikt@hashbite.net>",
@@ -38,7 +38,7 @@
     "images"
   ],
   "dependencies": {
-    "sqip": "^1.0.0-alpha.51"
+    "sqip": "^1.0.0-beta.2"
   },
   "peerDependencies": {
     "webpack": "^5.0.0"
