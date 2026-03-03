@@ -57,6 +57,15 @@ const imageThumbs = dataset.map((img: any) => {
     )}
   </div>
 
+  <footer class="tracking-footer" id="tracking-footer">
+    <span class="tracking-status" id="tracking-status">
+      This site uses anonymized analytics to understand how the demo is used.
+    </span>
+    <button type="button" class="tracking-toggle" id="tracking-toggle">
+      Opt out
+    </button>
+  </footer>
+
   <script is:inline define:vars={{ dataset }}>
     if (dataset.length > 0) {
       var thumbBtns = document.querySelectorAll('[data-image-select]')
@@ -150,6 +159,7 @@ const imageThumbs = dataset.map((img: any) => {
               vcb.checked = checked
             }
           })
+          trackEvent('filter', 'category-toggle', cat, checked ? 1 : 0)
           updateVisibility()
         })
       })
@@ -162,6 +172,7 @@ const imageThumbs = dataset.map((img: any) => {
           var allChecked = allInCat.every(function(v) { return v.checked })
           var catCb = document.querySelector('[data-category-toggle="' + cat + '"]')
           if (catCb) catCb.checked = allChecked
+          trackEvent('filter', 'variant-toggle', cb.dataset.variantToggle, cb.checked ? 1 : 0)
           updateVisibility()
         })
       })
@@ -180,7 +191,13 @@ const imageThumbs = dataset.map((img: any) => {
         })
       }
 
-      blurToggle.addEventListener('change', applyBlur)
+      blurToggle.addEventListener('change', function() {
+        trackEvent('settings', 'blur-toggle', blurToggle.checked ? 'on' : 'off')
+        applyBlur()
+      })
+      blurSlider.addEventListener('change', function() {
+        trackEvent('settings', 'blur-amount', blurSlider.value + 'px', Number(blurSlider.value))
+      })
       blurSlider.addEventListener('input', function() {
         blurValue.textContent = blurSlider.value + 'px'
         if (blurToggle.checked) applyBlur()
@@ -195,7 +212,10 @@ const imageThumbs = dataset.map((img: any) => {
 
       sizeToggles.forEach(function(radio) {
         radio.addEventListener('change', function() {
-          if (radio.checked) applyCardSize(radio.value)
+          if (radio.checked) {
+            trackEvent('settings', 'card-size', radio.value + 'px', Number(radio.value))
+            applyCardSize(radio.value)
+          }
         })
       })
 
@@ -205,7 +225,15 @@ const imageThumbs = dataset.map((img: any) => {
           selectedImage = btn.dataset.imageSelect
           thumbBtns.forEach(function(b) { b.classList.remove('active') })
           btn.classList.add('active')
+          trackEvent('navigation', 'image-select', selectedImage)
           updateVisibility()
+        })
+      })
+
+      // Track clicks on image cards
+      document.querySelectorAll('.card').forEach(function(card) {
+        card.addEventListener('click', function() {
+          trackEvent('interaction', 'card-click', card.dataset.variant)
         })
       })
 
@@ -213,6 +241,40 @@ const imageThumbs = dataset.map((img: any) => {
       applyCardSize(150)
       updateVisibility()
     }
+
+    // Tracking opt-out toggle
+    (function initOptOut() {
+      var btn = document.getElementById('tracking-toggle')
+      var status = document.getElementById('tracking-status')
+      var footer = document.getElementById('tracking-footer')
+      if (!btn || !status || !footer) return
+
+      var optedOut = localStorage.getItem('matomo-opt-out') === '1'
+
+      function render() {
+        if (optedOut) {
+          status.textContent = 'Anonymized analytics are disabled.'
+          btn.textContent = 'Opt in'
+        } else {
+          status.textContent = 'This site uses anonymized analytics to understand how the demo is used.'
+          btn.textContent = 'Opt out'
+        }
+      }
+
+      btn.addEventListener('click', function() {
+        optedOut = !optedOut
+        if (optedOut) {
+          localStorage.setItem('matomo-opt-out', '1')
+          if (window._paq) _paq.push(['optUserOut'])
+        } else {
+          localStorage.removeItem('matomo-opt-out')
+          if (window._paq) _paq.push(['forgetUserOptOut'])
+        }
+        render()
+      })
+
+      render()
+    })()
   </script>
 </Layout>
 
@@ -255,5 +317,33 @@ const imageThumbs = dataset.map((img: any) => {
     border-radius: 6px;
     display: inline-block;
     font-family: var(--font-mono);
+  }
+
+  .tracking-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    margin-top: 2rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+  }
+
+  .tracking-toggle {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    padding: 0.2rem 0.6rem;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .tracking-toggle:hover {
+    color: var(--text);
+    border-color: var(--text-muted);
   }
 </style>

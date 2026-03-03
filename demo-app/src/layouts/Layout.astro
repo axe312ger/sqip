@@ -6,6 +6,9 @@ interface Props {
 }
 
 const { title } = Astro.props
+
+const matomoUrl = import.meta.env.PUBLIC_MATOMO_URL || ''
+const matomoSiteId = import.meta.env.PUBLIC_MATOMO_SITE_ID || ''
 ---
 
 <!doctype html>
@@ -18,5 +21,42 @@ const { title } = Astro.props
   </head>
   <body>
     <slot />
+    <script is:inline define:vars={{ matomoUrl, matomoSiteId }}>
+      // Matomo analytics — only initialized when URL and site ID are configured
+      window._paq = window._paq || [];
+
+      (function initMatomo() {
+        if (!matomoUrl || !matomoSiteId) return;
+
+        var u = matomoUrl.replace(/\/?$/, '/');
+        _paq.push(['setTrackerUrl', u + 'matomo.php']);
+        _paq.push(['setSiteId', matomoSiteId]);
+
+        // Respect opt-out stored in localStorage
+        if (localStorage.getItem('matomo-opt-out') === '1') {
+          _paq.push(['optUserOut']);
+        }
+
+        // Track initial page view
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+
+        // Load tracker script
+        var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+        g.async = true;
+        g.src = u + 'matomo.js';
+        s.parentNode.insertBefore(g, s);
+      })();
+
+      // Helper for tracking events throughout the app
+      window.trackEvent = function(category, action, name, value) {
+        if (window._paq) {
+          var args = ['trackEvent', category, action];
+          if (name != null) args.push(String(name));
+          if (value != null) args.push(value);
+          _paq.push(args);
+        }
+      };
+    </script>
   </body>
 </html>
