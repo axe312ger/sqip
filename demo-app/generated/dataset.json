@@ -35,7 +35,7 @@
           "width": 300,
           "height": 225
         },
-        "processTimeMs": 23,
+        "processTimeMs": 20,
         "configSnippet": "import sharp from 'sharp'\nawait sharp('image.jpg').resize(300).jpeg().toBuffer()",
         "dependencies": [
           "sharp"
@@ -59,7 +59,7 @@
           "width": 16,
           "height": 12
         },
-        "processTimeMs": 25,
+        "processTimeMs": 22,
         "configSnippet": "import lqip from 'lqip-modern'\nconst { content } = await lqip('image.jpg')",
         "dependencies": [
           "sharp"
@@ -83,7 +83,7 @@
           "width": 32,
           "height": 24
         },
-        "processTimeMs": 21,
+        "processTimeMs": 19,
         "configSnippet": "import lqip from 'lqip-modern'\nconst { content } = await lqip('image.jpg', { resize: 32 })",
         "dependencies": [
           "sharp"
@@ -107,7 +107,7 @@
           "width": 16,
           "height": 12
         },
-        "processTimeMs": 19,
+        "processTimeMs": 18,
         "configSnippet": "import lqip from 'lqip-modern'\nconst { content } = await lqip('image.jpg', { outputFormat: 'jpeg' })",
         "dependencies": [
           "sharp"
@@ -125,15 +125,15 @@
         "fileName": "aaron-burden-151465-unsplash-sqip-default.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 750,
-          "gzipBytes": 378,
-          "brotliBytes": 338
+          "originalBytes": 698,
+          "gzipBytes": 374,
+          "brotliBytes": 329
         },
         "dimensions": {
           "width": 300,
           "height": 225
         },
-        "processTimeMs": 1080,
+        "processTimeMs": 970,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['primitive', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "Go",
@@ -160,7 +160,7 @@
           "width": 300,
           "height": 225
         },
-        "processTimeMs": 138,
+        "processTimeMs": 150,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['pixels', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "sharp"
@@ -186,7 +186,7 @@
           "width": 300,
           "height": 225
         },
-        "processTimeMs": 320,
+        "processTimeMs": 315,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['potrace', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "sharp"
@@ -204,15 +204,15 @@
         "fileName": "aaron-burden-151465-unsplash-sqip-triangle.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 1419,
-          "gzipBytes": 505,
-          "brotliBytes": 461
+          "originalBytes": 1389,
+          "gzipBytes": 487,
+          "brotliBytes": 444
         },
         "dimensions": {
           "width": 300,
           "height": 225
         },
-        "processTimeMs": 266,
+        "processTimeMs": 225,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['triangle', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "Go",
@@ -237,7 +237,7 @@
           "width": 32,
           "height": 24
         },
-        "processTimeMs": 110,
+        "processTimeMs": 108,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['blurhash'],\n})",
         "dependencies": [
           "sharp"
@@ -261,7 +261,7 @@
           "width": 64,
           "height": 48
         },
-        "processTimeMs": 139,
+        "processTimeMs": 117,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'blurhash', options: { width: 10 } },\n  ],\n})",
         "dependencies": [
           "sharp"
@@ -280,15 +280,15 @@
         "fileName": "aaron-burden-151465-unsplash-sqip-default-blur.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 874,
-          "gzipBytes": 440,
-          "brotliBytes": 390
+          "originalBytes": 867,
+          "gzipBytes": 426,
+          "brotliBytes": 376
         },
         "dimensions": {
           "width": 300,
           "height": 225
         },
-        "processTimeMs": 710,
+        "processTimeMs": 731,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['primitive', 'blur', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "Go",
@@ -301,23 +301,23 @@
         "title": "SQIP Pixels + Blur",
         "pluginChain": [
           "pixels",
-          "blur(8)",
+          "blur",
           "svgo",
           "data-uri"
         ],
         "fileName": "aaron-burden-151465-unsplash-sqip-pixels-blur.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 2420,
-          "gzipBytes": 593,
-          "brotliBytes": 475
+          "originalBytes": 2421,
+          "gzipBytes": 594,
+          "brotliBytes": 469
         },
         "dimensions": {
           "width": 300,
           "height": 225
         },
-        "processTimeMs": 120,
-        "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    'pixels',\n    { name: 'blur', options: { blur: 8 } },\n    'svgo', 'data-uri',\n  ],\n})",
+        "processTimeMs": 124,
+        "configSnippet": "import { sqip } from 'sqip'\\nconst result = await sqip({\\n  input: 'image.jpg',\\n  plugins: ['pixels', 'blur', 'svgo', 'data-uri'],\\n})",
         "dependencies": [
           "sharp"
         ]
@@ -343,7 +343,7 @@
           "width": 300,
           "height": 225
         },
-        "processTimeMs": 259,
+        "processTimeMs": 274,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    'potrace',\n    { name: 'blur', options: { blur: 6 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "sharp"
@@ -355,23 +355,23 @@
         "title": "SQIP Triangle + Blur",
         "pluginChain": [
           "triangle",
-          "blur",
+          "blur(20)",
           "svgo",
           "data-uri"
         ],
         "fileName": "aaron-burden-151465-unsplash-sqip-triangle-blur.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 1518,
-          "gzipBytes": 549,
-          "brotliBytes": 500
+          "originalBytes": 1511,
+          "gzipBytes": 559,
+          "brotliBytes": 507
         },
         "dimensions": {
           "width": 300,
           "height": 225
         },
-        "processTimeMs": 132,
-        "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['triangle', 'blur', 'svgo', 'data-uri'],\n})",
+        "processTimeMs": 133,
+        "configSnippet": "import { sqip } from 'sqip'\\nconst result = await sqip({\\n  input: 'image.jpg',\\n  plugins: [\\n    'triangle',\\n    { name: 'blur', options: { blur: 20 } },\\n    'svgo', 'data-uri',\\n  ],\\n})",
         "dependencies": [
           "Go",
           "sharp"
@@ -390,15 +390,15 @@
         "fileName": "aaron-burden-151465-unsplash-sqip-primitive-circles-blur.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 1712,
-          "gzipBytes": 599,
-          "brotliBytes": 490
+          "originalBytes": 1716,
+          "gzipBytes": 582,
+          "brotliBytes": 484
         },
         "dimensions": {
           "width": 300,
           "height": 225
         },
-        "processTimeMs": 1465,
+        "processTimeMs": 1450,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'primitive', options: { numberOfPrimitives: 30, mode: 4 } },\n    { name: 'blur', options: { blur: 10 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "Go",
@@ -425,7 +425,7 @@
           "width": 300,
           "height": 225
         },
-        "processTimeMs": 1225,
+        "processTimeMs": 1348,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'potrace', options: { posterize: true } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "sharp"
@@ -443,15 +443,15 @@
         "fileName": "aaron-burden-151465-unsplash-sqip-primitive-art.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 2943,
-          "gzipBytes": 1180,
-          "brotliBytes": 1045
+          "originalBytes": 2907,
+          "gzipBytes": 1171,
+          "brotliBytes": 1051
         },
         "dimensions": {
           "width": 300,
           "height": 225
         },
-        "processTimeMs": 1400,
+        "processTimeMs": 1543,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'primitive', options: { numberOfPrimitives: 50, mode: 1 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "Go",
@@ -470,15 +470,15 @@
         "fileName": "aaron-burden-151465-unsplash-sqip-primitive-circles.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 1622,
-          "gzipBytes": 564,
-          "brotliBytes": 455
+          "originalBytes": 1623,
+          "gzipBytes": 553,
+          "brotliBytes": 463
         },
         "dimensions": {
           "width": 300,
           "height": 225
         },
-        "processTimeMs": 1458,
+        "processTimeMs": 1404,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'primitive', options: { numberOfPrimitives: 30, mode: 4 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "Go",
@@ -497,15 +497,15 @@
         "fileName": "aaron-burden-151465-unsplash-sqip-triangle-art.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 75475,
-          "gzipBytes": 16985,
-          "brotliBytes": 14010
+          "originalBytes": 75379,
+          "gzipBytes": 16962,
+          "brotliBytes": 13963
         },
         "dimensions": {
           "width": 300,
           "height": 225
         },
-        "processTimeMs": 297,
+        "processTimeMs": 317,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'triangle', options: { pts: 420 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "Go",
@@ -532,7 +532,7 @@
           "width": 300,
           "height": 225
         },
-        "processTimeMs": 151,
+        "processTimeMs": 132,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'pixels', options: { pixels: 16 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "sharp"
@@ -550,15 +550,15 @@
         "fileName": "aaron-burden-151465-unsplash-blur-none.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 854,
-          "gzipBytes": 383,
-          "brotliBytes": 330
+          "originalBytes": 883,
+          "gzipBytes": 388,
+          "brotliBytes": 334
         },
         "dimensions": {
           "width": 300,
           "height": 225
         },
-        "processTimeMs": 3,
+        "processTimeMs": 4,
         "configSnippet": "import { sqip } from 'sqip'\\nconst result = await sqip({\\n  input: 'image.jpg',\\n  plugins: ['primitive', 'svgo', 'data-uri'],\\n})",
         "dependencies": [
           "Go",
@@ -578,9 +578,9 @@
         "fileName": "aaron-burden-151465-unsplash-blur-legacy.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 1059,
-          "gzipBytes": 514,
-          "brotliBytes": 443
+          "originalBytes": 1088,
+          "gzipBytes": 523,
+          "brotliBytes": 447
         },
         "dimensions": {
           "width": 300,
@@ -606,15 +606,15 @@
         "fileName": "aaron-burden-151465-unsplash-blur-css.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 948,
-          "gzipBytes": 417,
-          "brotliBytes": 364
+          "originalBytes": 977,
+          "gzipBytes": 424,
+          "brotliBytes": 372
         },
         "dimensions": {
           "width": 300,
           "height": 225
         },
-        "processTimeMs": 4,
+        "processTimeMs": 5,
         "configSnippet": "import { sqip } from 'sqip'\\nconst result = await sqip({\\n  input: 'image.jpg',\\n  plugins: [\\n    'primitive', 'blur', 'svgo', 'data-uri',\\n  ],\\n})",
         "dependencies": [
           "Go",
@@ -633,15 +633,15 @@
         "fileName": "aaron-burden-151465-unsplash-blur-browser.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 854,
-          "gzipBytes": 383,
-          "brotliBytes": 330
+          "originalBytes": 883,
+          "gzipBytes": 388,
+          "brotliBytes": 334
         },
         "dimensions": {
           "width": 300,
           "height": 225
         },
-        "processTimeMs": 3,
+        "processTimeMs": 4,
         "configSnippet": "<!-- No blur plugin needed -->\\n<img\\n  src=\"placeholder.svg\"\\n  style=\"filter: blur(12px);\"\\n/>",
         "dependencies": [
           "Go",
@@ -686,7 +686,7 @@
           "width": 300,
           "height": 225
         },
-        "processTimeMs": 15,
+        "processTimeMs": 14,
         "configSnippet": "import sharp from 'sharp'\nawait sharp('image.jpg').resize(300).jpeg().toBuffer()",
         "dependencies": [
           "sharp"
@@ -710,7 +710,7 @@
           "width": 16,
           "height": 12
         },
-        "processTimeMs": 14,
+        "processTimeMs": 13,
         "configSnippet": "import lqip from 'lqip-modern'\nconst { content } = await lqip('image.jpg')",
         "dependencies": [
           "sharp"
@@ -776,15 +776,15 @@
         "fileName": "anthony-esau-173126-unsplash-sqip-default.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 761,
-          "gzipBytes": 416,
-          "brotliBytes": 382
+          "originalBytes": 728,
+          "gzipBytes": 384,
+          "brotliBytes": 346
         },
         "dimensions": {
           "width": 300,
           "height": 225
         },
-        "processTimeMs": 795,
+        "processTimeMs": 771,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['primitive', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "Go",
@@ -811,7 +811,7 @@
           "width": 300,
           "height": 225
         },
-        "processTimeMs": 100,
+        "processTimeMs": 104,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['pixels', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "sharp"
@@ -837,7 +837,7 @@
           "width": 300,
           "height": 225
         },
-        "processTimeMs": 145,
+        "processTimeMs": 180,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['potrace', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "sharp"
@@ -855,15 +855,15 @@
         "fileName": "anthony-esau-173126-unsplash-sqip-triangle.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 1460,
-          "gzipBytes": 517,
-          "brotliBytes": 462
+          "originalBytes": 1455,
+          "gzipBytes": 511,
+          "brotliBytes": 452
         },
         "dimensions": {
           "width": 300,
           "height": 225
         },
-        "processTimeMs": 112,
+        "processTimeMs": 118,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['triangle', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "Go",
@@ -888,7 +888,7 @@
           "width": 32,
           "height": 24
         },
-        "processTimeMs": 90,
+        "processTimeMs": 93,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['blurhash'],\n})",
         "dependencies": [
           "sharp"
@@ -912,7 +912,7 @@
           "width": 64,
           "height": 48
         },
-        "processTimeMs": 104,
+        "processTimeMs": 102,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'blurhash', options: { width: 10 } },\n  ],\n})",
         "dependencies": [
           "sharp"
@@ -931,15 +931,15 @@
         "fileName": "anthony-esau-173126-unsplash-sqip-default-blur.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 972,
-          "gzipBytes": 427,
-          "brotliBytes": 375
+          "originalBytes": 853,
+          "gzipBytes": 415,
+          "brotliBytes": 372
         },
         "dimensions": {
           "width": 300,
           "height": 225
         },
-        "processTimeMs": 865,
+        "processTimeMs": 745,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['primitive', 'blur', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "Go",
@@ -952,23 +952,23 @@
         "title": "SQIP Pixels + Blur",
         "pluginChain": [
           "pixels",
-          "blur(8)",
+          "blur",
           "svgo",
           "data-uri"
         ],
         "fileName": "anthony-esau-173126-unsplash-sqip-pixels-blur.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 2420,
+          "originalBytes": 2421,
           "gzipBytes": 594,
-          "brotliBytes": 483
+          "brotliBytes": 482
         },
         "dimensions": {
           "width": 300,
           "height": 225
         },
-        "processTimeMs": 107,
-        "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    'pixels',\n    { name: 'blur', options: { blur: 8 } },\n    'svgo', 'data-uri',\n  ],\n})",
+        "processTimeMs": 106,
+        "configSnippet": "import { sqip } from 'sqip'\\nconst result = await sqip({\\n  input: 'image.jpg',\\n  plugins: ['pixels', 'blur', 'svgo', 'data-uri'],\\n})",
         "dependencies": [
           "sharp"
         ]
@@ -994,7 +994,7 @@
           "width": 300,
           "height": 225
         },
-        "processTimeMs": 159,
+        "processTimeMs": 168,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    'potrace',\n    { name: 'blur', options: { blur: 6 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "sharp"
@@ -1006,23 +1006,23 @@
         "title": "SQIP Triangle + Blur",
         "pluginChain": [
           "triangle",
-          "blur",
+          "blur(20)",
           "svgo",
           "data-uri"
         ],
         "fileName": "anthony-esau-173126-unsplash-sqip-triangle-blur.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 1573,
-          "gzipBytes": 562,
-          "brotliBytes": 494
+          "originalBytes": 1534,
+          "gzipBytes": 548,
+          "brotliBytes": 495
         },
         "dimensions": {
           "width": 300,
           "height": 225
         },
-        "processTimeMs": 119,
-        "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['triangle', 'blur', 'svgo', 'data-uri'],\n})",
+        "processTimeMs": 117,
+        "configSnippet": "import { sqip } from 'sqip'\\nconst result = await sqip({\\n  input: 'image.jpg',\\n  plugins: [\\n    'triangle',\\n    { name: 'blur', options: { blur: 20 } },\\n    'svgo', 'data-uri',\\n  ],\\n})",
         "dependencies": [
           "Go",
           "sharp"
@@ -1041,15 +1041,15 @@
         "fileName": "anthony-esau-173126-unsplash-sqip-primitive-circles-blur.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 1682,
-          "gzipBytes": 544,
-          "brotliBytes": 468
+          "originalBytes": 1671,
+          "gzipBytes": 539,
+          "brotliBytes": 459
         },
         "dimensions": {
           "width": 300,
           "height": 225
         },
-        "processTimeMs": 1658,
+        "processTimeMs": 1452,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'primitive', options: { numberOfPrimitives: 30, mode: 4 } },\n    { name: 'blur', options: { blur: 10 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "Go",
@@ -1076,7 +1076,7 @@
           "width": 300,
           "height": 225
         },
-        "processTimeMs": 1020,
+        "processTimeMs": 1009,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'potrace', options: { posterize: true } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "sharp"
@@ -1094,15 +1094,15 @@
         "fileName": "anthony-esau-173126-unsplash-sqip-primitive-art.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 2981,
-          "gzipBytes": 1185,
-          "brotliBytes": 1063
+          "originalBytes": 2965,
+          "gzipBytes": 1202,
+          "brotliBytes": 1061
         },
         "dimensions": {
           "width": 300,
           "height": 225
         },
-        "processTimeMs": 1608,
+        "processTimeMs": 1546,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'primitive', options: { numberOfPrimitives: 50, mode: 1 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "Go",
@@ -1121,15 +1121,15 @@
         "fileName": "anthony-esau-173126-unsplash-sqip-primitive-circles.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 1609,
-          "gzipBytes": 528,
-          "brotliBytes": 443
+          "originalBytes": 1588,
+          "gzipBytes": 532,
+          "brotliBytes": 448
         },
         "dimensions": {
           "width": 300,
           "height": 225
         },
-        "processTimeMs": 1490,
+        "processTimeMs": 1529,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'primitive', options: { numberOfPrimitives: 30, mode: 4 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "Go",
@@ -1148,15 +1148,15 @@
         "fileName": "anthony-esau-173126-unsplash-sqip-triangle-art.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 76404,
-          "gzipBytes": 16916,
-          "brotliBytes": 13741
+          "originalBytes": 76458,
+          "gzipBytes": 16824,
+          "brotliBytes": 13652
         },
         "dimensions": {
           "width": 300,
           "height": 225
         },
-        "processTimeMs": 331,
+        "processTimeMs": 285,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'triangle', options: { pts: 420 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "Go",
@@ -1183,7 +1183,7 @@
           "width": 300,
           "height": 225
         },
-        "processTimeMs": 120,
+        "processTimeMs": 121,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'pixels', options: { pixels: 16 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "sharp"
@@ -1201,15 +1201,15 @@
         "fileName": "anthony-esau-173126-unsplash-blur-none.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 710,
-          "gzipBytes": 381,
-          "brotliBytes": 343
+          "originalBytes": 693,
+          "gzipBytes": 374,
+          "brotliBytes": 337
         },
         "dimensions": {
           "width": 300,
           "height": 225
         },
-        "processTimeMs": 4,
+        "processTimeMs": 3,
         "configSnippet": "import { sqip } from 'sqip'\\nconst result = await sqip({\\n  input: 'image.jpg',\\n  plugins: ['primitive', 'svgo', 'data-uri'],\\n})",
         "dependencies": [
           "Go",
@@ -1229,9 +1229,9 @@
         "fileName": "anthony-esau-173126-unsplash-blur-legacy.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 915,
-          "gzipBytes": 507,
-          "brotliBytes": 450
+          "originalBytes": 898,
+          "gzipBytes": 502,
+          "brotliBytes": 449
         },
         "dimensions": {
           "width": 300,
@@ -1257,9 +1257,9 @@
         "fileName": "anthony-esau-173126-unsplash-blur-css.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 804,
-          "gzipBytes": 412,
-          "brotliBytes": 366
+          "originalBytes": 787,
+          "gzipBytes": 404,
+          "brotliBytes": 361
         },
         "dimensions": {
           "width": 300,
@@ -1284,15 +1284,15 @@
         "fileName": "anthony-esau-173126-unsplash-blur-browser.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 710,
-          "gzipBytes": 381,
-          "brotliBytes": 343
+          "originalBytes": 693,
+          "gzipBytes": 374,
+          "brotliBytes": 337
         },
         "dimensions": {
           "width": 300,
           "height": 225
         },
-        "processTimeMs": 4,
+        "processTimeMs": 3,
         "configSnippet": "<!-- No blur plugin needed -->\\n<img\\n  src=\"placeholder.svg\"\\n  style=\"filter: blur(12px);\"\\n/>",
         "dependencies": [
           "Go",
@@ -1337,7 +1337,7 @@
           "width": 300,
           "height": 375
         },
-        "processTimeMs": 24,
+        "processTimeMs": 23,
         "configSnippet": "import sharp from 'sharp'\nawait sharp('image.jpg').resize(300).jpeg().toBuffer()",
         "dependencies": [
           "sharp"
@@ -1361,7 +1361,7 @@
           "width": 13,
           "height": 16
         },
-        "processTimeMs": 23,
+        "processTimeMs": 21,
         "configSnippet": "import lqip from 'lqip-modern'\nconst { content } = await lqip('image.jpg')",
         "dependencies": [
           "sharp"
@@ -1427,15 +1427,15 @@
         "fileName": "aron-visuals-974734-unsplash-sqip-default.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 686,
-          "gzipBytes": 377,
-          "brotliBytes": 337
+          "originalBytes": 848,
+          "gzipBytes": 378,
+          "brotliBytes": 330
         },
         "dimensions": {
           "width": 298,
           "height": 375
         },
-        "processTimeMs": 847,
+        "processTimeMs": 1069,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['primitive', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "Go",
@@ -1488,7 +1488,7 @@
           "width": 300,
           "height": 375
         },
-        "processTimeMs": 187,
+        "processTimeMs": 238,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['potrace', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "sharp"
@@ -1506,15 +1506,15 @@
         "fileName": "aron-visuals-974734-unsplash-sqip-triangle.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 1413,
-          "gzipBytes": 506,
-          "brotliBytes": 462
+          "originalBytes": 1406,
+          "gzipBytes": 489,
+          "brotliBytes": 446
         },
         "dimensions": {
           "width": 300,
           "height": 375
         },
-        "processTimeMs": 190,
+        "processTimeMs": 177,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['triangle', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "Go",
@@ -1539,7 +1539,7 @@
           "width": 32,
           "height": 40
         },
-        "processTimeMs": 145,
+        "processTimeMs": 139,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['blurhash'],\n})",
         "dependencies": [
           "sharp"
@@ -1563,7 +1563,7 @@
           "width": 64,
           "height": 80
         },
-        "processTimeMs": 168,
+        "processTimeMs": 163,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'blurhash', options: { width: 10 } },\n  ],\n})",
         "dependencies": [
           "sharp"
@@ -1582,15 +1582,15 @@
         "fileName": "aron-visuals-974734-unsplash-sqip-default-blur.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 821,
-          "gzipBytes": 413,
-          "brotliBytes": 370
+          "originalBytes": 872,
+          "gzipBytes": 417,
+          "brotliBytes": 381
         },
         "dimensions": {
           "width": 298,
           "height": 375
         },
-        "processTimeMs": 1155,
+        "processTimeMs": 1094,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['primitive', 'blur', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "Go",
@@ -1603,23 +1603,23 @@
         "title": "SQIP Pixels + Blur",
         "pluginChain": [
           "pixels",
-          "blur(8)",
+          "blur",
           "svgo",
           "data-uri"
         ],
         "fileName": "aron-visuals-974734-unsplash-sqip-pixels-blur.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 2927,
-          "gzipBytes": 630,
-          "brotliBytes": 499
+          "originalBytes": 2928,
+          "gzipBytes": 631,
+          "brotliBytes": 497
         },
         "dimensions": {
           "width": 300,
           "height": 375
         },
-        "processTimeMs": 165,
-        "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    'pixels',\n    { name: 'blur', options: { blur: 8 } },\n    'svgo', 'data-uri',\n  ],\n})",
+        "processTimeMs": 159,
+        "configSnippet": "import { sqip } from 'sqip'\\nconst result = await sqip({\\n  input: 'image.jpg',\\n  plugins: ['pixels', 'blur', 'svgo', 'data-uri'],\\n})",
         "dependencies": [
           "sharp"
         ]
@@ -1645,7 +1645,7 @@
           "width": 300,
           "height": 375
         },
-        "processTimeMs": 189,
+        "processTimeMs": 180,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    'potrace',\n    { name: 'blur', options: { blur: 6 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "sharp"
@@ -1657,23 +1657,23 @@
         "title": "SQIP Triangle + Blur",
         "pluginChain": [
           "triangle",
-          "blur",
+          "blur(20)",
           "svgo",
           "data-uri"
         ],
         "fileName": "aron-visuals-974734-unsplash-sqip-triangle-blur.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 1509,
-          "gzipBytes": 557,
-          "brotliBytes": 502
+          "originalBytes": 1510,
+          "gzipBytes": 558,
+          "brotliBytes": 497
         },
         "dimensions": {
           "width": 300,
           "height": 375
         },
-        "processTimeMs": 200,
-        "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['triangle', 'blur', 'svgo', 'data-uri'],\n})",
+        "processTimeMs": 213,
+        "configSnippet": "import { sqip } from 'sqip'\\nconst result = await sqip({\\n  input: 'image.jpg',\\n  plugins: [\\n    'triangle',\\n    { name: 'blur', options: { blur: 20 } },\\n    'svgo', 'data-uri',\\n  ],\\n})",
         "dependencies": [
           "Go",
           "sharp"
@@ -1692,15 +1692,15 @@
         "fileName": "aron-visuals-974734-unsplash-sqip-primitive-circles-blur.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 1691,
-          "gzipBytes": 572,
-          "brotliBytes": 476
+          "originalBytes": 1682,
+          "gzipBytes": 581,
+          "brotliBytes": 478
         },
         "dimensions": {
           "width": 298,
           "height": 375
         },
-        "processTimeMs": 1733,
+        "processTimeMs": 1713,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'primitive', options: { numberOfPrimitives: 30, mode: 4 } },\n    { name: 'blur', options: { blur: 10 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "Go",
@@ -1727,7 +1727,7 @@
           "width": 300,
           "height": 375
         },
-        "processTimeMs": 1140,
+        "processTimeMs": 1151,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'potrace', options: { posterize: true } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "sharp"
@@ -1745,15 +1745,15 @@
         "fileName": "aron-visuals-974734-unsplash-sqip-primitive-art.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 3034,
-          "gzipBytes": 1223,
-          "brotliBytes": 1104
+          "originalBytes": 3019,
+          "gzipBytes": 1205,
+          "brotliBytes": 1082
         },
         "dimensions": {
           "width": 298,
           "height": 375
         },
-        "processTimeMs": 2403,
+        "processTimeMs": 2332,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'primitive', options: { numberOfPrimitives: 50, mode: 1 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "Go",
@@ -1772,15 +1772,15 @@
         "fileName": "aron-visuals-974734-unsplash-sqip-primitive-circles.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 1584,
-          "gzipBytes": 547,
-          "brotliBytes": 448
+          "originalBytes": 1573,
+          "gzipBytes": 533,
+          "brotliBytes": 446
         },
         "dimensions": {
           "width": 298,
           "height": 375
         },
-        "processTimeMs": 1745,
+        "processTimeMs": 1820,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'primitive', options: { numberOfPrimitives: 30, mode: 4 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "Go",
@@ -1799,15 +1799,15 @@
         "fileName": "aron-visuals-974734-unsplash-sqip-triangle-art.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 74515,
-          "gzipBytes": 16711,
+          "originalBytes": 74220,
+          "gzipBytes": 16606,
           "brotliBytes": 13508
         },
         "dimensions": {
           "width": 300,
           "height": 375
         },
-        "processTimeMs": 388,
+        "processTimeMs": 392,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'triangle', options: { pts: 420 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "Go",
@@ -1834,7 +1834,7 @@
           "width": 300,
           "height": 375
         },
-        "processTimeMs": 175,
+        "processTimeMs": 186,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'pixels', options: { pixels: 16 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "sharp"
@@ -1852,15 +1852,15 @@
         "fileName": "aron-visuals-974734-unsplash-blur-none.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 658,
-          "gzipBytes": 379,
-          "brotliBytes": 344
+          "originalBytes": 778,
+          "gzipBytes": 395,
+          "brotliBytes": 356
         },
         "dimensions": {
           "width": 298,
           "height": 375
         },
-        "processTimeMs": 3,
+        "processTimeMs": 4,
         "configSnippet": "import { sqip } from 'sqip'\\nconst result = await sqip({\\n  input: 'image.jpg',\\n  plugins: ['primitive', 'svgo', 'data-uri'],\\n})",
         "dependencies": [
           "Go",
@@ -1880,15 +1880,15 @@
         "fileName": "aron-visuals-974734-unsplash-blur-legacy.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 863,
-          "gzipBytes": 503,
-          "brotliBytes": 452
+          "originalBytes": 983,
+          "gzipBytes": 522,
+          "brotliBytes": 468
         },
         "dimensions": {
           "width": 298,
           "height": 375
         },
-        "processTimeMs": 4,
+        "processTimeMs": 5,
         "configSnippet": "import { sqip } from 'sqip'\\nconst result = await sqip({\\n  input: 'image.jpg',\\n  plugins: [\\n    'primitive',\\n    { name: 'blur', options: { legacyBlur: true } },\\n    'svgo', 'data-uri',\\n  ],\\n})",
         "dependencies": [
           "Go",
@@ -1908,9 +1908,9 @@
         "fileName": "aron-visuals-974734-unsplash-blur-css.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 752,
-          "gzipBytes": 409,
-          "brotliBytes": 374
+          "originalBytes": 872,
+          "gzipBytes": 424,
+          "brotliBytes": 376
         },
         "dimensions": {
           "width": 298,
@@ -1935,15 +1935,15 @@
         "fileName": "aron-visuals-974734-unsplash-blur-browser.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 658,
-          "gzipBytes": 379,
-          "brotliBytes": 344
+          "originalBytes": 778,
+          "gzipBytes": 395,
+          "brotliBytes": 356
         },
         "dimensions": {
           "width": 298,
           "height": 375
         },
-        "processTimeMs": 4,
+        "processTimeMs": 3,
         "configSnippet": "<!-- No blur plugin needed -->\\n<img\\n  src=\"placeholder.svg\"\\n  style=\"filter: blur(12px);\"\\n/>",
         "dependencies": [
           "Go",
@@ -2078,15 +2078,15 @@
         "fileName": "beach-sqip-default.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 732,
-          "gzipBytes": 396,
-          "brotliBytes": 351
+          "originalBytes": 753,
+          "gzipBytes": 393,
+          "brotliBytes": 355
         },
         "dimensions": {
           "width": 300,
           "height": 187
         },
-        "processTimeMs": 454,
+        "processTimeMs": 499,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['primitive', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "Go",
@@ -2113,7 +2113,7 @@
           "width": 300,
           "height": 188
         },
-        "processTimeMs": 34,
+        "processTimeMs": 39,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['pixels', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "sharp"
@@ -2157,15 +2157,15 @@
         "fileName": "beach-sqip-triangle.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 1468,
-          "gzipBytes": 511,
-          "brotliBytes": 458
+          "originalBytes": 1435,
+          "gzipBytes": 500,
+          "brotliBytes": 439
         },
         "dimensions": {
           "width": 300,
           "height": 188
         },
-        "processTimeMs": 47,
+        "processTimeMs": 49,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['triangle', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "Go",
@@ -2190,7 +2190,7 @@
           "width": 32,
           "height": 20
         },
-        "processTimeMs": 23,
+        "processTimeMs": 25,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['blurhash'],\n})",
         "dependencies": [
           "sharp"
@@ -2233,15 +2233,15 @@
         "fileName": "beach-sqip-default-blur.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 826,
-          "gzipBytes": 440,
-          "brotliBytes": 403
+          "originalBytes": 749,
+          "gzipBytes": 387,
+          "brotliBytes": 350
         },
         "dimensions": {
           "width": 300,
           "height": 187
         },
-        "processTimeMs": 452,
+        "processTimeMs": 421,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['primitive', 'blur', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "Go",
@@ -2254,23 +2254,23 @@
         "title": "SQIP Pixels + Blur",
         "pluginChain": [
           "pixels",
-          "blur(8)",
+          "blur",
           "svgo",
           "data-uri"
         ],
         "fileName": "beach-sqip-pixels-blur.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 1960,
+          "originalBytes": 1961,
           "gzipBytes": 523,
-          "brotliBytes": 432
+          "brotliBytes": 429
         },
         "dimensions": {
           "width": 300,
           "height": 188
         },
-        "processTimeMs": 36,
-        "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    'pixels',\n    { name: 'blur', options: { blur: 8 } },\n    'svgo', 'data-uri',\n  ],\n})",
+        "processTimeMs": 41,
+        "configSnippet": "import { sqip } from 'sqip'\\nconst result = await sqip({\\n  input: 'image.jpg',\\n  plugins: ['pixels', 'blur', 'svgo', 'data-uri'],\\n})",
         "dependencies": [
           "sharp"
         ]
@@ -2296,7 +2296,7 @@
           "width": 300,
           "height": 188
         },
-        "processTimeMs": 53,
+        "processTimeMs": 73,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    'potrace',\n    { name: 'blur', options: { blur: 6 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "sharp"
@@ -2308,23 +2308,23 @@
         "title": "SQIP Triangle + Blur",
         "pluginChain": [
           "triangle",
-          "blur",
+          "blur(20)",
           "svgo",
           "data-uri"
         ],
         "fileName": "beach-sqip-triangle-blur.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 1525,
-          "gzipBytes": 551,
+          "originalBytes": 1542,
+          "gzipBytes": 563,
           "brotliBytes": 496
         },
         "dimensions": {
           "width": 300,
           "height": 188
         },
-        "processTimeMs": 50,
-        "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['triangle', 'blur', 'svgo', 'data-uri'],\n})",
+        "processTimeMs": 51,
+        "configSnippet": "import { sqip } from 'sqip'\\nconst result = await sqip({\\n  input: 'image.jpg',\\n  plugins: [\\n    'triangle',\\n    { name: 'blur', options: { blur: 20 } },\\n    'svgo', 'data-uri',\\n  ],\\n})",
         "dependencies": [
           "Go",
           "sharp"
@@ -2344,14 +2344,14 @@
         "resultFileType": "svg",
         "sizes": {
           "originalBytes": 1695,
-          "gzipBytes": 571,
-          "brotliBytes": 467
+          "gzipBytes": 568,
+          "brotliBytes": 464
         },
         "dimensions": {
           "width": 300,
           "height": 187
         },
-        "processTimeMs": 1313,
+        "processTimeMs": 1306,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'primitive', options: { numberOfPrimitives: 30, mode: 4 } },\n    { name: 'blur', options: { blur: 10 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "Go",
@@ -2378,7 +2378,7 @@
           "width": 300,
           "height": 188
         },
-        "processTimeMs": 885,
+        "processTimeMs": 944,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'potrace', options: { posterize: true } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "sharp"
@@ -2396,15 +2396,15 @@
         "fileName": "beach-sqip-primitive-art.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 2972,
-          "gzipBytes": 1191,
+          "originalBytes": 2964,
+          "gzipBytes": 1180,
           "brotliBytes": 1063
         },
         "dimensions": {
           "width": 300,
           "height": 187
         },
-        "processTimeMs": 1294,
+        "processTimeMs": 1364,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'primitive', options: { numberOfPrimitives: 50, mode: 1 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "Go",
@@ -2424,14 +2424,14 @@
         "resultFileType": "svg",
         "sizes": {
           "originalBytes": 1610,
-          "gzipBytes": 551,
-          "brotliBytes": 445
+          "gzipBytes": 536,
+          "brotliBytes": 443
         },
         "dimensions": {
           "width": 300,
           "height": 187
         },
-        "processTimeMs": 1346,
+        "processTimeMs": 1310,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'primitive', options: { numberOfPrimitives: 30, mode: 4 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "Go",
@@ -2450,15 +2450,15 @@
         "fileName": "beach-sqip-triangle-art.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 75594,
-          "gzipBytes": 16311,
-          "brotliBytes": 13163
+          "originalBytes": 75312,
+          "gzipBytes": 16184,
+          "brotliBytes": 13046
         },
         "dimensions": {
           "width": 300,
           "height": 188
         },
-        "processTimeMs": 234,
+        "processTimeMs": 253,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'triangle', options: { pts: 420 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "Go",
@@ -2485,7 +2485,7 @@
           "width": 300,
           "height": 188
         },
-        "processTimeMs": 53,
+        "processTimeMs": 68,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'pixels', options: { pixels: 16 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "sharp"
@@ -2503,9 +2503,9 @@
         "fileName": "beach-blur-none.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 721,
-          "gzipBytes": 385,
-          "brotliBytes": 343
+          "originalBytes": 748,
+          "gzipBytes": 402,
+          "brotliBytes": 361
         },
         "dimensions": {
           "width": 300,
@@ -2531,15 +2531,15 @@
         "fileName": "beach-blur-legacy.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 926,
-          "gzipBytes": 511,
-          "brotliBytes": 453
+          "originalBytes": 953,
+          "gzipBytes": 529,
+          "brotliBytes": 463
         },
         "dimensions": {
           "width": 300,
           "height": 187
         },
-        "processTimeMs": 5,
+        "processTimeMs": 4,
         "configSnippet": "import { sqip } from 'sqip'\\nconst result = await sqip({\\n  input: 'image.jpg',\\n  plugins: [\\n    'primitive',\\n    { name: 'blur', options: { legacyBlur: true } },\\n    'svgo', 'data-uri',\\n  ],\\n})",
         "dependencies": [
           "Go",
@@ -2559,15 +2559,15 @@
         "fileName": "beach-blur-css.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 815,
-          "gzipBytes": 414,
-          "brotliBytes": 370
+          "originalBytes": 842,
+          "gzipBytes": 433,
+          "brotliBytes": 384
         },
         "dimensions": {
           "width": 300,
           "height": 187
         },
-        "processTimeMs": 4,
+        "processTimeMs": 3,
         "configSnippet": "import { sqip } from 'sqip'\\nconst result = await sqip({\\n  input: 'image.jpg',\\n  plugins: [\\n    'primitive', 'blur', 'svgo', 'data-uri',\\n  ],\\n})",
         "dependencies": [
           "Go",
@@ -2586,9 +2586,9 @@
         "fileName": "beach-blur-browser.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 721,
-          "gzipBytes": 385,
-          "brotliBytes": 343
+          "originalBytes": 748,
+          "gzipBytes": 402,
+          "brotliBytes": 361
         },
         "dimensions": {
           "width": 300,
@@ -2639,7 +2639,7 @@
           "width": 300,
           "height": 300
         },
-        "processTimeMs": 20,
+        "processTimeMs": 18,
         "configSnippet": "import sharp from 'sharp'\nawait sharp('image.jpg').resize(300).jpeg().toBuffer()",
         "dependencies": [
           "sharp"
@@ -2687,7 +2687,7 @@
           "width": 32,
           "height": 32
         },
-        "processTimeMs": 17,
+        "processTimeMs": 16,
         "configSnippet": "import lqip from 'lqip-modern'\nconst { content } = await lqip('image.jpg', { resize: 32 })",
         "dependencies": [
           "sharp"
@@ -2711,7 +2711,7 @@
           "width": 16,
           "height": 16
         },
-        "processTimeMs": 17,
+        "processTimeMs": 16,
         "configSnippet": "import lqip from 'lqip-modern'\nconst { content } = await lqip('image.jpg', { outputFormat: 'jpeg' })",
         "dependencies": [
           "sharp"
@@ -2729,15 +2729,15 @@
         "fileName": "eric-marty-780304-unsplash-sqip-default.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 743,
-          "gzipBytes": 391,
-          "brotliBytes": 347
+          "originalBytes": 776,
+          "gzipBytes": 400,
+          "brotliBytes": 366
         },
         "dimensions": {
           "width": 300,
           "height": 300
         },
-        "processTimeMs": 956,
+        "processTimeMs": 1118,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['primitive', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "Go",
@@ -2764,7 +2764,7 @@
           "width": 300,
           "height": 300
         },
-        "processTimeMs": 130,
+        "processTimeMs": 134,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['pixels', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "sharp"
@@ -2790,7 +2790,7 @@
           "width": 300,
           "height": 300
         },
-        "processTimeMs": 176,
+        "processTimeMs": 182,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['potrace', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "sharp"
@@ -2808,15 +2808,15 @@
         "fileName": "eric-marty-780304-unsplash-sqip-triangle.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 1426,
-          "gzipBytes": 503,
-          "brotliBytes": 453
+          "originalBytes": 1446,
+          "gzipBytes": 507,
+          "brotliBytes": 447
         },
         "dimensions": {
           "width": 300,
           "height": 300
         },
-        "processTimeMs": 146,
+        "processTimeMs": 149,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['triangle', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "Go",
@@ -2865,7 +2865,7 @@
           "width": 64,
           "height": 64
         },
-        "processTimeMs": 135,
+        "processTimeMs": 133,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'blurhash', options: { width: 10 } },\n  ],\n})",
         "dependencies": [
           "sharp"
@@ -2884,15 +2884,15 @@
         "fileName": "eric-marty-780304-unsplash-sqip-default-blur.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 825,
-          "gzipBytes": 406,
-          "brotliBytes": 364
+          "originalBytes": 799,
+          "gzipBytes": 424,
+          "brotliBytes": 378
         },
         "dimensions": {
           "width": 300,
           "height": 300
         },
-        "processTimeMs": 1041,
+        "processTimeMs": 966,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['primitive', 'blur', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "Go",
@@ -2905,23 +2905,23 @@
         "title": "SQIP Pixels + Blur",
         "pluginChain": [
           "pixels",
-          "blur(8)",
+          "blur",
           "svgo",
           "data-uri"
         ],
         "fileName": "eric-marty-780304-unsplash-sqip-pixels-blur.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 3066,
-          "gzipBytes": 726,
-          "brotliBytes": 585
+          "originalBytes": 3067,
+          "gzipBytes": 727,
+          "brotliBytes": 583
         },
         "dimensions": {
           "width": 300,
           "height": 300
         },
-        "processTimeMs": 136,
-        "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    'pixels',\n    { name: 'blur', options: { blur: 8 } },\n    'svgo', 'data-uri',\n  ],\n})",
+        "processTimeMs": 133,
+        "configSnippet": "import { sqip } from 'sqip'\\nconst result = await sqip({\\n  input: 'image.jpg',\\n  plugins: ['pixels', 'blur', 'svgo', 'data-uri'],\\n})",
         "dependencies": [
           "sharp"
         ]
@@ -2947,7 +2947,7 @@
           "width": 300,
           "height": 300
         },
-        "processTimeMs": 192,
+        "processTimeMs": 173,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    'potrace',\n    { name: 'blur', options: { blur: 6 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "sharp"
@@ -2959,23 +2959,23 @@
         "title": "SQIP Triangle + Blur",
         "pluginChain": [
           "triangle",
-          "blur",
+          "blur(20)",
           "svgo",
           "data-uri"
         ],
         "fileName": "eric-marty-780304-unsplash-sqip-triangle-blur.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 1525,
-          "gzipBytes": 554,
-          "brotliBytes": 505
+          "originalBytes": 1534,
+          "gzipBytes": 565,
+          "brotliBytes": 498
         },
         "dimensions": {
           "width": 300,
           "height": 300
         },
-        "processTimeMs": 146,
-        "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['triangle', 'blur', 'svgo', 'data-uri'],\n})",
+        "processTimeMs": 148,
+        "configSnippet": "import { sqip } from 'sqip'\\nconst result = await sqip({\\n  input: 'image.jpg',\\n  plugins: [\\n    'triangle',\\n    { name: 'blur', options: { blur: 20 } },\\n    'svgo', 'data-uri',\\n  ],\\n})",
         "dependencies": [
           "Go",
           "sharp"
@@ -2994,15 +2994,15 @@
         "fileName": "eric-marty-780304-unsplash-sqip-primitive-circles-blur.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 1715,
-          "gzipBytes": 597,
-          "brotliBytes": 493
+          "originalBytes": 1722,
+          "gzipBytes": 600,
+          "brotliBytes": 496
         },
         "dimensions": {
           "width": 300,
           "height": 300
         },
-        "processTimeMs": 1683,
+        "processTimeMs": 1783,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'primitive', options: { numberOfPrimitives: 30, mode: 4 } },\n    { name: 'blur', options: { blur: 10 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "Go",
@@ -3029,7 +3029,7 @@
           "width": 300,
           "height": 300
         },
-        "processTimeMs": 1121,
+        "processTimeMs": 1228,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'potrace', options: { posterize: true } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "sharp"
@@ -3047,15 +3047,15 @@
         "fileName": "eric-marty-780304-unsplash-sqip-primitive-art.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 2996,
-          "gzipBytes": 1195,
+          "originalBytes": 2981,
+          "gzipBytes": 1204,
           "brotliBytes": 1080
         },
         "dimensions": {
           "width": 300,
           "height": 300
         },
-        "processTimeMs": 1870,
+        "processTimeMs": 1992,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'primitive', options: { numberOfPrimitives: 50, mode: 1 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "Go",
@@ -3074,15 +3074,15 @@
         "fileName": "eric-marty-780304-unsplash-sqip-primitive-circles.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 1610,
-          "gzipBytes": 560,
-          "brotliBytes": 464
+          "originalBytes": 1597,
+          "gzipBytes": 562,
+          "brotliBytes": 474
         },
         "dimensions": {
           "width": 300,
           "height": 300
         },
-        "processTimeMs": 1789,
+        "processTimeMs": 1795,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'primitive', options: { numberOfPrimitives: 30, mode: 4 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "Go",
@@ -3101,15 +3101,15 @@
         "fileName": "eric-marty-780304-unsplash-sqip-triangle-art.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 76023,
-          "gzipBytes": 16939,
-          "brotliBytes": 13766
+          "originalBytes": 76032,
+          "gzipBytes": 17070,
+          "brotliBytes": 13761
         },
         "dimensions": {
           "width": 300,
           "height": 300
         },
-        "processTimeMs": 325,
+        "processTimeMs": 355,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'triangle', options: { pts: 420 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "Go",
@@ -3136,7 +3136,7 @@
           "width": 300,
           "height": 300
         },
-        "processTimeMs": 181,
+        "processTimeMs": 163,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'pixels', options: { pixels: 16 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "sharp"
@@ -3154,15 +3154,15 @@
         "fileName": "eric-marty-780304-unsplash-blur-none.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 860,
-          "gzipBytes": 376,
-          "brotliBytes": 328
+          "originalBytes": 733,
+          "gzipBytes": 394,
+          "brotliBytes": 352
         },
         "dimensions": {
           "width": 300,
           "height": 300
         },
-        "processTimeMs": 3,
+        "processTimeMs": 4,
         "configSnippet": "import { sqip } from 'sqip'\\nconst result = await sqip({\\n  input: 'image.jpg',\\n  plugins: ['primitive', 'svgo', 'data-uri'],\\n})",
         "dependencies": [
           "Go",
@@ -3182,15 +3182,15 @@
         "fileName": "eric-marty-780304-unsplash-blur-legacy.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 1065,
-          "gzipBytes": 511,
-          "brotliBytes": 441
+          "originalBytes": 938,
+          "gzipBytes": 520,
+          "brotliBytes": 466
         },
         "dimensions": {
           "width": 300,
           "height": 300
         },
-        "processTimeMs": 4,
+        "processTimeMs": 5,
         "configSnippet": "import { sqip } from 'sqip'\\nconst result = await sqip({\\n  input: 'image.jpg',\\n  plugins: [\\n    'primitive',\\n    { name: 'blur', options: { legacyBlur: true } },\\n    'svgo', 'data-uri',\\n  ],\\n})",
         "dependencies": [
           "Go",
@@ -3210,9 +3210,9 @@
         "fileName": "eric-marty-780304-unsplash-blur-css.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 954,
-          "gzipBytes": 412,
-          "brotliBytes": 360
+          "originalBytes": 827,
+          "gzipBytes": 421,
+          "brotliBytes": 383
         },
         "dimensions": {
           "width": 300,
@@ -3237,9 +3237,9 @@
         "fileName": "eric-marty-780304-unsplash-blur-browser.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 860,
-          "gzipBytes": 376,
-          "brotliBytes": 328
+          "originalBytes": 733,
+          "gzipBytes": 394,
+          "brotliBytes": 352
         },
         "dimensions": {
           "width": 300,
@@ -3290,7 +3290,7 @@
           "width": 300,
           "height": 300
         },
-        "processTimeMs": 6,
+        "processTimeMs": 5,
         "configSnippet": "import sharp from 'sharp'\nawait sharp('image.jpg').resize(300).jpeg().toBuffer()",
         "dependencies": [
           "sharp"
@@ -3338,7 +3338,7 @@
           "width": 32,
           "height": 32
         },
-        "processTimeMs": 3,
+        "processTimeMs": 4,
         "configSnippet": "import lqip from 'lqip-modern'\nconst { content } = await lqip('image.jpg', { resize: 32 })",
         "dependencies": [
           "sharp"
@@ -3380,15 +3380,15 @@
         "fileName": "hashbite-consent-manager-logo-sqip-default.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 651,
-          "gzipBytes": 337,
-          "brotliBytes": 301
+          "originalBytes": 715,
+          "gzipBytes": 387,
+          "brotliBytes": 352
         },
         "dimensions": {
           "width": 300,
           "height": 300
         },
-        "processTimeMs": 1091,
+        "processTimeMs": 1280,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['primitive', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "Go",
@@ -3415,7 +3415,7 @@
           "width": 300,
           "height": 300
         },
-        "processTimeMs": 33,
+        "processTimeMs": 32,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['pixels', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "sharp"
@@ -3441,7 +3441,7 @@
           "width": 300,
           "height": 300
         },
-        "processTimeMs": 53,
+        "processTimeMs": 52,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['potrace', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "sharp"
@@ -3459,9 +3459,9 @@
         "fileName": "hashbite-consent-manager-logo-sqip-triangle.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 1300,
-          "gzipBytes": 422,
-          "brotliBytes": 388
+          "originalBytes": 1393,
+          "gzipBytes": 460,
+          "brotliBytes": 417
         },
         "dimensions": {
           "width": 300,
@@ -3516,7 +3516,7 @@
           "width": 64,
           "height": 64
         },
-        "processTimeMs": 35,
+        "processTimeMs": 34,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'blurhash', options: { width: 10 } },\n  ],\n})",
         "dependencies": [
           "sharp"
@@ -3535,15 +3535,15 @@
         "fileName": "hashbite-consent-manager-logo-sqip-default-blur.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 765,
-          "gzipBytes": 394,
-          "brotliBytes": 343
+          "originalBytes": 725,
+          "gzipBytes": 347,
+          "brotliBytes": 314
         },
         "dimensions": {
           "width": 300,
           "height": 300
         },
-        "processTimeMs": 1138,
+        "processTimeMs": 1066,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['primitive', 'blur', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "Go",
@@ -3556,23 +3556,23 @@
         "title": "SQIP Pixels + Blur",
         "pluginChain": [
           "pixels",
-          "blur(8)",
+          "blur",
           "svgo",
           "data-uri"
         ],
         "fileName": "hashbite-consent-manager-logo-sqip-pixels-blur.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 2905,
-          "gzipBytes": 750,
-          "brotliBytes": 628
+          "originalBytes": 2906,
+          "gzipBytes": 751,
+          "brotliBytes": 629
         },
         "dimensions": {
           "width": 300,
           "height": 300
         },
-        "processTimeMs": 38,
-        "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    'pixels',\n    { name: 'blur', options: { blur: 8 } },\n    'svgo', 'data-uri',\n  ],\n})",
+        "processTimeMs": 33,
+        "configSnippet": "import { sqip } from 'sqip'\\nconst result = await sqip({\\n  input: 'image.jpg',\\n  plugins: ['pixels', 'blur', 'svgo', 'data-uri'],\\n})",
         "dependencies": [
           "sharp"
         ]
@@ -3598,7 +3598,7 @@
           "width": 300,
           "height": 300
         },
-        "processTimeMs": 28,
+        "processTimeMs": 27,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    'potrace',\n    { name: 'blur', options: { blur: 6 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "sharp"
@@ -3610,23 +3610,23 @@
         "title": "SQIP Triangle + Blur",
         "pluginChain": [
           "triangle",
-          "blur",
+          "blur(20)",
           "svgo",
           "data-uri"
         ],
         "fileName": "hashbite-consent-manager-logo-sqip-triangle-blur.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 1399,
-          "gzipBytes": 491,
-          "brotliBytes": 440
+          "originalBytes": 1411,
+          "gzipBytes": 501,
+          "brotliBytes": 451
         },
         "dimensions": {
           "width": 300,
           "height": 300
         },
-        "processTimeMs": 50,
-        "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['triangle', 'blur', 'svgo', 'data-uri'],\n})",
+        "processTimeMs": 48,
+        "configSnippet": "import { sqip } from 'sqip'\\nconst result = await sqip({\\n  input: 'image.jpg',\\n  plugins: [\\n    'triangle',\\n    { name: 'blur', options: { blur: 20 } },\\n    'svgo', 'data-uri',\\n  ],\\n})",
         "dependencies": [
           "Go",
           "sharp"
@@ -3645,15 +3645,15 @@
         "fileName": "hashbite-consent-manager-logo-sqip-primitive-circles-blur.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 1505,
-          "gzipBytes": 516,
-          "brotliBytes": 439
+          "originalBytes": 1502,
+          "gzipBytes": 514,
+          "brotliBytes": 432
         },
         "dimensions": {
           "width": 300,
           "height": 300
         },
-        "processTimeMs": 1988,
+        "processTimeMs": 2250,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'primitive', options: { numberOfPrimitives: 30, mode: 4 } },\n    { name: 'blur', options: { blur: 10 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "Go",
@@ -3680,7 +3680,7 @@
           "width": 300,
           "height": 300
         },
-        "processTimeMs": 864,
+        "processTimeMs": 859,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'potrace', options: { posterize: true } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "sharp"
@@ -3698,15 +3698,15 @@
         "fileName": "hashbite-consent-manager-logo-sqip-primitive-art.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 2779,
-          "gzipBytes": 1128,
-          "brotliBytes": 1030
+          "originalBytes": 2726,
+          "gzipBytes": 1121,
+          "brotliBytes": 1008
         },
         "dimensions": {
           "width": 300,
           "height": 300
         },
-        "processTimeMs": 2552,
+        "processTimeMs": 2618,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'primitive', options: { numberOfPrimitives: 50, mode: 1 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "Go",
@@ -3725,15 +3725,15 @@
         "fileName": "hashbite-consent-manager-logo-sqip-primitive-circles.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 1450,
-          "gzipBytes": 500,
-          "brotliBytes": 429
+          "originalBytes": 1426,
+          "gzipBytes": 488,
+          "brotliBytes": 412
         },
         "dimensions": {
           "width": 300,
           "height": 300
         },
-        "processTimeMs": 1985,
+        "processTimeMs": 1997,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'primitive', options: { numberOfPrimitives: 30, mode: 4 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "Go",
@@ -3752,15 +3752,15 @@
         "fileName": "hashbite-consent-manager-logo-sqip-triangle-art.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 65024,
-          "gzipBytes": 12295,
-          "brotliBytes": 9907
+          "originalBytes": 64955,
+          "gzipBytes": 11986,
+          "brotliBytes": 9679
         },
         "dimensions": {
           "width": 300,
           "height": 300
         },
-        "processTimeMs": 227,
+        "processTimeMs": 225,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'triangle', options: { pts: 420 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "Go",
@@ -3787,7 +3787,7 @@
           "width": 300,
           "height": 300
         },
-        "processTimeMs": 54,
+        "processTimeMs": 46,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'pixels', options: { pixels: 16 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "sharp"
@@ -3805,15 +3805,15 @@
         "fileName": "hashbite-consent-manager-logo-blur-none.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 751,
-          "gzipBytes": 364,
-          "brotliBytes": 326
+          "originalBytes": 714,
+          "gzipBytes": 373,
+          "brotliBytes": 334
         },
         "dimensions": {
           "width": 300,
           "height": 300
         },
-        "processTimeMs": 4,
+        "processTimeMs": 3,
         "configSnippet": "import { sqip } from 'sqip'\\nconst result = await sqip({\\n  input: 'image.jpg',\\n  plugins: ['primitive', 'svgo', 'data-uri'],\\n})",
         "dependencies": [
           "Go",
@@ -3833,9 +3833,9 @@
         "fileName": "hashbite-consent-manager-logo-blur-legacy.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 956,
-          "gzipBytes": 492,
-          "brotliBytes": 428
+          "originalBytes": 919,
+          "gzipBytes": 501,
+          "brotliBytes": 431
         },
         "dimensions": {
           "width": 300,
@@ -3861,9 +3861,9 @@
         "fileName": "hashbite-consent-manager-logo-blur-css.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 845,
-          "gzipBytes": 394,
-          "brotliBytes": 355
+          "originalBytes": 808,
+          "gzipBytes": 404,
+          "brotliBytes": 361
         },
         "dimensions": {
           "width": 300,
@@ -3888,9 +3888,9 @@
         "fileName": "hashbite-consent-manager-logo-blur-browser.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 751,
-          "gzipBytes": 364,
-          "brotliBytes": 326
+          "originalBytes": 714,
+          "gzipBytes": 373,
+          "brotliBytes": 334
         },
         "dimensions": {
           "width": 300,
@@ -4031,15 +4031,15 @@
         "fileName": "ian-dooley-298769-unsplash-sqip-default.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 654,
+          "originalBytes": 655,
           "gzipBytes": 379,
-          "brotliBytes": 339
+          "brotliBytes": 342
         },
         "dimensions": {
           "width": 298,
           "height": 450
         },
-        "processTimeMs": 728,
+        "processTimeMs": 814,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['primitive', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "Go",
@@ -4066,7 +4066,7 @@
           "width": 300,
           "height": 450
         },
-        "processTimeMs": 142,
+        "processTimeMs": 140,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['pixels', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "sharp"
@@ -4092,7 +4092,7 @@
           "width": 300,
           "height": 450
         },
-        "processTimeMs": 158,
+        "processTimeMs": 147,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['potrace', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "sharp"
@@ -4110,15 +4110,15 @@
         "fileName": "ian-dooley-298769-unsplash-sqip-triangle.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 1487,
-          "gzipBytes": 496,
-          "brotliBytes": 437
+          "originalBytes": 1473,
+          "gzipBytes": 498,
+          "brotliBytes": 442
         },
         "dimensions": {
           "width": 300,
           "height": 450
         },
-        "processTimeMs": 169,
+        "processTimeMs": 158,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['triangle', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "Go",
@@ -4143,7 +4143,7 @@
           "width": 32,
           "height": 48
         },
-        "processTimeMs": 127,
+        "processTimeMs": 119,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['blurhash'],\n})",
         "dependencies": [
           "sharp"
@@ -4167,7 +4167,7 @@
           "width": 64,
           "height": 96
         },
-        "processTimeMs": 152,
+        "processTimeMs": 149,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'blurhash', options: { width: 10 } },\n  ],\n})",
         "dependencies": [
           "sharp"
@@ -4186,15 +4186,15 @@
         "fileName": "ian-dooley-298769-unsplash-sqip-default-blur.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 776,
-          "gzipBytes": 409,
-          "brotliBytes": 367
+          "originalBytes": 742,
+          "gzipBytes": 394,
+          "brotliBytes": 346
         },
         "dimensions": {
           "width": 298,
           "height": 450
         },
-        "processTimeMs": 789,
+        "processTimeMs": 749,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['primitive', 'blur', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "Go",
@@ -4207,23 +4207,23 @@
         "title": "SQIP Pixels + Blur",
         "pluginChain": [
           "pixels",
-          "blur(8)",
+          "blur",
           "svgo",
           "data-uri"
         ],
         "fileName": "ian-dooley-298769-unsplash-sqip-pixels-blur.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 2417,
-          "gzipBytes": 659,
-          "brotliBytes": 521
+          "originalBytes": 2418,
+          "gzipBytes": 660,
+          "brotliBytes": 518
         },
         "dimensions": {
           "width": 300,
           "height": 450
         },
-        "processTimeMs": 136,
-        "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    'pixels',\n    { name: 'blur', options: { blur: 8 } },\n    'svgo', 'data-uri',\n  ],\n})",
+        "processTimeMs": 137,
+        "configSnippet": "import { sqip } from 'sqip'\\nconst result = await sqip({\\n  input: 'image.jpg',\\n  plugins: ['pixels', 'blur', 'svgo', 'data-uri'],\\n})",
         "dependencies": [
           "sharp"
         ]
@@ -4249,7 +4249,7 @@
           "width": 300,
           "height": 450
         },
-        "processTimeMs": 148,
+        "processTimeMs": 190,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    'potrace',\n    { name: 'blur', options: { blur: 6 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "sharp"
@@ -4261,23 +4261,23 @@
         "title": "SQIP Triangle + Blur",
         "pluginChain": [
           "triangle",
-          "blur",
+          "blur(20)",
           "svgo",
           "data-uri"
         ],
         "fileName": "ian-dooley-298769-unsplash-sqip-triangle-blur.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 1573,
-          "gzipBytes": 542,
+          "originalBytes": 1586,
+          "gzipBytes": 532,
           "brotliBytes": 477
         },
         "dimensions": {
           "width": 300,
           "height": 450
         },
-        "processTimeMs": 161,
-        "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['triangle', 'blur', 'svgo', 'data-uri'],\n})",
+        "processTimeMs": 160,
+        "configSnippet": "import { sqip } from 'sqip'\\nconst result = await sqip({\\n  input: 'image.jpg',\\n  plugins: [\\n    'triangle',\\n    { name: 'blur', options: { blur: 20 } },\\n    'svgo', 'data-uri',\\n  ],\\n})",
         "dependencies": [
           "Go",
           "sharp"
@@ -4296,15 +4296,15 @@
         "fileName": "ian-dooley-298769-unsplash-sqip-primitive-circles-blur.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 1691,
-          "gzipBytes": 577,
-          "brotliBytes": 492
+          "originalBytes": 1695,
+          "gzipBytes": 561,
+          "brotliBytes": 486
         },
         "dimensions": {
           "width": 298,
           "height": 450
         },
-        "processTimeMs": 1613,
+        "processTimeMs": 1667,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'primitive', options: { numberOfPrimitives: 30, mode: 4 } },\n    { name: 'blur', options: { blur: 10 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "Go",
@@ -4331,7 +4331,7 @@
           "width": 300,
           "height": 450
         },
-        "processTimeMs": 999,
+        "processTimeMs": 1017,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'potrace', options: { posterize: true } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "sharp"
@@ -4349,15 +4349,15 @@
         "fileName": "ian-dooley-298769-unsplash-sqip-primitive-art.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 3003,
-          "gzipBytes": 1188,
-          "brotliBytes": 1070
+          "originalBytes": 2991,
+          "gzipBytes": 1181,
+          "brotliBytes": 1067
         },
         "dimensions": {
           "width": 298,
           "height": 450
         },
-        "processTimeMs": 2368,
+        "processTimeMs": 2645,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'primitive', options: { numberOfPrimitives: 50, mode: 1 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "Go",
@@ -4376,15 +4376,15 @@
         "fileName": "ian-dooley-298769-unsplash-sqip-primitive-circles.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 1590,
-          "gzipBytes": 544,
-          "brotliBytes": 458
+          "originalBytes": 1592,
+          "gzipBytes": 549,
+          "brotliBytes": 467
         },
         "dimensions": {
           "width": 298,
           "height": 450
         },
-        "processTimeMs": 1617,
+        "processTimeMs": 1591,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'primitive', options: { numberOfPrimitives: 30, mode: 4 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "Go",
@@ -4403,15 +4403,15 @@
         "fileName": "ian-dooley-298769-unsplash-sqip-triangle-art.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 73838,
-          "gzipBytes": 15077,
-          "brotliBytes": 11993
+          "originalBytes": 72156,
+          "gzipBytes": 14730,
+          "brotliBytes": 11656
         },
         "dimensions": {
           "width": 300,
           "height": 450
         },
-        "processTimeMs": 370,
+        "processTimeMs": 352,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'triangle', options: { pts: 420 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "Go",
@@ -4456,9 +4456,9 @@
         "fileName": "ian-dooley-298769-unsplash-blur-none.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 658,
-          "gzipBytes": 359,
-          "brotliBytes": 323
+          "originalBytes": 631,
+          "gzipBytes": 361,
+          "brotliBytes": 328
         },
         "dimensions": {
           "width": 298,
@@ -4484,15 +4484,15 @@
         "fileName": "ian-dooley-298769-unsplash-blur-legacy.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 863,
-          "gzipBytes": 484,
-          "brotliBytes": 426
+          "originalBytes": 836,
+          "gzipBytes": 489,
+          "brotliBytes": 430
         },
         "dimensions": {
           "width": 298,
           "height": 450
         },
-        "processTimeMs": 4,
+        "processTimeMs": 5,
         "configSnippet": "import { sqip } from 'sqip'\\nconst result = await sqip({\\n  input: 'image.jpg',\\n  plugins: [\\n    'primitive',\\n    { name: 'blur', options: { legacyBlur: true } },\\n    'svgo', 'data-uri',\\n  ],\\n})",
         "dependencies": [
           "Go",
@@ -4512,9 +4512,9 @@
         "fileName": "ian-dooley-298769-unsplash-blur-css.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 752,
-          "gzipBytes": 388,
-          "brotliBytes": 345
+          "originalBytes": 725,
+          "gzipBytes": 392,
+          "brotliBytes": 348
         },
         "dimensions": {
           "width": 298,
@@ -4539,9 +4539,9 @@
         "fileName": "ian-dooley-298769-unsplash-blur-browser.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 658,
-          "gzipBytes": 359,
-          "brotliBytes": 323
+          "originalBytes": 631,
+          "gzipBytes": 361,
+          "brotliBytes": 328
         },
         "dimensions": {
           "width": 298,
@@ -4592,7 +4592,7 @@
           "width": 300,
           "height": 447
         },
-        "processTimeMs": 23,
+        "processTimeMs": 22,
         "configSnippet": "import sharp from 'sharp'\nawait sharp('image.jpg').resize(300).jpeg().toBuffer()",
         "dependencies": [
           "sharp"
@@ -4640,7 +4640,7 @@
           "width": 22,
           "height": 32
         },
-        "processTimeMs": 20,
+        "processTimeMs": 19,
         "configSnippet": "import lqip from 'lqip-modern'\nconst { content } = await lqip('image.jpg', { resize: 32 })",
         "dependencies": [
           "sharp"
@@ -4664,7 +4664,7 @@
           "width": 11,
           "height": 16
         },
-        "processTimeMs": 19,
+        "processTimeMs": 20,
         "configSnippet": "import lqip from 'lqip-modern'\nconst { content } = await lqip('image.jpg', { outputFormat: 'jpeg' })",
         "dependencies": [
           "sharp"
@@ -4682,15 +4682,15 @@
         "fileName": "mona-lisa-sqip-default.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 709,
-          "gzipBytes": 373,
-          "brotliBytes": 330
+          "originalBytes": 728,
+          "gzipBytes": 409,
+          "brotliBytes": 369
         },
         "dimensions": {
           "width": 300,
           "height": 447
         },
-        "processTimeMs": 799,
+        "processTimeMs": 827,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['primitive', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "Go",
@@ -4717,7 +4717,7 @@
           "width": 300,
           "height": 447
         },
-        "processTimeMs": 121,
+        "processTimeMs": 119,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['pixels', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "sharp"
@@ -4743,7 +4743,7 @@
           "width": 300,
           "height": 447
         },
-        "processTimeMs": 187,
+        "processTimeMs": 200,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['potrace', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "sharp"
@@ -4761,15 +4761,15 @@
         "fileName": "mona-lisa-sqip-triangle.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 1411,
-          "gzipBytes": 508,
-          "brotliBytes": 461
+          "originalBytes": 1429,
+          "gzipBytes": 507,
+          "brotliBytes": 465
         },
         "dimensions": {
           "width": 300,
           "height": 447
         },
-        "processTimeMs": 147,
+        "processTimeMs": 155,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['triangle', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "Go",
@@ -4794,7 +4794,7 @@
           "width": 32,
           "height": 48
         },
-        "processTimeMs": 136,
+        "processTimeMs": 107,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['blurhash'],\n})",
         "dependencies": [
           "sharp"
@@ -4818,7 +4818,7 @@
           "width": 64,
           "height": 95
         },
-        "processTimeMs": 139,
+        "processTimeMs": 127,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'blurhash', options: { width: 10 } },\n  ],\n})",
         "dependencies": [
           "sharp"
@@ -4837,15 +4837,15 @@
         "fileName": "mona-lisa-sqip-default-blur.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 862,
-          "gzipBytes": 416,
-          "brotliBytes": 364
+          "originalBytes": 823,
+          "gzipBytes": 426,
+          "brotliBytes": 382
         },
         "dimensions": {
           "width": 300,
           "height": 447
         },
-        "processTimeMs": 884,
+        "processTimeMs": 917,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['primitive', 'blur', 'svgo', 'data-uri'],\n})",
         "dependencies": [
           "Go",
@@ -4858,23 +4858,23 @@
         "title": "SQIP Pixels + Blur",
         "pluginChain": [
           "pixels",
-          "blur(8)",
+          "blur",
           "svgo",
           "data-uri"
         ],
         "fileName": "mona-lisa-sqip-pixels-blur.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 2444,
+          "originalBytes": 2445,
           "gzipBytes": 643,
-          "brotliBytes": 498
+          "brotliBytes": 496
         },
         "dimensions": {
           "width": 300,
           "height": 447
         },
-        "processTimeMs": 135,
-        "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    'pixels',\n    { name: 'blur', options: { blur: 8 } },\n    'svgo', 'data-uri',\n  ],\n})",
+        "processTimeMs": 122,
+        "configSnippet": "import { sqip } from 'sqip'\\nconst result = await sqip({\\n  input: 'image.jpg',\\n  plugins: ['pixels', 'blur', 'svgo', 'data-uri'],\\n})",
         "dependencies": [
           "sharp"
         ]
@@ -4900,7 +4900,7 @@
           "width": 300,
           "height": 447
         },
-        "processTimeMs": 213,
+        "processTimeMs": 197,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    'potrace',\n    { name: 'blur', options: { blur: 6 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "sharp"
@@ -4912,23 +4912,23 @@
         "title": "SQIP Triangle + Blur",
         "pluginChain": [
           "triangle",
-          "blur",
+          "blur(20)",
           "svgo",
           "data-uri"
         ],
         "fileName": "mona-lisa-sqip-triangle-blur.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 1520,
-          "gzipBytes": 560,
-          "brotliBytes": 511
+          "originalBytes": 1529,
+          "gzipBytes": 569,
+          "brotliBytes": 509
         },
         "dimensions": {
           "width": 300,
           "height": 447
         },
         "processTimeMs": 143,
-        "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: ['triangle', 'blur', 'svgo', 'data-uri'],\n})",
+        "configSnippet": "import { sqip } from 'sqip'\\nconst result = await sqip({\\n  input: 'image.jpg',\\n  plugins: [\\n    'triangle',\\n    { name: 'blur', options: { blur: 20 } },\\n    'svgo', 'data-uri',\\n  ],\\n})",
         "dependencies": [
           "Go",
           "sharp"
@@ -4948,14 +4948,14 @@
         "resultFileType": "svg",
         "sizes": {
           "originalBytes": 1684,
-          "gzipBytes": 585,
-          "brotliBytes": 478
+          "gzipBytes": 580,
+          "brotliBytes": 488
         },
         "dimensions": {
           "width": 300,
           "height": 447
         },
-        "processTimeMs": 1463,
+        "processTimeMs": 1608,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'primitive', options: { numberOfPrimitives: 30, mode: 4 } },\n    { name: 'blur', options: { blur: 10 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "Go",
@@ -4982,7 +4982,7 @@
           "width": 300,
           "height": 447
         },
-        "processTimeMs": 1112,
+        "processTimeMs": 1096,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'potrace', options: { posterize: true } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "sharp"
@@ -5000,15 +5000,15 @@
         "fileName": "mona-lisa-sqip-primitive-art.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 2979,
-          "gzipBytes": 1204,
-          "brotliBytes": 1095
+          "originalBytes": 2986,
+          "gzipBytes": 1208,
+          "brotliBytes": 1096
         },
         "dimensions": {
           "width": 300,
           "height": 447
         },
-        "processTimeMs": 1814,
+        "processTimeMs": 1763,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'primitive', options: { numberOfPrimitives: 50, mode: 1 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "Go",
@@ -5027,15 +5027,15 @@
         "fileName": "mona-lisa-sqip-primitive-circles.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 1590,
-          "gzipBytes": 555,
-          "brotliBytes": 462
+          "originalBytes": 1593,
+          "gzipBytes": 551,
+          "brotliBytes": 468
         },
         "dimensions": {
           "width": 300,
           "height": 447
         },
-        "processTimeMs": 1526,
+        "processTimeMs": 1581,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'primitive', options: { numberOfPrimitives: 30, mode: 4 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "Go",
@@ -5054,15 +5054,15 @@
         "fileName": "mona-lisa-sqip-triangle-art.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 74719,
-          "gzipBytes": 17069,
-          "brotliBytes": 13633
+          "originalBytes": 74956,
+          "gzipBytes": 17062,
+          "brotliBytes": 13665
         },
         "dimensions": {
           "width": 300,
           "height": 447
         },
-        "processTimeMs": 346,
+        "processTimeMs": 299,
         "configSnippet": "import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'triangle', options: { pts: 420 } },\n    'svgo', 'data-uri',\n  ],\n})",
         "dependencies": [
           "Go",
@@ -5107,9 +5107,9 @@
         "fileName": "mona-lisa-blur-none.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 786,
-          "gzipBytes": 410,
-          "brotliBytes": 372
+          "originalBytes": 711,
+          "gzipBytes": 380,
+          "brotliBytes": 336
         },
         "dimensions": {
           "width": 300,
@@ -5135,9 +5135,9 @@
         "fileName": "mona-lisa-blur-legacy.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 991,
-          "gzipBytes": 535,
-          "brotliBytes": 476
+          "originalBytes": 916,
+          "gzipBytes": 507,
+          "brotliBytes": 442
         },
         "dimensions": {
           "width": 300,
@@ -5163,9 +5163,9 @@
         "fileName": "mona-lisa-blur-css.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 880,
-          "gzipBytes": 440,
-          "brotliBytes": 400
+          "originalBytes": 805,
+          "gzipBytes": 411,
+          "brotliBytes": 365
         },
         "dimensions": {
           "width": 300,
@@ -5190,9 +5190,9 @@
         "fileName": "mona-lisa-blur-browser.svg",
         "resultFileType": "svg",
         "sizes": {
-          "originalBytes": 786,
-          "gzipBytes": 410,
-          "brotliBytes": 372
+          "originalBytes": 711,
+          "gzipBytes": 380,
+          "brotliBytes": 336
         },
         "dimensions": {
           "width": 300,

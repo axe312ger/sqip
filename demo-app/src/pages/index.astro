@@ -13,8 +13,14 @@ if (existsSync(datasetPath)) {
   dataset = JSON.parse(readFileSync(datasetPath, 'utf-8'))
 }
 
+// Filter out blur-test variants (they have their own dedicated page)
+const dashboardData = dataset.map((img: any) => ({
+  ...img,
+  results: img.results.filter((r: any) => r.category !== 'blur-test'),
+}))
+
 // Build thumbnail data for image selector buttons
-const imageThumbs = dataset.map((img: any) => {
+const imageThumbs = dashboardData.map((img: any) => {
   const thumb = img.results.find((r: any) => r.variantName === 'thumbnail')
   return {
     name: img.filename as string,
@@ -52,7 +58,7 @@ const imageThumbs = dataset.map((img: any) => {
       <>
         <FilterBar imageThumbs={imageThumbs} />
         <StatsPanel />
-        <ImageGrid images={dataset} />
+        <ImageGrid images={dashboardData} />
       </>
     )}
   </div>
@@ -66,7 +72,7 @@ const imageThumbs = dataset.map((img: any) => {
     </button>
   </footer>
 
-  <script is:inline define:vars={{ dataset }}>
+  <script is:inline define:vars={{ dataset: dashboardData }}>
     if (dataset.length > 0) {
       var thumbBtns = document.querySelectorAll('[data-image-select]')
       var selectedImage = thumbBtns.length > 0 ? thumbBtns[0].dataset.imageSelect : ''
