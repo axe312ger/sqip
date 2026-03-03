@@ -1,6 +1,0 @@
-{
-  "buildCommand": "cd demo-app && npx astro build",
-  "outputDirectory": "demo-app/dist",
-  "installCommand": "npm install --ignore-scripts",
-  "framework": null
-}
