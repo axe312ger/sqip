@@ -56,8 +56,44 @@ const imageThumbs = dashboardData.map((img: any) => {
       </div>
     ) : (
       <>
-        <FilterBar imageThumbs={imageThumbs} />
+        <FilterBar />
         <StatsPanel />
+        <div class="image-bar" id="image-bar">
+          <div class="image-thumbs" id="image-thumbs">
+            {imageThumbs.map((thumb, i) => (
+              <button
+                class={`thumb-btn${i === 0 ? ' active' : ''}`}
+                data-image-select={thumb.name}
+                title={thumb.name}
+                type="button"
+              >
+                <img src={thumb.src} alt={thumb.name} width={thumb.width} height={thumb.height} loading="lazy" />
+              </button>
+            ))}
+          </div>
+          <div class="image-info" id="image-info">
+            <h2 id="image-info-name">{dashboardData[0]?.filename ?? ''}</h2>
+            <span class="image-meta" id="image-info-meta">
+              {dashboardData[0]?.dimensions.width}&times;{dashboardData[0]?.dimensions.height} &mdash; {dashboardData[0] ? (dashboardData[0].originalSize / 1024).toFixed(0) : 0} KB
+            </span>
+            {dashboardData[0]?.palette && Object.keys(dashboardData[0].palette).length > 0 && (
+              <div class="palette-row" id="image-info-palette">
+                {(['Vibrant', 'DarkVibrant', 'LightVibrant', 'Muted', 'DarkMuted', 'LightMuted'] as const).map((key) => {
+                  const hex = dashboardData[0].palette[key]
+                  return hex ? (
+                    <span class="swatch">
+                      <span class="swatch-color" style={`background:${hex}`} />
+                      <span class="swatch-text">
+                        <span class="swatch-key">{key}</span>
+                        <span class="swatch-hex">{hex}</span>
+                      </span>
+                    </span>
+                  ) : null
+                })}
+              </div>
+            )}
+          </div>
+        </div>
         <ImageGrid images={dashboardData} />
       </>
     )}
@@ -136,6 +172,25 @@ const imageThumbs = dashboardData.map((img: any) => {
         })
       }
 
+      function updateImageInfo() {
+        var img = getCurrentImageData()
+        if (!img) return
+        document.getElementById('image-info-name').textContent = img.filename
+        document.getElementById('image-info-meta').innerHTML = img.dimensions.width + '&times;' + img.dimensions.height + ' &mdash; ' + (img.originalSize / 1024).toFixed(0) + ' KB'
+        var paletteEl = document.getElementById('image-info-palette')
+        if (paletteEl && img.palette) {
+          var keys = ['Vibrant', 'DarkVibrant', 'LightVibrant', 'Muted', 'DarkMuted', 'LightMuted']
+          var html = ''
+          keys.forEach(function(key) {
+            var hex = img.palette[key]
+            if (hex) {
+              html += '<span class="swatch"><span class="swatch-color" style="background:' + hex + '"></span><span class="swatch-text"><span class="swatch-key">' + key + '</span><span class="swatch-hex">' + hex + '</span></span></span>'
+            }
+          })
+          paletteEl.innerHTML = html
+        }
+      }
+
       function updateVisibility() {
         var visible = getVisibleVariants()
 
@@ -202,6 +257,7 @@ const imageThumbs = dashboardData.map((img: any) => {
           thumbBtns.forEach(function(b) { b.classList.remove('active') })
           btn.classList.add('active')
           trackEvent('navigation', 'image-select', selectedImage)
+          updateImageInfo()
           updateVisibility()
         })
       })
@@ -321,5 +377,122 @@ const imageThumbs = dashboardData.map((img: any) => {
   .tracking-toggle:hover {
     color: var(--text);
     border-color: var(--text-muted);
+  }
+
+  .image-bar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .image-thumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .thumb-btn {
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    padding: 0;
+    cursor: pointer;
+    background: none;
+    overflow: hidden;
+    opacity: 0.5;
+    transition: all 0.15s;
+    width: 64px;
+    height: 48px;
+  }
+
+  .thumb-btn:hover {
+    opacity: 0.8;
+    border-color: var(--text-muted);
+  }
+
+  .thumb-btn.active {
+    opacity: 1;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 30%, transparent);
+  }
+
+  .thumb-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .image-info {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .image-info h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .image-meta {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+  }
+
+  .image-bar :global(.palette-row) {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 0.25rem;
+  }
+
+  .image-bar :global(.swatch) {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    cursor: default;
+  }
+
+  .image-bar :global(.swatch-color) {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .image-bar :global(.swatch-text) {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 3px;
+    font-size: 0.65rem;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  .image-bar :global(.swatch-key) {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 0.6rem;
+  }
+
+  .image-bar :global(.swatch-hex) {
+    opacity: 0.8;
   }
 </style>

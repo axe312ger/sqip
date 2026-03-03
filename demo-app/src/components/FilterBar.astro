@@ -1,38 +1,10 @@
 ---
 import { categories, variants, type Category } from '../data/variants'
 
-interface ImageThumb {
-  name: string
-  src: string
-  width: number
-  height: number
-}
-
-interface Props {
-  imageThumbs: ImageThumb[]
-}
-
-const { imageThumbs } = Astro.props
 const categoryKeys = (Object.keys(categories) as Category[]).filter((k) => k !== 'blur-test')
 ---
 
 <div class="filter-bar" id="filter-bar">
-  <div class="filter-section">
-    <h3>Source Image</h3>
-    <div class="image-thumbs" id="image-thumbs">
-      {imageThumbs.map((thumb, i) => (
-        <button
-          class={`thumb-btn${i === 0 ? ' active' : ''}`}
-          data-image-select={thumb.name}
-          title={thumb.name}
-          type="button"
-        >
-          <img src={thumb.src} alt={thumb.name} width={thumb.width} height={thumb.height} loading="lazy" />
-        </button>
-      ))}
-    </div>
-  </div>
-
   <div class="settings-row">
     <div class="filter-section">
       <h3>Categories</h3>
@@ -123,43 +95,6 @@ const categoryKeys = (Object.keys(categories) as Category[]).filter((k) => k !==
     margin: 0 0 0.5rem;
     border-bottom: none;
     padding-bottom: 0;
-  }
-
-  .image-thumbs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .thumb-btn {
-    border: 2px solid var(--border);
-    border-radius: 6px;
-    padding: 0;
-    cursor: pointer;
-    background: none;
-    overflow: hidden;
-    opacity: 0.5;
-    transition: all 0.15s;
-    width: 64px;
-    height: 48px;
-  }
-
-  .thumb-btn:hover {
-    opacity: 0.8;
-    border-color: var(--text-muted);
-  }
-
-  .thumb-btn.active {
-    opacity: 1;
-    border-color: var(--accent);
-    box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 30%, transparent);
-  }
-
-  .thumb-btn img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
   }
 
   .toggle-group {
