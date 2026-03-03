@@ -35,7 +35,7 @@ By combining plugins you can use it for several purposes:
 
 Check out the [interactive demo](https://sqip.vercel.app/) to compare all plugins and configurations side by side.
 
-[![](demo/example.jpg)](https://sqip.vercel.app/)
+[![SQIP demo comparing placeholder variants](demo/example.jpg)](https://sqip.vercel.app/)
 
 ## Requirements
 
