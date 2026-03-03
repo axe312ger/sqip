@@ -193,8 +193,8 @@ export const variants: VariantConfig[] = [
   {
     name: 'sqip-primitive-circles',
     title: 'Primitive Circles',
-    category: 'artistic',
-    description: '30 circles — organic, bokeh-like art.',
+    category: 'placeholder',
+    description: '30 circles — organic, bokeh-like placeholder.',
     pluginChain: ['primitive(30, circles)', 'svgo', 'data-uri'],
     resultFileType: 'svg',
     configSnippet: `import { sqip } from 'sqip'\nconst result = await sqip({\n  input: 'image.jpg',\n  plugins: [\n    { name: 'primitive', options: { numberOfPrimitives: 30, mode: 4 } },\n    'svgo', 'data-uri',\n  ],\n})`,
