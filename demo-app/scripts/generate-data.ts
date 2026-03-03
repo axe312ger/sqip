@@ -5,7 +5,8 @@ import { gzipSync, brotliCompressSync } from 'zlib'
 
 import sharp from 'sharp'
 import lqipModern from 'lqip-modern'
-import { sqip } from 'sqip'
+import { sqip, resolvePlugins } from 'sqip'
+import type { SqipImageMetadata } from 'sqip'
 import Vibrant from '@behold/sharp-vibrant'
 
 import { variants } from '../src/data/variants.js'
@@ -128,6 +129,46 @@ async function runVariant(
   return content
 }
 
+/**
+ * For variants with `deriveFrom`, apply only the variant's own plugins
+ * (e.g. blur, svgo, data-uri) on a cached base SVG buffer.
+ * This ensures non-deterministic plugins like primitive run only once.
+ */
+async function runDerivedVariant(
+  variant: VariantConfig,
+  baseSvg: Buffer,
+  dist: string,
+  baseMetadata: SqipImageMetadata
+): Promise<Buffer | string> {
+  let buffer: Buffer = Buffer.from(baseSvg)
+
+  // Clone metadata so plugin mutations (e.g. data-uri setting dataURI)
+  // don't leak between variants
+  const metadata: SqipImageMetadata = { ...baseMetadata }
+
+  const plugins = await resolvePlugins(variant.sqipConfig!.plugins)
+
+  for (const { options: pluginOptions, Plugin } of plugins) {
+    const plugin = new Plugin({
+      sqipConfig: { input: '', plugins: [], silent: true },
+      pluginOptions: pluginOptions || {},
+      options: {},
+    })
+    buffer = await plugin.apply(buffer, metadata)
+  }
+
+  // Check if data-uri plugin set a dataURI on the metadata
+  const dataURI = (metadata.dataURIBase64 || metadata.dataURI) as string | undefined
+  if (dataURI) {
+    const buf = dataURItoBuffer(dataURI)
+    await fs.writeFile(dist, buf)
+    return buf
+  }
+
+  await fs.writeFile(dist, buffer)
+  return buffer
+}
+
 async function main() {
   await fs.mkdir(PROCESSED, { recursive: true })
   await fs.mkdir(GENERATED, { recursive: true })
@@ -178,21 +219,37 @@ async function main() {
 
     // Extract color palette using sharp-vibrant
     const palette: PaletteEntry = {}
+    const imgBuffer = await fs.readFile(imagePath)
+    const getPalette = (buf: Buffer) => Vibrant.from(buf).quality(0).getPalette()
+    let vibrantPalette: Awaited<ReturnType<typeof getPalette>> | undefined
     try {
-      const imgBuffer = await fs.readFile(imagePath)
-      const getPalette = (buf: Buffer) => Vibrant.from(buf).quality(0).getPalette()
-      let paletteResult
       try {
-        paletteResult = await getPalette(imgBuffer)
+        vibrantPalette = await getPalette(imgBuffer)
       } catch {
-        paletteResult = await getPalette(await sharp(imgBuffer).tiff().toBuffer())
+        vibrantPalette = await getPalette(await sharp(imgBuffer).tiff().toBuffer())
       }
       const KEYS = ['Vibrant', 'DarkVibrant', 'LightVibrant', 'Muted', 'DarkMuted', 'LightMuted'] as const
       for (const key of KEYS) {
-        palette[key] = paletteResult.palette[key]?.hex
+        palette[key] = vibrantPalette.palette[key]?.hex
       }
     } catch (err) {
       console.error(`\nWarning: could not extract palette for ${filename}:`, err)
+    }
+
+    // Generate the shared base primitive SVG for blur-test derived variants.
+    // This runs primitive once so all blur-test variants compare the same shapes.
+    const hasDerived = variants.some((v) => v.deriveFrom)
+    let blurTestBase: { svg: Buffer; metadata: SqipImageMetadata } | undefined
+    if (hasDerived) {
+      const baseResult = await sqip({
+        input: imagePath,
+        plugins: ['primitive'],
+        silent: true,
+      })
+      const { content, metadata: baseMeta } = Array.isArray(baseResult)
+        ? baseResult[0]
+        : baseResult
+      blurTestBase = { svg: content, metadata: baseMeta }
     }
 
     const results: VariantResult[] = []
@@ -204,7 +261,17 @@ async function main() {
       const start = performance.now()
 
       try {
-        const result = await runVariant(variant, imagePath, dist)
+        let result: Buffer | string
+        if (variant.deriveFrom && blurTestBase) {
+          result = await runDerivedVariant(
+            variant,
+            blurTestBase.svg,
+            dist,
+            blurTestBase.metadata
+          )
+        } else {
+          result = await runVariant(variant, imagePath, dist)
+        }
         const processTimeMs = Math.round(performance.now() - start)
         const sizes = getSizes(result)
 

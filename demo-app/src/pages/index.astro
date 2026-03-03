@@ -72,10 +72,6 @@ const imageThumbs = dataset.map((img: any) => {
       var selectedImage = thumbBtns.length > 0 ? thumbBtns[0].dataset.imageSelect : ''
       var categoryToggles = document.querySelectorAll('[data-category-toggle]')
       var variantToggles = document.querySelectorAll('[data-variant-toggle]')
-      var blurToggle = document.getElementById('blur-toggle')
-      var blurSlider = document.getElementById('blur-slider')
-      var blurValue = document.getElementById('blur-value')
-      var blurSliderGroup = document.getElementById('blur-slider-group')
       var sizeToggles = document.querySelectorAll('[data-size-toggle]')
 
       function formatBytes(bytes) {
@@ -175,32 +171,6 @@ const imageThumbs = dataset.map((img: any) => {
           trackEvent('filter', 'variant-toggle', cb.dataset.variantToggle, cb.checked ? 1 : 0)
           updateVisibility()
         })
-      })
-
-      // CSS blur — only applied to placeholder variants, never artistic
-      function applyBlur() {
-        var enabled = blurToggle.checked
-        var px = blurSlider.value
-        blurSliderGroup.classList.toggle('active', enabled)
-        blurValue.textContent = px + 'px'
-        var filterVal = enabled ? 'blur(' + px + 'px)' : ''
-        document.querySelectorAll('.card').forEach(function(card) {
-          var img = card.querySelector('.preview')
-          if (!img) return
-          img.style.filter = card.dataset.category === 'artistic' ? '' : filterVal
-        })
-      }
-
-      blurToggle.addEventListener('change', function() {
-        trackEvent('settings', 'blur-toggle', blurToggle.checked ? 'on' : 'off')
-        applyBlur()
-      })
-      blurSlider.addEventListener('change', function() {
-        trackEvent('settings', 'blur-amount', blurSlider.value + 'px', Number(blurSlider.value))
-      })
-      blurSlider.addEventListener('input', function() {
-        blurValue.textContent = blurSlider.value + 'px'
-        if (blurToggle.checked) applyBlur()
       })
 
       // Card size toggle

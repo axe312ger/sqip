@@ -71,19 +71,7 @@ const categoryKeys = Object.keys(categories) as Category[]
       </div>
     </div>
 
-    <div class="filter-section">
-      <h3>CSS Blur</h3>
-      <div class="blur-controls">
-        <label class="toggle blur-toggle">
-          <input type="checkbox" id="blur-toggle" />
-          <span class="toggle-label">Apply blur</span>
-        </label>
-        <div class="blur-slider-group" id="blur-slider-group">
-          <input type="range" id="blur-slider" min="0" max="30" value="12" step="1" />
-          <span class="blur-value" id="blur-value">12px</span>
-        </div>
-      </div>
-    </div>
+
   </div>
 
   <div class="filter-section">
@@ -121,7 +109,7 @@ const categoryKeys = Object.keys(categories) as Category[]
   @media (min-width: 900px) {
     .settings-row {
       display: grid;
-      grid-template-columns: auto auto 1fr;
+      grid-template-columns: auto auto;
       gap: 1.5rem;
       align-items: start;
     }
@@ -202,9 +190,19 @@ const categoryKeys = Object.keys(categories) as Category[]
     color: var(--badge-placeholder);
   }
 
+  .toggle-placeholder-blur:has(input:checked) {
+    background: color-mix(in srgb, var(--badge-placeholder-blur) 15%, transparent);
+    color: var(--badge-placeholder-blur);
+  }
+
   .toggle-artistic:has(input:checked) {
     background: color-mix(in srgb, var(--badge-artistic) 15%, transparent);
     color: var(--badge-artistic);
+  }
+
+  .toggle-blur-test:has(input:checked) {
+    background: color-mix(in srgb, var(--badge-blur-test) 15%, transparent);
+    color: var(--badge-blur-test);
   }
 
   .size-toggle:has(input:checked) {
@@ -254,36 +252,5 @@ const categoryKeys = Object.keys(categories) as Category[]
     opacity: 0.4;
   }
 
-  .blur-controls {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
 
-  .blur-slider-group {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    opacity: 0.3;
-    pointer-events: none;
-    transition: opacity 0.15s;
-  }
-
-  .blur-slider-group.active {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  #blur-slider {
-    width: 140px;
-    accent-color: var(--accent);
-  }
-
-  .blur-value {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    min-width: 3em;
-  }
 </style>
