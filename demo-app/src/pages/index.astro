@@ -114,15 +114,6 @@ const imageThumbs = dashboardData.map((img: any) => {
     )}
   </div>
 
-  <footer class="tracking-footer" id="tracking-footer">
-    <span class="tracking-status" id="tracking-status">
-      This site uses anonymized analytics to understand how the demo is used.
-    </span>
-    <button type="button" class="tracking-toggle" id="tracking-toggle">
-      Opt out
-    </button>
-  </footer>
-
   <script is:inline define:vars={{ dataset: dashboardData }}>
     if (dataset.length > 0) {
       var thumbBtns = document.querySelectorAll('[data-image-select]')
@@ -289,39 +280,7 @@ const imageThumbs = dashboardData.map((img: any) => {
       updateVisibility()
     }
 
-    // Tracking opt-out toggle
-    (function initOptOut() {
-      var btn = document.getElementById('tracking-toggle')
-      var status = document.getElementById('tracking-status')
-      var footer = document.getElementById('tracking-footer')
-      if (!btn || !status || !footer) return
 
-      var optedOut = localStorage.getItem('matomo-opt-out') === '1'
-
-      function render() {
-        if (optedOut) {
-          status.textContent = 'Anonymized analytics are disabled.'
-          btn.textContent = 'Opt in'
-        } else {
-          status.textContent = 'This site uses anonymized analytics to understand how the demo is used.'
-          btn.textContent = 'Opt out'
-        }
-      }
-
-      btn.addEventListener('click', function() {
-        optedOut = !optedOut
-        if (optedOut) {
-          localStorage.setItem('matomo-opt-out', '1')
-          if (window._paq) _paq.push(['optUserOut'])
-        } else {
-          localStorage.removeItem('matomo-opt-out')
-          if (window._paq) _paq.push(['forgetUserOptOut'])
-        }
-        render()
-      })
-
-      render()
-    })()
   </script>
 </Layout>
 
@@ -364,34 +323,6 @@ const imageThumbs = dashboardData.map((img: any) => {
     border-radius: 6px;
     display: inline-block;
     font-family: var(--font-mono);
-  }
-
-  .tracking-footer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    padding: 1rem 2rem;
-    margin-top: 2rem;
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    border-top: 1px solid var(--border);
-  }
-
-  .tracking-toggle {
-    background: none;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    color: var(--text-muted);
-    font-size: 0.75rem;
-    padding: 0.2rem 0.6rem;
-    cursor: pointer;
-    transition: all 0.15s;
-  }
-
-  .tracking-toggle:hover {
-    color: var(--text);
-    border-color: var(--text-muted);
   }
 
   .snippets-section {
