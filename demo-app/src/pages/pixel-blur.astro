@@ -2,6 +2,7 @@
 import { readFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
 import Layout from '../layouts/Layout.astro'
+import { variants } from '../data/variants'
 
 const datasetPath = resolve(process.cwd(), 'generated', 'dataset.json')
 let dataset: any[] = []
@@ -10,12 +11,20 @@ if (existsSync(datasetPath)) {
 }
 
 const pixelVariants = [
-  'lqip-modern-webp',
-  'lqip-modern-webp-hd',
-  'lqip-modern-jpeg',
   'sqip-blurhash',
   'sqip-blurhash-hd',
+  'lqip-modern-jpeg',
+  'lqip-modern-webp',
+  'blur-lqip-24',
+  'lqip-modern-webp-hd',
 ]
+
+const variantLabels: Record<string, string> = {}
+for (const v of variants) {
+  if (pixelVariants.includes(v.name)) {
+    variantLabels[v.name] = v.title
+  }
+}
 
 const paletteKeys = ['Vibrant', 'DarkVibrant', 'LightVibrant', 'Muted', 'DarkMuted', 'LightMuted']
 
@@ -63,7 +72,7 @@ function fmtB(bytes: number): string {
               </button>
               {paletteKeys.map((key) => (
                 <button
-                  class:list={['color-btn palette-btn', { active: key === 'Muted' }]}
+                  class:list={['color-btn palette-btn', { active: key === 'LightMuted' }]}
                   data-palette-key={key}
                   title={key}
                 >
@@ -86,18 +95,32 @@ function fmtB(bytes: number): string {
             <label class="control-label">Edge Fix</label>
             <div class="mode-picker" id="mode-picker">
               <button class="mode-btn active" data-mode="bgcolor">Background Color</button>
-              <button class="mode-btn" data-mode="zoom">Zoom (scale 1.1)</button>
+              <button class="mode-btn" data-mode="zoom" id="zoom-btn">Zoom (scale 1.15)</button>
               <button class="mode-btn" data-mode="none">None</button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label">Variants</label>
+            <div class="variant-toggles" id="variant-toggles">
+              {pixelVariants.map((v) => (
+                <button class="variant-btn active" data-variant={v}>{variantLabels[v]}</button>
+              ))}
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label">Card Size</label>
+            <div class="size-toggles" id="size-toggles">
+              <button class="size-btn active" data-size="0">Auto</button>
+              <button class="size-btn" data-size="150">150px</button>
+              <button class="size-btn" data-size="300">300px</button>
+              <button class="size-btn" data-size="600">600px</button>
             </div>
           </div>
         </div>
 
-        <div class="variant-legend">
-          {pixelVariants.map((v) => {
-            const label = dataset[0]?.results.find((r: any) => r.variantName === v)?.title ?? v
-            return <span class="legend-item">{label}</span>
-          })}
-        </div>
+
 
         {dataset.map((image: any) => {
           const refSrc = image.referenceImage ? `/processed/${image.referenceImage}` : ''
@@ -109,12 +132,13 @@ function fmtB(bytes: number): string {
           return (
             <div class="image-row" data-palette={JSON.stringify(image.palette)}>
               <div class="image-label">
-                <span class="image-name">{image.filename.replace(/-unsplash/, '').replace(/\.\w+$/, '')}</span>
+                <span class="image-name">{image.filename.replace(/-unsplash/, '').replace(/\\.\\w+$/, '')}</span>
                 <span class="image-dims">{image.dimensions.width}&times;{image.dimensions.height}</span>
+                <span class="row-swatch"></span>
               </div>
               <div class="pixel-columns">
                 {results.map((result: any) => (
-                  <div class="pixel-cell">
+                  <div class="pixel-cell" data-variant={result.variantName}>
                     <div class="cell-image" style={`aspect-ratio: ${origAR};`}>
                       <img
                         class="preview"
@@ -127,7 +151,8 @@ function fmtB(bytes: number): string {
                       )}
                     </div>
                     <div class="cell-stats">
-                      <span>{fmtB(result.sizes.gzipBytes)} gz</span>
+                      <span class="cell-title">{result.title}</span>
+                      <span class="cell-size">{fmtB(result.sizes.gzipBytes)} gz</span>
                     </div>
                   </div>
                 ))}
@@ -146,20 +171,31 @@ function fmtB(bytes: number): string {
     var modePicker = document.getElementById('mode-picker')
     var rows = document.querySelectorAll('.image-row')
     var activeColor = null // null means "use palette key"
-    var activePaletteKey = 'Muted'
+    var activePaletteKey = 'LightMuted'
     var blurPx = 10
     var edgeMode = 'bgcolor' // 'bgcolor' | 'zoom' | 'none'
+    var zoomBtn = document.getElementById('zoom-btn')
+
+    function updateZoomLabel() {
+      var scale = (1 + blurPx * 0.015).toFixed(2).replace(/0$/, '')
+      zoomBtn.textContent = 'Zoom (scale ' + scale + ')'
+    }
 
     function applyAll() {
       rows.forEach(function(row) {
         var palette = JSON.parse(row.dataset.palette)
         var bg = activeColor || palette[activePaletteKey] || '#888'
+        var swatch = row.querySelector('.row-swatch')
+        if (swatch) {
+          swatch.style.backgroundColor = bg
+          swatch.style.display = edgeMode === 'bgcolor' ? '' : 'none'
+        }
         row.querySelectorAll('.cell-image').forEach(function(cell) {
           cell.style.backgroundColor = edgeMode === 'bgcolor' ? bg : 'transparent'
         })
         row.querySelectorAll('.preview').forEach(function(img) {
           img.style.filter = blurPx > 0 ? 'blur(' + blurPx + 'px)' : 'none'
-          img.style.transform = edgeMode === 'zoom' && blurPx > 0 ? 'scale(' + (1 + blurPx * 0.01) + ')' : 'none'
+          img.style.transform = edgeMode === 'zoom' && blurPx > 0 ? 'scale(' + (1 + blurPx * 0.015) + ')' : 'none'
         })
       })
 
@@ -205,10 +241,42 @@ function fmtB(bytes: number): string {
     blurRange.addEventListener('input', function() {
       blurPx = parseInt(blurRange.value, 10)
       blurValueEl.textContent = blurPx + 'px'
+      updateZoomLabel()
       applyAll()
     })
 
+    updateZoomLabel()
     applyAll()
+
+    // Card size toggles
+    var sizeBtns = document.querySelectorAll('.size-btn')
+    sizeBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        sizeBtns.forEach(function(b) { b.classList.remove('active') })
+        btn.classList.add('active')
+        var size = parseInt(btn.dataset.size, 10)
+        document.querySelectorAll('.pixel-columns').forEach(function(grid) {
+          if (size === 0) {
+            grid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(150px, 1fr))'
+          } else {
+            grid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(' + size + 'px, 1fr))'
+          }
+        })
+      })
+    })
+
+    // Variant toggles
+    var variantBtns = document.querySelectorAll('.variant-btn')
+    variantBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        btn.classList.toggle('active')
+        var v = btn.dataset.variant
+        var show = btn.classList.contains('active')
+        document.querySelectorAll('.pixel-cell[data-variant="' + v + '"]').forEach(function(cell) {
+          cell.style.display = show ? '' : 'none'
+        })
+      })
+    })
   </script>
 </Layout>
 
@@ -366,24 +434,61 @@ function fmtB(bytes: number): string {
     box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 30%, transparent);
   }
 
-  .variant-legend {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 0.75rem;
-    margin-bottom: 1rem;
-    padding: 0.75rem 1rem;
-    padding-left: 120px;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
+  .size-toggles {
+    display: flex;
+    gap: 0.35rem;
   }
 
-  .legend-item {
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-align: center;
+  .size-btn {
+    padding: 0.3rem 0.6rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--bg);
     color: var(--text);
+    cursor: pointer;
+    font-size: 0.7rem;
+    font-family: var(--font);
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .size-btn:hover {
+    border-color: var(--accent);
+  }
+
+  .size-btn.active {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 30%, transparent);
+  }
+
+  .variant-toggles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .variant-btn {
+    padding: 0.3rem 0.6rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--bg);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 0.7rem;
+    font-family: var(--font);
+    transition: border-color 0.15s, box-shadow 0.15s, opacity 0.15s;
+  }
+
+  .variant-btn:hover {
+    border-color: var(--accent);
+  }
+
+  .variant-btn.active {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 30%, transparent);
+  }
+
+  .variant-btn:not(.active) {
+    opacity: 0.5;
   }
 
   .image-row {
@@ -419,9 +524,18 @@ function fmtB(bytes: number): string {
     color: var(--text-muted);
   }
 
+  .row-swatch {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    margin-top: 0.15rem;
+  }
+
   .pixel-columns {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 0.75rem;
   }
 
@@ -467,18 +581,23 @@ function fmtB(bytes: number): string {
   .cell-stats {
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
     font-size: 0.65rem;
-    font-family: var(--font-mono);
     color: var(--text-muted);
     padding: 0 0.25rem;
   }
 
-  @media (max-width: 900px) {
-    .variant-legend {
-      padding-left: 1rem;
-      grid-template-columns: repeat(3, 1fr);
-    }
+  .cell-title {
+    font-weight: 600;
+    font-size: 0.7rem;
+    color: var(--text);
+  }
 
+  .cell-size {
+    font-family: var(--font-mono);
+  }
+
+  @media (max-width: 900px) {
     .image-row {
       grid-template-columns: 1fr;
     }
@@ -495,10 +614,6 @@ function fmtB(bytes: number): string {
   }
 
   @media (max-width: 550px) {
-    .variant-legend {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
     .pixel-columns {
       grid-template-columns: repeat(2, 1fr);
     }
