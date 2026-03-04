@@ -30,7 +30,7 @@
     "url": "https://github.com/axe312ger/sqip/issues"
   },
   "dependencies": {
-    "debug": "^4.3.4",
+    "debug": "^4.4.3",
     "execa": "^9.6.1",
     "sharp": "^0.34.5",
     "sqip": "^1.0.0-beta.2"
