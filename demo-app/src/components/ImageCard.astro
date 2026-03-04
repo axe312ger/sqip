@@ -13,7 +13,6 @@ interface Props {
   processTimeMs: number
   imageSrc: string
   thumbnailSrc?: string
-  configSnippet?: string
   dependencies?: string[]
   originalAspectRatio?: number
 }
@@ -25,7 +24,7 @@ function fmtB(bytes: number): string {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`
 }
 
-const { title, category, pluginChain, sizes, dimensions, processTimeMs, imageSrc, thumbnailSrc, variantName, configSnippet, dependencies = [], originalAspectRatio } = Astro.props
+const { title, category, pluginChain, sizes, dimensions, processTimeMs, imageSrc, thumbnailSrc, variantName, dependencies = [], originalAspectRatio } = Astro.props
 ---
 
 <div class="card" data-variant={variantName} data-category={category}>
@@ -71,9 +70,6 @@ const { title, category, pluginChain, sizes, dimensions, processTimeMs, imageSrc
         <span class="stat-value">{processTimeMs}ms</span>
       </div>
     </div>
-    {configSnippet && (
-      <pre class="config-snippet"><code>{configSnippet}</code></pre>
-    )}
   </div>
 </div>
 
@@ -184,20 +180,4 @@ const { title, category, pluginChain, sizes, dimensions, processTimeMs, imageSrc
     text-align: left;
   }
 
-  .config-snippet {
-    margin: 0.25rem 0 0;
-    padding: 0.5rem;
-    background: var(--tag-bg);
-    border-radius: 4px;
-    overflow-x: auto;
-    font-size: 0.65rem;
-    line-height: 1.5;
-    font-family: var(--font-mono);
-    color: var(--text);
-  }
-
-  .config-snippet code {
-    white-space: pre-wrap;
-    word-break: break-word;
-  }
 </style>

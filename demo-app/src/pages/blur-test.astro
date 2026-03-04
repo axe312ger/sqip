@@ -9,13 +9,12 @@ if (existsSync(datasetPath)) {
   dataset = JSON.parse(readFileSync(datasetPath, 'utf-8'))
 }
 
-const blurVariants = ['blur-none', 'blur-legacy', 'blur-css', 'blur-browser', 'blur-lqip-24']
+const blurVariants = ['blur-none', 'blur-legacy', 'blur-css', 'blur-browser']
 const blurLabels: Record<string, string> = {
   'blur-none': 'No Blur',
-  'blur-legacy': 'Legacy SVG Blur',
-  'blur-css': 'CSS Blur (Plugin)',
+  'blur-legacy': 'SVG Blur (sqip-plugin-blur)',
+  'blur-css': 'CSS Blur (sqip-plugin-blur)',
   'blur-browser': 'CSS Blur (Browser)',
-  'blur-lqip-24': 'LQIP Modern (24px)',
 }
 
 function fmtB(bytes: number): string {
@@ -26,14 +25,17 @@ function fmtB(bytes: number): string {
 }
 ---
 
-<Layout title="Blur Test — SQIP Demo">
+<Layout title="SVG Blur Test — SQIP Demo">
   <div class="container">
     <header>
-      <h1>Blur Technique Comparison</h1>
+      <h1>SVG Blur Technique Comparison</h1>
       <p class="subtitle">
         Compare different blur techniques side by side across all images.
-        Hover any placeholder to see the original. Notice how browser-applied CSS blur
-        bleeds the image edges, while the plugin-applied blur stays clean.
+        <strong>SVG Blur</strong> and <strong>CSS Blur</strong> (Plugin) are both applied
+        by <code>sqip-plugin-blur</code> at build time — one uses an SVG <code>&lt;feGaussianBlur&gt;</code>
+        filter, the other a CSS <code>filter: blur()</code> inside the SVG.
+        <strong>CSS Blur (Browser)</strong> applies <code>filter: blur()</code> on the
+        <code>&lt;img&gt;</code> element at display time — notice how it bleeds the image edges.
       </p>
     </header>
 
@@ -45,11 +47,19 @@ function fmtB(bytes: number): string {
       </div>
     ) : (
       <>
-        <div class="variant-legend">
-          {blurVariants.map((v) => (
-            <span class="legend-item">{blurLabels[v]}</span>
-          ))}
+        <div class="controls-bar">
+          <div class="control-group">
+            <label class="control-label">Card Size</label>
+            <div class="size-toggles" id="size-toggles">
+              <button class="size-btn active" data-size="0">Auto</button>
+              <button class="size-btn" data-size="150">150px</button>
+              <button class="size-btn" data-size="300">300px</button>
+              <button class="size-btn" data-size="600">600px</button>
+            </div>
+          </div>
         </div>
+
+
 
         {dataset.map((image: any) => {
           const refSrc = image.referenceImage ? `/processed/${image.referenceImage}` : ''
@@ -79,7 +89,8 @@ function fmtB(bytes: number): string {
                       )}
                     </div>
                     <div class="cell-stats">
-                      <span>{fmtB(result.sizes.gzipBytes)} gz</span>
+                      <span class="cell-title">{blurLabels[result.variantName]}</span>
+                      <span class="cell-size">{fmtB(result.sizes.gzipBytes)} gz</span>
                     </div>
                   </div>
                 ))}
@@ -95,6 +106,23 @@ function fmtB(bytes: number): string {
     // Apply CSS blur on the browser-blur variant cells
     document.querySelectorAll('.blur-cell[data-variant="blur-browser"] .preview').forEach(function(img) {
       img.style.filter = 'blur(12px)'
+    })
+
+    // Card size toggles
+    var sizeBtns = document.querySelectorAll('.size-btn')
+    sizeBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        sizeBtns.forEach(function(b) { b.classList.remove('active') })
+        btn.classList.add('active')
+        var size = parseInt(btn.dataset.size, 10)
+        document.querySelectorAll('.blur-columns').forEach(function(grid) {
+          if (size === 0) {
+            grid.style.gridTemplateColumns = 'repeat(4, 1fr)'
+          } else {
+            grid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(' + size + 'px, 1fr))'
+          }
+        })
+      })
     })
   </script>
 </Layout>
@@ -130,28 +158,63 @@ function fmtB(bytes: number): string {
     font-family: var(--font-mono);
   }
 
-  .variant-legend {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 0.75rem;
+  .controls-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
     margin-bottom: 1rem;
-    padding: 0.75rem 1rem;
-    padding-left: 120px;
+    padding: 0.75rem 1.25rem;
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
+    align-items: center;
     position: sticky;
     top: 0;
-    z-index: 10;
+    z-index: 11;
   }
 
-  .legend-item {
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-align: center;
-    color: var(--text);
+  .control-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
   }
+
+  .control-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+  }
+
+  .size-toggles {
+    display: flex;
+    gap: 0.35rem;
+  }
+
+  .size-btn {
+    padding: 0.3rem 0.6rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--bg);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 0.7rem;
+    font-family: var(--font);
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .size-btn:hover {
+    border-color: var(--accent);
+  }
+
+  .size-btn.active {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 30%, transparent);
+  }
+
+
 
   .image-row {
     display: grid;
@@ -188,7 +251,7 @@ function fmtB(bytes: number): string {
 
   .blur-columns {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 0.75rem;
   }
 
@@ -234,18 +297,23 @@ function fmtB(bytes: number): string {
   .cell-stats {
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
     font-size: 0.65rem;
-    font-family: var(--font-mono);
     color: var(--text-muted);
     padding: 0 0.25rem;
   }
 
-  @media (max-width: 800px) {
-    .variant-legend {
-      padding-left: 1rem;
-      grid-template-columns: repeat(2, 1fr);
-    }
+  .cell-title {
+    font-weight: 600;
+    font-size: 0.7rem;
+    color: var(--text);
+  }
 
+  .cell-size {
+    font-family: var(--font-mono);
+  }
+
+  @media (max-width: 800px) {
     .image-row {
       grid-template-columns: 1fr;
     }

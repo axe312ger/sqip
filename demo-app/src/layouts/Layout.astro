@@ -25,6 +25,15 @@ const matomoSiteId = import.meta.env.PUBLIC_MATOMO_SITE_ID || ''
       <Nav />
     </div>
     <slot />
+    <footer class="site-footer">
+      <p class="tracking-notice">
+        This site uses anonymized analytics to understand how the demo is used.
+        <button class="opt-out-btn" id="matomo-opt-out-btn">Opt out</button>
+      </p>
+      <p class="hashbite-credit">
+        made by <a href="https://hashbite.net" target="_blank" rel="noopener noreferrer">hashbite</a> with ❤️
+      </p>
+    </footer>
     <script is:inline define:vars={{ matomoUrl, matomoSiteId }}>
       // Matomo analytics — only initialized when URL and site ID are configured
       window._paq = window._paq || [];
@@ -61,6 +70,25 @@ const matomoSiteId = import.meta.env.PUBLIC_MATOMO_SITE_ID || ''
           _paq.push(args);
         }
       };
+
+      // Opt-out button
+      (function initOptOut() {
+        var btn = document.getElementById('matomo-opt-out-btn');
+        if (!btn) return;
+        var opted = localStorage.getItem('matomo-opt-out') === '1';
+        btn.textContent = opted ? 'Opt back in' : 'Opt out';
+        btn.addEventListener('click', function() {
+          if (localStorage.getItem('matomo-opt-out') === '1') {
+            localStorage.removeItem('matomo-opt-out');
+            _paq.push(['forgetUserOptOut']);
+            btn.textContent = 'Opt out';
+          } else {
+            localStorage.setItem('matomo-opt-out', '1');
+            _paq.push(['optUserOut']);
+            btn.textContent = 'Opt back in';
+          }
+        });
+      })();
     </script>
   </body>
 </html>
@@ -70,5 +98,46 @@ const matomoSiteId = import.meta.env.PUBLIC_MATOMO_SITE_ID || ''
     max-width: 1600px;
     margin: 0 auto;
     padding: 1rem 2rem 0;
+  }
+
+  .site-footer {
+    text-align: center;
+    padding: 2rem 1rem 1.5rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .site-footer a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .site-footer a:hover {
+    text-decoration: underline;
+  }
+
+  .site-footer p {
+    margin: 0.3rem 0;
+  }
+
+  .tracking-notice {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .opt-out-btn {
+    background: none;
+    border: none;
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+  }
+
+  .opt-out-btn:hover {
+    opacity: 0.8;
   }
 </style>
