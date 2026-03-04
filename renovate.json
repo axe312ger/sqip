@@ -1,20 +1,18 @@
 {
-  "extends": [
-    "config:base"
-  ],
+  "extends": ["config:recommended"],
   "ignorePresets": [":prHourlyLimit2"],
   "ignorePaths": ["demo/**"],
   "packageRules": [
     {
-      "extends": "monorepo:lerna",
+      "extends": ["monorepo:lerna"],
       "groupName": "lerna"
     },
     {
-      "extends": "packages:eslint",
+      "extends": ["packages:eslint"],
       "groupName": "eslint and related dependencies"
     },
     {
-      "extends": "packages:jsUnitTest",
+      "extends": ["packages:jsUnitTest"],
       "groupName": "jest and related dependencies"
     }
   ]
