@@ -29,6 +29,6 @@
   },
   "dependencies": {
     "sqip": "^1.0.0-beta.2",
-    "svgo": "4.0.0"
+    "svgo": "4.0.1"
   }
 }
