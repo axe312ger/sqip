@@ -7,9 +7,9 @@ exports[`node api > accepts buffers as input 1`] = `
     "backgroundColor": "#454449",
     "dataURI": "data:image/svg+xml,dataURI",
     "dataURIBase64": "data:image/svg+xml;base64,dataURIBase64==",
-    "filename": "-",
+    "filename": "buffer-test.svg",
     "height": 188,
-    "mimeType": "unknown",
+    "mimeType": "image/jpeg",
     "originalHeight": 640,
     "originalWidth": 1024,
     "palette": {

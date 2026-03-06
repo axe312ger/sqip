@@ -35,7 +35,8 @@ describe('cli api', () => {
   test('no config exists programm and shows help', async () => {
     await expect(() =>
       execa(cliCmd, [cliPath], {
-        stripFinalNewline: true
+        stripFinalNewline: true,
+        stdin: 'ignore'
       })
     ).rejects.toThrow('Please provide the following arguments: input')
   })
@@ -101,6 +102,40 @@ describe('cli api', () => {
 
     // Does the new file exist
     expect(await stat(tmpOutputFile)).toBeTruthy()
+
+    await remove(tmpOutputFile)
+  })
+
+  test('reads image from stdin and prints SVG', async () => {
+    const { stdout } = await execa(
+      'cat',
+      [inputFile, '|', cliCmd, cliPath, '-p', 'pixels'],
+      { shell: true, stripFinalNewline: true }
+    )
+
+    // stdin mode defaults to --print, so stdout should contain an SVG
+    expect(stdout).toContain('<svg')
+    expect(stdout).toContain('</svg>')
+  })
+
+  test('stdin with -o writes file to given path', async () => {
+    const tmpOutputFile = resolve(
+      tmpdir(),
+      `sqip-stdin-e2e-test-${new Date().getTime()}.svg`
+    )
+
+    await execa(
+      'cat',
+      [inputFile, '|', cliCmd, cliPath, '-p', 'pixels', '-o', tmpOutputFile],
+      { shell: true, stripFinalNewline: true }
+    )
+
+    // Does the new file exist
+    expect(await stat(tmpOutputFile)).toBeTruthy()
+
+    const content = await readFile(tmpOutputFile)
+    const $ = cheerioLoad(content, { xml: true })
+    expect($('svg')).toHaveLength(1)
 
     await remove(tmpOutputFile)
   })

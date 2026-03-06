@@ -1,8 +1,16 @@
 import { vi, type MockedFunction } from 'vitest'
+import { fstatSync } from 'fs'
 import { sqip, resolvePlugins } from 'sqip'
 import sqipCLI from '../../src/sqip-cli'
 
 import semver from 'semver'
+
+vi.mock('fs', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('fs')>()
+  return { ...actual, fstatSync: vi.fn(actual.fstatSync) }
+})
+
+const mockedFstatSync = fstatSync as MockedFunction<typeof fstatSync>
 
 vi.mock('sqip', () => ({
   sqip: vi.fn(async () => []),
@@ -43,6 +51,7 @@ describe('sqip-plugin-cli', () => {
     proccessExitSpy.mockClear()
     mockedSqip.mockClear()
     mockedResolvePlugins.mockClear()
+    mockedFstatSync.mockRestore()
     process.argv = originalArgv
   })
 
@@ -168,5 +177,98 @@ describe('sqip-plugin-cli', () => {
 
     expect(errorSpy).toHaveBeenCalled()
     expect(proccessExitSpy).toHaveBeenCalledWith(1)
+  })
+
+  describe('stdin support', () => {
+    const fakeImageBuffer = Buffer.from('fake-image-data')
+
+    const originalToArray = process.stdin.toArray
+
+    afterEach(() => {
+      process.stdin.toArray = originalToArray
+    })
+
+    function mockStdin(data: Buffer) {
+      mockedFstatSync.mockReturnValue({ isFIFO: () => true } as ReturnType<typeof fstatSync>)
+      process.stdin.toArray = (() => Promise.resolve([data])) as typeof process.stdin.toArray
+    }
+
+    it('reads input from stdin when no --input flag', async () => {
+      mockStdin(fakeImageBuffer)
+      process.argv = ['', '', '-p', 'mocked']
+
+      await sqipCLI()
+
+      expect(mockedSqip).toHaveBeenCalled()
+      const callArgs = mockedSqip.mock.calls[0][0]
+      expect(Buffer.isBuffer(callArgs.input)).toBe(true)
+      expect(callArgs.input).toEqual(fakeImageBuffer)
+    })
+
+    it('--input flag takes precedence over stdin', async () => {
+      mockStdin(fakeImageBuffer)
+      process.argv = ['', '', '-i', 'mocked-image.jpg', '-p', 'mocked']
+
+      await sqipCLI()
+
+      expect(mockedSqip).toHaveBeenCalled()
+      const callArgs = mockedSqip.mock.calls[0][0]
+      expect(callArgs.input).toBe('mocked-image.jpg')
+    })
+
+    it('defaults print to true for stdin input', async () => {
+      mockStdin(fakeImageBuffer)
+      process.argv = ['', '', '-p', 'mocked']
+
+      await sqipCLI()
+
+      expect(mockedSqip).toHaveBeenCalled()
+      const callArgs = mockedSqip.mock.calls[0][0]
+      expect(callArgs.print).toBe(true)
+    })
+
+    it('does not set output when input is from stdin', async () => {
+      mockStdin(fakeImageBuffer)
+      process.argv = ['', '', '-p', 'mocked']
+
+      await sqipCLI()
+
+      expect(mockedSqip).toHaveBeenCalled()
+      const callArgs = mockedSqip.mock.calls[0][0]
+      expect(callArgs.output).toBeUndefined()
+    })
+
+    it('sets outputFileName to stdin for stdin input', async () => {
+      mockStdin(fakeImageBuffer)
+      process.argv = ['', '', '-p', 'mocked']
+
+      await sqipCLI()
+
+      expect(mockedSqip).toHaveBeenCalled()
+      const callArgs = mockedSqip.mock.calls[0][0]
+      expect(callArgs.outputFileName).toBe('stdin')
+    })
+
+    it('respects -o flag with stdin input', async () => {
+      mockStdin(fakeImageBuffer)
+      process.argv = ['', '', '-p', 'mocked', '-o', '/tmp/out.svg']
+
+      await sqipCLI()
+
+      expect(mockedSqip).toHaveBeenCalled()
+      const callArgs = mockedSqip.mock.calls[0][0]
+      expect(callArgs.output).toBe('/tmp/out.svg')
+    })
+
+    it('defaults silent to true for stdin input', async () => {
+      mockStdin(fakeImageBuffer)
+      process.argv = ['', '', '-p', 'mocked']
+
+      await sqipCLI()
+
+      expect(mockedSqip).toHaveBeenCalled()
+      const callArgs = mockedSqip.mock.calls[0][0]
+      expect(callArgs.silent).toBe(true)
+    })
   })
 })
