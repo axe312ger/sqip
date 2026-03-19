@@ -43,7 +43,7 @@
   "devDependencies": {
     "@types/command-line-args": "5.2.3",
     "@types/command-line-usage": "5.0.4",
-    "@types/debug": "4.1.12",
+    "@types/debug": "4.1.13",
     "@types/fs-extra": "11.0.4",
     "@types/semver": "7.7.1",
     "cheerio": "^1.0.0",
