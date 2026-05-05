@@ -6,7 +6,7 @@
     "build": "astro build"
   },
   "dependencies": {
-    "astro": "^5.0.0",
+    "astro": "^6.0.0",
     "vite-plugin-sqip": "file:../../../vite-plugin-sqip",
     "sqip": "file:../../../../packages/sqip",
     "sqip-plugin-primitive": "file:../../../../packages/sqip-plugin-primitive",
