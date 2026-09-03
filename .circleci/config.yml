@@ -2,7 +2,7 @@ version: 2.0
 jobs:
   lint:
     docker:
-      - image: cimg/go:1.23-node
+      - image: cimg/go:1.27-node
     steps:
       - run: node --version
       - run: npm --version
@@ -22,7 +22,7 @@ jobs:
       - run: npm run lint
   test-unit:
     docker:
-      - image: cimg/go:1.23-node
+      - image: cimg/go:1.27-node
     steps:
       - run: node --version
       - run: npm --version
@@ -42,7 +42,7 @@ jobs:
       - run: npm run test:unit -- --reporter=verbose
   test-e2e:
     docker:
-      - image: cimg/go:1.23-node
+      - image: cimg/go:1.27-node
     steps:
       - run: node --version
       - run: npm --version
